@@ -1,6 +1,7 @@
 {
   "name": "firefly",
   "version": "0.1.0",
+  "homepage": ".",
   "private": true,
   "dependencies": {
     "formik": "^1.5.7",
