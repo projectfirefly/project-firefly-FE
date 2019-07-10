@@ -5,8 +5,10 @@
   "private": true,
   "dependencies": {
     "formik": "^1.5.7",
+    "konva": "^3.3.3",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-konva": "^16.8.7-3",
     "react-scripts": "3.0.1",
     "styled-components": "^4.3.2",
     "styled-theming": "^2.2.0",
