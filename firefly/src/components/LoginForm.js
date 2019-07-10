@@ -1,20 +1,39 @@
 import React from "react";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
+import axios from "axios";
 
 const LoginForm = ({ errors, touched, isSubmitting }) => {
   return (
-    <Form>
-      <div>
-        {touched.email && errors.email && <p>{errors.email}</p>}
-        <Field type="email" name="email" placeholder="Email" />
-      </div>
-      <div>
-        {touched.password && errors.password && <p>{errors.password}</p>}
-        <Field type="password" name="password" placeholder="Password" />
-      </div>
-      <button disabled={isSubmitting}>Submit</button>
-    </Form>
+    <div>
+      <Form>
+        <div>
+          {touched.email && errors.email && (
+            <p className="errorText">{errors.email}</p>
+          )}
+          <Field
+            type="email"
+            name="email"
+            placeholder="Email"
+            autoComplete="email"
+          />
+        </div>
+        <div>
+          {touched.password && errors.password && (
+            <p className="errorText">{errors.password}</p>
+          )}
+          <Field
+            type="password"
+            name="password"
+            autoComplete="current-password"
+            placeholder="Password"
+          />
+        </div>
+        <button type="submit" disabled={isSubmitting}>
+          Submit
+        </button>
+      </Form>
+    </div>
   );
 };
 
@@ -30,18 +49,14 @@ const FormikApp = withFormik({
       .email("Email not valid")
       .required("Email is required"),
     password: Yup.string()
-      .min(16, "Password must be 16 characters or longer")
+      .min(6, "Password must be 6 characters or longer")
       .required("Password is required")
   }),
   handleSubmit(values, { resetForm, setErrors, setSubmitting }) {
-    setTimeout(() => {
-      if (values.email === "alreadytaken@atb.dev") {
-        setErrors({ email: "That email is already taken" });
-      } else {
-        resetForm();
-      }
-      setSubmitting(false);
-    }, 2000);
+    axios.post("https://projectfirefly-staging.herokuapp.com/register", {
+      username: values.email,
+      password: values.password
+    });
   }
 })(LoginForm);
 
