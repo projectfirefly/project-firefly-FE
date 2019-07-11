@@ -2,6 +2,12 @@ import React from "react";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
+import styled from "styled-components";
+
+const ErrorText = styled.p`
+  font-size: 10rem;
+  color: red;
+`;
 
 const LoginForm = ({ errors, touched, isSubmitting }) => {
   return (
@@ -10,7 +16,7 @@ const LoginForm = ({ errors, touched, isSubmitting }) => {
       <Form>
         <div>
           {touched.email && errors.email && (
-            <p className="errorText">{errors.email}</p>
+            <ErrorText>{errors.email}</ErrorText>
           )}
           <Field
             type="email"
@@ -21,7 +27,7 @@ const LoginForm = ({ errors, touched, isSubmitting }) => {
         </div>
         <div>
           {touched.password && errors.password && (
-            <p className="errorText">{errors.password}</p>
+            <ErrorText>{errors.password}</ErrorText>
           )}
           <Field
             type="password"
