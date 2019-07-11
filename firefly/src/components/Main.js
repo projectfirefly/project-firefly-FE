@@ -4,9 +4,9 @@ import axios from "axios";
 const Main = () => {
   return (
     <div>
-      <div className="getUsers" onClick={getUsers}>
+      <button className="getUsers" onClick={getUsers}>
         Get Users
-      </div>
+      </button>
     </div>
   );
 };

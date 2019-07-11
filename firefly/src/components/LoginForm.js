@@ -6,6 +6,7 @@ import axios from "axios";
 const LoginForm = ({ errors, touched, isSubmitting }) => {
   return (
     <div>
+      <h3>Create New User</h3>
       <Form>
         <div>
           {touched.email && errors.email && (
