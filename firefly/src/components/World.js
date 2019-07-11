@@ -1,6 +1,18 @@
 import React, { Component } from 'react'
-import { Stage, Circle, Layer } from 'react-konva';
+import { Stage, Circle, Layer, Image, Path } from 'react-konva';
 import Konva from 'konva';
+
+import useImage from 'use-image';
+
+import logo from '../NightSky.svg';
+import me from './avatar01.png';
+
+import firefly from '../Firefly.svg';
+
+const LionImage = (props) => {
+    const [image] = useImage(props.i);
+    return <Image image={image} width={props.width} x={props.x} y={props.y} draggable={props.draggable}/>;
+};
 
 export class World extends Component {
     state = {
@@ -8,30 +20,50 @@ export class World extends Component {
             {
                 x: 400,
                 y: 200,
-                color: '#'+(Math.random()*0xFFFFFF<<0).toString(16)
+                color: '#' + (Math.random() * 0xFFFFFF << 0).toString(16)
             },
             {
                 x: ~~(Math.random() * 500),
                 y: ~~(Math.random() * 500),
-                color: '#'+(Math.random()*0xFFFFFF<<0).toString(16)
+                color: '#' + (Math.random() * 0xFFFFFF << 0).toString(16)
             },
             {
                 x: ~~(Math.random() * 500),
                 y: ~~(Math.random() * 500),
-                color: '#'+(Math.random()*0xFFFFFF<<0).toString(16)
+                color: '#' + (Math.random() * 0xFFFFFF << 0).toString(16)
             },
             {
                 x: ~~(Math.random() * 500),
                 y: ~~(Math.random() * 500),
-                color: '#'+(Math.random()*0xFFFFFF<<0).toString(16)
+                color: '#' + (Math.random() * 0xFFFFFF << 0).toString(16)
             },
         ]
+    }
+
+    save = () => {
+        window.localStorage.setItem("world", JSON.stringify(this.state.targets));
+    }
+
+    load = () => {
+        const loaded = JSON.parse(window.localStorage.getItem("world"));
+        console.log(loaded);
+        console.log(this.state);
+        this.setState({
+            ...this.state,
+            targets: loaded
+        })
+        console.log(this.state);
     }
 
     render() {
         return (
             <div id="stage-container">
-                <Stage container={"stage-container"} width={window.innerWidth * .48} height={window.innerHeight * .90} style={{ border: '10px solid black' }}>
+                <button onClick={this.save}>Save</button>
+                <button onClick={this.load}>Load</button>
+                <Stage container={"stage-container"} width={window.innerWidth} height={window.innerHeight * .90}>
+                    <Layer>
+                        <LionImage i={logo}/>
+                    </Layer>
                     <Layer>
                         {this.state.targets.map((target) => (
                             <Target x={target.x} y={target.y} color={target.color} key={target.x} />
@@ -42,6 +74,7 @@ export class World extends Component {
         )
     }
 }
+
 
 class Target extends Component {
     constructor(props) {
@@ -60,24 +93,26 @@ class Target extends Component {
             y: e.target.y()
         })
         console.log(JSON.stringify(this.state));
-        var a = 100;
-        var b = 200;
-        a = a ^ b;
-        b = b ^ a;
-        a = a ^ b;
-        console.log(a);
-        console.log(b);
     }
 
     render() {
         return (
-            <Circle
+            // <Circle
+            //     x={this.state.x}
+            //     y={this.state.y}
+            //     draggable
+            //     onDragEnd={this.handleDragEnd}
+            //     radius={6}
+            //     fill={this.props.color}
+            // />
+            <LionImage
                 x={this.state.x}
                 y={this.state.y}
-                draggable
+                draggable={true}
                 onDragEnd={this.handleDragEnd}
-                radius={6}
+                width={50}
                 fill={this.props.color}
+                i={firefly}
             />
         )
     }

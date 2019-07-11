@@ -4,6 +4,7 @@
   "homepage": ".",
   "private": true,
   "dependencies": {
+    "canvg": "^2.0.0",
     "formik": "^1.5.7",
     "konva": "^3.3.3",
     "react": "^16.8.6",
@@ -12,6 +13,7 @@
     "react-scripts": "3.0.1",
     "styled-components": "^4.3.2",
     "styled-theming": "^2.2.0",
+    "use-image": "^1.0.4",
     "yup": "^0.27.0"
   },
   "scripts": {
