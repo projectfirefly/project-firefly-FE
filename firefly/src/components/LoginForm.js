@@ -1,20 +1,46 @@
 import React from "react";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
+import axios from "axios";
+import styled from "styled-components";
+
+const ErrorText = styled.p`
+  font-size: 10rem;
+  color: red;
+`;
 
 const LoginForm = ({ errors, touched, isSubmitting }) => {
   return (
-    <Form>
-      <div>
-        {touched.email && errors.email && <p>{errors.email}</p>}
-        <Field type="email" name="email" placeholder="Email" />
-      </div>
-      <div>
-        {touched.password && errors.password && <p>{errors.password}</p>}
-        <Field type="password" name="password" placeholder="Password" />
-      </div>
-      <button disabled={isSubmitting}>Submit</button>
-    </Form>
+    <div>
+      <h3>Create New User</h3>
+      <Form>
+        <div>
+          {touched.email && errors.email && (
+            <ErrorText>{errors.email}</ErrorText>
+          )}
+          <Field
+            type="email"
+            name="email"
+            placeholder="Email"
+            autoComplete="email"
+          />
+        </div>
+        <div>
+          {touched.password && errors.password && (
+            <ErrorText>{errors.password}</ErrorText>
+          )}
+          <Field
+            type="password"
+            name="password"
+            autoComplete="current-password"
+            placeholder="Password"
+          />
+        </div>
+        <button type="submit" disabled={isSubmitting}>
+          Submit
+        </button>
+      </Form>
+    </div>
   );
 };
 
@@ -30,18 +56,14 @@ const FormikApp = withFormik({
       .email("Email not valid")
       .required("Email is required"),
     password: Yup.string()
-      .min(16, "Password must be 16 characters or longer")
+      .min(6, "Password must be 6 characters or longer")
       .required("Password is required")
   }),
   handleSubmit(values, { resetForm, setErrors, setSubmitting }) {
-    setTimeout(() => {
-      if (values.email === "alreadytaken@atb.dev") {
-        setErrors({ email: "That email is already taken" });
-      } else {
-        resetForm();
-      }
-      setSubmitting(false);
-    }, 2000);
+    axios.post("https://projectfirefly-staging.herokuapp.com/register", {
+      username: values.email,
+      password: values.password
+    });
   }
 })(LoginForm);
 
