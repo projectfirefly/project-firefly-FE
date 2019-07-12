@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import firebase from "firebase";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
-import axios from "axios";
+//import axios from "axios";
 import ApolloClient from "apollo-boost";
 const { gql } = require("apollo-boost");
 
