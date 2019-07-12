@@ -1,13 +1,17 @@
 import React from "react";
 import "./App.css";
-import FormikApp from "./components/LoginForm";
+
+import FirebaseLogin from "./components/FirebaseLogin";
 import Main from "./components/Main";
+
 
 function App() {
   return (
     <div className="App">
-      <FormikApp />
+
+      <FirebaseLogin />
       <Main />
+
     </div>
   );
 }
