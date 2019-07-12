@@ -11,7 +11,14 @@ import firefly from '../Firefly.svg';
 
 const LionImage = (props) => {
     const [image] = useImage(props.i);
-    return <Image image={image} width={props.width} x={props.x} y={props.y} draggable={props.draggable}/>;
+    console.log('hello');
+    console.log([image]);
+    if ([image][0] != undefined) {
+        console.log('ASDF');
+        [image][0].width = props.width;
+        [image][0].height = props.height;
+    }
+    return <Image image={image} x={props.x} y={props.y} draggable={props.draggable}/>;
 };
 
 export class World extends Component {
@@ -62,7 +69,7 @@ export class World extends Component {
                 <button onClick={this.load}>Load</button>
                 <Stage container={"stage-container"} width={window.innerWidth} height={window.innerHeight * .90}>
                     <Layer>
-                        <LionImage i={logo}/>
+                        <LionImage i={logo} width={window.innerWidth} height={window.innerHeight*.9} y={0} x={0}/>
                     </Layer>
                     <Layer>
                         {this.state.targets.map((target) => (
@@ -111,6 +118,7 @@ class Target extends Component {
                 draggable={true}
                 onDragEnd={this.handleDragEnd}
                 width={50}
+                height={50}
                 fill={this.props.color}
                 i={firefly}
             />
