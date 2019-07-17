@@ -1,8 +1,6 @@
 import React from "react";
-import "./App.css";
-
-import FirebaseLogin from "./components/FirebaseLogin";
-import Main from "./components/Main";
+import { BrowserRouter } from 'react-router-dom';
+import DevMenu from './views/DevMenu';
 
 
 //google analytics code start//
@@ -13,12 +11,9 @@ ReactGA.pageview(window.location.pathname + window.location.search);
 
 function App() {
   return (
-    <div className="App">
-
-      <FirebaseLogin />
-      <Main />
-
-    </div>
+    <BrowserRouter>
+    <DevMenu/>
+    </BrowserRouter>
   );
 }
 
