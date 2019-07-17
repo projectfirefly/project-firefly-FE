@@ -5,6 +5,7 @@ import { Switch, Route } from "react-router-dom";
 import Menu from "../components/Menu";
 import FireBaseLogin from "../components/FirebaseLogin";
 import Main from "../components/Main";
+import ChooseLogin from "../components/ChooseLogin";
 import "../styles/devMenu.scss";
 import Register from "../components/Register";
 
@@ -18,6 +19,7 @@ export default function Layout() {
         <Switch>
           <Route path="/login" component={FireBaseLogin} />
           <Route exact path="/" component={Main} />
+          <Route path='/choose-login' component={ChooseLogin}/>
           <Route path="/register" component={Register} />
         </Switch>
       </main>

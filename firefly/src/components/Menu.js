@@ -12,6 +12,10 @@ const items = [
     text: "Login"
   },
   {
+    path: "/choose-login",
+    text: "ChooseLogin"
+  },
+  {
     path: "/register",
     text: "Register"
   }
