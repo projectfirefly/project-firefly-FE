@@ -6,19 +6,21 @@ import Menu from "../components/Menu";
 import FireBaseLogin from "../components/FirebaseLogin";
 import Main from "../components/Main";
 import "../styles/devMenu.scss";
+import ChildProfiles from "../components/ChildProfiles/ChildProfiles";
 
 export default function Layout() {
-  return (
-    <div className="app">
-      <div className="app__sidebar">
-        <Menu />
-      </div>
-      <main className="app__content">
-        <Switch>
-          <Route path="/login" component={FireBaseLogin} />
-          <Route path="/" component={Main} />
-        </Switch>
-      </main>
-    </div>
-  );
+    return (
+        <div className="app">
+            <div className="app__sidebar">
+                <Menu />
+            </div>
+            <main className="app__content">
+                <Switch>
+                    <Route path="/login" component={FireBaseLogin} />
+                    <Route exact path="/" component={Main} />
+                    <Route path="/child-profiles" component={ChildProfiles} />
+                </Switch>
+            </main>
+        </div>
+    );
 }
