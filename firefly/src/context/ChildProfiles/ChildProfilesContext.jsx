@@ -18,7 +18,11 @@ const ChildProfilesContext = React.createContext({
             avatar: "Gy"
         }
     ],
-    selected: {}
+    selected: {
+        id: 2,
+        name: "Gyorg",
+        avatar: "Gy"
+    }
 });
 
 export default ChildProfilesContext

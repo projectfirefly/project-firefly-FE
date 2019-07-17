@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -13,8 +13,8 @@ import PersonIcon from '@material-ui/icons/Person';
 import AddIcon from '@material-ui/icons/Add';
 import Typography from '@material-ui/core/Typography';
 import { blue } from '@material-ui/core/colors';
+import ChildProfilesContext from '../../context/ChildProfiles/ChildProfilesContext';
 
-const emails = ['username@gmail.com', 'user02@gmail.com'];
 const useStyles = makeStyles({
     avatar: {
         backgroundColor: blue[100],
@@ -22,73 +22,45 @@ const useStyles = makeStyles({
     },
 });
 
-function SimpleDialog(props) {
-    const classes = useStyles();
-    const { onClose, selectedValue, ...other } = props;
+// function SimpleDialog(props) {
+//     const classes = useStyles();
+//     const { onClose, selectedValue, ...other } = props;
 
-    function handleClose() {
-        onClose(selectedValue);
-    }
+//     return (
+//         <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" {...other}>
+//             <DialogTitle id="simple-dialog-title">Choose Child Profile</DialogTitle>
+//         </Dialog>
+//     );
+// }
 
-    function handleListItemClick(value) {
-        onClose(value);
-    }
-
-    return (
-        <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" {...other}>
-            <DialogTitle id="simple-dialog-title">Set backup account</DialogTitle>
-            <List>
-                {emails.map(email => (
-                    <ListItem button onClick={() => handleListItemClick(email)} key={email}>
-                        <ListItemAvatar>
-                            <Avatar className={classes.avatar}>
-                                <PersonIcon />
-                            </Avatar>
-                        </ListItemAvatar>
-                        <ListItemText primary={email} />
-                    </ListItem>
-                ))}
-
-                <ListItem button onClick={() => handleListItemClick('addAccount')}>
-                    <ListItemAvatar>
-                        <Avatar>
-                            <AddIcon />
-                        </Avatar>
-                    </ListItemAvatar>
-                    <ListItemText primary="add account" />
-                </ListItem>
-            </List>
-        </Dialog>
-    );
-}
-
-SimpleDialog.propTypes = {
-    onClose: PropTypes.func,
-    open: PropTypes.bool,
-    selectedValue: PropTypes.string,
-};
+// SimpleDialog.propTypes = {
+//     onClose: PropTypes.func,
+//     open: PropTypes.bool,
+//     selectedValue: PropTypes.string,
+// };
 
 export default function SimpleDialogDemo() {
     const [open, setOpen] = React.useState(false);
-    const [selectedValue, setSelectedValue] = React.useState(emails[1]);
+    const selectedProfile = useContext(ChildProfilesContext).selected;
 
     function handleClickOpen() {
         setOpen(true);
+        console.log(selectedProfile);
     }
 
     const handleClose = value => {
         setOpen(false);
-        setSelectedValue(value);
-    };
+        // setSelectedProfile(value);
+    }
 
     return (
         <div>
-            <Typography variant="subtitle1">Selected: {selectedValue}</Typography>
+            {/* <Typography variant="subtitle1">Selected: {selectedValue.name}</Typography> */}
             <br />
-            <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-                Open simple dialog
+            <Button variant="outlined" color="primary" onClick={(handleClickOpen)}>
+                SELECT PROFILE
             </Button>
-            <SimpleDialog selectedValue={selectedValue} open={open} onClose={handleClose} />
+            {/* <SimpleDialog children={children} selectedValue={selectedValue} open={open} onClose={handleClose} /> */}
         </div>
     );
 }
