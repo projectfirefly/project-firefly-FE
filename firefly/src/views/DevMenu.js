@@ -19,7 +19,7 @@ export default function Layout() {
       <main className="app__content">
         <Switch>
           <Route path="/login" component={FireBaseLogin} />
-          <Route path="/" component={Main} />
+          <Route exact path="/" component={Main} />
           <Route path="/chooseprofile" component={ChooseProfile} />
           <Route path="/profileview" component={ProfileView} />
           <Route path="/selectavatar" component={SelectAvatar} />

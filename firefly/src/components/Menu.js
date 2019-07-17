@@ -10,6 +10,18 @@ const items = [
   {
     path: "/login",
     text: "Login"
+  },
+  {
+    path: "/chooseprofile",
+    text: "ChooseProfile"
+    
+  }, {
+    path: "/profileview",
+    text: "ProfileView"
+    
+  }, {
+    path: "/selectavatar",
+    text: "SelectAvatar"
   }
 ];
 
