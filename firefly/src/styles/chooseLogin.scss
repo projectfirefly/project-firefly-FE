@@ -1,0 +1,88 @@
+body{
+    margin: 0;
+    font-family: 'Nunito', sans-serif;
+    background-image: url('./../images/IconsBackground.png');
+
+
+    @keyframes animatedBackground {
+        from { background-position: 0 0; }
+        to { background-position: 100% 0; }
+    }
+
+    background-position: 0px 0px;
+	background-repeat: repeat-x;
+
+	animation: animatedBackground 45s linear infinite;
+}
+
+.logo{
+    display: flex;
+    justify-content: center;
+
+    &__image{
+        height:auto;
+        max-width:100%;
+    }
+}
+
+.buttons{
+    display: flex;
+    flex-direction: column;
+    max-width: 40%;
+    height: 160px;
+    justify-content: space-between;
+    margin: 0 auto;
+    margin-top: 100px;
+
+
+    &__get-started{
+        background-color: #4aa810;
+        color:#e2f5d6;
+        padding: 0.8rem;
+        text-transform: uppercase;
+        font-size:1.3rem;
+        border-radius:10px;
+        box-shadow: 0px 3px #3e8c0d;
+        cursor: pointer;
+        opacity:0.92;
+        transition: opacity .25s ease-in-out;
+        letter-spacing: 1px;
+        max-width:100%;
+
+        &:hover{
+            opacity:1;
+            box-shadow: none;
+            margin: 3px 0px -3px 0px;
+        }
+
+        &:focus{
+            outline:none;
+        }
+    }
+    &__already-have-account{
+        border: 2px solid #abb0ba;
+        padding: 0.8rem;
+        color: #4aa810;
+        background-color:white;
+        text-transform: uppercase;
+        font-size:1.3rem;
+        border-radius:10px;
+        box-shadow: 0px 3px #8f96a3;
+        cursor: pointer;
+        opacity:0.92;
+        transition: opacity .25s ease-in-out;
+        letter-spacing: 1px;
+        max-width:100%;
+
+        
+        &:hover{
+            opacity:1;
+            box-shadow: none;
+            margin: 3px 0px -3px 0px;
+        }
+
+        &:focus{
+            outline:none;
+        }
+    }
+}
