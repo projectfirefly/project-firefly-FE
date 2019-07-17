@@ -6,6 +6,7 @@ import Menu from "../components/Menu";
 import FireBaseLogin from "../components/FirebaseLogin";
 import Main from "../components/Main";
 import "../styles/devMenu.scss";
+import Register from "../components/Register";
 
 export default function Layout() {
   return (
@@ -16,7 +17,8 @@ export default function Layout() {
       <main className="app__content">
         <Switch>
           <Route path="/login" component={FireBaseLogin} />
-          <Route path="/" component={Main} />
+          <Route exact path="/" component={Main} />
+          <Route path="/register" component={Register} />
         </Switch>
       </main>
     </div>
