@@ -1,9 +1,6 @@
 import React from "react";
-import "./App.css";
-
-import FirebaseLogin from "./components/FirebaseLogin";
-import Main from "./components/Main";
-import ChildProfiles from "./components/ChildProfiles/ChildProfiles";
+import { BrowserRouter } from 'react-router-dom';
+import DevMenu from './views/DevMenu';
 
 import {
     BrowserRouter as Router,
@@ -21,16 +18,9 @@ ReactGA.pageview(window.location.pathname + window.location.search);
 
 function App() {
     return (
-        <div className="App">
-
-            <Route exact path="/firebase-login" component={FirebaseLogin} />
-            <Route exact path="/main" component={Main} />
-            <Route exact path="/child-profile" component={ChildProfiles} />
-            <Link to="/firebase-login">FIREBASE LOGIN</Link> <br/>
-            <Link to="/main">MAIN</Link> <br/>
-            <Link to="/child-profile">CHILD PROFILE, CLICK HERE FOR THE COOL STUFF</Link> <br/>
-
-        </div>
+        <BrowserRouter>
+            <DevMenu />
+        </BrowserRouter>
     );
 }
 
