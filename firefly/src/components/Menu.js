@@ -12,16 +12,12 @@ const items = [
     text: "Login"
   },
   {
-    path: "/chooseprofile",
-    text: "ChooseProfile"
-    
-  }, {
     path: "/profileview",
     text: "ProfileView"
-    
-  }, {
-    path: "/selectavatar",
-    text: "SelectAvatar"
+  },
+  {
+    path: "/createprofile",
+    text: "CreateProfile"
   }
 ];
 
