@@ -12,6 +12,7 @@ import {
 
 //google analytics code start//
 import ReactGA from 'react-ga';
+import ChildProfileStore from "./context/ChildProfiles/ChildProfileStore";
 ReactGA.initialize('UA-143905861-1');
 ReactGA.pageview(window.location.pathname + window.location.search);
 //google analytics code end//
@@ -19,7 +20,9 @@ ReactGA.pageview(window.location.pathname + window.location.search);
 function App() {
     return (
         <BrowserRouter>
-            <DevMenu />
+            <ChildProfileStore>
+                <DevMenu />
+            </ChildProfileStore>
         </BrowserRouter>
     );
 }
