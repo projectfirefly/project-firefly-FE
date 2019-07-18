@@ -12,6 +12,14 @@ const items = [
     text: "Login"
   },
   {
+
+    path: "/profileview",
+    text: "ProfileView"
+  },
+  {
+    path: "/createprofile",
+    text: "CreateProfile"
+
     path: "/choose-login",
     text: "ChooseLogin"
   },
@@ -26,6 +34,7 @@ const items = [
   {
     path: "/child-profiles-main",
     text: "Main Child Profiles Test"
+
   }
 ];
 

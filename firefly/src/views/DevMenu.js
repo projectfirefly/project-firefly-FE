@@ -4,6 +4,8 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 import Menu from "../components/Menu";
 import FireBaseLogin from "../components/FirebaseLogin";
+import ProfileView from "../components/childProfile/ProfileView";
+import CreateProfile from "../components/childProfile/CreateProfile";
 import Main from "../components/Main";
 import ChooseLogin from "../components/ChooseLogin";
 import "../styles/devMenu.scss";
@@ -21,10 +23,15 @@ export default function Layout() {
         <Switch>
           <Route path="/login" component={FireBaseLogin} />
           <Route exact path="/" component={Main} />
+
+          <Route path="/profileview" component={ProfileView} />
+          <Route path="/createprofile" component={CreateProfile} />
+
           <Route path='/choose-login' component={ChooseLogin}/>
           <Route path="/register" component={Register} />
           <Route exact path="/child-profiles-dialog" component={ChildProfileDialog} />
           <Route exact path="/child-profiles-main" component={ChildProfiles} />
+
         </Switch>
       </main>
     </div>
