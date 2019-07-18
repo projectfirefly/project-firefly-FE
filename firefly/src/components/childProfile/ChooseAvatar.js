@@ -5,7 +5,7 @@ const ChooseAvatar = () => {
   return (
     <div>
       <h2>Choose your Avatar</h2>
-      <Icon name="firefly" width={100} />
+      <Icon name="Firefly" width={200} />
     </div>
   );
 };
