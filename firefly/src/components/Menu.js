@@ -34,6 +34,10 @@ const items = [
   {
     path: "/child-profiles-main",
     text: "Main Child Profiles Test"
+  },
+  {
+      path: "/slider-test",
+      text: "Rainbow Slider Test",
   }
 ];
 
