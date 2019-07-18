@@ -21,6 +21,7 @@ const useStyles = makeStyles(theme => ({
 export default function ProfileView() {
   const classes = useStyles();
   const [name, setName] = useState("cha");
+  const [name, newName] = useState({ name });
 
   const handleChange = event => {
     event.preventDefault();
@@ -28,10 +29,10 @@ export default function ProfileView() {
   };
   const changeName = event => {
     event.preventDefault();
-    if (!setName) {
+    if (!newName) {
       alert("Please add a new name");
     } else {
-      setName(name);
+      newName(name);
     }
   };
 
