@@ -3,52 +3,42 @@ import image1 from "../../assets/icons/firefly.svg";
 export const tileData = [
   {
     img: image1,
-    title: "Green",
-    author: "author"
+    title: "Green"
   },
   {
     img: image1,
-    title: "Red",
-    author: "author"
+    title: "Red"
   },
   {
     img: image1,
-    title: "Yellow",
-    author: "author"
+    title: "Yellow"
   },
   {
     img: image1,
-    title: "Pink",
-    author: "author"
+    title: "Pink"
   },
   {
     img: image1,
-    title: "Image",
-    author: "author"
+    title: "Magenta"
   },
   {
     img: image1,
-    title: "Image",
-    author: "author"
+    title: "Purple"
   },
   {
     img: image1,
-    title: "Image",
-    author: "author"
+    title: "Orange"
   },
   {
     img: image1,
-    title: "Image",
-    author: "author"
+    title: "Blue"
   },
   {
     img: image1,
-    title: "Image",
-    author: "author"
+    title: "Lime Green"
   },
   {
     img: image1,
-    title: "Image",
-    author: "author"
+    title: "Yellow Red"
   }
 ];
