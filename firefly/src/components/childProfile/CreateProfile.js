@@ -85,28 +85,7 @@ export default function CreateProfile() {
             </Button>
           </Toolbar>
         </AppBar>
-        <GridList cellHeight={200} className={classes.gridList}>
-          <GridListTile key="Subheader" cols={3} style={{ height: "auto" }}>
-            <ListSubheader component="div">Characters</ListSubheader>
-          </GridListTile>
-          {tileData.map(tile => (
-            <GridListTile key={tile.img}>
-              <img src={tile.img} alt={tile.title} />
-              <GridListTileBar
-                title={tile.title}
-                subtitle={<span>by: {tile.author}</span>}
-                actionIcon={
-                  <IconButton
-                    aria-label={`info about ${tile.title}`}
-                    className={classes.icon}
-                  >
-                    <InfoIcon />
-                  </IconButton>
-                }
-              />
-            </GridListTile>
-          ))}
-        </GridList>
+        <ChooseAvatar />
       </Dialog>
     </div>
   );
