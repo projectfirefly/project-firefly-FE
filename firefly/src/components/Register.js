@@ -11,7 +11,7 @@ const { gql } = require("apollo-boost");
 const USER_EXISTS = gql`
   query getUserBy($param: String!, $value: String!) {
     getUserBy(param: $param, value: $value) {
-      username
+      email
     }
   }
 `;
@@ -20,8 +20,7 @@ const ADD_USER = gql`
   mutation addUser($input: UserInput!) {
     addUser(input: $input) {
       id
-      username
-      first_name
+      email
     }
   }
 `;
@@ -44,7 +43,7 @@ const uiConfig = {
         .query({
           query: USER_EXISTS,
           variables: {
-            param: "username",
+            param: "email",
             value: currentUser.email
           }
         })
@@ -54,8 +53,8 @@ const uiConfig = {
             window.alert("Email has already been registered");
           } else {
             const newUser = {
-              username: currentUser.email,
-              first_name: currentUser.displayName
+              email: currentUser.email,
+              username: currentUser.displayName
             };
             client
               .mutate({
@@ -129,7 +128,7 @@ const Register = withFormik({
       .query({
         query: USER_EXISTS,
         variables: {
-          param: "username",
+          param: "email",
           value: values.email
         }
       })
@@ -139,8 +138,8 @@ const Register = withFormik({
           window.alert("Email has already been registered");
         } else {
           const newUser = {
-            username: values.email,
-            first_name: values.email
+            email: values.email,
+            username: values.email
           };
           client
             .mutate({
