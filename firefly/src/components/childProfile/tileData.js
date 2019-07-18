@@ -1,4 +1,4 @@
-import image1 from "../../logo.svg";
+import image1 from "../../assets/icons/firefly.svg";
 
 export const tileData = [
   {
@@ -19,6 +19,11 @@ export const tileData = [
   {
     img: image1,
     title: "Pink",
+    author: "author"
+  },
+  {
+    img: image1,
+    title: "Image",
     author: "author"
   },
   {

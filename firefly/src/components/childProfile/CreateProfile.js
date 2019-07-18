@@ -24,8 +24,8 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.background.paper
   },
   gridList: {
-    width: "auto",
-    height: 450
+    width: "100%",
+    height: "auto"
   },
   icon: {
     color: "rgba(255, 255, 255, 0.54)"
@@ -85,7 +85,7 @@ export default function CreateProfile() {
             </Button>
           </Toolbar>
         </AppBar>
-        <GridList cellHeight={90} className={classes.gridList}>
+        <GridList cellHeight={200} className={classes.gridList}>
           <GridListTile key="Subheader" cols={3} style={{ height: "auto" }}>
             <ListSubheader component="div">Characters</ListSubheader>
           </GridListTile>
