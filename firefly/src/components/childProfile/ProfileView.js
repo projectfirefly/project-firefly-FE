@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function ProfileView() {
   const classes = useStyles();
-  const [name, setName] = useState("userName");
+  const [name, setName] = useState({ value: "" });
 
   const handleChange = event =>
     setName({ [event.target.placeholder]: event.target.value });
