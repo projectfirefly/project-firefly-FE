@@ -1,6 +1,6 @@
 import React, { useState, useReducer } from 'react'
 
-export const context = React.createContext();
+export const childContext = React.createContext();
 
 const initialState = {
     profiles: [
@@ -21,6 +21,18 @@ const initialState = {
         name: "Gyorg",
         avatar: "Gy",
         color: "gold",
+    },
+    {
+        id: 3,
+        name: "John",
+        avatar: "Jo",
+        color: "brown",
+    },
+    {
+        id: 4,
+        name: "Jacob",
+        avatar: "Ja",
+        color: "cyan",
     }],
     selected: {
         id: 2,
@@ -50,8 +62,8 @@ export default function ChildProfileStore(props) {
     const stateHook = useReducer(reducer, initialState)
 
     return (
-        <context.Provider value={stateHook}>
+        <childContext.Provider value={stateHook}>
             {props.children}
-        </context.Provider>
+        </childContext.Provider>
     )
 }

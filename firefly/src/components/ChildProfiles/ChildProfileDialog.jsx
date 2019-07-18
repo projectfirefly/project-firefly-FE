@@ -14,7 +14,7 @@ import AddIcon from '@material-ui/icons/Add';
 import Typography from '@material-ui/core/Typography';
 import { blue } from '@material-ui/core/colors';
 
-import { context } from '../../context/ChildProfiles/ChildProfileStore'
+import { childContext } from '../../context/ChildProfiles/ChildProfileStore'
 
 const useStyles = makeStyles({
     avatar: {
@@ -23,71 +23,71 @@ const useStyles = makeStyles({
     },
 });
 
-// function SimpleDialog(props) {
-//     const classes = useStyles();
-//     const { onClose, selectedValue, ...other } = props;
+export default function ChildProfileDialog() {
 
-//     return (
-//         <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" {...other}>
-//             <DialogTitle id="simple-dialog-title">Choose Child Profile</DialogTitle>
-//         </Dialog>
-//     );
-// }
+    const classes = useStyles();
 
-// SimpleDialog.propTypes = {
-//     onClose: PropTypes.func,
-//     open: PropTypes.bool,
-//     selectedValue: PropTypes.string,
-// };
-
-export default function SimpleDialogDemo() {
     const [open, setOpen] = React.useState(false);
-    const [childProfileState, dispatch] = useContext(context);
+    const [childProfileState, dispatch] = useContext(childContext);
 
     function handleClickOpen() {
         setOpen(true);
-        console.log(childProfileState);
     }
 
-    const handleClose = value => {
+    function handleClose(value) {
         setOpen(false);
-        // setSelectedProfile(value);
+        dispatch({type: 'UPDATE_SELECTED', payload: value});
     }
 
     return (
         <div>
             {/* <Typography variant="subtitle1">Selected: {selectedValue.name}</Typography> */}
             <h1> Selected Kid: {childProfileState.profiles.find((profile) => {
-                console.log(childProfileState.selected.id === profile.id);
                 return childProfileState.selected.id === profile.id;
             }).name}</h1>
-            {childProfileState.profiles.map((kiddo) => {
+            {/* {childProfileState.profiles.map((profile) => {
                 return (
                     <>
-                        <h1 style={{ color: kiddo.color }}>{kiddo.name}</h1>
+                        <h1 style={{ color: profile.color }}>{profile.name}</h1>
                         <Button variant="contained" color="secondary" onClick={() => {
-                            dispatch({ type: 'UPDATE_COLOR', payload: {
-                                ...kiddo,
-                                color: 'blue',
-                            } })
+                            dispatch({
+                                type: 'UPDATE_COLOR', payload: {
+                                    ...profile,
+                                    color: 'blue',
+                                }
+                            })
                         }
                         }>
                             UPDATE COLOR
                         </Button>
                         <Button variant="contained" color="secondary" onClick={() => {
-                            dispatch({ type: 'UPDATE_SELECTED', payload: kiddo.id })
+                            dispatch({ type: 'UPDATE_SELECTED', payload: profile.id })
                         }
                         }>
                             UPDATE SELECTED
                         </Button>
                     </>
                 )
-            })}
+            })} */}
             <br />
             <Button variant="outlined" color="primary" onClick={(handleClickOpen)}>
-                Console Log Test State
+                Open Dialog
             </Button>
-            {/* <SimpleDialog children={children} selectedValue={selectedValue} open={open} onClose={handleClose} /> */}
+            <Dialog open={open} onClose={() => handleClose(childProfileState.selected.id)} aria-labelledby="simple-dialog-title">
+                <DialogTitle id="simple-dialog-title">Choose Profile</DialogTitle>
+                <List>
+                    {childProfileState.profiles.map(profile => (
+                        <ListItem button onClick={() => handleClose(profile.id)} key={profile.name}>
+                            <ListItemAvatar>
+                                <Avatar className={classes.avatar}>
+                                    <PersonIcon />
+                                </Avatar>
+                            </ListItemAvatar>
+                            <ListItemText primary={profile.name} />
+                        </ListItem>
+                    ))}
+                </List>
+            </Dialog>
         </div>
     );
 }

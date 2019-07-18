@@ -12,8 +12,12 @@ const items = [
         text: "Login"
     },
     {
-        path: "/child-profiles",
-        text: "WHY DID YOU DO THIS"
+        path: "/child-profiles-dialog",
+        text: "Profile Dialog Test"
+    },
+    {
+        path: "/child-profiles-main",
+        text: "Main Child Profiles Test"
     }
 ];
 

@@ -7,6 +7,7 @@ import FireBaseLogin from "../components/FirebaseLogin";
 import Main from "../components/Main";
 import "../styles/devMenu.scss";
 import ChildProfiles from "../components/ChildProfiles/ChildProfiles";
+import ChildProfileDialog from "../components/ChildProfiles/ChildProfileDialog";
 
 export default function Layout() {
     return (
@@ -18,7 +19,8 @@ export default function Layout() {
                 <Switch>
                     <Route path="/login" component={FireBaseLogin} />
                     <Route exact path="/" component={Main} />
-                    <Route path="/child-profiles" component={ChildProfiles} />
+                    <Route exact path="/child-profiles-dialog" component={ChildProfileDialog} />
+                    <Route exact path="/child-profiles-main" component={ChildProfiles} />
                 </Switch>
             </main>
         </div>
