@@ -3,22 +3,30 @@ import { Link, withRouter } from "react-router-dom";
 import "../styles/menu.scss";
 
 const items = [
-    {
-        path: "/",
-        text: "Main"
-    },
-    {
-        path: "/login",
-        text: "Login"
-    },
-    {
-        path: "/child-profiles-dialog",
-        text: "Profile Dialog Test"
-    },
-    {
-        path: "/child-profiles-main",
-        text: "Main Child Profiles Test"
-    }
+  {
+    path: "/",
+    text: "Main"
+  },
+  {
+    path: "/login",
+    text: "Login"
+  },
+  {
+    path: "/choose-login",
+    text: "ChooseLogin"
+  },
+  {
+    path: "/register",
+    text: "Register"
+  },
+  {
+    path: "/child-profiles-dialog",
+    text: "Profile Dialog Test"
+  },
+  {
+    path: "/child-profiles-main",
+    text: "Main Child Profiles Test"
+  }
 ];
 
 function Menu(props) {

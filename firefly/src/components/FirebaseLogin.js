@@ -5,7 +5,7 @@ import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import ApolloClient from "apollo-boost";
 const { gql } = require("apollo-boost");
 
-firebase.initializeApp({
+export const firebaseApp = firebase.initializeApp({
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN
 });
@@ -67,7 +67,7 @@ class FirebaseLogin extends Component {
           .query({
             query: USER_EXISTS,
             variables: {
-              param: currentUser.email,
+              param: "username",
               value: currentUser.email
             }
           })
@@ -76,8 +76,8 @@ class FirebaseLogin extends Component {
           })
           .catch(error => {
             const newUser = {
-              username: currentUser.displayName,
-              password: currentUser.email
+              username: currentUser.email,
+              first_name: currentUser.email
             };
             client
               .mutate({
