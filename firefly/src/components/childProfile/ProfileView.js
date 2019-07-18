@@ -20,12 +20,22 @@ const useStyles = makeStyles(theme => ({
 
 export default function ProfileView() {
   const classes = useStyles();
-  const [name, setName] = useState({ value: "" });
+  const [name, setName] = useState("cha");
 
-  const handleChange = event =>
-    setName({ [event.target.placeholder]: event.target.value });
+  const handleChange = event => {
+    event.preventDefault();
+    setName(event.target.value);
+  };
+  const changeName = event => {
+    event.preventDefault();
+    if (!setName) {
+      alert("Please add a new name");
+    } else {
+      setName(name);
+    }
+  };
 
-  // const changeName = event => setName(name = input )
+  console.log(name);
 
   return (
     <React.Fragment>
@@ -49,16 +59,18 @@ export default function ProfileView() {
           <Grid item xs={6}>
             <Paper className={classes.paper} style={{ height: "500px" }}>
               <div style={{ paddingTop: "60px" }}>
-                <input
-                  placeholder="character name"
-                  type="text"
-                  value={value}
-                  onChange={handleChange}
-                />
-                <button type="submit" onClick={handleChange}>
-                  {" "}
-                  change name{" "}
-                </button>
+                <h3>this is our state:{name}</h3>
+                <form onSubmit={changeName}>
+                  <input
+                    placeholder="character name"
+                    type="text"
+                    value={name.value}
+                    onChange={handleChange}
+                  />
+                  <button type="submit" onClick={changeName}>
+                    change name
+                  </button>
+                </form>
                 <p>Level: </p>
                 <p>Blocks Unlocked: </p>
                 <p>Models Unlocked: </p>
