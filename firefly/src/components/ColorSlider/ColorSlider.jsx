@@ -8,13 +8,19 @@ import Tooltip from '@material-ui/core/Tooltip';
 
 export default function ColorSlider() {
 
-    const [value, setValue] = React.useState(80);
-    const [color, setColor] = React.useState(80);
+    const [value, setValue] = React.useState(150);
 
-    const PrettoSlider = withStyles({
+    const useStyles = makeStyles({
         root: {
-            color: `hsl(${color*3.6},100%,50%)`,
+            color: `hsl(${value},100%,50%)`,
+        },
+        track: {
             height: 8,
+            borderRadius: 5,
+        },
+        rail: {
+            height: 8,
+            borderRadius: 5,
         },
         thumb: {
             height: 24,
@@ -27,33 +33,20 @@ export default function ColorSlider() {
                 boxShadow: 'inherit',
             },
         },
-        active: {},
-        track: {
-            height: 8,
-            borderRadius: 4,
-        },
-        rail: {
-            height: 8,
-            borderRadius: 4,
-        },
-    })(Slider);
+    })
 
-    // const classes = useStyles();
+    const classes = useStyles();
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
-
-    const handleDrop = (event, newColor) => {
-        setColor(newColor);
-    }
 
     return (
         <div >
             <Typography id="continuous-slider" gutterBottom>
                 Color
             </Typography>
-            <PrettoSlider value={color} onChangeCommitted={handleDrop} aria-label="Pretto slider" />
+            <Slider classes={classes} value={value} max="360" onChange={handleChange} aria-label="Pretto slider" />
         </div>
     );
 }
