@@ -7,6 +7,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 
+import { FaPencilAlt } from "react-icons/fa";
+
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1
@@ -20,15 +22,10 @@ const useStyles = makeStyles(theme => ({
 
 export default function ProfileView() {
   const classes = useStyles();
-  const [name, setName] = useState("cha");
-<<<<<<< HEAD
-  const [newNameState, newName] = useState({ name });
-
-=======
+  const [name, setName] = useState("");
   const [newName, setNewName] = useState();
-  const [open, setOpen] = useState( false );
-  
->>>>>>> 7a81553074f015015e2acf8056552c0e0ed4774d
+  const [open, setOpen] = useState(false);
+
   const handleChange = event => {
     event.preventDefault();
     setNewName(event.target.value);
@@ -39,7 +36,7 @@ export default function ProfileView() {
       alert("Please add a new name");
     } else {
       setName(newName);
-      setNewName('');
+      setNewName("");
     }
   };
 
@@ -48,6 +45,7 @@ export default function ProfileView() {
   return (
     <React.Fragment>
       <CssBaseline />
+
       <Container
         className={classes.root}
         maxWidth="sm"
@@ -67,21 +65,40 @@ export default function ProfileView() {
           <Grid item xs={6}>
             <Paper className={classes.paper} style={{ height: "500px" }}>
               <div style={{ paddingTop: "60px" }}>
-                <h3>this is our state:{name}</h3>
+                {/* <h3>this is our state:{name}</h3> */}
+
+                <h2>{name}</h2>
                 <form onSubmit={changeName}>
                   <input
                     placeholder="character name"
                     type="text"
                     value={newName}
                     onChange={handleChange}
+                    style={{
+                      border: "none",
+                      fontSize: "14px"
+                    }}
                   />
-                  <button type="submit" onClick={changeName}>
-                    change name
+                  <button
+                    type="submit"
+                    onClick={changeName}
+                    style={{
+                      border: "none",
+                      backgroundColor: "transparent",
+                      cursor: "pointer"
+                    }}
+                  >
+                    <FaPencilAlt
+                      style={{ color: "#3E8C0C", fontSize: "15px" }}
+                    />
                   </button>
                 </form>
-                <p>Level: </p>
-                <p>Blocks Unlocked: </p>
-                <p>Models Unlocked: </p>
+                <br />
+                <div>
+                  <p>Level: </p>
+                  <p>Blocks Unlocked: </p>
+                  <p>Models Unlocked: </p>
+                </div>
               </div>
               <Link to="#">Change Profile</Link>
             </Paper>
