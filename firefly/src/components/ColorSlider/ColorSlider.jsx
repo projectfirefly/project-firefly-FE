@@ -57,10 +57,6 @@ export default function ColorSlider() {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-    
-    const handleChange = (event, newValue) => {
-        setValue(newValue);
-    };
 
     return (
         <div>
