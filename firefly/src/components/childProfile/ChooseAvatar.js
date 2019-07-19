@@ -7,6 +7,7 @@ import Slider from "@material-ui/core/Slider";
 const Chooser = styled.div`
   margin: 0 auto;
   margin-top: 50px;
+  max-width: 300px;
 `;
 
 export default function ChooseAvatar() {
@@ -18,22 +19,40 @@ export default function ChooseAvatar() {
     },
     track: {
       height: 8,
-      borderRadius: 5
+      borderRadius: 5,
+      display: "none"
     },
     rail: {
       height: 8,
-      borderRadius: 5
+      borderRadius: 5,
+      background: `linear-gradient(to right, hsl(0,70%,50%),
+            hsl(${360 / 5},70%,50%),
+            hsl(${(360 * 2) / 5},70%,50%),
+            hsl(${(360 * 3) / 5},70%,50%),
+            hsl(${(360 * 4) / 5},70%,50%),
+            hsl(${360},70%,50%))`,
+      opacity: ".7"
     },
     thumb: {
       height: 24,
       width: 24,
-      backgroundColor: "#fff",
-      border: "2px solid currentColor",
+      backgroundColor: "currentColor",
+      border: "5px solid currentColor",
       marginTop: -8,
       marginLeft: -12,
       "&:focus,&:hover,&:active": {
         boxShadow: "inherit"
       }
+    },
+    active: {
+      height: 48,
+      width: 48,
+      marginTop: -18,
+      marginLeft: -24
+    },
+    containerDiv: {
+      padding: "30px",
+      backgroundColor: "#454a54"
     }
   });
 
@@ -46,7 +65,8 @@ export default function ChooseAvatar() {
     <Chooser>
       <Icon
         name="Firefly"
-        width={200}
+        width={300}
+        viewBox={"0 0 1250 1224"}
         lighttopFill={`hsl(${value},100%,35%)`}
         lightmidFill={`hsl(${value},100%,45%)`}
         lightbottomFill={`hsl(${value},100%,55%)`}
