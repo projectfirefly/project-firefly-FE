@@ -111,7 +111,7 @@ const RegisterForm = ({ values, errors, touched }) => {
             </div>
             <div className="checkbox-terms">
               <label className="checkbox-container">
-                <input type="checkbox" required />
+                <Field type="checkbox" name="terms" />
                 <span class="checkmark" />
               </label>
               <p className="checkbox-terms__terms-text">
@@ -124,7 +124,7 @@ const RegisterForm = ({ values, errors, touched }) => {
             <button type="submit" className="forms-box__formik-button">
               Sign Up
             </button>
-            <a href="google.com" className=" link switch-account">
+            <a href="/sign-in" className=" link switch-account">
               I already have an account
             </a>
           </Form>
@@ -149,7 +149,7 @@ const RegisterForm = ({ values, errors, touched }) => {
 };
 
 const Register = withFormik({
-  mapPropsToValues({ email, password, passwordConfirm }) {
+  mapPropsToValues({ email, password, passwordConfirm, terms }) {
     return {
       email: email || "",
       password: password || "",
@@ -172,31 +172,35 @@ const Register = withFormik({
     });
     const email = values.email;
     const password = values.password;
-    firebase
-      .auth()
-      // Ideally, this would fail if the later add to our database fails. I'll work on that
-      .createUserWithEmailAndPassword(email, password)
-      .then(res => {
-        const newUser = {
-          email: email,
-          username: email
-        };
-        client
-          .mutate({
-            mutation: ADD_USER,
-            variables: { input: newUser }
-          })
-          .then(res => {
-            console.log(res.data);
-            setSubmitting(false);
-          })
-          .catch(err => {
-            console.log(err);
-          });
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    if (!values.terms) {
+      alert("Please accept the terms and conditions before continuing.");
+    } else {
+      firebase
+        .auth()
+        // Ideally, this would fail if the later add to our database fails. I'll work on that
+        .createUserWithEmailAndPassword(email, password)
+        .then(res => {
+          const newUser = {
+            email: email,
+            username: email
+          };
+          client
+            .mutate({
+              mutation: ADD_USER,
+              variables: { input: newUser }
+            })
+            .then(res => {
+              console.log(res.data);
+              setSubmitting(false);
+            })
+            .catch(err => {
+              console.log(err);
+            });
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
   }
 })(RegisterForm);
 
