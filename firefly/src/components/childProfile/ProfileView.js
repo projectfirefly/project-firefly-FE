@@ -21,18 +21,20 @@ const useStyles = makeStyles(theme => ({
 export default function ProfileView() {
   const classes = useStyles();
   const [name, setName] = useState("cha");
-  const [username, newName] = useState({ name });
-
+  const [newName, setNewName] = useState();
+  const [open, setOpen] = useState( false );
+  
   const handleChange = event => {
     event.preventDefault();
-    setName(event.target.value);
+    setNewName(event.target.value);
   };
   const changeName = event => {
     event.preventDefault();
     if (!newName) {
       alert("Please add a new name");
     } else {
-      newName(name);
+      setName(newName);
+      setNewName('');
     }
   };
 
@@ -60,12 +62,12 @@ export default function ProfileView() {
           <Grid item xs={6}>
             <Paper className={classes.paper} style={{ height: "500px" }}>
               <div style={{ paddingTop: "60px" }}>
-                <h3>this is our state:{username}</h3>
+                <h3>this is our state:{name}</h3>
                 <form onSubmit={changeName}>
                   <input
                     placeholder="character name"
                     type="text"
-                    value={name.value}
+                    value={newName}
                     onChange={handleChange}
                   />
                   <button type="submit" onClick={changeName}>
