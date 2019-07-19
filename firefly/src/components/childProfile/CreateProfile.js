@@ -85,7 +85,7 @@ export default function CreateProfile() {
             </Button>
           </Toolbar>
         </AppBar>
-        <ChooseAvatar />
+        {/* <ChooseAvatar /> */}
       </Dialog>
     </div>
   );

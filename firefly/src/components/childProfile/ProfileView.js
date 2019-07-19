@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
 export default function ProfileView() {
   const classes = useStyles();
   const [name, setName] = useState("cha");
-  const [name, newName] = useState({ name });
+  const [newNameState, newName] = useState({ name });
 
   const handleChange = event => {
     event.preventDefault();
