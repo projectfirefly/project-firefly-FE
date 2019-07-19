@@ -1,14 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Slider from '@material-ui/core/Slider';
-import Typography from '@material-ui/core/Typography';
-import Tooltip from '@material-ui/core/Tooltip';
+import React from "react";
+import PropTypes from "prop-types";
+import { withStyles, makeStyles } from "@material-ui/core/styles";
+import Paper from "@material-ui/core/Paper";
+import Slider from "@material-ui/core/Slider";
+import Typography from "@material-ui/core/Typography";
+import Tooltip from "@material-ui/core/Tooltip";
 
 export default function ColorSlider() {
-
-    const [value, setValue] = React.useState(150);
+  const [value, setValue] = React.useState(150);
 
     const useStyles = makeStyles({
         root: {
@@ -52,9 +51,13 @@ export default function ColorSlider() {
             backgroundColor: '#454a54',
         }
     })
+        
+  const classes = useStyles();
 
-    const classes = useStyles();
-
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+    
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
