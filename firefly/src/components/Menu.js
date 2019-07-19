@@ -12,8 +12,32 @@ const items = [
     text: "Login"
   },
   {
+    path: "/profileview",
+    text: "ProfileView"
+  },
+  {
+    path: "/createprofile",
+    text: "CreateProfile"
+  },
+  {
+    path: "/choose-login",
+    text: "ChooseLogin"
+  },
+  {
     path: "/register",
     text: "Register"
+  },
+  {
+    path: "/child-profiles-dialog",
+    text: "Profile Dialog Test"
+  },
+  {
+    path: "/child-profiles-main",
+    text: "Main Child Profiles Test"
+  },
+  {
+      path: "/slider-test",
+      text: "Rainbow Slider Test",
   }
 ];
 

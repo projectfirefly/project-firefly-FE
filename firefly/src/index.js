@@ -7,20 +7,22 @@ import { ApolloClient } from "apollo-client";
 import { createHttpLink } from "apollo-link-http";
 import { InMemoryCache } from "apollo-cache-inmemory";
 
+import './styles/reset.scss';
+
 const HttpLink = createHttpLink({
-  uri: "http://localhost:3300"
+    uri: "http://localhost:3300"
 });
 const client = new ApolloClient({
-  link: HttpLink,
-  cache: new InMemoryCache()
+    link: HttpLink,
+    cache: new InMemoryCache()
 });
 
 ReactDOM.render(
   <ApolloProvider client={client}>
-    <App />
+      <App />
   </ApolloProvider>,
 
-  document.getElementById("root")
+    document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change
