@@ -6,10 +6,11 @@ import * as Yup from "yup";
 import ApolloClient from "apollo-boost";
 import WearingNerdGlasses from "./../images/WearingNerdGlasses.png";
 import firebaseApp from "./FirebaseLogin";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEye } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye } from '@fortawesome/free-solid-svg-icons';
 
-import "./../styles/register.scss"
+
+import "./../styles/signIn.scss"
 
 const { gql } = require("apollo-boost");
 
@@ -83,12 +84,12 @@ const uiConfig = {
   }
 };
 
-const RegisterForm = ({ values, errors, touched }) => {
+const SignInForm = ({ values, errors, touched }) => {
   const [eyeClicked, setEyeClicked] = useState(false);
 
   return (
     <div className='sign-in-container'>
-    <h1 className='sign-up-header'> Sign Up</h1>
+    <h1 className='sign-up-header'> Sign In</h1>
 
     <div className='forms-container'>
     <div className="forms-box">
@@ -106,26 +107,15 @@ const RegisterForm = ({ values, errors, touched }) => {
           </div>
           {touched.password && errors.password && <p className='error'>{errors.password}</p>}
           </div>
-        <div className='forms-field'>
-          <h2 className='forms-field-title'>Confirm Password</h2>
-          <div className='eye-stacking'>
-          <Field type={eyeClicked ? 'text' : 'password'} name="passwordConfirm"  className='forms-box__field' />
-          <FontAwesomeIcon className='eye-icon' icon={faEye} onClick={()=>setEyeClicked(!eyeClicked)}/>
-          </div>
-          {touched.passwordConfirm &&
-            values.password !== values.passwordConfirm && (
-              <p className='error'>passwords do not match</p>
-              )}
-              </div>
           <div className='checkbox-terms'>
           <label className='checkbox-container'>
-          <input type="checkbox" required/>
+          <input type="checkbox"/>
           <span class="checkmark"/>
           </label>
-          <p className='checkbox-terms__terms-text'>I agree to the <a href = 'google.com' className='link'>Terms and Conditions</a></p>
+          <p className='checkbox-terms__terms-text'>Keep me signed in</p>
           </div>
-        <button type="submit" className='forms-box__formik-button'>Sign Up</button>
-        <a href = '/sign-in' className=' link switch-account'>I already have an account</a>
+        <button type="submit" className='forms-box__formik-button'>Sign In</button>
+        <a href= '/register' className=' link switch-account'>Need an account? Sign up now!</a>
       </Form>
     </div>
     <div>
@@ -140,7 +130,7 @@ const RegisterForm = ({ values, errors, touched }) => {
   );
 };
 
-const Register = withFormik({
+const SignIn = withFormik({
   mapPropsToValues({ email, password, passwordConfirm }) {
     return {
       email: email || "",
@@ -196,6 +186,6 @@ const Register = withFormik({
         console.log(err);
       });
   }
-})(RegisterForm);
+})(SignInForm);
 
-export default Register;
+export default SignIn;

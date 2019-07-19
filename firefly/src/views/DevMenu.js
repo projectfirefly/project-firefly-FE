@@ -13,6 +13,7 @@ import ChildProfiles from "../components/ChildProfiles/ChildProfiles";
 import ChildProfileDialog from "../components/ChildProfiles/ChildProfileDialog";
 import Register from "../components/Register";
 import ColorSlider from "../components/ColorSlider/ColorSlider";
+import SignIn from "../components/SignIn";
 
 export default function Layout() {
     return (
@@ -30,6 +31,7 @@ export default function Layout() {
 
                     <Route path='/choose-login' component={ChooseLogin} />
                     <Route path="/register" component={Register} />
+                    <Route path="/sign-in" component={SignIn}/>
                     <Route exact path="/child-profiles-dialog" component={ChildProfileDialog} />
                     <Route exact path="/child-profiles-main" component={ChildProfiles} />
                     <Route exact path="/slider-test" component={ColorSlider} />
