@@ -50,24 +50,40 @@ export default function ProfileView() {
         className={classes.root}
         maxWidth="sm"
         component="div"
-        style={{ backgroundColor: "#dfe7ed", height: "90vh" }}
+        style={{ backgroundColor: "transparent" }}
       >
-        <Grid container spacing={3}>
-          <Grid item xs={6}>
-            <Paper className={classes.paper} style={{ height: "500px" }}>
-              <a href="/createprofile">
-                <img src={image1} alt="users profile image" />
-              </a>
-              <br />
-              <Link to="/createprofile">Change Characters</Link>
-            </Paper>
-          </Grid>
-          <Grid item xs={6}>
-            <Paper className={classes.paper} style={{ height: "500px" }}>
-              <div style={{ paddingTop: "60px" }}>
-                {/* <h3>this is our state:{name}</h3> */}
+        <Paper
+          style={{
+            height: "400px",
+            marginTop: "80px"
+          }}
+        >
+          <Grid container spacing={3}>
+            <Grid item xs={6}>
+              <div style={{ height: "300px" }}>
+                <a href="/createprofile">
+                  <img src={image1} alt="users profile image" />
+                </a>
+                <br />
+                <div
+                  style={{
+                    textAlign: "center"
+                  }}
+                >
+                  <Link to="/createprofile">Change Characters</Link>
+                </div>
+              </div>
+            </Grid>
+            <Grid item xs={6}>
+              <div
+                style={{
+                  paddingTop: "60px",
+                  height: "300px",
+                  textAlign: "center"
+                }}
+              >
+                {<h2 style={{ color: "#3E8C0C" }}>{name}</h2>}
 
-                <h2>{name}</h2>
                 <form onSubmit={changeName}>
                   <input
                     placeholder="character name"
@@ -93,17 +109,18 @@ export default function ProfileView() {
                     />
                   </button>
                 </form>
+
                 <br />
-                <div>
+                <div style={{ paddingTop: "100px" }}>
                   <p>Level: </p>
                   <p>Blocks Unlocked: </p>
                   <p>Models Unlocked: </p>
                 </div>
+                <Link to="#">Change Profile</Link>
               </div>
-              <Link to="#">Change Profile</Link>
-            </Paper>
+            </Grid>
           </Grid>
-        </Grid>
+        </Paper>
       </Container>
     </React.Fragment>
   );
