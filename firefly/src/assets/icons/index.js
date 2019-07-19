@@ -1,5 +1,5 @@
 import React from "react";
-import firefly from "./firefly";
+import firefly from "./Firefly";
 
 
 const Icon = props => {

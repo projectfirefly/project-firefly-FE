@@ -1,5 +1,5 @@
 import React from "react";
-import { fireflystyle } from "../svgstyles";
+// import { fireflystyle } from "../svgstyles";
 
 const SVG = ({
   style = {},
