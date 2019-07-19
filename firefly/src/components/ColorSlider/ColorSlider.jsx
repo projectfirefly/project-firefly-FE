@@ -6,18 +6,20 @@ import Slider from '@material-ui/core/Slider';
 import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
 
-export default function ColorSlider() {
+export default function ColorSlider(props) {
 
-    const [value, setValue] = React.useState(150);
+    const [value, setValue] = React.useState(props.value);
 
     const useStyles = makeStyles({
         root: {
             color: `hsl(${value},100%,50%)`,
+            width: '100%',
         },
         track: {
             height: 8,
             borderRadius: 5,
-            display: 'none',
+            background: 'rgb(255,255,255)',
+            opacity: 0,
         },
         rail: {
             height: 8,
@@ -37,7 +39,7 @@ export default function ColorSlider() {
             border: '5px solid currentColor',
             marginTop: -8,
             marginLeft: -12,
-            '&:focus,&:hover,&$active': {
+            '&:focus,&:hover,&:active': {
                 boxShadow: 'inherit',
             },
         },
@@ -47,10 +49,6 @@ export default function ColorSlider() {
             marginTop: -18,
             marginLeft: -24,
         },
-        containerDiv: {
-            padding: '30px',
-            backgroundColor: '#454a54',
-        }
     })
 
     const classes = useStyles();
@@ -59,13 +57,17 @@ export default function ColorSlider() {
         setValue(newValue);
     };
 
+    const commitChange = (event, newValue) => {
+        props.updateColor(newValue);
+    }
+
     return (
-        <div>
+        <div style={{width: '100%'}}>
             <Typography id="continuous-slider" gutterBottom>
                 Color
             </Typography>
-            <div className={classes.containerDiv}>
-                <Slider classes={classes} value={value} max={360} onChange={handleChange} aria-label="Pretto slider" />
+            <div>
+                <Slider classes={classes} value={value} max={360} onChange={handleChange} onChangeCommitted={commitChange} aria-label="Pretto slider" />
             </div>
         </div>
     );

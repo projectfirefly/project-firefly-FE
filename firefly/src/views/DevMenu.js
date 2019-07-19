@@ -12,7 +12,7 @@ import "../styles/devMenu.scss";
 import ChildProfiles from "../components/ChildProfiles/ChildProfiles";
 import ChildProfileDialog from "../components/ChildProfiles/ChildProfileDialog";
 import Register from "../components/Register";
-import ColorSlider from "../components/ColorSlider/ColorSlider";
+import ColorSliderTest from "../components/ColorSlider/ColorSliderTest";
 
 export default function Layout() {
     return (
@@ -32,7 +32,7 @@ export default function Layout() {
                     <Route path="/register" component={Register} />
                     <Route exact path="/child-profiles-dialog" component={ChildProfileDialog} />
                     <Route exact path="/child-profiles-main" component={ChildProfiles} />
-                    <Route exact path="/slider-test" component={ColorSlider} />
+                    <Route exact path="/slider-test" component={ColorSliderTest} />
 
                 </Switch>
             </main>
