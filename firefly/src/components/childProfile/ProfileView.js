@@ -21,18 +21,25 @@ const useStyles = makeStyles(theme => ({
 export default function ProfileView() {
   const classes = useStyles();
   const [name, setName] = useState("cha");
+<<<<<<< HEAD
   const [newNameState, newName] = useState({ name });
 
+=======
+  const [newName, setNewName] = useState();
+  const [open, setOpen] = useState( false );
+  
+>>>>>>> 7a81553074f015015e2acf8056552c0e0ed4774d
   const handleChange = event => {
     event.preventDefault();
-    setName(event.target.value);
+    setNewName(event.target.value);
   };
   const changeName = event => {
     event.preventDefault();
     if (!newName) {
       alert("Please add a new name");
     } else {
-      newName(name);
+      setName(newName);
+      setNewName('');
     }
   };
 
@@ -65,7 +72,7 @@ export default function ProfileView() {
                   <input
                     placeholder="character name"
                     type="text"
-                    value={name.value}
+                    value={newName}
                     onChange={handleChange}
                   />
                   <button type="submit" onClick={changeName}>

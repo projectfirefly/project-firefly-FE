@@ -14,6 +14,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import Slide from "@material-ui/core/Slide";
 import InfoIcon from "@material-ui/icons/Info";
 import { tileData } from "./tileData";
+import ChooseAvatar from './ChooseAvatar';
 
 const useStyles = makeStyles(theme => ({
   root: {
