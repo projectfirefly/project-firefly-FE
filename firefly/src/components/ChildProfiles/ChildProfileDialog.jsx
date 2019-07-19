@@ -21,6 +21,9 @@ const useStyles = makeStyles({
         backgroundColor: blue[100],
         color: blue[600],
     },
+    paper: {
+        background: '#e2f5d6',
+    }
 });
 
 export default function ChildProfileDialog() {
@@ -70,10 +73,10 @@ export default function ChildProfileDialog() {
                 )
             })} */}
             <br />
-            <Button variant="outlined" color="primary" onClick={(handleClickOpen)}>
+            <Button variant="contained" color="primary" onClick={(handleClickOpen)}>
                 Open Dialog
             </Button>
-            <Dialog open={open} onClose={() => handleClose(childProfileState.selected.id)} aria-labelledby="simple-dialog-title">
+            <Dialog classes={classes} open={open} onClose={() => handleClose(childProfileState.selected.id)} aria-labelledby="simple-dialog-title">
                 <DialogTitle id="simple-dialog-title">Choose Profile</DialogTitle>
                 <List>
                     {childProfileState.profiles.map(profile => (
