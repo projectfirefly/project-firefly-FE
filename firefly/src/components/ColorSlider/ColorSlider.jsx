@@ -36,6 +36,7 @@ export default function ColorSlider() {
       border: "5px solid currentColor",
       marginTop: -8,
       marginLeft: -12,
+
       "&:focus,&:hover,&:active": {
         boxShadow: "inherit"
       }
