@@ -60,7 +60,7 @@ export default function ProfileView() {
           <Grid item xs={6}>
             <Paper className={classes.paper} style={{ height: "500px" }}>
               <div style={{ paddingTop: "60px" }}>
-                <h3>this is our state:{name}</h3>
+                <h3>this is our state:{username}</h3>
                 <form onSubmit={changeName}>
                   <input
                     placeholder="character name"
