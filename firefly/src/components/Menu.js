@@ -24,6 +24,10 @@ const items = [
     text: "ChooseLogin"
   },
   {
+    path:'sign-in',
+    text: 'SignIn'
+  },
+  {
     path: "/register",
     text: "Register"
   },

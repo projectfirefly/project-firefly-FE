@@ -10,8 +10,8 @@ const ChooseLogin = () => {
         <img src={WelcomeToFirefly} alt='WelcomeToFirefly' className='logo__image'/>
         </span>
         <div className='buttons'>
-            <button className='buttons__get-started'>Get Started</button>
-            <button className='buttons__already-have-account'>I Already Have An Account</button>
+            <a href='/register'><button className='buttons__get-started'>Get Started</button></a>
+            <a href='/sign-in'><button className='buttons__already-have-account'>I Already Have An Account</button></a>
         </div>
         </div>
 

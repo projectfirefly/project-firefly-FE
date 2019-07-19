@@ -1,0 +1,191 @@
+import React, {useState} from "react";
+import { withFormik, Form, Field } from "formik";
+import firebase from "firebase";
+import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
+import * as Yup from "yup";
+import ApolloClient from "apollo-boost";
+import WearingNerdGlasses from "./../images/WearingNerdGlasses.png";
+import firebaseApp from "./FirebaseLogin";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye } from '@fortawesome/free-solid-svg-icons';
+
+
+import "./../styles/signIn.scss"
+
+const { gql } = require("apollo-boost");
+
+const USER_EXISTS = gql`
+  query getUserBy($param: String!, $value: String!) {
+    getUserBy(param: $param, value: $value) {
+      username
+    }
+  }
+`;
+
+const ADD_USER = gql`
+  mutation addUser($input: UserInput!) {
+    addUser(input: $input) {
+      id
+      username
+      first_name
+    }
+  }
+`;
+
+// Staging server at "https://projectfirefly-staging.herokuapp.com/register"
+const uiConfig = {
+  signInFlow: "popup",
+  signInOptions: [
+    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+    firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+    firebase.auth.EmailAuthProvider.PROVIDER_ID
+  ],
+  callbacks: {
+    signInSuccess: currentUser => {
+      localStorage.setItem("token", currentUser.idToken);
+      const client = new ApolloClient({
+        uri: "http://localhost:3300"
+      });
+      client
+        .query({
+          query: USER_EXISTS,
+          variables: {
+            param: "username",
+            value: currentUser.email
+          }
+        })
+        .then(res => {
+          console.log(res);
+          if (res.data.getUserBy) {
+            window.alert("Email has already been registered");
+          } else {
+            const newUser = {
+              username: currentUser.email,
+              first_name: currentUser.displayName
+            };
+            client
+              .mutate({
+                mutation: ADD_USER,
+                variables: { input: newUser }
+              })
+              .then(res => {
+                console.log("New user created");
+                console.log(res.data);
+              })
+              .catch(err => {
+                console.log(err);
+              });
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
+  }
+};
+
+const SignInForm = ({ values, errors, touched }) => {
+  const [eyeClicked, setEyeClicked] = useState(false);
+
+  return (
+    <div className='sign-in-container'>
+    <h1 className='sign-up-header'> Sign In</h1>
+
+    <div className='forms-container'>
+    <div className="forms-box">
+      <Form className='forms-box__formik'>
+        <div className='forms-field'>
+          <h2 className='forms-field-title'>Email</h2>
+          <Field type="email" name="email"  className='forms-box__field'/>
+          {touched.email && errors.email && <p className='error'>{errors.email}</p>}
+          </div>
+        <div className='forms-field'>
+          <h2 className='forms-field-title'>Password</h2>
+          <div className='eye-stacking'>
+          <Field type={eyeClicked ? 'text' : 'password'} name="password" className='forms-box__field'/>
+          <FontAwesomeIcon className='eye-icon' icon={faEye} onClick={()=>setEyeClicked(!eyeClicked)}/>
+          </div>
+          {touched.password && errors.password && <p className='error'>{errors.password}</p>}
+          </div>
+          <div className='checkbox-terms'>
+          <label className='checkbox-container'>
+          <input type="checkbox"/>
+          <span class="checkmark"/>
+          </label>
+          <p className='checkbox-terms__terms-text'>Keep me signed in</p>
+          </div>
+        <button type="submit" className='forms-box__formik-button'>Sign In</button>
+        <a href= '/register' className=' link switch-account'>Need an account? Sign up now!</a>
+      </Form>
+    </div>
+    <div>
+    <h2 className='sign-up-or'>OR</h2>
+    </div>
+    <div className='forms-box'>
+      <StyledFirebaseAuth  uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
+      <img src={WearingNerdGlasses} alt='firefly-nerd' className='firefly-nerd'/>
+    </div>
+    </div>
+    </div>
+  );
+};
+
+const SignIn = withFormik({
+  mapPropsToValues({ email, password, passwordConfirm }) {
+    return {
+      email: email || "",
+      password: password || "",
+      passwordConfirm: passwordConfirm || ""
+    };
+  },
+
+  validationSchema: Yup.object().shape({
+    email: Yup.string()
+      .email()
+      .required(),
+    password: Yup.string()
+      .min(8)
+      .required()
+  }),
+
+  handleSubmit(values, { setSubmitting }) {
+    const client = new ApolloClient({
+      uri: "http://localhost:3300"
+    });
+    client
+      .query({
+        query: USER_EXISTS,
+        variables: {
+          param: "username",
+          value: values.email
+        }
+      })
+      .then(res => {
+        if (res.data.getUserBy) {
+          window.alert("Email has already been registered");
+        } else {
+          const newUser = {
+            username: values.email,
+            first_name: values.email
+          };
+          client
+            .mutate({
+              mutation: ADD_USER,
+              variables: { input: newUser }
+            })
+            .then(res => {
+              console.log(res.data);
+              setSubmitting(false);
+            })
+            .catch(err => {
+              console.log(err);
+            });
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+})(SignInForm);
+
+export default SignIn;
