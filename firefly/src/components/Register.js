@@ -13,14 +13,6 @@ import "./../styles/register.scss";
 
 const { gql } = require("apollo-boost");
 
-const USER_EXISTS = gql`
-  query getUserBy($param: String!, $value: String!) {
-    getUserBy(param: $param, value: $value) {
-      email
-    }
-  }
-`;
-
 const ADD_USER = gql`
   mutation addUser($input: UserInput!) {
     addUser(input: $input) {
@@ -182,11 +174,12 @@ const Register = withFormik({
     const password = values.password;
     firebase
       .auth()
+      // Ideally, this would fail if the later add to our database fails. I'll work on that
       .createUserWithEmailAndPassword(email, password)
       .then(res => {
         const newUser = {
-          email: values.email,
-          username: values.email
+          email: email,
+          username: email
         };
         client
           .mutate({
