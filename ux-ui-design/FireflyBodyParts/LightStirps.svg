@@ -5,8 +5,8 @@
     <desc>Created with Sketch.</desc>
     <g id="LightStirps" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <rect id="Rectangle" x="0" y="0" width="1024" height="1024"></rect>
-        <path d="M419.723234,751.254611 L384.5,778.254611" id="Line-2" stroke="#FBE66A" stroke-width="15" stroke-linecap="round"></path>
-        <path d="M512.388383,778.377306 L512.388383,823.622694" id="Line-2-Copy" stroke="#FBE66A" stroke-width="15" stroke-linecap="round"></path>
-        <path d="M614.388383,745.254611 L631.388383,785.254611" id="Line-2-Copy-2" stroke="#FBE66A" stroke-width="15" stroke-linecap="round" transform="translate(622.888383, 765.254611) rotate(-29.974508) translate(-622.888383, -765.254611) "></path>
+        <path d="M372.772106,870.559162 L319.912203,911.080831" id="LightLeft" stroke="#FBE66A" stroke-width="22.5" stroke-linecap="round"></path>
+        <path d="M511.835737,911.264971 L511.835737,979.169367" id="LightMiddle" stroke="#FBE66A" stroke-width="22.5" stroke-linecap="round"></path>
+        <path d="M664.90888,861.555138 L690.419777,921.585657" id="LightRight" stroke="#FBE66A" stroke-width="22.5" stroke-linecap="round" transform="translate(677.664328, 891.570398) rotate(-29.974508) translate(-677.664328, -891.570398) "></path>
     </g>
 </svg>
