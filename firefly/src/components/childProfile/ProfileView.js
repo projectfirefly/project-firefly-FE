@@ -62,7 +62,7 @@ export default function ProfileView() {
             <Grid item xs={6}>
               <div style={{ height: "300px" }}>
                 <a href="/createprofile">
-                  <img src={image1} alt="users profile image" />
+                  <img src={image1} alt="users profile" />
                 </a>
                 <br />
                 <div
