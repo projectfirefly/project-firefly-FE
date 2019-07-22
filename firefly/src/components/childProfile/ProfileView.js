@@ -26,6 +26,8 @@ export default function ProfileView() {
   const [newName, setNewName] = useState();
   const [open, setOpen] = useState(false);
 
+  const nameInState = { name };
+
   const handleChange = event => {
     event.preventDefault();
     setNewName(event.target.value);
@@ -82,33 +84,67 @@ export default function ProfileView() {
                   textAlign: "center"
                 }}
               >
-                {<h2 style={{ color: "#3E8C0C" }}>{name}</h2>}
-
-                <form onSubmit={changeName}>
-                  <input
-                    placeholder="character name"
-                    type="text"
-                    value={newName}
-                    onChange={handleChange}
-                    style={{
-                      border: "none",
-                      fontSize: "14px"
-                    }}
-                  />
-                  <button
-                    type="submit"
-                    onClick={changeName}
-                    style={{
-                      border: "none",
-                      backgroundColor: "transparent",
-                      cursor: "pointer"
-                    }}
-                  >
-                    <FaPencilAlt
-                      style={{ color: "#3E8C0C", fontSize: "15px" }}
+                {name ? (
+                  <div style={{ display: "flex" }}>
+                    <h2
+                      style={{
+                        color: "#3E8C0C",
+                        fontSize: "28px",
+                        marginRight: "15px"
+                      }}
+                    >
+                      {name}
+                    </h2>
+                    <button
+                      type="submit"
+                      // onClick={() => {
+                      //   setOpen(!open);
+                      //   changeName();
+                      // }}
+                      onClick={changeName}
+                      style={{
+                        border: "none",
+                        backgroundColor: "transparent",
+                        cursor: "pointer"
+                      }}
+                    >
+                      <FaPencilAlt
+                        style={{ color: "#3E8C0C", fontSize: "15px" }}
+                      />
+                    </button>
+                  </div>
+                ) : (
+                  <form onSubmit={changeName}>
+                    <input
+                      placeholder="character name"
+                      type="text"
+                      value={newName}
+                      onChange={handleChange}
+                      style={{
+                        border: "none",
+                        fontSize: "14px"
+                      }}
                     />
-                  </button>
-                </form>
+
+                    <button
+                      type="submit"
+                      // onClick={() => {
+                      //   setOpen(!open);
+                      //   changeName();
+                      // }}
+                      onClick={changeName}
+                      style={{
+                        border: "none",
+                        backgroundColor: "transparent",
+                        cursor: "pointer"
+                      }}
+                    >
+                      <FaPencilAlt
+                        style={{ color: "#3E8C0C", fontSize: "15px" }}
+                      />
+                    </button>
+                  </form>
+                )}
 
                 <br />
                 <div style={{ paddingTop: "100px" }}>
