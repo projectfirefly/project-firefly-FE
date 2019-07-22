@@ -3,6 +3,7 @@ import React from "react";
 const SVG = ({
   style = {},
   width = "100%",
+  height = "100%",
   className = "",
   viewBox = "0 0 1024 1024",
   mouthStroke = "#3E8C0B",
@@ -22,12 +23,11 @@ const SVG = ({
   <svg
     width={width}
     style={style}
-    height={width}
+    height={height}
     viewBox={viewBox}
     xmlns="http://www.w3.org/2000/svg"
     className={`svg-icon ${className || ""}`}
     xmlnsXlink="http://www.w3.org/1999/xlink"
-    preserveAspectRatio="xMinYMin"
   >
     <g id="wings-left" transform="translate(162.000000, 411.000000)">
       <path
