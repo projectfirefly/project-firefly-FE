@@ -6,8 +6,13 @@ import Slider from "@material-ui/core/Slider";
 
 const Chooser = styled.div`
   margin: 0 auto;
-  margin-top: 50px;
-  max-width: 300px;
+  width: 100%;
+`;
+
+const SliderBox = styled.div`
+  margin: 0 auto;
+  width: 120px;
+  margin-top: -30px;
 `;
 
 export default function ChooseAvatar() {
@@ -65,20 +70,23 @@ export default function ChooseAvatar() {
     <Chooser>
       <Icon
         name="Firefly"
-        width={300}
-        viewBox={"0 0 1250 1224"}
+        width={"100%"}
+        height={"50%"}
+        viewBox={"0 0 1024 1024"}
         lighttopFill={`hsl(${value},100%,35%)`}
         lightmidFill={`hsl(${value},100%,45%)`}
         lightbottomFill={`hsl(${value},100%,55%)`}
         shineStroke={`hsl(${value},100%,55%)`}
       />
-      <Slider
-        classes={classes}
-        value={value}
-        max="360"
-        onChange={handleChange}
-        aria-label="Pretto slider"
-      />
+      <SliderBox>
+        <Slider
+          classes={classes}
+          value={value}
+          max="359"
+          onChange={handleChange}
+          aria-label="Pretto slider"
+        />
+      </SliderBox>
     </Chooser>
   );
 }
