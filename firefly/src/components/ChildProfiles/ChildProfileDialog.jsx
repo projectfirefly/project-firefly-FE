@@ -14,7 +14,7 @@ import AddIcon from '@material-ui/icons/Add';
 import Typography from '@material-ui/core/Typography';
 import { blue } from '@material-ui/core/colors';
 
-import { childContext } from '../../context/ChildProfiles/ChildProfileStore'
+import { childContext, UPDATE_COLOR, UPDATE_SELECTED } from '../../context/ChildProfiles/ChildProfileStore'
 
 const useStyles = makeStyles({
     avatar: {
@@ -39,7 +39,7 @@ export default function ChildProfileDialog() {
 
     function handleClose(value) {
         setOpen(false);
-        dispatch({type: 'UPDATE_SELECTED', payload: value});
+        dispatch({type: UPDATE_SELECTED, payload: value});
     }
 
     return (
