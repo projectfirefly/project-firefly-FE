@@ -13,6 +13,7 @@ import ChildProfiles from "../components/ChildProfiles/ChildProfiles";
 import ChildProfileDialog from "../components/ChildProfiles/ChildProfileDialog";
 import Register from "../components/Register";
 import ColorSliderTest from "../components/ColorSlider/ColorSliderTest";
+import SignIn from "../components/SignIn";
 
 export default function Layout() {
     return (
