@@ -126,29 +126,28 @@ export default function ProfileView() {
                 borderRadius: "10px",
                 backgroundColor: "#FFFFFF",
                 boxShadow: "0px 3px #8F96A3",
-                marginTop: "20px",
-                height: "100px",
+                // marginTop: "5px",
+                height: "110px",
                 color: "#5B4EFF",
                 fontWeight: "bold"
               }}
             >
-              Learn How to Play
+              <h4 style={{ paddingTop: "40px" }}>Learn How to Play</h4>
             </div>
             <div
-              s
               style={{
                 textAlign: "center",
                 border: "solid #ABB0BA 2px",
                 borderRadius: "10px",
                 backgroundColor: "#FFFFFF",
                 boxShadow: "0px 3px #8F96A3",
-                marginTop: "20px",
-                height: "100px",
+                marginTop: "50px",
+                height: "110px",
                 color: "#5B4EFF",
                 fontWeight: "bold"
               }}
             >
-              <h4>Start Playing</h4>
+              <h4 style={{ paddingTop: "40px" }}>Start Playing</h4>
             </div>
           </Grid>
         </Grid>
