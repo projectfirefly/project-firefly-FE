@@ -14,6 +14,7 @@ import ChildProfileDialog from "../components/ChildProfiles/ChildProfileDialog";
 import Register from "../components/Register";
 import ColorSliderTest from "../components/ColorSlider/ColorSliderTest";
 import SignIn from "../components/SignIn";
+import MultiStepRegistration from "../components/MultiStepRegistration";
 
 export default function Layout() {
     return (
@@ -31,6 +32,7 @@ export default function Layout() {
 
                     <Route path='/choose-login' component={ChooseLogin} />
                     <Route path="/register" component={Register} />
+                    <Route path='/registration' component={MultiStepRegistration}/>
                     <Route path="/sign-in" component={SignIn}/>
                     <Route exact path="/child-profiles-dialog" component={ChildProfileDialog} />
                     <Route exact path="/child-profiles-main" component={ChildProfiles} />
