@@ -24,15 +24,15 @@ const items = [
     text: "ChooseLogin"
   },
   {
-    path:'sign-in',
-    text: 'SignIn'
+    path: "sign-in",
+    text: "SignIn"
   },
   {
     path: "/register",
     text: "Register"
   },
   {
-    path:"/registration",
+    path: "/registration",
     text: "Multi-Step Registration"
   },
   {
@@ -44,12 +44,12 @@ const items = [
     text: "Main Child Profiles Test"
   },
   {
-      path: "/slider-test",
-      text: "Rainbow Slider Test",
+    path: "/slider-test",
+    text: "Rainbow Slider Test"
   },
   {
-      path: "/stepper-test",
-      text: "Stepper Test"
+    path: "/stepper-test",
+    text: "Stepper Test"
   }
 ];
 
