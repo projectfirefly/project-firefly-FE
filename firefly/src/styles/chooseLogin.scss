@@ -1,5 +1,4 @@
 body{
-    margin: 0;
     font-family: 'Nunito', sans-serif;
     background-image: url('./../images/IconsBackground.png');
 
@@ -47,7 +46,7 @@ body{
         opacity:0.92;
         transition: opacity .25s ease-in-out;
         letter-spacing: 1px;
-        max-width:100%;
+        width:100%;
 
         &:hover{
             opacity:1;
@@ -72,7 +71,7 @@ body{
         opacity:0.92;
         transition: opacity .25s ease-in-out;
         letter-spacing: 1px;
-        max-width:100%;
+        width:100%;
 
         
         &:hover{
