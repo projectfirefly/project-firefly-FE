@@ -7,8 +7,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 
-// import { FaPencilAlt } from "react-icons/fa";
-
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1
@@ -54,109 +52,79 @@ export default function ProfileView() {
         component="div"
         style={{ backgroundColor: "transparent" }}
       >
-        <Paper
+        <h1
           style={{
-            height: "400px",
-            marginTop: "80px"
+            fontSize: "20px",
+            textAlign: "center",
+            color: "#5B4EFF",
+            fontSize: "34px",
+            letterSpacing: "7",
+            fontWeight: "900",
+            fontFamily: "Nunito black"
           }}
         >
-          <Grid container spacing={3}>
-            <Grid item xs={6}>
-              <div style={{ height: "300px" }}>
-                <a href="/createprofile">
-                  <img src={image1} alt="users profile" />
-                </a>
-                <br />
-                <div
-                  style={{
-                    textAlign: "center"
-                  }}
-                >
-                  <Link to="/createprofile">Change Characters</Link>
-                </div>
-              </div>
-            </Grid>
-            <Grid item xs={6}>
-              <div
-                style={{
-                  paddingTop: "60px",
-                  height: "300px",
-                  textAlign: "center"
-                }}
-              >
-                {name ? (
-                  <div style={{ display: "flex" }}>
-                    <h2
-                      style={{
-                        color: "#3E8C0C",
-                        fontSize: "28px",
-                        marginRight: "15px"
-                      }}
-                    >
-                      {name}
-                    </h2>
-                    <button
-                      type="submit"
-                      // onClick={() => {
-                      //   setOpen(!open);
-                      //   changeName();
-                      // }}
-                      onClick={changeName}
-                      style={{
-                        border: "none",
-                        backgroundColor: "transparent",
-                        cursor: "pointer"
-                      }}
-                    >
-                      {/* <FaPencilAlt
-                        style={{ color: "#3E8C0C", fontSize: "15px" }}
-                      /> */}
-                    </button>
-                  </div>
-                ) : (
-                  <form onSubmit={changeName}>
-                    <input
-                      placeholder="character name"
-                      type="text"
-                      value={newName}
-                      onChange={handleChange}
-                      style={{
-                        border: "none",
-                        fontSize: "14px"
-                      }}
-                    />
+          My Firefly
+        </h1>
 
-                    <button
-                      type="submit"
-                      // onClick={() => {
-                      //   setOpen(!open);
-                      //   changeName();
-                      // }}
-                      onClick={changeName}
-                      style={{
-                        border: "none",
-                        backgroundColor: "transparent",
-                        cursor: "pointer"
-                      }}
-                    >
-                      {/* <FaPencilAlt
-                        style={{ color: "#3E8C0C", fontSize: "15px" }}
-                      /> */}
-                    </button>
-                  </form>
-                )}
-
-                <br />
-                <div style={{ paddingTop: "100px" }}>
-                  <p>Level: </p>
-                  <p>Blocks Unlocked: </p>
-                  <p>Models Unlocked: </p>
-                </div>
-                <Link to="#">Change Profile</Link>
+        <Grid style={{ marginTop: "20px" }} container spacing={3}>
+          <Grid item xs={6}>
+            <div
+              style={{
+                background: "white",
+                borderRadius: " 20px",
+                boxShadow: "0px 2px 4px #000000"
+              }}
+            >
+              <div style={{}}>
+                <h4 style={{ textAlign: "right" }}> Edit</h4>
               </div>
-            </Grid>
+              <h3 style={{ textAlign: "center" }}>Users name</h3>
+              <img src={image1} alt="users profile" />
+            </div>
+            <div
+              style={{
+                textAlign: "center",
+                border: "solid #ABB0BA 2px",
+                borderRadius: "10px",
+                backgroundColor: "#FFFFFF",
+                boxShadow: "0px 3px #8F96A3",
+                marginTop: "20px"
+              }}
+            >
+              <Link to="/createprofile">Change Firefly</Link>
+            </div>
           </Grid>
-        </Paper>
+
+          <Grid item xs={6}>
+            <div
+              style={{
+                textAlign: "center",
+                border: "solid #ABB0BA 2px",
+                borderRadius: "10px",
+                backgroundColor: "#FFFFFF",
+                boxShadow: "0px 3px #8F96A3",
+                marginTop: "20px",
+                height: "100px"
+              }}
+            >
+              Learn How to Play
+            </div>
+            <div
+              s
+              style={{
+                textAlign: "center",
+                border: "solid #ABB0BA 2px",
+                borderRadius: "10px",
+                backgroundColor: "#FFFFFF",
+                boxShadow: "0px 3px #8F96A3",
+                marginTop: "20px",
+                height: "100px"
+              }}
+            >
+              <h4>Start Playing</h4>
+            </div>
+          </Grid>
+        </Grid>
       </Container>
     </React.Fragment>
   );
