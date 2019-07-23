@@ -58,8 +58,19 @@ export default function ProfileView() {
               <div style={{}}>
                 <h4 style={{ textAlign: "right" }}> Edit</h4>
               </div>
-              <h3 style={{ textAlign: "center" }}>Users name</h3>
-              <img src={image1} alt="users profile" />
+              <h3 style={{ textAlign: "center", fontWeight: "590" }}>
+                Users name
+              </h3>
+
+              <div>
+                <img
+                  src={image1}
+                  alt="users profile"
+                  style={{
+                    width: "100%"
+                  }}
+                />
+              </div>
             </div>
             <div
               style={{
