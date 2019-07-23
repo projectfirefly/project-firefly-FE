@@ -27,14 +27,13 @@ const ChildProfiles = () => {
       letterSpacing: "10px",
       fontWeight: "900",
       color: "#5B4EFF",
-      width: "100%",
-      display: "flex",
-      justifyContent: "center",
+      display: "flex",  
       marginBottom: '50px',
     },
     root: {
       display: "flex",
       flexDirection: "row",
+      justifyContent: "center",
       flexWrap: "wrap",
       padding: "60px"
     },
@@ -43,13 +42,18 @@ const ChildProfiles = () => {
       flexWrap: "wrap",
       justifyContent: "flex-start",
       alignItems: "center",
-      paddingLeft: "120px"
+    },
+    single: {
+        width: "33%",
+        display: 'flex',
+        justifyContent: 'center',
+        marginBottom: '50px'
     },
     card: {
       border: "2px solid #ABB0BA",
       borderRadius: "10px",
       boxShadow: "0px 3px #8F96A3",
-      margin: '45px 80px'
+      width: '200px',
     },
     cardContent: {
       display: "flex",
@@ -81,22 +85,26 @@ const ChildProfiles = () => {
       <div className={classes.header}> CHOOSE YOUR FIREFLY </div>
       <div className={classes.cardContainer}>
         {childProfileState.profiles.map(profile => (
-          <Card className={classes.card}>
-            <CardActionArea
-              onClick={() =>
-                dispatch({ type: "UPDATE_SELECTED", payload: profile.id })
-              }
-            >
-              <CardContent className={classes.cardContent}>
-                    <div className={classes.text}>
-                        <h2 className={classes.name}>{profile.name}</h2>
-                    </div>
-                    <div className={classes.flysize}>
-                        <ProfileFly  color={profile.color} />
-                    </div>
-              </CardContent>
-            </CardActionArea>
-          </Card>
+            <div className={classes.single}>
+                <Card className={classes.card}>
+                    <CardActionArea
+                    onClick={() =>
+                        dispatch({ type: "UPDATE_SELECTED", payload: profile.id })
+                    }
+                    >
+
+                        <CardContent className={classes.cardContent}>
+                                <div className={classes.text}>
+                                    <h2 className={classes.name}>{profile.name}</h2>
+                                </div>
+                                <div className={classes.flysize}>
+                                    <ProfileFly  color={profile.color} />
+                                </div>
+                        </CardContent>
+                        
+                    </CardActionArea>
+                </Card>
+            </div>
         ))}
       </div>
     </div>
