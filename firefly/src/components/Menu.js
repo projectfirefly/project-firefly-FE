@@ -32,6 +32,10 @@ const items = [
     text: "Register"
   },
   {
+    path:"/registration",
+    text: "Multi-Step Registration"
+  },
+  {
     path: "/child-profiles-dialog",
     text: "Profile Dialog Test"
   },
