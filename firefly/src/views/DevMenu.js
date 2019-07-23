@@ -14,7 +14,7 @@ import ChildProfileDialog from "../components/ChildProfiles/ChildProfileDialog";
 import Register from "../components/Register";
 import ColorSliderTest from "../components/ColorSlider/ColorSliderTest";
 import SignIn from "../components/SignIn";
-import StepperTest from "../components/StepperTest";
+import StepperTest from "../components/Steppers/StepperTest";
 import MultiStepRegistration from "../components/MultiStepRegistration";
 
 
