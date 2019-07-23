@@ -14,6 +14,7 @@ import ChildProfileDialog from "../components/ChildProfiles/ChildProfileDialog";
 import Register from "../components/Register";
 import ColorSliderTest from "../components/ColorSlider/ColorSliderTest";
 import SignIn from "../components/SignIn";
+import StepperTest from "../components/StepperTest";
 
 export default function Layout() {
     return (
@@ -35,6 +36,7 @@ export default function Layout() {
                     <Route exact path="/child-profiles-dialog" component={ChildProfileDialog} />
                     <Route exact path="/child-profiles-main" component={ChildProfiles} />
                     <Route exact path="/slider-test" component={ColorSliderTest} />
+                    <Route exact path="/stepper-test" component={StepperTest} />
 
                 </Switch>
             </main>

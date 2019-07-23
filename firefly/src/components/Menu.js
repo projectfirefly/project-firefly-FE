@@ -42,6 +42,10 @@ const items = [
   {
       path: "/slider-test",
       text: "Rainbow Slider Test",
+  },
+  {
+      path: "/stepper-test",
+      text: "Stepper Test"
   }
 ];
 
