@@ -60,7 +60,7 @@ export default function ProfileView() {
                 style={{
                   margin: "20px 0",
                   marginRight: "15px",
-                  paddingTop: "10px"
+                  paddingTop: "20px"
                 }}
               >
                 <Link style={{ textDecoration: "none" }} to="/createprofile">
@@ -81,6 +81,7 @@ export default function ProfileView() {
                 style={{
                   textAlign: "center",
                   color: "#152F04",
+                  fontWeight: "bold",
                   fontSize: "17px"
                 }}
               >
@@ -105,7 +106,6 @@ export default function ProfileView() {
                 backgroundColor: "#FFFFFF",
                 boxShadow: "0px 3px #8F96A3",
                 marginTop: "20px",
-
                 fontSize: "17px"
               }}
             >
