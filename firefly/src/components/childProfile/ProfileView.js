@@ -84,7 +84,8 @@ export default function ProfileView() {
                 backgroundColor: "#FFFFFF",
                 boxShadow: "0px 3px #8F96A3",
                 marginTop: "20px",
-                height: "100px"
+                height: "100px",
+                color: "#5B4EFF"
               }}
             >
               Learn How to Play
