@@ -1,4 +1,4 @@
-import image1 from "../../assets/icons/firefly.svg";
+import image1 from "../../assets/icons/Firefly";
 
 export const tileData = [
   {

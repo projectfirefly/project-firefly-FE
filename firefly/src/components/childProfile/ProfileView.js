@@ -85,7 +85,8 @@ export default function ProfileView() {
                 boxShadow: "0px 3px #8F96A3",
                 marginTop: "20px",
                 height: "100px",
-                color: "#5B4EFF"
+                color: "#5B4EFF",
+                fontWeight: "bold"
               }}
             >
               Learn How to Play
@@ -99,7 +100,9 @@ export default function ProfileView() {
                 backgroundColor: "#FFFFFF",
                 boxShadow: "0px 3px #8F96A3",
                 marginTop: "20px",
-                height: "100px"
+                height: "100px",
+                color: "#5B4EFF",
+                fontWeight: "bold"
               }}
             >
               <h4>Start Playing</h4>
