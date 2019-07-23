@@ -10,10 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import { StepConnector } from '@material-ui/core';
 import LensIcon from '@material-ui/icons/Lens'
 
-const StepperDots = () => {
-
-    const [activeStep, setActiveStep] = useState(0);
-    const [steps, setSteps] = useState(['', '', ''])
+const CustomStepper = (props) => {
 
     const classes = makeStyles(theme => ({
         root: {
@@ -96,28 +93,16 @@ const StepperDots = () => {
     )
 
     const activateStepIcon = (step) => {
-        if (activeStep >= step) {
+        if (props.activeStep >= step) {
             return "active"
         } else {
             return ""
         }
     }
 
-    function handleBack() {
-        setActiveStep(prevActiveStep => prevActiveStep - 1);
-    }
-
-    function handleReset() {
-        setActiveStep(0);
-    }
-
-    function handleNext() {
-        setActiveStep(prevActiveStep => prevActiveStep + 1);
-    }
-
     return (
         <div className={classes.root}>
-            <Stepper className={classes.stepper} activeStep={activeStep} connector={connector} alternativeLabel>
+            <Stepper className={classes.stepper} activeStep={props.activeStep} connector={connector} alternativeLabel>
                 <Step className={classes.step}>
                     <StepLabel StepIconProps={{
                         icon: (<LensIcon classes={{ root: stepClasses.stepRoot }} className={activateStepIcon(0)} />)
@@ -134,22 +119,8 @@ const StepperDots = () => {
                     }} />
                 </Step>
             </Stepper>
-            <div>
-                <Button
-                    variant="contained"
-                    color="primary"
-                    disabled={activeStep === 0}
-                    onClick={handleBack}
-                    className={classes.backButton}
-                >
-                    Back
-                </Button>
-                <Button variant="contained" color="secondary" onClick={handleNext}>
-                    {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-                </Button>
-            </div>
         </div>
     )
 }
 
-export default StepperDots
+export default CustomStepper
