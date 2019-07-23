@@ -1,11 +1,13 @@
 import React from "react";
-import firefly from "./Firefly";
-
+import Firefly from "./firefly/Firefly";
+import ProfileFly from "./ProfileFly";
 
 const Icon = props => {
   switch (props.name) {
-    case "firefly":
-      return <firefly {...props} />;
+    case "Firefly":
+      return <Firefly {...props} />;
+    case "ProfileFly":
+      return <ProfileFly {...props} />;
     default:
       return <div />;
   }
