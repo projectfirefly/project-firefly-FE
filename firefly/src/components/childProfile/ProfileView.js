@@ -50,7 +50,7 @@ export default function ProfileView() {
         className={classes.root}
         maxWidth="sm"
         component="div"
-        style={{ backgroundColor: "transparent" }}
+        style={{ backgroundColor: "transparent", fontFamily: "nunito" }}
       >
         <h1
           style={{
@@ -58,9 +58,10 @@ export default function ProfileView() {
             textAlign: "center",
             color: "#5B4EFF",
             fontSize: "34px",
-            letterSpacing: "7",
+            letterSpacing: "7px",
             fontWeight: "900",
-            fontFamily: "Nunito black"
+            textTransform: "uppercase",
+            fontFamily: "nunito"
           }}
         >
           My Firefly
