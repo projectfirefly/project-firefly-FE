@@ -7,7 +7,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 
-import { FaPencilAlt } from "react-icons/fa";
+// import { FaPencilAlt } from "react-icons/fa";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -108,9 +108,9 @@ export default function ProfileView() {
                         cursor: "pointer"
                       }}
                     >
-                      <FaPencilAlt
+                      {/* <FaPencilAlt
                         style={{ color: "#3E8C0C", fontSize: "15px" }}
-                      />
+                      /> */}
                     </button>
                   </div>
                 ) : (
@@ -139,9 +139,9 @@ export default function ProfileView() {
                         cursor: "pointer"
                       }}
                     >
-                      <FaPencilAlt
+                      {/* <FaPencilAlt
                         style={{ color: "#3E8C0C", fontSize: "15px" }}
-                      />
+                      /> */}
                     </button>
                   </form>
                 )}
