@@ -6,6 +6,7 @@ import image1 from "../../assets/icons/Firefly.svg";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
+import { FaPen } from "react-icons/fa";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -55,10 +56,34 @@ export default function ProfileView() {
                 boxShadow: "0px 2px 4px #000000"
               }}
             >
-              <div style={{}}>
-                <h4 style={{ textAlign: "right" }}> Edit</h4>
+              <div
+                style={{
+                  margin: "20px 0",
+                  marginRight: "15px",
+                  paddingTop: "10px"
+                }}
+              >
+                <Link style={{ textDecoration: "none" }} to="/createprofile">
+                  <div
+                    style={{
+                      textAlign: "right",
+                      color: "#4AA810",
+                      fontWeight: "bold",
+                      fontSize: "17px"
+                    }}
+                  >
+                    <FaPen style={{ marginRight: "5px" }} />
+                    Edit
+                  </div>
+                </Link>
               </div>
-              <h3 style={{ textAlign: "center", fontWeight: "590" }}>
+              <h3
+                style={{
+                  textAlign: "center",
+                  color: "#152F04",
+                  fontSize: "17px"
+                }}
+              >
                 Users name
               </h3>
 
@@ -79,10 +104,17 @@ export default function ProfileView() {
                 borderRadius: "10px",
                 backgroundColor: "#FFFFFF",
                 boxShadow: "0px 3px #8F96A3",
-                marginTop: "20px"
+                marginTop: "20px",
+
+                fontSize: "17px"
               }}
             >
-              <Link to="/createprofile">Change Firefly</Link>
+              <Link
+                style={{ color: "#4AA810", textDecoration: "none" }}
+                to="/child-profiles-main"
+              >
+                Change Firefly
+              </Link>
             </div>
           </Grid>
 
