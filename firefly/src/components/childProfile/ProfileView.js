@@ -20,27 +20,6 @@ const useStyles = makeStyles(theme => ({
 
 export default function ProfileView() {
   const classes = useStyles();
-  const [name, setName] = useState("");
-  const [newName, setNewName] = useState();
-  const [open, setOpen] = useState(false);
-
-  const nameInState = { name };
-
-  const handleChange = event => {
-    event.preventDefault();
-    setNewName(event.target.value);
-  };
-  const changeName = event => {
-    event.preventDefault();
-    if (!newName) {
-      alert("Please add a new name");
-    } else {
-      setName(newName);
-      setNewName("");
-    }
-  };
-
-  console.log(name);
 
   return (
     <React.Fragment>
