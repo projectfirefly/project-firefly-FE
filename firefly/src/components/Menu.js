@@ -67,9 +67,11 @@ const items = [
 ];
 
 function Menu() {
-    const [open, setOpen] = useState(false);
-    const [collapseOpen, setCollapseOpen] = useState(false);
 
+    //Controls open state
+    const [open, setOpen] = useState(false);
+
+    //Styling
     const classes = makeStyles(theme => ({
         container: {
             marginBottom: "20px",
@@ -106,30 +108,11 @@ function Menu() {
         toolbar: theme.mixins.toolbar,
     }))();
 
-    const handleClick = () => {
-        setCollapseOpen(!collapseOpen);
-    }
-
     const toggleDrawer = () => {
         setOpen(!open);
     }
 
     return (
-        // <ul className="menu">
-        //   {items.map(item => (
-        //     <li
-        //       key={item.path}
-        //       onClick={handleClick.bind(null, item.path)}
-        //       className={
-        //         props.location.pathname === item.path
-        //           ? "menu__item menu__item--active"
-        //           : "menu__item"
-        //       }
-        //     >
-        //       <Link to={item.path}>{item.text}</Link>
-        //     </li>
-        //   ))}
-        // </ul>
         <div className={classes.container}>
             <AppBar position="absolute" className={classes.appBar}>
                 <Toolbar>
