@@ -13,14 +13,6 @@ import LensIcon from '@material-ui/icons/Lens'
 const CustomStepper = (props) => {
 
     const classes = makeStyles(theme => ({
-        root: {
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: '100%',
-            height: '80vh',
-        },
         stepper: {
             background: 'rgba(0,0,0,0)',
             width: '500px',
@@ -101,7 +93,7 @@ const CustomStepper = (props) => {
     }
 
     return (
-        <div className={classes.root}>
+        <div>
             <Stepper className={classes.stepper} activeStep={props.activeStep} connector={connector} alternativeLabel>
                 <Step className={classes.step}>
                     <StepLabel StepIconProps={{
