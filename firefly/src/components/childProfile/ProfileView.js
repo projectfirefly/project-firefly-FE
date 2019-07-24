@@ -37,7 +37,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: "#FFFFFF",
     boxShadow: "0px 3px #8F96A3",
     // marginTop: "50px",
-    height: "35%",
+    height: "37%",
     color: "#5B4EFF",
     fontWeight: "bold",
     marginLeft: "20%",
@@ -64,7 +64,9 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: "#FFFFFF",
     boxShadow: "0px 3px #8F96A3",
     marginTop: "20px",
-    fontSize: "17px"
+    fontSize: "17px",
+    paddingTop: "2%",
+    height: "10%"
   },
   edit: {
     textAlign: "right",
