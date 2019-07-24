@@ -61,6 +61,9 @@ export default function CreateProfile() {
             padding: "2%",
             borderRadius: "5px",
             width: "90%",
+        },
+        slider: {
+            margin: "0 4%",
         }
     })();
 
@@ -93,7 +96,7 @@ export default function CreateProfile() {
 
     return (
         <div className={classes.rootContainer}>
-            <h1 className={classes.header}>Create New Profile</h1>
+            <h1 className={classes.header}>Customize Your Firefly</h1>
 
             <div className={classes.cardContainer}>
                 <div className={classes.card + " left"}>
@@ -124,14 +127,19 @@ export default function CreateProfile() {
                     </div>
                     <div>
                         <h2 className={classes.h2}>Light Color</h2>
-                        <ColorSlider
-                            value={updatedProfile.color}
-                            updateColor={updateColor}
-                        />
+                        <div className={classes.slider}>
+                            <ColorSlider
+                                value={updatedProfile.color}
+                                updateColor={updateColor}
+                            />
+                        </div>
                     </div>
                 </div>
             </div>
-            <button onClick={saveProfile}>SAVE</button>
+            <div>
+                <button className={classes.button + " back"}>BACK</button>
+                <button className={classes.button + " save"} onClick={saveProfile}>SAVE</button>
+            </div>
         </div>
     );
 }

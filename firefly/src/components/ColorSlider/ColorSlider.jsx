@@ -30,12 +30,12 @@ export default function ColorSlider(props) {
             height: 11,
             borderRadius: 5,
             background: `linear-gradient(to right, hsl(0,70%,50%),
-            hsl(${(360) / 5},70%,50%),
-            hsl(${(360 * 2) / 5},70%,50%),
-            hsl(${(360 * 3) / 5},70%,50%),
-            hsl(${(360 * 4) / 5},70%,50%),
-            hsl(${360},70%,50%))`,
-            opacity: '.7',
+            hsl(${(360) / 5},100%,50%),
+            hsl(${(360 * 2) / 5},100%,50%),
+            hsl(${(360 * 3) / 5},100%,50%),
+            hsl(${(360 * 4) / 5},100%,50%),
+            hsl(${360},100%,50%))`,
+            opacity: '1',
         },
         thumb: {
             height: 27,
@@ -67,7 +67,11 @@ export default function ColorSlider(props) {
     return (
         <div style={{ width: '100%' }}>
             <div>
+                {sliderValue > -1 ?
                     <Slider classes={classes} value={sliderValue} max={360} onChange={commitChange} onChangeCommitted={commitChange} aria-label="Color slider" />
+                    :
+                    <h2>loading...</h2>
+                }
             </div>
         </div>
     );
