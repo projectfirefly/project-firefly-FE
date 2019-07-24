@@ -28,6 +28,11 @@ const initialState = {
             id: 4,
             name: "Jacob",
             color: 250,
+        },
+        {
+            id: 5,
+            name: "Georgina",
+            color: 170,
         }],
     selected: {
         id: 2,
