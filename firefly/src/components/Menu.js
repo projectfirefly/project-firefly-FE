@@ -67,36 +67,39 @@ const items = [
 ];
 
 function Menu() {
-
     //Controls open state
     const [open, setOpen] = useState(false);
 
     //Styling
     const classes = makeStyles(theme => ({
-        container: {
-            marginBottom: "20px",
+        button: {
+            position: "absolute",
+            background: "#5b4eff",
+            top: "5%",
+            right: "5%",
+            color: "white",
+            "&:hover, &:focus": {
+                background: "#d0ccff",
+                opacity: "1"
+            }
         },
         root: {
             display: "flex",
         },
-        appBar: {
-            zIndex: 1000,
-            background: "#5b4eff",
-        },
         list: {
-            width: '300px',
+            width: "300px",
             background: "#5b4eff",
             color: "white",
         },
         listItem: {
-            '&:hover, &:focus': {
+            "&:hover, &:focus": {
                 background: "rgba(208,204,255,.25)",
-            }
+            },
         },
         drawer: {
             root: {
                 background: "#5b4eff",
-            }
+            },
         },
         drawerDiv: {
             height: "100%",
@@ -110,37 +113,41 @@ function Menu() {
 
     const toggleDrawer = () => {
         setOpen(!open);
-    }
+    };
 
     return (
-        <div className={classes.container}>
-            <AppBar position="absolute" className={classes.appBar}>
-                <Toolbar>
-                    <IconButton
-                        color="inherit"
-                        aria-label="Open Drawer"
-                        edge="start"
-                        onClick={toggleDrawer}
-                    >
-                        <MenuIcon />
-                    </IconButton>
-                    <h2>
-                        Firefly Dev Menu
-                    </h2>
-                </Toolbar>
-            </AppBar>
-            <Drawer classes={classes.drawer} anchor="left" open={open} onClose={toggleDrawer}>
+        <div>
+            <IconButton
+                color="inherit"
+                aria-label="Open Drawer"
+                edge="start"
+                onClick={toggleDrawer}
+                className={classes.button}
+            >
+                <MenuIcon />
+            </IconButton>
+            <Drawer
+                classes={classes.drawer}
+                anchor="left"
+                open={open}
+                onClose={toggleDrawer}
+            >
                 <div className={classes.drawerDiv}>
                     <List className={classes.list}>
                         {items.map(item => (
-                            <ListItem className={classes.listItem} button onClick={toggleDrawer} component={Link} to={item.path}>
-                                <ListItemText primary={item.text}/>
+                            <ListItem
+                                className={classes.listItem}
+                                button
+                                onClick={toggleDrawer}
+                                component={Link}
+                                to={item.path}
+                            >
+                                <ListItemText primary={item.text} />
                             </ListItem>
                         ))}
                     </List>
                 </div>
             </Drawer>
-            <div className={classes.toolbar} />
         </div>
     );
 }
