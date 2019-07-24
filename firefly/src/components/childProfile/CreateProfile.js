@@ -4,11 +4,69 @@ import React, { useContext, useEffect, useState } from "react";
 import { childContext } from "../../context/ChildProfiles/ChildProfileStore";
 import { UPDATE_PROFILE } from "../../context/ChildProfiles/ChildProfileStore";
 
-import ChooseAvatar from "./ChooseAvatar";
+//Material
+import { makeStyles } from "@material-ui/core/styles";
+
+import Icon from "../../assets/icons";
 import ColorSlider from "../ColorSlider/ColorSlider";
-import "../../styles/createProfile.scss";
 
 export default function CreateProfile() {
+    const classes = makeStyles({
+        rootContainer: {
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            marginTop: "3%",
+            fontFamily: "'Nunito', sans-serif",
+        },
+        header: {
+            fontSize: "2.6rem",
+            letterSpacing: "7px",
+            fontWeight: "900",
+            color: "#5B4EFF",
+            textTransform: "uppercase",
+        },
+        cardContainer: {
+            display: "flex",
+            width: "100%",
+            justifyContent: "center",
+        },
+        card: {
+            backgroundColor: "#FFF",
+            border: "2px solid #ABB0BA",
+            borderRadius: "10px",
+            boxShadow: "0px 3px #8F96A3",
+            width: "40%",
+            margin: "3%",
+            "&.left": {
+                width: "30%",
+                padding: "7% 3%",
+            },
+            "&.right": {
+                padding: "3%",
+            }
+        },
+        h2: {
+            fontWeight: "600",
+            margin: "3%",
+            "&.nickname": {
+                color: "#52ab1a",
+            }
+        },
+        input: {
+            border: "none",
+            background: "#e2f5d6",
+            margin: "1%",
+            padding: "2%",
+            borderRadius: "5px",
+            width: "90%",
+        },
+        slider: {
+            margin: "0 4%",
+        }
+    })();
+
     const [childProfileState, dispatch] = useContext(childContext);
 
     const [currentProfile] = childProfileState.profiles.filter(profile => {
@@ -29,46 +87,59 @@ export default function CreateProfile() {
         dispatch({ type: UPDATE_PROFILE, payload: updatedProfile });
     };
 
-    const handleChange = (e) => {
+    const handleChange = e => {
         setUpdatedProfile({
             ...updatedProfile,
-            name: e.target.value
-        })
-    }
+            name: e.target.value,
+        });
+    };
 
     return (
-        <div className="createProfile-container">
-            <h1 className="createProfile-header">Create New Profile</h1>
+        <div className={classes.rootContainer}>
+            <h1 className={classes.header}>Customize Your Firefly</h1>
 
-            <div className="forms-container">
-                <div className="forms-box">
-                    <ChooseAvatar value={updatedProfile.color} />
+            <div className={classes.cardContainer}>
+                <div className={classes.card + " left"}>
+                    <Icon
+                        name="Firefly"
+                        width={"100%"}
+                        viewBox={"0 0 1024 1024"}
+                        lighttopFill={`hsl(${updatedProfile.color},100%,35%)`}
+                        lightmidFill={`hsl(${updatedProfile.color},100%,45%)`}
+                        lightbottomFill={`hsl(${
+                            updatedProfile.color
+                            },100%,55%)`}
+                        shineStroke={`hsl(${updatedProfile.color},100%,55%)`}
+                    />
                 </div>
-                <div className="forms-box">
+                <div className={classes.card + " right"}>
                     <div style={{}}>
-                        <h2 className="inputLabel">Nickname</h2>
+                        <h2 className={classes.h2 + " nickname"}>NICKNAME</h2>
                     </div>
-                    <input 
-                        className="input" 
-                        type="text" 
+                    <input
+                        className={classes.input}
+                        type="text"
                         value={updatedProfile.name}
                         onChange={handleChange}
                     />
-
                     <div>
-                        <h2>Accessories</h2>
+                        <h2 className={classes.h2}>Accessories</h2>
                     </div>
-
                     <div>
-                        <h2>Light Color</h2>
-                        <ColorSlider
-                            value={updatedProfile.color}
-                            updateColor={updateColor}
-                        />
+                        <h2 className={classes.h2}>Light Color</h2>
+                        <div className={classes.slider}>
+                            <ColorSlider
+                                value={updatedProfile.color}
+                                updateColor={updateColor}
+                            />
+                        </div>
                     </div>
                 </div>
             </div>
-            <button onClick={saveProfile}>SAVE</button>
+            <div>
+                <button className={classes.button + " back"}>BACK</button>
+                <button className={classes.button + " save"} onClick={saveProfile}>SAVE</button>
+            </div>
         </div>
     );
 }
