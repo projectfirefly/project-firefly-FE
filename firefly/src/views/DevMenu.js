@@ -1,6 +1,11 @@
 //this is for using during development so we can quickly move between different components and see what we are doing
 
 import React from "react";
+
+//material
+
+
+//routing
 import { Switch, Route } from "react-router-dom";
 import Menu from "../components/Menu";
 import FireBaseLogin from "../components/FirebaseLogin";
@@ -8,7 +13,6 @@ import ProfileView from "../components/childProfile/ProfileView";
 import CreateProfile from "../components/childProfile/CreateProfile";
 import Main from "../components/Main";
 import ChooseLogin from "../components/ChooseLogin";
-import "../styles/devMenu.scss";
 import ChildProfiles from "../components/ChildProfiles/ChildProfiles";
 import ChildProfileDialog from "../components/ChildProfiles/ChildProfileDialog";
 import Register from "../components/Register";
@@ -21,7 +25,7 @@ import MultiStepRegistration from "../components/MultiStepRegistration";
 export default function Layout() {
     return (
         <div className="app">
-            <div className="app__sidebar">
+            <div>
                 <Menu />
             </div>
             <main className="app__content">
