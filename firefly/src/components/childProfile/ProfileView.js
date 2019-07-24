@@ -77,6 +77,16 @@ const useStyles = makeStyles(theme => ({
     color: "#152F04",
     fontWeight: "bold",
     fontSize: "17px"
+  },
+  editContainer: {
+    marginBottom: " 10px",
+    marginRight: "15px",
+    paddingTop: "20px"
+  },
+  fireflyContainer: {
+    background: "white",
+    borderRadius: " 20px",
+    boxShadow: "0px 2px 4px #000000"
   }
 }));
 
@@ -92,20 +102,8 @@ export default function ProfileView() {
 
         <Grid style={{ marginTop: "20px" }} container spacing={3}>
           <Grid item xs={6}>
-            <div
-              style={{
-                background: "white",
-                borderRadius: " 20px",
-                boxShadow: "0px 2px 4px #000000"
-              }}
-            >
-              <div
-                style={{
-                  marginBottom: " 10px",
-                  marginRight: "15px",
-                  paddingTop: "20px"
-                }}
-              >
+            <div className={classes.fireflyContainer}>
+              <div className={classes.editContainer}>
                 <Link style={{ textDecoration: "none" }} to="/createprofile">
                   <div className={classes.edit}>
                     <FaPen style={{ marginRight: "5px" }} />
