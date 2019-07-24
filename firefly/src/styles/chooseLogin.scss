@@ -1,17 +1,17 @@
 body{
     font-family: 'Nunito', sans-serif;
-    background-image: url('./../images/IconsBackground.png');
+    background-image: url('./../images/backgroundTiling.png');
 
 
     @keyframes animatedBackground {
         from { background-position: 0 0; }
-        to { background-position: 100% 0; }
+        to { background-position: -512px 0; }
     }
 
     background-position: 0px 0px;
-	background-repeat: repeat-x;
+	background-repeat: repeat;
 //animations
-	animation: animatedBackground 45s linear infinite;
+	animation: animatedBackground 6s linear infinite;
 }
 
 .logo{
