@@ -5,31 +5,35 @@ import { childContext } from "../../context/ChildProfiles/ChildProfileStore";
 import { UPDATE_PROFILE } from "../../context/ChildProfiles/ChildProfileStore";
 
 import ChooseAvatar from "./ChooseAvatar";
-import ChooseNameEtc from "./ChooseNameEtc";
+import ColorSlider from "../ColorSlider/ColorSlider";
 import "../../styles/createProfile.scss";
 
 export default function CreateProfile() {
-
     const [childProfileState, dispatch] = useContext(childContext);
 
-    const [currentProfile] = childProfileState.profiles.filter((profile) => {
+    const [currentProfile] = childProfileState.profiles.filter(profile => {
         if (childProfileState.selected.id === profile.id) {
             return true;
         } else {
             return false;
         }
-    })
+    });
 
     const [updatedProfile, setUpdatedProfile] = useState(currentProfile);
 
-    const updateColor = (newColor) => {
-        setUpdatedProfile({...updatedProfile, color: newColor})
-    }
+    const updateColor = newColor => {
+        setUpdatedProfile({ ...updatedProfile, color: newColor });
+    };
 
-    const saveProfile = () => { 
-        console.log(UPDATE_PROFILE)
+    const saveProfile = () => {
         dispatch({ type: UPDATE_PROFILE, payload: updatedProfile });
-        console.log(childProfileState.profiles);
+    };
+
+    const handleChange = (e) => {
+        setUpdatedProfile({
+            ...updatedProfile,
+            name: e.target.value
+        })
     }
 
     return (
@@ -41,12 +45,30 @@ export default function CreateProfile() {
                     <ChooseAvatar value={updatedProfile.color} />
                 </div>
                 <div className="forms-box">
-                    <ChooseNameEtc colorValue={updatedProfile.color} updateColor={updateColor} />
+                    <div style={{}}>
+                        <h2 className="inputLabel">Nickname</h2>
+                    </div>
+                    <input 
+                        className="input" 
+                        type="text" 
+                        value={updatedProfile.name}
+                        onChange={handleChange}
+                    />
+
+                    <div>
+                        <h2>Accessories</h2>
+                    </div>
+
+                    <div>
+                        <h2>Light Color</h2>
+                        <ColorSlider
+                            value={updatedProfile.color}
+                            updateColor={updateColor}
+                        />
+                    </div>
                 </div>
             </div>
-            <button onClick={saveProfile}>
-                SAVE
-            </button>
+            <button onClick={saveProfile}>SAVE</button>
         </div>
     );
 }
