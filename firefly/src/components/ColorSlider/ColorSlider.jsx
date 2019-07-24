@@ -1,18 +1,25 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Slider from "@material-ui/core/Slider";
 import Typography from "@material-ui/core/Typography";
 import Tooltip from "@material-ui/core/Tooltip";
+import { loadPartialConfig } from "@babel/core";
 
 export default function ColorSlider(props) {
 
-    const [value, setValue] = React.useState(props.value);
+    const [value, setValue] = useState(25);
+
+    const [sliderValue, setSliderValue] = useState();
+
+    useEffect(() => {
+        setValue(props.value);
+    }, [props])
 
     const useStyles = makeStyles({
         root: {
-            color: `hsl(${value},100%,50%)`,
+            color: `hsl(${sliderValue},100%,50%)`,
             width: '100%',
         },
         track: {
@@ -59,6 +66,7 @@ export default function ColorSlider(props) {
 
     const commitChange = (event, newValue) => {
         props.updateColor(newValue);
+        setSliderValue(newValue);
     }
 
     return (
@@ -67,7 +75,11 @@ export default function ColorSlider(props) {
                 Color
             </Typography>
             <div>
-                <Slider classes={classes} value={value} max={360} onChange={handleChange} onChangeCommitted={commitChange} aria-label="Pretto slider" />
+                {props.value > -1 ?
+                    <Slider classes={classes} value={value} max={360} onChange={commitChange} onChangeCommitted={commitChange} aria-label="Color slider" />
+                    :
+                    <h1>loading...</h1>
+                }
             </div>
         </div>
     );
