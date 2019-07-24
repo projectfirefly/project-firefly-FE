@@ -30,7 +30,10 @@ export default function ProfileView() {
         className={classes.root}
         maxWidth="sm"
         component="div"
-        style={{ backgroundColor: "transparent", fontFamily: "nunito" }}
+        style={{
+          backgroundColor: "transparent",
+          fontFamily: "nunito"
+        }}
       >
         <h1
           style={{
@@ -58,7 +61,7 @@ export default function ProfileView() {
             >
               <div
                 style={{
-                  margin: "20px 0",
+                  marginBottom: " 10px",
                   marginRight: "15px",
                   paddingTop: "20px"
                 }}
