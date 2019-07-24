@@ -11,8 +11,12 @@ import Stars from "../../images/StarsTemp.png";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    flexGrow: 1,
-    backgroundColor: "transparent",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "100%",
+    marginTop: "3%",
     fontFamily: "nunito"
   },
   paper: {
@@ -24,11 +28,28 @@ const useStyles = makeStyles(theme => ({
     fontSize: "20px",
     textAlign: "center",
     color: "#5B4EFF",
-    fontSize: "34px",
+    fontSize: "50px",
     letterSpacing: "7px",
     fontWeight: "900",
     textTransform: "uppercase",
-    fontFamily: "nunito"
+    fontFamily: "nunito",
+    marginBottom: "10px"
+  },
+  leftContainer: {
+    background: "white",
+    borderRadius: " 20px",
+    boxShadow: "0px 2px 4px #000000"
+  },
+  firefly: {
+    width: "70%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  fireflyContainer: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center"
   },
   rightCards: {
     textAlign: "center",
@@ -36,12 +57,10 @@ const useStyles = makeStyles(theme => ({
     borderRadius: "10px",
     backgroundColor: "#FFFFFF",
     boxShadow: "0px 3px #8F96A3",
-    // marginTop: "50px",
     height: "37%",
     color: "#5B4EFF",
     fontWeight: "bold",
-    marginLeft: "20%",
-    width: "140%"
+    marginLeft: "10%"
   },
   rightCardContent: {
     display: "flex",
@@ -49,14 +68,14 @@ const useStyles = makeStyles(theme => ({
     width: "100%",
     margin: "0 15%"
   },
-  firefly: { width: "100%" },
+
   rightCardsText: {
-    fontSize: "20px",
+    fontSize: "30px",
     paddingTop: "5%",
     marginLeft: "8%"
   },
-  bottomCard: { marginTop: "20%" },
-  rightCardsImg: { width: "14%" },
+  bottomCard: { marginTop: "13%" },
+  rightCardsImg: { width: "10%" },
   chooseFirefly: {
     textAlign: "center",
     border: "solid #ABB0BA 2px",
@@ -64,31 +83,30 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: "#FFFFFF",
     boxShadow: "0px 3px #8F96A3",
     marginTop: "20px",
-    fontSize: "17px",
-    paddingTop: "2%",
-    height: "10%"
+    fontSize: "20px",
+    fontWeight: "bold",
+    height: "10%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center"
   },
   edit: {
+    width: "100%",
     textAlign: "right",
     color: "#4AA810",
     fontWeight: "bold",
-    fontSize: "17px"
+    fontSize: "20px"
   },
   username: {
     textAlign: "center",
     color: "#152F04",
     fontWeight: "bold",
-    fontSize: "17px"
+    fontSize: "22px"
   },
   editContainer: {
-    marginBottom: " 10px",
-    marginRight: "15px",
-    paddingTop: "20px"
-  },
-  fireflyContainer: {
-    background: "white",
-    borderRadius: " 20px",
-    boxShadow: "0px 2px 4px #000000"
+    marginBottom: " 5%",
+    marginRight: "5%",
+    paddingTop: "3%"
   }
 }));
 
@@ -97,14 +115,12 @@ export default function ProfileView() {
 
   return (
     <React.Fragment>
-      <CssBaseline />
-
-      <Container className={classes.root} maxWidth="sm" component="div">
+      <Container className={classes.root} maxWidth="lg" component="div">
         <h1 className={classes.header}>My Firefly</h1>
 
         <Grid style={{ marginTop: "20px" }} container spacing={3}>
           <Grid item xs={6}>
-            <div className={classes.fireflyContainer}>
+            <div className={classes.leftContainer}>
               <div className={classes.editContainer}>
                 <Link style={{ textDecoration: "none" }} to="/createprofile">
                   <div className={classes.edit}>
@@ -115,7 +131,7 @@ export default function ProfileView() {
               </div>
               <h3 className={classes.username}>Users name</h3>
 
-              <div>
+              <div className={classes.fireflyContainer}>
                 <img
                   className={classes.firefly}
                   src={image1}
