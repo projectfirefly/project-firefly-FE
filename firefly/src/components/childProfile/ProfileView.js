@@ -11,7 +11,9 @@ import Stars from "../../images/StarsTemp.png";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
+    backgroundColor: "transparent",
+    fontFamily: "nunito"
   },
   paper: {
     padding: theme.spacing(2),
@@ -47,13 +49,35 @@ const useStyles = makeStyles(theme => ({
     width: "100%",
     margin: "0 15%"
   },
+  firefly: { width: "100%" },
   rightCardsText: {
     fontSize: "20px",
     paddingTop: "5%",
     marginLeft: "8%"
   },
   bottomCard: { marginTop: "20%" },
-  rightCardsImg: { width: "14%" }
+  rightCardsImg: { width: "14%" },
+  chooseFirefly: {
+    textAlign: "center",
+    border: "solid #ABB0BA 2px",
+    borderRadius: "10px",
+    backgroundColor: "#FFFFFF",
+    boxShadow: "0px 3px #8F96A3",
+    marginTop: "20px",
+    fontSize: "17px"
+  },
+  edit: {
+    textAlign: "right",
+    color: "#4AA810",
+    fontWeight: "bold",
+    fontSize: "17px"
+  },
+  username: {
+    textAlign: "center",
+    color: "#152F04",
+    fontWeight: "bold",
+    fontSize: "17px"
+  }
 }));
 
 export default function ProfileView() {
@@ -63,15 +87,7 @@ export default function ProfileView() {
     <React.Fragment>
       <CssBaseline />
 
-      <Container
-        className={classes.root}
-        maxWidth="sm"
-        component="div"
-        style={{
-          backgroundColor: "transparent",
-          fontFamily: "nunito"
-        }}
-      >
+      <Container className={classes.root} maxWidth="sm" component="div">
         <h1 className={classes.header}>My Firefly</h1>
 
         <Grid style={{ marginTop: "20px" }} container spacing={3}>
@@ -91,51 +107,23 @@ export default function ProfileView() {
                 }}
               >
                 <Link style={{ textDecoration: "none" }} to="/createprofile">
-                  <div
-                    style={{
-                      textAlign: "right",
-                      color: "#4AA810",
-                      fontWeight: "bold",
-                      fontSize: "17px"
-                    }}
-                  >
+                  <div className={classes.edit}>
                     <FaPen style={{ marginRight: "5px" }} />
                     Edit
                   </div>
                 </Link>
               </div>
-              <h3
-                style={{
-                  textAlign: "center",
-                  color: "#152F04",
-                  fontWeight: "bold",
-                  fontSize: "17px"
-                }}
-              >
-                Users name
-              </h3>
+              <h3 className={classes.username}>Users name</h3>
 
               <div>
                 <img
+                  className={classes.firefly}
                   src={image1}
                   alt="users profile"
-                  style={{
-                    width: "100%"
-                  }}
                 />
               </div>
             </div>
-            <div
-              style={{
-                textAlign: "center",
-                border: "solid #ABB0BA 2px",
-                borderRadius: "10px",
-                backgroundColor: "#FFFFFF",
-                boxShadow: "0px 3px #8F96A3",
-                marginTop: "20px",
-                fontSize: "17px"
-              }}
-            >
+            <div className={classes.chooseFirefly}>
               <Link
                 style={{ color: "#4AA810", textDecoration: "none" }}
                 to="/child-profiles-main"
