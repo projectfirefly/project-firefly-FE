@@ -40,11 +40,11 @@ export default function ColorSlider(props) {
             opacity: '.7',
         },
         thumb: {
-            height: 24,
-            width: 24,
-            backgroundColor: 'currentColor',
-            border: '5px solid currentColor',
-            marginTop: -8,
+            height: 26,
+            width: 26,
+            backgroundColor: '#EEE',
+            border: '4px solid currentColor',
+            marginTop: -9,
             marginLeft: -12,
             '&:focus,&:hover,&:active': {
                 boxShadow: 'inherit',
@@ -55,6 +55,7 @@ export default function ColorSlider(props) {
             width: 48,
             marginTop: -18,
             marginLeft: -24,
+            border: '8px solid currentColor',
         },
     })
 
@@ -71,12 +72,9 @@ export default function ColorSlider(props) {
 
     return (
         <div style={{ width: '100%' }}>
-            <Typography id="continuous-slider" gutterBottom>
-                Color
-            </Typography>
             <div>
                 {props.value > -1 ?
-                    <Slider classes={classes} value={value} max={360} onChange={commitChange} onChangeCommitted={commitChange} aria-label="Color slider" />
+                    <Slider classes={classes} defaultValue={value} max={360} onChange={commitChange} onChangeCommitted={commitChange} aria-label="Color slider" />
                     :
                     <h1>loading...</h1>
                 }
