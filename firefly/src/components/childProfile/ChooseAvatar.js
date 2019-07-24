@@ -17,57 +17,8 @@ const SliderBox = styled.div`
   padding-bottom: 20px;
 `;
 
-export default function ChooseAvatar() {
-  const [value, setValue] = React.useState(150);
+export default function ChooseAvatar(props) {
 
-  const useStyles = makeStyles({
-    root: {
-      color: `hsl(${value},100%,50%)`
-    },
-    track: {
-      height: 8,
-      borderRadius: 5,
-      display: "none"
-    },
-    rail: {
-      height: 8,
-      borderRadius: 5,
-      background: `linear-gradient(to right, hsl(0,70%,50%),
-            hsl(${360 / 5},70%,50%),
-            hsl(${(360 * 2) / 5},70%,50%),
-            hsl(${(360 * 3) / 5},70%,50%),
-            hsl(${(360 * 4) / 5},70%,50%),
-            hsl(${360},70%,50%))`,
-      opacity: ".7"
-    },
-    thumb: {
-      height: 24,
-      width: 24,
-      backgroundColor: "currentColor",
-      border: "5px solid currentColor",
-      marginTop: -8,
-      marginLeft: -12,
-      "&:focus,&:hover,&:active": {
-        boxShadow: "inherit"
-      }
-    },
-    active: {
-      height: 48,
-      width: 48,
-      marginTop: -18,
-      marginLeft: -24
-    },
-    containerDiv: {
-      padding: "30px",
-      backgroundColor: "#454a54"
-    }
-  });
-
-  const classes = useStyles();
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
   return (
     <Chooser>
       <Icon
@@ -75,20 +26,11 @@ export default function ChooseAvatar() {
         width={"100%"}
         height={"100%"}
         viewBox={"0 0 1024 1024"}
-        lighttopFill={`hsl(${value},100%,35%)`}
-        lightmidFill={`hsl(${value},100%,45%)`}
-        lightbottomFill={`hsl(${value},100%,55%)`}
-        shineStroke={`hsl(${value},100%,55%)`}
+        lighttopFill={`hsl(${props.value},100%,35%)`}
+        lightmidFill={`hsl(${props.value},100%,45%)`}
+        lightbottomFill={`hsl(${props.value},100%,55%)`}
+        shineStroke={`hsl(${props.value},100%,55%)`}
       />
-      <SliderBox>
-        <Slider
-          classes={classes}
-          value={value}
-          max="359"
-          onChange={handleChange}
-          aria-label="Pretto slider"
-        />
-      </SliderBox>
     </Chooser>
   );
 }
