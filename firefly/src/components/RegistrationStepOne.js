@@ -6,14 +6,10 @@ import ApolloClient from "apollo-boost";
 import "../styles/RegistrationStepOne.scss";
 
 
-const RegistrationForm = ({ values, errors, touched }, props) => {
-
-    const [step, setStep] = useState(props.step);
+const RegistrationForm = ({ values, errors, touched, step, updateStep }) => {
   
     return (
       <div className="registration-container">
-        <h1 className="registration-header"> Step 1: Account Information</h1>
-  
         <div className="registration-forms-container">
           <div className="registration-forms-box">
             <Form className="registration-forms-box__formik">
@@ -80,13 +76,12 @@ const RegistrationForm = ({ values, errors, touched }, props) => {
               </div>
             </Form>
           </div>
-
           <div className='registration-buttons'>
-            <button className={step===1 ? 'none' : 'registration-buttons__back'} onClick={()=>setStep(step-1)}>
+            <button className={step===0 ? 'none' : 'registration-buttons__back'}>
                 Back
             </button>
  
-            <button className='registration-buttons__next' onClick={()=>setStep(step+1)}>
+            <button className='registration-buttons__next' onClick={()=>updateStep('add')}>
                 Next
             </button>
           </div>
