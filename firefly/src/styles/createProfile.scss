@@ -266,3 +266,24 @@
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
+
+.input {
+  height: 40px;
+  border: 0;
+  border-radius: 10px;
+  background-color: #e2f5d6;
+}
+
+.input input:hover {
+  height: 40px;
+  border: 2px solid #e3e538;
+  border-radius: 10px;
+  background-color: #ffffff;
+}
+
+.input .inputLabel {
+  font-size: 16px;
+  color: #4aa810;
+  letter-spacing: 1px;
+  padding-bottom: 5px;
+}
