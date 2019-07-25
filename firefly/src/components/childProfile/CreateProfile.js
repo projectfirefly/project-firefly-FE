@@ -59,16 +59,11 @@ export default function CreateProfile() {
             name="Firefly"
             width={"100%"}
             viewBox={"0 0 1024 1024"}
+            accessory={currentProfile.accessory}
             lighttopFill={`hsl(${updatedProfile.color},100%,35%)`}
             lightmidFill={`hsl(${updatedProfile.color},100%,45%)`}
             lightbottomFill={`hsl(${updatedProfile.color},100%,55%)`}
             shineStroke={`hsl(${updatedProfile.color},100%,55%)`}
-          />
-          <Icon
-            name={currentAcc}
-            className="accessory"
-            width={"100%"}
-            viewBox={"0 0 1024 1024"}
           />
         </div>
         <div className={classes.card + " right"}>

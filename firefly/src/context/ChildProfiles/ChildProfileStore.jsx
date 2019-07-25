@@ -8,37 +8,37 @@ const initialState = {
       id: 0,
       name: "George",
       color: 120,
-      accessory: 0
+      accessory: 1
     },
     {
       id: 1,
       name: "Jorge",
       color: 0,
-      accessory: 1
+      accessory: 2
     },
     {
       id: 2,
       name: "Gyorg",
       color: 320,
-      accessory: 2
+      accessory: 3
     },
     {
       id: 3,
       name: "John",
       color: 60,
-      accessory: 3
+      accessory: 4
     },
     {
       id: 4,
       name: "Jacob",
       color: 250,
-      accessory: 0
+      accessory: 1
     },
     {
       id: 5,
       name: "Georgina",
       color: 170,
-      accessory: 1
+      accessory: 2
     }
   ],
   selected: {
