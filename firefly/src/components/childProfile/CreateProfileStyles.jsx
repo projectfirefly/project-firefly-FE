@@ -41,7 +41,6 @@ const createProfileClasses = makeStyles({
   accessory: {
     zIndex: -100,
     position: "absolute",
-    top: "0",
     border: "1px solid red"
   },
   h2: {
