@@ -101,7 +101,7 @@ export default function CreateProfile() {
                     </div>
                 </div>
             </div>
-            <div>
+            <div className={classes.buttonContainer}>
                 <button className={classes.button + " back"}>BACK</button>
                 <button
                     className={classes.button + " save"}

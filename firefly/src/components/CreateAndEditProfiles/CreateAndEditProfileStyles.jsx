@@ -7,7 +7,6 @@ const createProfileStyles = makeStyles({
         alignItems: "center",
         justifyContent: "center",
         width: "100%",
-        height: "100vh",
         fontFamily: "'Nunito', sans-serif",
     },
     header: {
@@ -19,7 +18,7 @@ const createProfileStyles = makeStyles({
     },
     card: {
         display: "flex",
-        width: "60%",
+        maxWidth: "60%",
         maxHeight: "40%",
         background: "white",
         borderRadius: "20px",
@@ -80,6 +79,7 @@ const createProfileStyles = makeStyles({
         alignItems: "center",
     },
     button: {
+        position: "absolute",
         fontWeight: '600',
         fontFamily: "'Nunito', sans-serif",
         borderRadius: "7px",
@@ -93,10 +93,11 @@ const createProfileStyles = makeStyles({
             color: "#4aa810",
             "&:active": {
                 boxShadow: "none",
-                marginTop: "3px",
+                marginTop: "5px",
             }
         },
         "&.save": {
+            right: "16%",
             background: "#4aa810",
             color: "#fff",
             border: "none",
@@ -108,22 +109,22 @@ const createProfileStyles = makeStyles({
         }
     },
     delete: {
-        position: "fixed",
-        marginTop: "-3rem",
-        marginLeft: "-1.2rem",
+        position: "absolute",
+        marginTop: "-5%",
+        marginLeft: "-2%",
         fontWeight: '600',
         fontFamily: "'Nunito', sans-serif",
         borderRadius: "7px",
-        border: "none",
-        boxShadow: "0px 2px #A30F2D",
+        border: "2px solid #ABB0BA",
+        boxShadow: "0px 2px #8F96A3",
         padding: ".6rem 1rem",
         letterSpacing: "1px",
-        fontSize: "1.4rem",
-        background: "#dc143c",
-        color: "#FFF",
+        fontSize: "calc(1.4rem + .5vw)",
+        background: "#fff",
+        color: "#dc143c",
         "&:active": {
             boxShadow: "none",
-            marginTop: "-2.8rem",
+            marginTop: "-4.7%",
         },
     },
 });
