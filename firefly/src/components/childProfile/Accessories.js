@@ -7,13 +7,7 @@ const svgNames = [
   "PinkHeadphoneSM",
   "SunGlassesSM"
 ];
-const containerStyles = {
-  margin: "0 auto",
-  height: "100%",
-  marginTop: "100px",
-  width: "30%",
-  background: "#FFF"
-};
+
 const pickerStyles = {
   display: "flex",
   justifyContent: "space-between",
@@ -55,20 +49,14 @@ class Accessories extends React.Component {
 
   render() {
     return (
-      <div style={containerStyles}>
-        <div className="carousel" style={pickerStyles}>
-          <Arrow
-            direction="left"
-            clickFunction={this.previous}
-            name="LeftArrow"
-          />
-          <SvgImage iconName={svgNames[this.state.curSVGindex]} />
-          <Arrow
-            direction="right"
-            clickFunction={this.next}
-            name="RightArrow"
-          />
-        </div>
+      <div className="carousel" style={pickerStyles}>
+        <Arrow
+          direction="left"
+          clickFunction={this.previous}
+          name="LeftArrow"
+        />
+        <SvgImage iconName={svgNames[this.state.curSVGindex]} />
+        <Arrow direction="right" clickFunction={this.next} name="RightArrow" />
       </div>
     );
   }
