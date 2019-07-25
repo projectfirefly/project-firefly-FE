@@ -12,6 +12,13 @@ import ColorSlider from "../ColorSlider/ColorSlider";
 import Accessories from "../childProfile/Accessories";
 
 export default function CreateProfile() {
+  const AccSvgNames = [
+    "LambdaHat",
+    "NerdGlasses",
+    "PinkHeadphone",
+    "SunGlasses"
+  ];
+
   const classes = makeStyles({
     rootContainer: {
       display: "flex",
@@ -95,6 +102,8 @@ export default function CreateProfile() {
     });
   };
 
+  const currentAcc = AccSvgNames[currentProfile.accessory];
+
   return (
     <div className={classes.rootContainer}>
       <h1 className={classes.header}>Customize Your Firefly</h1>
@@ -110,6 +119,7 @@ export default function CreateProfile() {
             lightbottomFill={`hsl(${updatedProfile.color},100%,55%)`}
             shineStroke={`hsl(${updatedProfile.color},100%,55%)`}
           />
+          {/* <Icon name={"LambdaHat"} width={"100%"} viewBox={"0 0 1024 1024"} /> */}
         </div>
         <div className={classes.card + " right"}>
           <div style={{}}>
