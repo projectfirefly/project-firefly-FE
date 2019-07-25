@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import Container from "@material-ui/core/Container";
 import image1 from "../../assets/icons/Firefly.svg";
 import { makeStyles } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
 import { FaPen } from "react-icons/fa";
 import Book from "../../images/BookTemp.png";
 import Stars from "../../images/StarsTemp.png";
@@ -15,7 +13,7 @@ const useStyles = makeStyles(theme => ({
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-    width: "100%",
+    width: "98%",
     marginTop: "3%",
     fontFamily: "nunito"
   },
@@ -25,7 +23,6 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.text.secondary
   },
   header: {
-    fontSize: "20px",
     textAlign: "center",
     color: "#5B4EFF",
     fontSize: "50px",
@@ -35,13 +32,24 @@ const useStyles = makeStyles(theme => ({
     fontFamily: "nunito",
     marginBottom: "10px"
   },
+  mainBody:{
+    display: "flex",
+    width: "98%",
+  },
+  leftParent:{
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    width: "60%",
+  },
   leftContainer: {
+    width: "50%",
     background: "white",
     borderRadius: " 20px",
     boxShadow: "0px 2px 4px #000000"
   },
   firefly: {
-    width: "70%",
+    width: "200px",
     display: "flex",
     alignItems: "center",
     justifyContent: "center"
@@ -50,6 +58,11 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center"
+  },
+  rightContainer: {
+    // background: "white",
+    borderRadius: " 20px",
+    // boxShadow: "0px 2px 4px #000000"
   },
   rightCards: {
     textAlign: "center",
@@ -60,7 +73,9 @@ const useStyles = makeStyles(theme => ({
     height: "37%",
     color: "#5B4EFF",
     fontWeight: "bold",
-    marginLeft: "10%"
+    justifyContent: "center",
+    alignItems: "center",
+    // marginLeft: "10%"
   },
   rightCardContent: {
     display: "flex",
@@ -68,14 +83,17 @@ const useStyles = makeStyles(theme => ({
     width: "100%",
     margin: "0 15%"
   },
-
   rightCardsText: {
     fontSize: "30px",
     paddingTop: "5%",
     marginLeft: "8%"
   },
-  bottomCard: { marginTop: "13%" },
-  rightCardsImg: { width: "10%" },
+  bottomCard: {
+     marginTop: "13%" 
+    },
+  rightCardsImg: { 
+    width: "10%" 
+  },
   chooseFirefly: {
     textAlign: "center",
     border: "solid #ABB0BA 2px",
@@ -118,53 +136,54 @@ export default function ProfileView() {
       <Container className={classes.root} maxWidth="lg" component="div">
         <h1 className={classes.header}>My Firefly</h1>
 
-        <Grid style={{ marginTop: "20px" }} container spacing={3}>
-          <Grid item xs={6}>
-            <div className={classes.leftContainer}>
-              <div className={classes.editContainer}>
-                <Link style={{ textDecoration: "none" }} to="/createprofile">
-                  <div className={classes.edit}>
-                    <FaPen style={{ marginRight: "5px" }} />
-                    Edit
-                  </div>
+        <div className={classes.mainBody} >
+            <div className={classes.leftParent}>
+              <div className={classes.leftContainer}>
+                <div className={classes.editContainer}>
+                  <Link style={{ textDecoration: "none" }} to="/createprofile">
+                    <div className={classes.edit}>
+                      <FaPen style={{ marginRight: "5px" }} />
+                      Edit
+                    </div>
+                  </Link>
+                </div>
+                <h3 className={classes.username}>Users name</h3>
+                <div className={classes.fireflyContainer}>
+                  <img
+                    className={classes.firefly}
+                    src={image1}
+                    alt="users profile"
+                  />
+                </div>
+              </div>
+            
+              <div className={classes.chooseFirefly}>
+                <Link
+                  style={{ color: "#4AA810", textDecoration: "none" }}
+                  to="/child-profiles-main"
+                >
+                  Choose Firefly
                 </Link>
               </div>
-              <h3 className={classes.username}>Users name</h3>
-
-              <div className={classes.fireflyContainer}>
-                <img
-                  className={classes.firefly}
-                  src={image1}
-                  alt="users profile"
-                />
-              </div>
             </div>
-            <div className={classes.chooseFirefly}>
-              <Link
-                style={{ color: "#4AA810", textDecoration: "none" }}
-                to="/child-profiles-main"
-              >
-                Choose Firefly
-              </Link>
-            </div>
-          </Grid>
+          
 
-          <Grid className={classes.right} item xs={6}>
+          <div className={classes.rightContainer} >
             <div className={classes.rightCards}>
               <div className={classes.rightCardContent}>
-                <img className={classes.rightCardsImg} src={Book} />
+                <img className={classes.rightCardsImg} src={Book} alt={'A book'} />
                 <h4 className={classes.rightCardsText}>Learn How to Play</h4>
               </div>
             </div>
 
             <div className={`${classes.rightCards} ${classes.bottomCard}`}>
               <div className={classes.rightCardContent}>
-                <img className={classes.rightCardsImg} src={Stars} />
+                <img className={classes.rightCardsImg} src={Stars} alt={'three stars'} />
                 <h4 className={classes.rightCardsText}>Start Playing</h4>
               </div>
             </div>
-          </Grid>
-        </Grid>
+          </div>
+        </div>
       </Container>
     </React.Fragment>
   );
