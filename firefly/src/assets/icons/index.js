@@ -11,6 +11,7 @@ import SunGlasses from "./accessories/SunGlasses";
 import SunGlassesSM from "./accessories/SunGlassesSM";
 import LeftArrow from "./LeftArrow";
 import RightArrow from "./RightArrow";
+import NoAccessory from "./accessories/NoAccessory";
 
 const Icon = props => {
   switch (props.name) {
@@ -38,6 +39,8 @@ const Icon = props => {
       return <LeftArrow {...props} />;
     case "RightArrow":
       return <RightArrow {...props} />;
+    case "NoAccessory":
+      return <NoAccessory {...props} />;
     default:
       return <div />;
   }
