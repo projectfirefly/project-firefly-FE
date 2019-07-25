@@ -29,6 +29,7 @@
     "react-scripts": "3.0.1",
     "styled-components": "^4.3.2",
     "styled-theming": "^2.2.0",
+    "tslib": "^1.10.0",
     "yup": "^0.27.0"
   },
   "scripts": {
