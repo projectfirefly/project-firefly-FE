@@ -4,7 +4,6 @@ import React from "react";
 
 //material
 
-
 //routing
 import { Switch, Route } from "react-router-dom";
 import Menu from "../components/Menu";
@@ -20,34 +19,37 @@ import ColorSliderTest from "../components/ColorSlider/ColorSliderTest";
 import SignIn from "../components/SignIn";
 import StepperTest from "../components/Steppers/StepperTest";
 import MultiStepRegistration from "../components/MultiStepRegistration";
-
+import Accessories from "../components/childProfile/Accessories";
 
 export default function Layout() {
-    return (
-        <div className="app">
-            <div>
-                <Menu />
-            </div>
-            <main className="app__content">
-                <Switch>
-                    <Route path="/login" component={FireBaseLogin} />
-                    <Route exact path="/" component={Main} />
+  return (
+    <div className="app">
+      <div>
+        <Menu />
+      </div>
+      <main className="app__content">
+        <Switch>
+          <Route path="/login" component={FireBaseLogin} />
+          <Route exact path="/" component={Main} />
 
-                    <Route path="/profileview" component={ProfileView} />
-                    <Route path="/createprofile" component={CreateProfile} />
+          <Route path="/profileview" component={ProfileView} />
+          <Route path="/createprofile" component={CreateProfile} />
 
-                    <Route path='/choose-login' component={ChooseLogin} />
-                    <Route path="/register" component={Register} />
-                    <Route path='/registration' component={MultiStepRegistration}/>
-                    <Route path="/sign-in" component={SignIn}/>
-                    <Route exact path="/child-profiles-dialog" component={ChildProfileDialog} />
-                    <Route exact path="/child-profiles-main" component={ChildProfiles} />
-                    <Route exact path="/slider-test" component={ColorSliderTest} />
-                    <Route exact path="/stepper-test" component={StepperTest} />
-
-                </Switch>
-            </main>
-        </div>
-    );
-
+          <Route path="/choose-login" component={ChooseLogin} />
+          <Route path="/register" component={Register} />
+          <Route path="/registration" component={MultiStepRegistration} />
+          <Route path="/sign-in" component={SignIn} />
+          <Route
+            exact
+            path="/child-profiles-dialog"
+            component={ChildProfileDialog}
+          />
+          <Route exact path="/child-profiles-main" component={ChildProfiles} />
+          <Route exact path="/slider-test" component={ColorSliderTest} />
+          <Route exact path="/stepper-test" component={StepperTest} />
+          <Route exact path="/accessories" component={Accessories} />
+        </Switch>
+      </main>
+    </div>
+  );
 }
