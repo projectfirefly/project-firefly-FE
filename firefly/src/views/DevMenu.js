@@ -20,6 +20,8 @@ import SignIn from "../components/SignIn";
 import StepperTest from "../components/Steppers/StepperTest";
 import MultiStepRegistration from "../components/MultiStepRegistration";
 import Accessories from "../components/childProfile/Accessories";
+import EditProfile from "../components/CreateAndEditProfiles/EditProfile";
+import ActuallyCreateProfile from "../components/CreateAndEditProfiles/ActuallyCreateProfile";
 
 export default function Layout() {
   return (
@@ -48,6 +50,9 @@ export default function Layout() {
           <Route exact path="/slider-test" component={ColorSliderTest} />
           <Route exact path="/stepper-test" component={StepperTest} />
           <Route exact path="/accessories" component={Accessories} />
+
+          <Route exact path="/edit-profile" component={EditProfile} />
+          <Route exact path="/create-profile" component={ActuallyCreateProfile} />
         </Switch>
       </main>
     </div>
