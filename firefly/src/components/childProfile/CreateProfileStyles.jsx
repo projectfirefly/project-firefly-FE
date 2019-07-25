@@ -34,7 +34,7 @@ const createProfileClasses = makeStyles({
         },
         "&.right": {
             padding: "3%",
-        }
+        },
     },
     h2: {
         fontWeight: "600",
