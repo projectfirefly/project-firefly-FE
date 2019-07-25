@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 
 //Context
 import { childContext } from "../../context/ChildProfiles/ChildProfileStore";
@@ -12,14 +12,6 @@ import createProfileClasses from "./CreateProfileStyles";
 
 export default function CreateProfile() {
   const classes = createProfileClasses();
-
-  const AccSvgNames = [
-    "NoAccessory",
-    "LambdaHat",
-    "NerdGlasses",
-    "PinkHeadphone",
-    "SunGlasses"
-  ];
 
   const [childProfileState, dispatch] = useContext(childContext);
 
@@ -52,8 +44,6 @@ export default function CreateProfile() {
       name: e.target.value
     });
   };
-
-  const currentAcc = AccSvgNames[currentProfile.accessory];
 
   return (
     <div className={classes.rootContainer}>
