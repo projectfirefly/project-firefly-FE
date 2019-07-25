@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import Container from "@material-ui/core/Container";
 import image1 from "../../assets/icons/Firefly.svg";
 import { makeStyles } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
 import { FaPen } from "react-icons/fa";
 import Book from "../../images/BookTemp.png";
 import Stars from "../../images/StarsTemp.png";
