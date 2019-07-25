@@ -1,79 +1,73 @@
-import React from "react";
+import React, { useState } from "react";
 import Icon from "../../assets/icons";
 
 const svgNames = [
-  "LambdaHatSM",
-  "NerdGlassesSM",
-  "PinkHeadphoneSM",
-  "SunGlassesSM"
+    "",
+    "LambdaHatSM",
+    "NerdGlassesSM",
+    "PinkHeadphoneSM",
+    "SunGlassesSM",
 ];
 
 const pickerStyles = {
-  display: "flex",
-  justifyContent: "space-between",
-  alignItems: "center"
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    minHeight: "100px",
 };
-class Accessories extends React.Component {
-  constructor(props) {
-    super(props);
 
-    this.state = {
-      curSVGindex: 0
-    };
+const Accessories = props => {
 
-    this.next = this.next.bind(this);
-    this.previous = this.previous.bind(this);
-  }
+    // curSVGindex: 0,
+    const [curIndex, setCurIndex] = useState(props.accessory);
 
-  previous() {
-    const lastIndex = svgNames.length - 1;
-    const { curSVGindex } = this.state;
-    const shouldResetIndex = curSVGindex === 0;
-    const index = shouldResetIndex ? lastIndex : curSVGindex - 1;
+    const previous = () => {
+        const lastIndex = svgNames.length - 1;
+        const shouldResetIndex = curIndex === 0;
+        const index = shouldResetIndex ? lastIndex : curIndex - 1;
 
-    this.setState({
-      curSVGindex: index
-    });
-  }
+        setCurIndex(index);
+        props.accessoryChange(index);
+    }
 
-  next() {
-    const lastIndex = svgNames.length - 1;
-    const { curSVGindex } = this.state;
-    const shouldResetIndex = curSVGindex === lastIndex;
-    const index = shouldResetIndex ? 0 : curSVGindex + 1;
+    const next = () => {
+        const lastIndex = svgNames.length - 1;
+        const shouldResetIndex = curIndex === lastIndex;
+        const index = shouldResetIndex ? 0 : curIndex + 1;
 
-    this.setState({
-      curSVGindex: index
-    });
-  }
+        setCurIndex(index);
+        props.accessoryChange(index);
+    }
 
-  render() {
-    return (
-      <div className="carousel" style={pickerStyles}>
-        <Arrow
-          direction="left"
-          clickFunction={this.previous}
-          name="LeftArrow"
-        />
-        <SvgImage iconName={svgNames[this.state.curSVGindex]} />
-        <Arrow direction="right" clickFunction={this.next} name="RightArrow" />
-      </div>
-    );
-  }
+        return (
+            <div className="carousel" style={pickerStyles}>
+                <Arrow
+                    direction="left"
+                    clickFunction={previous}
+                    name="LeftArrow"
+                />
+                <SvgImage iconName={svgNames[curIndex]} />
+                <Arrow
+                    direction="right"
+                    clickFunction={next}
+                    name="RightArrow"
+                />
+            </div>
+        );
 }
 
 const Arrow = ({ direction, clickFunction, name }) => (
-  <div className={`slide-arrow ${direction}`} onClick={clickFunction}>
-    <Icon name={name} height="60px" />
-  </div>
+    <div className={`slide-arrow ${direction}`} onClick={clickFunction}>
+        <Icon name={name} height="60px" />
+    </div>
 );
 
 const SvgImage = ({ iconName }) => {
-  const styles = {
-    height: "100px"
-  };
+    const styles = {
+        height: "100px",
+    };
 
-  return <Icon name={iconName} className="svg-icon" style={styles} />;
+    return <Icon name={iconName} className="svg-icon" style={styles} />;
 };
 
 export default Accessories;
