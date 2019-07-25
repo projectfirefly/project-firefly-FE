@@ -13,7 +13,7 @@ const SVG = ({
     height={height}
     viewBox={viewBox}
     xmlns="http://www.w3.org/2000/svg"
-    className={`svg-icon ${className || ""}`}
+    className={`svgIcon ${className || ""}`}
     xmlnsXlink="http://www.w3.org/1999/xlink"
   >
     <g id="Group" transform="translate(171.500000, 88.523274)">
