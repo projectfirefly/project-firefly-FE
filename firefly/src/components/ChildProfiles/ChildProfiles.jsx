@@ -59,13 +59,13 @@ const ChildProfiles = () => {
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      margin: "-17px -65px -40px -65px"
+      margin: "0 auto"
     },
     text: {
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      marginBottom: "-25px",
+      marginBottom: "0",
       paddingTop: "10px"
     },
     name: {
@@ -73,8 +73,8 @@ const ChildProfiles = () => {
       color: "#243d14"
     },
     flysize: {
-      width: "75%",
-      height: "75%"
+      // width: "100%",
+      // height: "100%"
     }
   });
 
