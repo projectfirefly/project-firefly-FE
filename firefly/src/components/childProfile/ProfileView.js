@@ -152,14 +152,14 @@ export default function ProfileView() {
           <Grid className={classes.right} item xs={6}>
             <div className={classes.rightCards}>
               <div className={classes.rightCardContent}>
-                <img className={classes.rightCardsImg} src={Book} />
+                <img className={classes.rightCardsImg} src={Book} alt={'A book'} />
                 <h4 className={classes.rightCardsText}>Learn How to Play</h4>
               </div>
             </div>
 
             <div className={`${classes.rightCards} ${classes.bottomCard}`}>
               <div className={classes.rightCardContent}>
-                <img className={classes.rightCardsImg} src={Stars} />
+                <img className={classes.rightCardsImg} src={Stars} alt={'three stars'} />
                 <h4 className={classes.rightCardsText}>Start Playing</h4>
               </div>
             </div>
