@@ -4,20 +4,23 @@ import React, { useContext, useEffect, useState } from "react";
 import { childContext } from "../../context/ChildProfiles/ChildProfileStore";
 import { UPDATE_PROFILE } from "../../context/ChildProfiles/ChildProfileStore";
 
-//Material
-import { makeStyles } from "@material-ui/core/styles";
-
 import Icon from "../../assets/icons";
 import ColorSlider from "../ColorSlider/ColorSlider";
 import Accessories from "../childProfile/Accessories";
 
+import createProfileClasses from "./CreateProfileStyles";
+
 export default function CreateProfile() {
+
+  const classes = createProfileClasses();
+
   const AccSvgNames = [
     "LambdaHat",
     "NerdGlasses",
     "PinkHeadphone",
     "SunGlasses"
   ];
+
 
   const classes = makeStyles({
     rootContainer: {
@@ -101,6 +104,7 @@ export default function CreateProfile() {
       name: e.target.value
     });
   };
+
 
   const currentAcc = AccSvgNames[currentProfile.accessory];
 
