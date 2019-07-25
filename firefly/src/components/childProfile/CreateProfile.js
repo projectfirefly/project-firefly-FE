@@ -11,7 +11,6 @@ import Accessories from "../childProfile/Accessories";
 import createProfileClasses from "./CreateProfileStyles";
 
 export default function CreateProfile() {
-
   const classes = createProfileClasses();
 
   const AccSvgNames = [
@@ -48,7 +47,6 @@ export default function CreateProfile() {
     });
   };
 
-
   const currentAcc = AccSvgNames[currentProfile.accessory];
 
   return (
@@ -66,7 +64,12 @@ export default function CreateProfile() {
             lightbottomFill={`hsl(${updatedProfile.color},100%,55%)`}
             shineStroke={`hsl(${updatedProfile.color},100%,55%)`}
           />
-          {/* <Icon name={"LambdaHat"} width={"100%"} viewBox={"0 0 1024 1024"} /> */}
+          <Icon
+            name={currentAcc}
+            className="accessory"
+            width={"100%"}
+            viewBox={"0 0 1024 1024"}
+          />
         </div>
         <div className={classes.card + " right"}>
           <div style={{}}>
