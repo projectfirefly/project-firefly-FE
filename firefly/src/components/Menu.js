@@ -67,6 +67,10 @@ const items = [
   {
     path: "/account",
     text: "Account Info"
+  },
+  {
+    path: "/accessories",
+    text: "Accessory Picker"
   }
 ];
 
