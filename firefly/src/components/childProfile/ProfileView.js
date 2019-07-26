@@ -37,7 +37,7 @@ const useStyles = makeStyles(theme => ({
   },
   leftContainer: {
     background: "white",
-    borderRadius: " 20px",
+    borderRadius: "20px",
     boxShadow: "0px 2px 4px #000000"
   },
   firefly: {
@@ -60,7 +60,6 @@ const useStyles = makeStyles(theme => ({
     height: "37%",
     color: "#5B4EFF",
     fontWeight: "bold",
-    marginLeft: "10%"
   },
   rightCardContent: {
     display: "flex",
@@ -68,7 +67,6 @@ const useStyles = makeStyles(theme => ({
     width: "100%",
     margin: "0 15%"
   },
-
   rightCardsText: {
     fontSize: "30px",
     paddingTop: "5%",
