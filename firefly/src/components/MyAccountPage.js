@@ -92,17 +92,17 @@ export default function ProfileView() {
             <h2 className="sectionHeader">Manage Profile</h2>
             <div className="firefly">
               <div className="edit">
-                <div className="iconButton">
+                <Link to="/addprofile" className="iconButton">
                   <FaPlus />
-                </div>
+                </Link>
               </div>
               <p>New Profile</p>
               <img className="firefly" src={image1} alt="users profile" />
               <hr class="style1" />
               <div className="edit">
-                <div className="iconButton">
+                <Link to="/editprofile" className="iconButton">
                   <FaPen />
-                </div>
+                </Link>
               </div>
               <p>Username</p>
               <img className="firefly" src={image1} alt="users profile" />
