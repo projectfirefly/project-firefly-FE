@@ -66,6 +66,10 @@ const items = [
     text: "Stepper Test"
   },
   {
+    path: "/account",
+    text: "Account Info"
+  },
+  {
     path: "/accessories",
     text: "Accessory Picker"
   },

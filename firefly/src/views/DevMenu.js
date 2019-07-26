@@ -19,6 +19,7 @@ import ColorSliderTest from "../components/ColorSlider/ColorSliderTest";
 import SignInPage from "../components/SignInPage";
 import StepperTest from "../components/Steppers/StepperTest";
 import MultiStepRegistration from "../components/MultiStepRegistration";
+import AccountPage from "../components/AccountPage";
 import Accessories from "../components/childProfile/Accessories";
 import EditProfile from "../components/CreateAndEditProfiles/EditProfile";
 import ActuallyCreateProfile from "../components/CreateAndEditProfiles/ActuallyCreateProfile";
@@ -53,6 +54,7 @@ export default function Layout() {
           />
           <Route exact path="/slider-test" component={ColorSliderTest} />
           <Route exact path="/stepper-test" component={StepperTest} />
+          <Route exact path="/account" component={AccountPage} />
           <Route exact path="/accessories" component={Accessories} />
 
           <Route exact path="/edit-profile" component={EditProfile} />
