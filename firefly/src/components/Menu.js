@@ -17,64 +17,48 @@ import { Link } from "react-router-dom";
 
 const items = [
   {
-    path: "/choose-login",
+    path: "/",
     text: "TabletLandingPage"
   },
   {
-    path: "/",
-    text: "Main"
-  },
-  {
     path: "/login",
-    text: "Login"
+    text: "FireBaseLogin"
   },
   {
-    path: "/myfireflypage",
+    path: "/myfirefly",
     text: "MyFireflyPage"
   },
   {
-    path: "/createprofile",
+    path: "/customize",
     text: "CustomizeFireflyPage"
   },
 
   {
-    path: "sign-in",
+    path: "/signin",
     text: "SignInPage"
   },
   {
-    path: "/register",
+    path: "/signup",
     text: "SignUpPage"
   },
   {
     path: "/registration",
-    text: "Multi-Step Registration"
+    text: "MultiStepRegistration"
   },
   {
-    path: "/child-profiles-dialog",
-    text: "Profile Dialog Test"
-  },
-  {
-    path: "/child-profiles-main",
+    path: "/choose-profile",
     text: "ChooseProfilePage"
-  },
-  {
-    path: "/slider-test",
-    text: "Rainbow Slider Test"
-  },
-  {
-    path: "/stepper-test",
-    text: "Stepper Test"
   },
   {
     path: "/account",
     text: "MyAccountPage"
   },
   {
-    path: "/create-profile",
+    path: "/addprofile",
     text: "AddANewProfilePage"
   },
   {
-    path: "/edit-profile",
+    path: "/editprofile",
     text: "EditProfilePage"
   }
 ];

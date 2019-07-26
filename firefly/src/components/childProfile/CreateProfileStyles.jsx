@@ -7,7 +7,11 @@ const createProfileClasses = makeStyles({
         justifyContent: "center",
         alignItems: "center",
         marginTop: "3%",
+        width: "100%",
         fontFamily: "'Nunito', sans-serif"
+    },
+    sizingContainer: {
+        width: "80%",
     },
     header: {
         fontSize: "2.6rem",
@@ -19,29 +23,26 @@ const createProfileClasses = makeStyles({
     cardContainer: {
         display: "flex",
         width: "100%",
-        justifyContent: "center"
+        justifyContent: "space-between"
     },
     card: {
         backgroundColor: "#FFF",
         border: "2px solid #ABB0BA",
         borderRadius: "10px",
         boxShadow: "0px 3px #8F96A3",
-        width: "40%",
-        margin: "3%",
+        width: "50%",
         "&.left": {
+            marginRight: "6%",
             position: "relative",
             width: "30%",
-            padding: "7% 3%"
+            padding: "7% 3%",
         },
         "&.right": {
-            padding: "3%"
+            padding: "3%",
         }
     },
-
     accessory: {
-        zIndex: -100,
-        position: "absolute",
-        border: "1px solid red"
+        
     },
     h2: {
         fontWeight: "600",
@@ -64,13 +65,13 @@ const createProfileClasses = makeStyles({
     buttonContainer: {
         display: "flex",
         marginTop: "7%",
+        marginBottom: "3%",
         height: "5%",
-        width: "89%",
+        width: "100%",
         justifyContent: "space-between",
         alignItems: "center",
     },
     button: {
-        position: "absolute",
         fontWeight: '600',
         fontFamily: "'Nunito', sans-serif",
         borderRadius: "7px",
@@ -88,7 +89,6 @@ const createProfileClasses = makeStyles({
             }
         },
         "&.save": {
-            right: "5.5%",
             background: "#4aa810",
             color: "#fff",
             border: "none",
