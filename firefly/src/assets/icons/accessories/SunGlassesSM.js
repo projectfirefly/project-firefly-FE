@@ -30,11 +30,11 @@ const SVG = ({
         <stop offset="1" stopColor="#615602" />
       </linearGradient>
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         fill="url(#SVGID_1_)"
         stroke="#322B01"
-        stroke-width="15"
+        strokeWidth="15"
         d="M298.8,14.3
 		c-9.8,1.4-17.6,9.1-19.1,18.9c-11.1,72.2,2.5,118.6,39.9,140.6c70.1,41.4,113.4,46.2,143,12.6c17.6-20,31.9-49.3,36.9-77.2
 		c5.6-31.5-0.8-58.5-20.1-76.8C452.8,7.4,392.5,0.9,298.8,14.3z"
@@ -55,11 +55,11 @@ const SVG = ({
 
       <path
         id="Rectangle-Copy"
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         fill="url(#Rectangle-Copy_1_)"
         stroke="#322B01"
-        stroke-width="15"
+        strokeWidth="15"
         d="
 		M210.2,14.3c9.8,1.4,17.6,9.1,19.1,18.9c11.1,72.2-2.5,118.6-39.9,140.6c-70.1,41.4-113.4,46.2-143,12.6
 		c-17.6-20-31.9-49.3-36.9-77.2c-5.6-31.5,0.8-58.5,20.1-76.8C56.1,7.4,116.5,0.9,210.2,14.3z"
@@ -68,8 +68,8 @@ const SVG = ({
         id="Line-3"
         fill="none"
         stroke="#322B01"
-        stroke-width="15"
-        stroke-linecap="square"
+        strokeWidth="15"
+        strokeLinecap="square"
         d="M232.5,101.3l42.8,0.8"
       />
     </g>
