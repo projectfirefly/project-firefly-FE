@@ -22,7 +22,7 @@ const items = [
   },
   {
     path: "/login",
-    text: "Login"
+    text: "FireBaseLogin"
   },
   {
     path: "/myfirefly",
