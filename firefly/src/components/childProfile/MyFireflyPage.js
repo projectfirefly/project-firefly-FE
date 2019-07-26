@@ -122,7 +122,7 @@ export default function MyFireflyPage() {
           <Grid item xs={6}>
             <div className={classes.leftContainer}>
               <div className={classes.editContainer}>
-                <Link style={{ textDecoration: "none" }} to="/createprofile">
+                <Link style={{ textDecoration: "none" }} to="/customize">
                   <div className={classes.edit}>
                     <FaPen style={{ marginRight: "5px" }} />
                     Edit
@@ -142,7 +142,7 @@ export default function MyFireflyPage() {
             <div className={classes.chooseFirefly}>
               <Link
                 style={{ color: "#4AA810", textDecoration: "none" }}
-                to="/child-profiles-main"
+                to="/choose-profile"
               >
                 Choose Firefly
               </Link>
