@@ -99,8 +99,8 @@ export default function ProfileView() {
               <p>New Profile</p>
               <img className="firefly" src={image1} alt="users profile" />
               <hr class="style1" />
-              <div className="edit">
-                <Link className="iconButton" to="/child-profiles-main">
+              <div className="edit" className="iconButton">
+                <Link to="/child-profiles-main">
                   <FaPen />
                 </Link>
               </div>
@@ -110,7 +110,7 @@ export default function ProfileView() {
           </Paper>
 
           <div className="button">
-            <Link style={{ color: "white", textDecoration: "none" }} to="">
+            <Link style={{ color: "white", textDecoration: "none" }} to="/">
               Back to Game
             </Link>
           </div>
