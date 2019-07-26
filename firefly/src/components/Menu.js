@@ -17,6 +17,10 @@ import { Link } from "react-router-dom";
 
 const items = [
   {
+    path: "/choose-login",
+    text: "TabletLandingPage"
+  },
+  {
     path: "/",
     text: "Main"
   },
@@ -25,24 +29,21 @@ const items = [
     text: "Login"
   },
   {
-    path: "/profileview",
-    text: "ProfileView"
+    path: "/myfireflypage",
+    text: "MyFireflyPage"
   },
   {
     path: "/createprofile",
-    text: "CreateProfile"
+    text: "CustomizeFireflyPage"
   },
-  {
-    path: "/choose-login",
-    text: "ChooseLogin"
-  },
+
   {
     path: "sign-in",
-    text: "SignIn"
+    text: "SignInPage"
   },
   {
     path: "/register",
-    text: "Register"
+    text: "SignUpPage"
   },
   {
     path: "/registration",
@@ -54,7 +55,7 @@ const items = [
   },
   {
     path: "/child-profiles-main",
-    text: "Main Child Profiles Test"
+    text: "ChooseProfilePage"
   },
   {
     path: "/slider-test",
@@ -71,6 +72,14 @@ const items = [
   {
     path: "/accessories",
     text: "Accessory Picker"
+  },
+  {
+    path: "/create-profile",
+    text: "Actually Create Profile"
+  },
+  {
+    path: "/edit-profile",
+    text: "Edit Profile"
   }
 ];
 

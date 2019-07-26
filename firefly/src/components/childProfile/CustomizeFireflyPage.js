@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 
 //Context
 import { childContext } from "../../context/ChildProfiles/ChildProfileStore";
@@ -6,19 +6,12 @@ import { UPDATE_PROFILE } from "../../context/ChildProfiles/ChildProfileStore";
 
 import Icon from "../../assets/icons";
 import ColorSlider from "../ColorSlider/ColorSlider";
-import Accessories from "../childProfile/Accessories";
+import Accessories from "./Accessories";
 
 import createProfileClasses from "./CreateProfileStyles";
 
-export default function CreateProfile() {
+export default function CustomizeFireflyPage() {
   const classes = createProfileClasses();
-
-  const AccSvgNames = [
-    "LambdaHat",
-    "NerdGlasses",
-    "PinkHeadphone",
-    "SunGlasses"
-  ];
 
   const [childProfileState, dispatch] = useContext(childContext);
 
@@ -40,14 +33,17 @@ export default function CreateProfile() {
     dispatch({ type: UPDATE_PROFILE, payload: updatedProfile });
   };
 
+  const accessoryChange = i => {
+    setUpdatedProfile({ ...updatedProfile, accessory: i });
+    console.log(updatedProfile.accessory);
+  };
+
   const handleChange = e => {
     setUpdatedProfile({
       ...updatedProfile,
       name: e.target.value
     });
   };
-
-  const currentAcc = AccSvgNames[currentProfile.accessory];
 
   return (
     <div className={classes.rootContainer}>
@@ -59,16 +55,11 @@ export default function CreateProfile() {
             name="Firefly"
             width={"100%"}
             viewBox={"0 0 1024 1024"}
+            accessory={updatedProfile.accessory}
             lighttopFill={`hsl(${updatedProfile.color},100%,35%)`}
             lightmidFill={`hsl(${updatedProfile.color},100%,45%)`}
             lightbottomFill={`hsl(${updatedProfile.color},100%,55%)`}
             shineStroke={`hsl(${updatedProfile.color},100%,55%)`}
-          />
-          <Icon
-            name={currentAcc}
-            className="accessory"
-            width={"100%"}
-            viewBox={"0 0 1024 1024"}
           />
         </div>
         <div className={classes.card + " right"}>
@@ -83,7 +74,10 @@ export default function CreateProfile() {
           />
           <div>
             <h2 className={classes.h2}>Accessories</h2>
-            <Accessories />
+            <Accessories
+              accessory={updatedProfile.accessory}
+              accessoryChange={accessoryChange}
+            />
           </div>
           <div>
             <h2 className={classes.h2}>Light Color</h2>
@@ -96,7 +90,7 @@ export default function CreateProfile() {
           </div>
         </div>
       </div>
-      <div>
+      <div className={classes.buttonContainer}>
         <button className={classes.button + " back"}>BACK</button>
         <button className={classes.button + " save"} onClick={saveProfile}>
           SAVE

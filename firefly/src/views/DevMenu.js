@@ -8,19 +8,21 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 import Menu from "../components/Menu";
 import FireBaseLogin from "../components/FirebaseLogin";
-import ProfileView from "../components/childProfile/ProfileView";
-import CreateProfile from "../components/childProfile/CreateProfile";
+import MyFireflyPage from "../components/childProfile/MyFireflyPage";
+import CustomizeFireflyPage from "../components/childProfile/CustomizeFireflyPage";
 import Main from "../components/Main";
-import ChooseLogin from "../components/ChooseLogin";
-import ChildProfiles from "../components/ChildProfiles/ChildProfiles";
+import TabletLandingPage from "../components/TabletLandingPage";
+import ChooseProfilePage from "../components/ChildProfiles/ChooseProfilePage";
 import ChildProfileDialog from "../components/ChildProfiles/ChildProfileDialog";
-import Register from "../components/Register";
+import SignUpPage from "../components/SignUpPage";
 import ColorSliderTest from "../components/ColorSlider/ColorSliderTest";
-import SignIn from "../components/SignIn";
+import SignInPage from "../components/SignInPage";
 import StepperTest from "../components/Steppers/StepperTest";
 import MultiStepRegistration from "../components/MultiStepRegistration";
 import AccountPage from "../components/AccountPage";
 import Accessories from "../components/childProfile/Accessories";
+import EditProfile from "../components/CreateAndEditProfiles/EditProfile";
+import ActuallyCreateProfile from "../components/CreateAndEditProfiles/ActuallyCreateProfile";
 
 export default function Layout() {
   return (
@@ -33,23 +35,34 @@ export default function Layout() {
           <Route path="/login" component={FireBaseLogin} />
           <Route exact path="/" component={Main} />
 
-          <Route path="/profileview" component={ProfileView} />
-          <Route path="/createprofile" component={CreateProfile} />
+          <Route path="/myfireflypage" component={MyFireflyPage} />
+          <Route path="/createprofile" component={CustomizeFireflyPage} />
 
-          <Route path="/choose-login" component={ChooseLogin} />
-          <Route path="/register" component={Register} />
+          <Route path="/choose-login" component={TabletLandingPage} />
+          <Route path="/register" component={SignUpPage} />
           <Route path="/registration" component={MultiStepRegistration} />
-          <Route path="/sign-in" component={SignIn} />
+          <Route path="/sign-in" component={SignInPage} />
           <Route
             exact
             path="/child-profiles-dialog"
             component={ChildProfileDialog}
           />
-          <Route exact path="/child-profiles-main" component={ChildProfiles} />
+          <Route
+            exact
+            path="/child-profiles-main"
+            component={ChooseProfilePage}
+          />
           <Route exact path="/slider-test" component={ColorSliderTest} />
           <Route exact path="/stepper-test" component={StepperTest} />
           <Route exact path="/account" component={AccountPage} />
           <Route exact path="/accessories" component={Accessories} />
+
+          <Route exact path="/edit-profile" component={EditProfile} />
+          <Route
+            exact
+            path="/create-profile"
+            component={ActuallyCreateProfile}
+          />
         </Switch>
       </main>
     </div>
