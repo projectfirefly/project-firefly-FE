@@ -6,11 +6,11 @@ import { UPDATE_PROFILE } from "../../context/ChildProfiles/ChildProfileStore";
 
 import Icon from "../../assets/icons";
 import ColorSlider from "../ColorSlider/ColorSlider";
-import Accessories from "../childProfile/Accessories";
+import Accessories from "./Accessories";
 
 import createProfileClasses from "./CreateProfileStyles";
 
-export default function CreateProfile() {
+export default function CustomizeFireflyPage() {
   const classes = createProfileClasses();
 
   const [childProfileState, dispatch] = useContext(childContext);
