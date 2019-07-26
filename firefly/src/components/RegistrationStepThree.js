@@ -32,14 +32,18 @@ const RegistrationStepThree = ({ values, errors, touched, step, updateStep }) =>
           </div>
 
           <div className="registration-forms-box3">
-            <div className='registration-step3-box'>
-                <h2 className='step3-header'>Manage Account</h2>
-                <img className='step3-image' src={TutorialTwo} alt='tutorial-two'/>
-                <ul className='step3-list'>
-                  <li>Manage Profiles</li>
-                  <li>Update Account Information</li>
-                  <li>Manage Payment Information</li>
-                </ul>
+            <div className="registration-step3-box">
+              <h2 className="step3-header">Manage Account</h2>
+              <img
+                className="step3-image"
+                src={TutorialTwo}
+                alt="tutorial-two"
+              />
+              <ul className="step3-list">
+                <li>Manage Profiles</li>
+                <li>Update Account Information</li>
+                <li>Manage Payment Information</li>
+              </ul>
             </div>
           </div>
 
@@ -53,18 +57,23 @@ const RegistrationStepThree = ({ values, errors, touched, step, updateStep }) =>
               fontSize: "1.4rem"}}></i>
             </div>
           </div>
-
-          </div>
-          <div className='registration-buttons'>
-            <button className={step===0 ? 'none' : 'registration-buttons__back'} onClick={()=>updateStep('subtract')}>
-                Back
-            </button>
- 
-            <button className='registration-buttons__next' onClick={()=>updateStep('add')}>
-                Finish
-            </button>
-          </div>
         </div>
+        <div className="registration-buttons">
+          <button
+            className={step === 0 ? "none" : "registration-buttons__back"}
+            onClick={() => updateStep("subtract")}
+          >
+            Back
+          </button>
+
+          <button
+            className="registration-buttons__next"
+            onClick={() => updateStep("add")}
+          >
+            My Account
+          </button>
+        </div>
+      </div>
       </div>
     );
   };
