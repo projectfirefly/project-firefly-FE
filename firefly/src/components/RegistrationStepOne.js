@@ -6,7 +6,7 @@ import ApolloClient from "apollo-boost";
 import "../styles/RegistrationStepOne.scss";
 
 
-const RegistrationForm = ({ values, errors, touched, step, updateStep }) => {
+const RegistrationForm = ({ values, errors, touched, step, updateStep, info, handleInfoChanges }) => {
   
     return (
       <div className="registration-container">
@@ -16,7 +16,12 @@ const RegistrationForm = ({ values, errors, touched, step, updateStep }) => {
             <div className='registration-forms-two-field top-buttons'>
               <div className="registration-forms-field-small">
                 <h2 className="registration-forms-field-title">First Name</h2>
-                <Field type="text" name="firstName" className="registration-forms-box__field-small" />
+                <Field 
+                  type="text" 
+                  name="firstName" 
+                  className="registration-forms-box__field-small" 
+                  value={info.firstName}
+                  onChange={(e)=>handleInfoChanges(e)}/>
                 {touched.firstName && errors.firstName && (
                   <p className="error">*Required</p>
                 )}
@@ -25,7 +30,10 @@ const RegistrationForm = ({ values, errors, touched, step, updateStep }) => {
                 <h2 className="registration-forms-field-title">Last Name</h2>
                   <Field
                     name="lastName"
+                    type='text'
                     className="registration-forms-box__field-small"
+                    value={info.lastName}
+                    onChange={(e)=>handleInfoChanges(e)}
                   />
                 {touched.lastName && errors.lastName && (
                   <p className="error">*Required</p>
@@ -37,6 +45,9 @@ const RegistrationForm = ({ values, errors, touched, step, updateStep }) => {
                   <Field
                     name="address"
                     className="registration-forms-box__field"
+                    type='text'
+                    value={info.address}
+                    onChange={(e)=>handleInfoChanges(e)}
                   />
                 {touched.address && errors.address && (
                     <p className="error-big">*Required</p>
@@ -47,6 +58,9 @@ const RegistrationForm = ({ values, errors, touched, step, updateStep }) => {
                   <Field
                     name="city"
                     className="registration-forms-box__field"
+                    type='text'
+                    value={info.city}
+                    onChange={(e)=>handleInfoChanges(e)}
                   />
                 {touched.city && errors.city && (
                     <p className="error-big">*Required</p>
@@ -58,6 +72,9 @@ const RegistrationForm = ({ values, errors, touched, step, updateStep }) => {
                   <Field
                     name="state"
                     className="registration-forms-box__field-small"
+                    type='text'
+                    value={info.state}
+                    onChange={(e)=>handleInfoChanges(e)}
                   />
                 {touched.state && errors.state && (
                     <p className="error">*Required</p>
@@ -68,6 +85,9 @@ const RegistrationForm = ({ values, errors, touched, step, updateStep }) => {
                   <Field
                     name="zipCode"
                     className="registration-forms-box__field-small"
+                    type='text'
+                    value={info.zipCode}
+                    onChange={(e)=>handleInfoChanges(e)}
                   />
                 {touched.zipCode && errors.zipCode && (
                     <p className="error">*Required</p>
