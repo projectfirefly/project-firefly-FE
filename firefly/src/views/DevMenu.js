@@ -12,7 +12,6 @@ import MyFireflyPage from "../components/childProfile/MyFireflyPage";
 import CustomizeFireflyPage from "../components/childProfile/CustomizeFireflyPage";
 import TabletLandingPage from "../components/TabletLandingPage";
 import ChooseProfilePage from "../components/ChildProfiles/ChooseProfilePage";
-import ChildProfileDialog from "../components/ChildProfiles/ChildProfileDialog";
 import SignUpPage from "../components/SignUpPage";
 import SignInPage from "../components/SignInPage";
 import MultiStepRegistration from "../components/MultiStepRegistration";
@@ -36,11 +35,6 @@ export default function Layout() {
           <Route path="/signup" component={SignUpPage} />
           <Route path="/registration" component={MultiStepRegistration} />
           <Route path="/signin" component={SignInPage} />
-          <Route
-            exact
-            path="/child-profiles-dialog"
-            component={ChildProfileDialog}
-          />
           <Route exact path="/choose-profile" component={ChooseProfilePage} />
           <Route exact path="/account" component={MyAccountPage} />
           <Route exact path="/editprofile" component={EditProfilePage} />
