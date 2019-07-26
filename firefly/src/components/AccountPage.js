@@ -100,9 +100,9 @@ export default function ProfileView() {
               <img className="firefly" src={image1} alt="users profile" />
               <hr class="style1" />
               <div className="edit">
-                <div className="iconButton">
+                <Link className="iconButton" to="/child-profiles-main">
                   <FaPen />
-                </div>
+                </Link>
               </div>
               <p>Username</p>
               <img className="firefly" src={image1} alt="users profile" />
