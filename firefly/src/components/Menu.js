@@ -67,19 +67,15 @@ const items = [
   },
   {
     path: "/account",
-    text: "Account Info"
-  },
-  {
-    path: "/accessories",
-    text: "Accessory Picker"
+    text: "MyAccountPage"
   },
   {
     path: "/create-profile",
-    text: "Actually Create Profile"
+    text: "AddANewProfilePage"
   },
   {
     path: "/edit-profile",
-    text: "Edit Profile"
+    text: "EditProfilePage"
   }
 ];
 
