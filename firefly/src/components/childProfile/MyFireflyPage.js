@@ -131,7 +131,12 @@ export default function MyFireflyPage() {
               </div>
               <h3 className={classes.username}>Users name</h3>
 
-              <div className={classes.fireflyContainer}>
+              <div className={classes.fireflyContainer}>display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: '100vw',
+            height: '100vh',
                 <img
                   className={classes.firefly}
                   src={image1}
