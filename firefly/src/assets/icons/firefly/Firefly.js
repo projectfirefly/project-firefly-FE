@@ -38,16 +38,16 @@ const SVG = ({
                 <g>
                   <path
                     id="path-1"
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
+                    fillRule="evenodd"
+                    clipRule="evenodd"
                     d="M125,214c22.9,7.7,67.9,15.6,134.9,23.7
 					c67,8.1,137.5,9.5,211.4,4.3c-28.6,28.8-82.2,46.1-160.7,51.9C192.9,302.7,4.5,260,0.5,247C-2.3,238.3,39.3,227.3,125,214z"
                   />
                 </g>
                 <g>
                   <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
+                    fillRule="evenodd"
+                    clipRule="evenodd"
                     fill="#951922"
                     d="M125,214c22.9,7.7,67.9,15.6,134.9,23.7
 					c67,8.1,137.5,9.5,211.4,4.3c-28.6,28.8-82.2,46.1-160.7,51.9C192.9,302.7,4.5,260,0.5,247C-2.3,238.3,39.3,227.3,125,214z"
@@ -56,8 +56,8 @@ const SVG = ({
               </g>
               <g id="Group-2" transform="translate(107.524303, 6.003210)">
                 <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
+                  fillRule="evenodd"
+                  clipRule="evenodd"
                   fill="#C7CBD1"
                   d="M42.1,41.1C71.7,14.7,130,1.5,217,1.5
 				C315.2,1.5,380.9,19,414.2,54s49.6,93.3,48.7,174.8c-59.5,10.4-130.4,14.5-212.6,12.1C126.9,237.5,1,226.6,1,218s10-20.8,10-51.2
@@ -65,10 +65,10 @@ const SVG = ({
                 />
                 <path
                   id="Rectangle-Copy"
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
+                  fillRule="evenodd"
+                  clipRule="evenodd"
                   fill="#ABB0BA"
-                  fill-opacity="0.2"
+                  fillOpacity="0.2"
                   d="M42.1,41.1
 				C71.7,14.7,130,1.5,217,1.5c15.2-3.2,33.5,3.8,54.9,21s32,90.1,32,218.4c46.5,2.4,28.6,2.4-53.7,0C126.9,237.5,1,226.6,1,218
 				s10-20.8,10-51.2S15.7,64.7,42.1,41.1z"
@@ -77,9 +77,9 @@ const SVG = ({
                   id="Line"
                   fill="none"
                   stroke="#ABB0BA"
-                  stroke-width="4.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="4.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                   d="M209.5,3
 				c-53,4.1-87.1,21-102.5,50.7s-20.6,87.9-15.7,174.4"
                 />
@@ -87,17 +87,17 @@ const SVG = ({
                   id="Line-2"
                   fill="none"
                   stroke="#ABB0BA"
-                  stroke-width="4.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="4.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                   d="M218.5,3
 				c14.9,1.3,32.7,7.8,53.5,19.5s31.4,84.2,32,217.6"
                 />
               </g>
               <ellipse
                 id="Oval"
-                fill-rule="evenodd"
-                clip-rule="evenodd"
+                fillRule="evenodd"
+                clipRule="evenodd"
                 fill="#951922"
                 cx="327.3"
                 cy="6.8"
@@ -106,8 +106,8 @@ const SVG = ({
               />
               <path
                 id="LambdaLogo"
-                fill-rule="evenodd"
-                clip-rule="evenodd"
+                fillRule="evenodd"
+                clipRule="evenodd"
                 fill="#951922"
                 d="M169.5,99.3c12.4,4.4,22.9,7,31.5,7.8
 			c8.6,0.8,21.5,0.8,38.6,0l-5.2,59.6L193.6,192l-31.1-35.3L169.5,99.3z M194.6,122.8l-16.9,30.8l7.8,0l13.3-17.6l9.7,19.6l11.9,1
@@ -149,8 +149,8 @@ const SVG = ({
             >
               <path
                 id="Inside"
-                fill-rule="evenodd"
-                clip-rule="evenodd"
+                fillRule="evenodd"
+                clipRule="evenodd"
                 fill="#FFCCE7"
                 d="M85.5,0c15.8,0,20.9,13,15.4,39
 			c-1.9,24.7-3.1,49.8-3.5,75.3s0.8,51.8,3.5,79.1c5.5,23.1,0.3,34.7-15.4,34.7c-5.4,0-13.8-4-17-10.6c-10.8-22.2-6.6-74-6.6-103.4
@@ -158,8 +158,8 @@ const SVG = ({
               />
               <path
                 id="Outside"
-                fill-rule="evenodd"
-                clip-rule="evenodd"
+                fillRule="evenodd"
+                clipRule="evenodd"
                 fill="#F54291"
                 d="M0.3,116.7c-0.1-0.6-0.1-1.2-0.1-1.8
 			C-1.1,76.4,5,61.3,14.8,25.6c12.5,0.9,3.3-6,12.2-6.3c3.6-0.1,10.8,1.1,21.1-2.9c3-1.2,7.5-5,13.4-9c4.4-3,7.9-3.1,10.5-0.4
@@ -170,16 +170,16 @@ const SVG = ({
             </g>
             <g id="Left" transform="translate(198.000000, 286.000000)">
               <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
+                fillRule="evenodd"
+                clipRule="evenodd"
                 fill="#FFCCE7"
                 d="M85.5,0c15.8,0,20.9,13,15.4,39c-1.9,24.7-3.1,49.8-3.5,75.3
 			s0.8,51.8,3.5,79.1c5.5,23.1,0.3,34.7-15.4,34.7c-5.4,0-13.8-4-17-10.6c-10.8-22.2-6.6-74-6.6-103.4c0-27.7-0.7-80.3,8.4-104.3
 			C73.6,0.7,79,0,85.5,0z"
               />
               <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
+                fillRule="evenodd"
+                clipRule="evenodd"
                 fill="#F54291"
                 d="M0.3,116.7c-0.1-0.6-0.1-1.2-0.1-1.8C-1.1,76.4,5,61.3,14.8,25.6
 			c12.5,0.9,3.3-6,12.2-6.3c3.6-0.1,10.8,1.1,21.1-2.9c3-1.2,7.5-5,13.4-9c4.4-3,7.9-3.1,10.5-0.4c-5.5,43.6-7.8,78.8-6.9,105.6
@@ -189,11 +189,11 @@ const SVG = ({
             </g>
             <path
               id="Top"
-              fill-rule="evenodd"
-              clip-rule="evenodd"
+              fillRule="evenodd"
+              clipRule="evenodd"
               fill="#F76EAA"
               stroke="#F76EAA"
-              stroke-width="4"
+              strokeWidth="4"
               d="M342.4,212.2
 		c-42.2,26.7-67.8,59.8-76.7,99.2c-3.2,14.2-5.7,37.6-7.3,69.9l0,0.6l-0.4,0.5c-6.3,8.3-13,12.5-20.1,12.5c-7.1,0-13-3.5-17.6-10.3
 		l-0.4-0.5l0-0.6c0.9-36.1,3.3-61,7.1-74.9c14.1-51.5,43.3-94.1,87.5-128l-2.5-2.8l1.7-1.3c56.6-43.2,122-64.8,196.3-64.8
@@ -221,11 +221,11 @@ const SVG = ({
               <stop offset="1" stopColor="#615602" />
             </linearGradient>
             <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
+              fillRule="evenodd"
+              clipRule="evenodd"
               fill="url(#SVGID_1_)"
               stroke="#322B01"
-              stroke-width="15"
+              strokeWidth="15"
               d="M556.3,303.2
 		c-9.8,1.4-17.6,9.1-19.1,18.9c-11.1,72.2,2.5,118.6,39.9,140.6c70.1,41.4,113.4,46.2,143,12.6c17.6-20,31.9-49.3,36.9-77.2
 		c5.6-31.5-0.8-58.5-20.1-76.8C710.3,296.4,650,289.9,556.3,303.2z"
@@ -246,11 +246,11 @@ const SVG = ({
 
             <path
               id="Rectangle-Copy"
-              fill-rule="evenodd"
-              clip-rule="evenodd"
+              fillRule="evenodd"
+              clipRule="evenodd"
               fill="url(#Rectangle-Copy_1_)"
               stroke="#322B01"
-              stroke-width="15"
+              strokeWidth="15"
               d="
 		M467.6,303.2c9.8,1.4,17.6,9.1,19.1,18.9c11.1,72.2-2.5,118.6-39.9,140.6c-70.1,41.4-113.4,46.2-143,12.6
 		c-17.6-20-31.9-49.3-36.9-77.2c-5.6-31.5,0.8-58.5,20.1-76.8C313.6,296.4,374,289.9,467.6,303.2z"
@@ -259,8 +259,8 @@ const SVG = ({
               id="Line-3"
               fill="none"
               stroke="#322B01"
-              stroke-width="15"
-              stroke-linecap="square"
+              strokeWidth="15"
+              strokeLinecap="square"
               d="M490,390.2l42.8,0.8"
             />
           </g>

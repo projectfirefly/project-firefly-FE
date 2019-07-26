@@ -66,16 +66,16 @@ const items = [
     text: "Stepper Test"
   },
   {
-    path: "/accessories",
-    text: "Accessory Picker"
+    path: "/account",
+    text: "MyAccountPage"
   },
   {
     path: "/create-profile",
-    text: "Actually Create Profile"
+    text: "AddANewProfilePage"
   },
   {
     path: "/edit-profile",
-    text: "Edit Profile"
+    text: "EditProfilePage"
   }
 ];
 
