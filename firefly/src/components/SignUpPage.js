@@ -59,7 +59,7 @@ const RegisterForm = ({ values, errors, touched }) => {
   const [eyeClicked, setEyeClicked] = useState(false);
 
   return (
-    <div className="sign-in-container">
+    <div className="sign-up-container">
       <h1 className="sign-up-header"> Sign Up</h1>
 
       <div className="forms-container">

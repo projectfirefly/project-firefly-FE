@@ -11,16 +11,14 @@ const useStyles = makeStyles(theme => ({
   root: {
     display: "flex",
     flexDirection: "column",
-    width: "98%",
+    width: "98vw",
     alignItems: "center",
     justifyContent: "center",
     height: "100vh"
   },
   header: {
-    height: '5%',
-    textAlign: "center",
     color: "#5B4EFF",
-    fontSize: "28px",
+    fontSize: "3rem",
     letterSpacing: "7px",
     fontWeight: "bold",
     textTransform: "uppercase",
@@ -37,21 +35,24 @@ const useStyles = makeStyles(theme => ({
     flexDirection: "column",
     alignItems: "center",
     width: "50%",
+    height: "460px"
   },
   leftContainer: {
-    width: "55%",
+    width: "70%",
     height: '80%',
     background: "white",
     borderRadius: "20px",
     boxShadow: "0px 2px 4px #000000"
   },
   fireflyContainer: {
+    width: "98%",
+    height: "80%",
     display: "flex",
     alignItems: "center",
     justifyContent: "center"
   },
   firefly: {
-    width: "200px",
+    width: "100%",
   },
   rightContainer: {
     width: '50%',
@@ -63,7 +64,7 @@ const useStyles = makeStyles(theme => ({
     borderRadius: "10px",
     backgroundColor: "#FFFFFF",
     boxShadow: "0px 3px #8F96A3",
-    marginBottom: '40px',
+    marginBottom: '55px',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -85,12 +86,13 @@ const useStyles = makeStyles(theme => ({
   bottomCard: {
   },
   chooseFirefly: {
+    width: "70%",
     textAlign: "center",
     border: "solid #ABB0BA 2px",
     borderRadius: "10px",
     backgroundColor: "#FFFFFF",
     boxShadow: "0px 3px #8F96A3",
-    marginTop: "20px",
+    marginTop: "45px",
     fontSize: "20px",
     fontWeight: "bold",
     height: "10%",

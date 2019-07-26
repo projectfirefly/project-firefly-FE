@@ -15,7 +15,16 @@ const MultiStepRegistration = () => {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            width: '100%'
+            width: '100vw',
+            height: '100vh',
+        },
+        second: {
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: '100vw',
+            height: '92vh',
         },
         wrapper: {
             width:'100%'
@@ -35,7 +44,7 @@ const MultiStepRegistration = () => {
         <CustomStepper activeStep={step}/>
         <div className={classes.wrapper}><RegistrationStepOne step={step} updateStep={updateStep}/></div>
     </div> : step === 1 ?
-        <div className={classes.root}>
+        <div className={classes.second}>
         <h1 className='registration-header'>Step 2: Add a Child Account</h1>
         <CustomStepper activeStep={step}/>
         <div className={classes.wrapper}><RegistrationStepTwo step={step} updateStep={updateStep}/></div>
