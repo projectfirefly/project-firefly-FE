@@ -173,7 +173,6 @@ export default function MyFireflyPage() {
                 </Link>
               </div>
             </div>
-          
 
           <div className={classes.rightContainer} >
             <div className={classes.rightCards}>
