@@ -8,7 +8,7 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
 import ProfileFly from "../../assets/icons/ProfileFly";
 
-const ChildProfiles = () => {
+const ChooseProfilePage = () => {
   const [childProfileState, dispatch] = useContext(childContext);
 
   const useStyles = makeStyles({
@@ -102,4 +102,4 @@ const ChildProfiles = () => {
   );
 };
 
-export default ChildProfiles;
+export default ChooseProfilePage;

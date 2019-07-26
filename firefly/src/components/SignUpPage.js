@@ -9,9 +9,20 @@ import firebaseApp from "./FirebaseLogin";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 
-import "./../styles/signIn.scss";
+import "./../styles/SignUpPage.scss";
 
-// Staging server at "https://projectfirefly-staging.herokuapp.com/register"
+const { gql } = require("apollo-boost");
+
+const ADD_USER = gql`
+  mutation addUser($input: UserInput!) {
+    addUser(input: $input) {
+      id
+      email
+    }
+  }
+`;
+
+// Staging server at "https://projectfirefly-staging.herokuapp.com"
 const uiConfig = {
   signInFlow: "popup",
   signInOptions: [
@@ -22,16 +33,34 @@ const uiConfig = {
   callbacks: {
     signInSuccess: currentUser => {
       localStorage.setItem("token", currentUser.idToken);
+      const client = new ApolloClient({
+        uri: "http://localhost:3300"
+      });
+      const newUser = {
+        email: currentUser.email,
+        username: currentUser.email
+      };
+      client
+        .mutate({
+          mutation: ADD_USER,
+          variables: { input: newUser }
+        })
+        .then(res => {
+          console.log(res.data);
+        })
+        .catch(err => {
+          console.log(err);
+        });
     }
   }
 };
 
-const SignInForm = ({ values, errors, touched }) => {
+const RegisterForm = ({ values, errors, touched }) => {
   const [eyeClicked, setEyeClicked] = useState(false);
 
   return (
     <div className="sign-in-container">
-      <h1 className="sign-up-header"> Sign In</h1>
+      <h1 className="sign-up-header"> Sign Up</h1>
 
       <div className="forms-container">
         <div className="forms-box">
@@ -61,18 +90,42 @@ const SignInForm = ({ values, errors, touched }) => {
                 <p className="error">{errors.password}</p>
               )}
             </div>
+            <div className="forms-field">
+              <h2 className="forms-field-title">Confirm Password</h2>
+              <div className="eye-stacking">
+                <Field
+                  type={eyeClicked ? "text" : "password"}
+                  name="passwordConfirm"
+                  className="forms-box__field"
+                />
+                <FontAwesomeIcon
+                  className="eye-icon"
+                  icon={faEye}
+                  onClick={() => setEyeClicked(!eyeClicked)}
+                />
+              </div>
+              {touched.passwordConfirm &&
+                values.password !== values.passwordConfirm && (
+                  <p className="error">Passwords do not match</p>
+                )}
+            </div>
             <div className="checkbox-terms">
               <label className="checkbox-container">
-                <Field type="checkbox" name="persistence" />
+                <Field type="checkbox" name="terms" />
                 <span class="checkmark" />
               </label>
-              <p className="checkbox-terms__terms-text">Keep me signed in</p>
+              <p className="checkbox-terms__terms-text">
+                I agree to the{" "}
+                <a href="google.com" className="link">
+                  Terms and Conditions
+                </a>
+              </p>
             </div>
             <button type="submit" className="forms-box__formik-button">
-              Sign In
+              Sign Up
             </button>
-            <a href="/register" className=" link switch-account">
-              Need an account? Sign up now!
+            <a href="/sign-in" className=" link switch-account">
+              I already have an account
             </a>
           </Form>
         </div>
@@ -95,11 +148,12 @@ const SignInForm = ({ values, errors, touched }) => {
   );
 };
 
-const SignIn = withFormik({
-  mapPropsToValues({ email, password, persistence }) {
+const SignUpPage = withFormik({
+  mapPropsToValues({ email, password, passwordConfirm, terms }) {
     return {
       email: email || "",
-      password: password || ""
+      password: password || "",
+      passwordConfirm: passwordConfirm || ""
     };
   },
 
@@ -113,23 +167,41 @@ const SignIn = withFormik({
   }),
 
   handleSubmit(values, { setSubmitting }) {
+    const client = new ApolloClient({
+      uri: "http://localhost:3300"
+    });
     const email = values.email;
     const password = values.password;
-    // Sets auth persitence based on "Keep me signed in" checkbox;
-    values.persistence
-      ? firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
-      : firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password)
-      .then(res => {
-        console.log(res);
-        console.log(values.persistence);
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    if (!values.terms) {
+      alert("Please accept the terms and conditions before continuing.");
+    } else {
+      firebase
+        .auth()
+        // Ideally, this would fail if the later add to our database fails. I'll work on that
+        .createUserWithEmailAndPassword(email, password)
+        .then(res => {
+          const newUser = {
+            email: email,
+            username: email
+          };
+          client
+            .mutate({
+              mutation: ADD_USER,
+              variables: { input: newUser }
+            })
+            .then(res => {
+              console.log(res.data);
+              setSubmitting(false);
+            })
+            .catch(err => {
+              console.log(err);
+            });
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
   }
-})(SignInForm);
+})(RegisterForm);
 
-export default SignIn;
+export default SignUpPage;
