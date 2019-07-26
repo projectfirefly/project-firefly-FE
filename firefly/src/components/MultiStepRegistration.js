@@ -11,12 +11,28 @@ const MultiStepRegistration = () => {
 
     const classes = makeStyles(theme => ({
         root: {
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: '100%',
-            marginTop: "40px"
+            display: "flex",
+            flexDirection: "column",
+            width: "98vw",
+            alignItems: "center",
+            justifyContent: "center",
+            height: "100vh"
+        },
+        second: {
+            display: "flex",
+            flexDirection: "column",
+            width: "98vw",
+            alignItems: "center",
+            justifyContent: "center",
+            height: "94vh"
+        },
+        third:{
+            display: "flex",
+            flexDirection: "column",
+            width: "98vw",
+            alignItems: "center",
+            justifyContent: "center",
+            height: "96vh"
         },
         wrapper: {
             width:'100%'
@@ -59,11 +75,11 @@ const MultiStepRegistration = () => {
         <CustomStepper activeStep={step}/>
         <div className={classes.wrapper}><RegistrationStepOne step={step} updateStep={updateStep} info={info} setInfo={setInfo} handleInfoChanges={handleInfoChanges}/></div>
     </div> : step === 1 ?
-        <div className={classes.root}>
+        <div className={classes.second}>
         <h1 className='registration-header'>Step 2: Add a Child Profile</h1>
         <CustomStepper activeStep={step}/>
         <div className={classes.wrapper}><RegistrationStepTwo step={step} updateStep={updateStep} profiles={profiles} setProfiles={setProfiles} handleChanges={handleChanges}/></div>
-      </div> :  <div className={classes.root}>
+      </div> :  <div className={classes.third}>
       <h1 className='registration-header'>Step 3: How it Works</h1>
       <CustomStepper activeStep={step}/>
       <div className={classes.wrapper}><RegistrationStepThree step={step} updateStep={updateStep}/></div>
