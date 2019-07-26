@@ -70,7 +70,7 @@ const RegistrationStepThree = ({ values, errors, touched, step, updateStep }) =>
             className="registration-buttons__next"
             onClick={() => updateStep("add")}
           >
-            My Account
+            Finish
           </button>
         </div>
       </div>

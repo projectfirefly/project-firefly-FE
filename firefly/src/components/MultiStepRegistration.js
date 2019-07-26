@@ -15,7 +15,8 @@ const MultiStepRegistration = () => {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            width: '100%'
+            width: '100%',
+            marginTop: "40px"
         },
         wrapper: {
             width:'100%'
@@ -30,8 +31,6 @@ const MultiStepRegistration = () => {
           lastName: ""
         }
       ]);
-
-      console.log('info: ', info);
 
       const updateStep = (operation) => {
         operation==='add' ? setStep(step+1) : setStep(step-1);
