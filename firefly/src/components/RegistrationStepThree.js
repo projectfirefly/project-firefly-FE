@@ -1,15 +1,17 @@
 import React, { useState } from "react";
-import { withFormik, Form, Field } from "formik";
-import * as Yup from "yup";
 import ApolloClient from "apollo-boost";
+
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons'
 
 import TutorialOne from "./../images/Step3Tutorial-1.png"
 import TutorialTwo from "./../images/Step3Tutorial-2.png"
 
 import "../styles/RegistrationStepThree.scss";
 
+library.add(faArrowUp, faArrowDown)
 
-const RegistrationForm = ({ values, errors, touched, step, updateStep }) => {
+const RegistrationStepThree = ({ values, errors, touched, step, updateStep }) => {
   
     return (
       <div className="registration-container">  
@@ -19,82 +21,62 @@ const RegistrationForm = ({ values, errors, touched, step, updateStep }) => {
           <div className="registration-forms-box3">
             <div className='registration-step3-box'>
               <h2 className='step3-header'>Access My Account</h2>
-              <img className='step3-image' src={TutorialOne} alt='tutorial-one'/>
+              <i class="fas fa-arrow-alt-down" style={{color: "#5B4EFF",
+                alignSelf: "flex-end",
+                marginRight: "10%",
+                fontSize: "1.4rem",
+              marginTop:'14px'}}/>
+
+              <img className='step3-image' src={TutorialOne} alt='tutorial-one' style={{marginTop:'4px'}}/>
             </div>
           </div>
 
           <div className="registration-forms-box3">
-            <div className='registration-step3-box'>
-                <h2 className='step3-header'>Manage Account</h2>
-                <img className='step3-image' src={TutorialTwo} alt='tutorial-two'/>
-                <ul className='step3-list'>
-                  <li>Manage Profiles</li>
-                  <li>Update Account Information</li>
-                  <li>Manage Payment Information</li>
-                </ul>
+            <div className="registration-step3-box">
+              <h2 className="step3-header">Manage Account</h2>
+              <img
+                className="step3-image"
+                src={TutorialTwo}
+                alt="tutorial-two"
+              />
+              <ul className="step3-list">
+                <li>Manage Profiles</li>
+                <li>Update Account Information</li>
+                <li>Manage Payment Information</li>
+              </ul>
             </div>
           </div>
 
           <div className="registration-forms-box3">
             <div className='registration-step3-box'>
               <h2 className='step3-header'>Start Our Adventure</h2>
-              <img className='step3-image' src={TutorialTwo} alt='tutorial-two'/>
+              <img className='step3-image' src={TutorialTwo} alt='tutorial-two' style={{marginBottom:'4px'}}/>
+              <i class="fas fa-arrow-alt-up" style={{color: "#5B4EFF",
+              alignSelf: "flex-end",
+              marginRight: "22%",
+              fontSize: "1.4rem"}}></i>
             </div>
           </div>
-
-          </div>
-          <div className='registration-buttons'>
-            <button className={step===0 ? 'none' : 'registration-buttons__back'} onClick={()=>updateStep('subtract')}>
-                Back
-            </button>
- 
-            <button className='registration-buttons__next' onClick={()=>updateStep('add')}>
-                Finish
-            </button>
-          </div>
         </div>
+        <div className="registration-buttons">
+          <button
+            className={step === 0 ? "none" : "registration-buttons__back"}
+            onClick={() => updateStep("subtract")}
+          >
+            Back
+          </button>
+
+          <button
+            className="registration-buttons__next"
+            onClick={() => updateStep("add")}
+          >
+            Finish
+          </button>
+        </div>
+      </div>
       </div>
     );
   };
+
   
-  const RegistrationStepOne = withFormik({
-    mapPropsToValues({ firstName, lastName, address, city, state, zipCode }) {
-      return {
-        firstName: firstName || "",
-        lastName: lastName || "",
-        address: address || "",
-        city: city || "",
-        state: state || "",
-        zipCode: zipCode || ""
-      };
-    },
-  
-    validationSchema: Yup.object().shape({
-      firstName: Yup.string()
-        .required(),
-      lastName: Yup.string()
-        .required(),
-      address: Yup.string()
-        .required(),
-      city: Yup.string()
-        .required(),
-      state: Yup.string()
-        .required(),
-      zipCode: Yup.string()
-        .required(),
-    }),
-  
-    handleSubmit(values, { setSubmitting }) {
-      const client = new ApolloClient({
-        uri: "http://localhost:3300"
-      });
-      const firstName = values.firstName;
-      const lastName = values.lastName;
-      const address = values.address;
-      const city = values.city;
-      const state = values.state;
-      const zipCode = values.zipCode;
-    }
-  })(RegistrationForm);
-  
-  export default RegistrationStepOne;
+  export default RegistrationStepThree;

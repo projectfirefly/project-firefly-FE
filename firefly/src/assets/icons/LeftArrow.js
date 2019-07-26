@@ -24,12 +24,12 @@ const SVG = ({
         <g id="Accessories" transform="translate(611.000000, 366.000000)">
           <path
             id="LeftArrow"
-            fill-rule="evenodd"
-            clip-rule="evenodd"
+            fillRule="evenodd"
+            clipRule="evenodd"
             fill="#7CD147"
             stroke="#4AA810"
-            stroke-width="3"
-            stroke-linejoin="round"
+            strokeWidth="3"
+            strokeLinejoin="round"
             d="
 				M14.2,60.9l7-23.2L-2.1,61l23.3,23.3L14.2,60.9z"
           />

@@ -1,7 +1,7 @@
 import React from "react";
 import Icon from "../../assets/icons";
 
-const ProfileFly = ({ color }) => {
+const ProfileFly = ({ color, accessory }) => {
   return (
     <div>
       <Icon
@@ -9,6 +9,7 @@ const ProfileFly = ({ color }) => {
         width={"100%"}
         height={"100%"}
         viewBox={"0 0 1024 1024"}
+        accessory={accessory}
         lighttopFill={`hsl(${color},100%,35%)`}
         lightmidFill={`hsl(${color},100%,45%)`}
         lightbottomFill={`hsl(${color},100%,55%)`}
