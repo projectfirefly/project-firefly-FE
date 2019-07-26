@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <svg width="4096px" height="1024px" viewBox="0 0 4096 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
     <title>EyesGoSmile</title>
     <desc>Created with Sketch.</desc>
-    <g id="EyesGoSmile" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g id="EyesGoSmile" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
         <g id="Group">
             <rect id="Rectangle" x="0" y="0" width="1024" height="1024"></rect>
             <path d="M535.329038,469.066392 C548.888887,478.333991 567.046444,484 587,484 C606.953556,484 625.111113,478.333991 638.670962,469.066392 C626.579334,484.260209 607.927092,494 587,494 C566.072908,494 547.420666,484.260209 535.329038,469.066392 Z M535.329038,386.933608 C547.420666,371.739791 566.072908,362 587,362 C607.927092,362 626.579334,371.739791 638.670962,386.933608 C625.111113,377.666009 606.953556,372 587,372 C567.046444,372 548.888887,377.666009 535.329038,386.933608 Z" id="Combined-Shape" fill="#4AA810"></path>
@@ -22,10 +22,10 @@
         <g id="Group" transform="translate(3072.000000, 0.000000)">
             <rect id="Rectangle" x="0" y="0" width="1024" height="1024"></rect>
             <circle id="Oval" fill="#4AA810" cx="587" cy="428" r="70"></circle>
-            <path d="M389,431.399858 C394.99471,418.891468 411.503545,412.431038 438.526503,412.018566 C465.549461,411.606094 482.040627,418.066524 488,431.399858" id="Line-3" stroke="#17191C" stroke-width="10" stroke-linecap="round"></path>
+            <path d="M389,431.399858 C394.99471,418.891468 411.503545,412.431038 438.526503,412.018566 C465.549461,411.606094 482.040627,418.066524 488,431.399858" id="Line-3" stroke="#17191C" strokeWidth="10" strokeLinecap="round"></path>
             <circle id="Oval-Copy-4" fill="#4AA810" cx="438" cy="428" r="70"></circle>
-            <path d="M389,431.399858 C394.99471,418.891468 411.503545,412.431038 438.526503,412.018566 C465.549461,411.606094 482.040627,418.066524 488,431.399858" id="Line-3" stroke="#17191C" stroke-width="10" stroke-linecap="round"></path>
-            <path d="M538,431.399858 C543.99471,418.891468 560.503545,412.431038 587.526503,412.018566 C614.549461,411.606094 631.040627,418.066524 637,431.399858" id="Line-3-Copy" stroke="#17191C" stroke-width="10" stroke-linecap="round"></path>
+            <path d="M389,431.399858 C394.99471,418.891468 411.503545,412.431038 438.526503,412.018566 C465.549461,411.606094 482.040627,418.066524 488,431.399858" id="Line-3" stroke="#17191C" strokeWidth="10" strokeLinecap="round"></path>
+            <path d="M538,431.399858 C543.99471,418.891468 560.503545,412.431038 587.526503,412.018566 C614.549461,411.606094 631.040627,418.066524 637,431.399858" id="Line-3-Copy" stroke="#17191C" strokeWidth="10" strokeLinecap="round"></path>
         </g>
     </g>
 </svg>

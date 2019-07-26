@@ -23,8 +23,8 @@ const SVG = ({
       >
         <path
           id="Inside"
-          fill-rule="evenodd"
-          clip-rule="evenodd"
+          fillRule="evenodd"
+          clipRule="evenodd"
           fill="#FFCCE7"
           d="M283.5-109.7c15.8,0,20.9,13,15.4,39
 			c-1.9,24.7-3.1,49.8-3.5,75.3c-0.4,25.5,0.8,51.8,3.5,79.1c5.5,23.1,0.3,34.7-15.4,34.7c-5.4,0-13.8-4-17-10.6
@@ -32,8 +32,8 @@ const SVG = ({
         />
         <path
           id="Outside"
-          fill-rule="evenodd"
-          clip-rule="evenodd"
+          fillRule="evenodd"
+          clipRule="evenodd"
           fill="#F54291"
           d="M198.3,6.9c-0.1-0.6-0.1-1.2-0.1-1.8
 			c-1.3-38.4,4.8-53.6,14.6-89.3c12.5,0.9,3.3-6,12.2-6.3c3.6-0.1,10.8,1.1,21.1-2.9c3-1.2,7.5-5,13.4-9c4.4-3,7.9-3.1,10.5-0.4
@@ -44,16 +44,16 @@ const SVG = ({
       </g>
       <g id="Left" transform="translate(198.000000, 286.000000)">
         <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
+          fillRule="evenodd"
+          clipRule="evenodd"
           fill="#FFCCE7"
           d="M-112.5-109.7c15.8,0,20.9,13,15.4,39
 			c-1.9,24.7-3.1,49.8-3.5,75.3s0.8,51.8,3.5,79.1c5.5,23.1,0.3,34.7-15.4,34.7c-5.4,0-13.8-4-17-10.6c-10.8-22.2-6.6-74-6.6-103.4
 			c0-27.7-0.7-80.3,8.4-104.3C-124.4-109-119-109.7-112.5-109.7z"
         />
         <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
+          fillRule="evenodd"
+          clipRule="evenodd"
           fill="#F54291"
           d="M-197.7,6.9c-0.1-0.6-0.1-1.2-0.1-1.8
 			c-1.3-38.4,4.8-53.6,14.6-89.3c12.5,0.9,3.3-6,12.2-6.3c3.6-0.1,10.8,1.1,21.1-2.9c3-1.2,7.5-5,13.4-9c4.4-3,7.9-3.1,10.5-0.4
@@ -64,11 +64,11 @@ const SVG = ({
       </g>
       <path
         id="Top"
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         fill="#F76EAA"
         stroke="#F76EAA"
-        stroke-width="4"
+        strokeWidth="4"
         d="M144.4,102.5
 		c-42.2,26.7-67.8,59.8-76.7,99.2c-3.2,14.2-5.7,37.6-7.3,69.9l0,0.6l-0.4,0.5c-6.3,8.3-13,12.5-20.1,12.5c-7.1,0-13-3.5-17.6-10.3
 		l-0.4-0.5l0-0.6c0.9-36.1,3.3-61,7.1-74.9c14.1-51.5,43.3-94.1,87.5-128l-2.5-2.8l1.7-1.3C172.3,23.6,237.8,2,312.1,2
