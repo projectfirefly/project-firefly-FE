@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="4096px" height="1024px" viewBox="0 0 4096 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+    <!-- Generator: Sketch 56.2 (81672) - https://sketch.com -->
     <title>CheekBumpDown</title>
     <desc>Created with Sketch.</desc>
     <g id="CheekBumpDown" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Group">
+        <g id="Group-Copy-3">
             <rect id="Rectangle" x="0" y="0" width="1024" height="1024"></rect>
-            <path d="M587,496 C616.271092,496 640,480.403559 640,473.5 C640,466.596441 616.271092,461 587,461 C557.728908,461 534,466.596441 534,473.5 C534,480.403559 557.728908,496 587,496 Z" id="Oval" fill="#4AA810"></path>
-            <path d="M438,496 C467.271092,496 491,480.403559 491,473.5 C491,466.596441 467.271092,461 438,461 C408.728908,461 385,466.596441 385,473.5 C385,480.403559 408.728908,496 438,496 Z" id="Oval-Copy-4" fill="#4AA810"></path>
+            <path d="M401,487.407785 C458.161472,487.407785 497,457.191406 497,435.5 C497,413.808594 458.911472,386 401.75,386 C344.588528,386 296.550452,421.890126 296.550452,435.5 C296.550452,449.109874 343.838528,487.407785 401,487.407785 Z" id="Oval-Copy-4" fill="#4AA810"></path>
+            <path d="M632.949548,487.407785 C690.111019,487.407785 728.949548,457.191406 728.949548,435.5 C728.949548,413.808594 690.861019,386 633.699548,386 C576.538076,386 528.5,421.890126 528.5,435.5 C528.5,449.109874 575.788076,487.407785 632.949548,487.407785 Z" id="Oval-Copy-5" fill="#4AA810"></path>
         </g>
-        <g id="Group" transform="translate(1024.000000, 0.000000)">
+        <g id="Group-Copy-3" transform="translate(1024.000000, 0.000000)">
             <rect id="Rectangle" x="0" y="0" width="1024" height="1024"></rect>
-            <path d="M587,497 C616.271092,497 640,486.403559 640,479.5 C640,472.596441 616.271092,467 587,467 C557.728908,467 534,472.596441 534,479.5 C534,486.403559 557.728908,497 587,497 Z" id="Oval" fill="#4AA810"></path>
-            <path d="M438,497 C467.271092,497 491,486.403559 491,479.5 C491,472.596441 467.271092,467 438,467 C408.728908,467 385,472.596441 385,479.5 C385,486.403559 408.728908,497 438,497 Z" id="Oval-Copy-4" fill="#4AA810"></path>
+            <path d="M625.25,486.5 C681.168831,486.5 726.5,456.300144 726.5,436.625 C726.5,416.949856 681.168831,401 625.25,401 C569.331169,401 524,416.949856 524,436.625 C524,456.300144 569.331169,486.5 625.25,486.5 Z" id="Oval" fill="#4AA810"></path>
+            <path d="M401.75,486.5 C462.639394,486.5 512,456.300144 512,436.625 C512,416.949856 462.639394,401 401.75,401 C340.860606,401 291.5,416.949856 291.5,436.625 C291.5,456.300144 340.860606,486.5 401.75,486.5 Z" id="Oval-Copy-4" fill="#4AA810"></path>
         </g>
-        <g id="Group" transform="translate(2048.000000, 0.000000)">
+        <g id="Group-Copy-3" transform="translate(2048.000000, 0.000000)">
             <rect id="Rectangle" x="0" y="0" width="1024" height="1024"></rect>
-            <ellipse id="Oval" fill="#4AA810" cx="587" cy="486.5" rx="53" ry="12.5"></ellipse>
-            <ellipse id="Oval-Copy-4" fill="#4AA810" cx="438" cy="486.5" rx="53" ry="12.5"></ellipse>
+            <ellipse id="Oval" fill="#4AA810" cx="624.5" cy="457.25" rx="79.5" ry="35.25"></ellipse>
+            <ellipse id="Oval-Copy-4" fill="#4AA810" cx="401" cy="457.25" rx="79.5" ry="35.25"></ellipse>
         </g>
-        <g id="Group" transform="translate(3072.000000, 0.000000)">
+        <g id="Group-Copy" transform="translate(3072.000000, 0.000000)">
             <rect id="Rectangle" x="0" y="0" width="1024" height="1024"></rect>
-            <ellipse id="Oval" fill="#4AA810" cx="587" cy="492.5" rx="53" ry="12.5"></ellipse>
-            <ellipse id="Oval-Copy-4" fill="#4AA810" cx="438" cy="492.5" rx="53" ry="12.5"></ellipse>
+            <ellipse id="Oval" fill="#4AA810" cx="624.5" cy="482.75" rx="79.5" ry="18.75"></ellipse>
+            <ellipse id="Oval-Copy-4" fill="#4AA810" cx="401" cy="482.75" rx="79.5" ry="18.75"></ellipse>
         </g>
     </g>
 </svg>
