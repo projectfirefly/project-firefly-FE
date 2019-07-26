@@ -46,10 +46,6 @@ const items = [
     text: "MultiStepRegistration"
   },
   {
-    path: "/child-profiles-dialog",
-    text: "ChildProfileDialog"
-  },
-  {
     path: "/choose-profile",
     text: "ChooseProfilePage"
   },
