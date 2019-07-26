@@ -17,6 +17,10 @@ import { Link } from "react-router-dom";
 
 const items = [
   {
+    path: "/choose-login",
+    text: "TabletLandingPage"
+  },
+  {
     path: "/",
     text: "Main"
   },
@@ -32,10 +36,7 @@ const items = [
     path: "/createprofile",
     text: "CustomizeFireflyPage"
   },
-  {
-    path: "/choose-login",
-    text: "TabletLandingPage"
-  },
+
   {
     path: "sign-in",
     text: "SignInPage"
