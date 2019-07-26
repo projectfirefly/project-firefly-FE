@@ -110,7 +110,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function ProfileView() {
+export default function MyFireflyPage() {
   const classes = useStyles();
 
   return (

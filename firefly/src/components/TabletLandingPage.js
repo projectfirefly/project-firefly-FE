@@ -1,10 +1,10 @@
 import React from 'react';
-import "../styles/chooseLogin.scss";
+import "../styles/TabletLandingPage.scss";
 import WelcomeToFirefly from "./../images/WelcomeToFirefly.png";
 
 import { Link } from 'react-router-dom';
 
-const ChooseLogin = () => {
+const TabletLandingPage = () => {
 
 
 
@@ -22,4 +22,4 @@ const ChooseLogin = () => {
     )
 }
 
-export default ChooseLogin
+export default TabletLandingPage
