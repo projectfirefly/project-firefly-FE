@@ -9,6 +9,14 @@ const createProfileStyles = makeStyles({
         width: "100%",
         fontFamily: "'Nunito', sans-serif",
     },
+    sizingContainer: {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        maxWidth: "60%",
+        minWidth: "40%",
+        // height: "100vh",
+    },
     header: {
         color: "#5b4eff",
         fontWeight: "900",
@@ -18,8 +26,7 @@ const createProfileStyles = makeStyles({
     },
     card: {
         display: "flex",
-        maxWidth: "60%",
-        maxHeight: "40%",
+        width: "100%",
         background: "white",
         borderRadius: "20px",
         boxShadow: "0px 2px 4px rgba(0,0,0,.5)",
@@ -74,12 +81,12 @@ const createProfileStyles = makeStyles({
         display: "flex",
         marginTop: "7%",
         height: "5%",
-        width: "68%",
+        width: "108%",
         justifyContent: "space-between",
         alignItems: "center",
+        paddingBottom: "3px",
     },
     button: {
-        position: "absolute",
         fontWeight: '600',
         fontFamily: "'Nunito', sans-serif",
         borderRadius: "7px",
@@ -93,11 +100,10 @@ const createProfileStyles = makeStyles({
             color: "#4aa810",
             "&:active": {
                 boxShadow: "none",
-                marginTop: "5px",
+                marginTop: "3px",
             }
         },
         "&.save": {
-            right: "16%",
             background: "#4aa810",
             color: "#fff",
             border: "none",
