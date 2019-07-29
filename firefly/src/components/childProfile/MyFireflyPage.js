@@ -192,7 +192,9 @@ export default function MyFireflyPage() {
                   src={Stars}
                   alt={"three stars"}
                 />
-                <h4 className={classes.rightCardsText}>Start Playing</h4>
+                <Link style={{ textDecoration: "none" }} to="/startgame">
+                  <h4 className={classes.rightCardsText}>Start Playing</h4>{" "}
+                </Link>
               </div>
             </div>
           </div>
