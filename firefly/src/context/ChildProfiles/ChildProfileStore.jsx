@@ -48,12 +48,14 @@ const initialState = {
 
 export const UPDATE_SELECTED = "UPDATE_SELECTED";
 export const UPDATE_PROFILE = "UPDATE_PROFILE";
+export const REMOVE_PROFILE = "REMOVE_PROFILE";
+export const ADD_PROFILE = "ADD_PROFILE";
 
 function reducer(state, action) {
     switch (action.type) {
         case UPDATE_SELECTED:
             return { ...state, selected: { id: action.payload } };
-        case UPDATE_PROFILE:
+        case UPDATE_PROFILE: {
             const newArr = state.profiles.map(profile => {
                 if (profile.id === action.payload.id) {
                     return action.payload;
@@ -62,6 +64,22 @@ function reducer(state, action) {
                 }
             });
             return { ...state, profiles: newArr };
+        }
+        case REMOVE_PROFILE: {
+            const newArr = state.profiles.filter(profile => {
+                if (profile.id === action.payload.id) {
+                    return false;
+                } else {
+                    return true;
+                }
+            });
+            return { ...state, profiles: newArr, selected: {id: 0} };
+        }
+        case ADD_PROFILE: {
+            const nextId = state.profiles[state.profiles.length-1].id + 1;
+            const newProfile = {...action.payload, id: nextId}
+            return {...state, profiles: [...state.profiles, newProfile]}
+        }
         default:
             throw Error("reducer error");
     }
