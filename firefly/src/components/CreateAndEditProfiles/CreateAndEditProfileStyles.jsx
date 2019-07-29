@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core';
 
-const createProfileStyles = makeStyles({
+const createProfileStyles = makeStyles(theme => ({
     container: {
         display: "flex",
         flexDirection: "column",
@@ -13,8 +13,7 @@ const createProfileStyles = makeStyles({
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        maxWidth: "60%",
-        minWidth: "40%",
+        width: "60%",
         // height: "100vh",
     },
     header: {
@@ -101,6 +100,7 @@ const createProfileStyles = makeStyles({
             "&:active": {
                 boxShadow: "none",
                 marginTop: "3px",
+                marginBottom: "-3px",
             }
         },
         "&.save": {
@@ -111,6 +111,7 @@ const createProfileStyles = makeStyles({
             "&:active": {
                 boxShadow: "none",
                 marginTop: "3px",
+                marginBottom: "-3px",
             }
         }
     },
@@ -129,9 +130,60 @@ const createProfileStyles = makeStyles({
         color: "#ABB0BA",
         "&:active": {
             boxShadow: "none",
-            marginTop: "-1.3%",
+            marginTop: "-1.7%",
         },
     },
-});
+    dialogPaper: {
+        maxWidth: "80%",
+        borderRadius: "20px",
+        padding: "2% 1%",
+        
+    },
+    dialogTitle: {
+        color: "#5b4eff",
+        fontFamily: "'Nunito', sans-serif",
+        fontWeight: "700",
+        fontSize: "28px",
+    },
+    dialogAction: {
+        justifyContent: "space-between"
+    },
+    dialogButtonContainer: {
+        display: "flex",
+        width: "100%",
+        justifyContent: "space-between",
+    },
+    dialogButtons: {
+        fontWeight: '700',
+        fontFamily: "'Nunito', sans-serif",
+        borderRadius: "7px",
+        border: "2px solid #ABB0BA",
+        boxShadow: "0px 2px #8F96A3",
+        width: "25%",
+        padding: "8px 0",
+        letterSpacing: "1px",
+        fontSize: "16px",
+        "&.cancel": {
+            background: "#fff",
+            color: "#4aa810",
+            "&:active": {
+                boxShadow: "none",
+                marginTop: "3px",
+                marginBottom: "-3px",
+            }
+        },
+        "&.remove": {
+            background: "#dc143c",
+            color: "#fff",
+            border: "none",
+            boxShadow: "0px 3px #A30F2D",
+            "&:active": {
+                boxShadow: "none",
+                marginTop: "3px",
+                marginBottom: "-3px",
+            }
+        }
+    }
+}));
 
 export default createProfileStyles;
