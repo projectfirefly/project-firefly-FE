@@ -6,6 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { FaPen } from "react-icons/fa";
 import Book from "../../images/BookTemp.png";
 import Stars from "../../images/StarsTemp.png";
+import Icon from "../../assets/icons";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -22,15 +23,15 @@ const useStyles = makeStyles(theme => ({
     letterSpacing: "7px",
     fontWeight: "bold",
     textTransform: "uppercase",
-    fontFamily: "nunito",
+    fontFamily: "nunito"
   },
-  mainBody:{
+  mainBody: {
     display: "flex",
     width: "100%",
     height: "60%",
-    padding: "4%",
+    padding: "4%"
   },
-  leftParent:{
+  leftParent: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -39,7 +40,7 @@ const useStyles = makeStyles(theme => ({
   },
   leftContainer: {
     width: "70%",
-    height: '80%',
+    height: "80%",
     background: "white",
     borderRadius: "20px",
     boxShadow: "0px 2px 4px #000000"
@@ -48,43 +49,43 @@ const useStyles = makeStyles(theme => ({
     width: "98%",
     height: "80%",
     display: "flex",
+    textAlign: "center",
     alignItems: "center",
     justifyContent: "center"
   },
   firefly: {
-    width: "100%",
+    width: "62%"
   },
   rightContainer: {
-    width: '50%',
+    width: "50%"
   },
   rightCards: {
-    width: '80%',
+    width: "80%",
     height: "150px",
     border: "solid #ABB0BA 2px",
     borderRadius: "10px",
     backgroundColor: "#FFFFFF",
     boxShadow: "0px 3px #8F96A3",
-    marginBottom: '55px',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
+    marginBottom: "55px",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center"
   },
   rightCardContent: {
     display: "flex",
     justifyContent: "space-between",
-    alignItems: "center",
+    alignItems: "center"
   },
   rightCardsText: {
     color: "#5B4EFF",
     fontSize: "24px",
-    fontWeight: '700'
+    fontWeight: "700"
   },
-  rightCardsImg: { 
-    width: '15%'
+  rightCardsImg: {
+    width: "15%"
   },
-  bottomCard: {
-  },
+  bottomCard: {},
   chooseFirefly: {
     width: "70%",
     textAlign: "center",
@@ -101,33 +102,32 @@ const useStyles = makeStyles(theme => ({
     justifyContent: "center"
   },
   pushRight: {
-    width: '100%',
-    display: 'flex',
-    justifyContent: 'flex-end'
+    width: "100%",
+    display: "flex",
+    justifyContent: "flex-end"
   },
   edit: {
     color: "#4AA810",
-    marginLeft: '3px'
+    marginLeft: "3px"
   },
   editContainer: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
     width: "34px",
     height: "30px",
     border: "solid #ABB0BA 2px",
     borderRadius: "10px",
     boxShadow: "0px 3px #8F96A3",
-    margin: '10px'
+    margin: "10px"
   },
   username: {
     textAlign: "center",
     color: "#152F04",
     fontWeight: "bold",
     fontSize: "18px"
-  },
-
+  }
 }));
 
 export default function MyFireflyPage() {
@@ -136,62 +136,67 @@ export default function MyFireflyPage() {
   return (
     <React.Fragment>
       <Container className={classes.root} component="div">
-
         <h1 className={classes.header}>My Firefly</h1>
 
-        <div className={classes.mainBody} >
-
-            <div className={classes.leftParent}> 
+        <div className={classes.mainBody}>
+          <div className={classes.leftParent}>
             {/* this div has invisible margins to keep container center */}
 
-              <div className={classes.leftContainer}>
-                <div className={classes.pushRight}>
-                  <div className={classes.editContainer}>
-                    <Link to="/createprofile">
-                      <div className={classes.edit}>
-                        <FaPen style={{ marginRight: "5px" }} />
-                      </div>
-                    </Link>
-                  </div>
-                </div>
-                <h3 className={classes.username}>Username</h3>
-                <div className={classes.fireflyContainer}>
-                  <img
-                    className={classes.firefly}
-                    src={image1}
-                    alt="users profile"
-                  />
+            <div className={classes.leftContainer}>
+              <div className={classes.pushRight}>
+                <div className={classes.editContainer}>
+                  <Link to="/createprofile">
+                    <div className={classes.edit}>
+                      <FaPen style={{ marginRight: "5px" }} />
+                    </div>
+                  </Link>
                 </div>
               </div>
-            
-              <div className={classes.chooseFirefly}>
-                <Link
-                  style={{ color: "#4AA810", textDecoration: "none" }}
-                  to="/child-profiles-main"
-                >
-                  Choose Firefly
-                </Link>
+              <h3 className={classes.username}>Username</h3>
+              <div className={classes.fireflyContainer}>
+                {/* <img
+                  className={classes.firefly}
+                  src={image1}
+                  alt="users profile"
+                /> */}
+                <Icon name="Firefly" className={classes.firefly} />
               </div>
             </div>
 
-          <div className={classes.rightContainer} >
+            <div className={classes.chooseFirefly}>
+              <Link
+                style={{ color: "#4AA810", textDecoration: "none" }}
+                to="/child-profiles-main"
+              >
+                Choose Firefly
+              </Link>
+            </div>
+          </div>
+
+          <div className={classes.rightContainer}>
             <div className={classes.rightCards}>
               <div className={classes.rightCardContent}>
-                <img className={classes.rightCardsImg} src={Book} alt={'A book'} />
+                <img
+                  className={classes.rightCardsImg}
+                  src={Book}
+                  alt={"A book"}
+                />
                 <h4 className={classes.rightCardsText}>Learn How to Play</h4>
               </div>
             </div>
 
             <div className={`${classes.rightCards} ${classes.bottomCard}`}>
               <div className={classes.rightCardContent}>
-                <img className={classes.rightCardsImg} src={Stars} alt={'three stars'} />
+                <img
+                  className={classes.rightCardsImg}
+                  src={Stars}
+                  alt={"three stars"}
+                />
                 <h4 className={classes.rightCardsText}>Start Playing</h4>
               </div>
             </div>
           </div>
-
         </div>
-
       </Container>
     </React.Fragment>
   );

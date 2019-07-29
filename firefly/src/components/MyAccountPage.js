@@ -109,7 +109,6 @@ export default function ProfileView() {
               </div>
 
               <hr class="style1" />
-
               <ProfileCard />
             </div>
           </Paper>
