@@ -6,7 +6,7 @@ import Grid from "@material-ui/core/Grid";
 import "../styles/MyAccountPage.scss";
 import { Link } from "react-router-dom";
 
-import image1 from "../assets/icons/Firefly.svg";
+import Icon from "../assets/icons";
 import { FaPen, FaPlus } from "react-icons/fa";
 
 const useStyles = makeStyles(theme => ({
@@ -15,9 +15,7 @@ const useStyles = makeStyles(theme => ({
     textAlign: "left",
     color: theme.palette.text.secondary,
     borderRadius: " 20px",
-    marginBottom: "5%",
-    overflow: "scroll",
-    height: "70%"
+    marginBottom: "5%"
   }
 }));
 
@@ -90,22 +88,45 @@ export default function ProfileView() {
         <div className="rightCards">
           <Paper className={classes.paper}>
             <h2 className="sectionHeader">Manage Profile</h2>
-            <div className="firefly">
+            <div className="fireflyContainer">
               <div className="edit">
                 <Link to="/addprofile" className="iconButton">
                   <FaPlus />
                 </Link>
               </div>
               <p>New Profile</p>
-              <img className="firefly" src={image1} alt="users profile" />
+              {/* <img className="firefly" src={image1} alt="users profile" /> */}
+              <div className="fireflyIcon">
+                <Icon
+                  name="Firefly"
+                  style={{
+                    width: "40%"
+                    // display: "flex",
+                    // justifyContent: "center",
+                    // alignItems: "center"
+                  }}
+                />
+              </div>
+
               <hr class="style1" />
+
               <div className="edit">
                 <Link to="/editprofile" className="iconButton">
                   <FaPen />
                 </Link>
               </div>
               <p>Username</p>
-              <img className="firefly" src={image1} alt="users profile" />
+              <div className="fireflyIcon">
+                <Icon
+                  name="Firefly"
+                  style={{
+                    width: "40%"
+                    // display: "flex",
+                    // justifyContent: "center",
+                    // alignItems: "center"
+                  }}
+                />
+              </div>
             </div>
           </Paper>
 
