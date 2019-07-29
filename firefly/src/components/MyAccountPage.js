@@ -5,7 +5,7 @@ import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import "../styles/MyAccountPage.scss";
 import { Link } from "react-router-dom";
-
+import ProfileCard from "./ProfileCard";
 import Icon from "../assets/icons";
 import { FaPen, FaPlus } from "react-icons/fa";
 
@@ -109,23 +109,8 @@ export default function ProfileView() {
               </div>
 
               <hr class="style1" />
-              {/* New Profile card. Later make into a component */}
 
-              <div className="edit">
-                <Link to="/editprofile" className="iconButton">
-                  <FaPen />
-                </Link>
-              </div>
-              <p>Username</p>
-
-              <div className="fireflyIcon">
-                <Icon
-                  name="Firefly"
-                  style={{
-                    width: "40%"
-                  }}
-                />
-              </div>
+              <ProfileCard />
             </div>
           </Paper>
 
