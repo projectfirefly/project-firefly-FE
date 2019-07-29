@@ -56,12 +56,14 @@ export default function ProfileView() {
                   <div className="userInfo">Users Address</div>
                 </Grid>
               </Grid>
+              <br />
             </Paper>
           </div>
           {/* Payment Info */}
           <div className="leftContainer">
             <Paper className={classes.paper}>
               <h2 className="sectionHeader"> Payment Information</h2>
+              <br />
               <br />
               <br />
             </Paper>
@@ -81,6 +83,7 @@ export default function ProfileView() {
                 </div>
                 <p>I would like to participate in the Educational Research</p>
               </div>
+              <br />
             </Paper>
           </div>
         </div>
