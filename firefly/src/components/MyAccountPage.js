@@ -95,20 +95,18 @@ export default function ProfileView() {
                 </Link>
               </div>
               <p>New Profile</p>
-              {/* <img className="firefly" src={image1} alt="users profile" /> */}
+              {/* New Profile card. Later make into a component */}
               <div className="fireflyIcon">
                 <Icon
                   name="Firefly"
                   style={{
                     width: "40%"
-                    // display: "flex",
-                    // justifyContent: "center",
-                    // alignItems: "center"
                   }}
                 />
               </div>
 
               <hr class="style1" />
+              {/* New Profile card. Later make into a component */}
 
               <div className="edit">
                 <Link to="/editprofile" className="iconButton">
@@ -116,14 +114,12 @@ export default function ProfileView() {
                 </Link>
               </div>
               <p>Username</p>
+
               <div className="fireflyIcon">
                 <Icon
                   name="Firefly"
                   style={{
                     width: "40%"
-                    // display: "flex",
-                    // justifyContent: "center",
-                    // alignItems: "center"
                   }}
                 />
               </div>
