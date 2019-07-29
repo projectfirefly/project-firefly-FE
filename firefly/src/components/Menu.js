@@ -60,6 +60,10 @@ const items = [
   {
     path: "/editprofile",
     text: "EditProfilePage"
+  },
+  {
+    path: "/startgame",
+    text: "StartGame"
   }
 ];
 
