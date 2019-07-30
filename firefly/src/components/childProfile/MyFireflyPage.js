@@ -186,16 +186,16 @@ export default function MyFireflyPage() {
             </div>
 
             <div className={`${classes.rightCards} ${classes.bottomCard}`}>
-              <div className={classes.rightCardContent}>
-                <img
-                  className={classes.rightCardsImg}
-                  src={Stars}
-                  alt={"three stars"}
-                />
-                <Link style={{ textDecoration: "none" }} to="/startgame">
+              <Link style={{ textDecoration: "none" }} to="/startgame">
+                <div className={classes.rightCardContent}>
+                  <img
+                    className={classes.rightCardsImg}
+                    src={Stars}
+                    alt={"three stars"}
+                  />
                   <h4 className={classes.rightCardsText}>Start Playing</h4>{" "}
-                </Link>
-              </div>
+                </div>
+              </Link>
             </div>
           </div>
         </div>
