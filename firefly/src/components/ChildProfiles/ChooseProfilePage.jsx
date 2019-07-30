@@ -18,14 +18,13 @@ const ChooseProfilePage = () => {
       fontWeight: "900",
       color: "#5B4EFF",
       display: "flex",
-      marginBottom: "50px"
+      marginBottom: "4.5%"
     },
     root: {
       display: "flex",
       flexDirection: "row",
       justifyContent: "center",
       flexWrap: "wrap",
-      padding: "60px"
     },
     cardContainer: {
       display: "flex",
