@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
     flexDirection: "column",
     width: "98vw",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "center"
   },
   header: {
     color: "#5B4EFF",
@@ -22,8 +22,7 @@ const useStyles = makeStyles(theme => ({
     letterSpacing: "7px",
     fontWeight: "bold",
     textTransform: "uppercase",
-    fontFamily: "nunito",
-    
+    fontFamily: "nunito"
   },
   mainBody: {
     display: "flex",
