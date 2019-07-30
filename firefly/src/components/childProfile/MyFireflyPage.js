@@ -149,7 +149,7 @@ export default function MyFireflyPage() {
             <div className={classes.leftContainer}>
               <div className={classes.pushRight}>
                 <div className={classes.editContainer}>
-                  <Link to="/createprofile">
+                  <Link to="/customize">
                     <div className={classes.edit}>
                       <FaPen style={{ marginRight: "5px" }} />
                     </div>
@@ -170,7 +170,7 @@ export default function MyFireflyPage() {
             <div className={classes.chooseFirefly}>
               <Link
                 style={{ color: "#4AA810", textDecoration: "none" }}
-                to="/child-profiles-main"
+                to="/choose-profile"
               >
                 Choose Firefly
               </Link>
