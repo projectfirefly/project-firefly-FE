@@ -7,7 +7,6 @@ const createProfileStyles = makeStyles(theme => ({
     alignItems: "center",
     justifyContent: "center",
     width: "100%",
-    padding: " 4% 5%",
     fontFamily: "'Nunito', sans-serif"
   },
   sizingContainer: {
@@ -15,14 +14,16 @@ const createProfileStyles = makeStyles(theme => ({
     flexDirection: "column",
     alignItems: "center",
     width: "60%"
-    // height: "100vh",
   },
   header: {
     color: "#5b4eff",
     fontWeight: "900",
     letterSpacing: "5px",
-    fontSize: "1.6rem",
-    marginBottom: "7%"
+    fontSize: "34px",
+    marginBottom: "8%"
+  },
+  cardContainer: {
+    width: "100%"
   },
   card: {
     display: "flex",
@@ -30,7 +31,7 @@ const createProfileStyles = makeStyles(theme => ({
     background: "white",
     borderRadius: "20px",
     boxShadow: "0px 2px 4px rgba(0,0,0,.5)",
-    // boxShadow: "0px 2px 4px rgba(0,0,0,.5)",
+    alignItems: "center",
     padding: "7% 4%"
   },
   firefly: {
@@ -43,7 +44,7 @@ const createProfileStyles = makeStyles(theme => ({
     height: "100%",
     width: "50%",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   firstName: {
     marginBottom: "15%",
@@ -56,7 +57,7 @@ const createProfileStyles = makeStyles(theme => ({
     margin: 0,
     padding: 0,
     textTransform: "uppercase",
-    fontSize: "1rem",
+    fontSize: "28px",
     fontWeight: "600",
     letterSpacing: "2px",
     marginBottom: "3px",
@@ -79,7 +80,7 @@ const createProfileStyles = makeStyles(theme => ({
   },
   buttonContainer: {
     display: "flex",
-    marginTop: "7%",
+    marginTop: "40px",
     height: "5%",
     width: "108%",
     justifyContent: "space-between",
@@ -87,6 +88,7 @@ const createProfileStyles = makeStyles(theme => ({
     paddingBottom: "3px"
   },
   button: {
+    fontSize: "16px",
     fontWeight: "600",
     fontFamily: "'Nunito', sans-serif",
     borderRadius: "7px",
@@ -118,7 +120,8 @@ const createProfileStyles = makeStyles(theme => ({
   },
   delete: {
     position: "absolute",
-    marginTop: "-2%",
+    marginTop: "1%",
+    marginLeft: "1%",
     fontWeight: "600",
     fontFamily: "'Nunito', sans-serif",
     borderRadius: "7px",

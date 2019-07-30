@@ -56,58 +56,60 @@ const EditProfilePage = (props) => {
         <div className={classes.container}>
             <div className={classes.sizingContainer}>
                 <h2 className={classes.header}>EDIT PROFILE</h2>
-                <div className={classes.card}>
+                <div className={classes.cardContainer}>
                     <button className={classes.delete} onClick={() => setOpen(true)}>
                         <FontAwesomeIcon icon="trash-alt" />
                     </button>
-                    <div className={classes.firefly}>
-                        <Icon
-                            name="Firefly"
-                            accessory={updatedProfile.accessory}
-                            lighttopFill={`hsl(${
-                                updatedProfile.color
-                                },100%,35%)`}
-                            lightmidFill={`hsl(${
-                                updatedProfile.color
-                                },100%,45%)`}
-                            lightbottomFill={`hsl(${
-                                updatedProfile.color
-                                },100%,55%)`}
-                            shineStroke={`hsl(${
-                                updatedProfile.color
-                                },100%,55%)`}
-                        />
-                    </div>
-                    <div className={classes.inputContainer}>
-                        <div className={classes.firstName}>
-                            <h2 className={classes.h2}>First Name</h2>
-                            <input
-                                type="text"
-                                name="firstName"
-                                value={updatedProfile.name}
-                                onChange={handleChanges}
-                                className={classes.field}
+                    <div className={classes.card}>
+                        <div className={classes.firefly}>
+                            <Icon
+                                name="Firefly"
+                                accessory={updatedProfile.accessory}
+                                lighttopFill={`hsl(${
+                                    updatedProfile.color
+                                    },100%,35%)`}
+                                lightmidFill={`hsl(${
+                                    updatedProfile.color
+                                    },100%,45%)`}
+                                lightbottomFill={`hsl(${
+                                    updatedProfile.color
+                                    },100%,55%)`}
+                                shineStroke={`hsl(${
+                                    updatedProfile.color
+                                    },100%,55%)`}
                             />
                         </div>
-                        <div className={classes.lastName}>
-                            <h2 className={classes.h2}>Last Name</h2>
-                            <input type="text" name="lastName" className={classes.field} />
-                        </div>
-                    </div>
+                        <div className={classes.inputContainer}>
+                            <div className={classes.firstName}>
+                                <h2 className={classes.h2}>First Name</h2>
+                                <input
+                                    type="text"
+                                    name="firstName"
+                                    value={updatedProfile.name}
+                                    onChange={handleChanges}
+                                    className={classes.field}
+                                />
+                            </div>
+                            <div className={classes.lastName}>
+                                <h2 className={classes.h2}>Last Name</h2>
+                                <input type="text" name="lastName" className={classes.field} />
+                            </div>
+                        </div>                    
                 </div>
-                <div className={classes.buttonContainer}>
-                    <button 
-                        className={classes.button + " cancel"}
-                        onClick={() => props.history.push("/choose-profile")}
-                    >
-                        CANCEL
-                    </button>
-                    <button 
-                        className={classes.button + " save"}
-                        onClick={saveProfile}
-                    >
-                        SAVE
-                    </button>
+                    <div className={classes.buttonContainer}>
+                        <button 
+                            className={classes.button + " cancel"}
+                            onClick={() => props.history.push("/choose-profile")}
+                        >
+                            CANCEL
+                        </button>
+                        <button 
+                            className={classes.button + " save"}
+                            onClick={saveProfile}
+                        >
+                            SAVE
+                        </button>
+                    </div>
                 </div>
             </div>
             <Dialog
