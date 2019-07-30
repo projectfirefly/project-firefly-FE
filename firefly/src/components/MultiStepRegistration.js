@@ -13,26 +13,20 @@ const MultiStepRegistration = () => {
         root: {
             display: "flex",
             flexDirection: "column",
-            width: "98vw",
             alignItems: "center",
             justifyContent: "center",
-            height: "100vh"
         },
         second: {
             display: "flex",
             flexDirection: "column",
-            width: "98vw",
             alignItems: "center",
             justifyContent: "center",
-            height: "94vh"
         },
         third:{
             display: "flex",
             flexDirection: "column",
-            width: "98vw",
             alignItems: "center",
             justifyContent: "center",
-            height: "96vh"
         },
         wrapper: {
             width:'100%'

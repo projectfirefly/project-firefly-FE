@@ -14,6 +14,7 @@ const pickerStyles = {
     justifyContent: "space-between",
     alignItems: "center",
     minHeight: "100px",
+    margin: "0% 8%"
 };
 
 const iconStyles = {

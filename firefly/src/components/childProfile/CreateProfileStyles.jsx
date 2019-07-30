@@ -18,7 +18,8 @@ const createProfileClasses = makeStyles({
         letterSpacing: "7px",
         fontWeight: "900",
         color: "#5B4EFF",
-        textTransform: "uppercase"
+        textTransform: "uppercase",
+        marginBottom: "4%"
     },
     cardContainer: {
         display: "flex",
@@ -45,6 +46,7 @@ const createProfileClasses = makeStyles({
         
     },
     h2: {
+        fontSize: "28px",
         fontWeight: "600",
         margin: "3%",
         "&.nickname": {
@@ -52,9 +54,10 @@ const createProfileClasses = makeStyles({
         }
     },
     input: {
+        fontSize: "22px",
         border: "none",
         background: "#e2f5d6",
-        margin: "1%",
+        margin: "3%",
         padding: "2%",
         borderRadius: "5px",
         width: "90%"
@@ -64,7 +67,7 @@ const createProfileClasses = makeStyles({
     },
     buttonContainer: {
         display: "flex",
-        marginTop: "7%",
+        marginTop: "3%",
         marginBottom: "3%",
         height: "5%",
         width: "100%",
@@ -72,7 +75,7 @@ const createProfileClasses = makeStyles({
         alignItems: "center",
     },
     button: {
-        fontWeight: '600',
+        fontSize: "16px",
         fontFamily: "'Nunito', sans-serif",
         borderRadius: "7px",
         border: "2px solid #ABB0BA",

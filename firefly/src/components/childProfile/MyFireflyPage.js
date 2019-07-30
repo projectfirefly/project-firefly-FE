@@ -15,21 +15,21 @@ const useStyles = makeStyles(theme => ({
     width: "98vw",
     alignItems: "center",
     justifyContent: "center",
-    height: "100vh"
   },
   header: {
     color: "#5B4EFF",
-    fontSize: "3rem",
+    fontSize: "34px",
     letterSpacing: "7px",
     fontWeight: "bold",
     textTransform: "uppercase",
-    fontFamily: "nunito"
+    fontFamily: "nunito",
+    
   },
   mainBody: {
     display: "flex",
     width: "100%",
     height: "60%",
-    padding: "4%"
+    marginTop: "5.25%"
   },
   leftParent: {
     display: "flex",
@@ -57,7 +57,10 @@ const useStyles = makeStyles(theme => ({
     width: "62%"
   },
   rightContainer: {
-    width: "50%"
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    width: "47%"
   },
   rightCards: {
     width: "80%",
@@ -86,6 +89,7 @@ const useStyles = makeStyles(theme => ({
     width: "15%"
   },
   bottomCard: {},
+
   chooseFirefly: {
     width: "70%",
     textAlign: "center",
@@ -93,13 +97,14 @@ const useStyles = makeStyles(theme => ({
     borderRadius: "10px",
     backgroundColor: "#FFFFFF",
     boxShadow: "0px 3px #8F96A3",
-    marginTop: "45px",
-    fontSize: "20px",
+    marginTop: "40px",
+    fontSize: "16px",
     fontWeight: "bold",
     height: "10%",
     display: "flex",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    textTransform: "uppercase"
   },
   pushRight: {
     width: "100%",
