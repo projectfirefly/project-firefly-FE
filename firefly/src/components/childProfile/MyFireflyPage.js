@@ -103,7 +103,8 @@ const useStyles = makeStyles(theme => ({
     height: "10%",
     display: "flex",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    textTransform: "uppercase"
   },
   pushRight: {
     width: "100%",
@@ -172,7 +173,7 @@ export default function MyFireflyPage() {
                 style={{ color: "#4AA810", textDecoration: "none" }}
                 to="/child-profiles-main"
               >
-                CHOOSE FIREFLY
+                Choose Firefly
               </Link>
             </div>
           </div>
