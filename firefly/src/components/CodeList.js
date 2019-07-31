@@ -31,7 +31,7 @@ export const CodeList = ({ listId, listType, row }) => {
           row.urls.map((url, index) =>
             React.createElement(
               Draggable,
-              { key: url, draggableId: () => generate(), index: index },
+              { key: url, draggableId: url, index: index },
               dragProvided =>
                 React.createElement(
                   "div",
