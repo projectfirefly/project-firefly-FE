@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
     color: "#5B4EFF",
     fontSize: "34px",
     letterSpacing: "7px",
-    fontWeight: "bold",
+    fontWeight: "900",
     textTransform: "uppercase",
     fontFamily: "nunito"
   },
@@ -87,8 +87,13 @@ const useStyles = makeStyles(theme => ({
   rightCardsImg: {
     width: "15%"
   },
-  bottomCard: {},
-
+  bottomCard: {
+    "&:active": {
+      boxShadow: "none",
+      marginTop: "3px",
+      marginBottom: "-3px"
+    },
+  },
   chooseFirefly: {
     width: "70%",
     textAlign: "center",
@@ -103,8 +108,14 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    textTransform: "uppercase"
+    textTransform: "uppercase",
+    "&:active": {
+        boxShadow: "none",
+        marginTop: "43px",
+        marginBottom: "-3px"
+    },
   },
+
   pushRight: {
     width: "100%",
     display: "flex",
@@ -124,7 +135,12 @@ const useStyles = makeStyles(theme => ({
     border: "solid #ABB0BA 2px",
     borderRadius: "10px",
     boxShadow: "0px 3px #8F96A3",
-    margin: "10px"
+    margin: "10px",
+    "&:active": {
+      boxShadow: "none",
+      marginTop: "13px",
+      marginBottom: "-3px"
+    },
   },
   username: {
     textAlign: "center",
@@ -148,13 +164,13 @@ export default function MyFireflyPage() {
 
             <div className={classes.leftContainer}>
               <div className={classes.pushRight}>
-                <div className={classes.editContainer}>
-                  <Link to="/customize">
+                <Link className={classes.editContainer} to="/customize">
+                  <div>
                     <div className={classes.edit}>
                       <FaPen style={{ marginRight: "5px" }} />
                     </div>
-                  </Link>
-                </div>
+                  </div>
+                </Link>  
               </div>
               <h3 className={classes.username}>Username</h3>
               <div className={classes.fireflyContainer}>
@@ -167,14 +183,17 @@ export default function MyFireflyPage() {
               </div>
             </div>
 
-            <div className={classes.chooseFirefly}>
-              <Link
+            
+              <Link 
+                className={classes.chooseFirefly}
                 style={{ color: "#4AA810", textDecoration: "none" }}
                 to="/choose-profile"
               >
-                Choose Firefly
+                <div>
+                  Choose Firefly
+                </div>
               </Link>
-            </div>
+            
           </div>
 
           <div className={classes.rightContainer}>
@@ -189,8 +208,12 @@ export default function MyFireflyPage() {
               </div>
             </div>
 
-            <div className={`${classes.rightCards} ${classes.bottomCard}`}>
-              <Link style={{ textDecoration: "none" }} to="/startgame">
+            
+            <Link className={`${classes.rightCards} ${classes.bottomCard}`}
+              style={{ textDecoration: "none" }} 
+              to="/startgame"
+            >
+              <div >
                 <div className={classes.rightCardContent}>
                   <img
                     className={classes.rightCardsImg}
@@ -199,8 +222,9 @@ export default function MyFireflyPage() {
                   />
                   <h4 className={classes.rightCardsText}>Start Playing</h4>{" "}
                 </div>
-              </Link>
-            </div>
+              </div>
+            </Link>
+          
           </div>
         </div>
       </Container>
