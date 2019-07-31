@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
+import { childContext } from "../../context/ChildProfiles/ChildProfileStore";
 import { Link } from "react-router-dom";
 import Container from "@material-ui/core/Container";
-import image1 from "../../assets/icons/Firefly.svg";
 import { makeStyles } from "@material-ui/core/styles";
 import { FaPen } from "react-icons/fa";
 import Book from "../../images/BookTemp.png";
 import Stars from "../../images/StarsTemp.png";
 import Icon from "../../assets/icons";
+import ProfileFly from "../../assets/icons/ProfileFly";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -92,7 +93,7 @@ const useStyles = makeStyles(theme => ({
       boxShadow: "none",
       marginTop: "3px",
       marginBottom: "-3px"
-    },
+    }
   },
   chooseFirefly: {
     width: "70%",
@@ -110,10 +111,10 @@ const useStyles = makeStyles(theme => ({
     justifyContent: "center",
     textTransform: "uppercase",
     "&:active": {
-        boxShadow: "none",
-        marginTop: "43px",
-        marginBottom: "-3px"
-    },
+      boxShadow: "none",
+      marginTop: "43px",
+      marginBottom: "-3px"
+    }
   },
 
   pushRight: {
@@ -140,7 +141,7 @@ const useStyles = makeStyles(theme => ({
       boxShadow: "none",
       marginTop: "13px",
       marginBottom: "-3px"
-    },
+    }
   },
   username: {
     textAlign: "center",
@@ -152,6 +153,16 @@ const useStyles = makeStyles(theme => ({
 
 export default function MyFireflyPage() {
   const classes = useStyles();
+
+  const [childProfileState, dispatch] = useContext(childContext);
+
+  const [currentProfile] = childProfileState.profiles.filter(profile => {
+    if (childProfileState.selected.id === profile.id) {
+      return true;
+    } else {
+      return false;
+    }
+  });
 
   return (
     <React.Fragment>
@@ -170,30 +181,29 @@ export default function MyFireflyPage() {
                       <FaPen style={{ marginRight: "5px" }} />
                     </div>
                   </div>
-                </Link>  
+                </Link>
               </div>
-              <h3 className={classes.username}>Username</h3>
+              <h3 className={classes.username}>{currentProfile.name}</h3>
               <div className={classes.fireflyContainer}>
                 {/* <img
                   className={classes.firefly}
                   src={image1}
                   alt="users profile"
                 /> */}
-                <Icon name="Firefly" className={classes.firefly} />
+                <ProfileFly
+                  color={currentProfile.color}
+                  accessory={currentProfile.accessory}
+                />
               </div>
             </div>
 
-            
-              <Link 
-                className={classes.chooseFirefly}
-                style={{ color: "#4AA810", textDecoration: "none" }}
-                to="/choose-profile"
-              >
-                <div>
-                  Choose Firefly
-                </div>
-              </Link>
-            
+            <Link
+              className={classes.chooseFirefly}
+              style={{ color: "#4AA810", textDecoration: "none" }}
+              to="/choose-profile"
+            >
+              <div>Choose Firefly</div>
+            </Link>
           </div>
 
           <div className={classes.rightContainer}>
@@ -208,12 +218,12 @@ export default function MyFireflyPage() {
               </div>
             </div>
 
-            
-            <Link className={`${classes.rightCards} ${classes.bottomCard}`}
-              style={{ textDecoration: "none" }} 
+            <Link
+              className={`${classes.rightCards} ${classes.bottomCard}`}
+              style={{ textDecoration: "none" }}
               to="/startgame"
             >
-              <div >
+              <div>
                 <div className={classes.rightCardContent}>
                   <img
                     className={classes.rightCardsImg}
@@ -224,7 +234,6 @@ export default function MyFireflyPage() {
                 </div>
               </div>
             </Link>
-          
           </div>
         </div>
       </Container>
