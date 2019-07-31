@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
     color: "#5B4EFF",
     fontSize: "34px",
     letterSpacing: "7px",
-    fontWeight: "bold",
+    fontWeight: "900",
     textTransform: "uppercase",
     fontFamily: "nunito"
   },
@@ -167,14 +167,17 @@ export default function MyFireflyPage() {
               </div>
             </div>
 
-            <div className={classes.chooseFirefly}>
-              <Link
+            
+              <Link 
+                className={classes.chooseFirefly}
                 style={{ color: "#4AA810", textDecoration: "none" }}
                 to="/choose-profile"
               >
-                Choose Firefly
+                <div>
+                  Choose Firefly
+                </div>
               </Link>
-            </div>
+            
           </div>
 
           <div className={classes.rightContainer}>
@@ -189,8 +192,12 @@ export default function MyFireflyPage() {
               </div>
             </div>
 
-            <div className={`${classes.rightCards} ${classes.bottomCard}`}>
-              <Link style={{ textDecoration: "none" }} to="/startgame">
+            
+            <Link className={`${classes.rightCards} ${classes.bottomCard}`}
+              style={{ textDecoration: "none" }} 
+              to="/startgame"
+            >
+              <div >
                 <div className={classes.rightCardContent}>
                   <img
                     className={classes.rightCardsImg}
@@ -199,8 +206,9 @@ export default function MyFireflyPage() {
                   />
                   <h4 className={classes.rightCardsText}>Start Playing</h4>{" "}
                 </div>
-              </Link>
-            </div>
+              </div>
+            </Link>
+          
           </div>
         </div>
       </Container>
