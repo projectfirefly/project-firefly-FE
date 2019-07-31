@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="93px" height="75px" viewBox="0 0 93 75" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 56.2 (81672) - https://sketch.com -->
-    <title>OutputBlockError</title>
+    <title>BlueBlockError</title>
     <desc>Created with Sketch.</desc>
     <defs>
         <radialGradient cx="50%" cy="50%" fx="50%" fy="50%" r="56.3022823%" gradientTransform="translate(0.500000,0.500000),scale(0.800000,1.000000),rotate(90.000000),translate(-0.500000,-0.500000)" id="radialGradient-1">
@@ -19,7 +19,7 @@
     <g id="Style-Guide" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g id="CodingBlocks" transform="translate(-550.000000, -279.000000)">
             <g id="Group-10" transform="translate(49.000000, 95.000000)">
-                <g id="OutputBlockError">
+                <g id="BlueBlockError">
                     <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-2"></use>
                     <path stroke="#DC143C" stroke-width="2" d="M580.000073,191.405528 L580.000073,188.58904 L579.000073,188.58904 L578.246225,189.246088 C578.854084,189.9435 579.438941,190.663818 580.000073,191.405528 Z M580.000073,247.122487 C579.438941,247.864197 578.854084,248.584515 578.246225,249.281927 L579.000073,249.938976 L580.000073,249.938976 L580.000073,247.122487 Z" stroke-linejoin="square" fill="url(#radialGradient-1)" fill-rule="evenodd"></path>
                 </g>

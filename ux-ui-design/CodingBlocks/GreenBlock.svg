@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="76px" height="77px" viewBox="0 0 76 77" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 56.2 (81672) - https://sketch.com -->
-    <title>InputBlock</title>
+    <title>GreenBlock</title>
     <desc>Created with Sketch.</desc>
     <defs>
         <radialGradient cx="51.6223145%" cy="50%" fx="51.6223145%" fy="50%" r="56.3022823%" id="radialGradient-1">
@@ -18,7 +18,7 @@
     <g id="Style-Guide" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g id="CodingBlocks" transform="translate(-307.000000, -162.000000)">
             <g id="Group-10" transform="translate(49.000000, 95.000000)">
-                <g id="InputBlock">
+                <g id="GreenBlock">
                     <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-2"></use>
                     <use fill="url(#radialGradient-1)" fill-rule="evenodd" xlink:href="#path-2"></use>
                 </g>
