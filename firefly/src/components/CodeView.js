@@ -4,25 +4,25 @@ import { generate } from "shortid";
 import images from "./images.json";
 import { reorderRows, reorder } from "./Reorder";
 import { CodeList } from "./CodeList";
-const aId = generate();
-const unrankedId = generate();
+const stableId = generate();
+const codeBlockId = generate();
 const GameView = () => {
   const [rows, setRows] = React.useState([
-    { id: aId, label: "a", urls: [] },
+    { id: stableId, label: "stable", urls: [] },
     {
-      id: unrankedId,
-      label: "unranked",
+      id: codeBlockId,
+      label: "code",
       urls: images
     }
   ]);
   React.useEffect(() => {
-    const data = localStorage.getItem("my-tier-list");
+    const data = localStorage.getItem("code-list");
     if (data) {
       setRows(JSON.parse(data));
     }
   }, []);
   React.useEffect(() => {
-    localStorage.setItem("my-tier-list", JSON.stringify(rows));
+    localStorage.setItem("code-list", JSON.stringify(rows));
   });
   return React.createElement(
     DragDropContext,

@@ -1,6 +1,6 @@
 import React from "react";
 import { Droppable, Draggable } from "react-beautiful-dnd";
-import { generate } from "shortid";
+
 export const CodeList = ({ listId, listType, row }) => {
   return React.createElement(
     "div",
