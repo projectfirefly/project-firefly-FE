@@ -10,8 +10,8 @@ const ProfileFly = ({ color, accessory }) => {
         height={"100%"}
         viewBox={"0 0 1024 1024"}
         accessory={accessory}
-        lighttopFill={`hsl(${color},100%,35%)`}
-        lightmidFill={`hsl(${color},100%,45%)`}
+        lighttopFill={`hsl(${color},100%,30%)`}
+        lightmidFill={`hsl(${color},100%,40%)`}
         lightbottomFill={`hsl(${color},100%,55%)`}
         shineStroke={`hsl(${color},100%,55%)`}
       />

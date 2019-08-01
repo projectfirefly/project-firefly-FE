@@ -19,6 +19,7 @@ import MyAccountPage from "../components/MyAccountPage";
 import EditProfilePage from "../components/CreateAndEditProfiles/EditProfilePage";
 import AddANewProfilePage from "../components/CreateAndEditProfiles/AddANewProfilePage";
 import StartGame from "../components/StartGame";
+import CodeView from "../components/CodeView";
 
 export default function Layout() {
   return (
@@ -40,7 +41,8 @@ export default function Layout() {
           <Route exact path="/account" component={MyAccountPage} />
           <Route exact path="/editprofile" component={EditProfilePage} />
           <Route exact path="/addprofile" component={AddANewProfilePage} />
-          <Route path = "/startgame" component={StartGame}/>
+          <Route path="/startgame" component={StartGame} />
+          <Route path="/codeview" component={CodeView} />
         </Switch>
       </main>
     </div>

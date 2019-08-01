@@ -64,6 +64,10 @@ const items = [
   {
     path: "/startgame",
     text: "StartGame"
+  },
+  {
+    path: "/codeview",
+    text: "CodeView"
   }
 ];
 
