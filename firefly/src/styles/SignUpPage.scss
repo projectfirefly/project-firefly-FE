@@ -132,7 +132,9 @@
   font-weight: bold !important;
   letter-spacing: 1px !important;
   text-transform: uppercase !important;
-
+}
+.firebaseui-idp-password {
+  visibility: hidden;
 }
 .firebaseui-idp-button {
   height: 44px !important;
