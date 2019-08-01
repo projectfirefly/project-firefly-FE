@@ -12,16 +12,27 @@ const AddANewProfilePage = props => {
 
   const [childProfileState, dispatch] = useContext(childContext);
 
-  const [updatedProfile, setUpdatedProfile] = useState({
-    name: "",
-    color: 61,
-    accessory: 0
+  const [currentProfile] = childProfileState.user.profiles.filter(profile => {
+    if (childProfileState.selected.id === profile.id) {
+      return true;
+    } else {
+      return false;
+    }
   });
 
-  const handleChanges = e => {
+  const [updatedProfile, setUpdatedProfile] = useState(currentProfile);
+
+  const firstNameChanges = e => {
     setUpdatedProfile({
       ...updatedProfile,
-      name: e.target.value
+      first_name: e.target.value
+    });
+  };
+
+  const lastNameChanges = e => {
+    setUpdatedProfile({
+      ...updatedProfile,
+      last_name: e.target.value
     });
   };
 
@@ -44,14 +55,20 @@ const AddANewProfilePage = props => {
               <input
                 type="text"
                 name="firstName"
-                value={updatedProfile.name}
-                onChange={handleChanges}
+                value={updatedProfile.first_name}
+                onChange={firstNameChanges}
                 className={classes.field}
               />
             </div>
             <div className={classes.lastName}>
               <h2 className={classes.h2}>Last Name</h2>
-              <input type="text" name="lastName" className={classes.field} />
+              <input
+                type="text"
+                name="lastName"
+                className={classes.field}
+                value={updatedProfile.last_name}
+                onChange={lastNameChanges}
+              />
             </div>
           </div>
         </div>

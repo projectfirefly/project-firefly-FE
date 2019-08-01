@@ -17,7 +17,7 @@ export default function CustomizeFireflyPage() {
 
   const [childProfileState, dispatch] = useContext(childContext);
 
-  const [currentProfile] = childProfileState.profiles.filter(profile => {
+  const [currentProfile] = childProfileState.user.profiles.filter(profile => {
     if (childProfileState.selected.id === profile.id) {
       return true;
     } else {
@@ -28,7 +28,8 @@ export default function CustomizeFireflyPage() {
   const [updatedProfile, setUpdatedProfile] = useState(currentProfile);
 
   const updateColor = newColor => {
-    setUpdatedProfile({ ...updatedProfile, color: newColor });
+    const newAvatar = { ...updatedProfile.avatar, color: newColor };
+    setUpdatedProfile({ ...updatedProfile, avatar: newAvatar });
   };
 
   const saveProfile = () => {
@@ -36,14 +37,17 @@ export default function CustomizeFireflyPage() {
   };
 
   const accessoryChange = i => {
-    setUpdatedProfile({ ...updatedProfile, accessory: i });
-    console.log(updatedProfile.accessory);
+    const newAvatar = { ...updatedProfile.avatar, accessory: i };
+    setUpdatedProfile({ ...updatedProfile, avatar: newAvatar });
   };
 
   const handleChange = e => {
     setUpdatedProfile({
       ...updatedProfile,
-      name: e.target.value
+      avatar: {
+        ...updatedProfile.avatar,
+        nickname: e.target.value
+      }
     });
   };
 
@@ -72,7 +76,7 @@ export default function CustomizeFireflyPage() {
             <input
               className={classes.input}
               type="text"
-              value={updatedProfile.name}
+              value={updatedProfile.nickname}
               onChange={handleChange}
             />
             <div>
