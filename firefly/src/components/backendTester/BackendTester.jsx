@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react'
 import { axiosWithAuth } from '../../utils/axiosWithAuth';
 import firebase from 'firebase';
 
-import { childContext, UPDATE_COLOR, UPDATE_SELECTED } from '../../context/ChildProfiles/ChildProfileStore'
+import { childContext, UPDATE_COLOR, UPDATE_SELECTED, ADD_PROFILE } from '../../context/ChildProfiles/ChildProfileStore'
 
 const BackendTester = () => {
 
@@ -31,22 +31,7 @@ const BackendTester = () => {
     }
 
     const create = () => {
-        db.collection("users")
-            .doc(firebase.auth().currentUser.uid)
-            .collection("profiles")
-            .add(testChild)
-            .then((docRef) => {
-                db.collection("users")
-                .doc(firebase.auth().currentUser.uid)
-                .collection("profiles")
-                .doc(docRef.id)
-                .collection("avatar")
-                .add({
-                    color: 53,
-                    accessory: 0,
-                    nickname: ""
-                })
-            })
+        dispatch({type: ADD_PROFILE, payload: testChild});
     }
 
     const logContext = () => {

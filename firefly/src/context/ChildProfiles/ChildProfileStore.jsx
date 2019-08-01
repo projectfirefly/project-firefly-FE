@@ -15,6 +15,7 @@ export const REMOVE_PROFILE = "REMOVE_PROFILE";
 export const ADD_PROFILE = "ADD_PROFILE";
 export const GET_PROFILES_AND_AVATARS = "GET_PROFILES_AND_AVATARS";
 export const GET_USER_INFO = "GET_USER_INFO"
+export const UPDATE_USER = "UPDATE_USER";
 
 function reducer(state, action) {
     const db = firebase.firestore();
@@ -31,6 +32,28 @@ function reducer(state, action) {
             }
             const newUser = { ...state.user, profiles: newProfiles }
             return { ...state, user: newUser }
+        case UPDATE_USER: {
+            var uploadUser = action.payload;
+            if (uploadUser.profiles) {
+                delete uploadUser["profiles"];
+            }
+            delete uploadUser["id"];
+            delete uploadUser["information"];
+            var uploadInformation = action.payload.information;
+            delete uploadInformation["id"];
+            db.collection("users")
+                .doc(uid)
+                .set({
+                    ...uploadUser
+                }, { merge: true })
+            db.collection("users")
+                .doc(uid)
+                .collection("information")
+                .doc(action.payload.information.id)
+                .set({
+                    ...uploadInformation
+                }, { merge: true })
+        }
         case UPDATE_SELECTED:
             return { ...state, selected: { id: action.payload } };
         case UPDATE_PROFILE: {
@@ -44,7 +67,7 @@ function reducer(state, action) {
                 .collection("profiles")
                 .doc(action.payload.id)
                 .set({
-                    uploadProfile
+                    ...uploadProfile
                 }, { merge: true })
                 .then(() => {
                     db.collection("users")
@@ -54,7 +77,7 @@ function reducer(state, action) {
                         .collection("avatar")
                         .doc(action.payload.avatar.id)
                         .set({
-                            uploadAvatar
+                            ...uploadAvatar
                         }, { merge: true })
                 })
             const newArr = state.user.profiles.map(profile => {
@@ -68,6 +91,20 @@ function reducer(state, action) {
             return { ...state, user: newUser };
         }
         case REMOVE_PROFILE: {
+            db.collection("users")
+                .doc(uid)
+                .collection("profiles")
+                .doc(action.payload.id)
+                .collection("avatar")
+                .doc(action.payload.avatar.id)
+                .delete()
+                .then(() => {
+                    db.collection("users")
+                        .doc(uid)
+                        .collection("profiles")
+                        .doc(action.profile.id)
+                        .delete()
+                })
             const newArr = state.profiles.filter(profile => {
                 if (profile.id === action.payload.id) {
                     return false;
@@ -78,9 +115,49 @@ function reducer(state, action) {
             return { ...state, profiles: newArr, selected: { id: 0 } };
         }
         case ADD_PROFILE: {
-            const nextId = state.profiles[state.profiles.length - 1].id + 1;
-            const newProfile = { ...action.payload, id: nextId };
-            return { ...state, profiles: [...state.profiles, newProfile] };
+            const addProfile = () => {
+                var profileId;
+                Promise.resolve(
+                    db.collection("users")
+                        .doc(firebase.auth().currentUser.uid)
+                        .collection("profiles")
+                        .add(action.payload)
+                        .then((docRef) => {
+                            db.collection("users")
+                                .doc(firebase.auth().currentUser.uid)
+                                .collection("profiles")
+                                .doc(docRef.id)
+                                .collection("avatar")
+                                .add({
+                                    color: 53,
+                                    accessory: 0,
+                                    nickname: ""
+                                })
+                            profileId = docRef.id;
+                        }))
+                const newProfile = { ...action.payload, id: profileId };
+                if (state.user.profiles) {
+                    return {
+                        ...state,
+                        user: {
+                            ...state.user,
+                            profiles: [
+                                ...state.user.profiles,
+                                newProfile
+                            ]
+                        }
+                    }
+                } else {
+                    return {
+                        ...state,
+                        user: {
+                            ...state.user,
+                            profiles: [newProfile]
+                        }
+                    }
+                }
+            }
+            return addProfile();
         }
         default:
             throw Error("reducer error");
