@@ -6,7 +6,7 @@ import { childContext, UPDATE_COLOR, UPDATE_SELECTED } from '../../context/Child
 
 const BackendTester = () => {
 
-    const [children, setChildren] = useState({});
+    const [profiles, setProfiles] = useState({});
 
     const [context, dispatch] = useContext(childContext);
 
@@ -19,13 +19,13 @@ const BackendTester = () => {
 
     const get = async () => {
         const uid = await firebase.auth().currentUser.uid;
-        const children = db.collection("users").doc(uid).collection("children").get().then((snapshot) => {
+        const profiles = db.collection("users").doc(uid).collection("profiles").get().then((snapshot) => {
             const docList = snapshot.docs.map(doc => {
                 const document = doc.data();
                 return { ...document, id: doc.id }
             });
-            setChildren(docList);
-            console.log(children);
+            setProfiles(docList);
+            console.log(profiles);
             return snapshot.docs.map(doc => doc.data());
         })
     }
@@ -33,12 +33,12 @@ const BackendTester = () => {
     const create = () => {
         db.collection("users")
             .doc(firebase.auth().currentUser.uid)
-            .collection("children")
+            .collection("profiles")
             .add(testChild)
             .then((docRef) => {
                 db.collection("users")
                 .doc(firebase.auth().currentUser.uid)
-                .collection("children")
+                .collection("profiles")
                 .doc(docRef.id)
                 .collection("avatar")
                 .add({
@@ -56,8 +56,8 @@ const BackendTester = () => {
     const update = () => {
         db.collection("users")
             .doc(firebase.auth().currentUser.uid)
-            .collection("children")
-            .doc(children[0].id)
+            .collection("profiles")
+            .doc(profiles[0].id)
             .set({
                 first_name: "ASDFASDHFIPASDHFI"
             }, {merge: true})

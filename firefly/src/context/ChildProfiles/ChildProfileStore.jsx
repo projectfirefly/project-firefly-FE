@@ -17,6 +17,8 @@ export const GET_PROFILES_AND_AVATARS = "GET_PROFILES_AND_AVATARS";
 export const GET_USER_INFO = "GET_USER_INFO"
 
 function reducer(state, action) {
+    const db = firebase.firestore();
+    const uid = firebase.auth().currentUser.uid;
     switch (action.type) {
         case GET_USER_INFO:
             return { ...state, user: action.payload }
@@ -32,14 +34,30 @@ function reducer(state, action) {
         case UPDATE_SELECTED:
             return { ...state, selected: { id: action.payload } };
         case UPDATE_PROFILE: {
-            const newArr = state.profiles.map(profile => {
+            var uploadProfile = action.payload;
+            delete uploadProfile["id"];
+            delete uploadProfile["avatar"];
+            var uploadAvatar = action.payload.avatar;
+            delete uploadAvatar["id"];
+            db.collection("users")
+                .doc(uid)
+                .collection("profiles")
+                .doc(action.payload.id)
+                .set({
+                    uploadProfile
+                }, { merge: true })
+                .then(() => {
+                    db.collection("users")
+                })
+            const newArr = state.user.profiles.map(profile => {
                 if (profile.id === action.payload.id) {
                     return action.payload;
                 } else {
                     return profile;
                 }
             });
-            return { ...state, profiles: newArr };
+            const newUser = { ...state.user, profiles: newArr }
+            return { ...state, user: newUser };
         }
         case REMOVE_PROFILE: {
             const newArr = state.profiles.filter(profile => {

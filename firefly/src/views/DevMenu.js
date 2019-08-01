@@ -69,10 +69,10 @@ export default function Layout(props) {
                             });
                         })
                         .then(() => {
-                            const children = db
+                            const profiles = db
                                 .collection("users")
                                 .doc(uid)
-                                .collection("children")
+                                .collection("profiles")
                                 .get()
                                 .then(snapshot => {
                                     const childList = snapshot.docs.map(doc => {
@@ -87,7 +87,7 @@ export default function Layout(props) {
                                             const avatar = db
                                                 .collection("users")
                                                 .doc(uid)
-                                                .collection("children")
+                                                .collection("profiles")
                                                 .doc(child.id)
                                                 .collection("avatar")
                                                 .get()
