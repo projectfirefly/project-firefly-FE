@@ -9,6 +9,10 @@ import { InMemoryCache } from "apollo-cache-inmemory";
 
 import './styles/reset.scss';
 
+//This import is important, the const is to keep it from getting accidentally cleaned up.
+import firebaseConfig from './firebase';
+const firebase = firebaseConfig;
+
 const HttpLink = createHttpLink({
     uri: "http://localhost:3300"
 });

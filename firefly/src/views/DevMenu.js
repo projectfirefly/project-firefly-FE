@@ -23,48 +23,64 @@ import AccountPage from "../components/AccountPage";
 import Accessories from "../components/childProfile/Accessories";
 import EditProfile from "../components/CreateAndEditProfiles/EditProfile";
 import ActuallyCreateProfile from "../components/CreateAndEditProfiles/ActuallyCreateProfile";
+import BackendTester from "../components/backendTester/BackendTester";
 
 export default function Layout() {
-  return (
-    <div className="app">
-      <div>
-        <Menu />
-      </div>
-      <main className="app__content">
-        <Switch>
-          <Route path="/login" component={FireBaseLogin} />
-          <Route exact path="/" component={Main} />
+    return (
+        <div className="app">
+            <div>
+                <Menu />
+            </div>
+            <main className="app__content">
+                <Switch>
+                    <Route path="/login" component={FireBaseLogin} />
+                    <Route exact path="/" component={Main} />
 
-          <Route path="/myfireflypage" component={MyFireflyPage} />
-          <Route path="/createprofile" component={CustomizeFireflyPage} />
+                    <Route path="/myfireflypage" component={MyFireflyPage} />
+                    <Route
+                        path="/createprofile"
+                        component={CustomizeFireflyPage}
+                    />
 
-          <Route path="/choose-login" component={TabletLandingPage} />
-          <Route path="/register" component={SignUpPage} />
-          <Route path="/registration" component={MultiStepRegistration} />
-          <Route path="/sign-in" component={SignInPage} />
-          <Route
-            exact
-            path="/child-profiles-dialog"
-            component={ChildProfileDialog}
-          />
-          <Route
-            exact
-            path="/child-profiles-main"
-            component={ChooseProfilePage}
-          />
-          <Route exact path="/slider-test" component={ColorSliderTest} />
-          <Route exact path="/stepper-test" component={StepperTest} />
-          <Route exact path="/account" component={AccountPage} />
-          <Route exact path="/accessories" component={Accessories} />
+                    <Route path="/choose-login" component={TabletLandingPage} />
+                    <Route path="/register" component={SignUpPage} />
+                    <Route
+                        path="/registration"
+                        component={MultiStepRegistration}
+                    />
+                    <Route path="/sign-in" component={SignInPage} />
+                    <Route
+                        exact
+                        path="/child-profiles-dialog"
+                        component={ChildProfileDialog}
+                    />
+                    <Route
+                        exact
+                        path="/child-profiles-main"
+                        component={ChooseProfilePage}
+                    />
+                    <Route
+                        exact
+                        path="/slider-test"
+                        component={ColorSliderTest}
+                    />
+                    <Route exact path="/stepper-test" component={StepperTest} />
+                    <Route exact path="/account" component={AccountPage} />
+                    <Route exact path="/accessories" component={Accessories} />
 
-          <Route exact path="/edit-profile" component={EditProfile} />
-          <Route
-            exact
-            path="/create-profile"
-            component={ActuallyCreateProfile}
-          />
-        </Switch>
-      </main>
-    </div>
-  );
+                    <Route exact path="/edit-profile" component={EditProfile} />
+                    <Route
+                        exact
+                        path="/create-profile"
+                        component={ActuallyCreateProfile}
+                    />
+                    <Route
+                        exact
+                        path="/backend-tester"
+                        component={BackendTester}
+                    />
+                </Switch>
+            </main>
+        </div>
+    );
 }
