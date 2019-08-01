@@ -3,47 +3,47 @@ import React, { useState, useReducer } from "react";
 export const childContext = React.createContext();
 
 const initialState = {
-    profiles: [
-        {
-            id: 0,
-            name: "George",
-            color: 120,
-            accessory: 1
-        },
-        {
-            id: 1,
-            name: "Jorge",
-            color: 0,
-            accessory: 2
-        },
-        {
-            id: 2,
-            name: "Gyorg",
-            color: 320,
-            accessory: 3
-        },
-        {
-            id: 3,
-            name: "John",
-            color: 60,
-            accessory: 4
-        },
-        {
-            id: 4,
-            name: "Jacob",
-            color: 250,
-            accessory: 1
-        },
-        {
-            id: 5,
-            name: "Georgina",
-            color: 170,
-            accessory: 2
-        }
-    ],
-    selected: {
-        id: 2
+  profiles: [
+    {
+      id: 0,
+      name: "George",
+      color: 51.31,
+      accessory: 1
+    },
+    {
+      id: 1,
+      name: "Jorge",
+      color: 0,
+      accessory: 2
+    },
+    {
+      id: 2,
+      name: "Gyorg",
+      color: 320,
+      accessory: 3
+    },
+    {
+      id: 3,
+      name: "John",
+      color: 60,
+      accessory: 4
+    },
+    {
+      id: 4,
+      name: "Jacob",
+      color: 250,
+      accessory: 1
+    },
+    {
+      id: 5,
+      name: "Georgina",
+      color: 170,
+      accessory: 2
     }
+  ],
+  selected: {
+    id: 2
+  }
 };
 
 export const UPDATE_SELECTED = "UPDATE_SELECTED";
@@ -52,45 +52,45 @@ export const REMOVE_PROFILE = "REMOVE_PROFILE";
 export const ADD_PROFILE = "ADD_PROFILE";
 
 function reducer(state, action) {
-    switch (action.type) {
-        case UPDATE_SELECTED:
-            return { ...state, selected: { id: action.payload } };
-        case UPDATE_PROFILE: {
-            const newArr = state.profiles.map(profile => {
-                if (profile.id === action.payload.id) {
-                    return action.payload;
-                } else {
-                    return profile;
-                }
-            });
-            return { ...state, profiles: newArr };
+  switch (action.type) {
+    case UPDATE_SELECTED:
+      return { ...state, selected: { id: action.payload } };
+    case UPDATE_PROFILE: {
+      const newArr = state.profiles.map(profile => {
+        if (profile.id === action.payload.id) {
+          return action.payload;
+        } else {
+          return profile;
         }
-        case REMOVE_PROFILE: {
-            const newArr = state.profiles.filter(profile => {
-                if (profile.id === action.payload.id) {
-                    return false;
-                } else {
-                    return true;
-                }
-            });
-            return { ...state, profiles: newArr, selected: {id: 0} };
-        }
-        case ADD_PROFILE: {
-            const nextId = state.profiles[state.profiles.length-1].id + 1;
-            const newProfile = {...action.payload, id: nextId}
-            return {...state, profiles: [...state.profiles, newProfile]}
-        }
-        default:
-            throw Error("reducer error");
+      });
+      return { ...state, profiles: newArr };
     }
+    case REMOVE_PROFILE: {
+      const newArr = state.profiles.filter(profile => {
+        if (profile.id === action.payload.id) {
+          return false;
+        } else {
+          return true;
+        }
+      });
+      return { ...state, profiles: newArr, selected: { id: 0 } };
+    }
+    case ADD_PROFILE: {
+      const nextId = state.profiles[state.profiles.length - 1].id + 1;
+      const newProfile = { ...action.payload, id: nextId };
+      return { ...state, profiles: [...state.profiles, newProfile] };
+    }
+    default:
+      throw Error("reducer error");
+  }
 }
 
 export default function ChildProfileStore(props) {
-    const stateHook = useReducer(reducer, initialState);
+  const stateHook = useReducer(reducer, initialState);
 
-    return (
-        <childContext.Provider value={stateHook}>
-            {props.children}
-        </childContext.Provider>
-    );
+  return (
+    <childContext.Provider value={stateHook}>
+      {props.children}
+    </childContext.Provider>
+  );
 }

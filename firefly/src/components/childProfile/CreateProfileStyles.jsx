@@ -91,7 +91,8 @@ const createProfileClasses = makeStyles({
       color: "#4aa810",
       "&:active": {
         boxShadow: "none",
-        marginTop: "5px"
+        marginTop: "3px",
+        marginBottom: "-3px"
       }
     },
     "&.save": {
@@ -102,9 +103,13 @@ const createProfileClasses = makeStyles({
       boxShadow: "0px 3px #3E8C0D",
       "&:active": {
         boxShadow: "none",
-        marginTop: "3px"
+        marginTop: "3px",
+        marginBottom: "-3px"
       }
-    }
+    },
+    "&:hover":{
+      cursor: "pointer"
+    },
   }
 });
 
