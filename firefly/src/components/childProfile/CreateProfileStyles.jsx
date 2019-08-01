@@ -72,17 +72,21 @@ const createProfileClasses = makeStyles({
     justifyContent: "space-between",
     alignItems: "center"
   },
+  a: { width: "25% " },
+
   button: {
     fontSize: "16px",
     fontFamily: "'Nunito', sans-serif",
-    borderRadius: "7px",
-    border: "2px solid #ABB0BA",
-    boxShadow: "0px 2px #8F96A3",
+    borderRadius: "10px",
+    boxShadow: "0px 3px #8F96A3",
     width: "25%",
+    height: "44px",
     padding: "8px 0",
     "text-decoration": "none",
     letterSpacing: "1px",
+
     "&.back": {
+      width: "100%",
       background: "#fff",
       color: "#4aa810",
       "&:active": {
@@ -91,8 +95,9 @@ const createProfileClasses = makeStyles({
       }
     },
     "&.save": {
+      width: "100%",
       background: "#4aa810",
-      color: "#fff",
+      color: "#e2f5d6",
       border: "none",
       boxShadow: "0px 3px #3E8C0D",
       "&:active": {
