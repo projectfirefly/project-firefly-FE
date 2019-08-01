@@ -3,7 +3,11 @@ import firebase from 'firebase';
 
 export const childContext = React.createContext();
 
-const initialState = {};
+const initialState = {
+    selected: {
+        id: "0",
+    }
+};
 
 export const UPDATE_SELECTED = "UPDATE_SELECTED";
 export const UPDATE_PROFILE = "UPDATE_PROFILE";

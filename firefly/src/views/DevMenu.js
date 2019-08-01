@@ -6,6 +6,7 @@ import ChildProfileStore, {
     childContext,
     GET_USER_INFO,
     GET_PROFILES_AND_AVATARS,
+    UPDATE_SELECTED,
 } from "../context/ChildProfiles/ChildProfileStore";
 
 import firebase from "firebase";
@@ -84,7 +85,8 @@ export default function Layout(props) {
                                 .then(childList => {
                                     const childAndAvatar = childList.map(
                                         child => {
-                                            const avatar = db.collection("users")
+                                            const avatar = db
+                                                .collection("users")
                                                 .doc(uid)
                                                 .collection("children")
                                                 .doc(child.id)
@@ -101,14 +103,24 @@ export default function Layout(props) {
                                                         }
                                                     );
                                                     return document[0];
-                                                }).then(avatar => {
+                                                })
+                                                .then(avatar => {
                                                     dispatch({
                                                         type: GET_PROFILES_AND_AVATARS,
-                                                        payload: {...child, avatar: avatar}
-                                                    })
-                                                })
+                                                        payload: {
+                                                            ...child,
+                                                            avatar: avatar,
+                                                        },
+                                                    });
+                                                });
                                         }
                                     );
+                                    if (childList[0]) {
+                                        dispatch({
+                                            type: UPDATE_SELECTED,
+                                            payload: { id: childList[0].id },
+                                        });
+                                    }
                                 });
                         });
                 });
