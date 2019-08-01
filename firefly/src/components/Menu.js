@@ -17,73 +17,61 @@ import { Link } from "react-router-dom";
 
 const items = [
     {
-        path: "/choose-login",
+        path: "/",
         text: "TabletLandingPage",
     },
     {
-        path: "/",
-        text: "Main",
-    },
-    {
         path: "/login",
-        text: "Login",
+        text: "FireBaseLogin",
     },
     {
-        path: "/myfireflypage",
+        path: "/myfirefly",
         text: "MyFireflyPage",
     },
     {
-        path: "/createprofile",
+        path: "/customize",
         text: "CustomizeFireflyPage",
     },
 
     {
-        path: "sign-in",
+        path: "/signin",
         text: "SignInPage",
     },
     {
-        path: "/register",
+        path: "/signup",
         text: "SignUpPage",
     },
     {
         path: "/registration",
-        text: "Multi-Step Registration",
+        text: "MultiStepRegistration",
     },
     {
-        path: "/child-profiles-dialog",
-        text: "Profile Dialog Test",
-    },
-    {
-        path: "/child-profiles-main",
+        path: "/choose-profile",
         text: "ChooseProfilePage",
     },
     {
-        path: "/slider-test",
-        text: "Rainbow Slider Test",
-    },
-    {
-        path: "/stepper-test",
-        text: "Stepper Test",
-    },
-    {
         path: "/account",
-        text: "Account Info",
+        text: "MyAccountPage",
     },
     {
-        path: "/accessories",
-        text: "Accessory Picker",
+        path: "/addprofile",
+        text: "AddANewProfilePage",
     },
     {
-        path: "/create-profile",
-        text: "Actually Create Profile",
+        path: "/editprofile",
+        text: "EditProfilePage",
     },
     {
-        path: "/edit-profile",
-        text: "Edit Profile",
+        path: "/startgame",
+        text: "StartGame",
+    },
+    {
+        path: "/codeview",
+        text: "CodeView",
     },
     {
         path: "/backend-tester",
-        text: "Backend Tester"
+        text: "Backend Tester",
     },
 ];
 
@@ -148,7 +136,7 @@ function Menu() {
                 <MenuIcon />
             </IconButton>
             <Drawer
-                classes={{root: classes.drawer.root}}
+                classes={{ root: classes.drawer.root }}
                 anchor="left"
                 open={open}
                 onClose={toggleDrawer}

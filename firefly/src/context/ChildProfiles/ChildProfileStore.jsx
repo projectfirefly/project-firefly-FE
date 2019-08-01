@@ -19,7 +19,7 @@ export const GET_USER_INFO = "GET_USER_INFO"
 function reducer(state, action) {
     switch (action.type) {
         case GET_USER_INFO:
-            return {...state, user: action.payload}
+            return { ...state, user: action.payload }
         case GET_PROFILES_AND_AVATARS:
             var newProfiles;
             if (state.user.profiles) {
@@ -27,8 +27,8 @@ function reducer(state, action) {
             } else {
                 newProfiles = [action.payload];
             }
-            const newUser = {...state.user, profiles: newProfiles}
-            return {...state, user: newUser}
+            const newUser = { ...state.user, profiles: newProfiles }
+            return { ...state, user: newUser }
         case UPDATE_SELECTED:
             return { ...state, selected: { id: action.payload } };
         case UPDATE_PROFILE: {

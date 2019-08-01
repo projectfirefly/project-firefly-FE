@@ -8,6 +8,8 @@ import Icon from "../../assets/icons";
 import ColorSlider from "../ColorSlider/ColorSlider";
 import Accessories from "./Accessories";
 
+import { Link } from "react-router-dom";
+
 import createProfileClasses from "./CreateProfileStyles";
 
 export default function CustomizeFireflyPage() {
@@ -49,52 +51,62 @@ export default function CustomizeFireflyPage() {
     <div className={classes.rootContainer}>
       <h1 className={classes.header}>Customize Your Firefly</h1>
 
-      <div className={classes.cardContainer}>
-        <div className={classes.card + " left"}>
-          <Icon
-            name="Firefly"
-            width={"100%"}
-            viewBox={"0 0 1024 1024"}
-            accessory={updatedProfile.accessory}
-            lighttopFill={`hsl(${updatedProfile.color},100%,35%)`}
-            lightmidFill={`hsl(${updatedProfile.color},100%,45%)`}
-            lightbottomFill={`hsl(${updatedProfile.color},100%,55%)`}
-            shineStroke={`hsl(${updatedProfile.color},100%,55%)`}
-          />
-        </div>
-        <div className={classes.card + " right"}>
-          <div style={{}}>
-            <h2 className={classes.h2 + " nickname"}>NICKNAME</h2>
-          </div>
-          <input
-            className={classes.input}
-            type="text"
-            value={updatedProfile.name}
-            onChange={handleChange}
-          />
-          <div>
-            <h2 className={classes.h2}>Accessories</h2>
-            <Accessories
+      <div className={classes.sizingContainer}>
+        <div className={classes.cardContainer}>
+          <div className={classes.card + " left"}>
+            <Icon
+              name="Firefly"
+              width={"100%"}
+              viewBox={"0 0 1024 1024"}
               accessory={updatedProfile.accessory}
-              accessoryChange={accessoryChange}
+              lighttopFill={`hsl(${updatedProfile.color},100%,35%)`}
+              lightmidFill={`hsl(${updatedProfile.color},100%,45%)`}
+              lightbottomFill={`hsl(${updatedProfile.color},100%,55%)`}
+              shineStroke={`hsl(${updatedProfile.color},100%,55%)`}
             />
           </div>
-          <div>
-            <h2 className={classes.h2}>Light Color</h2>
-            <div className={classes.slider}>
-              <ColorSlider
-                value={updatedProfile.color}
-                updateColor={updateColor}
+          <div className={classes.card + " right"}>
+            <div style={{}}>
+              <h2 className={classes.h2 + " nickname"}>NICKNAME</h2>
+            </div>
+            <input
+              className={classes.input}
+              type="text"
+              value={updatedProfile.name}
+              onChange={handleChange}
+            />
+            <div>
+              <h2 className={classes.h2}>Accessories</h2>
+              <Accessories
+                accessory={updatedProfile.accessory}
+                accessoryChange={accessoryChange}
               />
+            </div>
+            <div>
+              <h2 className={classes.h2}>Light Color</h2>
+              <div className={classes.slider}>
+                <ColorSlider
+                  value={updatedProfile.color}
+                  updateColor={updateColor}
+                />
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div className={classes.buttonContainer}>
-        <button className={classes.button + " back"}>BACK</button>
-        <button className={classes.button + " save"} onClick={saveProfile}>
-          SAVE
-        </button>
+        <div className={classes.buttonContainer}>
+          <button
+            className={classes.button + " back"}
+            onclick="history.push(/choose-profile)"
+          >
+            BACK
+          </button>
+
+          {/* <Link className={classes.button} to="/myfirefly"> */}
+
+          <button className={classes.button + " save"} onClick={saveProfile}>
+            SAVE
+          </button>
+        </div>
       </div>
     </div>
   );

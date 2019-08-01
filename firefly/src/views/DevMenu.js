@@ -19,19 +19,18 @@ import Menu from "../components/Menu";
 import FireBaseLogin from "../components/FirebaseLogin";
 import MyFireflyPage from "../components/childProfile/MyFireflyPage";
 import CustomizeFireflyPage from "../components/childProfile/CustomizeFireflyPage";
-import Main from "../components/Main";
 import TabletLandingPage from "../components/TabletLandingPage";
 import ChooseProfilePage from "../components/ChildProfiles/ChooseProfilePage";
-import ChildProfileDialog from "../components/ChildProfiles/ChildProfileDialog";
 import SignUpPage from "../components/SignUpPage";
-import ColorSliderTest from "../components/ColorSlider/ColorSliderTest";
 import SignInPage from "../components/SignInPage";
-import StepperTest from "../components/Steppers/StepperTest";
 import MultiStepRegistration from "../components/MultiStepRegistration";
-import AccountPage from "../components/AccountPage";
-import Accessories from "../components/childProfile/Accessories";
-import EditProfile from "../components/CreateAndEditProfiles/EditProfile";
-import ActuallyCreateProfile from "../components/CreateAndEditProfiles/ActuallyCreateProfile";
+
+import MyAccountPage from "../components/MyAccountPage";
+import EditProfilePage from "../components/CreateAndEditProfiles/EditProfilePage";
+import AddANewProfilePage from "../components/CreateAndEditProfiles/AddANewProfilePage";
+import StartGame from "../components/StartGame";
+import CodeView from "../components/CodeView";
+
 import BackendTester from "../components/backendTester/BackendTester";
 
 export default function Layout(props) {
@@ -135,46 +134,34 @@ export default function Layout(props) {
             <main className="app__content">
                 <Switch>
                     <Route path="/login" component={FireBaseLogin} />
-                    <Route exact path="/" component={Main} />
+                    <Route exact path="/" component={TabletLandingPage} />
 
-                    <Route path="/myfireflypage" component={MyFireflyPage} />
-                    <Route
-                        path="/createprofile"
-                        component={CustomizeFireflyPage}
-                    />
-
-                    <Route path="/choose-login" component={TabletLandingPage} />
-                    <Route path="/register" component={SignUpPage} />
+                    <Route path="/myfirefly" component={MyFireflyPage} />
+                    <Route path="/customize" component={CustomizeFireflyPage} />
+                    <Route path="/signup" component={SignUpPage} />
                     <Route
                         path="/registration"
                         component={MultiStepRegistration}
                     />
-                    <Route path="/sign-in" component={SignInPage} />
+                    <Route path="/signin" component={SignInPage} />
                     <Route
                         exact
-                        path="/child-profiles-dialog"
-                        component={ChildProfileDialog}
-                    />
-                    <Route
-                        exact
-                        path="/child-profiles-main"
+                        path="/choose-profile"
                         component={ChooseProfilePage}
                     />
+                    <Route exact path="/account" component={MyAccountPage} />
                     <Route
                         exact
-                        path="/slider-test"
-                        component={ColorSliderTest}
+                        path="/editprofile"
+                        component={EditProfilePage}
                     />
-                    <Route exact path="/stepper-test" component={StepperTest} />
-                    <Route exact path="/account" component={AccountPage} />
-                    <Route exact path="/accessories" component={Accessories} />
-
-                    <Route exact path="/edit-profile" component={EditProfile} />
                     <Route
                         exact
-                        path="/create-profile"
-                        component={ActuallyCreateProfile}
+                        path="/addprofile"
+                        component={AddANewProfilePage}
                     />
+                    <Route path="/startgame" component={StartGame} />
+                    <Route path="/codeview" component={CodeView} />
                     <Route
                         exact
                         path="/backend-tester"
