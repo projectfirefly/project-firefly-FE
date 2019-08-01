@@ -96,7 +96,7 @@ export default function CustomizeFireflyPage() {
         <div className={classes.buttonContainer}>
           <button
             className={classes.button + " back"}
-            onclick="history.push(/choose-profile)"
+            onclick="window.history.back(-1)"
           >
             BACK
           </button>
