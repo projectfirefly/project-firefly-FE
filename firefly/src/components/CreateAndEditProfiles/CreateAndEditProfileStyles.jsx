@@ -104,8 +104,12 @@ const createProfileStyles = makeStyles(theme => ({
         boxShadow: "none",
         marginTop: "3px",
         marginBottom: "-3px"
-      }
+      },
+      "&:hover":{
+        cursor: "pointer"
+      },
     },
+    
     "&.save": {
       background: "#4aa810",
       color: "#fff",
@@ -115,7 +119,10 @@ const createProfileStyles = makeStyles(theme => ({
         boxShadow: "none",
         marginTop: "3px",
         marginBottom: "-3px"
-      }
+      },
+      "&:hover":{
+        cursor: "pointer"
+      },
     }
   },
   delete: {
