@@ -48,6 +48,14 @@ function reducer(state, action) {
                 }, { merge: true })
                 .then(() => {
                     db.collection("users")
+                        .doc(uid)
+                        .collection("profiles")
+                        .doc(action.payload.id)
+                        .collection("avatar")
+                        .doc(action.payload.avatar.id)
+                        .set({
+                            uploadAvatar
+                        }, { merge: true })
                 })
             const newArr = state.user.profiles.map(profile => {
                 if (profile.id === action.payload.id) {
