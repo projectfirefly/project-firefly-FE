@@ -1,6 +1,14 @@
 //this is for using during development so we can quickly move between different components and see what we are doing
 
-import React from "react";
+import React, { useContext, useEffect } from "react";
+
+import ChildProfileStore, {
+    childContext,
+    GET_USER_INFO,
+    GET_PROFILES_AND_AVATARS,
+} from "../context/ChildProfiles/ChildProfileStore";
+
+import firebase from "firebase";
 
 //material
 
@@ -25,7 +33,88 @@ import EditProfile from "../components/CreateAndEditProfiles/EditProfile";
 import ActuallyCreateProfile from "../components/CreateAndEditProfiles/ActuallyCreateProfile";
 import BackendTester from "../components/backendTester/BackendTester";
 
-export default function Layout() {
+export default function Layout(props) {
+    const [context, dispatch] = useContext(childContext);
+
+    //Getting my user information from Firestore
+    //This is a monster function, I'll fix it some day.
+    useEffect(() => {
+        if (props.logged) {
+            const db = firebase.firestore();
+            const uid = firebase.auth().currentUser.uid;
+            const userInfo = db
+                .collection("users")
+                .doc(uid)
+                .get()
+                .then(snapshot => {
+                    const userInfo = snapshot.data();
+                    return { ...userInfo, id: snapshot.id };
+                })
+                .then(userInfo => {
+                    db.collection("users")
+                        .doc(uid)
+                        .collection("information")
+                        .get()
+                        .then(snapshot => {
+                            const docList = snapshot.docs.map(doc => {
+                                const document = doc.data();
+                                return { ...document, id: doc.id };
+                            });
+                            dispatch({
+                                type: GET_USER_INFO,
+                                payload: {
+                                    ...userInfo,
+                                    information: docList[0],
+                                },
+                            });
+                        })
+                        .then(() => {
+                            const children = db
+                                .collection("users")
+                                .doc(uid)
+                                .collection("children")
+                                .get()
+                                .then(snapshot => {
+                                    const childList = snapshot.docs.map(doc => {
+                                        const child = doc.data();
+                                        return { ...child, id: doc.id };
+                                    });
+                                    return childList;
+                                })
+                                .then(childList => {
+                                    const childAndAvatar = childList.map(
+                                        child => {
+                                            const avatar = db.collection("users")
+                                                .doc(uid)
+                                                .collection("children")
+                                                .doc(child.id)
+                                                .collection("avatar")
+                                                .get()
+                                                .then(snapshot => {
+                                                    const document = snapshot.docs.map(
+                                                        doc => {
+                                                            const avatarDoc = doc.data();
+                                                            return {
+                                                                ...avatarDoc,
+                                                                id: doc.id,
+                                                            };
+                                                        }
+                                                    );
+                                                    return document[0];
+                                                }).then(avatar => {
+                                                    dispatch({
+                                                        type: GET_PROFILES_AND_AVATARS,
+                                                        payload: {...child, avatar: avatar}
+                                                    })
+                                                })
+                                        }
+                                    );
+                                });
+                        });
+                });
+        }
+    }, [props.logged]);
+
     return (
         <div className="app">
             <div>

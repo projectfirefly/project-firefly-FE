@@ -148,7 +148,7 @@ function Menu() {
                 <MenuIcon />
             </IconButton>
             <Drawer
-                classes={classes.drawer}
+                classes={{root: classes.drawer.root}}
                 anchor="left"
                 open={open}
                 onClose={toggleDrawer}
