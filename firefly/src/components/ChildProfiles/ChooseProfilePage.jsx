@@ -73,7 +73,7 @@ const ChooseProfilePage = () => {
     <div className={classes.root}>
       <div className={classes.header}> CHOOSE YOUR FIREFLY </div>
       <div className={classes.cardContainer}>
-        {childProfileState.profiles.map(profile => (
+        { childProfileState.user && childProfileState.user.profiles ? ( childProfileState.user.profiles.map(profile => (
           <div className={classes.single}>
             <Card className={classes.card}>
               <CardActionArea
@@ -83,19 +83,19 @@ const ChooseProfilePage = () => {
               >
                 <CardContent className={classes.cardContent}>
                   <div className={classes.text}>
-                    <h2 className={classes.name}>{profile.name}</h2>
+                    <h2 className={classes.name}>{profile.first_name}</h2>
                   </div>
                   <div className={classes.flysize}>
                     <ProfileFly
-                      color={profile.color}
-                      accessory={profile.accessory}
+                      color={profile.avatar.color}
+                      accessory={profile.avatar.accessory}
                     />
                   </div>
                 </CardContent>
               </CardActionArea>
             </Card>
           </div>
-        ))}
+        ))) : (<div>Loading...</div>)}
       </div>
     </div>
   );
