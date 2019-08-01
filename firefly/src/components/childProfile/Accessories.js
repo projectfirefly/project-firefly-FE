@@ -23,6 +23,7 @@ const iconStyles = {
 
 const arrowWidth = {
     width: "7%",
+    cursor: "pointer"
 }
 
 const Accessories = props => {
