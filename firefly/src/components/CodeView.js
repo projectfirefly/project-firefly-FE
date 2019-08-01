@@ -6,7 +6,7 @@ import { reorderRows, reorder } from "./Reorder";
 import { CodeList } from "./CodeList";
 const stableId = generate();
 const codeBlockId = generate();
-const GameView = () => {
+const CodeView = () => {
   const [rows, setRows] = React.useState([
     { id: stableId, label: "stable", urls: [] },
     {
@@ -56,4 +56,4 @@ const GameView = () => {
     )
   );
 };
-export default GameView;
+export default CodeView;
