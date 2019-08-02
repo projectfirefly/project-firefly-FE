@@ -65,7 +65,7 @@ export default function ColorSlider(props) {
     }
 
     return (
-        <div style={{ width: '100%' }}>
+        <div style={{ width: '100%', height:'100%' }}>
             <div>
                 {sliderValue > -1 ?
                     <Slider classes={classes} value={sliderValue} max={360} onChange={commitChange} onChangeCommitted={commitChange} aria-label="Color slider" />

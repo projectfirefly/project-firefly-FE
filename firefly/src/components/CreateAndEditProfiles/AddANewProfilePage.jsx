@@ -2,6 +2,8 @@ import React, { useContext, useState } from "react";
 
 import createProfileStyles from "./CreateAndEditProfileStyles";
 
+import { addProfile } from "../../utils/firebaseInteractions";
+
 import { childContext } from "../../context/ChildProfiles/ChildProfileStore";
 import { ADD_PROFILE } from "../../context/ChildProfiles/ChildProfileStore";
 
@@ -15,21 +17,28 @@ const AddANewProfilePage = props => {
   const [childProfileState, dispatch] = useContext(childContext);
 
   const [updatedProfile, setUpdatedProfile] = useState({
-    name: "",
-    color: 61,
-    accessory: 0
+      first_name: "",
+      last_name: ""
   });
 
-  const handleChanges = e => {
+  const firstNameChanges = e => {
     setUpdatedProfile({
       ...updatedProfile,
-      name: e.target.value
+      first_name: e.target.value
+    });
+  };
+
+  const lastNameChanges = e => {
+    setUpdatedProfile({
+      ...updatedProfile,
+      last_name: e.target.value
     });
   };
 
   const saveProfile = () => {
-    dispatch({ type: ADD_PROFILE, payload: updatedProfile });
-    props.history.push("/account");
+    addProfile(ADD_PROFILE, updatedProfile, dispatch).then(() => {
+      props.history.push("/choose-profile");
+    });
   };
 
   return (
@@ -46,14 +55,20 @@ const AddANewProfilePage = props => {
               <input
                 type="text"
                 name="firstName"
-                value={updatedProfile.name}
-                onChange={handleChanges}
+                value={updatedProfile.first_name}
+                onChange={firstNameChanges}
                 className={classes.field}
               />
             </div>
             <div className={classes.lastName}>
               <h2 className={classes.h2}>Last Name</h2>
-              <input type="text" name="lastName" className={classes.field} />
+              <input
+                type="text"
+                name="lastName"
+                className={classes.field}
+                value={updatedProfile.last_name}
+                onChange={lastNameChanges}
+              />
             </div>
           </div>
         </div>

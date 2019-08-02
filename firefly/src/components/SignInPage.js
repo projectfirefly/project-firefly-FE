@@ -5,7 +5,6 @@ import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import * as Yup from "yup";
 import ApolloClient from "apollo-boost";
 import WearingNerdGlasses from "./../images/WearingNerdGlasses.png";
-import firebaseApp from "./FirebaseLogin";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 
@@ -17,13 +16,12 @@ const uiConfig = {
   signInOptions: [
     firebase.auth.GoogleAuthProvider.PROVIDER_ID,
     firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-    firebase.auth.EmailAuthProvider.PROVIDER_ID
   ],
   callbacks: {
     signInSuccess: currentUser => {
       localStorage.setItem("token", currentUser.idToken);
-    }
-  }
+    },
+  },
 };
 
 const SignInForm = ({ values, errors, touched }) => {
@@ -31,7 +29,7 @@ const SignInForm = ({ values, errors, touched }) => {
 
   return (
     <div className="sign-in-container">
-      <h1 className="sign-up-header"> Sign In</h1>
+      <h1 className="sign-in-header"> Sign In</h1>
 
       <div className="forms-container">
         <div className="forms-box">
@@ -77,7 +75,7 @@ const SignInForm = ({ values, errors, touched }) => {
           </Form>
         </div>
         <div>
-          <h2 className="sign-up-or">OR</h2>
+          <h2 className="sign-in-or">OR</h2>
         </div>
         <div className="forms-box">
           <StyledFirebaseAuth
@@ -99,7 +97,7 @@ const SignInPage = withFormik({
   mapPropsToValues({ email, password, persistence }) {
     return {
       email: email || "",
-      password: password || ""
+      password: password || "",
     };
   },
 
@@ -109,7 +107,7 @@ const SignInPage = withFormik({
       .required(),
     password: Yup.string()
       .min(8)
-      .required()
+      .required(),
   }),
 
   handleSubmit(values, { setSubmitting }) {
@@ -129,7 +127,7 @@ const SignInPage = withFormik({
       .catch(error => {
         console.log(error);
       });
-  }
+  },
 })(SignInForm);
 
 export default SignInPage;
