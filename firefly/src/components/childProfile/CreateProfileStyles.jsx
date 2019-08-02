@@ -14,72 +14,93 @@ const createProfileClasses = makeStyles({
     width: "80%"
   },
   header: {
-    fontSize: "2.6rem",
+    fontSize: "34px",
     letterSpacing: "7px",
     fontWeight: "900",
     color: "#5B4EFF",
     textTransform: "uppercase",
-    marginBottom: "4%"
+    marginBottom: "50px"
   },
   cardContainer: {
+    height: "445px",
     display: "flex",
     width: "100%",
-    justifyContent: "space-between"
+    justifyContent: "center"
   },
   card: {
-    backgroundColor: "#FFF",
+    backgroundColor: "#FFFFFF",
     border: "2px solid #ABB0BA",
     borderRadius: "10px",
     boxShadow: "0px 3px #8F96A3",
-    width: "50%",
+    width: "321px",
     "&.left": {
-      marginRight: "6%",
-      position: "relative",
-      width: "30%",
-      padding: "7% 3%"
+      display: "flex",
+      justifyContent: "center",
+      alignContent: "center",
+      margin: "0 76px 0 0"
     },
     "&.right": {
       padding: "3%"
     }
   },
-  accessory: {},
+firefly: {
+  display: "flex",
+  width: "264px",
+},
+  accessory: {
+    display: "flex",
+    flexDirection: "column",
+    height: "86px",
+    marginBottom: "60px"
+  },
   h2: {
-    fontSize: "28px",
-    fontWeight: "600",
+    fontSize: "16px",
+    fontWeight: "bold",
     margin: "3%",
+    marginBottom: "5px",
     "&.nickname": {
       color: "#52ab1a"
     }
   },
   input: {
-    fontSize: "22px",
+    fontSize: "18px",
     border: "none",
     background: "#e2f5d6",
     margin: "3%",
+    marginBottom: "57px",
     padding: "2%",
     borderRadius: "5px",
     width: "90%"
   },
+  sliderContainer: {
+    height: "77px"
+  },
   slider: {
-    margin: "0 4%"
+    margin: "0 4%",
+    height: "22px"
+
   },
   buttonContainer: {
     display: "flex",
-    marginTop: "3%",
-    marginBottom: "3%",
-    height: "5%",
-    width: "100%",
+    margin: "50px 3% 0",
     justifyContent: "space-between",
     alignItems: "center"
   },
-  a: { width: "25% " },
+  back: { 
+    width: "200px",
+   },
+  save: { 
+    width: "200px",
+   },
 
   button: {
+    display: "flex",
+    justifyContent: "center",
     fontSize: "16px",
     fontFamily: "'Nunito', sans-serif",
     borderRadius: "10px",
     boxShadow: "0px 3px #8F96A3",
-    width: "25%",
+    width: "200px",
     height: "44px",
     padding: "8px 0",
     "text-decoration": "none",
@@ -89,6 +110,7 @@ const createProfileClasses = makeStyles({
       width: "100%",
       background: "#fff",
       color: "#4aa810",
+      flexDirection: "flex-start",
       "&:active": {
         boxShadow: "none",
         marginTop: "3px",
@@ -101,6 +123,7 @@ const createProfileClasses = makeStyles({
       color: "#e2f5d6",
       border: "none",
       boxShadow: "0px 3px #3E8C0D",
+      flexDirection: "flex-end",
       "&:active": {
         boxShadow: "none",
         marginTop: "3px",
