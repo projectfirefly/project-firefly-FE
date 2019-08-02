@@ -17,7 +17,6 @@ const uiConfig = {
   signInOptions: [
     firebase.auth.GoogleAuthProvider.PROVIDER_ID,
     firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-    firebase.auth.EmailAuthProvider.PROVIDER_ID
   ],
   callbacks: {
     signInSuccess: currentUser => {
@@ -31,7 +30,7 @@ const SignInForm = ({ values, errors, touched }) => {
 
   return (
     <div className="sign-in-container">
-      <h1 className="sign-up-header"> Sign In</h1>
+      <h1 className="sign-in-header"> Sign In</h1>
 
       <div className="forms-container">
         <div className="forms-box">
@@ -77,7 +76,7 @@ const SignInForm = ({ values, errors, touched }) => {
           </Form>
         </div>
         <div>
-          <h2 className="sign-up-or">OR</h2>
+          <h2 className="sign-in-or">OR</h2>
         </div>
         <div className="forms-box">
           <StyledFirebaseAuth

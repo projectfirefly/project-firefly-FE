@@ -10,7 +10,18 @@
 .left {
   width: 100%;
 }
+.leftContainerOne {
+  // height: 251px;
+  margin-right: 10%;
+  margin-bottom: 53px;
+}
+.leftContainerTwo {
+  // height: 159px;
+  margin-right: 10%;
+  margin-bottom: 53px;
+}
 .leftContainer {
+  height: 131px;
   margin-right: 10%;
 }
 .header {
@@ -24,16 +35,20 @@
 }
 .sectionHeader {
   font-weight: bold;
-  font-size: 26px;
-  padding-bottom: 5%;
+  font-size: 21px;
+  padding-bottom: 21px;
 }
-
+.sectionHeaderRight {
+  font-weight: bold;
+  font-size: 21px;
+  padding-bottom: 18px;
+}
 .infoContainer {
   display: flex;
   margin-bottom: 20px;
 }
 .infoLabel {
-  font-size: 14px;
+  font-size: 16px;
   padding: 0;
 }
 .userInfo {
@@ -62,7 +77,7 @@
   height: 20%;
 }
 .fireflyIcon {
-  width: 80%;
+  width: 90%;
   align-items: center;
   justify-content: center;
 }
@@ -80,8 +95,8 @@ img {
 }
 .iconButton {
   display: flex;
-  width: 9%;
-  height: 35px;
+  width: 40px;
+  height: 40px;
   text-align: right;
   align-items: center;
   justify-content: center;
@@ -94,7 +109,16 @@ img {
   box-shadow: 0px 3px #8f96a3;
 }
 .button {
+  font-size: 16px;
+  text-align: center;
+  border-radius: 10px;
+  background-color: #4aa810;
+  box-shadow: 0px 3px #3e8c0d;
   margin-top: 40px;
+  color: #ffffff;
+  height: 44px;
+  letter-spacing: 1px;
+
   display: flex;
   align-items: center;
   justify-content: center;

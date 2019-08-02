@@ -1,7 +1,7 @@
 .registration-header{
     text-transform: uppercase;
     text-align: center;
-    font-size: 2.6rem;
+    font-size: 34px;
     letter-spacing: 7px;
     font-weight:900;
     color: #5B4EFF; 
@@ -38,7 +38,7 @@
 }
 
 .registration-forms-box{
-    width: 65%;
+    width: 714px !important;
     display: flex;
     flex-direction: column;  
     justify-content: center;
@@ -51,8 +51,8 @@
         display:flex;
         justify-content: center;
         width: 80%;
-        height: 50px;
-        font-size: 1.4rem;
+        height: 44px !important;
+        font-size: 16px !important;
         color: #2e3238;
         padding-left: 1%;
         letter-spacing:1px;
@@ -74,7 +74,7 @@
         display:flex;
         justify-content: center;
         width: 89%;
-        height: 50px;
+        height: 44px !important;
         font-size: 1.4rem;
         color: #2e3238;
         padding-left: 1%;
@@ -156,7 +156,7 @@
     text-transform: uppercase;
     align-self: flex-start;
     margin-left: 5%;
-    font-size: 1rem;
+    font-size: 16px;
     font-weight: 600;
     letter-spacing: 2px;
     margin-bottom:3px;
@@ -164,10 +164,10 @@
  }
 
 .registration-buttons{
-    width:65%;
+    width: 714px !important;
     display:flex;
     justify-content:space-between;
-    margin: 20px 0px;
+    margin-top: 23px !important;
 
     &__back{
         background-color: #FFF;

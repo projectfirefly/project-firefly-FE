@@ -10,13 +10,15 @@ import Icon from "../../assets/icons";
 import ProfileFly from "../../assets/icons/ProfileFly";
 import { SecondaryButton } from "../SecondaryButton";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles({
   root: {
     display: "flex",
     flexDirection: "column",
-    width: "98vw",
+    width: "100%",
+    // height: "623px",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    padding: "0"
   },
   header: {
     color: "#5B4EFF",
@@ -29,26 +31,25 @@ const useStyles = makeStyles(theme => ({
   mainBody: {
     display: "flex",
     width: "100%",
-    height: "60%",
-    marginTop: "5.25%"
+    // height: "60%",
+    marginTop: "50px"
   },
   leftParent: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     width: "50%",
-    height: "460px"
   },
   leftContainer: {
-    width: "70%",
-    height: "80%",
+    width: "321px",
+    height: "445px",
     background: "white",
     borderRadius: "20px",
     boxShadow: "0px 2px 4px #000000"
   },
   fireflyContainer: {
-    width: "98%",
-    height: "80%",
+    width: "264px",
+    margin: "0 auto",
     display: "flex",
     textAlign: "center",
     alignItems: "center",
@@ -61,16 +62,18 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    width: "47%"
+    alignContent: "space-between",
+    width: "47%",
+    height: "445px"
   },
   rightCards: {
-    width: "80%",
-    height: "150px",
+    width: "473px",
+    height: "200px",
     border: "solid #ABB0BA 2px",
     borderRadius: "10px",
     backgroundColor: "#FFFFFF",
     boxShadow: "0px 3px #8F96A3",
-    marginBottom: "55px",
+    marginBottom: "45px",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
@@ -90,6 +93,7 @@ const useStyles = makeStyles(theme => ({
     width: "15%"
   },
   bottomCard: {
+    margin: "0",
     "&:active": {
       boxShadow: "none",
       marginTop: "3px",
@@ -97,8 +101,32 @@ const useStyles = makeStyles(theme => ({
     }
   },
   chooseFirefly: {
-    width: "70%",
-    marginTop: "10%"
+    width: "321px",
+    height: "44px",
+    textAlign: "center",
+    border: "solid #ABB0BA 2px",
+    borderRadius: "10px",
+    backgroundColor: "#FFFFFF",
+    boxShadow: "0px 3px #8F96A3",
+    marginTop: "50px",
+    fontSize: "16px",
+    fontWeight: "bold",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    textTransform: "uppercase",
+    "&:active": {
+      boxShadow: "none",
+      marginTop: "47px",
+      marginBottom: "-3px"
+    }
+
+  },
+  chooseFireflyContent:{
+    display: "flex",
+    height: "40px",
+    justifyContent: "center",
+    alignItems: "center",
   },
 
   pushRight: {
@@ -107,23 +135,28 @@ const useStyles = makeStyles(theme => ({
     justifyContent: "flex-end"
   },
   edit: {
+    display: "flex",
+    width: "22px",
+    height: "21px",
     color: "#4AA810",
-    marginLeft: "3px"
+    marginLeft: "3px",
+    alignItems: "center",
+    justifyContent: "center",
   },
   editContainer: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    width: "34px",
-    height: "30px",
+    width: "44px",
+    height: "44px",
     border: "solid #ABB0BA 2px",
     borderRadius: "10px",
     boxShadow: "0px 3px #8F96A3",
-    margin: "10px",
+    margin: "25px 25px 0 0",
     "&:active": {
       boxShadow: "none",
-      marginTop: "13px",
+      marginTop: "28px",
       marginBottom: "-3px"
     }
   },
@@ -131,9 +164,11 @@ const useStyles = makeStyles(theme => ({
     textAlign: "center",
     color: "#152F04",
     fontWeight: "bold",
-    fontSize: "18px"
+    fontSize: "21px",
+    letterSpacing: "-0.28px",
+    lineHeight: "28px",
   }
-}));
+});
 
 export default function MyFireflyPage() {
   const classes = useStyles();
@@ -181,8 +216,14 @@ export default function MyFireflyPage() {
               </div>
             </div>
 
-            <Link className={classes.chooseFirefly} to="/choose-profile">
-              <SecondaryButton text={"CHOOSE FIREFLY"} />
+
+            <Link
+              className={classes.chooseFirefly}
+              style={{ color: "#4AA810", textDecoration: "none" }}
+              to="/choose-profile"
+            >
+              <div className={classes.chooseFireflyContent}>Choose Firefly</div>
+
             </Link>
           </div>
 

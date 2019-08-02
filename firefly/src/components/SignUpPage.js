@@ -62,69 +62,69 @@ const RegisterForm = ({ values, errors, touched }) => {
     <div className="sign-up-container">
       <h1 className="sign-up-header"> Sign Up</h1>
 
-      <div className="forms-container">
-        <div className="forms-box">
-          <Form className="forms-box__formik">
-            <div className="forms-field">
-              <h2 className="forms-field-title">Email</h2>
-              <Field type="email" name="email" className="forms-box__field" />
+      <div className="sign-up-forms-container">
+        <div className="sign-up-forms-box">
+          <Form className="sign-up-forms-box__formik">
+            <div className="sign-up-forms-field">
+              <h2 className="sign-up-forms-field-title">Email</h2>
+              <Field type="email" name="email" className="sign-up-forms-box__field" />
               {touched.email && errors.email && (
-                <p className="error">{errors.email}</p>
+                <p className="sign-up-error">{errors.email}</p>
               )}
             </div>
-            <div className="forms-field">
-              <h2 className="forms-field-title">Password</h2>
-              <div className="eye-stacking">
+            <div className="sign-up-forms-field">
+              <h2 className="sign-up-forms-field-title">Password</h2>
+              <div className="sign-up-eye-stacking">
                 <Field
                   type={eyeClicked ? "text" : "password"}
                   name="password"
-                  className="forms-box__field"
+                  className="sign-up-forms-box__field"
                 />
                 <FontAwesomeIcon
-                  className="eye-icon"
+                  className="sign-up-eye-icon"
                   icon={faEye}
                   onClick={() => setEyeClicked(!eyeClicked)}
                 />
               </div>
               {touched.password && errors.password && (
-                <p className="error">{errors.password}</p>
+                <p className="sign-up-error">{errors.password}</p>
               )}
             </div>
-            <div className="forms-field">
-              <h2 className="forms-field-title">Confirm Password</h2>
-              <div className="eye-stacking">
+            <div className="sign-up-forms-field">
+              <h2 className="sign-up-forms-field-title">Confirm Password</h2>
+              <div className="sign-up-eye-stacking">
                 <Field
                   type={eyeClicked ? "text" : "password"}
                   name="passwordConfirm"
-                  className="forms-box__field"
+                  className="sign-up-forms-box__field"
                 />
                 <FontAwesomeIcon
-                  className="eye-icon"
+                  className="sign-up-eye-icon"
                   icon={faEye}
                   onClick={() => setEyeClicked(!eyeClicked)}
                 />
               </div>
               {touched.passwordConfirm &&
                 values.password !== values.passwordConfirm && (
-                  <p className="error">Passwords do not match</p>
+                  <p className="sign-up-error">Passwords do not match</p>
                 )}
             </div>
-            <div className="checkbox-terms">
-              <label className="checkbox-container">
+            <div className="sign-up-checkbox-terms">
+              <label className="sign-up-checkbox-container">
                 <Field type="checkbox" name="terms" />
-                <span class="checkmark" />
+                <span class="sign-up-checkmark" />
               </label>
-              <p className="checkbox-terms__terms-text">
+              <p className="sign-up-checkbox-terms__terms-text">
                 I agree to the{" "}
-                <a href="google.com" className="link">
+                <a href="google.com" className="sign-up-link">
                   Terms and Conditions
                 </a>
               </p>
             </div>
-            <button type="submit" className="forms-box__formik-button">
+            <button type="submit" className="sign-up-forms-box__formik-button">
               Sign Up
             </button>
-            <a href="/sign-in" className=" link switch-account">
+            <a href="/sign-in" className="sign-up-link switch-account">
               I already have an account
             </a>
           </Form>
@@ -132,15 +132,15 @@ const RegisterForm = ({ values, errors, touched }) => {
         <div>
           <h2 className="sign-up-or">OR</h2>
         </div>
-        <div className="forms-box">
-          <StyledFirebaseAuth
+        <div className="sign-up-forms-box">
+          <StyledFirebaseAuth 
             uiConfig={uiConfig}
             firebaseAuth={firebase.auth()}
           />
           <img
             src={WearingNerdGlasses}
             alt="firefly-nerd"
-            className="firefly-nerd"
+            className="sign-up-firefly-nerd"
           />
         </div>
       </div>
