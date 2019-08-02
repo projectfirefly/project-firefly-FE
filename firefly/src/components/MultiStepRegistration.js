@@ -10,11 +10,15 @@ import CustomStepper from "./Steppers/CustomStepper";
 const MultiStepRegistration = () => {
 
     const classes = makeStyles(theme => ({
+      app: {
+
+      },
         root: {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
+            height: "623px"
         },
         second: {
             display: "flex",

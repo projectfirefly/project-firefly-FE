@@ -86,13 +86,12 @@ firefly: {
     justifyContent: "space-between",
     alignItems: "center"
   },
-  back: { 
-    width: "200px",
-   },
-  save: { 
-    width: "200px",
-   },
 
+   a: {
+    width: "200px",
+    'text-decoration': "none"
+   },
+   
   button: {
     display: "flex",
     justifyContent: "center",
@@ -103,14 +102,13 @@ firefly: {
     width: "200px",
     height: "44px",
     padding: "8px 0",
-    "text-decoration": "none",
+    'text-decoration': "none",
     letterSpacing: "1px",
 
     "&.back": {
       width: "100%",
       background: "#fff",
       color: "#4aa810",
-      flexDirection: "flex-start",
       "&:active": {
         boxShadow: "none",
         marginTop: "3px",
@@ -123,7 +121,6 @@ firefly: {
       color: "#e2f5d6",
       border: "none",
       boxShadow: "0px 3px #3E8C0D",
-      flexDirection: "flex-end",
       "&:active": {
         boxShadow: "none",
         marginTop: "3px",
