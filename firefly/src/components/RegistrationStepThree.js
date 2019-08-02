@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import ApolloClient from "apollo-boost";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -7,7 +7,16 @@ import { faArrowUp, faArrowDown } from "@fortawesome/free-solid-svg-icons";
 import TutorialOne from "./../images/Step3Tutorial-1.png";
 import TutorialTwo from "./../images/Step3Tutorial-2.png";
 
+//Context
+import {
+  UPDATE_USER,
+  ADD_PROFILE,
+  childContext
+} from "../context/ChildProfiles/ChildProfileStore";
+import { updateUser, addProfile } from "../utils/firebaseInteractions";
+
 import "../styles/RegistrationStepThree.scss";
+import { set } from "react-ga";
 
 library.add(faArrowUp, faArrowDown);
 
@@ -16,8 +25,52 @@ const RegistrationStepThree = ({
   errors,
   touched,
   step,
-  updateStep
+  updateStep,
+  info,
+  profiles
 }) => {
+  const [childProfileState, dispatch] = useContext(childContext);
+  const [finishedLoading, setFinishedLoading] = useState(false);
+
+  const [updatedUser, setUpdatedUser] = useState({
+    first_name: "",
+    last_name: "",
+    information: {
+      city: "",
+      address: "",
+      state: "",
+      zip: ""
+    }
+  });
+
+  useEffect(() => {
+    if (childProfileState.loaded && !finishedLoading) {
+      setUpdatedUser(childProfileState.user);
+      setFinishedLoading(true);
+    }
+  }, [childProfileState]);
+
+  const sendUserInfo = info => {
+    const newUpdatedUser = {
+      ...updatedUser,
+      first_name: info.firstName,
+      last_name: info.lastName,
+      information: {
+        ...updatedUser.information,
+        address: info.address,
+        city: info.city,
+        state: info.state,
+        zip: info.zipCode
+      }
+    };
+    updateUser(UPDATE_USER, newUpdatedUser, dispatch);
+  };
+
+  const addProfiles = profiles => {
+    console.log("profiles:", profiles);
+    profiles.map(profile => addProfile(ADD_PROFILE, profile, dispatch));
+  };
+
   return (
     <div className="registration-container">
       <div className="registration-forms-container">
@@ -90,14 +143,15 @@ const RegistrationStepThree = ({
             BACK
           </button>
 
-          <a href="/account" className="a-tag">
-            <button
-              className="registration-buttons__next my-account"
-              onClick={() => updateStep("add")}
-            >
-              MY ACCOUNT
-            </button>
-          </a>
+          <button
+            className="registration-buttons__next"
+            onClick={() => {
+              sendUserInfo(info);
+              addProfiles(profiles);
+            }}
+          >
+            Finish
+          </button>
         </div>
       </div>
     </div>

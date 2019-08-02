@@ -28,22 +28,22 @@ const uiConfig = {
   signInOptions: [
     firebase.auth.GoogleAuthProvider.PROVIDER_ID,
     firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-    firebase.auth.EmailAuthProvider.PROVIDER_ID
+    firebase.auth.EmailAuthProvider.PROVIDER_ID,
   ],
   callbacks: {
     signInSuccess: currentUser => {
       localStorage.setItem("token", currentUser.idToken);
       const client = new ApolloClient({
-        uri: "http://localhost:3300"
+        uri: "http://localhost:3300",
       });
       const newUser = {
         email: currentUser.email,
-        username: currentUser.email
+        username: currentUser.email,
       };
       client
         .mutate({
           mutation: ADD_USER,
-          variables: { input: newUser }
+          variables: { input: newUser },
         })
         .then(res => {
           console.log(res.data);
@@ -51,8 +51,8 @@ const uiConfig = {
         .catch(err => {
           console.log(err);
         });
-    }
-  }
+    },
+  },
 };
 
 const RegisterForm = ({ values, errors, touched }) => {
@@ -67,7 +67,11 @@ const RegisterForm = ({ values, errors, touched }) => {
           <Form className="sign-up-forms-box__formik">
             <div className="sign-up-forms-field">
               <h2 className="sign-up-forms-field-title">Email</h2>
-              <Field type="email" name="email" className="sign-up-forms-box__field" />
+              <Field
+                type="email"
+                name="email"
+                className="sign-up-forms-box__field"
+              />
               {touched.email && errors.email && (
                 <p className="sign-up-error">{errors.email}</p>
               )}
@@ -133,7 +137,7 @@ const RegisterForm = ({ values, errors, touched }) => {
           <h2 className="sign-up-or">OR</h2>
         </div>
         <div className="sign-up-forms-box">
-          <StyledFirebaseAuth 
+          <StyledFirebaseAuth
             uiConfig={uiConfig}
             firebaseAuth={firebase.auth()}
           />
@@ -153,7 +157,7 @@ const SignUpPage = withFormik({
     return {
       email: email || "",
       password: password || "",
-      passwordConfirm: passwordConfirm || ""
+      passwordConfirm: passwordConfirm || "",
     };
   },
 
@@ -163,12 +167,12 @@ const SignUpPage = withFormik({
       .required(),
     password: Yup.string()
       .min(8)
-      .required()
+      .required(),
   }),
 
   handleSubmit(values, { setSubmitting }) {
     const client = new ApolloClient({
-      uri: "http://localhost:3300"
+      uri: "http://localhost:3300",
     });
     const email = values.email;
     const password = values.password;
@@ -182,12 +186,12 @@ const SignUpPage = withFormik({
         .then(res => {
           const newUser = {
             email: email,
-            username: email
+            username: email,
           };
           client
             .mutate({
               mutation: ADD_USER,
-              variables: { input: newUser }
+              variables: { input: newUser },
             })
             .then(res => {
               console.log(res.data);
@@ -201,7 +205,7 @@ const SignUpPage = withFormik({
           console.log(err);
         });
     }
-  }
+  },
 })(RegisterForm);
 
 export default SignUpPage;

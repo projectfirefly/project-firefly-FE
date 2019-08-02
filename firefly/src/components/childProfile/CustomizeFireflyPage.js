@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 
 //Context
 import { childContext } from "../../context/ChildProfiles/ChildProfileStore";
@@ -20,80 +20,95 @@ export default function CustomizeFireflyPage() {
 
   const [childProfileState, dispatch] = useContext(childContext);
 
-  const [currentProfile] = childProfileState.profiles.filter(profile => {
-    if (childProfileState.selected.id === profile.id) {
-      return true;
-    } else {
-      return false;
-    }
-  });
-
-  const [updatedProfile, setUpdatedProfile] = useState(currentProfile);
+  const [updatedProfile, setUpdatedProfile] = useState();
 
   const updateColor = newColor => {
-    setUpdatedProfile({ ...updatedProfile, color: newColor });
+    const newAvatar = { ...updatedProfile.avatar, color: newColor };
+    setUpdatedProfile({ ...updatedProfile, avatar: newAvatar });
   };
+
+  useEffect(() => {
+    if (childProfileState.loaded && childProfileState.hasProfiles) {
+      const [currentProfile] = childProfileState.user.profiles.filter(
+        profile => {
+          if (childProfileState.selected.id === profile.id) {
+            return true;
+          } else {
+            return false;
+          }
+        }
+      );
+      setUpdatedProfile(currentProfile);
+    }
+  }, [childProfileState]);
 
   const saveProfile = () => {
     dispatch({ type: UPDATE_PROFILE, payload: updatedProfile });
   };
 
   const accessoryChange = i => {
-    setUpdatedProfile({ ...updatedProfile, accessory: i });
-    console.log(updatedProfile.accessory);
+    const newAvatar = { ...updatedProfile.avatar, accessory: i };
+    setUpdatedProfile({ ...updatedProfile, avatar: newAvatar });
   };
 
   const handleChange = e => {
     setUpdatedProfile({
       ...updatedProfile,
-      name: e.target.value
+      avatar: {
+        ...updatedProfile.avatar,
+        nickname: e.target.value,
+      },
     });
   };
 
-  return (
-    <div className={classes.rootContainer}>
-      <h1 className={classes.header}>Customize Your Firefly</h1>
+  if (
+    childProfileState.loaded &&
+    childProfileState.hasProfiles &&
+    updatedProfile
+  ) {
+    return (
+      <div className={classes.rootContainer}>
+        <h1 className={classes.header}>Customize Your Firefly</h1>
 
-      <div className={classes.sizingContainer}>
-        <div className={classes.cardContainer}>
-          <div className={classes.card + " left"}>
-            <div className={classes.firefly}>
+        <div className={classes.sizingContainer}>
+          <div className={classes.cardContainer}>
+            <div className={classes.card + " left"}>
               <Icon
                 name="Firefly"
                 width={"100%"}
                 viewBox={"0 0 1024 1024"}
-                accessory={updatedProfile.accessory}
-                lighttopFill={`hsl(${updatedProfile.color},100%,35%)`}
-                lightmidFill={`hsl(${updatedProfile.color},100%,45%)`}
-                lightbottomFill={`hsl(${updatedProfile.color},100%,55%)`}
-                shineStroke={`hsl(${updatedProfile.color},100%,55%)`}
+                accessory={updatedProfile.avatar.accessory}
+                lighttopFill={`hsl(${updatedProfile.avatar.color},100%,35%)`}
+                lightmidFill={`hsl(${updatedProfile.avatar.color},100%,45%)`}
+                lightbottomFill={`hsl(${updatedProfile.avatar.color},100%,55%)`}
+                shineStroke={`hsl(${updatedProfile.avatar.color},100%,55%)`}
               />
             </div>
-          </div>
-          <div className={classes.card + " right"}>
-            <div style={{}}>
-              <h2 className={classes.h2 + " nickname"}>NICKNAME</h2>
-            </div>
-            <input
-              className={classes.input}
-              type="text"
-              value={updatedProfile.name}
-              onChange={handleChange}
-            />
-            <div className={classes.accessory}>
-              <h2 className={classes.h2}>Accessories</h2>
-              <Accessories
-                accessory={updatedProfile.accessory}
-                accessoryChange={accessoryChange}
+            <div className={classes.card + " right"}>
+              <div style={{}}>
+                <h2 className={classes.h2 + " nickname"}>NICKNAME</h2>
+              </div>
+              <input
+                className={classes.input}
+                type="text"
+                value={updatedProfile.avatar.nickname}
+                onChange={handleChange}
               />
-            </div>
-            <div className={classes.sliderContainer}>
-              <h2 className={classes.h2}>Light Color</h2>
-              <div className={classes.slider}>
-                <ColorSlider
-                  value={updatedProfile.color}
-                  updateColor={updateColor}
+              <div>
+                <h2 className={classes.h2}>Accessories</h2>
+                <Accessories
+                  accessory={updatedProfile.avatar.accessory}
+                  accessoryChange={accessoryChange}
                 />
+              </div>
+              <div>
+                <h2 className={classes.h2}>Light Color</h2>
+                <div className={classes.slider}>
+                  <ColorSlider
+                    value={updatedProfile.avatar.color}
+                    updateColor={updateColor}
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -111,6 +126,8 @@ export default function CustomizeFireflyPage() {
           </a>
         </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    return <>Loading...</>;
+  }
 }

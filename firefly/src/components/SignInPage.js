@@ -5,7 +5,6 @@ import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import * as Yup from "yup";
 import ApolloClient from "apollo-boost";
 import WearingNerdGlasses from "./../images/WearingNerdGlasses.png";
-import firebaseApp from "./FirebaseLogin";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 
@@ -21,8 +20,8 @@ const uiConfig = {
   callbacks: {
     signInSuccess: currentUser => {
       localStorage.setItem("token", currentUser.idToken);
-    }
-  }
+    },
+  },
 };
 
 const SignInForm = ({ values, errors, touched }) => {
@@ -98,7 +97,7 @@ const SignInPage = withFormik({
   mapPropsToValues({ email, password, persistence }) {
     return {
       email: email || "",
-      password: password || ""
+      password: password || "",
     };
   },
 
@@ -108,7 +107,7 @@ const SignInPage = withFormik({
       .required(),
     password: Yup.string()
       .min(8)
-      .required()
+      .required(),
   }),
 
   handleSubmit(values, { setSubmitting }) {
@@ -128,7 +127,7 @@ const SignInPage = withFormik({
       .catch(error => {
         console.log(error);
       });
-  }
+  },
 })(SignInForm);
 
 export default SignInPage;

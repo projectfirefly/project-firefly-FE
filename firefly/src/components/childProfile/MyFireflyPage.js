@@ -26,7 +26,7 @@ const useStyles = makeStyles({
     letterSpacing: "7px",
     fontWeight: "900",
     textTransform: "uppercase",
-    fontFamily: "nunito"
+    fontFamily: "nunito",
   },
   mainBody: {
     display: "flex",
@@ -45,7 +45,7 @@ const useStyles = makeStyles({
     height: "445px",
     background: "white",
     borderRadius: "20px",
-    boxShadow: "0px 2px 4px #000000"
+    boxShadow: "0px 2px 4px #000000",
   },
   fireflyContainer: {
     width: "264px",
@@ -53,10 +53,10 @@ const useStyles = makeStyles({
     display: "flex",
     textAlign: "center",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   firefly: {
-    width: "62%"
+    width: "62%",
   },
   rightContainer: {
     display: "flex",
@@ -77,28 +77,28 @@ const useStyles = makeStyles({
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
   },
   rightCardContent: {
     display: "flex",
     justifyContent: "space-between",
-    alignItems: "center"
+    alignItems: "center",
   },
   rightCardsText: {
     color: "#5B4EFF",
     fontSize: "24px",
-    fontWeight: "700"
+    fontWeight: "700",
   },
   rightCardsImg: {
-    width: "15%"
+    width: "15%",
   },
   bottomCard: {
     margin: "0",
     "&:active": {
       boxShadow: "none",
       marginTop: "3px",
-      marginBottom: "-3px"
-    }
+      marginBottom: "-3px",
+    },
   },
   chooseFirefly: {
     width: "321px",
@@ -132,7 +132,7 @@ const useStyles = makeStyles({
   pushRight: {
     width: "100%",
     display: "flex",
-    justifyContent: "flex-end"
+    justifyContent: "flex-end",
   },
   edit: {
     display: "flex",
@@ -175,7 +175,7 @@ export default function MyFireflyPage() {
 
   const [childProfileState, dispatch] = useContext(childContext);
 
-  const [currentProfile] = childProfileState.profiles.filter(profile => {
+  const [currentProfile] = childProfileState.user.profiles.filter(profile => {
     if (childProfileState.selected.id === profile.id) {
       return true;
     } else {
@@ -183,8 +183,9 @@ export default function MyFireflyPage() {
     }
   });
 
-  return (
-    <React.Fragment>
+  if (childProfileState.loaded && childProfileState.hasProfiles) {
+    return (
+      <React.Fragment>
       <Container className={classes.root} component="div">
         <h1 className={classes.header}>My Firefly</h1>
 
@@ -202,7 +203,7 @@ export default function MyFireflyPage() {
                   </div>
                 </Link>
               </div>
-              <h3 className={classes.username}>{currentProfile.name}</h3>
+              <h3 className={classes.username}>{currentProfile.avatar.name}</h3>
               <div className={classes.fireflyContainer}>
                 {/* <img
                   className={classes.firefly}
@@ -210,8 +211,8 @@ export default function MyFireflyPage() {
                   alt="users profile"
                 /> */}
                 <ProfileFly
-                  color={currentProfile.color}
-                  accessory={currentProfile.accessory}
+                  color={currentProfile.avatar.color}
+                  accessory={currentProfile.avatar.accessory}
                 />
               </div>
             </div>
@@ -259,5 +260,8 @@ export default function MyFireflyPage() {
         </div>
       </Container>
     </React.Fragment>
-  );
+    );
+  } else {
+    return <>Loading...</>;
+  }
 }
