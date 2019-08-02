@@ -178,19 +178,19 @@ export default function MyFireflyPage() {
 
   useEffect(() => {
     if (childProfileState.loaded && childProfileState.hasProfiles) {
-      setCurrentProfile(
-        childProfileState.user.profiles.filter(profile => {
-          if (childProfileState.selected.id === profile.id) {
-            return true;
-          } else {
-            return false;
-          }
-        })
-      );
+      const [destructuredProfile] = childProfileState.user.profiles.filter(profile => {
+        if (childProfileState.selected.id === profile.id) {
+          return true;
+        } else {
+          return false;
+        }
+      })
+      console.log(destructuredProfile);
+      setCurrentProfile(destructuredProfile);
     }
   }, [childProfileState]);
 
-  if (childProfileState.loaded && childProfileState.hasProfiles) {
+  if (childProfileState.loaded && childProfileState.hasProfiles && currentProfile) {
     return (
       <React.Fragment>
         <Container className={classes.root} component="div">
