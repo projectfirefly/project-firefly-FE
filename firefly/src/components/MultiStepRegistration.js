@@ -101,7 +101,12 @@ const MultiStepRegistration = () => {
       <h1 className="registration-header">Step 3: How it Works</h1>
       <CustomStepper activeStep={step} />
       <div className={classes.wrapper}>
-        <RegistrationStepThree step={step} updateStep={updateStep} />
+        <RegistrationStepThree
+          step={step}
+          updateStep={updateStep}
+          profiles={profiles}
+          info={info}
+        />
       </div>
     </div>
   );
