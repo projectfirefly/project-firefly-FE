@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { childContext } from "../../context/ChildProfiles/ChildProfileStore";
 import { Link } from "react-router-dom";
 import Container from "@material-ui/core/Container";
@@ -18,7 +18,7 @@ const useStyles = makeStyles({
     // height: "623px",
     alignItems: "center",
     justifyContent: "center",
-    padding: "0"
+    padding: "0",
   },
   header: {
     color: "#5B4EFF",
@@ -32,7 +32,7 @@ const useStyles = makeStyles({
     display: "flex",
     width: "100%",
     // height: "60%",
-    marginTop: "50px"
+    marginTop: "50px",
   },
   leftParent: {
     display: "flex",
@@ -64,7 +64,7 @@ const useStyles = makeStyles({
     alignItems: "center",
     alignContent: "space-between",
     width: "47%",
-    height: "445px"
+    height: "445px",
   },
   rightCards: {
     width: "473px",
@@ -118,11 +118,10 @@ const useStyles = makeStyles({
     "&:active": {
       boxShadow: "none",
       marginTop: "47px",
-      marginBottom: "-3px"
-    }
-
+      marginBottom: "-3px",
+    },
   },
-  chooseFireflyContent:{
+  chooseFireflyContent: {
     display: "flex",
     height: "40px",
     justifyContent: "center",
@@ -157,8 +156,8 @@ const useStyles = makeStyles({
     "&:active": {
       boxShadow: "none",
       marginTop: "28px",
-      marginBottom: "-3px"
-    }
+      marginBottom: "-3px",
+    },
   },
   username: {
     textAlign: "center",
@@ -167,7 +166,7 @@ const useStyles = makeStyles({
     fontSize: "21px",
     letterSpacing: "-0.28px",
     lineHeight: "28px",
-  }
+  },
 });
 
 export default function MyFireflyPage() {
@@ -175,91 +174,101 @@ export default function MyFireflyPage() {
 
   const [childProfileState, dispatch] = useContext(childContext);
 
-  const [currentProfile] = childProfileState.user.profiles.filter(profile => {
-    if (childProfileState.selected.id === profile.id) {
-      return true;
-    } else {
-      return false;
+  const [currentProfile, setCurrentProfile] = useState();
+
+  useEffect(() => {
+    if (childProfileState.loaded && childProfileState.hasProfiles) {
+      setCurrentProfile(
+        childProfileState.user.profiles.filter(profile => {
+          if (childProfileState.selected.id === profile.id) {
+            return true;
+          } else {
+            return false;
+          }
+        })
+      );
     }
-  });
+  }, [childProfileState]);
 
   if (childProfileState.loaded && childProfileState.hasProfiles) {
     return (
       <React.Fragment>
-      <Container className={classes.root} component="div">
-        <h1 className={classes.header}>My Firefly</h1>
+        <Container className={classes.root} component="div">
+          <h1 className={classes.header}>My Firefly</h1>
 
-        <div className={classes.mainBody}>
-          <div className={classes.leftParent}>
-            {/* this div has invisible margins to keep container center */}
+          <div className={classes.mainBody}>
+            <div className={classes.leftParent}>
+              {/* this div has invisible margins to keep container center */}
 
-            <div className={classes.leftContainer}>
-              <div className={classes.pushRight}>
-                <Link className={classes.editContainer} to="/customize">
-                  <div>
-                    <div className={classes.edit}>
-                      <FaPen style={{ marginRight: "5px" }} />
+              <div className={classes.leftContainer}>
+                <div className={classes.pushRight}>
+                  <Link className={classes.editContainer} to="/customize">
+                    <div>
+                      <div className={classes.edit}>
+                        <FaPen style={{ marginRight: "5px" }} />
+                      </div>
                     </div>
-                  </div>
-                </Link>
-              </div>
-              <h3 className={classes.username}>{currentProfile.avatar.name}</h3>
-              <div className={classes.fireflyContainer}>
-                {/* <img
+                  </Link>
+                </div>
+                <h3 className={classes.username}>
+                  {currentProfile.avatar.name}
+                </h3>
+                <div className={classes.fireflyContainer}>
+                  {/* <img
                   className={classes.firefly}
                   src={image1}
                   alt="users profile"
                 /> */}
-                <ProfileFly
-                  color={currentProfile.avatar.color}
-                  accessory={currentProfile.avatar.accessory}
-                />
+                  <ProfileFly
+                    color={currentProfile.avatar.color}
+                    accessory={currentProfile.avatar.accessory}
+                  />
+                </div>
               </div>
+
+              <Link
+                className={classes.chooseFirefly}
+                style={{ color: "#4AA810", textDecoration: "none" }}
+                to="/choose-profile"
+              >
+                <div className={classes.chooseFireflyContent}>
+                  Choose Firefly
+                </div>
+              </Link>
             </div>
 
-
-            <Link
-              className={classes.chooseFirefly}
-              style={{ color: "#4AA810", textDecoration: "none" }}
-              to="/choose-profile"
-            >
-              <div className={classes.chooseFireflyContent}>Choose Firefly</div>
-
-            </Link>
-          </div>
-
-          <div className={classes.rightContainer}>
-            <div className={classes.rightCards}>
-              <div className={classes.rightCardContent}>
-                <img
-                  className={classes.rightCardsImg}
-                  src={Book}
-                  alt={"A book"}
-                />
-                <h4 className={classes.rightCardsText}>Learn How to Play</h4>
-              </div>
-            </div>
-
-            <Link
-              className={`${classes.rightCards} ${classes.bottomCard}`}
-              style={{ textDecoration: "none" }}
-              to="/startgame"
-            >
-              <div>
+            <div className={classes.rightContainer}>
+              <div className={classes.rightCards}>
                 <div className={classes.rightCardContent}>
                   <img
                     className={classes.rightCardsImg}
-                    src={Stars}
-                    alt={"three stars"}
+                    src={Book}
+                    alt={"A book"}
                   />
-                  <h4 className={classes.rightCardsText}>Start Playing</h4>{" "}
+                  <h4 className={classes.rightCardsText}>Learn How to Play</h4>
                 </div>
               </div>
-            </Link>
+
+              <Link
+                className={`${classes.rightCards} ${classes.bottomCard}`}
+                style={{ textDecoration: "none" }}
+                to="/startgame"
+              >
+                <div>
+                  <div className={classes.rightCardContent}>
+                    <img
+                      className={classes.rightCardsImg}
+                      src={Stars}
+                      alt={"three stars"}
+                    />
+                    <h4 className={classes.rightCardsText}>Start Playing</h4>{" "}
+                  </div>
+                </div>
+              </Link>
+            </div>
           </div>
-        </div>
-      </Container>
-    </React.Fragment>
+        </Container>
+      </React.Fragment>
     );
   } else {
     return <>Loading...</>;
