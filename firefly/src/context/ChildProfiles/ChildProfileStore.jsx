@@ -8,6 +8,7 @@ const initialState = {
     id: "0",
   },
   loaded: false,
+  hasProfiles: false,
 };
 
 export const UPDATE_SELECTED = "UPDATE_SELECTED";
@@ -17,13 +18,26 @@ export const ADD_PROFILE = "ADD_PROFILE";
 export const GET_PROFILES_AND_AVATARS = "GET_PROFILES_AND_AVATARS";
 export const GET_USER_INFO = "GET_USER_INFO"
 export const UPDATE_USER = "UPDATE_USER";
+export const SET_LOADED = "SET_LOADED";
+export const GET_USER = "GET_USER";
+export const SET_HAS_PROFILES = "SET_HAS_PROFILES";
 
 function reducer(state, action) {
   const db = firebase.firestore();
   const uid = firebase.auth().currentUser.uid;
   switch (action.type) {
-    case GET_USER_INFO:
+    case GET_USER:
       return { ...state, user: action.payload }
+    case SET_HAS_PROFILES:
+      return { ...state, hasProfiles: true };
+    case GET_USER_INFO:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          information: action.payload
+        }
+      }
     case GET_PROFILES_AND_AVATARS:
       var newProfiles;
       if (state.user.profiles) {
@@ -32,7 +46,10 @@ function reducer(state, action) {
         newProfiles = [action.payload];
       }
       const newUser = { ...state.user, profiles: newProfiles }
-      return { ...state, user: newUser, loaded: true }
+      return { ...state, user: newUser }
+    case SET_LOADED: {
+      return { ...state, loaded: true }
+    }
     case UPDATE_USER: {
       return { ...state, user: action.payload }
     }
@@ -51,23 +68,34 @@ function reducer(state, action) {
     }
     case REMOVE_PROFILE:
       const newArr = state.user.profiles.filter(profile => {
-        console.log(profile.id);
-        console.log(action.payload.id)
-        console.log(profile.id === action.payload.id)
         if (profile.id === action.payload.id) {
           return false;
         } else {
           return true;
         }
       });
-      return {
-        ...state,
-        user: {
-          ...state.user,
-          profiles: newArr
-        },
-        selected: { id: newArr[0].id },
-      };
+      if (newArr[0]) {
+        return {
+          ...state,
+          user: {
+            ...state.user,
+            profiles: newArr
+          },
+          selected: { id: newArr[0].id },
+        };
+      } else {
+        return {
+          ...state,
+          user: {
+            ...state.user,
+            profiles: newArr
+          },
+          selected: {
+            id: 0
+          },
+          hasProfiles: false
+        }
+      }
     case ADD_PROFILE: {
       if (state.user.profiles) {
         return {

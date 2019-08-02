@@ -32,6 +32,7 @@ import StartGame from "../components/StartGame";
 import CodeView from "../components/CodeView";
 
 import BackendTester from "../components/backendTester/BackendTester";
+import { getUser } from "../utils/firebaseInteractions";
 
 export default function Layout(props) {
   const [context, dispatch] = useContext(childContext);
@@ -40,84 +41,7 @@ export default function Layout(props) {
   //This is a monster function, I'll fix it some day.
   useEffect(() => {
     if (props.logged) {
-      const db = firebase.firestore();
-      const uid = firebase.auth().currentUser.uid;
-      db.collection("users")
-        .doc(uid)
-        .get()
-        .then(snapshot => {
-          const userInfo = snapshot.data();
-          return { ...userInfo, id: snapshot.id };
-        })
-        .then(userInfo => {
-          db.collection("users")
-            .doc(uid)
-            .collection("information")
-            .get()
-            .then(snapshot => {
-              const docList = snapshot.docs.map(doc => {
-                const document = doc.data();
-                return { ...document, id: doc.id };
-              });
-              dispatch({
-                type: GET_USER_INFO,
-                payload: {
-                  ...userInfo,
-                  information: docList[0],
-                },
-              });
-            })
-            .then(() => {
-              const profiles = db
-                .collection("users")
-                .doc(uid)
-                .collection("profiles")
-                .get()
-                .then(snapshot => {
-                  const childList = snapshot.docs.map(doc => {
-                    const child = doc.data();
-                    return { ...child, id: doc.id };
-                  });
-                  return childList;
-                })
-                .then(childList => {
-                  const childAndAvatar = childList.map(child => {
-                    const avatar = db
-                      .collection("users")
-                      .doc(uid)
-                      .collection("profiles")
-                      .doc(child.id)
-                      .collection("avatar")
-                      .get()
-                      .then(snapshot => {
-                        const document = snapshot.docs.map(doc => {
-                          const avatarDoc = doc.data();
-                          return {
-                            ...avatarDoc,
-                            id: doc.id,
-                          };
-                        });
-                        return document[0];
-                      })
-                      .then(avatar => {
-                        dispatch({
-                          type: GET_PROFILES_AND_AVATARS,
-                          payload: {
-                            ...child,
-                            avatar: avatar,
-                          },
-                        });
-                      });
-                  });
-                  if (childList[0]) {
-                    dispatch({
-                      type: UPDATE_SELECTED,
-                      payload: childList[0].id,
-                    });
-                  }
-                });
-            });
-        });
+      getUser(dispatch);
     }
   }, [props.logged]);
 
