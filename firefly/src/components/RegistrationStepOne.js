@@ -24,25 +24,25 @@ const RegistrationForm = ({
                 <h2 className="registration-forms-field-title">First Name</h2>
                 <Field
                   type="text"
-                  name="firstName"
+                  name="first_name"
                   className="registration-forms-box__field-small"
                   value={info.firstName}
                   onChange={e => handleInfoChanges(e)}
                 />
-                {touched.firstName && errors.firstName && (
+                {touched.first_name && errors.first_name && (
                   <p className="error">*Required</p>
                 )}
               </div>
               <div className="registration-forms-field-small">
                 <h2 className="registration-forms-field-title">Last Name</h2>
                 <Field
-                  name="lastName"
+                  name="last_name"
                   type="text"
                   className="registration-forms-box__field-small"
-                  value={info.lastName}
+                  value={info.last_name}
                   onChange={e => handleInfoChanges(e)}
                 />
-                {touched.lastName && errors.lastName && (
+                {touched.last_name && errors.last_name && (
                   <p className="error">*Required</p>
                 )}
               </div>
@@ -123,10 +123,10 @@ const RegistrationForm = ({
 };
 
 const RegistrationStepOne = withFormik({
-  mapPropsToValues({ firstName, lastName, address, city, state, zipCode }) {
+  mapPropsToValues({ first_name, last_name, address, city, state, zipCode }) {
     return {
-      firstName: firstName || "",
-      lastName: lastName || "",
+      first_name: first_name || "",
+      last_name: last_name || "",
       address: address || "",
       city: city || "",
       state: state || "",
@@ -135,8 +135,8 @@ const RegistrationStepOne = withFormik({
   },
 
   validationSchema: Yup.object().shape({
-    firstName: Yup.string().required(),
-    lastName: Yup.string().required(),
+    first_name: Yup.string().required(),
+    last_name: Yup.string().required(),
     address: Yup.string().required(),
     city: Yup.string().required(),
     state: Yup.string().required(),
@@ -147,8 +147,8 @@ const RegistrationStepOne = withFormik({
     const client = new ApolloClient({
       uri: "http://localhost:3300"
     });
-    const firstName = values.firstName;
-    const lastName = values.lastName;
+    const first_name = values.first_name;
+    const last_name = values.last_name;
     const address = values.address;
     const city = values.city;
     const state = values.state;

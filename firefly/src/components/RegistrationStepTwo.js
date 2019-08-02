@@ -35,7 +35,7 @@ const AddChild = ({
         <div
           className="registration-forms-box-2 registration-add-child-profile"
           onClick={() =>
-            setProfiles([...profiles, { firstName: "", lastName: "" }])
+            setProfiles([...profiles, { first_name: "", last_name: "" }])
           }
         >
           <h2 className="registration-add-child-profile__text">
