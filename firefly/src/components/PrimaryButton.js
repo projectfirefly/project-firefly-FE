@@ -1,12 +1,12 @@
 import React from "react";
 import "../styles/Button.scss";
 
-const PrimaryButton = () => {
-  return (
-    <div className="primary-button-container">
-      <button>primary</button>
-    </div>
-  );
-};
-
-export default PrimaryButton;
+export class PrimaryButton extends React.Component {
+  render() {
+    return (
+      <div className="primary-button-container">
+        <button>{this.props.text}</button>
+      </div>
+    );
+  }
+}

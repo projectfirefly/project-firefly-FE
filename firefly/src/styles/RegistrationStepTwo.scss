@@ -79,7 +79,6 @@
     justify-content: center;
     align-items:center;
     border-radius: 20px;
-    margin-bottom: 20px;
     box-shadow: 0px 2px 4px rgba(0,0,0,.5);
     background-color:white;
 
@@ -150,13 +149,12 @@
 }
 
 .registration-forms-box-2{
-    width: 65%;
+    width: 714px;
     display: flex;
     flex-direction: column;  
     justify-content: center;
     align-items:center;
     border-radius: 20px;
-    margin-bottom: 20px;
     background-color:white;
 
     &__field-small{

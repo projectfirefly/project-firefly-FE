@@ -8,29 +8,34 @@ import RegistrationStepThree from "./RegistrationStepThree";
 import CustomStepper from "./Steppers/CustomStepper";
 
 const MultiStepRegistration = () => {
-  const classes = makeStyles(theme => ({
-    root: {
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      justifyContent: "center"
-    },
-    second: {
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      justifyContent: "center"
-    },
-    third: {
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      justifyContent: "center"
-    },
-    wrapper: {
-      width: "100%"
-    }
-  }))();
+
+    const classes = makeStyles(theme => ({
+      app: {
+
+      },
+        root: {
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            height: "623px"
+        },
+        second: {
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+        },
+        third:{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+        },
+        wrapper: {
+            width:'100%'
+        }
+    }))();
 
   const [step, setStep] = useState(0);
   const [info, setInfo] = useState({

@@ -13,7 +13,7 @@ const pickerStyles = {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    minHeight: "100px",
+    // minHeight: "100%",
     margin: "0% 8%"
 };
 
@@ -71,7 +71,7 @@ const Arrow = ({ direction, clickFunction, name }) => (
 
 const SvgImage = ({ iconName }) => {
     const styles = {
-        height: "100px",
+        height: "65px",
     };
 
     return <Icon name={iconName} className="svg-icon" style={styles} />;

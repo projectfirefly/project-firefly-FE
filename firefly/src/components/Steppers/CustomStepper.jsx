@@ -16,6 +16,7 @@ const CustomStepper = (props) => {
         stepper: {
             background: 'rgba(0,0,0,0)',
             width: '500px',
+            padding: '2px',
         },
         icon: {
             zIndex: 2,
