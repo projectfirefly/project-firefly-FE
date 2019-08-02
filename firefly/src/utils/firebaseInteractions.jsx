@@ -189,7 +189,8 @@ export const getUser = async (dispatch) => {
               });
             });
         });
-        dispatch({ type: SET_HAS_PROFILES })
+        dispatch({ type: UPDATE_SELECTED, payload: childList[0].id });
+        dispatch({ type: SET_HAS_PROFILES });
       }
     })
   dispatch({ type: SET_LOADED })
