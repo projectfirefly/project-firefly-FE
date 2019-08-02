@@ -102,20 +102,22 @@ export default function CustomizeFireflyPage() {
               </div>
             </div>
           </div>
-          <div className={classes.buttonContainer}>
+        </div>
+        <div className={classes.buttonContainer}>
+          <a href="/choose-profile" className={classes.a}>
             <button
               className={classes.button + " back"}
-              onclick="history.push(/choose-profile)"
+              onclick="window.history.back(-1)"
             >
               BACK
             </button>
+          </a>
 
-            {/* <Link className={classes.button} to="/myfirefly"> */}
-
-            <button className={classes.button + " save"} onClick={saveProfile}>
+          <a href="/myfirefly" className={classes.a}>
+            <button onClick={saveProfile} className={classes.button + " save"}>
               SAVE
             </button>
-          </div>
+          </a>
         </div>
       </div>
     );

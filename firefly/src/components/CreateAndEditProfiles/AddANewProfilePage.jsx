@@ -34,9 +34,14 @@ const AddANewProfilePage = props => {
   };
 
   const saveProfile = () => {
+<<<<<<< HEAD
     addProfile(ADD_PROFILE, updatedProfile, dispatch).then(() => {
       props.history.push("/choose-profile");
     });
+=======
+    dispatch({ type: ADD_PROFILE, payload: updatedProfile });
+    props.history.push("/account");
+>>>>>>> e7b6b66c9073b21f06bb7601623f4645a32481a8
   };
 
   return (
@@ -73,7 +78,7 @@ const AddANewProfilePage = props => {
         <div className={classes.buttonContainer}>
           <button
             className={classes.button + " cancel"}
-            onClick={() => props.history.push("/choose-profile")}
+            onClick={() => props.history.push("/account")}
           >
             CANCEL
           </button>

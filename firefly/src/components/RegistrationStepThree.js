@@ -140,7 +140,7 @@ const RegistrationStepThree = ({
             className={step === 0 ? "none" : "registration-buttons__back"}
             onClick={() => updateStep("subtract")}
           >
-            Back
+            BACK
           </button>
 
           <button

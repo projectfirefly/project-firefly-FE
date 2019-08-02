@@ -115,7 +115,7 @@ export default function ProfileView() {
 
           <div className="button">
             <Link style={{ color: "white", textDecoration: "none" }} to="">
-              Back to Game
+              BACK TO GAME
             </Link>
           </div>
         </div>

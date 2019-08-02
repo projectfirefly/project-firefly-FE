@@ -8,6 +8,8 @@ import Book from "../../images/BookTemp.png";
 import Stars from "../../images/StarsTemp.png";
 import Icon from "../../assets/icons";
 import ProfileFly from "../../assets/icons/ProfileFly";
+import PrimaryButton from "../PrimaryButton";
+import { SecondaryButton } from "../SecondaryButton";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -97,24 +99,7 @@ const useStyles = makeStyles(theme => ({
   },
   chooseFirefly: {
     width: "70%",
-    textAlign: "center",
-    border: "solid #ABB0BA 2px",
-    borderRadius: "10px",
-    backgroundColor: "#FFFFFF",
-    boxShadow: "0px 3px #8F96A3",
-    marginTop: "40px",
-    fontSize: "16px",
-    fontWeight: "bold",
-    height: "10%",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    textTransform: "uppercase",
-    "&:active": {
-      boxShadow: "none",
-      marginTop: "43px",
-      marginBottom: "-3px",
-    },
+    marginTop: "10%"
   },
 
   pushRight: {
@@ -201,13 +186,21 @@ export default function MyFireflyPage() {
                 </div>
               </div>
 
-              <Link
-                className={classes.chooseFirefly}
-                style={{ color: "#4AA810", textDecoration: "none" }}
-                to="/choose-profile"
-              >
-                <div>Choose Firefly</div>
-              </Link>
+            <Link className={classes.chooseFirefly} to="/choose-profile">
+              <SecondaryButton text={"CHOOSE FIREFLY"} />
+            </Link>
+          </div>
+
+          <div className={classes.rightContainer}>
+            <div className={classes.rightCards}>
+              <div className={classes.rightCardContent}>
+                <img
+                  className={classes.rightCardsImg}
+                  src={Book}
+                  alt={"A book"}
+                />
+                <h4 className={classes.rightCardsText}>Learn How to Play</h4>
+              </div>
             </div>
 
             <div className={classes.rightContainer}>
