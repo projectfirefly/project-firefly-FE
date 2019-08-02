@@ -99,7 +99,7 @@ const useStyles = makeStyles(theme => ({
   },
   chooseFirefly: {
     width: "70%",
-    marginTop: "10%"
+    marginTop: "10%",
   },
 
   pushRight: {
@@ -149,10 +149,7 @@ export default function MyFireflyPage() {
     }
   });
 
-  if (
-    childProfileState.loaded &&
-    childProfileState.hasProfiles
-  ) {
+  if (childProfileState.loaded && childProfileState.hasProfiles) {
     return (
       <React.Fragment>
         <Container className={classes.root} component="div">
@@ -186,21 +183,9 @@ export default function MyFireflyPage() {
                 </div>
               </div>
 
-            <Link className={classes.chooseFirefly} to="/choose-profile">
-              <SecondaryButton text={"CHOOSE FIREFLY"} />
-            </Link>
-          </div>
-
-          <div className={classes.rightContainer}>
-            <div className={classes.rightCards}>
-              <div className={classes.rightCardContent}>
-                <img
-                  className={classes.rightCardsImg}
-                  src={Book}
-                  alt={"A book"}
-                />
-                <h4 className={classes.rightCardsText}>Learn How to Play</h4>
-              </div>
+              <Link className={classes.chooseFirefly} to="/choose-profile">
+                <SecondaryButton text={"CHOOSE FIREFLY"} />
+              </Link>
             </div>
 
             <div className={classes.rightContainer}>
