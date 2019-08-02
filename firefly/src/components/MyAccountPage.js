@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import ProfileCard from "./ProfileCard";
 import Icon from "../assets/icons";
 import { FaPen, FaPlus } from "react-icons/fa";
+import { PrimaryButton } from "../components/PrimaryButton";
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -114,9 +115,7 @@ export default function ProfileView() {
           </Paper>
 
           <div className="button">
-            <Link style={{ color: "white", textDecoration: "none" }} to="">
-              BACK TO GAME
-            </Link>
+            <PrimaryButton text={"BACK TO GAME"} onclick={"/startgame"} />
           </div>
         </div>
       </div>

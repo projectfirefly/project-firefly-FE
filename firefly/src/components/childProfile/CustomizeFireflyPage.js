@@ -10,6 +10,9 @@ import Accessories from "./Accessories";
 
 import { Link } from "react-router-dom";
 
+import { PrimaryButton } from "../PrimaryButton";
+import { SecondaryButton } from "../SecondaryButton";
+
 import createProfileClasses from "./CreateProfileStyles";
 
 export default function CustomizeFireflyPage() {
@@ -95,18 +98,14 @@ export default function CustomizeFireflyPage() {
         </div>
         <div className={classes.buttonContainer}>
           <a href="/choose-profile" className={classes.a}>
-            <button
-              className={classes.button + " back"}
-              onclick="window.history.back(-1)"
-            >
-              BACK
-            </button>
+            <SecondaryButton
+              text={"BACK"}
+              onclick={"window.history.back(-1)"}
+            />
           </a>
 
           <a href="/myfirefly" className={classes.a}>
-            <button onClick={saveProfile} className={classes.button + " save"}>
-              SAVE
-            </button>
+            <PrimaryButton text={"BACK"} onclick={saveProfile} />
           </a>
         </div>
       </div>
