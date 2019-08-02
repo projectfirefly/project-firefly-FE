@@ -34,8 +34,8 @@ const MultiStepRegistration = () => {
 
   const [step, setStep] = useState(0);
   const [info, setInfo] = useState({
-    firstName: "",
-    lastName: "",
+    first_name: "",
+    last_name: "",
     address: "",
     city: "",
     state: "",
@@ -43,8 +43,8 @@ const MultiStepRegistration = () => {
   });
   const [profiles, setProfiles] = useState([
     {
-      firstName: "",
-      lastName: ""
+      first_name: "",
+      last_name: ""
     }
   ]);
 
