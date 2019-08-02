@@ -6,6 +6,8 @@ import { childContext } from "../../context/ChildProfiles/ChildProfileStore";
 import { ADD_PROFILE } from "../../context/ChildProfiles/ChildProfileStore";
 
 import Icon from "../../assets/icons";
+import { SecondaryButton } from "../SecondaryButton";
+import { PrimaryButton } from "../SecondaryButton";
 
 const AddANewProfilePage = props => {
   const classes = createProfileStyles();
@@ -56,12 +58,14 @@ const AddANewProfilePage = props => {
           </div>
         </div>
         <div className={classes.buttonContainer}>
-          <button
-            className={classes.button + " cancel"}
-            onClick={() => props.history.push("/account")}
-          >
-            CANCEL
-          </button>
+          {/* <button className={classes.button + " cancel"}>CANCEL</button> */}
+          <div>
+            <SecondaryButton
+              text={"CANCEL"}
+              // onClick={() => props.history.push("/account")}
+              onClick={() => window.history.push("/account")}
+            />
+          </div>
           <button className={classes.button + " save"} onClick={saveProfile}>
             SAVE
           </button>
