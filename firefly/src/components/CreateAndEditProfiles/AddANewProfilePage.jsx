@@ -2,6 +2,8 @@ import React, { useContext, useState } from "react";
 
 import createProfileStyles from "./CreateAndEditProfileStyles";
 
+import { addProfile } from "../../utils/firebaseInteractions";
+
 import { childContext } from "../../context/ChildProfiles/ChildProfileStore";
 import { ADD_PROFILE } from "../../context/ChildProfiles/ChildProfileStore";
 
@@ -12,15 +14,10 @@ const AddANewProfilePage = props => {
 
   const [childProfileState, dispatch] = useContext(childContext);
 
-  const [currentProfile] = childProfileState.user.profiles.filter(profile => {
-    if (childProfileState.selected.id === profile.id) {
-      return true;
-    } else {
-      return false;
-    }
+  const [updatedProfile, setUpdatedProfile] = useState({
+      first_name: "",
+      last_name: ""
   });
-
-  const [updatedProfile, setUpdatedProfile] = useState(currentProfile);
 
   const firstNameChanges = e => {
     setUpdatedProfile({
@@ -37,8 +34,9 @@ const AddANewProfilePage = props => {
   };
 
   const saveProfile = () => {
-    dispatch({ type: ADD_PROFILE, payload: updatedProfile });
-    props.history.push("/choose-profile");
+    addProfile(ADD_PROFILE, updatedProfile, dispatch).then(() => {
+      props.history.push("/choose-profile");
+    });
   };
 
   return (
