@@ -79,3 +79,29 @@ export const removeProfile = async (type, payload, dispatch) => {
     .delete()
   dispatch({ type: type, payload: payload });
 }
+
+export const updateUser = async (type, payload, dispatch) => {
+  const db = firebase.firestore();
+  const uid = firebase.auth().currentUser.uid;
+  var uploadUser = { ...payload };
+  if (uploadUser.profiles) {
+    delete uploadUser["profiles"];
+  }
+  delete uploadUser["id"];
+  delete uploadUser["information"];
+  var uploadInformation = { ...payload.information };
+  delete uploadInformation["id"];
+  db.collection("users")
+    .doc(uid)
+    .set({
+      ...uploadUser
+    }, { merge: true })
+  db.collection("users")
+    .doc(uid)
+    .collection("information")
+    .doc(payload.information.id)
+    .set({
+      ...uploadInformation
+    }, { merge: true })
+    dispatch({ type: type, payload: payload });
+}

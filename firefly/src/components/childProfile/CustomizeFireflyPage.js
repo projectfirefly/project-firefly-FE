@@ -62,11 +62,11 @@ export default function CustomizeFireflyPage() {
               name="Firefly"
               width={"100%"}
               viewBox={"0 0 1024 1024"}
-              accessory={updatedProfile.accessory}
-              lighttopFill={`hsl(${updatedProfile.color},100%,35%)`}
-              lightmidFill={`hsl(${updatedProfile.color},100%,45%)`}
-              lightbottomFill={`hsl(${updatedProfile.color},100%,55%)`}
-              shineStroke={`hsl(${updatedProfile.color},100%,55%)`}
+              accessory={updatedProfile.avatar.accessory}
+              lighttopFill={`hsl(${updatedProfile.avatar.color},100%,35%)`}
+              lightmidFill={`hsl(${updatedProfile.avatar.color},100%,45%)`}
+              lightbottomFill={`hsl(${updatedProfile.avatar.color},100%,55%)`}
+              shineStroke={`hsl(${updatedProfile.avatar.color},100%,55%)`}
             />
           </div>
           <div className={classes.card + " right"}>
@@ -76,13 +76,13 @@ export default function CustomizeFireflyPage() {
             <input
               className={classes.input}
               type="text"
-              value={updatedProfile.nickname}
+              value={updatedProfile.avatar.nickname}
               onChange={handleChange}
             />
             <div>
               <h2 className={classes.h2}>Accessories</h2>
               <Accessories
-                accessory={updatedProfile.accessory}
+                accessory={updatedProfile.avatar.accessory}
                 accessoryChange={accessoryChange}
               />
             </div>
@@ -90,7 +90,7 @@ export default function CustomizeFireflyPage() {
               <h2 className={classes.h2}>Light Color</h2>
               <div className={classes.slider}>
                 <ColorSlider
-                  value={updatedProfile.color}
+                  value={updatedProfile.avatar.color}
                   updateColor={updateColor}
                 />
               </div>

@@ -34,26 +34,7 @@ function reducer(state, action) {
       const newUser = { ...state.user, profiles: newProfiles }
       return { ...state, user: newUser, loaded: true }
     case UPDATE_USER: {
-      var uploadUser = { ...action.payload };
-      if (uploadUser.profiles) {
-        delete uploadUser["profiles"];
-      }
-      delete uploadUser["id"];
-      delete uploadUser["information"];
-      var uploadInformation = { ...action.payload.information };
-      delete uploadInformation["id"];
-      db.collection("users")
-        .doc(uid)
-        .set({
-          ...uploadUser
-        }, { merge: true })
-      db.collection("users")
-        .doc(uid)
-        .collection("information")
-        .doc(action.payload.information.id)
-        .set({
-          ...uploadInformation
-        }, { merge: true })
+      return { ...state, user: action.payload }
     }
     case UPDATE_SELECTED:
       return { ...state, selected: { id: action.payload } };
@@ -67,7 +48,6 @@ function reducer(state, action) {
       });
       const newUser = { ...state.user, profiles: newArr }
       return { ...state, user: newUser };
-
     }
     case REMOVE_PROFILE:
       const newArr = state.user.profiles.filter(profile => {
