@@ -8,6 +8,7 @@ import Book from "../../images/BookTemp.png";
 import Stars from "../../images/StarsTemp.png";
 import Icon from "../../assets/icons";
 import ProfileFly from "../../assets/icons/ProfileFly";
+import { SecondaryButton } from "../SecondaryButton";
 
 const useStyles = makeStyles({
   root: {
@@ -119,6 +120,7 @@ const useStyles = makeStyles({
       marginTop: "47px",
       marginBottom: "-3px"
     }
+
   },
   chooseFireflyContent:{
     display: "flex",
@@ -214,12 +216,14 @@ export default function MyFireflyPage() {
               </div>
             </div>
 
+
             <Link
               className={classes.chooseFirefly}
               style={{ color: "#4AA810", textDecoration: "none" }}
               to="/choose-profile"
             >
               <div className={classes.chooseFireflyContent}>Choose Firefly</div>
+
             </Link>
           </div>
 
