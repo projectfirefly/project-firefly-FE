@@ -11,11 +11,11 @@ import { FaPen, FaPlus } from "react-icons/fa";
 
 const useStyles = makeStyles(theme => ({
   paper: {
-    padding: theme.spacing(3),
+    padding: "20px 20px",
     textAlign: "left",
     color: theme.palette.text.secondary,
     borderRadius: " 20px",
-    marginBottom: "5%"
+    // marginBottom: "32px",
   }
 }));
 
@@ -29,7 +29,7 @@ export default function ProfileView() {
       <div className="container">
         <div className="left">
           {/* Account Info */}
-          <div className="leftContainer">
+          <div className="leftContainerOne">
             <Paper className={classes.paper}>
               <h2 className="sectionHeader">Account Information</h2>
               <Grid container spacing={3}>
@@ -60,7 +60,7 @@ export default function ProfileView() {
             </Paper>
           </div>
           {/* Payment Info */}
-          <div className="leftContainer">
+          <div className="leftContainerTwo">
             <Paper className={classes.paper}>
               <h2 className="sectionHeader"> Payment Information</h2>
               <br />
@@ -90,7 +90,7 @@ export default function ProfileView() {
 
         <div className="rightCards">
           <Paper className={classes.paper}>
-            <h2 className="sectionHeader">Manage Profile</h2>
+            <h2 className="sectionHeaderRight">Manage Profile</h2>
             <div className="fireflyContainer">
               <div className="edit">
                 <Link to="/addprofile" className="iconButton">
