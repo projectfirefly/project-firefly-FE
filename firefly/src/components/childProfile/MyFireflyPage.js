@@ -8,7 +8,6 @@ import Book from "../../images/BookTemp.png";
 import Stars from "../../images/StarsTemp.png";
 import Icon from "../../assets/icons";
 import ProfileFly from "../../assets/icons/ProfileFly";
-import PrimaryButton from "../PrimaryButton";
 import { SecondaryButton } from "../SecondaryButton";
 
 const useStyles = makeStyles(theme => ({
