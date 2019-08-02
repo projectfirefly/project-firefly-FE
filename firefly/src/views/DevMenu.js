@@ -19,7 +19,7 @@ import MyAccountPage from "../components/MyAccountPage";
 import EditProfilePage from "../components/CreateAndEditProfiles/EditProfilePage";
 import AddANewProfilePage from "../components/CreateAndEditProfiles/AddANewProfilePage";
 import StartGame from "../components/StartGame";
-import CodeView from "../components/CodeView";
+import CodeView from "../components/unused/CodeView";
 
 export default function Layout() {
   return (
