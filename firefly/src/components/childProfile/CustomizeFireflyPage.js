@@ -17,24 +17,27 @@ export default function CustomizeFireflyPage() {
 
   const [childProfileState, dispatch] = useContext(childContext);
 
-  const [currentProfile] = childProfileState.user.profiles.filter(profile => {
-    if (childProfileState.selected.id === profile.id) {
-      return true;
-    } else {
-      return false;
-    }
-  });
-
-  useEffect(() => {
-    console.log(childProfileState)
-  }, [childProfileState])
-
-  const [updatedProfile, setUpdatedProfile] = useState(currentProfile);
+  const [updatedProfile, setUpdatedProfile] = useState();
 
   const updateColor = newColor => {
     const newAvatar = { ...updatedProfile.avatar, color: newColor };
     setUpdatedProfile({ ...updatedProfile, avatar: newAvatar });
   };
+
+  useEffect(() => {
+    if (childProfileState.loaded && childProfileState.hasProfiles) {
+      const [currentProfile] = childProfileState.user.profiles.filter(
+        profile => {
+          if (childProfileState.selected.id === profile.id) {
+            return true;
+          } else {
+            return false;
+          }
+        }
+      );
+      setUpdatedProfile(currentProfile);
+    }
+  }, [childProfileState]);
 
   const saveProfile = () => {
     dispatch({ type: UPDATE_PROFILE, payload: updatedProfile });
@@ -55,7 +58,11 @@ export default function CustomizeFireflyPage() {
     });
   };
 
-  if (childProfileState.loaded && childProfileState.hasProfiles && updatedProfile) {
+  if (
+    childProfileState.loaded &&
+    childProfileState.hasProfiles &&
+    updatedProfile
+  ) {
     return (
       <div className={classes.rootContainer}>
         <h1 className={classes.header}>Customize Your Firefly</h1>
@@ -122,8 +129,6 @@ export default function CustomizeFireflyPage() {
       </div>
     );
   } else {
-    return (
-      <>Loading...</>
-    )
+    return <>Loading...</>;
   }
 }

@@ -49,7 +49,7 @@ const EditProfilePage = props => {
   });
 
   useEffect(() => {
-    if (childProfileState.loaded && !finishedLoading) {
+    if (childProfileState.loaded && childProfileState.hasProfiles && !finishedLoading) {
       const [currentProfile] = childProfileState.user.profiles.filter(profile => {
         if (childProfileState.selected.id === profile.id) {
           return true;
@@ -89,7 +89,7 @@ const EditProfilePage = props => {
     })
   };
 
-  if (updatedProfile.avatar) {
+  if (childProfileState.loaded && childProfileState.hasProfiles && finishedLoading) {
     return (
       <div className={classes.container}>
         <div className={classes.sizingContainer}>
@@ -184,11 +184,17 @@ const EditProfilePage = props => {
         </Dialog>
       </div>
     );
+  } else if (childProfileState.loaded && !childProfileState.hasProfiles) {
+    return (
+      <div>
+        You have no profiles... Please add one...
+      </div>
+    )
   } else {
     return (
       <div>
         Loading...
-    </div>
+      </div>
     );
   }
 };

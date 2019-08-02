@@ -106,14 +106,21 @@ function reducer(state, action) {
               ...state.user.profiles,
               action.payload
             ]
+          },
+          selected: {
+            id: action.payload.id
           }
         }
       } else {
+        console.log(action.payload)
         return {
           ...state,
           user: {
             ...state.user,
             profiles: [action.payload]
+          },
+          selected: {
+            id: action.payload.id
           }
         }
       }

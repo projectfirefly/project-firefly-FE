@@ -65,7 +65,7 @@ export default function Layout(props) {
       <Route
         {...rest}
         render={props =>
-          logged === false ? <Component {...props} /> : <Redirect to="/" />
+          logged === false ? <Component {...props} /> : <Redirect to="/startgame" />
         }
       />
     );
