@@ -6,7 +6,7 @@ import ChildProfileStore, {
   childContext,
   GET_USER_INFO,
   GET_PROFILES_AND_AVATARS,
-  UPDATE_SELECTED,
+  UPDATE_SELECTED
 } from "../context/ChildProfiles/ChildProfileStore";
 
 import firebase from "firebase";
@@ -14,7 +14,7 @@ import firebase from "firebase";
 //material
 
 //routing
-import { Switch, Route } from "react-router-dom";
+import { Route, Redirect, Switch } from "react-router-dom";
 import Menu from "../components/Menu";
 import FireBaseLogin from "../components/FirebaseLogin";
 import MyFireflyPage from "../components/childProfile/MyFireflyPage";
@@ -63,8 +63,8 @@ export default function Layout(props) {
                 type: GET_USER_INFO,
                 payload: {
                   ...userInfo,
-                  information: docList[0],
-                },
+                  information: docList[0]
+                }
               });
             })
             .then(() => {
@@ -94,7 +94,7 @@ export default function Layout(props) {
                           const avatarDoc = doc.data();
                           return {
                             ...avatarDoc,
-                            id: doc.id,
+                            id: doc.id
                           };
                         });
                         return document[0];
@@ -104,22 +104,48 @@ export default function Layout(props) {
                           type: GET_PROFILES_AND_AVATARS,
                           payload: {
                             ...child,
-                            avatar: avatar,
-                          },
+                            avatar: avatar
+                          }
                         });
                       });
                   });
                   if (childList[0]) {
                     dispatch({
                       type: UPDATE_SELECTED,
-                      payload: childList[0].id,
+                      payload: childList[0].id
                     });
                   }
                 });
             });
         });
     }
-  }, [props.logged]);
+  }, [dispatch, props.logged]);
+
+  function PrivateRoute({ component: Component, logged, ...rest }) {
+    return (
+      <Route
+        {...rest}
+        render={props =>
+          logged === true ? (
+            <Component {...props} />
+          ) : (
+            <Redirect to={{ pathname: "/", state: { from: props.location } }} />
+          )
+        }
+      />
+    );
+  }
+
+  function PublicRoute({ component: Component, logged, ...rest }) {
+    return (
+      <Route
+        {...rest}
+        render={props =>
+          logged === false ? <Component {...props} /> : <Redirect to="/" />
+        }
+      />
+    );
+  }
 
   return (
     <div className="app">
@@ -128,21 +154,83 @@ export default function Layout(props) {
       </div>
       <main className="app__content">
         <Switch>
-          <Route path="/login" component={FireBaseLogin} />
-          <Route exact path="/" component={TabletLandingPage} />
+          <PublicRoute
+            logged={props.logged}
+            exact
+            path="/"
+            component={TabletLandingPage}
+          />
+          <PublicRoute
+            logged={props.logged}
+            path="/login"
+            component={FireBaseLogin}
+          />
+          <PublicRoute
+            logged={props.logged}
+            path="/signup"
+            component={SignUpPage}
+          />
+          <PublicRoute
+            logged={props.logged}
+            path="/signin"
+            component={SignInPage}
+          />
 
-          <Route path="/myfirefly" component={MyFireflyPage} />
-          <Route path="/customize" component={CustomizeFireflyPage} />
-          <Route path="/signup" component={SignUpPage} />
-          <Route path="/registration" component={MultiStepRegistration} />
-          <Route path="/signin" component={SignInPage} />
-          <Route exact path="/choose-profile" component={ChooseProfilePage} />
-          <Route exact path="/account" component={MyAccountPage} />
-          <Route exact path="/editprofile" component={EditProfilePage} />
-          <Route exact path="/addprofile" component={AddANewProfilePage} />
-          <Route path="/startgame" component={StartGame} />
-          <Route path="/codeview" component={CodeView} />
-          <Route exact path="/backend-tester" component={BackendTester} />
+          <PrivateRoute
+            logged={props.logged}
+            path="/myfirefly"
+            component={MyFireflyPage}
+          />
+          <PrivateRoute
+            logged={props.logged}
+            path="/customize"
+            component={CustomizeFireflyPage}
+          />
+          <PrivateRoute
+            logged={props.logged}
+            path="/registration"
+            component={MultiStepRegistration}
+          />
+          <PrivateRoute
+            logged={props.logged}
+            exact
+            path="/choose-profile"
+            component={ChooseProfilePage}
+          />
+          <PrivateRoute
+            logged={props.logged}
+            exact
+            path="/account"
+            component={MyAccountPage}
+          />
+          <PrivateRoute
+            logged={props.logged}
+            exact
+            path="/editprofile"
+            component={EditProfilePage}
+          />
+          <PrivateRoute
+            logged={props.logged}
+            exact
+            path="/addprofile"
+            component={AddANewProfilePage}
+          />
+          <PrivateRoute
+            logged={props.logged}
+            path="/startgame"
+            component={StartGame}
+          />
+          <PrivateRoute
+            logged={props.logged}
+            path="/codeview"
+            component={CodeView}
+          />
+          <PrivateRoute
+            logged={props.logged}
+            exact
+            path="/backend-tester"
+            component={BackendTester}
+          />
         </Switch>
       </main>
     </div>
