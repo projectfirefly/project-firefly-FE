@@ -149,7 +149,7 @@ const ITEMS = [
   }
 ];
 
-class CodeView extends Component {
+export default class CodeView extends Component {
   state = {
     [uuid()]: []
   };
@@ -285,5 +285,3 @@ class CodeView extends Component {
     );
   }
 }
-
-export default CodeView;
