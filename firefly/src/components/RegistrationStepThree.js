@@ -11,7 +11,7 @@ import TutorialTwo from "./../images/Step3Tutorial-2.png";
 import {
   UPDATE_USER,
   ADD_PROFILE,
-  childContext
+  childContext,
 } from "../context/ChildProfiles/ChildProfileStore";
 import { updateUser, addProfile } from "../utils/firebaseInteractions";
 
@@ -27,7 +27,7 @@ const RegistrationStepThree = ({
   step,
   updateStep,
   info,
-  profiles
+  profiles,
 }) => {
   const [childProfileState, dispatch] = useContext(childContext);
   const [finishedLoading, setFinishedLoading] = useState(false);
@@ -39,8 +39,8 @@ const RegistrationStepThree = ({
       city: "",
       address: "",
       state: "",
-      zip: ""
-    }
+      zip: "",
+    },
   });
 
   useEffect(() => {
@@ -53,22 +53,26 @@ const RegistrationStepThree = ({
   const sendUserInfo = info => {
     const newUpdatedUser = {
       ...updatedUser,
-      first_name: info.firstName,
-      last_name: info.lastName,
+      first_name: info.first_name,
+      last_name: info.last_name,
       information: {
         ...updatedUser.information,
         address: info.address,
         city: info.city,
         state: info.state,
-        zip: info.zipCode
-      }
+        zip: info.zipCode,
+      },
     };
     updateUser(UPDATE_USER, newUpdatedUser, dispatch);
   };
 
   const addProfiles = profiles => {
-    console.log("profiles:", profiles);
-    profiles.map(profile => addProfile(ADD_PROFILE, profile, dispatch));
+    // console.log("profiles:", profiles);
+    profiles.map(profile => {
+      if (profile.first_name != "" || profile.last_name != "") {
+        addProfile(ADD_PROFILE, profile, dispatch);
+      }
+    });
   };
 
   return (
@@ -85,7 +89,7 @@ const RegistrationStepThree = ({
                   alignSelf: "flex-end",
                   marginRight: "10%",
                   fontSize: "1.4rem",
-                  marginTop: "14px"
+                  marginTop: "14px",
                 }}
               />
 
@@ -129,7 +133,7 @@ const RegistrationStepThree = ({
                   color: "#5B4EFF",
                   alignSelf: "flex-end",
                   marginRight: "22%",
-                  fontSize: "1.4rem"
+                  fontSize: "1.4rem",
                 }}
               />
             </div>
