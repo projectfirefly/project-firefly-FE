@@ -148,11 +148,7 @@ export default function Layout(props) {
             path="/startgame"
             component={StartGame}
           />
-          <PrivateRoute
-            logged={props.logged}
-            path="/codeview"
-            component={CodeView}
-          />
+          <Route logged={props.logged} path="/codeview" component={CodeView} />
           <PrivateRoute
             logged={props.logged}
             exact
