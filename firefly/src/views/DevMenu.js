@@ -29,7 +29,7 @@ import MyAccountPage from "../components/MyAccountPage";
 import EditProfilePage from "../components/CreateAndEditProfiles/EditProfilePage";
 import AddANewProfilePage from "../components/CreateAndEditProfiles/AddANewProfilePage";
 import StartGame from "../components/StartGame";
-import CodeView from "../components/unused/CodeView";
+import CodeView from "../components/part2/CodeView";
 
 import BackendTester from "../components/backendTester/BackendTester";
 import { getUser } from "../utils/firebaseInteractions";
@@ -65,7 +65,11 @@ export default function Layout(props) {
       <Route
         {...rest}
         render={props =>
-          logged === false ? <Component {...props} /> : <Redirect to="/startgame" />
+          logged === false ? (
+            <Component {...props} />
+          ) : (
+            <Redirect to="/startgame" />
+          )
         }
       />
     );
@@ -144,11 +148,7 @@ export default function Layout(props) {
             path="/startgame"
             component={StartGame}
           />
-          <PrivateRoute
-            logged={props.logged}
-            path="/codeview"
-            component={CodeView}
-          />
+          <Route logged={props.logged} path="/codeview" component={CodeView} />
           <PrivateRoute
             logged={props.logged}
             exact
