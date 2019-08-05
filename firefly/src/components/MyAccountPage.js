@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
     padding: "20px 20px",
     textAlign: "left",
     color: theme.palette.text.secondary,
-    borderRadius: " 20px",
+    borderRadius: " 20px"
     // marginBottom: "32px",
   }
 }));
@@ -115,7 +115,9 @@ export default function ProfileView() {
           </Paper>
 
           <div className="button">
-            <PrimaryButton text={"BACK TO GAME"} onclick={"/startgame"} />
+            <Link to="/startgame">
+              <PrimaryButton text={"BACK TO GAME"} />
+            </Link>
           </div>
         </div>
       </div>

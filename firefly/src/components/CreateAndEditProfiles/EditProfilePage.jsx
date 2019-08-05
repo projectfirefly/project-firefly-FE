@@ -7,7 +7,7 @@ import {
   REMOVE_PROFILE
 } from "../../context/ChildProfiles/ChildProfileStore";
 
-import { updateProfile, removeProfile } from '../../utils/firebaseInteractions';
+import { updateProfile, removeProfile } from "../../utils/firebaseInteractions";
 
 import createProfileStyles from "./CreateAndEditProfileStyles";
 
@@ -27,6 +27,8 @@ import {
   DialogActions,
   Button
 } from "@material-ui/core";
+import { SecondaryButton } from "../SecondaryButton";
+import { PrimaryButton } from "../PrimaryButton";
 
 library.add(faTrashAlt);
 
@@ -49,18 +51,24 @@ const EditProfilePage = props => {
   });
 
   useEffect(() => {
-    if (childProfileState.loaded && childProfileState.hasProfiles && !finishedLoading) {
-      const [currentProfile] = childProfileState.user.profiles.filter(profile => {
-        if (childProfileState.selected.id === profile.id) {
-          return true;
-        } else {
-          return false;
+    if (
+      childProfileState.loaded &&
+      childProfileState.hasProfiles &&
+      !finishedLoading
+    ) {
+      const [currentProfile] = childProfileState.user.profiles.filter(
+        profile => {
+          if (childProfileState.selected.id === profile.id) {
+            return true;
+          } else {
+            return false;
+          }
         }
-      });
+      );
       setUpdatedProfile(currentProfile);
       setFinishedLoading(true);
     }
-  }, [childProfileState])
+  }, [childProfileState]);
 
   const firstNameChanges = e => {
     setUpdatedProfile({
@@ -77,7 +85,7 @@ const EditProfilePage = props => {
   };
 
   const saveProfile = () => {
-    updateProfile(UPDATE_PROFILE, updatedProfile, dispatch)
+    updateProfile(UPDATE_PROFILE, updatedProfile, dispatch);
     props.history.push("/choose-profile");
   };
 
@@ -85,11 +93,15 @@ const EditProfilePage = props => {
 
   const confirmRemove = () => {
     removeProfile(REMOVE_PROFILE, updatedProfile, dispatch).then(() => {
-      props.history.push("/choose-profile")
-    })
+      props.history.push("/choose-profile");
+    });
   };
 
-  if (childProfileState.loaded && childProfileState.hasProfiles && finishedLoading) {
+  if (
+    childProfileState.loaded &&
+    childProfileState.hasProfiles &&
+    finishedLoading
+  ) {
     return (
       <div className={classes.container}>
         <div className={classes.sizingContainer}>
@@ -105,7 +117,9 @@ const EditProfilePage = props => {
                   accessory={updatedProfile.avatar.accessory}
                   lighttopFill={`hsl(${updatedProfile.avatar.color},100%,35%)`}
                   lightmidFill={`hsl(${updatedProfile.avatar.color},100%,45%)`}
-                  lightbottomFill={`hsl(${updatedProfile.avatar.color},100%,55%)`}
+                  lightbottomFill={`hsl(${
+                    updatedProfile.avatar.color
+                  },100%,55%)`}
                   shineStroke={`hsl(${updatedProfile.avatar.color},100%,55%)`}
                 />
               </div>
@@ -133,15 +147,17 @@ const EditProfilePage = props => {
               </div>
             </div>
             <div className={classes.buttonContainer}>
-              <button
-                className={classes.button + " cancel"}
-                onClick={() => props.history.push("/choose-profile")}
-              >
-                CANCEL
-            </button>
-              <button className={classes.button + " save"} onClick={saveProfile}>
-                SAVE
-            </button>
+              <div className={classes.button}>
+                <Link onClick={() => props.history.push("/choose-profile")}>
+                  <SecondaryButton text={"CANCEL"} />
+                </Link>
+              </div>
+
+              <div className={classes.button}>
+                <Link onClick={saveProfile}>
+                  <PrimaryButton text={"SAVE"} />
+                </Link>
+              </div>
             </div>
           </div>
         </div>
@@ -155,15 +171,16 @@ const EditProfilePage = props => {
         >
           <DialogTitle id="alert-dialog-title" className={classes.dialogTitle}>
             <span className={classes.dialogTitle}>
-              Are you sure you want to remove {updatedProfile.first_name}'s profile?
-          </span>
+              Are you sure you want to remove {updatedProfile.first_name}'s
+              profile?
+            </span>
           </DialogTitle>
           <DialogContent>
             <DialogContentText>
-              All data and progress associated with this profile will be removed.
-              This action is permanent and can not be undone. Are you absolutely
-              certain you want to remove this profile?
-          </DialogContentText>
+              All data and progress associated with this profile will be
+              removed. This action is permanent and can not be undone. Are you
+              absolutely certain you want to remove this profile?
+            </DialogContentText>
             <DialogActions>
               <div className={classes.dialogButtonContainer}>
                 <button
@@ -171,13 +188,13 @@ const EditProfilePage = props => {
                   className={classes.dialogButtons + " cancel"}
                 >
                   Cancel
-              </button>
+                </button>
                 <button
                   onClick={confirmRemove}
                   className={classes.dialogButtons + " remove"}
                 >
                   Remove
-              </button>
+                </button>
               </div>
             </DialogActions>
           </DialogContent>
@@ -185,17 +202,9 @@ const EditProfilePage = props => {
       </div>
     );
   } else if (childProfileState.loaded && !childProfileState.hasProfiles) {
-    return (
-      <div>
-        You have no profiles... Please add one...
-      </div>
-    )
+    return <div>You have no profiles... Please add one...</div>;
   } else {
-    return (
-      <div>
-        Loading...
-      </div>
-    );
+    return <div>Loading...</div>;
   }
 };
 

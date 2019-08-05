@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { Link } from "react-router-dom";
 
 import createProfileStyles from "./CreateAndEditProfileStyles";
 
@@ -9,7 +10,7 @@ import { ADD_PROFILE } from "../../context/ChildProfiles/ChildProfileStore";
 
 import Icon from "../../assets/icons";
 import { SecondaryButton } from "../SecondaryButton";
-import { PrimaryButton } from "../SecondaryButton";
+import { PrimaryButton } from "../PrimaryButton";
 
 const AddANewProfilePage = props => {
   const classes = createProfileStyles();
@@ -17,8 +18,8 @@ const AddANewProfilePage = props => {
   const [childProfileState, dispatch] = useContext(childContext);
 
   const [updatedProfile, setUpdatedProfile] = useState({
-      first_name: "",
-      last_name: ""
+    first_name: "",
+    last_name: ""
   });
 
   const firstNameChanges = e => {
@@ -73,17 +74,17 @@ const AddANewProfilePage = props => {
           </div>
         </div>
         <div className={classes.buttonContainer}>
-          {/* <button className={classes.button + " cancel"}>CANCEL</button> */}
-          <div>
-            <SecondaryButton
-              text={"CANCEL"}
-              // onClick={() => props.history.push("/account")}
-              onClick={() => window.history.push("/account")}
-            />
+          <div className={classes.button}>
+            <Link to="/account">
+              <SecondaryButton text={"CANCEL"} />
+            </Link>
           </div>
-          <button className={classes.button + " save"} onClick={saveProfile}>
-            SAVE
-          </button>
+
+          <div className={classes.button}>
+            <Link onClick={saveProfile}>
+              <PrimaryButton text={"SAVE"} />
+            </Link>
+          </div>
         </div>
       </div>
     </div>
