@@ -60,20 +60,6 @@ const Clone = styled(Item)`
   }
 `;
 
-const Handle = styled.div`
-  display: flex;
-  align-items: center;
-  align-content: center;
-  user-select: none;
-  margin: -0.5rem 0.5rem -0.5rem -0.5rem;
-  padding: 0.5rem;
-  line-height: 1.5;
-  border-radius: 3px 0 0 3px;
-  background: #fff;
-  border-right: 1px solid #ddd;
-  color: #000;
-`;
-
 const List = styled.div`
   border: 1px ${props => (props.isDraggingOver ? "dashed #000" : "solid #ddd")};
   background: #fff;
@@ -84,14 +70,15 @@ const List = styled.div`
 `;
 
 const Kiosk = styled(List)`
+  display: flex;
   position: absolute;
   top: 0;
-  right: 0;
-  bottom: 0;
-  width: 200px;
+  left: 0;
+  height: 64px;
 `;
 
 const Container = styled(List)`
+  display: flex;
   margin: 0.5rem 0.5rem 1.5rem;
 `;
 
@@ -107,49 +94,30 @@ const Notice = styled.div`
   color: #aaa;
 `;
 
-const Button = styled.button`
-  display: flex;
-  align-items: center;
-  align-content: center;
-  justify-content: center;
-  margin: 0.5rem;
-  padding: 0.5rem;
-  color: #000;
-  border: 1px solid #ddd;
-  background: #fff;
-  border-radius: 3px;
-  font-size: 1rem;
-  cursor: pointer;
-`;
-
-const ButtonText = styled.div`
-  margin: 0 1rem;
-`;
-
 const ITEMS = [
   {
     id: uuid(),
-    content: "Headline"
+    content: "START"
   },
   {
     id: uuid(),
-    content: "Copy"
+    content: "COLOR"
   },
   {
     id: uuid(),
-    content: "Image"
+    content: "DELAY"
   },
   {
     id: uuid(),
-    content: "Slideshow"
+    content: "TOGGLE"
   },
   {
     id: uuid(),
-    content: "Quote"
+    content: "REPEAT"
   }
 ];
 
-class CodeView extends Component {
+export default class CodeView extends Component {
   state = {
     [uuid()]: []
   };
@@ -203,9 +171,51 @@ class CodeView extends Component {
   render() {
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
-        <Droppable droppableId="ITEMS" isDropDisabled={true}>
+        <Content>
+          {Object.keys(this.state).map((list, i) => (
+            <Droppable key={list} droppableId={list} direction="horizontal">
+              {(provided, snapshot) => (
+                <Container
+                  ref={provided.innerRef}
+                  innerRef={provided.innerRef}
+                  isDraggingOver={snapshot.isDraggingOver}
+                >
+                  {this.state[list].length
+                    ? this.state[list].map((item, index) => (
+                        <Draggable
+                          key={item.id}
+                          draggableId={item.id}
+                          index={index}
+                        >
+                          {(provided, snapshot) => (
+                            <Item
+                              ref={provided.innerRef}
+                              innerRef={provided.innerRef}
+                              {...provided.draggableProps}
+                              {...provided.dragHandleProps}
+                              isDragging={snapshot.isDragging}
+                              style={provided.draggableProps.style}
+                            >
+                              {item.content}
+                            </Item>
+                          )}
+                        </Draggable>
+                      ))
+                    : !provided.placeholder && <Notice>Drop items here</Notice>}
+                  {provided.placeholder}
+                </Container>
+              )}
+            </Droppable>
+          ))}
+        </Content>
+        <Droppable
+          droppableId="ITEMS"
+          isDropDisabled={true}
+          direction="horizontal"
+        >
           {(provided, snapshot) => (
             <Kiosk
+              ref={provided.innerRef}
               innerRef={provided.innerRef}
               isDraggingOver={snapshot.isDraggingOver}
             >
@@ -214,6 +224,7 @@ class CodeView extends Component {
                   {(provided, snapshot) => (
                     <React.Fragment>
                       <Item
+                        ref={provided.innerRef}
                         innerRef={provided.innerRef}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
@@ -230,60 +241,7 @@ class CodeView extends Component {
             </Kiosk>
           )}
         </Droppable>
-        <Content>
-          <Button onClick={this.addList}>
-            <svg width="24" height="24" viewBox="0 0 24 24">
-              <path
-                fill="currentColor"
-                d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"
-              />
-            </svg>
-            <ButtonText>Add List</ButtonText>
-          </Button>
-          {Object.keys(this.state).map((list, i) => (
-            <Droppable key={list} droppableId={list}>
-              {(provided, snapshot) => (
-                <Container
-                  innerRef={provided.innerRef}
-                  isDraggingOver={snapshot.isDraggingOver}
-                >
-                  {this.state[list].length
-                    ? this.state[list].map((item, index) => (
-                        <Draggable
-                          key={item.id}
-                          draggableId={item.id}
-                          index={index}
-                        >
-                          {(provided, snapshot) => (
-                            <Item
-                              innerRef={provided.innerRef}
-                              {...provided.draggableProps}
-                              isDragging={snapshot.isDragging}
-                              style={provided.draggableProps.style}
-                            >
-                              <Handle {...provided.dragHandleProps}>
-                                <svg width="24" height="24" viewBox="0 0 24 24">
-                                  <path
-                                    fill="currentColor"
-                                    d="M3,15H21V13H3V15M3,19H21V17H3V19M3,11H21V9H3V11M3,5V7H21V5H3Z"
-                                  />
-                                </svg>
-                              </Handle>
-                              {item.content}
-                            </Item>
-                          )}
-                        </Draggable>
-                      ))
-                    : !provided.placeholder && <Notice>Drop items here</Notice>}
-                  {provided.placeholder}
-                </Container>
-              )}
-            </Droppable>
-          ))}
-        </Content>
       </DragDropContext>
     );
   }
 }
-
-export default CodeView;
