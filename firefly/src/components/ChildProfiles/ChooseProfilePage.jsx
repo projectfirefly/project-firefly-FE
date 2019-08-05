@@ -18,19 +18,60 @@ const ChooseProfilePage = () => {
       fontWeight: "900",
       color: "#5B4EFF",
       display: "flex",
-      marginBottom: "4.5%"
+      marginBottom: "4.5%",
+      justifyContent: "center",
+      alignItems: "center",
+      flexDirection: "column"
     },
     root: {
       display: "flex",
-      flexDirection: "row",
+      flexDirection: "column",
       justifyContent: "center",
-      flexWrap: "wrap"
+      flexWrap: "wrap",
+      padding: "0 4.7%"
     },
     cardContainer: {
       display: "flex",
       flexWrap: "wrap",
       justifyContent: "flex-start",
-      alignItems: "center"
+      alignItems: "center",
+      margin: "0 10%"
+    },
+    backButtonContainer: {
+      display: "flex",
+      justifyContent: "flex-start",
+      margin: "0 10%",
+      padding: "0 4%",
+    },
+
+    backButtonStyle: {
+
+      backgroundColor: "#FFF",
+      border: "2px solid #ABB0BA",
+      color: "#4aa810",
+      padding: "0.8rem",
+      textTransform: "uppercase",
+      fontSize: "1.3rem",
+      borderRadius: "10px",
+      fontWeight: "700",
+      boxShadow: "0px 3px #8f96a3",
+      cursor: "pointer",
+      opacity: "0.92",
+      transition: "opacity .25s ease-in-out",
+      letterSpacing: "1px",
+      width: "21.1%",
+      display: "flex",      
+      justifyContent: "center",
+
+      "&:active": {
+          opacity: "1",
+          boxShadow: "none",
+          margin: "3px 0px -3px 0px",
+      },
+
+      "&:focus": {
+          outline: "none",
+      }
     },
     single: {
       width: "33%",
@@ -42,7 +83,7 @@ const ChooseProfilePage = () => {
       border: "2px solid #ABB0BA",
       borderRadius: "10px",
       boxShadow: "0px 3px #8F96A3",
-      width: "200px"
+      width: "68%",
     },
     cardContent: {
       display: "flex",
@@ -100,6 +141,9 @@ const ChooseProfilePage = () => {
         ) : (
           <div>Loading...</div>
         )}
+      </div>
+      <div className={classes.backButtonContainer}>
+        <div className={classes.backButtonStyle}>Back</div>
       </div>
     </div>
   );

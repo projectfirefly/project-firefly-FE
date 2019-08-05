@@ -61,6 +61,7 @@ const Clone = styled(Item)`
 `;
 
 const List = styled.div`
+  min-height: 100px;
   border: 1px ${props => (props.isDraggingOver ? "dashed #000" : "solid #ddd")};
   background: #fff;
   padding: 0.5rem 0.5rem 0;
