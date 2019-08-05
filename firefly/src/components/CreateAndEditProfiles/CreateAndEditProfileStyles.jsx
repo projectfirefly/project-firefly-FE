@@ -44,7 +44,7 @@ const createProfileStyles = makeStyles(theme => ({
     height: "100%",
     width: "50%",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "center"
   },
   firstName: {
     marginBottom: "15%",
@@ -88,42 +88,7 @@ const createProfileStyles = makeStyles(theme => ({
     paddingBottom: "3px"
   },
   button: {
-    fontSize: "16px",
-    fontWeight: "600",
-    fontFamily: "'Nunito', sans-serif",
-    borderRadius: "7px",
-    border: "2px solid #ABB0BA",
-    boxShadow: "0px 2px #8F96A3",
-    width: "25%",
-    padding: "8px 0",
-    letterSpacing: "1px",
-    "&.cancel": {
-      background: "#fff",
-      color: "#4aa810",
-      "&:active": {
-        boxShadow: "none",
-        marginTop: "3px",
-        marginBottom: "-3px"
-      },
-      "&:hover":{
-        cursor: "pointer"
-      },
-    },
-    
-    "&.save": {
-      background: "#4aa810",
-      color: "#fff",
-      border: "none",
-      boxShadow: "0px 3px #3E8C0D",
-      "&:active": {
-        boxShadow: "none",
-        marginTop: "3px",
-        marginBottom: "-3px"
-      },
-      "&:hover":{
-        cursor: "pointer"
-      },
-    }
+    width: "25%"
   },
   delete: {
     position: "absolute",
