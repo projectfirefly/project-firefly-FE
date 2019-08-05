@@ -43,24 +43,25 @@ const createProfileClasses = makeStyles({
       padding: "3%"
     }
   },
-firefly: {
-  display: "flex",
-  width: "264px",
-},
+  firefly: {
+    display: "flex",
+    width: "264px"
+  },
   accessory: {
     display: "flex",
     flexDirection: "column",
     height: "86px",
     marginBottom: "60px"
   },
+  lightColor: {
+    marginTop: "20%"
+  },
   h2: {
     fontSize: "16px",
     fontWeight: "bold",
     margin: "3%",
     marginBottom: "5px",
-    "&.nickname": {
-      color: "#52ab1a"
-    }
+    color: "#52ab1a"
   },
   input: {
     fontSize: "18px",
@@ -70,7 +71,10 @@ firefly: {
     marginBottom: "57px",
     padding: "2%",
     borderRadius: "5px",
-    width: "90%"
+    width: "90%",
+    "&:focus": {
+      outline: "none"
+    }
   },
   sliderContainer: {
     height: "77px"
@@ -78,20 +82,20 @@ firefly: {
   slider: {
     margin: "0 4%",
     height: "22px"
-
   },
   buttonContainer: {
     display: "flex",
-    margin: "50px 3% 0",
+    width: "76%",
+    margin: "50px",
     justifyContent: "space-between",
     alignItems: "center"
   },
 
-   a: {
+  a: {
     width: "200px",
-    'text-decoration': "none"
-   },
-   
+    "text-decoration": "none"
+  },
+
   button: {
     display: "flex",
     justifyContent: "center",
@@ -102,7 +106,7 @@ firefly: {
     width: "200px",
     height: "44px",
     padding: "8px 0",
-    'text-decoration': "none",
+    "text-decoration": "none",
     letterSpacing: "1px",
 
     "&.back": {
@@ -127,9 +131,9 @@ firefly: {
         marginBottom: "-3px"
       }
     },
-    "&:hover":{
+    "&:hover": {
       cursor: "pointer"
-    },
+    }
   }
 });
 

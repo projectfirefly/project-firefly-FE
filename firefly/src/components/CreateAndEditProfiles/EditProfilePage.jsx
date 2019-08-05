@@ -24,8 +24,7 @@ import {
   DialogTitle,
   DialogContent,
   DialogContentText,
-  DialogActions,
-  Button
+  DialogActions
 } from "@material-ui/core";
 import { SecondaryButton } from "../SecondaryButton";
 import { PrimaryButton } from "../PrimaryButton";

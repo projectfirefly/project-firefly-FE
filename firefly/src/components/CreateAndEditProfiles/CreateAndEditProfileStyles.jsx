@@ -114,6 +114,9 @@ const createProfileStyles = makeStyles(theme => ({
       boxShadow: "none",
       margin: "1.2% 0 -1% -1%"
     },
+    "&:hover": {
+      cursor: "pointer"
+    },
     "&:focus": {
       outline: "none"
     }
@@ -154,6 +157,9 @@ const createProfileStyles = makeStyles(theme => ({
         boxShadow: "none",
         marginTop: "3px",
         marginBottom: "-3px"
+      },
+      "&:hover": {
+        cursor: "pointer"
       }
     },
     "&.remove": {
@@ -165,6 +171,9 @@ const createProfileStyles = makeStyles(theme => ({
         boxShadow: "none",
         marginTop: "3px",
         marginBottom: "-3px"
+      },
+      "&:hover": {
+        cursor: "pointer"
       }
     }
   },

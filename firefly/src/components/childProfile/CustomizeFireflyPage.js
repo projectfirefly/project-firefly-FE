@@ -3,7 +3,7 @@ import React, { useContext, useState, useEffect } from "react";
 //Context
 import { childContext } from "../../context/ChildProfiles/ChildProfileStore";
 import { UPDATE_PROFILE } from "../../context/ChildProfiles/ChildProfileStore";
-import { updateProfile } from '../../utils/firebaseInteractions';
+import { updateProfile } from "../../utils/firebaseInteractions";
 
 import Icon from "../../assets/icons";
 import ColorSlider from "../ColorSlider/ColorSlider";
@@ -44,7 +44,7 @@ export default function CustomizeFireflyPage() {
   }, [childProfileState]);
 
   const saveProfile = () => {
-    updateProfile(UPDATE_PROFILE, updatedProfile, dispatch)
+    updateProfile(UPDATE_PROFILE, updatedProfile, dispatch);
   };
 
   const accessoryChange = i => {
@@ -57,8 +57,8 @@ export default function CustomizeFireflyPage() {
       ...updatedProfile,
       avatar: {
         ...updatedProfile.avatar,
-        nickname: e.target.value,
-      },
+        nickname: e.target.value
+      }
     });
   };
 
@@ -96,14 +96,14 @@ export default function CustomizeFireflyPage() {
                 onChange={handleChange}
               />
               <div>
-                <h2 className={classes.h2}>Accessories</h2>
+                <h2 className={classes.h2}>ACCESSORIES</h2>
                 <Accessories
                   accessory={updatedProfile.avatar.accessory}
                   accessoryChange={accessoryChange}
                 />
               </div>
-              <div>
-                <h2 className={classes.h2}>Light Color</h2>
+              <div className={classes.lightColor}>
+                <h2 className={classes.h2}>LIGHT COLOR</h2>
                 <div className={classes.slider}>
                   <ColorSlider
                     value={updatedProfile.avatar.color}
@@ -123,7 +123,7 @@ export default function CustomizeFireflyPage() {
           </a>
 
           <a href="/myfirefly" className={classes.a}>
-            <PrimaryButton text={"BACK"} onclick={saveProfile} />
+            <PrimaryButton text={"SAVE"} onclick={saveProfile} />
           </a>
         </div>
       </div>
