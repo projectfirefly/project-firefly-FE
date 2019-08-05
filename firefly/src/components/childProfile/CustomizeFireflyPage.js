@@ -3,6 +3,7 @@ import React, { useContext, useState, useEffect } from "react";
 //Context
 import { childContext } from "../../context/ChildProfiles/ChildProfileStore";
 import { UPDATE_PROFILE } from "../../context/ChildProfiles/ChildProfileStore";
+import { updateProfile } from '../../utils/firebaseInteractions';
 
 import Icon from "../../assets/icons";
 import ColorSlider from "../ColorSlider/ColorSlider";
@@ -43,7 +44,7 @@ export default function CustomizeFireflyPage() {
   }, [childProfileState]);
 
   const saveProfile = () => {
-    dispatch({ type: UPDATE_PROFILE, payload: updatedProfile });
+    updateProfile(UPDATE_PROFILE, updatedProfile, dispatch)
   };
 
   const accessoryChange = i => {
