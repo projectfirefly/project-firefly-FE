@@ -5,6 +5,8 @@ import WelcomeToFirefly from "./../images/WelcomeToFirefly.png";
 
 import { Link } from "react-router-dom";
 
+import firebase from 'firebase';
+
 const GetStarted = () => {
   const classes = makeStyles(theme => ({
     root: {},
@@ -66,10 +68,14 @@ const GetStarted = () => {
     }
   }))();
 
+  const signout = () => {
+    firebase.auth().signOut();
+  }
+
   return (
     <div className={classes.root}>
       <div className={classes.topBar}>
-        <Link to="/signin" style={{ textDecoration: "none" }}>
+        <Link to="/signin" style={{ textDecoration: "none" }} onClick={signout}>
           <span className={classes.topBarItem}>
             <i className="fas fa-sign-out-alt" />
             <p className={classes.topBarText}>Sign Out</p>
