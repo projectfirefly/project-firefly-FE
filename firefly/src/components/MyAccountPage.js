@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
@@ -13,8 +13,7 @@ import { PrimaryButton } from "../components/PrimaryButton";
 //context
 import { childContext } from "../context/ChildProfiles/ChildProfileStore";
 import { UPDATE_USER } from "../context/ChildProfiles/ChildProfileStore";
-import { updateUser } from '../utils/firebaseInteractions';
-
+import { updateUser } from "../utils/firebaseInteractions";
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -23,12 +22,17 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.text.secondary,
     borderRadius: " 20px",
     // marginBottom: "32px",
-  }
+  },
 }));
 
 export default function ProfileView() {
-
   const [editing, setEditing] = useState(false);
+
+  const [childProfileState, dispatch] = useContext(childContext);
+
+  const toggleEditing = () => {
+    setEditing(!editing);
+  };
 
   const classes = useStyles();
 
@@ -47,7 +51,7 @@ export default function ProfileView() {
                   <div className="infoLabel">Email</div>
                 </Grid>
                 <Grid item xs={6}>
-                  <div className="userInfo">Users Email</div>
+                  <div className="userInfo">{childProfileState.user.email}</div>
                 </Grid>
               </Grid>
               <Grid container spacing={3}>
@@ -55,7 +59,10 @@ export default function ProfileView() {
                   <div className="infoLabel">Name</div>
                 </Grid>
                 <Grid item xs={6}>
-                  <div className="userInfo">Users Name</div>
+                  <div className="userInfo">
+                    {childProfileState.user.first_name}{" "}
+                    {childProfileState.user.last_name}
+                  </div>
                 </Grid>
               </Grid>
               <Grid container spacing={3}>
@@ -63,7 +70,7 @@ export default function ProfileView() {
                   <div className="infoLabel">Address</div>
                 </Grid>
                 <Grid item xs={6}>
-                  <div className="userInfo">Users Address</div>
+                  <div className="userInfo">{childProfileState.user.information.address}</div>
                 </Grid>
               </Grid>
               <br />
@@ -87,7 +94,7 @@ export default function ProfileView() {
               <div className="research-section">
                 <div className="checkbox-container">
                   <label className="checkbox-label">
-                    <input type="checkbox" />
+                    <input type="checkbox"/>
                     <span className="checkbox-custom"> {""}</span>
                   </label>
                 </div>
@@ -113,12 +120,12 @@ export default function ProfileView() {
                 <Icon
                   name="Firefly"
                   style={{
-                    width: "40%"
+                    width: "40%",
                   }}
                 />
               </div>
 
-              <hr class="style1" />
+              <hr className="style1" />
               <ProfileCard />
             </div>
           </Paper>
