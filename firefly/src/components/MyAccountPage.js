@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
@@ -20,10 +20,37 @@ import { flexbox } from "@material-ui/system";
 export default function ProfileView(props) {
   const [editing, setEditing] = useState(false);
 
+  const [finishedLoading, setFinishedLoading] = useState(false);
+
   const [childProfileState, dispatch] = useContext(childContext);
+
+  const [updatedInfo, setUpdatedInfo] = useState({
+    email: "",
+    first_name: "",
+    last_name: "",
+    information: {
+      address: "",
+    },
+  });
+
+  useEffect(() => {
+    if (
+      childProfileState.loaded &&
+      childProfileState.hasProfiles &&
+      !finishedLoading
+    ) {
+      setUpdatedInfo({
+        ...childProfileState.user,
+      });
+      setFinishedLoading(true);
+    }
+  }, [childProfileState]);
 
   const toggleEditing = () => {
     setEditing(!editing);
+    setUpdatedInfo({
+      ...childProfileState.user,
+    })
   };
 
   const classes = makeStyles(theme => ({
@@ -47,6 +74,28 @@ export default function ProfileView(props) {
       width: "40%",
     },
   }))();
+
+  const handleChanges = e => {
+    setUpdatedInfo({
+      ...updatedInfo,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  const handleInformationChanges = e => {
+    setUpdatedInfo({
+      ...updatedInfo,
+      information: {
+        ...updatedInfo.information,
+        [e.target.name]: e.target.value
+      }
+    })
+  }
+
+  const submit = () => {
+    setEditing(false);
+    updateUser(UPDATE_USER, updatedInfo, dispatch);
+  }
 
   return (
     <Container className="root" maxWidth="lg">
@@ -73,7 +122,12 @@ export default function ProfileView(props) {
                       {childProfileState.user.email}
                     </div>
                   ) : (
-                    <input type="text" />
+                      <input 
+                        type="text"
+                        value={updatedInfo.email}
+                        name="email"
+                        onChange={handleChanges}
+                      />
                   )}
                 </Grid>
               </Grid>
@@ -88,7 +142,20 @@ export default function ProfileView(props) {
                       {childProfileState.user.last_name}
                     </div>
                   ) : (
-                    <input type="text" />
+                    <div>
+                      <input 
+                        type="text"
+                        value={updatedInfo.first_name}
+                        name="first_name"
+                        onChange={handleChanges}
+                      />
+                      <input 
+                        type="text"
+                        value={updatedInfo.last_name}
+                        name="last_name"
+                        onChange={handleChanges}
+                      />
+                    </div>
                   )}
                 </Grid>
               </Grid>
@@ -102,7 +169,12 @@ export default function ProfileView(props) {
                       {childProfileState.user.information.address}
                     </div>
                   ) : (
-                    <input type="text" />
+                    <input 
+                      type="text" 
+                      value={updatedInfo.information.address}
+                      name="address"
+                      onChange={handleInformationChanges}
+                    />
                   )}
                 </Grid>
               </Grid>
@@ -179,11 +251,11 @@ export default function ProfileView(props) {
             </div>
           ) : (
             <div className={classes.editButtons}>
-              <div className={classes.button}>
+              <div className={classes.button} onClick={toggleEditing}>
                 <SecondaryButton text="Cancel" />
               </div>
-              <div className={classes.button}>
-                <PrimaryButton text="Save" />
+              <div className={classes.button}  onClick={submit}>
+                <PrimaryButton text="Save"/>
               </div>
             </div>
           )}
