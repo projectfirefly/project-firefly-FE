@@ -32,7 +32,6 @@ const createProfileClasses = makeStyles({
     border: "2px solid #ABB0BA",
     borderRadius: "10px",
     boxShadow: "0px 3px #8F96A3",
-    width: "321px",
     "&.left": {
       display: "flex",
       justifyContent: "center",
@@ -85,7 +84,7 @@ const createProfileClasses = makeStyles({
   },
   buttonContainer: {
     display: "flex",
-    width: "76%",
+    width: "80%",
     margin: "50px",
     justifyContent: "space-between",
     alignItems: "center"
