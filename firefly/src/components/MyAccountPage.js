@@ -10,6 +10,12 @@ import Icon from "../assets/icons";
 import { FaPen, FaPlus } from "react-icons/fa";
 import { PrimaryButton } from "../components/PrimaryButton";
 
+//context
+import { childContext } from "../context/ChildProfiles/ChildProfileStore";
+import { UPDATE_USER } from "../context/ChildProfiles/ChildProfileStore";
+import { updateUser } from '../utils/firebaseInteractions';
+
+
 const useStyles = makeStyles(theme => ({
   paper: {
     padding: "20px 20px",
@@ -21,6 +27,9 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function ProfileView() {
+
+  const [editing, setEditing] = useState(false);
+
   const classes = useStyles();
 
   return (
@@ -77,7 +86,7 @@ export default function ProfileView() {
               </h2>
               <div className="research-section">
                 <div className="checkbox-container">
-                  <label class="checkbox-label">
+                  <label className="checkbox-label">
                     <input type="checkbox" />
                     <span className="checkbox-custom"> {""}</span>
                   </label>
