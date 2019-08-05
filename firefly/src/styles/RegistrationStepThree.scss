@@ -69,7 +69,7 @@
     letter-spacing: 1px;
     width: 25%;
     justify-content: center;
-    &:hover {
+    &:active {
       opacity: 1;
       box-shadow: none;
       margin: 3px 0px -3px 0px;
@@ -95,7 +95,7 @@
     transition: opacity 0.25s ease-in-out;
     letter-spacing: 1px;
     justify-content: center;
-    &:hover {
+    &:active {
       opacity: 1;
       box-shadow: none;
       margin: 3px 0px -3px 0px;
