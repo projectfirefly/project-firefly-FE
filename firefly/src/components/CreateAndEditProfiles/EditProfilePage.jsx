@@ -107,9 +107,11 @@ const EditProfilePage = props => {
         <div className={classes.sizingContainer}>
           <h2 className={classes.header}>EDIT PROFILE</h2>
           <div className={classes.cardContainer}>
-            <button className={classes.delete} onClick={() => setOpen(true)}>
-              <FontAwesomeIcon icon="trash-alt" />
-            </button>
+            <div className={classes.deleteButtonContainer}>
+              <button className={classes.delete} onClick={() => setOpen(true)}>
+                <FontAwesomeIcon icon="trash-alt" />
+              </button>
+            </div>
             <div className={classes.card}>
               <div className={classes.firefly}>
                 <Icon

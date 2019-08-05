@@ -23,7 +23,10 @@ const createProfileStyles = makeStyles(theme => ({
     marginBottom: "8%"
   },
   cardContainer: {
-    width: "100%"
+    width: "100%",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center"
   },
   card: {
     display: "flex",
@@ -76,7 +79,10 @@ const createProfileStyles = makeStyles(theme => ({
     fontFamily: "'Nunito', sans-serif",
     fontSize: "1.2rem",
     fontWeight: "900",
-    letterSpacing: "2px"
+    letterSpacing: "2px",
+    "&:focus": {
+      outline: "none"
+    }
   },
   buttonContainer: {
     display: "flex",
@@ -93,7 +99,7 @@ const createProfileStyles = makeStyles(theme => ({
   delete: {
     position: "absolute",
     marginTop: "1%",
-    marginLeft: "1%",
+    marginLeft: "-1%",
     fontWeight: "600",
     fontFamily: "'Nunito', sans-serif",
     borderRadius: "7px",
@@ -106,7 +112,10 @@ const createProfileStyles = makeStyles(theme => ({
     color: "#ABB0BA",
     "&:active": {
       boxShadow: "none",
-      marginTop: "-1.7%"
+      margin: "1.2% 0 -1% -1%"
+    },
+    "&:focus": {
+      outline: "none"
     }
   },
   dialogPaper: {
@@ -158,6 +167,11 @@ const createProfileStyles = makeStyles(theme => ({
         marginBottom: "-3px"
       }
     }
+  },
+  deleteButtonContainer: {
+    display: "flex",
+    width: "100%",
+    justifyContent: "flex-start"
   }
 }));
 
