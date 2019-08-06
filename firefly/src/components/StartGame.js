@@ -52,10 +52,15 @@ const GetStarted = () => {
       }
     },
     topBar: {
+      position: "absolute",
+      left: "5%",
+      top: "0",
       display: "flex",
       justifyContent: "space-between",
       margin: "0px 1%",
-      marginTop: "2%"
+      marginTop: "2%",
+      width: "90%",
+
     },
     topBarItem: {
       display: "flex",
