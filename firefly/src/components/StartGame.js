@@ -5,7 +5,7 @@ import WelcomeToFirefly from "./../images/WelcomeToFirefly.png";
 
 import { Link } from "react-router-dom";
 
-import firebase from 'firebase';
+import firebase from "firebase";
 
 const GetStarted = () => {
   const classes = makeStyles(theme => ({
@@ -33,6 +33,7 @@ const GetStarted = () => {
       padding: "0.8rem",
       textTransform: "uppercase",
       fontSize: "1.3rem",
+      border: "none",
       borderRadius: "10px",
       boxShadow: "0px 3px #3e8c0d",
       cursor: "pointer",
@@ -41,7 +42,7 @@ const GetStarted = () => {
       letterSpacing: "1px",
       width: "100%",
 
-      "&:hover": {
+      "&:active": {
         opacity: "1",
         boxShadow: "none",
         margin: "3px 0px -3px 0px"
@@ -75,7 +76,7 @@ const GetStarted = () => {
 
   const signout = () => {
     firebase.auth().signOut();
-  }
+  };
 
   return (
     <div className={classes.root}>

@@ -57,9 +57,11 @@
     justify-content: center;
     width: 352px;
     height: 44px;
-    font-size: 17px;
-    color: #2e3238;
-    padding-left: 1%;
+    color: #152f04;
+    font-size: 1.2rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    padding-left: 4%;
     letter-spacing: 1px;
     border-radius: 10px;
     outline: none;
@@ -76,6 +78,7 @@
     border-radius: 10px;
     box-shadow: 0px 3px 0px 0px#3e8c0d;
     cursor: pointer;
+    border: none;
     letter-spacing: 1px;
     line-height: 22px;
     margin-bottom: 20px;
@@ -86,7 +89,7 @@
     &:active {
       opacity: 1;
       box-shadow: none;
-      margin: 3px 0px -3px 0px;
+      margin: 3px 0px 17px 0px;
     }
 
     &:focus {
@@ -282,4 +285,3 @@
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
-

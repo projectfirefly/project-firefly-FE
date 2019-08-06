@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
@@ -9,32 +9,93 @@ import ProfileCard from "./ProfileCard";
 import Icon from "../assets/icons";
 import { FaPen, FaPlus } from "react-icons/fa";
 import { PrimaryButton } from "../components/PrimaryButton";
+import { SecondaryButton } from "../components/SecondaryButton";
 
 //context
 import { childContext } from "../context/ChildProfiles/ChildProfileStore";
 import { UPDATE_USER } from "../context/ChildProfiles/ChildProfileStore";
 import { updateUser } from "../utils/firebaseInteractions";
+import { flexbox } from "@material-ui/system";
 
-const useStyles = makeStyles(theme => ({
-  paper: {
-    padding: "20px 20px",
-    textAlign: "left",
-    color: theme.palette.text.secondary,
-    borderRadius: " 20px"
-    // marginBottom: "32px",
-  },
-}));
-
-export default function ProfileView() {
+export default function ProfileView(props) {
   const [editing, setEditing] = useState(false);
+
+  const [finishedLoading, setFinishedLoading] = useState(false);
 
   const [childProfileState, dispatch] = useContext(childContext);
 
+  const [updatedInfo, setUpdatedInfo] = useState({
+    email: "",
+    first_name: "",
+    last_name: "",
+    information: {
+      address: "",
+    },
+  });
+
+  useEffect(() => {
+    if (
+      childProfileState.loaded &&
+      childProfileState.hasProfiles &&
+      !finishedLoading
+    ) {
+      setUpdatedInfo({
+        ...childProfileState.user,
+      });
+      setFinishedLoading(true);
+    }
+  }, [childProfileState]);
+
   const toggleEditing = () => {
     setEditing(!editing);
+    setUpdatedInfo({
+      ...childProfileState.user,
+    })
   };
 
-  const classes = useStyles();
+  const classes = makeStyles(theme => ({
+    paper: {
+      padding: "20px 20px",
+      textAlign: "left",
+      color: theme.palette.text.secondary,
+      borderRadius: " 20px",
+      // marginBottom: "32px",
+    },
+    headerContainer: {
+      display: "flex",
+      justifyContent: "space-between",
+    },
+    editButtons: {
+      display: "flex",
+      marginTop: "40px",
+      justifyContent: "space-between",
+    },
+    button: {
+      width: "40%",
+    },
+  }))();
+
+  const handleChanges = e => {
+    setUpdatedInfo({
+      ...updatedInfo,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  const handleInformationChanges = e => {
+    setUpdatedInfo({
+      ...updatedInfo,
+      information: {
+        ...updatedInfo.information,
+        [e.target.name]: e.target.value
+      }
+    })
+  }
+
+  const submit = () => {
+    setEditing(false);
+    updateUser(UPDATE_USER, updatedInfo, dispatch);
+  }
 
   return (
     <Container className="root" maxWidth="lg">
@@ -45,13 +106,29 @@ export default function ProfileView() {
           {/* Account Info */}
           <div className="leftContainerOne">
             <Paper className={classes.paper}>
-              <h2 className="sectionHeader">Account Information</h2>
+              <div className={classes.headerContainer}>
+                <h2 className="sectionHeader">Account Information</h2>
+                <div className="iconButton" onClick={toggleEditing}>
+                  <FaPen />
+                </div>
+              </div>
               <Grid container spacing={3}>
                 <Grid item xs={2}>
                   <div className="infoLabel">Email</div>
                 </Grid>
                 <Grid item xs={6}>
-                  <div className="userInfo">{childProfileState.user.email}</div>
+                  {!editing ? (
+                    <div className="userInfo">
+                      {childProfileState.user.email}
+                    </div>
+                  ) : (
+                      <input 
+                        type="text"
+                        value={updatedInfo.email}
+                        name="email"
+                        onChange={handleChanges}
+                      />
+                  )}
                 </Grid>
               </Grid>
               <Grid container spacing={3}>
@@ -59,10 +136,27 @@ export default function ProfileView() {
                   <div className="infoLabel">Name</div>
                 </Grid>
                 <Grid item xs={6}>
-                  <div className="userInfo">
-                    {childProfileState.user.first_name}{" "}
-                    {childProfileState.user.last_name}
-                  </div>
+                  {!editing ? (
+                    <div className="userInfo">
+                      {childProfileState.user.first_name}{" "}
+                      {childProfileState.user.last_name}
+                    </div>
+                  ) : (
+                    <div>
+                      <input 
+                        type="text"
+                        value={updatedInfo.first_name}
+                        name="first_name"
+                        onChange={handleChanges}
+                      />
+                      <input 
+                        type="text"
+                        value={updatedInfo.last_name}
+                        name="last_name"
+                        onChange={handleChanges}
+                      />
+                    </div>
+                  )}
                 </Grid>
               </Grid>
               <Grid container spacing={3}>
@@ -70,7 +164,18 @@ export default function ProfileView() {
                   <div className="infoLabel">Address</div>
                 </Grid>
                 <Grid item xs={6}>
-                  <div className="userInfo">{childProfileState.user.information.address}</div>
+                  {!editing ? (
+                    <div className="userInfo">
+                      {childProfileState.user.information.address}
+                    </div>
+                  ) : (
+                    <input 
+                      type="text" 
+                      value={updatedInfo.information.address}
+                      name="address"
+                      onChange={handleInformationChanges}
+                    />
+                  )}
                 </Grid>
               </Grid>
               <br />
@@ -94,7 +199,7 @@ export default function ProfileView() {
               <div className="research-section">
                 <div className="checkbox-container">
                   <label className="checkbox-label">
-                    <input type="checkbox"/>
+                    <input type="checkbox" />
                     <span className="checkbox-custom"> {""}</span>
                   </label>
                 </div>
@@ -110,11 +215,12 @@ export default function ProfileView() {
             <h2 className="sectionHeaderRight">Manage Profile</h2>
             <div className="fireflyContainer">
               <div className="edit">
+                <p>New Profile</p>
                 <Link to="/addprofile" className="iconButton">
                   <FaPlus />
                 </Link>
               </div>
-              <p>New Profile</p>
+
               {/* New Profile card. Later make into a component */}
               <div className="fireflyIcon">
                 <Icon
@@ -126,15 +232,33 @@ export default function ProfileView() {
               </div>
 
               <hr className="style1" />
-              <ProfileCard />
+              {childProfileState.user.profiles.map(profile => {
+                return (
+                  <ProfileCard
+                    name={profile.first_name + " " + profile.last_name}
+                    history={props.history}
+                    key={profile.id}
+                    id={profile.id}
+                  />
+                );
+              })}
             </div>
           </Paper>
 
-          <div className="button">
-            <Link to="/startgame">
-              <PrimaryButton text={"BACK TO GAME"} />
-            </Link>
-          </div>
+          {!editing ? (
+            <div className="button">
+              <PrimaryButton text={"BACK TO GAME"} onclick={"/startgame"} />
+            </div>
+          ) : (
+            <div className={classes.editButtons}>
+              <div className={classes.button} onClick={toggleEditing}>
+                <SecondaryButton text="Cancel" />
+              </div>
+              <div className={classes.button}  onClick={submit}>
+                <PrimaryButton text="Save"/>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </Container>
