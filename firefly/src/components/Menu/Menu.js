@@ -18,11 +18,7 @@ import { Link } from "react-router-dom";
 const items = [
     {
         path: "/",
-        text: "TabletLandingPage",
-    },
-    {
-        path: "/login",
-        text: "FireBaseLogin",
+        text: "LoggedOutStartPage",
     },
     {
         path: "/myfirefly",

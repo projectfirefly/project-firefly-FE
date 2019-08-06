@@ -5,7 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import RegistrationStepOne from "./RegistrationStepOne";
 import RegistrationStepTwo from "./RegistrationStepTwo";
 import RegistrationStepThree from "./RegistrationStepThree";
-import CustomStepper from "./Steppers/CustomStepper";
+import CustomStepper from "../Steppers/CustomStepper";
 
 const MultiStepRegistration = () => {
   const classes = makeStyles(theme => ({

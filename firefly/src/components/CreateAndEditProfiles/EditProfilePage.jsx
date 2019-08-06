@@ -26,8 +26,8 @@ import {
   DialogContentText,
   DialogActions
 } from "@material-ui/core";
-import { SecondaryButton } from "../SecondaryButton";
-import { PrimaryButton } from "../PrimaryButton";
+import { SecondaryButton } from "../../utils/buttons/SecondaryButton";
+import { PrimaryButton } from "../../utils/buttons/PrimaryButton";
 
 library.add(faTrashAlt);
 

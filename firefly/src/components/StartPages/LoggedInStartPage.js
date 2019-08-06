@@ -1,13 +1,13 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 
-import WelcomeToFirefly from "./../images/WelcomeToFirefly.png";
+import WelcomeToFirefly from "./../../images/WelcomeToFirefly.png";
 
 import { Link } from "react-router-dom";
 
 import firebase from "firebase";
 
-const GetStarted = () => {
+const LoggedInStartPage = () => {
   const classes = makeStyles(theme => ({
     root: {},
     logo: {
@@ -111,4 +111,4 @@ const GetStarted = () => {
   );
 };
 
-export default GetStarted;
+export default LoggedInStartPage;

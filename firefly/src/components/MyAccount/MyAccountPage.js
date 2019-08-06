@@ -3,18 +3,18 @@ import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-import "../styles/MyAccountPage.scss";
+import "../../styles/MyAccountPage.scss";
 import { Link } from "react-router-dom";
 import ProfileCard from "./ProfileCard";
-import Icon from "../assets/icons";
+import Icon from "../../assets/icons";
 import { FaPen, FaPlus } from "react-icons/fa";
-import { PrimaryButton } from "../components/PrimaryButton";
-import { SecondaryButton } from "../components/SecondaryButton";
+import { PrimaryButton } from "../../utils/buttons/PrimaryButton";
+import { SecondaryButton } from "../../utils/buttons/SecondaryButton";
 
 //context
-import { childContext } from "../context/ChildProfiles/ChildProfileStore";
-import { UPDATE_USER } from "../context/ChildProfiles/ChildProfileStore";
-import { updateUser } from "../utils/firebaseInteractions";
+import { childContext } from "../../context/ChildProfiles/ChildProfileStore";
+import { UPDATE_USER } from "../../context/ChildProfiles/ChildProfileStore";
+import { updateUser } from "../../utils/firebaseInteractions";
 import { flexbox } from "@material-ui/system";
 
 export default function ProfileView(props) {

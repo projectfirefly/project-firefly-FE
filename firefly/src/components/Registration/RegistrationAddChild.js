@@ -1,8 +1,8 @@
 import React from "react";
 
-import Firefly from "./../images/Logo.png";
+import Firefly from "./../../images/Logo.png";
 
-import "./../styles/RegistrationStepTwo.scss";
+import "./../../styles/RegistrationStepTwo.scss";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

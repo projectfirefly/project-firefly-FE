@@ -8,7 +8,7 @@ import Book from "../../images/BookTemp.png";
 import Stars from "../../images/StarsTemp.png";
 import Icon from "../../assets/icons";
 import ProfileFly from "../../assets/icons/ProfileFly";
-import { SecondaryButton } from "../SecondaryButton";
+import { SecondaryButton } from "../../utils/buttons/SecondaryButton";
 
 const useStyles = makeStyles({
   root: {

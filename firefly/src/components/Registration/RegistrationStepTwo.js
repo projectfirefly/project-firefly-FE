@@ -1,5 +1,5 @@
 import React from "react";
-import "./../styles/RegistrationStepTwo.scss";
+import "./../../styles/RegistrationStepTwo.scss";
 import RegistrationAddChild from "./RegistrationAddChild";
 
 const AddChild = ({
