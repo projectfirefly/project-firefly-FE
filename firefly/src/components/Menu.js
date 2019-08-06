@@ -150,6 +150,7 @@ function Menu() {
                                 onClick={toggleDrawer}
                                 component={Link}
                                 to={item.path}
+                                key={item.path}
                             >
                                 <ListItemText primary={item.text} />
                             </ListItem>

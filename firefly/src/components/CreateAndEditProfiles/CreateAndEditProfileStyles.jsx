@@ -23,7 +23,10 @@ const createProfileStyles = makeStyles(theme => ({
     marginBottom: "8%"
   },
   cardContainer: {
-    width: "100%"
+    width: "100%",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center"
   },
   card: {
     display: "flex",
@@ -44,7 +47,7 @@ const createProfileStyles = makeStyles(theme => ({
     height: "100%",
     width: "50%",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "center"
   },
   firstName: {
     marginBottom: "15%",
@@ -76,7 +79,10 @@ const createProfileStyles = makeStyles(theme => ({
     fontFamily: "'Nunito', sans-serif",
     fontSize: "1.2rem",
     fontWeight: "900",
-    letterSpacing: "2px"
+    letterSpacing: "2px",
+    "&:focus": {
+      outline: "none"
+    }
   },
   buttonContainer: {
     display: "flex",
@@ -88,47 +94,12 @@ const createProfileStyles = makeStyles(theme => ({
     paddingBottom: "3px"
   },
   button: {
-    fontSize: "16px",
-    fontWeight: "600",
-    fontFamily: "'Nunito', sans-serif",
-    borderRadius: "7px",
-    border: "2px solid #ABB0BA",
-    boxShadow: "0px 2px #8F96A3",
-    width: "25%",
-    padding: "8px 0",
-    letterSpacing: "1px",
-    "&.cancel": {
-      background: "#fff",
-      color: "#4aa810",
-      "&:active": {
-        boxShadow: "none",
-        marginTop: "3px",
-        marginBottom: "-3px"
-      },
-      "&:hover":{
-        cursor: "pointer"
-      },
-    },
-    
-    "&.save": {
-      background: "#4aa810",
-      color: "#fff",
-      border: "none",
-      boxShadow: "0px 3px #3E8C0D",
-      "&:active": {
-        boxShadow: "none",
-        marginTop: "3px",
-        marginBottom: "-3px"
-      },
-      "&:hover":{
-        cursor: "pointer"
-      },
-    }
+    width: "25%"
   },
   delete: {
     position: "absolute",
     marginTop: "1%",
-    marginLeft: "1%",
+    marginLeft: "-1%",
     fontWeight: "600",
     fontFamily: "'Nunito', sans-serif",
     borderRadius: "7px",
@@ -141,7 +112,13 @@ const createProfileStyles = makeStyles(theme => ({
     color: "#ABB0BA",
     "&:active": {
       boxShadow: "none",
-      marginTop: "-1.7%"
+      margin: "1.2% 0 -1% -1%"
+    },
+    "&:hover": {
+      cursor: "pointer"
+    },
+    "&:focus": {
+      outline: "none"
     }
   },
   dialogPaper: {
@@ -180,6 +157,9 @@ const createProfileStyles = makeStyles(theme => ({
         boxShadow: "none",
         marginTop: "3px",
         marginBottom: "-3px"
+      },
+      "&:hover": {
+        cursor: "pointer"
       }
     },
     "&.remove": {
@@ -191,8 +171,16 @@ const createProfileStyles = makeStyles(theme => ({
         boxShadow: "none",
         marginTop: "3px",
         marginBottom: "-3px"
+      },
+      "&:hover": {
+        cursor: "pointer"
       }
     }
+  },
+  deleteButtonContainer: {
+    display: "flex",
+    width: "100%",
+    justifyContent: "flex-start"
   }
 }));
 
