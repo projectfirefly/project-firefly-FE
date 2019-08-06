@@ -211,7 +211,7 @@ export default function MyFireflyPage() {
                   </Link>
                 </div>
                 <h3 className={classes.username}>
-                  {currentProfile.avatar.name}
+                  {currentProfile.avatar.nickname}
                 </h3>
                 <div className={classes.fireflyContainer}>
                   {/* <img

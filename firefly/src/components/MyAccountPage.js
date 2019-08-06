@@ -51,6 +51,7 @@ export default function ProfileView(props) {
     setUpdatedInfo({
       ...childProfileState.user,
     })
+    console.log(process.env.REACT_APP_SOMETHING)
   };
 
   const classes = makeStyles(theme => ({
