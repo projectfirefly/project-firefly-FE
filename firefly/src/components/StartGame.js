@@ -33,6 +33,7 @@ const GetStarted = () => {
       padding: "0.8rem",
       textTransform: "uppercase",
       fontSize: "1.3rem",
+      border: "none",
       borderRadius: "10px",
       boxShadow: "0px 3px #3e8c0d",
       cursor: "pointer",
