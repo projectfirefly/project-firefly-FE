@@ -1,10 +1,10 @@
 import React from "react";
-import "../styles/TabletLandingPage.scss";
-import WelcomeToFirefly from "./../images/WelcomeToFirefly.png";
+import "../../styles/LoggedOutStartPage.scss";
+import WelcomeToFirefly from "./../../images/WelcomeToFirefly.png";
 
 import { Link } from "react-router-dom";
 
-const TabletLandingPage = () => {
+const LoggedOutStartPage = () => {
   return (
     <div className="choose-login-container">
       <span className="logo">
@@ -28,4 +28,4 @@ const TabletLandingPage = () => {
   );
 };
 
-export default TabletLandingPage;
+export default LoggedOutStartPage;

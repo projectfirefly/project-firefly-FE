@@ -4,18 +4,18 @@ import ApolloClient from "apollo-boost";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faArrowUp, faArrowDown } from "@fortawesome/free-solid-svg-icons";
 
-import TutorialOne from "./../images/Step3Tutorial-1.png";
-import TutorialTwo from "./../images/Step3Tutorial-2.png";
+import TutorialOne from "./../../images/Step3Tutorial-1.png";
+import TutorialTwo from "./../../images/Step3Tutorial-2.png";
 
 //Context
 import {
   UPDATE_USER,
   ADD_PROFILE,
   childContext,
-} from "../context/ChildProfiles/ChildProfileStore";
-import { updateUser, addProfile } from "../utils/firebaseInteractions";
+} from "../../context/ChildProfiles/ChildProfileStore";
+import { updateUser, addProfile } from "../../utils/firebaseInteractions";
 
-import "../styles/RegistrationStepThree.scss";
+import "../../styles/RegistrationStepThree.scss";
 import { set } from "react-ga";
 
 library.add(faArrowUp, faArrowDown);

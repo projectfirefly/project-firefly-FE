@@ -15,20 +15,20 @@ import firebase from "firebase";
 
 //routing
 import { Route, Redirect, Switch } from "react-router-dom";
-import Menu from "../components/Menu";
+import Menu from "../components/Menu/Menu";
 import FireBaseLogin from "../components/FirebaseLogin";
 import MyFireflyPage from "../components/childProfile/MyFireflyPage";
 import CustomizeFireflyPage from "../components/childProfile/CustomizeFireflyPage";
-import TabletLandingPage from "../components/TabletLandingPage";
+import LoggedOutStartPage from "../components/StartPages/LoggedOutStartPage";
 import ChooseProfilePage from "../components/ChildProfiles/ChooseProfilePage";
-import SignUpPage from "../components/SignUpPage";
-import SignInPage from "../components/SignInPage";
-import MultiStepRegistration from "../components/MultiStepRegistration";
+import SignUpPage from "../components/SignInAndSignUp/SignUpPage";
+import SignInPage from "../components/SignInAndSignUp/SignInPage";
+import MultiStepRegistration from "../components/Registration/MultiStepRegistration";
 
-import MyAccountPage from "../components/MyAccountPage";
+import MyAccountPage from "../components/MyAccount/MyAccountPage";
 import EditProfilePage from "../components/CreateAndEditProfiles/EditProfilePage";
 import AddANewProfilePage from "../components/CreateAndEditProfiles/AddANewProfilePage";
-import StartGame from "../components/StartGame";
+import StartGame from "../components/StartPages/LoggedInStartPage";
 import CodeView from "../components/part2/CodeView";
 
 import BackendTester from "../components/backendTester/BackendTester";
@@ -90,7 +90,7 @@ export default function Layout(props) {
             logged={props.logged}
             exact
             path="/"
-            component={TabletLandingPage}
+            component={LoggedOutStartPage}
           />
           <PublicRoute
             logged={props.logged}

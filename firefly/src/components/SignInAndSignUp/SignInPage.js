@@ -4,11 +4,11 @@ import firebase from "firebase";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import * as Yup from "yup";
 import ApolloClient from "apollo-boost";
-import WearingNerdGlasses from "./../images/WearingNerdGlasses.png";
+import WearingNerdGlasses from "./../../images/WearingNerdGlasses.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 
-import "./../styles/signIn.scss";
+import "./../../styles/signIn.scss";
 
 // Staging server at "https://projectfirefly-staging.herokuapp.com/register"
 const uiConfig = {

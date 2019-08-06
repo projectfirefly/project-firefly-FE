@@ -11,8 +11,8 @@ import Accessories from "./Accessories";
 
 import { Link } from "react-router-dom";
 
-import { PrimaryButton } from "../PrimaryButton";
-import { SecondaryButton } from "../SecondaryButton";
+import { PrimaryButton } from "../../utils/buttons/PrimaryButton";
+import { SecondaryButton } from "../../utils/buttons/SecondaryButton";
 
 import createProfileClasses from "./CreateProfileStyles";
 

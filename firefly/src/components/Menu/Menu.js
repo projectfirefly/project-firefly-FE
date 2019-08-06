@@ -18,7 +18,7 @@ import { Link } from "react-router-dom";
 const items = [
     {
         path: "/",
-        text: "TabletLandingPage",
+        text: "LoggedOutStartPage",
     },
     {
         path: "/login",
