@@ -5,7 +5,6 @@ import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import * as Yup from "yup";
 import ApolloClient from "apollo-boost";
 import WearingNerdGlasses from "./../../images/WearingNerdGlasses.png";
-import firebaseApp from "../FirebaseLogin";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 

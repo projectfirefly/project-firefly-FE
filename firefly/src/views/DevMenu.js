@@ -16,7 +16,6 @@ import firebase from "firebase";
 //routing
 import { Route, Redirect, Switch } from "react-router-dom";
 import Menu from "../components/Menu/Menu";
-import FireBaseLogin from "../components/FirebaseLogin";
 import MyFireflyPage from "../components/childProfile/MyFireflyPage";
 import CustomizeFireflyPage from "../components/childProfile/CustomizeFireflyPage";
 import LoggedOutStartPage from "../components/StartPages/LoggedOutStartPage";
@@ -91,11 +90,6 @@ export default function Layout(props) {
             exact
             path="/"
             component={LoggedOutStartPage}
-          />
-          <PublicRoute
-            logged={props.logged}
-            path="/login"
-            component={FireBaseLogin}
           />
           <PublicRoute
             logged={props.logged}

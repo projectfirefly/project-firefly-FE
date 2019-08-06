@@ -21,10 +21,6 @@ const items = [
         text: "LoggedOutStartPage",
     },
     {
-        path: "/login",
-        text: "FireBaseLogin",
-    },
-    {
         path: "/myfirefly",
         text: "MyFireflyPage",
     },
