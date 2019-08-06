@@ -8,7 +8,7 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
 import ProfileFly from "../../assets/icons/ProfileFly";
 
-const ChooseProfilePage = () => {
+const ChooseProfilePage = (props) => {
   const [childProfileState, dispatch] = useContext(childContext);
 
   const useStyles = makeStyles({
@@ -107,7 +107,7 @@ const ChooseProfilePage = () => {
       // height: "100%"
     }
   });
-
+//
   const classes = useStyles();
 
   return (
@@ -119,9 +119,10 @@ const ChooseProfilePage = () => {
             <div className={classes.single}>
               <Card className={classes.card}>
                 <CardActionArea
-                  onClick={() =>
-                    dispatch({ type: "UPDATE_SELECTED", payload: profile.id })
-                  }
+                  onClick={async () => {
+                    await dispatch({ type: "UPDATE_SELECTED", payload: profile.id })
+                    props.history.push("/myfirefly")
+                  }}
                 >
                   <CardContent className={classes.cardContent}>
                     <div className={classes.text}>
