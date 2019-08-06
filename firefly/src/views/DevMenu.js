@@ -77,9 +77,13 @@ export default function Layout(props) {
 
   return (
     <div className="app">
+      {JSON.parse(process.env.REACT_APP_DEV_MENU) ? 
       <div>
         <Menu />
       </div>
+      :
+        null
+      }
       <main className="app__content">
         <Switch>
           <PublicRoute
