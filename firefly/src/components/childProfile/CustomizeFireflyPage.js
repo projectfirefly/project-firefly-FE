@@ -16,7 +16,7 @@ import { SecondaryButton } from "../SecondaryButton";
 
 import createProfileClasses from "./CreateProfileStyles";
 
-export default function CustomizeFireflyPage() {
+export default function CustomizeFireflyPage(props) {
   const classes = createProfileClasses();
 
   const [childProfileState, dispatch] = useContext(childContext);
@@ -43,8 +43,9 @@ export default function CustomizeFireflyPage() {
     }
   }, [childProfileState]);
 
-  const saveProfile = () => {
-    updateProfile(UPDATE_PROFILE, updatedProfile, dispatch);
+  const saveProfile = async () => {
+    await updateProfile(UPDATE_PROFILE, updatedProfile, dispatch);
+    props.history.push("/myfirefly");
   };
 
   const accessoryChange = i => {
@@ -57,8 +58,8 @@ export default function CustomizeFireflyPage() {
       ...updatedProfile,
       avatar: {
         ...updatedProfile.avatar,
-        nickname: e.target.value
-      }
+        nickname: e.target.value,
+      },
     });
   };
 
@@ -115,16 +116,15 @@ export default function CustomizeFireflyPage() {
           </div>
         </div>
         <div className={classes.buttonContainer}>
-          <a href="/choose-profile" className={classes.a}>
+          <div className={classes.a}>
             <SecondaryButton
               text={"BACK"}
-              onclick={"window.history.back(-1)"}
+              onClick={"window.history.back(-1)"}
             />
-          </a>
-
-          <a href="/myfirefly" className={classes.a}>
-            <PrimaryButton text={"SAVE"} onclick={saveProfile} />
-          </a>
+          </div>
+          <div className={classes.a} onClick={saveProfile}>
+            <PrimaryButton text={"SAVE"} />
+          </div>
         </div>
       </div>
     );
