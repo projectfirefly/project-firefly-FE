@@ -40,7 +40,7 @@ const ChooseProfilePage = () => {
     backButtonContainer: {
       display: "flex",
       justifyContent: "flex-start",
-      margin: "0 10%",
+      margin: "2% 10% 0",
       padding: "0 4%",
     },
 

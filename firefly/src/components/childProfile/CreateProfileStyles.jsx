@@ -40,7 +40,8 @@ const createProfileClasses = makeStyles({
       margin: "0 76px 0 0"
     },
     "&.right": {
-      padding: "3%"
+      padding: "3%",
+      // width: "500px"
     }
   },
   firefly: {
