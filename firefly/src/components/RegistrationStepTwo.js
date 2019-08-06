@@ -51,8 +51,21 @@ const AddChild = ({
             Back
           </button>
           <button
-            className="registration-buttons__next"
-            onClick={() => updateStep("add")}
+            className={
+              profiles
+                .map(
+                  profile =>
+                    profile.first_name !== "" && profile.last_name !== ""
+                )
+                .includes(false)
+                ? "registration-buttons__next-disabled"
+                : "registration-buttons__next"
+            }
+            onClick={
+              profiles[0].first_name === "" || profiles[0].last_name === ""
+                ? null
+                : () => updateStep("add")
+            }
           >
             Next
           </button>
