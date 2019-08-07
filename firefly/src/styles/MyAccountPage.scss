@@ -65,7 +65,7 @@
   flex-direction: column;
   overflow-x: hidden;
   overflow-y: scroll;
-  height: 450px;
+  height: 366px;
   width: 100%;
 }
 .profileCardContainer {
@@ -112,6 +112,7 @@ img {
   box-shadow: 0px 3px #8f96a3;
 }
 .button {
+  display: block;
   margin-top: 40px;
 }
 
