@@ -31,6 +31,7 @@ import StartGame from "../components/StartPages/LoggedInStartPage";
 import CodeView from "../components/part2/CodeView";
 
 import BackendTester from "../components/backendTester/BackendTester";
+import AnimationTest from "../components/part2/AnimationTest";
 import { getUser } from "../utils/firebaseInteractions";
 
 export default function Layout(props) {
@@ -76,13 +77,11 @@ export default function Layout(props) {
 
   return (
     <div className="app">
-      {JSON.parse(process.env.REACT_APP_DEV_MENU) ? 
-      <div>
-        <Menu />
-      </div>
-      :
-        null
-      }
+      {JSON.parse(process.env.REACT_APP_DEV_MENU) ? (
+        <div>
+          <Menu />
+        </div>
+      ) : null}
       <main className="app__content">
         <Switch>
           <PublicRoute
@@ -147,6 +146,11 @@ export default function Layout(props) {
             component={StartGame}
           />
           <Route logged={props.logged} path="/codeview" component={CodeView} />
+          <Route
+            logged={props.logged}
+            path="/animations"
+            component={AnimationTest}
+          />
           <PrivateRoute
             logged={props.logged}
             exact

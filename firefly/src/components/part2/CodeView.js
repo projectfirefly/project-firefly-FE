@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import fireflyHover from "../../assets/animations/fireflyHover";
 import uuid from "uuid/v4";
 import styled from "styled-components";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
