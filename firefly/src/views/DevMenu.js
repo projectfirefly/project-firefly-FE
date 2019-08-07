@@ -31,6 +31,7 @@ import StartGame from "../components/StartPages/LoggedInStartPage";
 import CodeView from "../components/part2/CodeView";
 
 import BackendTester from "../components/backendTester/BackendTester";
+import Game from "../components/game/Game";
 import { getUser } from "../utils/firebaseInteractions";
 
 export default function Layout(props) {
@@ -145,6 +146,7 @@ export default function Layout(props) {
             component={StartGame}
           />
           <Route logged={props.logged} path="/codeview" component={CodeView} />
+          <Route logged={props.logged} path="/game" component={Game} />
           <PrivateRoute
             logged={props.logged}
             exact
