@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 
+
 //Context
 import { childContext } from "../../context/ChildProfiles/ChildProfileStore";
 import { UPDATE_PROFILE } from "../../context/ChildProfiles/ChildProfileStore";
@@ -116,12 +117,12 @@ export default function CustomizeFireflyPage(props) {
           </div>
         </div>
         <div className={classes.buttonContainer}>
-          <div className={classes.a}>
+          <Link to='/choose-profile' className={classes.a}>
             <SecondaryButton
               text={"BACK"}
               onClick={"window.history.back(-1)"}
             />
-          </div>
+          </Link>
           <div className={classes.a} onClick={saveProfile}>
             <PrimaryButton text={"SAVE"} />
           </div>

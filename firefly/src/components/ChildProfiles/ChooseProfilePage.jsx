@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { childContext } from "../../context/ChildProfiles/ChildProfileStore";
+import { Link } from "react-router-dom";
 
 //Material-UI
 import { makeStyles } from "@material-ui/core/styles";
@@ -8,7 +9,7 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
 import ProfileFly from "../../assets/icons/ProfileFly";
 
-const ChooseProfilePage = (props) => {
+const ChooseProfilePage = props => {
   const [childProfileState, dispatch] = useContext(childContext);
 
   const useStyles = makeStyles({
@@ -27,7 +28,6 @@ const ChooseProfilePage = (props) => {
       display: "flex",
       flexDirection: "column",
       justifyContent: "center",
-      flexWrap: "wrap",
       padding: "0 4.7%"
     },
     cardContainer: {
@@ -41,11 +41,11 @@ const ChooseProfilePage = (props) => {
       display: "flex",
       justifyContent: "flex-start",
       margin: "2% 10% 0",
-      padding: "0 4%",
+      padding: "0 4%"
     },
 
     backButtonStyle: {
-
+      textDecoration: "none",
       backgroundColor: "#FFF",
       border: "2px solid #ABB0BA",
       color: "#4aa810",
@@ -60,30 +60,30 @@ const ChooseProfilePage = (props) => {
       transition: "opacity .25s ease-in-out",
       letterSpacing: "1px",
       width: "21.1%",
-      display: "flex",      
+      display: "flex",
       justifyContent: "center",
 
       "&:active": {
-          opacity: "1",
-          boxShadow: "none",
-          margin: "3px 0px -3px 0px",
+        opacity: "1",
+        boxShadow: "none",
+        margin: "3px 0px -3px 0px"
       },
 
       "&:focus": {
-          outline: "none",
+        outline: "none"
       }
     },
     single: {
       width: "33%",
       display: "flex",
       justifyContent: "center",
-      marginBottom: "50px"
+      marginBottom: "6%"
     },
     card: {
       border: "2px solid #ABB0BA",
       borderRadius: "10px",
       boxShadow: "0px 3px #8F96A3",
-      width: "68%",
+      width: "68%"
     },
     cardContent: {
       display: "flex",
@@ -107,7 +107,7 @@ const ChooseProfilePage = (props) => {
       // height: "100%"
     }
   });
-//
+  //
   const classes = useStyles();
 
   return (
@@ -120,8 +120,11 @@ const ChooseProfilePage = (props) => {
               <Card className={classes.card}>
                 <CardActionArea
                   onClick={async () => {
-                    await dispatch({ type: "UPDATE_SELECTED", payload: profile.id })
-                    props.history.push("/myfirefly")
+                    await dispatch({
+                      type: "UPDATE_SELECTED",
+                      payload: profile.id
+                    });
+                    props.history.push("/myfirefly");
                   }}
                 >
                   <CardContent className={classes.cardContent}>
@@ -144,7 +147,9 @@ const ChooseProfilePage = (props) => {
         )}
       </div>
       <div className={classes.backButtonContainer}>
-        <div className={classes.backButtonStyle}>Back</div>
+        <Link to="/startgame" className={classes.backButtonStyle}>
+          Back
+        </Link>
       </div>
     </div>
   );
