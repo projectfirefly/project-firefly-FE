@@ -1,11 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-
 import WelcomeToFirefly from "./../../images/WelcomeToFirefly.png";
-
 import { Link } from "react-router-dom";
-
 import firebase from "firebase";
+import { childContext } from "../../context/ChildProfiles/ChildProfileStore";
 
 const LoggedInStartPage = () => {
   const classes = makeStyles(theme => ({
@@ -59,8 +57,7 @@ const LoggedInStartPage = () => {
       justifyContent: "space-between",
       margin: "0px 1%",
       marginTop: "2%",
-      width: "90%",
-
+      width: "90%"
     },
     topBarItem: {
       display: "flex",
@@ -77,6 +74,8 @@ const LoggedInStartPage = () => {
   const signout = () => {
     firebase.auth().signOut();
   };
+
+  const [childProfileState] = useContext(childContext);
 
   return (
     <div className={classes.root}>
@@ -103,9 +102,18 @@ const LoggedInStartPage = () => {
         />
       </span>
       <div className={classes.buttonContainer}>
-        <Link styles={{ "text-decoration": "none" }} to="/choose-profile">
-          <button className={classes.getStarted}>Start</button>
-        </Link>
+        {childProfileState.loaded ? (
+          <Link
+            styles={{ "text-decoration": "none" }}
+            to={
+              childProfileState.hasProfiles ? "/choose-profile" : "/addprofile"
+            }
+          >
+            <button className={classes.getStarted}>Start</button>
+          </Link>
+        ) : (
+          <div>Loading...</div>
+        )}
       </div>
     </div>
   );
