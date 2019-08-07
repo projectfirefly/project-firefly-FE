@@ -73,6 +73,7 @@ export default function ProfileView(props) {
     },
     button: {
       width: "40%",
+      marginTop: "40px"
     },
   }))();
 
@@ -247,9 +248,9 @@ export default function ProfileView(props) {
           </Paper>
 
           {!editing ? (
-            <div className="button">
-              <PrimaryButton text={"BACK TO GAME"} onclick={"/startgame"} />
-            </div>
+            <Link to='/startgame' className="button">
+              <PrimaryButton text={"BACK TO GAME"} />
+            </Link>
           ) : (
             <div className={classes.editButtons}>
               <div className={classes.button} onClick={toggleEditing}>

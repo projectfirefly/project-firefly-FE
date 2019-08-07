@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { childContext } from "../../context/ChildProfiles/ChildProfileStore";
+import { Link } from "react-router-dom";
 
 //Material-UI
 import { makeStyles } from "@material-ui/core/styles";
@@ -45,7 +46,7 @@ const ChooseProfilePage = (props) => {
     },
 
     backButtonStyle: {
-
+      textDecoration: "none",
       backgroundColor: "#FFF",
       border: "2px solid #ABB0BA",
       color: "#4aa810",
@@ -144,7 +145,7 @@ const ChooseProfilePage = (props) => {
         )}
       </div>
       <div className={classes.backButtonContainer}>
-        <div className={classes.backButtonStyle}>Back</div>
+        <Link to='/startgame' className={classes.backButtonStyle}>Back</Link>
       </div>
     </div>
   );
