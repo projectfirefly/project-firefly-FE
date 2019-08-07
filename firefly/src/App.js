@@ -23,6 +23,7 @@ ReactGA.pageview(window.location.pathname + window.location.search);
 //google analytics code end//
 
 function App() {
+    console.log(process.env.REACT_APP_FIREBASE_PROJECT_ID)
     const [loggedIn, setLoggedIn] = useState(false);
 
     firebase.auth().onAuthStateChanged(user => {
