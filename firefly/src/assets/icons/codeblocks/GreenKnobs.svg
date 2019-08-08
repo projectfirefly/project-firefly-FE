@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="27px" height="32px" viewBox="0 0 27 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 56.2 (81672) - https://sketch.com -->
+    <title>GreenKnobs</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="51.6223145%" y1="50%" x2="51.6223145%" y2="106.302282%" id="linearGradient-1">
+            <stop stop-color="#7CD147" offset="0%"></stop>
+            <stop stop-color="#4AA810" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Style-Guide" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="CodingBlocks" transform="translate(-456.000000, -183.000000)" fill="url(#linearGradient-1)">
+            <g id="Group-10" transform="translate(49.000000, 95.000000)">
+                <g id="GreenKnobs" transform="translate(406.997985, 88.500000)">
+                    <path d="M4.0983306,13.6773202 C1.82085691,13.5471356 1.15463195e-14,10.6074138 1.15463195e-14,7 C1.15463195e-14,3.39258615 1.82085691,0.452864363 4.0983306,0.322679769 L4.0983306,0.318181818 L22.3831902,0.318181818 L22.3831902,0.322679769 C24.6606639,0.452864363 26.4815208,3.39258615 26.4815208,7 C26.4815208,10.6074138 24.6606639,13.5471356 22.3831902,13.6773202 L22.3831902,13.6818182 L4.0983306,13.6818182 L4.0983306,13.6773202 Z" id="Combined-Shape"></path>
+                    <path d="M4.0983306,30.6773202 C1.82085691,30.5471356 1.15463195e-14,27.6074138 1.15463195e-14,24 C1.15463195e-14,20.3925862 1.82085691,17.4528644 4.0983306,17.3226798 L4.0983306,17.3181818 L22.3831902,17.3181818 L22.3831902,17.3226798 C24.6606639,17.4528644 26.4815208,20.3925862 26.4815208,24 C26.4815208,27.6074138 24.6606639,30.5471356 22.3831902,30.6773202 L22.3831902,30.6818182 L4.0983306,30.6818182 L4.0983306,30.6773202 Z" id="Combined-Shape"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
