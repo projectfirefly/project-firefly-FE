@@ -24,7 +24,7 @@ ReactGA.pageview(window.location.pathname + window.location.search);
 
 function App() {
     const [loggedIn, setLoggedIn] = useState(false);
-
+    console.log(process.env.REACT_APP_FIREBASE_PROJECT_ID)
     firebase.auth().onAuthStateChanged(user => {
         // console.log("hello");
         if (user) {
