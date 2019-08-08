@@ -1,5 +1,6 @@
 import React from "react";
-import AnimationTest from "../part2/AnimationTest";
+// import AnimationTest from "../part2/AnimationTest";
+import FFanim from "../../assets/animations/FFanim";
 import styled from "styled-components";
 
 const Styled = styled.div`
@@ -15,12 +16,7 @@ const Styled = styled.div`
 const FFbox = () => {
   return (
     <Styled>
-      <AnimationTest
-        height={250}
-        width={250}
-        accessory="nerdglasses"
-        color={352}
-      />
+      <FFanim height={250} width={250} accessory="nerdglasses" color={352} />
     </Styled>
   );
 };
