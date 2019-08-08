@@ -15,23 +15,27 @@ import firebase from "firebase";
 
 //routing
 import { Route, Redirect, Switch } from "react-router-dom";
-import Menu from "../components/Menu";
-import FireBaseLogin from "../components/FirebaseLogin";
+import Menu from "../components/Menu/Menu";
 import MyFireflyPage from "../components/childProfile/MyFireflyPage";
 import CustomizeFireflyPage from "../components/childProfile/CustomizeFireflyPage";
-import TabletLandingPage from "../components/TabletLandingPage";
+import LoggedOutStartPage from "../components/StartPages/LoggedOutStartPage";
 import ChooseProfilePage from "../components/ChildProfiles/ChooseProfilePage";
-import SignUpPage from "../components/SignUpPage";
-import SignInPage from "../components/SignInPage";
-import MultiStepRegistration from "../components/MultiStepRegistration";
+import SignUpPage from "../components/SignInAndSignUp/SignUpPage";
+import SignInPage from "../components/SignInAndSignUp/SignInPage";
+import MultiStepRegistration from "../components/Registration/MultiStepRegistration";
 
-import MyAccountPage from "../components/MyAccountPage";
+import MyAccountPage from "../components/MyAccount/MyAccountPage";
 import EditProfilePage from "../components/CreateAndEditProfiles/EditProfilePage";
 import AddANewProfilePage from "../components/CreateAndEditProfiles/AddANewProfilePage";
-import StartGame from "../components/StartGame";
+import StartGame from "../components/StartPages/LoggedInStartPage";
 import CodeView from "../components/part2/CodeView";
 
 import BackendTester from "../components/backendTester/BackendTester";
+
+import AnimationTest from "../components/part2/AnimationTest";
+
+import Game from "../components/game/Game";
+
 import { getUser } from "../utils/firebaseInteractions";
 
 export default function Layout(props) {
@@ -77,21 +81,18 @@ export default function Layout(props) {
 
   return (
     <div className="app">
-      <div>
-        <Menu />
-      </div>
+      {JSON.parse(process.env.REACT_APP_DEV_MENU) ? (
+        <div>
+          <Menu />
+        </div>
+      ) : null}
       <main className="app__content">
         <Switch>
           <PublicRoute
             logged={props.logged}
             exact
             path="/"
-            component={TabletLandingPage}
-          />
-          <PublicRoute
-            logged={props.logged}
-            path="/login"
-            component={FireBaseLogin}
+            component={LoggedOutStartPage}
           />
           <PublicRoute
             logged={props.logged}
@@ -149,6 +150,12 @@ export default function Layout(props) {
             component={StartGame}
           />
           <Route logged={props.logged} path="/codeview" component={CodeView} />
+          <Route
+            logged={props.logged}
+            path="/animations"
+            component={AnimationTest}
+          />
+          <Route logged={props.logged} path="/game" component={Game} />
           <PrivateRoute
             logged={props.logged}
             exact

@@ -8,7 +8,7 @@ import Book from "../../images/BookTemp.png";
 import Stars from "../../images/StarsTemp.png";
 import Icon from "../../assets/icons";
 import ProfileFly from "../../assets/icons/ProfileFly";
-import { SecondaryButton } from "../SecondaryButton";
+import { SecondaryButton } from "../../utils/buttons/SecondaryButton";
 
 const useStyles = makeStyles({
   root: {
@@ -211,7 +211,7 @@ export default function MyFireflyPage() {
                   </Link>
                 </div>
                 <h3 className={classes.username}>
-                  {currentProfile.avatar.name}
+                  {currentProfile.avatar.nickname}
                 </h3>
                 <div className={classes.fireflyContainer}>
                   {/* <img

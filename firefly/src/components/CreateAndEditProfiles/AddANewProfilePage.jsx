@@ -9,8 +9,8 @@ import { childContext } from "../../context/ChildProfiles/ChildProfileStore";
 import { ADD_PROFILE } from "../../context/ChildProfiles/ChildProfileStore";
 
 import Icon from "../../assets/icons";
-import { SecondaryButton } from "../SecondaryButton";
-import { PrimaryButton } from "../PrimaryButton";
+import { SecondaryButton } from "../../utils/buttons/SecondaryButton";
+import { PrimaryButton } from "../../utils/buttons/PrimaryButton";
 
 const AddANewProfilePage = props => {
   const classes = createProfileStyles();

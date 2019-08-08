@@ -1,41 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
 
 import RegistrationStepOne from "./RegistrationStepOne";
 import RegistrationStepTwo from "./RegistrationStepTwo";
 import RegistrationStepThree from "./RegistrationStepThree";
-import CustomStepper from "./Steppers/CustomStepper";
+import CustomStepper from "../Steppers/CustomStepper";
 
 const MultiStepRegistration = () => {
-
-    const classes = makeStyles(theme => ({
-      app: {
-
-      },
-        root: {
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            height: "623px"
-        },
-        second: {
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-        },
-        third:{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-        },
-        wrapper: {
-            width:'100%'
-        }
-    }))();
+  const classes = makeStyles(theme => ({
+    app: {},
+    root: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+      height: "623px"
+    },
+    second: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center"
+    },
+    third: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center"
+    },
+    wrapper: {
+      width: "100%"
+    }
+  }))();
 
   const [step, setStep] = useState(0);
   const [info, setInfo] = useState({
@@ -57,7 +54,7 @@ const MultiStepRegistration = () => {
     operation === "add" ? setStep(step + 1) : setStep(step - 1);
   };
 
-  const handleInfoChanges = e => {
+  const handleStepOneChange = e => {
     setInfo({ ...info, [e.target.name]: e.target.value });
   };
 
@@ -82,8 +79,7 @@ const MultiStepRegistration = () => {
           step={step}
           updateStep={updateStep}
           info={info}
-          setInfo={setInfo}
-          handleInfoChanges={handleInfoChanges}
+          handleStepOneChange={handleStepOneChange}
         />
       </div>
     </div>
