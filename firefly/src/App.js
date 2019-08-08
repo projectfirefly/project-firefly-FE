@@ -4,16 +4,16 @@ import DevMenu from "./views/DevMenu";
 import firebase from "firebase";
 
 import ChildProfileStore, {
-    childContext,
-    GET_USER,
+  childContext,
+  GET_USER,
 } from "./context/ChildProfiles/ChildProfileStore";
 
 import {
-    BrowserRouter as Router,
-    Route,
-    Link,
-    Redirect,
-    withRouter,
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Redirect,
+  withRouter,
 } from "react-router-dom";
 
 //google analytics code start//
@@ -23,26 +23,30 @@ ReactGA.pageview(window.location.pathname + window.location.search);
 //google analytics code end//
 
 function App() {
-    const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
 
-    firebase.auth().onAuthStateChanged(user => {
-        // console.log("hello");
-        if (user) {
-            // console.log("If Statement");
-            setLoggedIn(true);
-        } else {
-            // console.log("Else Statement")
-            setLoggedIn(false);
-        }
-    });
+  firebase.auth().onAuthStateChanged(user => {
+    // console.log("hello");
+    if (user) {
+      // console.log("If Statement");
+      if (loggedIn === false) {
+        setLoggedIn(true);
+      }
+    } else {
+      // console.log("Else Statement")
+      if (loggedIn) {
+        setLoggedIn(false);
+      }
+    }
+  });
 
-    return (
-        <BrowserRouter>
-            <ChildProfileStore>
-                <DevMenu logged={loggedIn}/>
-            </ChildProfileStore>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <ChildProfileStore>
+        <DevMenu logged={loggedIn} />
+      </ChildProfileStore>
+    </BrowserRouter>
+  );
 }
 
 export default App;

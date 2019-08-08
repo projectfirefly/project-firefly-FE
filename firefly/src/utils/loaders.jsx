@@ -4,6 +4,7 @@ import Welcome from '../images/WelcomeToFirefly.png';
 
 
 import { makeStyles } from '@material-ui/core';
+import Icon from '../assets/icons';
 
 //I will add stuff in here eventually
 
@@ -43,7 +44,12 @@ export const Loader = () => {
   return (
     <div className={classes.container}>
       <div className={classes.sizer}>
-        <img src={Welcome} className={classes.image}/>
+        {/* <img src={Welcome} className={classes.image}/> */}
+        <Icon
+          name="Firefly"
+          width={"100%"}
+          viewBox={"0 0 1024 1024"}
+        />
         <div className={classes.loaderContainer}>
           <h2 className={classes.loaderText}>Loading</h2>
           <CircleLoader />
