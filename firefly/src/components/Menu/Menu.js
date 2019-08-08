@@ -93,24 +93,15 @@ function Menu() {
       color: "white",
       "&:hover, &:focus": {
         background: "#d0ccff",
-<<<<<<< HEAD
         opacity: "1",
       },
     },
     root: {
       display: "flex",
-=======
-        opacity: "1"
-      }
-    },
-    root: {
-      display: "flex"
->>>>>>> f91876812a313373bcf6ac81550de495e53af262
     },
     list: {
       width: "300px",
       background: "#5b4eff",
-<<<<<<< HEAD
       color: "white",
     },
     listItem: {
@@ -131,28 +122,6 @@ function Menu() {
       marginLeft: "10%",
     },
     toolbar: theme.mixins.toolbar,
-=======
-      color: "white"
-    },
-    listItem: {
-      "&:hover, &:focus": {
-        background: "rgba(208,204,255,.25)"
-      }
-    },
-    drawer: {
-      root: {
-        background: "#5b4eff"
-      }
-    },
-    drawerDiv: {
-      height: "100%",
-      background: "#5b4eff"
-    },
-    collapse: {
-      marginLeft: "10%"
-    },
-    toolbar: theme.mixins.toolbar
->>>>>>> f91876812a313373bcf6ac81550de495e53af262
   }))();
 
   const toggleDrawer = () => {
