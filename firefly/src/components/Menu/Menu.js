@@ -70,6 +70,10 @@ const items = [
     text: "Backend Tester"
   },
   {
+    path: "/animations",
+    text: "Animation Tester"
+  },
+  {
     path: "/game",
     text: "Game"
   }
