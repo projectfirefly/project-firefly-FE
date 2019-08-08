@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import FFbox from "./FFbox";
 import GameBoard from "./BlockLine";
 import Toolbox from "./Toolbox";
+import DropDelete from "./DropDelete";
 import uuid from "uuid/v4";
 import styled from "styled-components";
 
@@ -33,6 +34,25 @@ const copy = (source, destination, droppableSource, droppableDestination) => {
 };
 
 const move = (source, destination, droppableSource, droppableDestination) => {
+  const sourceClone = Array.from(source);
+  const destClone = Array.from(destination);
+  const [removed] = sourceClone.splice(droppableSource.index, 1);
+
+  destClone.splice(droppableDestination.index, 0, removed);
+
+  const result = {};
+  result[droppableSource.droppableId] = sourceClone;
+  result[droppableDestination.droppableId] = destClone;
+
+  return result;
+};
+
+const deleteIt = (
+  source,
+  destination,
+  droppableSource,
+  droppableDestination
+) => {
   const sourceClone = Array.from(source);
   const destClone = Array.from(destination);
   const [removed] = sourceClone.splice(droppableSource.index, 1);
@@ -101,6 +121,16 @@ export default class Game extends Component {
           )
         });
         break;
+      case "TRASH":
+        this.setState({
+          [destination.droppableId]: deleteIt(
+            source.droppableId,
+            this.state[destination.droppableId],
+            source,
+            destination
+          )
+        });
+        break;
       default:
         this.setState(
           move(
@@ -123,6 +153,7 @@ export default class Game extends Component {
         <DragDropContext onDragEnd={this.onDragEnd}>
           <Toolbox ITEMS={ITEMS} />
           <GameBoard state={this.state} />
+          <DropDelete />
         </DragDropContext>
       </Board>
     );
