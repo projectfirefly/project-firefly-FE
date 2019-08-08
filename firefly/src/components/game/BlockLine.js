@@ -1,31 +1,29 @@
 import React from "react";
 import styled from "styled-components";
+import GreenBlock from "../../assets/icons/codeblocks/GreenBlock.svg";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 
 const Item = styled.div`
   display: flex;
   user-select: none;
-  padding: 0.5rem;
-  margin: 0 0 0.5rem 0;
-  align-items: flex-start;
-  align-content: flex-start;
-  line-height: 1.5;
-  border-radius: 3px;
-  background: #fff;
-  border: 1px ${props => (props.isDragging ? "dashed #000" : "solid #ddd")};
+  background-image: url("${GreenBlock}");
+  width: 78px;
+  height: 77px;
+  margin-left: -8px;
+  border: 1px ${props => (props.isDragging ? "dashed #000" : " ")};
 `;
 
 const List = styled.div`
   min-height: 100px;
-  border: 1px ${props => (props.isDraggingOver ? "dashed #000" : "solid #ddd")};
+  border: 2px ${props => (props.isDraggingOver ? "solid #000" : "solid #ddd")};
   background: none;
   border-radius: 3px;
   font-family: sans-serif;
+  width: 500px;
 `;
 
 const Container = styled(List)`
   display: flex;
-
   margin-left: 120px;
 `;
 
@@ -68,7 +66,7 @@ const BlockLine = ({ state }) => {
                           isDragging={snapshot.isDragging}
                           style={provided.draggableProps.style}
                         >
-                          {item.content}
+                          {/* {item.content} */}
                         </Item>
                       )}
                     </Draggable>

@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import greenBlock from "../../assets/icons/codeblocks/GreenBlock.svg";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 
 const List = styled.div`
@@ -32,7 +33,7 @@ const Item = styled.div`
   align-content: flex-start;
   line-height: 1.5;
   border-radius: 3px;
-  background: #fff;
+  // background: #fff;
   border: 1px ${props => (props.isDragging ? "dashed #000" : "solid #ddd")};
 `;
 
