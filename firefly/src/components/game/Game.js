@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import FFbox from "./FFbox";
-import GameBoard from "./GameBoard";
+import GameBoard from "./BlockLine";
 import Toolbox from "./Toolbox";
 import uuid from "uuid/v4";
 import styled from "styled-components";
@@ -8,9 +8,9 @@ import styled from "styled-components";
 import { DragDropContext } from "react-beautiful-dnd";
 
 const Board = styled.div`
-  min-height: 100vh;
+  /* min-height: 100vh; */
   min-width: 100vw;
-  background-image: url(https://images.unsplash.com/photo-1538513633433-8cb0c2f89e56?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3734&q=80);
+  /* background-image: url(https://images.unsplash.com/photo-1538513633433-8cb0c2f89e56?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3734&q=80); */
 `;
 // a little function to help us with reordering the result
 const reorder = (list, startIndex, endIndex) => {
