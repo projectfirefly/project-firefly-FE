@@ -72,6 +72,10 @@ const items = [
   {
     path: "/animations",
     text: "Animation Tester"
+  },
+  {
+    path: "/game",
+    text: "Game"
   }
 ];
 
