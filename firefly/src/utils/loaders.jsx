@@ -17,19 +17,37 @@ export const Loader = () => {
       alignItems: "center",
       width: "100%",
     },
+    sizer: {
+      display: "flex",
+      flexDirection: "column",
+    },
+    image: {
+      width: "100%",
+    },
     loaderContainer: {
       display: "flex",
+      width: "100%",
+      justifyContent: "center",
+      alignItems: "center",
+      marginTop: "2rem",
     },
     loaderText: {
-
+      textTransform: "uppercase",
+      fontSize: "2.4rem",
+      color: "#5b4eff",
+      fontWeight: "900",
+      letterSpacing: ".7rem",
     },
   })();
 
-  return ( 
+  return (
     <div className={classes.container}>
-      <img src={Welcome} />
-      <div className={classes.loaderContainer}>
-        <h2 className={classes.loaderText}>Loading</h2>
+      <div className={classes.sizer}>
+        <img src={Welcome} className={classes.image}/>
+        <div className={classes.loaderContainer}>
+          <h2 className={classes.loaderText}>Loading</h2>
+          <CircleLoader />
+        </div>
       </div>
     </div>
   )
@@ -42,88 +60,91 @@ const CircleLoader = () => {
       position: "relative",
       width: "64px",
       height: "64px",
-      "&div": {
-        animation: "$ldsroller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite",
+      "& div": {
+        animation: "$lds-roller 1.5s cubic-bezier(0.5, 0, 0.5, 1) infinite",
         transformOrigin: "32px 32px",
       },
-      "&div:after": {
-        content: " ",
+      "& div:after": {
+        content: "' '",
         display: "block",
         position: "absolute",
-        width: "6px",
-        height: "6px",
+        width: "8px",
+        height: "8px",
         borderRadius: "50%",
-        background: "#fff",
+        background: "#5b4eff",
         margin: "-3px 0 0 -3px",
       },
-      "&div:nth-child(1)": {
+      "& div:nth-child(1)": {
         animationDelay: "-0.036s",
       },
-      "&div:nth-child(1):after": {
+      "& div:nth-child(1):after": {
         top: "50px",
         left: "50px",
       },
-      "&div:nth-child(2)": {
+      "& div:nth-child(2)": {
         animationDelay: "-0.072s",
       },
-      "&div:nth-child(2):after": {
+      "& div:nth-child(2):after": {
         top: "54px",
         left: "45px",
       },
-      "&div:nth-child(3)": {
+      "& div:nth-child(3)": {
         animationDelay: "-0.108s",
       },
-      "&div:nth-child(3):after": {
+      "& div:nth-child(3):after": {
         top: "57px",
         left: "39px",
       },
-      // ldsRoller: div:nth-child(4) {
-      //   animation-delay: -0.144s;
-      // }
-      // ldsRoller: div:nth-child(4):after {
-      //   top: 58px;
-      //   left: 32px;
-      // }
-      // ldsRoller: div:nth-child(5) {
-      //   animation-delay: -0.18s;
-      // }
-      // ldsRoller: div:nth-child(5):after {
-      //   top: 57px;
-      //   left: 25px;
-      // }
-      // ldsRoller: div:nth-child(6) {
-      //   animation-delay: -0.216s;
-      // }
-      // ldsRoller: div:nth-child(6):after {
-      //   top: 54px;
-      //   left: 19px;
-      // }
-      // ldsRoller: div:nth-child(7) {
-      //   animation-delay: -0.252s;
-      // }
-      // ldsRoller: div:nth-child(7):after {
-      //   top: 50px;
-      //   left: 14px;
-      // }
-      // ldsRoller: div:nth-child(8) {
-      //   animation-delay: -0.288s;
-      // }
-      // ldsRoller: div:nth-child(8):after {
-      //   top: 45px;
-      //   left: 10px;
-      // }
-      "@keyframes ldsroller": {
-        "0%": {
-          transform: "rotate(0deg)",
-        },
-        "100%": {
-          transform: "rotate(360deg)",
-        }
+      "& div:nth-child(4)": {
+        animationDelay: "-0.144s",
+      },
+      "& div:nth-child(4):after": {
+        top: "58px",
+        left: "32px",
+      },
+      "& div:nth-child(5)": {
+        animationDelay: "-0.18s",
+      },
+      "& div:nth-child(5):after": {
+        top: "57px",
+        left: "25px",
+      },
+      "& div:nth-child(6)": {
+        animationDelay: "-0.216s",
+      },
+      "& div:nth-child(6):after": {
+        top: "54px",
+        left: "19px",
+      },
+      "& div:nth-child(7)": {
+        animationDelay: "-0.252s",
+      },
+      "& div:nth-child(7):after": {
+        top: "50px",
+        left: "14px",
+      },
+    },
+    '@keyframes lds-roller': {
+      "0%": {
+        transform: "rotate(0deg)",
+      },
+      "100%": {
+        transform: "rotate(360deg)",
       }
     },
   })();
 
   return (
-    <div className={classes.ldsRoller}><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+    <div>
+      <div className={classes.ldsRoller}>
+        <div />
+        <div />
+        <div />
+        <div />
+        <div />
+        <div />
+        <div />
+      </div>
+    </div>
   )
 }
