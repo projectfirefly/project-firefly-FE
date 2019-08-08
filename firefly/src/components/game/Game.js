@@ -117,11 +117,13 @@ export default class Game extends Component {
   addList = e => {
     this.setState({ [uuid()]: [] });
   };
+
   render() {
     return (
       <Board>
         <DragDropContext onDragEnd={this.onDragEnd}>
           <Toolbox ITEMS={ITEMS} />
+          <FFbox />
           <GameBoard state={this.state} />
         </DragDropContext>
       </Board>
