@@ -3,7 +3,16 @@ import Lottie from "react-lottie";
 import animationData from "./ffAnim.json";
 import styled from "styled-components";
 
-const FFanim = props => {
+const StyledLottie = styled.div`
+  /* .lambdahat, */
+  .sunglasses,
+  .headphones,
+  .nerdglasses {
+    display: none !important;
+  }
+`;
+
+const FFanim = ({ height, width, color, accessory }) => {
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -13,7 +22,11 @@ const FFanim = props => {
     }
   };
 
-  return <Lottie options={defaultOptions} height={400} width={400} />;
+  return (
+    <StyledLottie accessory={accessory} color={color}>
+      <Lottie options={defaultOptions} height={height} width={width} />
+    </StyledLottie>
+  );
 };
 
 export default FFanim;
