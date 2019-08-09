@@ -24,7 +24,9 @@ const List = styled.div`
 
 const Container = styled(List)`
   display: flex;
-  margin-left: 120px;
+  margin-left: 200px;
+  align-content: center;
+  width: 80%;
 `;
 
 const Notice = styled.div`

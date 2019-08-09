@@ -8,13 +8,13 @@ import styled from "styled-components";
 import { DragDropContext } from "react-beautiful-dnd";
 
 const Board = styled.div`
-  /* min-height: 100vh; */
-  height: 100%;
-  border-radius: 3;
-  box-shadow: 0 3px 5px 2px rgba(255, 105, 135, 0.3);
-  background-color: white;
+  min-height: 100vh;
+  margin: -10%;
+  background-color: #efefef;
+  padding: 5%;
   /* background-image: url(https://images.unsplash.com/photo-1538513633433-8cb0c2f89e56?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3734&q=80); */
 `;
+
 // a little function to help us with reordering the result
 const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list);
