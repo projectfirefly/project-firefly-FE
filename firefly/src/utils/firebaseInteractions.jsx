@@ -1,6 +1,6 @@
 import firebase from 'firebase';
 
-import {
+import ChildProfileStore, {
   GET_USER_INFO,
   GET_PROFILES_AND_AVATARS,
   SET_LOADED,
@@ -10,6 +10,42 @@ import {
 }
   from "../context/ChildProfiles/ChildProfileStore"
 
+import GameContextStore,{
+  ADD_WORLD
+}
+  from "../context/Game/GameStore";
+// Gameboard Firebase Function
+ //Add world
+export const addWorld = async(type, child, payload, dispatch) => {
+  const db = firebase.firestore();
+  const uid = firebase.auth().currentUser.uid;
+  db.collection("users")
+  .doc(uid)
+  .collection("profiles")
+  .doc(child) //Haven't imported this childProfileState.selected.id
+  .collection("worlds")
+  .add(payload) //World that you want to save, this adds it to a new collection under the profile, just put some name in
+  .then((worldDoc) => { //This is a reference to the document you just created
+    //do your dispatch in here
+    const newWorld = {...payload, id: worldDoc.id} //Creating an object to store locally in context
+    dispatch(type, newWorld); //Dispatching to reducers so it can get saved locally in context
+  });
+
+  // add block
+  /*db.collection("users")
+  .doc(uid)
+  .collection("profiles")
+  .doc(childProfileState.selected.id)
+  .collection("worlds")
+  .doc(currentWorldId) //You need the document ID of the world you're saving these in
+  .collection("block_programs")
+  .add(blockProgram)
+  .then((docRef) => {
+
+  })
+  */
+}
+// Onboarding Firebase Functions
 export const addProfile = async (type, payload, dispatch) => {
   const db = firebase.firestore();
   const uid = firebase.auth().currentUser.uid;
