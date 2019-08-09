@@ -5,14 +5,11 @@ import { Droppable, Draggable } from "react-beautiful-dnd";
 const Item = styled.div`
   display: flex;
   user-select: none;
-  padding: 0.5rem;
-  margin: 0 0 0.5rem 0;
+  margin: 0 0 0 -10px;
   align-items: flex-start;
   align-content: flex-start;
   line-height: 1.5;
   border-radius: 3px;
-  background: #fff;
-  border: 1px ${props => (props.isDragging ? "dashed #000" : "solid #ddd")};
 `;
 
 const List = styled.div`
@@ -25,8 +22,12 @@ const List = styled.div`
 
 const Container = styled(List)`
   display: flex;
+  margin-left: 130px;
+`;
 
-  margin-left: 120px;
+const Tool = styled.div`
+  display: flex;
+  position: relative;
 `;
 
 const Notice = styled.div`
@@ -68,7 +69,10 @@ const BlockLine = ({ state }) => {
                           isDragging={snapshot.isDragging}
                           style={provided.draggableProps.style}
                         >
-                          {item.content}
+                          <Tool>
+                            {item.content}
+                            {item.functionality}
+                          </Tool>
                         </Item>
                       )}
                     </Draggable>
