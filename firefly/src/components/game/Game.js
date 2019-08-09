@@ -21,10 +21,10 @@ import ToggleOffIcon from "../../images/gameIcons/ToggleOffIcon.svg";
 import NumberIcon1 from "../../images/gameIcons/NumberIcon1.svg";
 
 const Board = styled.div`
-  min-height: 100vh;
-  margin: -10%;
+  height: 100%;
+  margin: -10% 0;
   background-color: #efefef;
-  padding: 5%;
+  padding: 15%;
   /* background-image: url(https://images.unsplash.com/photo-1538513633433-8cb0c2f89e56?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3734&q=80); */
 `;
 
