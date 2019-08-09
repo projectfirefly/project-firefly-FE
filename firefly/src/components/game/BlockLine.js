@@ -14,10 +14,11 @@ const Item = styled.div`
 
 const List = styled.div`
   min-height: 100px;
-  border: 1px ${props => (props.isDraggingOver ? "dashed #000" : "solid #ddd")};
+  border: 2px ${props => (props.isDraggingOver ? "solid #000" : "solid #ddd")};
   background: none;
   border-radius: 3px;
   font-family: sans-serif;
+  width: 500px;
 `;
 
 const Container = styled(List)`
