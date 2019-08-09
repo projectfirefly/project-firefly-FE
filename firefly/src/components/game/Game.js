@@ -4,13 +4,15 @@ import GameBoard from "./BlockLine";
 import Toolbox from "./Toolbox";
 import uuid from "uuid/v4";
 import styled from "styled-components";
-import { makeStyles } from "@material-ui/styles";
 
 import { DragDropContext } from "react-beautiful-dnd";
 
 const Board = styled.div`
   /* min-height: 100vh; */
-  min-width: 100vw;
+  height: 100%;
+  border-radius: 3;
+  box-shadow: 0 3px 5px 2px rgba(255, 105, 135, 0.3);
+  background-color: white;
   /* background-image: url(https://images.unsplash.com/photo-1538513633433-8cb0c2f89e56?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3734&q=80); */
 `;
 // a little function to help us with reordering the result
@@ -69,18 +71,6 @@ const ITEMS = [
     content: "REPEAT"
   }
 ];
-
-// const gameStyles = makeStyles({
-//   root: {
-//     background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
-//     border: 0,
-//     borderRadius: 3,
-//     boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)",
-//     color: "white",
-//     height: 48,
-//     padding: "0 30px"
-//   }
-// });
 
 export default class Game extends Component {
   state = {
