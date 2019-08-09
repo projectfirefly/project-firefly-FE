@@ -3,7 +3,20 @@ import React, { useReducer} from "react";
 export const gameContext = React.createContext();
 
 const initialState = {
-    codeBlock: [],
+    worlds: [
+        {
+            id: null,
+            worldName: "",
+            fireflies: [
+                {
+                    id: null,
+                    x: null,
+                    y: null,
+                    codeBlocks: []
+                }
+            ]
+        }
+    ],
     loaded: false,
 };
 
@@ -16,13 +29,26 @@ export const RESET_BLOCKS = "RESET_BLOCKS"
 function reducer(state, action){
     switch(action.type){
         case ADD_BLOCK:
-            return {...state, codeBlock: action.payload};
+            const newWorlds = state.worlds.map(world => {
+                if(world.id === action.payload.world.id){
+                    const newFireflies = world.fireflies.map(firefly => {
+                        if(firefly.id === action.payload.world.firefly.id){
+                            return action.payload.world.firefly
+                        }else{
+                            return firefly
+                        }
+                    })
+
+                    return {...world, fireflies: newFireflies }
+                }else{
+                    return { world }
+                }
+            })
+
+            return {...state, worlds: newWorlds }
+
         case SAVE_BLOCKS:
             return {...state, codeBlock: action.payload}
-        case GET_PROFILE_AND_AVATAR:
-            let profile = [...state.user.profiles, action.payload]
-            const newUser = {...state.user, profile: profile}
-            return {...state, user: newUser }
         case DELETE_BLOCK:
             return {...state, codeBlock: action.payload}
         case RESET_BLOCKS:
