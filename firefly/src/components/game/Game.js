@@ -21,10 +21,8 @@ import ToggleOffIcon from "../../images/gameIcons/ToggleOffIcon.svg";
 import NumberIcon1 from "../../images/gameIcons/NumberIcon1.svg";
 
 const Board = styled.div`
-  height: 100%;
-  margin: -10% 0;
-  background-color: #efefef;
-  padding: 15%;
+  /* min-height: 100vh; */
+  min-width: 100vw;
   /* background-image: url(https://images.unsplash.com/photo-1538513633433-8cb0c2f89e56?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3734&q=80); */
 `;
 
@@ -108,38 +106,45 @@ const ITEMS = [
     functionality: (
       <ToolboxGreenIcon src={PlayCircleIcon} alt="playCircleIcon" />
     ),
-    content: <ToolboxBox src={StartBlock} alt="startblock" />
+    content: <ToolboxBox src={StartBlock} alt="startblock" />,
+    draggedIn: false
   },
   {
     id: uuid(),
     functionality: <ToolboxBlueIcon src={LightbulbIcon} alt="lightbulbIcon" />,
-    content: <ToolboxBox src={BlueBlockLeftSideEndState} alt="blueblock" />
+    content: <ToolboxBox src={BlueBlockLeftSideEndState} alt="blueblock" />,
+    draggedIn: false
   },
   {
     id: uuid(),
     functionality: <ToolboxBlueIcon src={RepeatIcon} alt="repeatIcon" />,
-    content: <ToolboxBox src={BlueBlock} alt="blueblock" />
+    content: <ToolboxBox src={BlueBlock} alt="blueblock" />,
+    draggedIn: false
   },
 
   {
     id: uuid(),
     functionality: <ToolboxGreenIcon src={PaletteIcon} alt="paletteIcon" />,
-    content: <ToolboxBox src={GreenBlock} alt="greenblock" />
+    content: <ToolboxBox src={GreenBlock} alt="greenblock" />,
+    draggedIn: false
   },
   {
     id: uuid(),
     functionality: <ToolboxGreenIcon src={ClockIcon} alt="clockIcon" />,
-    content: <ToolboxBox src={GreenBlockRightSideEndState} alt="greenblock" />
+    content: <ToolboxBox src={GreenBlockRightSideEndState} alt="greenblock" />,
+    draggedIn: false
   },
   {
     id: uuid(),
     functionality: <ToolboxGreenIcon src={NumberIcon1} alt="numberIcon" />,
-    content: <ToolboxBox src={GreenBlock} alt="greenblock" />
+    content: <ToolboxBox src={GreenBlock} alt="greenblock" />,
+    draggedIn: false
   },
   {
     id: uuid(),
     functionality: <ToolboxToggleIcon src={ToggleOffIcon} alt="toggleIcon" />,
-    content: <ToolboxBox src={GreenBlock} alt="greenblock" />
+    content: <ToolboxBox src={GreenBlock} alt="greenblock" />,
+    draggedIn: false
   }
 ];
 
@@ -147,6 +152,7 @@ export default class Game extends Component {
   state = {
     [uuid()]: []
   };
+
   onDragEnd = result => {
     const { source, destination } = result;
 
@@ -166,14 +172,20 @@ export default class Game extends Component {
         });
         break;
       case "ITEMS":
-        this.setState({
-          [destination.droppableId]: copy(
-            ITEMS,
-            this.state[destination.droppableId],
-            source,
-            destination
-          )
-        });
+        this.setState(
+          {
+            [destination.droppableId]: copy(
+              ITEMS,
+              this.state[destination.droppableId],
+              source,
+              destination
+            )
+          },
+          () => {
+            console.log(result);
+            console.log(this.state[destination.droppableId]);
+          }
+        );
         break;
       case "TRASH":
         this.setState({
@@ -203,7 +215,6 @@ export default class Game extends Component {
   };
 
   render() {
-    console.log(ITEMS);
     return (
       <Board>
         <DragDropContext onDragEnd={this.onDragEnd}>
