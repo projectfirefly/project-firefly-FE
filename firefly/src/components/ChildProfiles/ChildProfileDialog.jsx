@@ -1,5 +1,10 @@
 import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
+
+//context
+import { childContext, UPDATE_COLOR, UPDATE_SELECTED } from '../../context/ChildProfiles/ChildProfileStore'
+
+//material ui
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Avatar from '@material-ui/core/Avatar';
@@ -14,7 +19,6 @@ import AddIcon from '@material-ui/icons/Add';
 import Typography from '@material-ui/core/Typography';
 import { blue } from '@material-ui/core/colors';
 
-import { childContext, UPDATE_COLOR, UPDATE_SELECTED } from '../../context/ChildProfiles/ChildProfileStore'
 
 const useStyles = makeStyles({
     avatar: {
