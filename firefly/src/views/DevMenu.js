@@ -37,16 +37,14 @@ import AnimationTest from "../components/part2/AnimationTest";
 import Game from "../components/game/Game";
 
 import { getUser } from "../utils/firebaseInteractions";
-import { Loader } from "../utils/loaders";
+import { Loader } from "../utils/Loaders/loaders";
 
-export default function Layout(props) {
+export default function DevMenu(props) {
   const [context, dispatch] = useContext(childContext);
   const [isLoading, setIsLoading] = useState(true);
 
   //Minimum loading time has passed or not
   const [atLeast, setAtLeast] = useState(false);
-
-  console.log("yo");
 
   //Getting my user information from Firestore
   useEffect(() => {
@@ -82,92 +80,84 @@ export default function Layout(props) {
           <Menu />
         </div>
       ) : null}
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <main className="app__content">
-          <Switch>
-            <Route exact path="/loader" component={Loader} />
-            <PublicRoute
-              logged={props.logged}
-              exact
-              path="/"
-              component={LoggedOutStartPage}
-            />
-            <PublicRoute
-              logged={props.logged}
-              path="/signup"
-              component={SignUpPage}
-            />
-            <PublicRoute
-              logged={props.logged}
-              path="/signin"
-              component={SignInPage}
-            />
-            <PrivateRoute
-              logged={props.logged}
-              path="/myfirefly"
-              component={MyFireflyPage}
-            />
-            <PrivateRoute
-              logged={props.logged}
-              path="/customize"
-              component={CustomizeFireflyPage}
-            />
-            <PrivateRoute
-              logged={props.logged}
-              path="/registration"
-              component={MultiStepRegistration}
-            />
-            <PrivateRoute
-              logged={props.logged}
-              exact
-              path="/choose-profile"
-              component={ChooseProfilePage}
-            />
-            <PrivateRoute
-              logged={props.logged}
-              exact
-              path="/account"
-              component={MyAccountPage}
-            />
-            <PrivateRoute
-              logged={props.logged}
-              exact
-              path="/editprofile"
-              component={EditProfilePage}
-            />
-            <PrivateRoute
-              logged={props.logged}
-              exact
-              path="/addprofile"
-              component={AddANewProfilePage}
-            />
-            <PrivateRoute
-              logged={props.logged}
-              path="/startgame"
-              component={StartGame}
-            />
-            <Route
-              logged={props.logged}
-              path="/codeview"
-              component={CodeView}
-            />
-            <Route
-              logged={props.logged}
-              path="/animations"
-              component={AnimationTest}
-            />
-            <Route logged={props.logged} path="/game" component={Game} />
-            <PrivateRoute
-              logged={props.logged}
-              exact
-              path="/backend-tester"
-              component={BackendTester}
-            />
-          </Switch>
-        </main>
-      )}
+      <main className="app__content">
+        <Switch>
+          <Route exact path="/loader" component={Loader} />
+          <PublicRoute
+            logged={props.logged}
+            exact
+            path="/"
+            component={LoggedOutStartPage}
+          />
+          <PublicRoute
+            logged={props.logged}
+            path="/signup"
+            component={SignUpPage}
+          />
+          <PublicRoute
+            logged={props.logged}
+            path="/signin"
+            component={SignInPage}
+          />
+          <PrivateRoute
+            logged={props.logged}
+            path="/myfirefly"
+            component={MyFireflyPage}
+          />
+          <PrivateRoute
+            logged={props.logged}
+            path="/customize"
+            component={CustomizeFireflyPage}
+          />
+          <PrivateRoute
+            logged={props.logged}
+            path="/registration"
+            component={MultiStepRegistration}
+          />
+          <PrivateRoute
+            logged={props.logged}
+            exact
+            path="/choose-profile"
+            component={ChooseProfilePage}
+          />
+          <PrivateRoute
+            logged={props.logged}
+            exact
+            path="/account"
+            component={MyAccountPage}
+          />
+          <PrivateRoute
+            logged={props.logged}
+            exact
+            path="/editprofile"
+            component={EditProfilePage}
+          />
+          <PrivateRoute
+            logged={props.logged}
+            exact
+            path="/addprofile"
+            component={AddANewProfilePage}
+          />
+          <PrivateRoute
+            logged={props.logged}
+            path="/startgame"
+            component={StartGame}
+          />
+          <Route logged={props.logged} path="/codeview" component={CodeView} />
+          <Route
+            logged={props.logged}
+            path="/animations"
+            component={AnimationTest}
+          />
+          <Route logged={props.logged} path="/game" component={Game} />
+          <PrivateRoute
+            logged={props.logged}
+            exact
+            path="/backend-tester"
+            component={BackendTester}
+          />
+        </Switch>
+      </main>
     </div>
   );
 }

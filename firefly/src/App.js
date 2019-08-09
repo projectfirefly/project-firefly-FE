@@ -18,12 +18,18 @@ import {
 
 //google analytics code start//
 import ReactGA from "react-ga";
+import { Loader } from "./utils/Loaders/loaders";
+import LoadedChecker from "./utils/Loaders/LoadedChecker";
 ReactGA.initialize("UA-143905861-1");
 ReactGA.pageview(window.location.pathname + window.location.search);
 //google analytics code end//
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
+
+  const [isLoading, setIsLoading] = useState(true);
+
+  console.log("App Render");
 
   firebase.auth().onAuthStateChanged(user => {
     // console.log("hello");
@@ -40,10 +46,19 @@ function App() {
     }
   });
 
+  useEffect(() => {
+    console.log("isLoading", isLoading);
+  }, [isLoading])
+
   return (
     <BrowserRouter>
+      {isLoading ? <Loader /> : <div />}
       <ChildProfileStore>
-        <DevMenu logged={loggedIn} />
+        {isLoading ? (
+          <LoadedChecker logged={loggedIn} setIsLoading={setIsLoading} />
+        ) : (
+          <DevMenu logged={loggedIn} />
+        )}
       </ChildProfileStore>
     </BrowserRouter>
   );
