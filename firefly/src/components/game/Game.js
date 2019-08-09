@@ -5,14 +5,47 @@ import Toolbox from "./Toolbox";
 import DropDelete from "./DropDelete";
 import uuid from "uuid/v4";
 import styled from "styled-components";
-import { makeStyles } from "@material-ui/styles";
 
 import { DragDropContext } from "react-beautiful-dnd";
+import StartBlock from "../../images/gameIcons/StartBlock.svg";
+import BlueBlock from "../../images/gameIcons/BlueBlock.svg";
+import BlueBlockLeftSideEndState from "../../images/gameIcons/BlueBlockLeftSideEndState.svg";
+import GreenBlock from "../../images/gameIcons/GreenBlock.svg";
+import GreenBlockRightSideEndState from "../../images/gameIcons/GreenBlockRightSideEndState.svg";
+import RepeatIcon from "../../images/gameIcons/RepeatIcon.svg";
+import LightbulbIcon from "../../images/gameIcons/LightbulbIcon.svg";
+import ClockIcon from "../../images/gameIcons/ClockIcon.svg";
+import PlayCircleIcon from "../../images/gameIcons/PlayCircleIcon.svg";
+import PaletteIcon from "../../images/gameIcons/PaletteIcon.svg";
+import ToggleOffIcon from "../../images/gameIcons/ToggleOffIcon.svg";
+import NumberIcon1 from "../../images/gameIcons/NumberIcon1.svg";
 
 const Board = styled.div`
   /* min-height: 100vh; */
   min-width: 100vw;
   /* background-image: url(https://images.unsplash.com/photo-1538513633433-8cb0c2f89e56?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3734&q=80); */
+`;
+
+const ToolboxGreenIcon = styled.img`
+  position: absolute;
+  top: 25%;
+  left: 25%;
+`;
+
+const ToolboxBlueIcon = styled.img`
+  position: absolute;
+  top: 25%;
+  left: 32%;
+`;
+
+const ToolboxToggleIcon = styled.img`
+  position: absolute;
+  top: 35%;
+  left: 25%;
+`;
+
+const ToolboxBox = styled.img`
+  width: 100%;
 `;
 // a little function to help us with reordering the result
 const reorder = (list, startIndex, endIndex) => {
@@ -70,37 +103,43 @@ const deleteIt = (
 const ITEMS = [
   {
     id: uuid(),
-    content: "START"
+    functionality: (
+      <ToolboxGreenIcon src={PlayCircleIcon} alt="playCircleIcon" />
+    ),
+    content: <ToolboxBox src={StartBlock} alt="startblock" />
   },
   {
     id: uuid(),
-    content: "COLOR"
+    functionality: <ToolboxBlueIcon src={LightbulbIcon} alt="lightbulbIcon" />,
+    content: <ToolboxBox src={BlueBlockLeftSideEndState} alt="blueblock" />
   },
   {
     id: uuid(),
-    content: "DELAY"
+    functionality: <ToolboxBlueIcon src={RepeatIcon} alt="repeatIcon" />,
+    content: <ToolboxBox src={BlueBlock} alt="blueblock" />
+  },
+
+  {
+    id: uuid(),
+    functionality: <ToolboxGreenIcon src={PaletteIcon} alt="paletteIcon" />,
+    content: <ToolboxBox src={GreenBlock} alt="greenblock" />
   },
   {
     id: uuid(),
-    content: "TOGGLE"
+    functionality: <ToolboxGreenIcon src={ClockIcon} alt="clockIcon" />,
+    content: <ToolboxBox src={GreenBlockRightSideEndState} alt="greenblock" />
   },
   {
     id: uuid(),
-    content: "REPEAT"
+    functionality: <ToolboxGreenIcon src={NumberIcon1} alt="numberIcon" />,
+    content: <ToolboxBox src={GreenBlock} alt="greenblock" />
+  },
+  {
+    id: uuid(),
+    functionality: <ToolboxToggleIcon src={ToggleOffIcon} alt="toggleIcon" />,
+    content: <ToolboxBox src={GreenBlock} alt="greenblock" />
   }
 ];
-
-// const gameStyles = makeStyles({
-//   root: {
-//     background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
-//     border: 0,
-//     borderRadius: 3,
-//     boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)",
-//     color: "white",
-//     height: 48,
-//     padding: "0 30px"
-//   }
-// });
 
 export default class Game extends Component {
   state = {
@@ -162,6 +201,7 @@ export default class Game extends Component {
   };
 
   render() {
+    console.log(ITEMS);
     return (
       <Board>
         <DragDropContext onDragEnd={this.onDragEnd}>
