@@ -113,18 +113,15 @@ const RegisterForm = ({ values, errors, touched }) => {
                 )}
             </div>
             <div className="sign-up-checkbox-terms">
-              <div className="sign-up-checkbox-container">
-                <label class="checkbox-label">
-                  <input type="checkbox" />
-                  <span className="checkbox-custom"> {""}</span>
+              <div className="new-checkbox-container">
+                <label class="new-checkbox-label">
+                  <Field type="checkbox" name="terms" checked={values.terms} />I
+                  agree to the{" "}
+                  <a href="google.com" className="sign-up-link">
+                    Terms and Conditions
+                  </a>
                 </label>
               </div>
-              <p>
-                I agree to the{" "}
-                <a href="google.com" className="sign-up-link">
-                  Terms and Conditions
-                </a>
-              </p>
             </div>
 
             <button type="submit" className="sign-up-forms-box__formik-button">
@@ -159,7 +156,8 @@ const SignUpPage = withFormik({
     return {
       email: email || "",
       password: password || "",
-      passwordConfirm: passwordConfirm || ""
+      passwordConfirm: passwordConfirm || "",
+      terms: terms || false
     };
   },
 

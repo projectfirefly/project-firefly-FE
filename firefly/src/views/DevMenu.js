@@ -6,7 +6,7 @@ import ChildProfileStore, {
   childContext,
   GET_USER_INFO,
   GET_PROFILES_AND_AVATARS,
-  UPDATE_SELECTED
+  UPDATE_SELECTED,
 } from "../context/ChildProfiles/ChildProfileStore";
 
 import firebase from "firebase";
@@ -31,7 +31,13 @@ import StartGame from "../components/StartPages/LoggedInStartPage";
 import CodeView from "../components/part2/CodeView";
 
 import BackendTester from "../components/backendTester/BackendTester";
+
+import AnimationTest from "../components/part2/AnimationTest";
+
+import Game from "../components/game/Game";
+
 import { getUser } from "../utils/firebaseInteractions";
+import { Loader } from "../utils/loaders";
 
 export default function Layout(props) {
   const [context, dispatch] = useContext(childContext);
@@ -83,6 +89,7 @@ export default function Layout(props) {
       ) : null}
       <main className="app__content">
         <Switch>
+          <Route exact path="/loader" component={Loader} />
           <PublicRoute
             logged={props.logged}
             exact
@@ -99,7 +106,6 @@ export default function Layout(props) {
             path="/signin"
             component={SignInPage}
           />
-
           <PrivateRoute
             logged={props.logged}
             path="/myfirefly"
@@ -145,6 +151,12 @@ export default function Layout(props) {
             component={StartGame}
           />
           <Route logged={props.logged} path="/codeview" component={CodeView} />
+          <Route
+            logged={props.logged}
+            path="/animations"
+            component={AnimationTest}
+          />
+          <Route logged={props.logged} path="/game" component={Game} />
           <PrivateRoute
             logged={props.logged}
             exact
