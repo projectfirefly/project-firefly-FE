@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import greenBlock from "../../assets/icons/codeblocks/GreenBlock.svg";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 import Icon from "../../assets/icons/";
 
@@ -45,12 +44,7 @@ const Item = styled.div`
   align-content: flex-start;
   line-height: 1.5;
   border-radius: 3px;
-<<<<<<< HEAD
   position: relative;
-=======
-  // background: #fff;
-  border: 1px ${props => (props.isDragging ? "dashed #000" : "solid #ddd")};
->>>>>>> development
 `;
 
 const Clone = styled.span`
