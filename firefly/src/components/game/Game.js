@@ -56,7 +56,7 @@ const deleteIt = (
 ) => {
   const sourceClone = Array.from(source);
   const destClone = Array.from(destination);
-  const [removed] = sourceClone.splice(droppableSource.index, 1);
+  const [removed] = sourceClone.splice(droppableSource.index, 2);
 
   destClone.splice(droppableDestination.index, 0, removed);
 
@@ -89,6 +89,8 @@ const ITEMS = [
     content: "REPEAT"
   }
 ];
+
+const TRASH = [];
 
 // const gameStyles = makeStyles({
 //   root: {
@@ -136,8 +138,8 @@ export default class Game extends Component {
         break;
       case "TRASH":
         this.setState({
-          [destination.droppableId]: deleteIt(
-            source.droppableId,
+          [destination.droppableId]: move(
+            TRASH,
             this.state[destination.droppableId],
             source,
             destination
@@ -168,7 +170,7 @@ export default class Game extends Component {
           <Toolbox ITEMS={ITEMS} />
           <FFbox />
           <GameBoard state={this.state} />
-          <DropDelete />
+          <DropDelete TRASH={TRASH} />
         </DragDropContext>
       </Board>
     );
