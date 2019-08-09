@@ -5,7 +5,7 @@ export const gameContext = React.createContext();
 const initialState = {
     worlds: [
         {
-            id: null,
+            id: "",
             worldName: "",
             fireflies: [
                 {
@@ -31,7 +31,8 @@ export const ADD_WORLD = "ADD_WORLD";
 function reducer(state, action){
     switch(action.type){
         case ADD_WORLD:
-            return {...state, worlds: action.payload}
+            const newWorld = [...state.worlds, action.payload]
+            return {...state, worlds: newWorld}
         case GET_WORLDS:
             return {...state, worlds: action.payload}
         case ADD_BLOCK:

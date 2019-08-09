@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react'
 import { axiosWithAuth } from '../../utils/axiosWithAuth';
 import firebase from 'firebase';
-import { addProfile, addWorld } from "../../utils/firebaseInteractions";
+import { addProfile, addWorld, getWorld} from "../../utils/firebaseInteractions";
 
 import { childContext, UPDATE_COLOR, UPDATE_SELECTED, ADD_PROFILE } from '../../context/ChildProfiles/ChildProfileStore';
 import { gameContext, ADD_WORLD } from '../../context/Game/GameStore';
@@ -10,8 +10,7 @@ const BackendTester = () => {
 
   const [profiles, setProfiles] = useState({});
   const [context, dispatch] = useContext(childContext);
-  console.log(useContext(gameContext));
-  console.log(useContext(childContext))
+  const [worldContext, worldDispatch] = useContext(gameContext)
 
   const db = firebase.firestore();
 
@@ -21,12 +20,16 @@ const BackendTester = () => {
   };
 
   const worldTest = {
-    worldName: "test"
+    worldName: "test2"
+  }
+
+  const getWorlds = () => {
+    getWorld(context.selected.id)
   }
 
   const addNewWorld = () => {
-    //console.log(worldContext)
-    addWorld(ADD_WORLD, context.selected.id, worldTest, dispatch)
+    console.log(worldContext)
+    addWorld(ADD_WORLD, context.selected.id, worldTest, worldDispatch)
   }
 
   const get = async () => {
@@ -67,6 +70,7 @@ const BackendTester = () => {
       <button onClick={update}>Update Child</button>
       <button onClick={logContext}>Log Context</button>
       <button onClick={addNewWorld}>Add World</button>
+      <button onClick={getWorlds}>Get Worlds</button>
     </div>
   )
 }

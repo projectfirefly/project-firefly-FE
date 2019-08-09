@@ -8,6 +8,11 @@ import ChildProfileStore, {
     GET_USER,
 } from "./context/ChildProfiles/ChildProfileStore";
 
+import GameContextStore, {
+    gameContext,
+    ADD_WORLD
+} from "./context/Game/GameStore";
+
 import {
     BrowserRouter as Router,
     Route,
@@ -40,7 +45,9 @@ function App() {
     return (
         <BrowserRouter>
             <ChildProfileStore>
-                <DevMenu logged={loggedIn}/>
+                <GameContextStore>
+                    <DevMenu logged={loggedIn}/>
+                </GameContextStore>
             </ChildProfileStore>
         </BrowserRouter>
     );

@@ -15,7 +15,27 @@ import GameContextStore,{
 }
   from "../context/Game/GameStore";
 // Gameboard Firebase Function
- //Add world
+  //Get Worlds
+export const getWorld = async(child) => {
+  const db = firebase.firestore();
+  const uid = firebase.auth().currentUser.uid;
+  await db.collection("users")
+  .doc(uid)
+  .collection("profiles")
+  .doc(child)
+  .collection("worlds")
+  .get()
+  .then(snapshot => {
+    const childWorlds = snapshot.docs.map(doc => {
+      const world = doc.data()
+      return { ...world, id: doc.id };
+    })
+    console.log(childWorlds)
+    //Need to setup dispatch
+  })
+}
+
+  //Add world
 export const addWorld = async(type, child, payload, dispatch) => {
   const db = firebase.firestore();
   const uid = firebase.auth().currentUser.uid;
@@ -28,7 +48,7 @@ export const addWorld = async(type, child, payload, dispatch) => {
   .then((worldDoc) => { //This is a reference to the document you just created
     //do your dispatch in here
     const newWorld = {...payload, id: worldDoc.id} //Creating an object to store locally in context
-    dispatch(type, newWorld); //Dispatching to reducers so it can get saved locally in context
+    dispatch({type: type, payload: newWorld}); //Dispatching to reducers so it can get saved locally in context
   });
 
   // add block
