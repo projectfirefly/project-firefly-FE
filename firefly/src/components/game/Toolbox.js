@@ -71,37 +71,44 @@ const Toolbox = ({ ITEMS }) => {
             innerRef={provided.innerRef}
             isDraggingOver={snapshot.isDraggingOver}
           >
-            {ITEMS.map((item, index) => (
-              <Draggable key={item.id} draggableId={item.id} index={index}>
-                {(provided, snapshot) => (
-                  <React.Fragment>
-                    <Item
-                      ref={provided.innerRef}
-                      innerRef={provided.innerRef}
-                      {...provided.draggableProps}
-                      {...provided.dragHandleProps}
-                      isDragging={snapshot.isDragging}
-                      style={provided.draggableProps.style}
-                    >
-                      <Block>
-                        <Tool>
-                          {item.content}
-                          {item.functionality}
-                        </Tool>
-                      </Block>
-                    </Item>
-                    {snapshot.isDragging && (
-                      <Clone>
-                        <Tool>
-                          {item.content}
-                          {item.functionality}
-                        </Tool>
-                      </Clone>
-                    )}
-                  </React.Fragment>
-                )}
-              </Draggable>
-            ))}
+            {ITEMS.map((item, index) => {
+              return (
+                <Draggable
+                  key={item.id}
+                  draggableId={item.id}
+                  index={index}
+                  isDragDisabled={item.used}
+                >
+                  {(provided, snapshot) => (
+                    <React.Fragment>
+                      <Item
+                        ref={provided.innerRef}
+                        innerRef={provided.innerRef}
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                        isDragging={snapshot.isDragging}
+                        style={provided.draggableProps.style}
+                      >
+                        <Block>
+                          <Tool>
+                            {item.content}
+                            {item.functionality}
+                          </Tool>
+                        </Block>
+                      </Item>
+                      {snapshot.isDragging && (
+                        <Clone>
+                          <Tool>
+                            {item.content}
+                            {item.functionality}
+                          </Tool>
+                        </Clone>
+                      )}
+                    </React.Fragment>
+                  )}
+                </Draggable>
+              );
+            })}
           </Kiosk>
         )}
       </Droppable>
