@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import FFbox from "./FFbox";
 import GameBoard from "./BlockLine";
 import Toolbox from "./Toolbox";
@@ -21,10 +21,8 @@ import ToggleOffIcon from "../../images/gameIcons/ToggleOffIcon.svg";
 import NumberIcon1 from "../../images/gameIcons/NumberIcon1.svg";
 
 const Board = styled.div`
-  height: 100%;
-  margin: -10% 0;
-  background-color: #efefef;
-  padding: 15%;
+  /* min-height: 100vh; */
+  min-width: 100vw;
   /* background-image: url(https://images.unsplash.com/photo-1538513633433-8cb0c2f89e56?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3734&q=80); */
 `;
 
@@ -108,46 +106,56 @@ const ITEMS = [
     functionality: (
       <ToolboxGreenIcon src={PlayCircleIcon} alt="playCircleIcon" />
     ),
-    content: <ToolboxBox src={StartBlock} alt="startblock" />
+    content: <ToolboxBox src={StartBlock} alt="startblock" />,
+    used: false,
+    rsi: 0
   },
   {
     id: uuid(),
     functionality: <ToolboxBlueIcon src={LightbulbIcon} alt="lightbulbIcon" />,
-    content: <ToolboxBox src={BlueBlockLeftSideEndState} alt="blueblock" />
+    content: <ToolboxBox src={BlueBlockLeftSideEndState} alt="blueblock" />,
+    used: false,
+    rsi: 1
   },
   {
     id: uuid(),
     functionality: <ToolboxBlueIcon src={RepeatIcon} alt="repeatIcon" />,
-    content: <ToolboxBox src={BlueBlock} alt="blueblock" />
+    content: <ToolboxBox src={BlueBlock} alt="blueblock" />,
+    rsi: 2
   },
 
   {
     id: uuid(),
     functionality: <ToolboxGreenIcon src={PaletteIcon} alt="paletteIcon" />,
-    content: <ToolboxBox src={GreenBlock} alt="greenblock" />
+    content: <ToolboxBox src={GreenBlock} alt="greenblock" />,
+    rsi: 3
   },
   {
     id: uuid(),
     functionality: <ToolboxGreenIcon src={ClockIcon} alt="clockIcon" />,
-    content: <ToolboxBox src={GreenBlockRightSideEndState} alt="greenblock" />
+    content: <ToolboxBox src={GreenBlockRightSideEndState} alt="greenblock" />,
+    rsi: 4
   },
   {
     id: uuid(),
     functionality: <ToolboxGreenIcon src={NumberIcon1} alt="numberIcon" />,
-    content: <ToolboxBox src={GreenBlock} alt="greenblock" />
+    content: <ToolboxBox src={GreenBlock} alt="greenblock" />,
+    rsi: 5
   },
   {
     id: uuid(),
     functionality: <ToolboxToggleIcon src={ToggleOffIcon} alt="toggleIcon" />,
-    content: <ToolboxBox src={GreenBlock} alt="greenblock" />
+    content: <ToolboxBox src={GreenBlock} alt="greenblock" />,
+    rsi: 6
   }
 ];
 
-export default class Game extends Component {
-  state = {
-    [uuid()]: []
-  };
-  onDragEnd = result => {
+const Game = () => {
+  const [list, setList] = useState({ [uuid()]: [] });
+  const [tools, setTools] = useState(ITEMS);
+  const [bool, setBool] = useState(false);
+
+  const onDragEnd = result => {
     const { source, destination } = result;
 
     // dropped outside the list
@@ -157,62 +165,77 @@ export default class Game extends Component {
 
     switch (source.droppableId) {
       case destination.droppableId:
-        this.setState({
+        setList({
+          ...list,
           [destination.droppableId]: reorder(
-            this.state[source.droppableId],
+            list[source.droppableId],
             source.index,
             destination.index
           )
         });
         break;
+
       case "ITEMS":
-        this.setState({
+        setList({
+          ...list,
           [destination.droppableId]: copy(
-            ITEMS,
-            this.state[destination.droppableId],
+            tools,
+            list[destination.droppableId],
             source,
             destination
           )
         });
         break;
+
       case "TRASH":
-        this.setState({
+        setList({
+          ...list,
           [destination.droppableId]: deleteIt(
             source.droppableId,
-            this.state[destination.droppableId],
+            list[destination.droppableId],
             source,
             destination
           )
         });
         break;
+
       default:
-        this.setState(
+        setList(
           move(
-            this.state[source.droppableId],
-            this.state[destination.droppableId],
+            list[source.droppableId],
+            list[destination.droppableId],
             source,
             destination
           )
         );
         break;
     }
-  };
 
-  addList = e => {
-    this.setState({ [uuid()]: [] });
+    // setTools({
+    //   ...tools,
+    //   [destination.droppableId]: list[destination.droppableId].map(item => {
+    //     return item.rsi <= 1
+    //       ? {
+    //           ...item,
+    //           used: true
+    //         }
+    //       : item;
+    //   })
+    // });
   };
+  console.log(list);
+  console.log(tools);
 
-  render() {
-    console.log(ITEMS);
-    return (
-      <Board>
-        <DragDropContext onDragEnd={this.onDragEnd}>
-          <Toolbox ITEMS={ITEMS} />
-          <FFbox />
-          <GameBoard state={this.state} />
-          <DropDelete />
-        </DragDropContext>
-      </Board>
-    );
-  }
-}
+  return (
+    <Board>
+      <DragDropContext onDragEnd={onDragEnd}>
+        <Toolbox ITEMS={tools} />
+        <FFbox />
+        <GameBoard state={list} />
+        <DropDelete />
+      </DragDropContext>
+    </Board>
+  );
+};
+
+export default Game;
