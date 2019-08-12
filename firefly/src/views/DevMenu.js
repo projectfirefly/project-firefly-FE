@@ -1,16 +1,11 @@
 //this is for using during development so we can quickly move between different components and see what we are doing
 
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 
 import ChildProfileStore, {
   childContext,
-  GET_USER_INFO,
-  GET_PROFILES_AND_AVATARS,
-  UPDATE_SELECTED,
   SET_LOADED,
 } from "../context/ChildProfiles/ChildProfileStore";
-
-import firebase from "firebase";
 
 //material
 
@@ -37,7 +32,6 @@ import AnimationTest from "../components/part2/AnimationTest";
 
 import Game from "../components/game/Game";
 
-import { getUser } from "../utils/firebaseInteractions";
 import { Loader } from "../utils/Loaders/loaders";
 
 export default function DevMenu(props) {

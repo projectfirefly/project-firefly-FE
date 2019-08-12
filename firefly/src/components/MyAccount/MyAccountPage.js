@@ -45,7 +45,7 @@ export default function ProfileView(props) {
       });
       setFinishedLoading(true);
     }
-  }, [childProfileState]);
+  }, [childProfileState, finishedLoading]);
 
   const toggleEditing = () => {
     setEditing(!editing);
