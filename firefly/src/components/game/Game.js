@@ -101,7 +101,7 @@ const ITEMS = [
   {
     id: uuid(),
     functionality: <ToolboxBlueIcon src={RepeatIcon} alt="repeatIcon" />,
-    content: <ToolboxBox src={BlueBlock} alt="blueblock" />,
+    content: <ToolboxBox src={BlueBlockLeftSideEndState} alt="blueblock" />,
     used: false,
     rsi: 2
   },
@@ -116,7 +116,7 @@ const ITEMS = [
   {
     id: uuid(),
     functionality: <ToolboxGreenIcon src={ClockIcon} alt="clockIcon" />,
-    content: <ToolboxBox src={GreenBlockRightSideEndState} alt="greenblock" />,
+    content: <ToolboxBox src={GreenBlock} alt="greenblock" />,
     used: false,
     rsi: 4
   },
