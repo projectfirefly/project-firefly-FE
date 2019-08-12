@@ -174,7 +174,7 @@ const useStyles = makeStyles({
 export default function MyFireflyPage() {
   const classes = useStyles();
 
-  const [childProfileState, dispatch] = useContext(childContext);
+  const [childProfileState] = useContext(childContext);
 
   const [currentProfile, setCurrentProfile] = useState();
 

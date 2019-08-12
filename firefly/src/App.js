@@ -1,20 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { BrowserRouter } from "react-router-dom";
 import DevMenu from "./views/DevMenu";
 import firebase from "firebase";
 
-import ChildProfileStore, {
-  childContext,
-  GET_USER,
-} from "./context/ChildProfiles/ChildProfileStore";
-
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  Redirect,
-  withRouter,
-} from "react-router-dom";
+import ChildProfileStore from "./context/ChildProfiles/ChildProfileStore";
 
 //google analytics code start//
 import ReactGA from "react-ga";

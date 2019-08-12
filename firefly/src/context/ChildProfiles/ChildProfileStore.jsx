@@ -1,5 +1,4 @@
-import React, { useState, useReducer } from "react";
-import firebase from 'firebase';
+import React, { useReducer } from "react";
 
 export const childContext = React.createContext();
 
@@ -22,10 +21,6 @@ export const GET_AND_LOAD = "GET_AND_LOAD";
 export const SIGN_OUT = "SIGN_OUT"
 
 function reducer(state, action) {
-  const db = firebase.firestore();
-  if (firebase.auth().currentUser) {
-    const uid = firebase.auth().currentUser.uid;
-  }
   switch (action.type) {
     case SIGN_OUT:
       return { ...initialState };
