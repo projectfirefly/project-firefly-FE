@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import FFbox from "./FFbox";
 import GameBoard from "./BlockLine";
 import Toolbox from "./Toolbox";
@@ -165,12 +165,25 @@ const Game = () => {
     }
 
     if (destination.droppableId === "TRASH") {
-      const realList = list[`${source.droppableId}`].filter(
-        item => item.id !== result.draggableId
-      );
+      //Filters out the block that got put into trash
+      const realList = list[`${source.droppableId}`].filter(item => {
+        if (item.id === result.draggableId && item.rsi <= 1) {
+          setTools(
+            [...tools].map(tool => {
+              return tool.rsi === item.rsi
+                ? { ...tool, used: false }
+                : { ...tool };
+            })
+          );
+        }
+        return item.id !== result.draggableId;
+      });
 
+      //Filters all tools to used:false so they become usable again
+
+      console.log("reallist:", realList);
       setList({ realList });
-
+      console.log("list:", list);
       return;
     }
 
