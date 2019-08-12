@@ -1,5 +1,4 @@
 import React, { useState, useContext, useEffect } from "react";
-import ApolloClient from "apollo-boost";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faArrowUp, faArrowDown } from "@fortawesome/free-solid-svg-icons";
@@ -16,14 +15,10 @@ import {
 import { updateUser, addProfile } from "../../utils/firebaseInteractions";
 
 import "../../styles/RegistrationStepThree.scss";
-import { set } from "react-ga";
 
 library.add(faArrowUp, faArrowDown);
 
 const RegistrationStepThree = ({
-  values,
-  errors,
-  touched,
   step,
   updateStep,
   info,
@@ -48,7 +43,7 @@ const RegistrationStepThree = ({
       setUpdatedUser(childProfileState.user);
       setFinishedLoading(true);
     }
-  }, [childProfileState]);
+  }, [childProfileState, finishedLoading]);
 
   const sendUserInfo = info => {
     const newUpdatedUser = {
@@ -69,7 +64,7 @@ const RegistrationStepThree = ({
   const addProfiles = profiles => {
     // console.log("profiles:", profiles);
     profiles.map(profile => {
-      if (profile.first_name != "" || profile.last_name != "") {
+      if (profile.first_name !== "" || profile.last_name !== "") {
         addProfile(ADD_PROFILE, profile, dispatch);
       }
     });

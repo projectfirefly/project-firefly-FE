@@ -1,9 +1,8 @@
 import React, { useState, useContext } from 'react'
-import { axiosWithAuth } from '../../utils/axiosWithAuth';
 import firebase from 'firebase';
 import { addProfile } from "../../utils/firebaseInteractions";
 
-import { childContext, UPDATE_COLOR, UPDATE_SELECTED, ADD_PROFILE } from '../../context/ChildProfiles/ChildProfileStore'
+import { childContext, ADD_PROFILE } from '../../context/ChildProfiles/ChildProfileStore'
 
 const BackendTester = () => {
 

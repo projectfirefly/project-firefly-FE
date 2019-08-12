@@ -1,20 +1,10 @@
-import React, { useState, useEffect, useContext } from 'react'
-
-import { childContext } from '../../context/ChildProfiles/ChildProfileStore';
-
-import { getUser } from "../firebaseInteractions";
-
-import Welcome from '../../images/WelcomeToFirefly.png';
+import React from 'react'
 
 import { makeStyles } from '@material-ui/core';
 
 import Icon from '../../assets/icons';
 
-//I will add stuff in here eventually
-
 export const Loader = (props) => {
-
-  console.log("LOADER");
 
   const classes = makeStyles({
     container: {

@@ -15,7 +15,6 @@ import { SecondaryButton } from "../../utils/buttons/SecondaryButton";
 import { childContext } from "../../context/ChildProfiles/ChildProfileStore";
 import { UPDATE_USER } from "../../context/ChildProfiles/ChildProfileStore";
 import { updateUser } from "../../utils/firebaseInteractions";
-import { flexbox } from "@material-ui/system";
 
 export default function ProfileView(props) {
   const [editing, setEditing] = useState(false);
@@ -46,7 +45,7 @@ export default function ProfileView(props) {
       });
       setFinishedLoading(true);
     }
-  }, [childProfileState]);
+  }, [childProfileState, finishedLoading]);
 
   const toggleEditing = () => {
     setEditing(!editing);

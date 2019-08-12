@@ -67,9 +67,8 @@ export default function CustomizeFireflyPage(props) {
     });
   };
 
+  //Return nothing for a microsecond while updatedProfile populates.
   if (
-    childProfileState.loaded &&
-    childProfileState.hasProfiles &&
     updatedProfile
   ) {
     return (
@@ -133,6 +132,6 @@ export default function CustomizeFireflyPage(props) {
       </div>
     );
   } else {
-    return <>Loading...</>;
+    return <></>;
   }
 }
