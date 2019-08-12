@@ -181,6 +181,7 @@ export default function MyFireflyPage() {
   const [currentProfile, setCurrentProfile] = useState();
 
   useEffect(() => {
+    console.log(childProfileState);
     if (childProfileState.loaded && childProfileState.hasProfiles) {
       const [destructuredProfile] = childProfileState.user.profiles.filter(profile => {
         if (childProfileState.selected.id === profile.id) {

@@ -4,45 +4,62 @@ import DevMenu from "./views/DevMenu";
 import firebase from "firebase";
 
 import ChildProfileStore, {
-    childContext,
-    GET_USER,
+  childContext,
+  GET_USER,
 } from "./context/ChildProfiles/ChildProfileStore";
 
 import {
-    BrowserRouter as Router,
-    Route,
-    Link,
-    Redirect,
-    withRouter,
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Redirect,
+  withRouter,
 } from "react-router-dom";
 
 //google analytics code start//
 import ReactGA from "react-ga";
+import { Loader } from "./utils/Loaders/loaders";
+import LoadedChecker from "./utils/Loaders/LoadedChecker";
 ReactGA.initialize("UA-143905861-1");
 ReactGA.pageview(window.location.pathname + window.location.search);
 //google analytics code end//
 
 function App() {
-    const [loggedIn, setLoggedIn] = useState(false);
-    console.log(process.env.REACT_APP_FIREBASE_PROJECT_ID)
-    firebase.auth().onAuthStateChanged(user => {
-        // console.log("hello");
-        if (user) {
-            // console.log("If Statement");
-            setLoggedIn(true);
-        } else {
-            // console.log("Else Statement")
-            setLoggedIn(false);
-        }
-    });
+  const [loggedIn, setLoggedIn] = useState(false);
 
-    return (
-        <BrowserRouter>
-            <ChildProfileStore>
-                <DevMenu logged={loggedIn}/>
-            </ChildProfileStore>
-        </BrowserRouter>
-    );
+  const [isLoading, setIsLoading] = useState(true);
+
+  console.log("App Render");
+
+  firebase.auth().onAuthStateChanged(user => {
+    if (user) {
+      if (loggedIn === false) {
+        setLoggedIn(true);
+      }
+    } else {
+      if (loggedIn) {
+        setLoggedIn(false);
+        setIsLoading(true);
+      }
+    }
+  });
+
+  useEffect(() => {
+    console.log("isLoading", isLoading);
+  }, [isLoading])
+
+  return (
+    <BrowserRouter>
+      {isLoading ? <Loader /> : <div />}
+      <ChildProfileStore>
+        {isLoading ? (
+          <LoadedChecker logged={loggedIn} setIsLoading={setIsLoading} />
+        ) : (
+          <DevMenu isLoading={isLoading} setIsLoading={setIsLoading} logged={loggedIn} />
+        )}
+      </ChildProfileStore>
+    </BrowserRouter>
+  );
 }
 
 export default App;

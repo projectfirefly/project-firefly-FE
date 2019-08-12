@@ -14,6 +14,8 @@ import ProfileFly from "../../assets/icons/ProfileFly";
 const ChooseProfilePage = props => {
   const [childProfileState, dispatch] = useContext(childContext);
 
+  console.log("Choose Profile State", childProfileState);
+
   const useStyles = makeStyles({
     header: {
       fontSize: "34px",
