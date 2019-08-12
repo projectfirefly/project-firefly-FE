@@ -25,7 +25,11 @@ const Trash = styled.div`
 
 const DropDelete = () => {
   return (
-    <Droppable droppableId="TRASH" isDropDisabled={true} direction="horizontal">
+    <Droppable
+      droppableId="TRASH"
+      isDropDisabled={false}
+      direction="horizontal"
+    >
       {(provided, snapshot) => (
         <Trash
           ref={provided.innerRef}
