@@ -1,6 +1,10 @@
 import React, { useContext, useState, useEffect } from "react";
-import { childContext } from "../../context/ChildProfiles/ChildProfileStore";
 import { Link } from "react-router-dom";
+
+//context 
+import { childContext } from "../../context/ChildProfiles/ChildProfileStore";
+
+//material ui, styling
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
 import { FaPen } from "react-icons/fa";

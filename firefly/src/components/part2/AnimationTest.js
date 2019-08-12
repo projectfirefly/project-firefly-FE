@@ -6,7 +6,7 @@ const AnimationTest = () => {
   return (
     <div className="animations">
       {/* <FireflyHover /> */}
-      <FFanim height={250} width={250} accessory="nerdglasses" color={352} />
+      <FFanim height={250} width={250} accessory="lambdahat" color={352} />
     </div>
   );
 };
