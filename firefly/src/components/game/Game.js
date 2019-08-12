@@ -121,6 +121,7 @@ const ITEMS = [
     id: uuid(),
     functionality: <ToolboxBlueIcon src={RepeatIcon} alt="repeatIcon" />,
     content: <ToolboxBox src={BlueBlock} alt="blueblock" />,
+    used: false,
     rsi: 2
   },
 
@@ -128,24 +129,28 @@ const ITEMS = [
     id: uuid(),
     functionality: <ToolboxGreenIcon src={PaletteIcon} alt="paletteIcon" />,
     content: <ToolboxBox src={GreenBlock} alt="greenblock" />,
+    used: false,
     rsi: 3
   },
   {
     id: uuid(),
     functionality: <ToolboxGreenIcon src={ClockIcon} alt="clockIcon" />,
     content: <ToolboxBox src={GreenBlockRightSideEndState} alt="greenblock" />,
+    used: false,
     rsi: 4
   },
   {
     id: uuid(),
     functionality: <ToolboxGreenIcon src={NumberIcon1} alt="numberIcon" />,
     content: <ToolboxBox src={GreenBlock} alt="greenblock" />,
+    used: false,
     rsi: 5
   },
   {
     id: uuid(),
     functionality: <ToolboxToggleIcon src={ToggleOffIcon} alt="toggleIcon" />,
     content: <ToolboxBox src={GreenBlock} alt="greenblock" />,
+    used: false,
     rsi: 6
   }
 ];
@@ -153,10 +158,26 @@ const ITEMS = [
 const Game = () => {
   const [list, setList] = useState({ [uuid()]: [] });
   const [tools, setTools] = useState(ITEMS);
-  const [bool, setBool] = useState(false);
 
   const onDragEnd = result => {
     const { source, destination } = result;
+
+    console.log("tools:", tools);
+    console.log("list:", list);
+    console.log("result:", result);
+
+    if (
+      result.draggableId === tools[0].id ||
+      result.draggableId === tools[1].id
+    ) {
+      setTools(
+        [...tools].map(tool => {
+          return tool.id === result.draggableId
+            ? { ...tool, used: true }
+            : { ...tool };
+        })
+      );
+    }
 
     // dropped outside the list
     if (!destination) {
@@ -210,27 +231,13 @@ const Game = () => {
         );
         break;
     }
-
-    // setTools({
-    //   ...tools,
-    //   [destination.droppableId]: list[destination.droppableId].map(item => {
-    //     return item.rsi <= 1
-    //       ? {
-    //           ...item,
-    //           used: true
-    //         }
-    //       : item;
-    //   })
-    // });
   };
-  console.log(list);
-  console.log(tools);
 
   return (
     <Board>
       <DragDropContext onDragEnd={onDragEnd}>
-        <Toolbox ITEMS={tools} />
-        <FFbox />
+        <Toolbox tools={tools} />
+        <FFbox tools={tools} />
         <GameBoard state={list} />
         <DropDelete />
       </DragDropContext>

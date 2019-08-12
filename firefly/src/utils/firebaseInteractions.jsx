@@ -6,7 +6,8 @@ import {
   SET_LOADED,
   UPDATE_SELECTED,
   GET_USER,
-  SET_HAS_PROFILES
+  SET_HAS_PROFILES,
+  GET_AND_LOAD
 }
   from "../context/ChildProfiles/ChildProfileStore"
 
@@ -125,12 +126,14 @@ export const getUser = async (dispatch) => {
   const db = firebase.firestore();
   const uid = firebase.auth().currentUser.uid;
   //get user
+  var dispatchUser = {};
+
   await db.collection("users")
     .doc(uid)
     .get()
     .then((snapshot) => {
       const userInfo = snapshot.data()
-      dispatch({ type: GET_USER, payload: { ...userInfo, id: snapshot.id } })
+      dispatchUser = { ...dispatchUser, ...userInfo, id: snapshot.id };
     })
   //get information
   await db.collection("users")
@@ -142,10 +145,7 @@ export const getUser = async (dispatch) => {
         const document = doc.data();
         return { ...document, id: doc.id };
       });
-      dispatch({
-        type: GET_USER_INFO,
-        payload: docList[0],
-      });
+      dispatchUser = { ...dispatchUser, information: docList[0] };
     })
   //get profiles and avatars
   await db.collection("users")
@@ -180,19 +180,36 @@ export const getUser = async (dispatch) => {
               return document[0];
             })
             .then(avatar => {
-              dispatch({
-                type: GET_PROFILES_AND_AVATARS,
-                payload: {
-                  ...child,
-                  avatar: avatar,
-                },
-              });
+              if (dispatchUser.profiles) {
+                dispatchUser = {
+                  ...dispatchUser,
+                  profiles: [
+                    ...dispatchUser.profiles,
+                    {
+                      ...child,
+                      avatar: {
+                        ...avatar
+                      }
+                    }
+                  ]
+                }
+              } else {
+                dispatchUser = {
+                  ...dispatchUser,
+                  profiles: [
+                    {
+                      ...child,
+                      avatar: {
+                        ...avatar
+                      }
+                    }
+                  ]
+                }
+              }
             }).then(() => {
-              dispatch({ type: UPDATE_SELECTED, payload: childList[0].id });
-              dispatch({ type: SET_HAS_PROFILES });
+              dispatch({type: GET_AND_LOAD, payload: dispatchUser});
             });
         });
       }
     })
-  dispatch({ type: SET_LOADED })
 }

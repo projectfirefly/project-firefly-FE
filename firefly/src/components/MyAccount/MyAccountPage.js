@@ -33,6 +33,8 @@ export default function ProfileView(props) {
     },
   });
 
+  console.log("myaccountpage state", childProfileState);
+
   useEffect(() => {
     if (
       childProfileState.loaded &&
