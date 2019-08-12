@@ -32,16 +32,14 @@ function App() {
   console.log("App Render");
 
   firebase.auth().onAuthStateChanged(user => {
-    // console.log("hello");
     if (user) {
-      // console.log("If Statement");
       if (loggedIn === false) {
         setLoggedIn(true);
       }
     } else {
-      // console.log("Else Statement")
       if (loggedIn) {
         setLoggedIn(false);
+        setIsLoading(true);
       }
     }
   });
@@ -57,7 +55,7 @@ function App() {
         {isLoading ? (
           <LoadedChecker logged={loggedIn} setIsLoading={setIsLoading} />
         ) : (
-          <DevMenu logged={loggedIn} />
+          <DevMenu isLoading={isLoading} setIsLoading={setIsLoading} logged={loggedIn} />
         )}
       </ChildProfileStore>
     </BrowserRouter>

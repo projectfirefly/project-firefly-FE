@@ -7,6 +7,7 @@ import ChildProfileStore, {
   GET_USER_INFO,
   GET_PROFILES_AND_AVATARS,
   UPDATE_SELECTED,
+  SET_LOADED,
 } from "../context/ChildProfiles/ChildProfileStore";
 
 import firebase from "firebase";
@@ -41,37 +42,13 @@ import { Loader } from "../utils/Loaders/loaders";
 
 export default function DevMenu(props) {
   const [context, dispatch] = useContext(childContext);
-  const [isLoading, setIsLoading] = useState(true);
 
-  //Minimum loading time has passed or not
-  const [atLeast, setAtLeast] = useState(false);
-
-  //Getting my user information from Firestore
   useEffect(() => {
-    if (props.logged) {
-      setIsLoading(true);
-      getUser(dispatch).then(() => {
-        //Turn off loader if we've passed minimum loading time
-        if (atLeast) {
-          setIsLoading(false);
-        }
-      });
+    if (context.loaded && props.logged && !context.user) {
+      dispatch({type: SET_LOADED, payload: false});
+      props.setIsLoading(true);
     }
-  }, [props.logged]);
-
-  //Set minimum loading time
-  useEffect(() => {
-    setTimeout(() => {
-      setAtLeast(true);
-    }, 250);
-  }, []);
-
-  //If loaded and minimum load time has passed, turn loader off
-  useEffect(() => {
-    if (atLeast && context.loaded) {
-      setIsLoading(false);
-    }
-  }, [atLeast, context.loaded]);
+  }, [props.logged])
 
   return (
     <div className="app">

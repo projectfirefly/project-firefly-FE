@@ -15,40 +15,38 @@ export const UPDATE_SELECTED = "UPDATE_SELECTED";
 export const UPDATE_PROFILE = "UPDATE_PROFILE";
 export const REMOVE_PROFILE = "REMOVE_PROFILE";
 export const ADD_PROFILE = "ADD_PROFILE";
-export const GET_PROFILES_AND_AVATARS = "GET_PROFILES_AND_AVATARS";
-export const GET_USER_INFO = "GET_USER_INFO"
 export const UPDATE_USER = "UPDATE_USER";
 export const SET_LOADED = "SET_LOADED";
-export const GET_USER = "GET_USER";
 export const SET_HAS_PROFILES = "SET_HAS_PROFILES";
+export const GET_AND_LOAD = "GET_AND_LOAD";
+export const SIGN_OUT = "SIGN_OUT"
 
 function reducer(state, action) {
   const db = firebase.firestore();
-  const uid = firebase.auth().currentUser.uid;
+  if (firebase.auth().currentUser) {
+    const uid = firebase.auth().currentUser.uid;
+  }
   switch (action.type) {
-    case GET_USER:
-      return { ...state, user: action.payload }
+    case SIGN_OUT:
+      return { ...initialState };
+    case GET_AND_LOAD:
+      if (action.payload.profiles) {
+        return { 
+          ...state,
+          user: action.payload,
+          hasProfiles: true,
+          loaded: true, 
+          selected: {
+            id: action.payload.profiles[0].id
+          }
+        }
+      } else {
+        return { ...state, user: action.payload, loaded: true }
+      }
     case SET_HAS_PROFILES:
       return { ...state, hasProfiles: true };
-    case GET_USER_INFO:
-      return {
-        ...state,
-        user: {
-          ...state.user,
-          information: action.payload
-        }
-      }
-    case GET_PROFILES_AND_AVATARS:
-      var newProfiles;
-      if (state.user.profiles) {
-        newProfiles = [...state.user.profiles, action.payload]
-      } else {
-        newProfiles = [action.payload];
-      }
-      const newUser = { ...state.user, profiles: newProfiles }
-      return { ...state, user: newUser }
     case SET_LOADED: {
-      return { ...state, loaded: true }
+      return { ...state, loaded: action.payload }
     }
     case UPDATE_USER: {
       return { ...state, user: action.payload }

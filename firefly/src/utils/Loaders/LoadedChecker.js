@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
 
-import { childContext } from '../../context/ChildProfiles/ChildProfileStore';
+import { childContext, SET_LOADED } from '../../context/ChildProfiles/ChildProfileStore';
 
 import { getUser } from "../firebaseInteractions";
 
@@ -18,23 +18,32 @@ export default function LoadedChecker(props) {
     if (!atLeast) {
       setTimeout(() => {
         setAtLeast(true);
+        if (!props.logged) {
+          dispatch({type: SET_LOADED, payload: true});
+        }
       }, 2000);
     }
   }, []);
 
   useEffect(() => {
-    if (props.logged) {
-      getUser(dispatch);
-    }
+    
   }, [props.logged])
 
   useEffect(() => {
-    if (atLeast && context.loaded) {
-      console.log("context", context);
-      console.log("HUGE PROBLEM INCOMING")
+    if (props.logged && !context.loaded) {
+      getUser(dispatch)
+        .then(() => {
+          if (atLeast && context.loaded) {
+            console.log("context", context);
+            console.log("HUGE PROBLEM INCOMING")
+            props.setIsLoading(false);
+          }
+        })
+    } else if (atLeast && context.loaded) {
+      console.log("LOADED AND ATLEAST", context)
       props.setIsLoading(false);
     }
-  }, [atLeast, context.loaded])
+  }, [props.logged, atLeast, context.loaded])
 
   return (<></>);
 }

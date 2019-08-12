@@ -87,7 +87,7 @@ const CircleLoader = () => {
         margin: "-3px 0 0 -3px",
       },
       "& div:nth-child(1)": {
-        animationDelay: ".264s",
+        animationDelay: ".364s",
         // animationDelay: "-0.036s",
       },
       "& div:nth-child(1):after": {
@@ -95,7 +95,7 @@ const CircleLoader = () => {
         left: "50px",
       },
       "& div:nth-child(2)": {
-        animationDelay: ".228s",
+        animationDelay: ".328s",
         // animationDelay: "-0.072s",
       },
       "& div:nth-child(2):after": {
@@ -103,7 +103,7 @@ const CircleLoader = () => {
         left: "45px",
       },
       "& div:nth-child(3)": {
-        animationDelay: ".192s",
+        animationDelay: ".292s",
         // animationDelay: "-0.108s",
       },
       "& div:nth-child(3):after": {
@@ -111,7 +111,7 @@ const CircleLoader = () => {
         left: "39px",
       },
       "& div:nth-child(4)": {
-        animationDelay: ".156s",
+        animationDelay: ".256s",
         // animationDelay: "-0.144s",
       },
       "& div:nth-child(4):after": {
@@ -119,7 +119,7 @@ const CircleLoader = () => {
         left: "32px",
       },
       "& div:nth-child(5)": {
-        animationDelay: ".120s",
+        animationDelay: ".220s",
         // animationDelay: "-0.18s",
       },
       "& div:nth-child(5):after": {
@@ -127,7 +127,7 @@ const CircleLoader = () => {
         left: "25px",
       },
       "& div:nth-child(6)": {
-        animationDelay: ".084s",
+        animationDelay: ".184s",
         // animationDelay: "-0.216s",
       },
       "& div:nth-child(6):after": {
@@ -135,7 +135,7 @@ const CircleLoader = () => {
         left: "19px",
       },
       "& div:nth-child(7)": {
-        animationDelay: ".048s",
+        animationDelay: ".148s",
         // animationDelay: "-0.252s",
       },
       "& div:nth-child(7):after": {
