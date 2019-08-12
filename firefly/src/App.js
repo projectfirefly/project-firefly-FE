@@ -29,7 +29,7 @@ function App() {
 
   const [isLoading, setIsLoading] = useState(true);
 
-  console.log("App Render");
+  // console.log("App Render");
 
   firebase.auth().onAuthStateChanged(user => {
     if (user) {
@@ -43,10 +43,6 @@ function App() {
       }
     }
   });
-
-  useEffect(() => {
-    console.log("isLoading", isLoading);
-  }, [isLoading])
 
   return (
     <BrowserRouter>
