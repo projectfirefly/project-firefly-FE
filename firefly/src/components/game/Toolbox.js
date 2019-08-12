@@ -31,8 +31,24 @@ const Block = styled.span`
   }
 `;
 
+const BlockUsed = styled.span`
+  width: 100%;
+  height: 100%;
+  position: relative;
+  opacity: 0.6;
+
+  ~ div {
+    transform: none !important;
+  }
+`;
+
 const Tool = styled.div`
   display: flex;
+`;
+
+const ToolUsed = styled.div`
+  display: flex;
+  opacity: 0.6;
 `;
 
 const Item = styled.div`
@@ -57,7 +73,7 @@ const Clone = styled.span`
   }
 `;
 
-const Toolbox = ({ ITEMS }) => {
+const Toolbox = ({ tools }) => {
   return (
     <div>
       <Droppable
@@ -71,7 +87,7 @@ const Toolbox = ({ ITEMS }) => {
             innerRef={provided.innerRef}
             isDraggingOver={snapshot.isDraggingOver}
           >
-            {ITEMS.map((item, index) => {
+            {tools.map((item, index) => {
               return (
                 <Draggable
                   key={item.id}
@@ -89,12 +105,21 @@ const Toolbox = ({ ITEMS }) => {
                         isDragging={snapshot.isDragging}
                         style={provided.draggableProps.style}
                       >
-                        <Block>
-                          <Tool>
-                            {item.content}
-                            {item.functionality}
-                          </Tool>
-                        </Block>
+                        {item.used ? (
+                          <BlockUsed>
+                            <ToolUsed>
+                              {item.content}
+                              {item.functionality}
+                            </ToolUsed>
+                          </BlockUsed>
+                        ) : (
+                          <Block>
+                            <Tool>
+                              {item.content}
+                              {item.functionality}
+                            </Tool>
+                          </Block>
+                        )}
                       </Item>
                       {snapshot.isDragging && (
                         <Clone>
