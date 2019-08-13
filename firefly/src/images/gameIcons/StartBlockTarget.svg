@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 77.5 68.5">
+  <title>Asset 1</title>
+  <g id="Layer_2" data-name="Layer 2">
+    <g id="Layer_1-2" data-name="Layer 1">
+      <g>
+        <g id="Style-Guide">
+          <g id="CodingBlocks">
+            <g id="Group-10">
+              <g id="StartBlock">
+                <path id="path-2" d="M66.25,4.07v-.7A46.64,46.64,0,0,1,77.25,34a46.67,46.67,0,0,1-11,30.68v-.31a10,10,0,0,1-10.61,3.46q-13-3.68-21.38-3.68T13,67.84A10,10,0,0,1,.65,55.48q3.62-12.7,3.61-21.2T.64,13A10,10,0,0,1,13,.67Q26,4.36,34.26,4.36T55.65.63A10,10,0,0,1,66.25,4.07Z" fill="#fff" stroke="#bcbec0" stroke-width="0.5" fill-rule="evenodd"/>
+                <path d="M66.25,4.07v-.7A46.64,46.64,0,0,1,77.25,34a46.67,46.67,0,0,1-11,30.68v-.31a10,10,0,0,1-10.61,3.46q-13-3.68-21.38-3.68T13,67.84A10,10,0,0,1,.65,55.48q3.62-12.7,3.61-21.2T.64,13A10,10,0,0,1,13,.67Q26,4.36,34.26,4.36T55.65.63A10,10,0,0,1,66.25,4.07Z" fill="#fff" stroke="#bcbec0" stroke-width="0.5" fill-rule="evenodd"/>
+              </g>
+            </g>
+          </g>
+        </g>
+        <g id="Style-Guide-2" data-name="Style-Guide">
+          <g id="CodingBlocks-2" data-name="CodingBlocks">
+            <g id="play-circle-solid">
+              <path id="Shape" d="M38.75,16.75a17.5,17.5,0,1,0,17.5,17.5A17.49,17.49,0,0,0,38.75,16.75Zm8.16,19.19L34.5,43.07A1.7,1.7,0,0,1,32,41.59V26.91a1.7,1.7,0,0,1,2.52-1.48L46.91,33A1.69,1.69,0,0,1,46.91,35.94Z" fill="#fff" stroke="#bcbec0" stroke-width="0.5"/>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
