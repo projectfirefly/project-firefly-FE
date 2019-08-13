@@ -11,6 +11,7 @@ import { FaPen, FaPlus } from "react-icons/fa";
 import { PrimaryButton } from "../../utils/buttons/PrimaryButton";
 import { SecondaryButton } from "../../utils/buttons/SecondaryButton";
 import accountStyles from "./MyAccountStyles";
+import "../../styles/MyAccountPage.scss";
 
 //context
 import { childContext } from "../../context/ChildProfiles/ChildProfileStore";
@@ -185,12 +186,14 @@ export default function ProfileView(props) {
                 </h2>
                 <div className={classes.researchSection}>
                   <div className={classes.checkboxContainer}>
-                    <label className={classes.checkboxLabel}>
-                      <input type={classes.checkbox} />
-                      <span className={classes.checkboxCustom}> {""}</span>
+                    <label className="checkbox-label">
+                      <input type="checkbox" />
+                      <span className="checkbox-custom"> {""}</span>
                     </label>
                   </div>
-                  <p>I would like to participate in the Educational Research</p>
+                  <p className={classes.p}>
+                    I would like to participate in the Educational Research
+                  </p>
                 </div>
                 <br />
               </Paper>

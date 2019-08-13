@@ -1,6 +1,7 @@
 import React from "react";
 
 import "../../styles/RegistrationStepOne.scss";
+// import stepOneStyles from "./StepOneStyles";
 
 const RegistrationStepOne = ({
   handleStepOneChange,

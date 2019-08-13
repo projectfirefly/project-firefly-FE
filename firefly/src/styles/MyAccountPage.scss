@@ -120,23 +120,23 @@
 //     font-size: 16px;
 //   }
 // }
-// .checkbox-label {
-//   //   display: block;
-//   position: relative;
-//   margin: auto;
-//   cursor: pointer;
-//   font-size: 18px;
-//   line-height: 24px;
-//   height: 18px;
-//   width: 18px;
-//   clear: both;
-// }
+.checkbox-label {
+  //   display: block;
+  position: relative;
+  margin: auto;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 24px;
+  height: 18px;
+  width: 18px;
+  clear: both;
+}
 
-// .checkbox-label input {
-//   position: absolute;
-//   opacity: 0;
-//   cursor: pointer;
-// }
+.checkbox-label input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
 
 .checkbox-label .checkbox-custom {
   position: absolute;

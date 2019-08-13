@@ -135,27 +135,45 @@ const accountStyles = makeStyles(theme => ({
     marginTop: "40px"
   },
   researchSection: {
-    display: "flex",
-    p: {
-      paddingTop: " 5px",
-      fontSize: "16px"
-    }
+    display: "flex"
   },
-  checkboxLabel: {
-    position: "relative",
-    margin: "auto",
-    cursor: "pointer",
-    fontSize: "18px",
-    lineHeight: "24px",
-    height: "18px",
-    width: "18px",
-    clear: "both"
+  p: {
+    paddingTop: " 5px",
+    fontSize: "16px"
   },
-  input: {
-    position: "absolute",
-    opacity: "0",
-    cursor: "pointer"
+  checkboxContainer: {
+    marginRight: "5%"
   }
+  // checkboxLabel: {
+  //   position: "relative",
+  //   margin: "auto",
+  //   cursor: "pointer",
+  //   fontSize: "18px",
+  //   lineHeight: "24px",
+  //   height: "18px",
+  //   width: "18px",
+  //   clear: "both"
+  // },
+  // input: {
+  //   position: "absolute",
+  //   opacity: "0",
+  //   cursor: "pointer"
+  // },
+  // checkboxCustom: {
+  //   position: "absolute",
+  //   top: "0px",
+  //   left: "0px",
+  //   height: "18px",
+  //   width: "18px",
+  //   backgroundColor: "transparent",
+  //   borderRadius: "5px",
+  //   transition: "all 0.3s ease-out",
+  //   " -webkit-transition": "all 0.3s ease-out",
+  //   " -moz-transition": "all 0.3s ease-out",
+  //   "-ms-transition": "all 0.3s ease-out",
+  //   "-o-transition": "all 0.3s ease-out",
+  //   border: "2px solid #4aa810"
+  // },
 }));
 
 export default accountStyles;
