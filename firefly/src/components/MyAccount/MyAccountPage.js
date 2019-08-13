@@ -10,6 +10,7 @@ import Icon from "../../assets/icons";
 import { FaPen, FaPlus } from "react-icons/fa";
 import { PrimaryButton } from "../../utils/buttons/PrimaryButton";
 import { SecondaryButton } from "../../utils/buttons/SecondaryButton";
+import accountStyles from "./MyAccountStyles";
 
 //context
 import { childContext } from "../../context/ChildProfiles/ChildProfileStore";
@@ -18,6 +19,8 @@ import { updateUser } from "../../utils/firebaseInteractions";
 import { flexbox } from "@material-ui/system";
 
 export default function ProfileView(props) {
+  const classes = accountStyles();
+
   const [editing, setEditing] = useState(false);
 
   const [finishedLoading, setFinishedLoading] = useState(false);
@@ -29,8 +32,8 @@ export default function ProfileView(props) {
     first_name: "",
     last_name: "",
     information: {
-      address: "",
-    },
+      address: ""
+    }
   });
 
   useEffect(() => {
@@ -40,7 +43,7 @@ export default function ProfileView(props) {
       !finishedLoading
     ) {
       setUpdatedInfo({
-        ...childProfileState.user,
+        ...childProfileState.user
       });
       setFinishedLoading(true);
     }
@@ -49,38 +52,15 @@ export default function ProfileView(props) {
   const toggleEditing = () => {
     setEditing(!editing);
     setUpdatedInfo({
-      ...childProfileState.user,
+      ...childProfileState.user
     });
     console.log(process.env.REACT_APP_SOMETHING);
   };
 
-  const classes = makeStyles(theme => ({
-    paper: {
-      padding: "20px 20px",
-      textAlign: "left",
-      color: theme.palette.text.secondary,
-      borderRadius: " 20px",
-      // marginBottom: "32px",
-    },
-    headerContainer: {
-      display: "flex",
-      justifyContent: "space-between",
-    },
-    editButtons: {
-      display: "flex",
-      marginTop: "40px",
-      justifyContent: "space-between",
-    },
-    button: {
-      width: "40%",
-      marginTop: "40px",
-    },
-  }))();
-
   const handleChanges = e => {
     setUpdatedInfo({
       ...updatedInfo,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     });
   };
 
@@ -89,8 +69,8 @@ export default function ProfileView(props) {
       ...updatedInfo,
       information: {
         ...updatedInfo.information,
-        [e.target.name]: e.target.value,
-      },
+        [e.target.name]: e.target.value
+      }
     });
   };
 
@@ -105,27 +85,27 @@ export default function ProfileView(props) {
     finishedLoading
   ) {
     return (
-      <Container className="root" maxWidth="lg">
-        <h1 className="header">My Account</h1>
+      <Container className={classes.root} maxWidth="lg">
+        <h1 className={classes.header}>My Account</h1>
 
-        <div className="container">
-          <div className="left">
+        <div className={classes.container}>
+          <div className={classes.left}>
             {/* Account Info */}
-            <div className="leftContainerOne">
+            <div className={classes.leftContainerOne}>
               <Paper className={classes.paper}>
                 <div className={classes.headerContainer}>
-                  <h2 className="sectionHeader">Account Information</h2>
-                  <div className="iconButton" onClick={toggleEditing}>
+                  <h2 className={classes.sectionHeader}>Account Information</h2>
+                  <div className={classes.iconButton} onClick={toggleEditing}>
                     <FaPen />
                   </div>
                 </div>
                 <Grid container spacing={3}>
                   <Grid item xs={2}>
-                    <div className="infoLabel">Email</div>
+                    <div className={classes.infoLabel}>Email</div>
                   </Grid>
                   <Grid item xs={6}>
                     {!editing ? (
-                      <div className="userInfo">
+                      <div className={classes.userInfo}>
                         {childProfileState.user.email}
                       </div>
                     ) : (
@@ -140,11 +120,11 @@ export default function ProfileView(props) {
                 </Grid>
                 <Grid container spacing={3}>
                   <Grid item xs={2}>
-                    <div className="infoLabel">Name</div>
+                    <div className={classes.infoLabel}>Name</div>
                   </Grid>
                   <Grid item xs={6}>
                     {!editing ? (
-                      <div className="userInfo">
+                      <div className={classes.userInfo}>
                         {childProfileState.user.first_name}{" "}
                         {childProfileState.user.last_name}
                       </div>
@@ -168,11 +148,11 @@ export default function ProfileView(props) {
                 </Grid>
                 <Grid container spacing={3}>
                   <Grid item xs={2}>
-                    <div className="infoLabel">Address</div>
+                    <div className={classes.infoLabel}>Address</div>
                   </Grid>
                   <Grid item xs={6}>
                     {!editing ? (
-                      <div className="userInfo">
+                      <div className={classes.userInfo}>
                         {childProfileState.user.information.address}
                       </div>
                     ) : (
@@ -189,25 +169,25 @@ export default function ProfileView(props) {
               </Paper>
             </div>
             {/* Payment Info */}
-            <div className="leftContainerTwo">
+            <div className={classes.leftContainerTwo}>
               <Paper className={classes.paper}>
-                <h2 className="sectionHeader"> Payment Information</h2>
+                <h2 className={classes.sectionHeader}> Payment Information</h2>
                 <br />
                 <br />
                 <br />
               </Paper>
             </div>
             {/* Educational Research */}
-            <div className="leftContainer">
+            <div className={classes.leftContainer}>
               <Paper className={classes.paper}>
-                <h2 className="sectionHeader">
+                <h2 className={classes.sectionHeader}>
                   Educational Research Participation
                 </h2>
-                <div className="research-section">
-                  <div className="checkbox-container">
-                    <label className="checkbox-label">
-                      <input type="checkbox" />
-                      <span className="checkbox-custom"> {""}</span>
+                <div className={classes.researchSection}>
+                  <div className={classes.checkboxContainer}>
+                    <label className={classes.checkboxLabel}>
+                      <input type={classes.checkbox} />
+                      <span className={classes.checkboxCustom}> {""}</span>
                     </label>
                   </div>
                   <p>I would like to participate in the Educational Research</p>
@@ -217,28 +197,27 @@ export default function ProfileView(props) {
             </div>
           </div>
 
-          <div className="rightCards">
+          <div className={classes.rightCards}>
             <Paper className={classes.paper}>
-              <h2 className="sectionHeaderRight">Manage Profile</h2>
-              <div className="fireflyContainer">
-                <div className="edit">
+              <h2 className={classes.sectionHeaderRight}>Manage Profile</h2>
+              <div className={classes.fireflyContainer}>
+                <div className={classes.edit}>
                   <p>New Profile</p>
-                  <Link to="/addprofile" className="iconButton">
+                  <Link to="/addprofile" className={classes.iconButton}>
                     <FaPlus />
                   </Link>
                 </div>
 
-                {/* New Profile card. Later make into a component */}
-                <div className="fireflyIcon">
+                <div className={classes.fireflyIcon}>
                   <Icon
                     name="Firefly"
                     style={{
-                      width: "40%",
+                      width: "40%"
                     }}
                   />
                 </div>
 
-                <hr className="style1" />
+                <hr className={classes.style1} />
                 {childProfileState.user.profiles.map(profile => {
                   return (
                     <ProfileCard
@@ -253,7 +232,7 @@ export default function ProfileView(props) {
             </Paper>
 
             {!editing ? (
-              <Link to="/startgame" className="button">
+              <Link to="/startgame" className={classes.button}>
                 <PrimaryButton text={"BACK TO GAME"} />
               </Link>
             ) : (
