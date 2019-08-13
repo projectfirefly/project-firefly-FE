@@ -31,20 +31,29 @@ const Board = styled.div`
 
 const ToolboxGreenIcon = styled.img`
   position: absolute;
-  top: 25%;
-  left: 25%;
+  width: 40%;
+  top: 28%;
+  left: 29%;
 `;
 
-const ToolboxBlueIcon = styled.img`
+const ToolboxBlueLedIcon = styled.img`
   position: absolute;
-  top: 25%;
+  width: 40%;
+  top: 27%;
+  left: 34%;
+`;
+
+const ToolboxBlueRepeatIcon = styled.img`
+  position: absolute;
+  width: 40%;
+  top: 30%;
   left: 32%;
 `;
 
 const ToolboxToggleIcon = styled.img`
   position: absolute;
   top: 35%;
-  left: 25%;
+  left: 27%;
 `;
 
 const ToolboxBox = styled.img`
@@ -96,14 +105,16 @@ const ITEMS = [
   },
   {
     id: uuid(),
-    functionality: <ToolboxBlueIcon src={LightbulbIcon} alt="lightbulbIcon" />,
+    functionality: (
+      <ToolboxBlueLedIcon src={LightbulbIcon} alt="lightbulbIcon" />
+    ),
     content: <ToolboxBox src={BlueBlockLeftSideEndState} alt="blueblock" />,
     used: false,
     rsi: 1
   },
   {
     id: uuid(),
-    functionality: <ToolboxBlueIcon src={RepeatIcon} alt="repeatIcon" />,
+    functionality: <ToolboxBlueRepeatIcon src={RepeatIcon} alt="repeatIcon" />,
     content: <ToolboxBox src={BlueBlockLeftSideEndState} alt="blueblock" />,
     used: false,
     rsi: 2
@@ -234,7 +245,7 @@ const Game = () => {
   return (
     <Board>
       <DragDropContext onDragEnd={onDragEnd}>
-        <Toolbox tools={tools}  />
+        <Toolbox tools={tools} />
         <FFbox tools={tools} />
         <GameBoard state={list} hasStart={hasStart} />
         <DropDelete />
