@@ -48,8 +48,7 @@ const GrayedOutBlock = styled.div`
   display: flex;
   opacity: 0.7;
   position: relative;
-  width: 92px;
-  margin-left: 5px;
+  width: 97px;
 `;
 
 const ButtonBox = styled.img`
