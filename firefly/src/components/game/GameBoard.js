@@ -1,4 +1,5 @@
 import React from "react";
+
 import BlockLine from "./BlockLine";
 
 const GameBoard = () => {

@@ -8,9 +8,7 @@ import styled from "styled-components";
 
 import { DragDropContext } from "react-beautiful-dnd";
 import StartBlock from "../../images/gameIcons/StartBlock.svg";
-import BlueBlock from "../../images/gameIcons/BlueBlock.svg";
 import BlueBlockLeftSideEndState from "../../images/gameIcons/BlueBlockLeftSideEndState.svg";
-import GreenBlock from "../../images/gameIcons/GreenBlock.svg";
 import GreenBlockRightSideEndState from "../../images/gameIcons/GreenBlockRightSideEndState.svg";
 import RepeatIcon from "../../images/gameIcons/RepeatIcon.svg";
 import LightbulbIcon from "../../images/gameIcons/LightbulbIcon.svg";
@@ -154,13 +152,21 @@ const Game = () => {
   const [list, setList] = useState({ [uuid()]: [] });
   const [tools, setTools] = useState(ITEMS);
   const [hasStart, setHasStart] = useState(false);
+  const [draggingBlock, isDraggingBlock] = useState(false);
+
+  const onDragStart = () => {
+    isDraggingBlock(true);
+  };
 
   const onDragEnd = result => {
     const { source, destination } = result;
 
-    console.log("tools:", tools);
-    console.log("list:", list);
-    console.log("result:", result);
+    isDraggingBlock(false);
+
+    // console.log("tools:", tools);
+    // console.log("list:", list);
+    // console.log("result:", result);
+
     // dropped outside the list
     if (!destination) {
       return;
@@ -244,10 +250,14 @@ const Game = () => {
 
   return (
     <Board>
-      <DragDropContext onDragEnd={onDragEnd}>
+      <DragDropContext onDragEnd={onDragEnd} onDragStart={onDragStart}>
         <Toolbox tools={tools} />
         <FFbox tools={tools} />
-        <GameBoard state={list} hasStart={hasStart} />
+        <GameBoard
+          state={list}
+          hasStart={hasStart}
+          draggingBlock={draggingBlock}
+        />
         <DropDelete />
       </DragDropContext>
     </Board>

@@ -56,7 +56,7 @@ const ButtonBox = styled.img`
   width: 100%;
 `;
 
-const BlockLine = ({ state, hasStart, dragging }) => {
+const BlockLine = ({ state, hasStart, draggingBlock }) => {
   return (
     <div>
       {Object.keys(state).map((list, i) => (
@@ -67,7 +67,6 @@ const BlockLine = ({ state, hasStart, dragging }) => {
               innerRef={provided.innerRef}
               isDraggingOver={snapshot.isDraggingOver}
             >
-              {console.log(snapshot)}
               {/* Conditional rendering of first start block in code line */}
 
               <GrayedOutBlock style={hasStart ? { display: "none" } : null}>
@@ -101,8 +100,12 @@ const BlockLine = ({ state, hasStart, dragging }) => {
               <Item>
                 <GrayedOutBlock
                   style={
-                    snapshot.isDraggingOver && state[list].length > 0
-                      ? null
+                    draggingBlock && state[list].length > 0
+                      ? {
+                          marginLeft: "10px",
+                          position: "relative",
+                          zIndex: "-1"
+                        }
                       : {
                           display: "none"
                         }
