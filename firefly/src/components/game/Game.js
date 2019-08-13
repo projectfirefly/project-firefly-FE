@@ -19,11 +19,11 @@ import PlayCircleIcon from "../../images/gameIcons/PlayCircleIcon.svg";
 import PaletteIcon from "../../images/gameIcons/PaletteIcon.svg";
 import ToggleOffIcon from "../../images/gameIcons/ToggleOffIcon.svg";
 import NumberIcon1 from "../../images/gameIcons/NumberIcon1.svg";
+import GridIcon from "../../images/gridBackground.png";
 
 const Board = styled.div`
   /* min-height: 100vh; */
   min-width: 100vw;
-  /* background-image: url(https://images.unsplash.com/photo-1538513633433-8cb0c2f89e56?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3734&q=80); */
 `;
 
 const ToolboxGreenIcon = styled.img`
@@ -101,7 +101,7 @@ const ITEMS = [
   {
     id: uuid(),
     functionality: <ToolboxBlueIcon src={RepeatIcon} alt="repeatIcon" />,
-    content: <ToolboxBox src={BlueBlock} alt="blueblock" />,
+    content: <ToolboxBox src={BlueBlockLeftSideEndState} alt="blueblock" />,
     used: false,
     rsi: 2
   },
@@ -116,7 +116,7 @@ const ITEMS = [
   {
     id: uuid(),
     functionality: <ToolboxGreenIcon src={ClockIcon} alt="clockIcon" />,
-    content: <ToolboxBox src={GreenBlockRightSideEndState} alt="greenblock" />,
+    content: <ToolboxBox src={GreenBlock} alt="greenblock" />,
     used: false,
     rsi: 4
   },
