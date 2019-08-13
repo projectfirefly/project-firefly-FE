@@ -1,14 +1,16 @@
 import React, { useContext, useState, useEffect } from "react";
-import { childContext } from "../../context/ChildProfiles/ChildProfileStore";
 import { Link } from "react-router-dom";
+
+//context 
+import { childContext } from "../../context/ChildProfiles/ChildProfileStore";
+
+//material ui, styling
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
 import { FaPen } from "react-icons/fa";
 import Book from "../../images/BookTemp.png";
 import Stars from "../../images/StarsTemp.png";
-import Icon from "../../assets/icons";
 import ProfileFly from "../../assets/icons/ProfileFly";
-import { SecondaryButton } from "../../utils/buttons/SecondaryButton";
 
 const useStyles = makeStyles({
   root: {
@@ -172,11 +174,12 @@ const useStyles = makeStyles({
 export default function MyFireflyPage() {
   const classes = useStyles();
 
-  const [childProfileState, dispatch] = useContext(childContext);
+  const [childProfileState] = useContext(childContext);
 
   const [currentProfile, setCurrentProfile] = useState();
 
   useEffect(() => {
+    // console.log(childProfileState);
     if (childProfileState.loaded && childProfileState.hasProfiles) {
       const [destructuredProfile] = childProfileState.user.profiles.filter(profile => {
         if (childProfileState.selected.id === profile.id) {
@@ -185,12 +188,13 @@ export default function MyFireflyPage() {
           return false;
         }
       })
-      console.log(destructuredProfile);
+      // console.log(destructuredProfile);
       setCurrentProfile(destructuredProfile);
     }
   }, [childProfileState]);
 
-  if (childProfileState.loaded && childProfileState.hasProfiles && currentProfile) {
+  //Return nothing for a microsecond while currentProfile populates
+  if (currentProfile) {
     return (
       <React.Fragment>
         <Container className={classes.root} component="div">
@@ -271,6 +275,6 @@ export default function MyFireflyPage() {
       </React.Fragment>
     );
   } else {
-    return <>Loading...</>;
+    return <></>;
   }
 }

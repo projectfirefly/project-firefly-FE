@@ -1,13 +1,9 @@
 import React, { useState } from "react";
-import AppBar from "@material-ui/core/AppBar";
 import {
   makeStyles,
-  Toolbar,
-  Typography,
   Drawer,
   List,
   ListItem,
-  Collapse,
   ListItemText,
 } from "@material-ui/core";
 import IconButton from "@material-ui/core/IconButton";

@@ -17,7 +17,6 @@ import "../../styles/MyAccountPage.scss";
 import { childContext } from "../../context/ChildProfiles/ChildProfileStore";
 import { UPDATE_USER } from "../../context/ChildProfiles/ChildProfileStore";
 import { updateUser } from "../../utils/firebaseInteractions";
-import { flexbox } from "@material-ui/system";
 
 export default function ProfileView(props) {
   const classes = accountStyles();
@@ -37,6 +36,8 @@ export default function ProfileView(props) {
     }
   });
 
+  console.log("myaccountpage state", childProfileState);
+
   useEffect(() => {
     if (
       childProfileState.loaded &&
@@ -48,7 +49,7 @@ export default function ProfileView(props) {
       });
       setFinishedLoading(true);
     }
-  }, [childProfileState]);
+  }, [childProfileState, finishedLoading]);
 
   const toggleEditing = () => {
     setEditing(!editing);

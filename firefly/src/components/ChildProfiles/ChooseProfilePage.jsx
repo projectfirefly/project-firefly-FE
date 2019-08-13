@@ -7,10 +7,14 @@ import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
+
+//Components
 import ProfileFly from "../../assets/icons/ProfileFly";
 
 const ChooseProfilePage = props => {
   const [childProfileState, dispatch] = useContext(childContext);
+
+  console.log("Choose Profile State", childProfileState);
 
   const useStyles = makeStyles({
     header: {

@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 
 //Context
@@ -6,16 +7,18 @@ import { childContext } from "../../context/ChildProfiles/ChildProfileStore";
 import { UPDATE_PROFILE } from "../../context/ChildProfiles/ChildProfileStore";
 import { updateProfile } from "../../utils/firebaseInteractions";
 
-import Icon from "../../assets/icons";
+
+
+
+//components
+import { PrimaryButton } from "../../utils/buttons/PrimaryButton";
+import { SecondaryButton } from "../../utils/buttons/SecondaryButton";
 import ColorSlider from "../ColorSlider/ColorSlider";
 import Accessories from "./Accessories";
 
-import { Link } from "react-router-dom";
-
-import { PrimaryButton } from "../../utils/buttons/PrimaryButton";
-import { SecondaryButton } from "../../utils/buttons/SecondaryButton";
-
 import createProfileClasses from "./CreateProfileStyles";
+import Icon from "../../assets/icons";
+
 
 export default function CustomizeFireflyPage(props) {
   const classes = createProfileClasses();
@@ -64,9 +67,8 @@ export default function CustomizeFireflyPage(props) {
     });
   };
 
+  //Return nothing for a microsecond while updatedProfile populates.
   if (
-    childProfileState.loaded &&
-    childProfileState.hasProfiles &&
     updatedProfile
   ) {
     return (
@@ -130,6 +132,6 @@ export default function CustomizeFireflyPage(props) {
       </div>
     );
   } else {
-    return <>Loading...</>;
+    return <></>;
   }
 }
