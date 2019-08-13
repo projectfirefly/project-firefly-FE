@@ -3,15 +3,17 @@ import styled from "styled-components";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 
 const List = styled.div`
-  min-height: 100px;
+  height: 100%;
+  min-height: 90px;
   border: 2px ${props => (props.isDraggingOver ? "solid #000" : "solid #ddd")};
   background: none;
-  border-radius: 3px;
+  border-radius: 16px;
   width: 88%;
-  overflow-x: scroll;
+  overflow-x: auto;
   overflow-y: hidden;
   margin-left: 130px;
   display: -webkit-box;
+  align-items: center;
 `;
 
 const Item = styled.div`
@@ -20,13 +22,14 @@ const Item = styled.div`
   margin: 0 -10px 0 0;
   align-items: flex-start;
   align-content: flex-start;
-  line-height: 1.5;
   border-radius: 3px;
 `;
 
 const Tool = styled.div`
   display: flex;
   position: relative;
+
+  width: 100px;
 `;
 
 const Notice = styled.div`
