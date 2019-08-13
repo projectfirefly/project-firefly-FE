@@ -24,6 +24,9 @@ import GridIcon from "../../images/gridBackground.png";
 const Board = styled.div`
   /* min-height: 100vh; */
   min-width: 100vw;
+  /* background-image: url(${GridIcon}); */
+  /* margin: -10% 0; */
+  /* padding-bottom: 30%; */
 `;
 
 const ToolboxGreenIcon = styled.img`
@@ -109,28 +112,28 @@ const ITEMS = [
   {
     id: uuid(),
     functionality: <ToolboxGreenIcon src={PaletteIcon} alt="paletteIcon" />,
-    content: <ToolboxBox src={GreenBlock} alt="greenblock" />,
+    content: <ToolboxBox src={GreenBlockRightSideEndState} alt="greenblock" />,
     used: false,
     rsi: 3
   },
   {
     id: uuid(),
     functionality: <ToolboxGreenIcon src={ClockIcon} alt="clockIcon" />,
-    content: <ToolboxBox src={GreenBlock} alt="greenblock" />,
+    content: <ToolboxBox src={GreenBlockRightSideEndState} alt="greenblock" />,
     used: false,
     rsi: 4
   },
   {
     id: uuid(),
     functionality: <ToolboxGreenIcon src={NumberIcon1} alt="numberIcon" />,
-    content: <ToolboxBox src={GreenBlock} alt="greenblock" />,
+    content: <ToolboxBox src={GreenBlockRightSideEndState} alt="greenblock" />,
     used: false,
     rsi: 5
   },
   {
     id: uuid(),
     functionality: <ToolboxToggleIcon src={ToggleOffIcon} alt="toggleIcon" />,
-    content: <ToolboxBox src={GreenBlock} alt="greenblock" />,
+    content: <ToolboxBox src={GreenBlockRightSideEndState} alt="greenblock" />,
     used: false,
     rsi: 6
   }
@@ -139,6 +142,7 @@ const ITEMS = [
 const Game = () => {
   const [list, setList] = useState({ [uuid()]: [] });
   const [tools, setTools] = useState(ITEMS);
+  const [hasStart, setHasStart] = useState(false);
 
   const onDragEnd = result => {
     const { source, destination } = result;
@@ -155,6 +159,9 @@ const Game = () => {
       result.draggableId === tools[0].id ||
       result.draggableId === tools[1].id
     ) {
+      if (result.draggableId === tools[0].id) {
+        setHasStart(true);
+      }
       setTools(
         [...tools].map(tool => {
           return tool.id === result.draggableId
@@ -168,6 +175,9 @@ const Game = () => {
       //Filters out the block that got put into trash
       const realList = list[`${source.droppableId}`].filter(item => {
         if (item.id === result.draggableId && item.rsi <= 1) {
+          if (item.id === result.draggableId && item.rsi === 0) {
+            setHasStart(false);
+          }
           setTools(
             [...tools].map(tool => {
               return tool.rsi === item.rsi
@@ -180,10 +190,7 @@ const Game = () => {
       });
 
       //Filters all tools to used:false so they become usable again
-
-      console.log("reallist:", realList);
       setList({ realList });
-      console.log("list:", list);
       return;
     }
 
@@ -227,9 +234,9 @@ const Game = () => {
   return (
     <Board>
       <DragDropContext onDragEnd={onDragEnd}>
-        <Toolbox tools={tools} />
+        <Toolbox tools={tools}  />
         <FFbox tools={tools} />
-        <GameBoard state={list} />
+        <GameBoard state={list} hasStart={hasStart} />
         <DropDelete />
       </DragDropContext>
     </Board>
