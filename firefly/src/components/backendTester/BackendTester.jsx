@@ -2,7 +2,6 @@ import React, { useState, useContext } from 'react'
 import firebase from 'firebase';
 import { addProfile, addWorld, getWorld, addFirefly, updateBlocks} from "../../utils/firebaseInteractions";
 
-import { childContext, UPDATE_COLOR, UPDATE_SELECTED, ADD_PROFILE } from '../../context/ChildProfiles/ChildProfileStore';
 import { gameContext, ADD_WORLD, GET_WORLDS, UPDATE_BLOCK, ADD_FIREFLY} from '../../context/Game/GameStore';
 import { childContext, ADD_PROFILE } from '../../context/ChildProfiles/ChildProfileStore'
 
@@ -24,17 +23,17 @@ const BackendTester = () => {
   }
 
   const newBlock = {
-    firefly_id: "",
+    firefly_id: "dxK5y56lH4rItuXZ6SeI",
     x: null,
     y: null,
-    codeBlocks: ["loop", "led", "timer"]
+    codeBlocks: ["timer", "color"]
   }
 
   const addNewFirefly = () => {
-    addFirefly(context.selected.id, "fLclFbRVGiEdwQKHn6if", ADD_FIREFLY, worldDispatch)
+    addFirefly(context.selected.id, "wMtPwo2JajHYAF9lGiCg", ADD_FIREFLY, worldDispatch)
   }
   const updateBlock = () => {
-    updateBlocks(context.selected.id, UPDATE_BLOCK, "tHGky258uQ2msgLJ55WC", "XEUUw3Eehf108avShNl0", newBlock, worldDispatch)
+    updateBlocks(context.selected.id, UPDATE_BLOCK, "wMtPwo2JajHYAF9lGiCg", "dxK5y56lH4rItuXZ6SeI", newBlock, worldDispatch)
   }
 
   const getWorlds = () => {

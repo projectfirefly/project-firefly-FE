@@ -54,12 +54,10 @@ function reducer(state, action){
             console.log(state)
             console.log(action.payload)
             const newWorlds = state.worlds.map(world => {
-                console.log(world.id === action.payload.world.id)
-                if(world.id === action.payload.world.id){
                     if(world.fireflies){
                         const newFireflies = world.fireflies.map(firefly => {
-                            if(firefly.id === action.payload.world.firefly.id){
-                                return action.payload.world.firefly
+                            if(firefly.id === action.payload.firefly_id){
+                                return {...world, ...action.payload.worlds.fireflies}
                             }else{
                                 return firefly
                             }
@@ -67,12 +65,8 @@ function reducer(state, action){
                         console.log(newFireflies)
                         return {...world, fireflies: newFireflies }
                     }else{
-                        return {...world, fireflies: [...action.payload.fireflies]}
+                        return {...world, fireflies: [...action.payload.worlds.fireflies]}
                     }
-                }else{
-                    console.log(world)
-                    return { world }
-                }
             })
 
             return {...state, worlds: newWorlds }
