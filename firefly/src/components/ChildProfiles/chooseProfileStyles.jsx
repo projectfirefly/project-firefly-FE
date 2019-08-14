@@ -15,6 +15,7 @@ const chooseProfileStyles = makeStyles(theme => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    width: "85%",
     margin: "0 10%",
   },
   cardContainer: {
@@ -23,7 +24,18 @@ const chooseProfileStyles = makeStyles(theme => ({
     justifyContent: "space-between",
     alignItems: "center",
     overflowY: "scroll",
+    width: "100%",
     maxHeight: "70vh",
+    //This after stuff is for flex spacing when there's only two in the line
+    "&::after": {
+      content: "''",
+      width: "25%",
+      margin: "1%",
+      marginTop: "-10%",
+      padding: "2% 1%",
+      visibility: "hidden",
+      zIndex: "-1000",
+    }
     // boxSizing: "border-box",
     // background: "#e3e5e8",
     // backgroundRepeat: "repeat",
@@ -48,6 +60,7 @@ const chooseProfileStyles = makeStyles(theme => ({
     display: "flex",
     marginTop: "5%",
     width: "100%",
+    marginLeft: "1%",
   },
   backButtonStyle: {
     ...theme.secondaryButton,
