@@ -51,22 +51,18 @@ function reducer(state, action){
             return {...state, worlds: fireflyWorld}
 
         case UPDATE_BLOCK:
-            console.log(state)
-            console.log(action.payload)
             const newWorlds = state.worlds.map(world => {
-                    if(world.fireflies){
-                        const newFireflies = world.fireflies.map(firefly => {
-                            if(firefly.id === action.payload.firefly_id){
-                                return {...world, ...action.payload.worlds.fireflies}
-                            }else{
-                                return firefly
-                            }
-                        })
-                        console.log(newFireflies)
-                        return {...world, fireflies: newFireflies }
+
+                const updatedFireflies = world.fireflies.map(firefly => {
+
+                    if(firefly.id === action.payload.firefly_id){
+                        return action.payload
                     }else{
-                        return {...world, fireflies: [...action.payload.worlds.fireflies]}
+                        return firefly
                     }
+                })
+
+                return {fireflies: updatedFireflies }
             })
 
             return {...state, worlds: newWorlds }

@@ -26,23 +26,28 @@ const BackendTester = () => {
     firefly_id: "dxK5y56lH4rItuXZ6SeI",
     x: null,
     y: null,
-    codeBlocks: ["timer", "color"]
+    codeBlocks: ["timer", "flash"]
+  }
+
+  const requiredIds = {
+    firefly_id: "dxK5y56lH4rItuXZ6SeI",
+    world_id: "wMtPwo2JajHYAF9lGiCg"
   }
 
   const addNewFirefly = () => {
-    addFirefly(context.selected.id, "wMtPwo2JajHYAF9lGiCg", ADD_FIREFLY, worldDispatch)
+    addFirefly(context.selected.id, "wMtPwo2JajHYAF9lGiCg",worldDispatch)
   }
   const updateBlock = () => {
-    updateBlocks(context.selected.id, UPDATE_BLOCK, "wMtPwo2JajHYAF9lGiCg", "dxK5y56lH4rItuXZ6SeI", newBlock, worldDispatch)
+    updateBlocks(context.selected.id, requiredIds, newBlock, worldDispatch)
   }
 
   const getWorlds = () => {
-    getWorld(context.selected.id, GET_WORLDS, worldDispatch);
+    getWorld(context.selected.id, worldDispatch);
   }
 
   const addNewWorld = () => {
     console.log(worldContext)
-    addWorld(ADD_WORLD, context.selected.id, worldTest, worldDispatch)
+    addWorld(context.selected.id, worldTest, worldDispatch)
   }
 
   const get = async () => {
