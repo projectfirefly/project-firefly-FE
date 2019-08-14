@@ -216,6 +216,7 @@ const Game = () => {
       //Filters out the block that got put into trash
       const realList = list[`${source.droppableId}`].filter(item => {
         if (item.id === result.draggableId && item.rsi <= 1) {
+          
           if (item.id === result.draggableId && item.rsi === 0) {
             setHasStart(false);
           }
@@ -226,13 +227,14 @@ const Game = () => {
                 : { ...tool };
             })
           );
-          paper.play();
+          
         }
         return item.id !== result.draggableId;
       });
 
       //Filters all tools to used:false so they become usable again
       setList({ realList });
+      paper.play();
       return;
     }
 
