@@ -24,8 +24,7 @@ const BackendTester = () => {
   }
 
   const newBlock = {
-    world_id:"mm7AiiOns52WYWbnTf6v",
-    id: "XEUUw3Eehf108avShNl0",
+    firefly_id: "",
     x: null,
     y: null,
     codeBlocks: ["loop", "led", "timer"]
