@@ -8,6 +8,11 @@ import ChildProfileStore, {
   GET_USER,
 } from "./context/ChildProfiles/ChildProfileStore";
 
+import GameContextStore, {
+    gameContext,
+    ADD_WORLD
+} from "./context/Game/GameStore";
+
 import {
   BrowserRouter as Router,
   Route,
@@ -25,41 +30,29 @@ ReactGA.pageview(window.location.pathname + window.location.search);
 //google analytics code end//
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
+    console.log(process.env.REACT_APP_FIREBASE_PROJECT_ID)
+    const [loggedIn, setLoggedIn] = useState(false);
 
-  const [isLoading, setIsLoading] = useState(true);
+    firebase.auth().onAuthStateChanged(user => {
+        // console.log("hello");
+        if (user) {
+            // console.log("If Statement");
+            setLoggedIn(true);
+        } else {
+            // console.log("Else Statement")
+            setLoggedIn(false);
+        }
+    });
 
-  console.log("App Render");
-
-  firebase.auth().onAuthStateChanged(user => {
-    if (user) {
-      if (loggedIn === false) {
-        setLoggedIn(true);
-      }
-    } else {
-      if (loggedIn) {
-        setLoggedIn(false);
-        setIsLoading(true);
-      }
-    }
-  });
-
-  useEffect(() => {
-    console.log("isLoading", isLoading);
-  }, [isLoading])
-
-  return (
-    <BrowserRouter>
-      {isLoading ? <Loader /> : <div />}
-      <ChildProfileStore>
-        {isLoading ? (
-          <LoadedChecker logged={loggedIn} setIsLoading={setIsLoading} />
-        ) : (
-          <DevMenu isLoading={isLoading} setIsLoading={setIsLoading} logged={loggedIn} />
-        )}
-      </ChildProfileStore>
-    </BrowserRouter>
-  );
+    return (
+        <BrowserRouter>
+            <ChildProfileStore>
+                <GameContextStore>
+                    <DevMenu logged={loggedIn}/>
+                </GameContextStore>
+            </ChildProfileStore>
+        </BrowserRouter>
+    );
 }
 
 export default App;

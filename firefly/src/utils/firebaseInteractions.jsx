@@ -1,6 +1,6 @@
 import firebase from 'firebase';
 
-import {
+import ChildProfileStore, {
   GET_USER_INFO,
   GET_PROFILES_AND_AVATARS,
   SET_LOADED,
@@ -11,6 +11,133 @@ import {
 }
   from "../context/ChildProfiles/ChildProfileStore"
 
+// Gameboard Firebase Function
+  //Get Worlds
+export const getWorld = async(child, type, dispatch) => {
+  const db = firebase.firestore();
+  const uid = firebase.auth().currentUser.uid;
+  db.collection("users")
+  .doc(uid)
+  .collection("profiles")
+  .doc(child)
+  .collection("worlds")
+  .get()
+  .then(async snapshot => {
+    const childWorlds = snapshot.docs.map(async doc => {
+      const fireflies = db.collection("users")
+        .doc(uid)
+        .collection("profiles")
+        .doc(child)
+        .collection("worlds")
+        .doc(doc.id)
+        .collection("fireflies")
+        .get()
+        .then(docRef => {
+          const firefly = docRef.docs.map(doc => {
+            return doc.data()
+          })
+
+          console.log("firefly@@@", firefly)
+          const world = doc.data()
+          return { id: doc.id, ...world, fireflies: [...firefly] };
+        })
+        console.log("Firefly Result", await fireflies)
+        return await fireflies
+    })
+    const payload = await Promise.all(childWorlds)
+    console.log(payload)
+    dispatch({type: type , payload: payload})
+  })
+}
+
+  //Add world
+export const addWorld = async(type, child, payload, dispatch) => {
+  const db = firebase.firestore();
+  const uid = firebase.auth().currentUser.uid;
+  db.collection("users")
+  .doc(uid)
+  .collection("profiles")
+  .doc(child) //Haven't imported this childProfileState.selected.id
+  .collection("worlds")
+  .add(payload) //World that you want to save, this adds it to a new collection under the profile, just put some name in
+  .then((worldDoc) => { //This is a reference to the document you just created
+    //do your dispatch in here
+    const newWorld = {id: worldDoc.id, ...payload} //Creating an object to store locally in context
+    dispatch({type: type, payload: newWorld}); //Dispatching to reducers so it can get saved locally in context
+  });
+}
+  //Add Firefly
+export const addFirefly = async(child, world_id, type, dispatch) => {
+  const db = firebase.firestore();
+  const uid = firebase.auth().currentUser.uid;
+  await db.collection("users")
+  .doc(uid)
+  .collection("profiles")
+  .doc(child)
+  .collection("worlds")
+  .doc(world_id)
+  .collection("fireflies")
+  .add({
+    firefly_id: "",
+    x: null,
+    y: null,
+    codeBlocks: []
+  })
+  .then(async docRef => {
+    const firefly = {
+      x: null,
+      y: null,
+      codeBlocks: []
+    }
+    await db.collection("users")
+      .doc(uid)
+      .collection("profiles")
+      .doc(child)
+      .collection("worlds")
+      .doc(world_id)
+      .collection("fireflies")
+      .doc(docRef.id)
+      .set({
+        firefly_id: docRef.id,
+        ...firefly
+      }, {merge: true})
+      .then(res => {
+        dispatch({type: type, payload: firefly})
+      })
+  })
+
+}
+  //Add block to Firefly
+export const updateBlocks = async(child, type, world_id, firefly_id, payload, dispatch) => {
+  const db = firebase.firestore();
+  const uid = firebase.auth().currentUser.uid;
+
+  let uploadFirefly = {
+    ...payload
+  }
+
+  delete uploadFirefly["id"]
+
+  db.collection("users")
+    .doc(uid)
+    .collection("profiles")
+    .doc(child)
+    .collection("worlds")
+    .doc(world_id)
+    .collection("fireflies")
+    .doc(firefly_id)
+    .set({
+      ...uploadFirefly
+    }, { merge: true })
+    .then((code) => {
+      const updated = {
+          ...payload
+      }
+      dispatch({type: type, payload: updated})
+    })
+}
+
+// Onboarding Firebase Functions
 export const addProfile = async (type, payload, dispatch) => {
   const db = firebase.firestore();
   const uid = firebase.auth().currentUser.uid;

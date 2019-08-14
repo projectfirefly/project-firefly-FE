@@ -4,11 +4,21 @@ import firebase from 'firebase';
 export const childContext = React.createContext();
 
 const initialState = {
-  selected: {
-    id: "0",
-  },
-  loaded: false,
-  hasProfiles: false,
+  worlds: [
+    {
+        id: null,
+        worldName: "",
+        fireflies: [
+            {
+                id: null,
+                x: null,
+                y: null,
+                codeBlocks: []
+            }
+        ]
+    }
+],
+loaded: false,
 };
 
 export const UPDATE_SELECTED = "UPDATE_SELECTED";
