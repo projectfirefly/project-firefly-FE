@@ -1,16 +1,13 @@
 import firebase from 'firebase';
-
 import ChildProfileStore, {
   GET_USER_INFO,
   GET_PROFILES_AND_AVATARS,
   SET_LOADED,
   UPDATE_SELECTED,
   GET_USER,
-  SET_HAS_PROFILES,
-  GET_AND_LOAD
+  SET_HAS_PROFILES
 }
   from "../context/ChildProfiles/ChildProfileStore"
-
 // Gameboard Firebase Function
   //Get Worlds
 export const getWorld = async(child, type, dispatch) => {
@@ -36,7 +33,6 @@ export const getWorld = async(child, type, dispatch) => {
           const firefly = docRef.docs.map(doc => {
             return doc.data()
           })
-
           console.log("firefly@@@", firefly)
           const world = doc.data()
           return { id: doc.id, ...world, fireflies: [...firefly] };
@@ -49,7 +45,6 @@ export const getWorld = async(child, type, dispatch) => {
     dispatch({type: type , payload: payload})
   })
 }
-
   //Add world
 export const addWorld = async(type, child, payload, dispatch) => {
   const db = firebase.firestore();
@@ -105,19 +100,15 @@ export const addFirefly = async(child, world_id, type, dispatch) => {
         dispatch({type: type, payload: firefly})
       })
   })
-
 }
   //Add block to Firefly
 export const updateBlocks = async(child, type, world_id, firefly_id, payload, dispatch) => {
   const db = firebase.firestore();
   const uid = firebase.auth().currentUser.uid;
-
   let uploadFirefly = {
     ...payload
   }
-
   delete uploadFirefly["id"]
-
   db.collection("users")
     .doc(uid)
     .collection("profiles")
@@ -136,7 +127,6 @@ export const updateBlocks = async(child, type, world_id, firefly_id, payload, di
       dispatch({type: type, payload: updated})
     })
 }
-
 // Onboarding Firebase Functions
 export const addProfile = async (type, payload, dispatch) => {
   const db = firebase.firestore();
@@ -175,7 +165,6 @@ export const addProfile = async (type, payload, dispatch) => {
     })
   dispatch({ type: SET_HAS_PROFILES });
 };
-
 export const updateProfile = async (type, payload, dispatch) => {
   const db = firebase.firestore();
   const uid = firebase.auth().currentUser.uid;
@@ -204,7 +193,6 @@ export const updateProfile = async (type, payload, dispatch) => {
     });
   dispatch({ type: type, payload: payload });
 }
-
 export const removeProfile = async (type, payload, dispatch) => {
   const db = firebase.firestore();
   const uid = firebase.auth().currentUser.uid;
@@ -222,7 +210,6 @@ export const removeProfile = async (type, payload, dispatch) => {
     .delete()
   dispatch({ type: type, payload: payload });
 }
-
 export const updateUser = async (type, payload, dispatch) => {
   const db = firebase.firestore();
   const uid = firebase.auth().currentUser.uid;
@@ -248,19 +235,16 @@ export const updateUser = async (type, payload, dispatch) => {
     }, { merge: true })
   dispatch({ type: type, payload: payload });
 }
-
 export const getUser = async (dispatch) => {
   const db = firebase.firestore();
   const uid = firebase.auth().currentUser.uid;
   //get user
-  var dispatchUser = {};
-
   await db.collection("users")
     .doc(uid)
     .get()
     .then((snapshot) => {
       const userInfo = snapshot.data()
-      dispatchUser = { ...dispatchUser, ...userInfo, id: snapshot.id };
+      dispatch({ type: GET_USER, payload: { ...userInfo, id: snapshot.id } })
     })
   //get information
   await db.collection("users")
@@ -272,7 +256,10 @@ export const getUser = async (dispatch) => {
         const document = doc.data();
         return { ...document, id: doc.id };
       });
-      dispatchUser = { ...dispatchUser, information: docList[0] };
+      dispatch({
+        type: GET_USER_INFO,
+        payload: docList[0],
+      });
     })
   //get profiles and avatars
   await db.collection("users")
@@ -307,36 +294,19 @@ export const getUser = async (dispatch) => {
               return document[0];
             })
             .then(avatar => {
-              if (dispatchUser.profiles) {
-                dispatchUser = {
-                  ...dispatchUser,
-                  profiles: [
-                    ...dispatchUser.profiles,
-                    {
-                      ...child,
-                      avatar: {
-                        ...avatar
-                      }
-                    }
-                  ]
-                }
-              } else {
-                dispatchUser = {
-                  ...dispatchUser,
-                  profiles: [
-                    {
-                      ...child,
-                      avatar: {
-                        ...avatar
-                      }
-                    }
-                  ]
-                }
-              }
+              dispatch({
+                type: GET_PROFILES_AND_AVATARS,
+                payload: {
+                  ...child,
+                  avatar: avatar,
+                },
+              });
             }).then(() => {
-              dispatch({type: GET_AND_LOAD, payload: dispatchUser});
+              dispatch({ type: UPDATE_SELECTED, payload: childList[0].id });
+              dispatch({ type: SET_HAS_PROFILES });
             });
         });
       }
     })
+  dispatch({ type: SET_LOADED })
 }

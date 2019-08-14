@@ -4,59 +4,51 @@ import firebase from 'firebase';
 export const childContext = React.createContext();
 
 const initialState = {
-  worlds: [
-    {
-        id: null,
-        worldName: "",
-        fireflies: [
-            {
-                id: null,
-                x: null,
-                y: null,
-                codeBlocks: []
-            }
-        ]
-    }
-],
-loaded: false,
-};
+  selected: {
+    id: "0",
+  },
+  loaded: false,
+  hasProfiles: false,
+}; 
 
 export const UPDATE_SELECTED = "UPDATE_SELECTED";
 export const UPDATE_PROFILE = "UPDATE_PROFILE";
 export const REMOVE_PROFILE = "REMOVE_PROFILE";
 export const ADD_PROFILE = "ADD_PROFILE";
+export const GET_PROFILES_AND_AVATARS = "GET_PROFILES_AND_AVATARS";
+export const GET_USER_INFO = "GET_USER_INFO"
 export const UPDATE_USER = "UPDATE_USER";
 export const SET_LOADED = "SET_LOADED";
-export const SET_HAS_PROFILES = "SET_HAS_PROFILES";
-export const GET_AND_LOAD = "GET_AND_LOAD";
-export const SIGN_OUT = "SIGN_OUT"
+export const GET_USER = "GET_USER";
+export const SET_HAS_PROFILES = "SET_HAS_PROFILES"; 
 
 function reducer(state, action) {
   const db = firebase.firestore();
-  if (firebase.auth().currentUser) {
-    const uid = firebase.auth().currentUser.uid;
-  }
+  const uid = firebase.auth().currentUser.uid;
   switch (action.type) {
-    case SIGN_OUT:
-      return { ...initialState };
-    case GET_AND_LOAD:
-      if (action.payload.profiles) {
-        return { 
-          ...state,
-          user: action.payload,
-          hasProfiles: true,
-          loaded: true, 
-          selected: {
-            id: action.payload.profiles[0].id
-          }
-        }
-      } else {
-        return { ...state, user: action.payload, loaded: true }
-      }
+    case GET_USER:
+      return { ...state, user: action.payload }
     case SET_HAS_PROFILES:
       return { ...state, hasProfiles: true };
+    case GET_USER_INFO:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          information: action.payload
+        }
+      }
+    case GET_PROFILES_AND_AVATARS:
+      var newProfiles;
+      if (state.user.profiles) {
+        newProfiles = [...state.user.profiles, action.payload]
+      } else {
+        newProfiles = [action.payload];
+      }
+      const newUser = { ...state.user, profiles: newProfiles }
+      return { ...state, user: newUser }
     case SET_LOADED: {
-      return { ...state, loaded: action.payload }
+      return { ...state, loaded: true }
     }
     case UPDATE_USER: {
       return { ...state, user: action.payload }
@@ -146,4 +138,4 @@ export default function ChildProfileStore(props) {
       {props.children}
     </childContext.Provider>
   );
-}
+} 
