@@ -172,6 +172,14 @@ const Game = () => {
       return;
     }
 
+    if (destination.droppableId === "TRASH") {
+      //check to see if we are trying to throw away a tool from the toolbox (we don't want to do that)
+      if (source.droppableId === "ITEMS") {
+        console.log("dropping from toolbox");
+        return;
+      }
+    }
+
     if (
       result.draggableId === tools[0].id ||
       result.draggableId === tools[1].id
