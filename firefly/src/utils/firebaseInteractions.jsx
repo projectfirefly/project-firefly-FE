@@ -31,7 +31,7 @@ export const getWorld = async(child, type, dispatch) => {
         .get(doc.id)
         .collection("fireflies")
         .then(docRef => {
-          const 
+          const
         })
       const world = doc.data()
       return { ...world, id: doc.id };
