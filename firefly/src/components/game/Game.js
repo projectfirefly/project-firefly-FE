@@ -5,7 +5,7 @@ import Toolbox from "./Toolbox";
 import DropDelete from "./DropDelete";
 import uuid from "uuid/v4";
 import styled from "styled-components";
-
+import uifx from 'uifx';
 import { DragDropContext } from "react-beautiful-dnd";
 import StartBlock from "../../images/gameIcons/StartBlock.svg";
 import BlueBlockLeftSideEndState from "../../images/gameIcons/BlueBlockLeftSideEndState.svg";
@@ -18,6 +18,15 @@ import PaletteIcon from "../../images/gameIcons/PaletteIcon.svg";
 import ToggleOffIcon from "../../images/gameIcons/ToggleOffIcon.svg";
 import NumberIcon1 from "../../images/gameIcons/NumberIcon1.svg";
 import GridIcon from "../../images/gridBackground.png";
+
+//importing the sound 
+import clickWAV from '../../assets/sounds/click.wav';
+import metalDropWAV from '../../assets/sounds/metalDrop.wav';
+
+//making the sounds variable 
+const click = new uifx({asset: clickWAV});
+const metal = new uifx({asset: metalDropWAV});
+
 
 const Board = styled.div`
   /* min-height: 100vh; */
@@ -153,16 +162,18 @@ const Game = () => {
   const [tools, setTools] = useState(ITEMS);
   const [hasStart, setHasStart] = useState(false);
   const [draggingBlock, isDraggingBlock] = useState(false);
+  
 
   const onDragStart = () => {
-    isDraggingBlock(true);
+  isDraggingBlock(true);
+  click.play();
   };
 
   const onDragEnd = result => {
     const { source, destination } = result;
 
     isDraggingBlock(false);
-
+    metal.play();
     // console.log("tools:", tools);
     // console.log("list:", list);
     // console.log("result:", result);
