@@ -15,11 +15,16 @@ const useTheme = {
       color: "#52AB1A",
     },
     h4: {
-      fontSize: "1.6rem",
+      fontSize: "1.8rem",
       fontWeight: "600",
     },
     h6: {
       fontSize: "1.4rem",
+    },
+    button: {
+      fontSize: "1.6rem",
+      letterSpacing: ".1rem",
+      fontWeight: "600",
     }
   },
   paper: {
@@ -40,6 +45,23 @@ const useTheme = {
   headerMargin: {
     marginTop: "6%",
     marginBottom: "5.5%",
+  },
+  primaryButton: {
+
+  },
+  secondaryButton: {
+    backgroundColor: "#FFF",
+    border: "2px solid #ABB0BA",
+    color: "#4AA810",
+    textTransform: "uppercase",
+    borderRadius: "1rem",
+    boxShadow: "0px 3px #8F96A3",
+    cursor: "pointer",
+    transition: "all 25ms ease-in-out",
+    "&:active": {
+      boxShadow: "none",
+      margin: "3px 0px -3px 0px"
+    }
   }
 }
 

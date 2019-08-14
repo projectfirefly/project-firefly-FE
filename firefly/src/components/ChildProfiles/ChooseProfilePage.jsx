@@ -23,43 +23,36 @@ const ChooseProfilePage = props => {
   return (
     <div className={classes.root}>
       <Typography variant="h1" className={classes.header}> CHOOSE YOUR FIREFLY </Typography>
-      <div className={classes.cardContainer}>
-        {childProfileState.user && childProfileState.user.profiles ? (
-          childProfileState.user.profiles.map(profile => (
-            <div className={classes.single}>
-              <Card className={classes.card}>
-                <CardActionArea
-                  onClick={async () => {
-                    await dispatch({
-                      type: "UPDATE_SELECTED",
-                      payload: profile.id
-                    });
-                    props.history.push("/myfirefly");
-                  }}
-                >
-                  <CardContent className={classes.cardContent}>
-                    <div className={classes.text}>
-                      <Typography variant="h4" className={classes.name}>{profile.first_name}</Typography>
-                    </div>
-                    <div className={classes.flysize}>
-                      <ProfileFly
-                        color={profile.avatar.color}
-                        accessory={profile.avatar.accessory}
-                      />
-                    </div>
-                  </CardContent>
-                </CardActionArea>
-              </Card>
+      <div className={classes.sizingContainer}>
+        <div className={classes.cardContainer}>
+          {childProfileState.user.profiles.map(profile => (
+            <div className={classes.card} onClick={() => {
+              dispatch({
+                type: "UPDATE_SELECTED",
+                payload: profile.id
+              });
+              props.history.push("/myfirefly");
+            }}
+            >
+              <div className={classes.text}>
+                <Typography variant="h4" className={classes.name}>{profile.first_name}</Typography>
+              </div>
+              <div className={classes.flysize}>
+                <ProfileFly
+                  color={profile.avatar.color}
+                  accessory={profile.avatar.accessory}
+                />
+              </div>
             </div>
-          ))
-        ) : (
-          <div>Loading...</div>
-        )}
-      </div>
-      <div className={classes.backButtonContainer}>
-        <Link to="/startgame" className={classes.backButtonStyle}>
-          Back
-        </Link>
+          ))}
+        </div>
+        <div className={classes.backButtonContainer}>
+          <Link to="/startgame" className={classes.backButtonStyle}>
+            <Typography variant="button">
+              Back
+            </Typography>
+          </Link>
+        </div>
       </div>
     </div>
   );
