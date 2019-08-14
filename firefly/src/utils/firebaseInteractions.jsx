@@ -112,7 +112,7 @@ export const addFirefly = async (child, world_id, dispatch) => {
           },
           { merge: true }
         )
-        .then(res => {
+        .then(docRef => {
           dispatch({ type: ADD_FIREFLY, payload: firefly });
         });
     });
@@ -124,11 +124,11 @@ export const updateBlocks = async (child, requiredIds, payload, dispatch ) => {
 
   const {firefly_id, world_id} = requiredIds;
 
-  let uploadFirefly = {
+  let updatedFirefly = {
     ...payload
   };
 
-  delete uploadFirefly["id"];
+  delete updatedFirefly["id"];
 
   db.collection("users")
     .doc(uid)
@@ -140,15 +140,12 @@ export const updateBlocks = async (child, requiredIds, payload, dispatch ) => {
     .doc(firefly_id)
     .set(
       {
-        ...uploadFirefly
+        ...updatedFirefly
       },
       { merge: true }
     )
-    .then(code => {
-      const updated = {
-        ...payload
-      };
-      dispatch({ type: UPDATE_BLOCK, payload: updated });
+    .then(docRef => {
+      dispatch({ type: UPDATE_BLOCK, payload: payload });
     });
 };
 

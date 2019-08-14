@@ -45,31 +45,23 @@ function reducer(state, action){
                 }else{
                     return {...world, fireflies: [action.payload]}
                 }
-
             })
             console.log({...state, worlds: fireflyWorld})
             return {...state, worlds: fireflyWorld}
 
         case UPDATE_BLOCK:
             const newWorlds = state.worlds.map(world => {
-
                 const updatedFireflies = world.fireflies.map(firefly => {
-
                     if(firefly.id === action.payload.firefly_id){
                         return action.payload
                     }else{
                         return firefly
                     }
                 })
-
-                return {fireflies: updatedFireflies }
+                return { fireflies: updatedFireflies }
             })
-
             return {...state, worlds: newWorlds }
-        case RESET_BLOCKS:
-            return {...state, codeBlock: action.payload}
-
-        default:
+         default:
             throw Error("reducer error");
     }
 }
