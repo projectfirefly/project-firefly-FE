@@ -15,28 +15,37 @@ import ChildProfileStore, {
 export const getWorld = async(child, type, dispatch) => {
   const db = firebase.firestore();
   const uid = firebase.auth().currentUser.uid;
-  await db.collection("users")
+  db.collection("users")
   .doc(uid)
   .collection("profiles")
   .doc(child)
   .collection("worlds")
   .get()
-  .then(snapshot => {
-    const childWorlds = snapshot.docs.map(doc => {
+  .then(async snapshot => {
+    const childWorlds = snapshot.docs.map(async doc => {
       const fireflies = db.collection("users")
         .doc(uid)
         .collection("profiles")
         .doc(child)
         .collection("worlds")
-        .get(doc.id)
+        .doc(doc.id)
         .collection("fireflies")
+        .get()
         .then(docRef => {
-          const
+          const firefly = docRef.docs.map(doc => {
+            return doc.data()
+          })
+
+          console.log("firefly@@@", firefly)
+          const world = doc.data()
+          return { id: doc.id, ...world, fireflies: [...firefly] };
         })
-      const world = doc.data()
-      return { ...world, id: doc.id };
+        console.log("Firefly Result", await fireflies)
+        return await fireflies
     })
-    dispatch({type: type , payload: childWorlds})
+    const payload = await Promise.all(childWorlds)
+    console.log(payload)
+    dispatch({type: type , payload: payload})
   })
 }
 
@@ -68,36 +77,32 @@ export const addFirefly = async(child, world_id, type, dispatch) => {
   .doc(world_id)
   .collection("fireflies")
   .add({
-    world_id: world_id,
+    firefly_id: "",
     x: null,
     y: null,
     codeBlocks: []
   })
   .then(async docRef => {
     const firefly = {
-      world_id: world_id,
       x: null,
       y: null,
       codeBlocks: []
     }
     await db.collection("users")
-    .doc(uid)
-    .collection("profiles")
-    .doc(child)
-    .collection("worlds")
-    .doc(world_id)
-    .collection("fireflies")
-    .doc(docRef.id)
-    .set({
-      ...firefly
-    }, {merge: true })
-    .then(ref => {
-      const add = {
-        ...firefly,
-        id: docRef.id
-      }
-      dispatch({type: type, payload: add})
-    })
+      .doc(uid)
+      .collection("profiles")
+      .doc(child)
+      .collection("worlds")
+      .doc(world_id)
+      .collection("fireflies")
+      .doc(docRef.id)
+      .set({
+        firefly_id: docRef.id,
+        ...firefly
+      }, {merge: true})
+      .then(res => {
+        dispatch({type: type, payload: firefly})
+      })
   })
 
 }

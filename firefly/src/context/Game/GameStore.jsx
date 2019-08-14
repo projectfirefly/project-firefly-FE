@@ -9,8 +9,7 @@ const initialState = {
             worldName: "",
             fireflies: [
                 {
-                    world_id: "",
-                    id: "",
+                    firefly_id: "",
                     x: null,
                     y: null,
                     codeBlocks: []
@@ -32,22 +31,24 @@ function reducer(state, action){
     switch(action.type){
         case ADD_WORLD:
             const newWorld = [...state.worlds, action.payload]
+            console.log(newWorld)
             return {...state, worlds: newWorld}
 
         case GET_WORLDS:
-            console.log({...state, worlds: [...action.payload]})
-            return {...state, worlds: [...action.payload]}
+            console.log({...state, worlds: action.payload})
+            return {...state, worlds: action.payload}
 
         case ADD_FIREFLY:
             const fireflyWorld = state.worlds.map(world => {
-                if(world.id === action.payload.world_id){
-                    return {...world, fireflies: [action.payload]}
+                if(world.fireflies){
+                    return {...world, fireflies: [...world.fireflies, action.payload]}
                 }else{
-                    return { world }
+                    return {...world, fireflies: [action.payload]}
                 }
+
             })
-            console.log({...state, worlds: [...fireflyWorld]})
-            return {...state, worlds: [...fireflyWorld]}
+            console.log({...state, worlds: fireflyWorld})
+            return {...state, worlds: fireflyWorld}
 
         case UPDATE_BLOCK:
             console.log(state)

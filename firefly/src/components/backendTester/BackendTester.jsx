@@ -20,20 +20,11 @@ const BackendTester = () => {
   };
 
   const worldTest = {
-    worldName: "test2",
-    fireflies: [
-        {
-            world_id: "",
-            id: "",
-            x: null,
-            y: null,
-            codeBlocks: []
-        }
-    ]
+    worldName: "test2"
   }
 
   const newBlock = {
-    world_id:"tHGky258uQ2msgLJ55WC",
+    world_id:"mm7AiiOns52WYWbnTf6v",
     id: "XEUUw3Eehf108avShNl0",
     x: null,
     y: null,
@@ -41,7 +32,7 @@ const BackendTester = () => {
   }
 
   const addNewFirefly = () => {
-    addFirefly(context.selected.id, "tHGky258uQ2msgLJ55WC", ADD_FIREFLY, worldDispatch)
+    addFirefly(context.selected.id, "fLclFbRVGiEdwQKHn6if", ADD_FIREFLY, worldDispatch)
   }
   const updateBlock = () => {
     updateBlocks(context.selected.id, UPDATE_BLOCK, "tHGky258uQ2msgLJ55WC", "XEUUw3Eehf108avShNl0", newBlock, worldDispatch)
