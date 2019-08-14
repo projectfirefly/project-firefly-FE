@@ -6,6 +6,7 @@ import DevMenu from "./views/DevMenu";
 import { Loader } from "./utils/Loaders/loaders";
 import LoadedChecker from "./utils/Loaders/LoadedChecker";
 
+import GameContextStore from "./context/Game/GameStore";
 import ChildProfileStore from "./context/ChildProfiles/ChildProfileStore";
 
 import {ThemeProvider} from "@material-ui/styles";
@@ -45,15 +46,13 @@ function App() {
       <ThemeProvider theme={theme}>
         {isLoading ? <Loader /> : <div />}
         <ChildProfileStore>
-          {isLoading ? (
-            <LoadedChecker logged={loggedIn} setIsLoading={setIsLoading} />
-          ) : (
-            <DevMenu
-              isLoading={isLoading}
-              setIsLoading={setIsLoading}
-              logged={loggedIn}
-            />
-          )}
+          <GameContextStore>
+            {isLoading ? (
+              <LoadedChecker logged={loggedIn} setIsLoading={setIsLoading} />
+            ) : (
+              <DevMenu isLoading={isLoading} setIsLoading={setIsLoading} logged={loggedIn} />
+            )}
+          </GameContextStore>
         </ChildProfileStore>
       </ThemeProvider>
     </BrowserRouter>
