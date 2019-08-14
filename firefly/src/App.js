@@ -1,14 +1,19 @@
 import React, { useState } from "react";
+import firebase from "firebase";
+
 import { BrowserRouter } from "react-router-dom";
 import DevMenu from "./views/DevMenu";
-import firebase from "firebase";
+import { Loader } from "./utils/Loaders/loaders";
+import LoadedChecker from "./utils/Loaders/LoadedChecker";
 
 import ChildProfileStore from "./context/ChildProfiles/ChildProfileStore";
 
+import {ThemeProvider} from "@material-ui/styles";
+import useTheme from "./styles/theme";
+import { createMuiTheme } from "@material-ui/core";
+
 //google analytics code start//
 import ReactGA from "react-ga";
-import { Loader } from "./utils/Loaders/loaders";
-import LoadedChecker from "./utils/Loaders/LoadedChecker";
 ReactGA.initialize("UA-143905861-1");
 ReactGA.pageview(window.location.pathname + window.location.search);
 //google analytics code end//
@@ -33,16 +38,24 @@ function App() {
     }
   });
 
+  const theme = createMuiTheme(useTheme);
+
   return (
     <BrowserRouter>
-      {isLoading ? <Loader /> : <div />}
-      <ChildProfileStore>
-        {isLoading ? (
-          <LoadedChecker logged={loggedIn} setIsLoading={setIsLoading} />
-        ) : (
-          <DevMenu isLoading={isLoading} setIsLoading={setIsLoading} logged={loggedIn} />
-        )}
-      </ChildProfileStore>
+      <ThemeProvider theme={theme}>
+        {isLoading ? <Loader /> : <div />}
+        <ChildProfileStore>
+          {isLoading ? (
+            <LoadedChecker logged={loggedIn} setIsLoading={setIsLoading} />
+          ) : (
+            <DevMenu
+              isLoading={isLoading}
+              setIsLoading={setIsLoading}
+              logged={loggedIn}
+            />
+          )}
+        </ChildProfileStore>
+      </ThemeProvider>
     </BrowserRouter>
   );
 }

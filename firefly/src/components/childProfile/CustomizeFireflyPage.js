@@ -18,6 +18,7 @@ import Accessories from "./Accessories";
 
 import createProfileClasses from "./CreateProfileStyles";
 import Icon from "../../assets/icons";
+import { Typography } from "@material-ui/core";
 
 
 export default function CustomizeFireflyPage(props) {
@@ -73,7 +74,11 @@ export default function CustomizeFireflyPage(props) {
   ) {
     return (
       <div className={classes.rootContainer}>
-        <h1 className={classes.header}>Customize Your Firefly</h1>
+        <h1 className={classes.header}>
+          <Typography variant="h1">
+            Customize Your Firefly
+          </Typography>
+        </h1>
 
         <div className={classes.sizingContainer}>
           <div className={classes.cardContainer}>

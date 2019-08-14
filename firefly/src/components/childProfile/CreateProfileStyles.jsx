@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-const createProfileClasses = makeStyles({
+const createProfileClasses = makeStyles(theme => ({
   rootContainer: {
     display: "flex",
     flexDirection: "column",
@@ -11,15 +11,11 @@ const createProfileClasses = makeStyles({
     fontFamily: "'Nunito', sans-serif"
   },
   sizingContainer: {
-    width: "80%"
+    width: "80%",
+    height: "100%",
   },
   header: {
-    fontSize: "34px",
-    letterSpacing: "7px",
-    fontWeight: "900",
-    color: "#5B4EFF",
-    textTransform: "uppercase",
-    marginBottom: "50px"
+    // ...theme.header,
   },
   cardContainer: {
     height: "445px",
@@ -28,10 +24,7 @@ const createProfileClasses = makeStyles({
     justifyContent: "center"
   },
   card: {
-    backgroundColor: "#FFFFFF",
-    border: "2px solid #ABB0BA",
-    borderRadius: "10px",
-    boxShadow: "0px 3px #8F96A3",
+    ...theme.paper,
     "&.left": {
       display: "flex",
       justifyContent: "center",
@@ -40,7 +33,7 @@ const createProfileClasses = makeStyles({
     },
     "&.right": {
       padding: "3%",
-      // width: "500px"
+      width: "500px"
     }
   },
   firefly: {
@@ -64,13 +57,10 @@ const createProfileClasses = makeStyles({
     color: "#52ab1a"
   },
   input: {
+    ...theme.input,
     fontSize: "18px",
-    border: "none",
-    background: "#e2f5d6",
     margin: "3%",
     marginBottom: "57px",
-    padding: "2%",
-    borderRadius: "5px",
     width: "90%",
     "&:focus": {
       outline: "none"
@@ -135,6 +125,6 @@ const createProfileClasses = makeStyles({
       cursor: "pointer"
     }
   }
-});
+}));
 
 export default createProfileClasses;
