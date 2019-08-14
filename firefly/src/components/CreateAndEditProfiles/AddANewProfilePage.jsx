@@ -8,7 +8,7 @@ import { ADD_PROFILE } from "../../context/ChildProfiles/ChildProfileStore";
 
 //Styling
 import Icon from "../../assets/icons";
-import createProfileStyles from "./CreateAndEditProfileStyles";
+import createProfileStyles from "./createAndEditProfileStyles";
 
 //Button Components
 import { SecondaryButton } from "../../utils/buttons/SecondaryButton";

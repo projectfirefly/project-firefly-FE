@@ -51,7 +51,6 @@ export default function DevMenu(props) {
           <Menu />
         </div>
       ) : null}
-      <main className="app__content">
         <Switch>
           <Route exact path="/loader" component={Loader} />
           <PublicRoute
@@ -128,7 +127,6 @@ export default function DevMenu(props) {
             component={BackendTester}
           />
         </Switch>
-      </main>
     </div>
   );
 }

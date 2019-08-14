@@ -10,7 +10,16 @@ const useTheme = {
       textTransform: "uppercase",
     },
     h3: {
-
+      fontSize: "1.6rem",
+      fontWeight: "700",
+      color: "#52AB1A",
+    },
+    h4: {
+      fontSize: "1.6rem",
+      fontWeight: "600",
+    },
+    h6: {
+      fontSize: "1.4rem",
     }
   },
   paper: {
@@ -28,6 +37,10 @@ const useTheme = {
       outline: "none",
     }
   },
+  headerMargin: {
+    marginTop: "6%",
+    marginBottom: "5.5%",
+  }
 }
 
 export default useTheme;

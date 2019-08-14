@@ -6,16 +6,15 @@ const createProfileClasses = makeStyles(theme => ({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    marginTop: "3%",
     width: "100%",
     fontFamily: "'Nunito', sans-serif"
   },
   sizingContainer: {
-    width: "80%",
+    width: "85%",
     height: "100%",
   },
   header: {
-    // ...theme.header,
+    ...theme.headerMargin,
   },
   cardContainer: {
     height: "445px",
@@ -29,7 +28,8 @@ const createProfileClasses = makeStyles(theme => ({
       display: "flex",
       justifyContent: "center",
       alignContent: "center",
-      margin: "0 76px 0 0"
+      marginRight: "5%",
+      padding: "0 5%",
     },
     "&.right": {
       padding: "3%",
@@ -38,7 +38,7 @@ const createProfileClasses = makeStyles(theme => ({
   },
   firefly: {
     display: "flex",
-    width: "264px"
+    width: "100%",
   },
   accessory: {
     display: "flex",
@@ -49,12 +49,9 @@ const createProfileClasses = makeStyles(theme => ({
   lightColor: {
     marginTop: "20%"
   },
-  h2: {
-    fontSize: "16px",
-    fontWeight: "bold",
+  h3: {
     margin: "3%",
     marginBottom: "5px",
-    color: "#52ab1a"
   },
   input: {
     ...theme.input,
@@ -75,8 +72,8 @@ const createProfileClasses = makeStyles(theme => ({
   },
   buttonContainer: {
     display: "flex",
-    width: "80%",
-    margin: "50px",
+    width: "100%",
+    marginTop: "5%",
     justifyContent: "space-between",
     alignItems: "center"
   },
