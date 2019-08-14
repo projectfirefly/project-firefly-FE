@@ -17,7 +17,7 @@ import { PrimaryButton } from "../../utils/buttons/PrimaryButton";
 const AddANewProfilePage = props => {
   const classes = createProfileStyles();
 
-  const [childProfileState, dispatch] = useContext(childContext);
+  const [, dispatch] = useContext(childContext);
 
   const [updatedProfile, setUpdatedProfile] = useState({
     first_name: "",

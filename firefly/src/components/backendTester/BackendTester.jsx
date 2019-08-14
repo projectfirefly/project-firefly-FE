@@ -1,10 +1,10 @@
 import React, { useState, useContext } from 'react'
-import { axiosWithAuth } from '../../utils/axiosWithAuth';
 import firebase from 'firebase';
 import { addProfile, addWorld, getWorld, addFirefly, updateBlocks} from "../../utils/firebaseInteractions";
 
 import { childContext, UPDATE_COLOR, UPDATE_SELECTED, ADD_PROFILE } from '../../context/ChildProfiles/ChildProfileStore';
 import { gameContext, ADD_WORLD, GET_WORLDS, UPDATE_BLOCK, ADD_FIREFLY} from '../../context/Game/GameStore';
+import { childContext, ADD_PROFILE } from '../../context/ChildProfiles/ChildProfileStore'
 
 const BackendTester = () => {
 

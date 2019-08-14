@@ -1,5 +1,4 @@
-import React, { useState, useReducer } from "react";
-import firebase from 'firebase';
+import React, { useReducer } from "react";
 
 export const childContext = React.createContext();
 
@@ -23,8 +22,6 @@ export const GET_USER = "GET_USER";
 export const SET_HAS_PROFILES = "SET_HAS_PROFILES"; 
 
 function reducer(state, action) {
-  const db = firebase.firestore();
-  const uid = firebase.auth().currentUser.uid;
   switch (action.type) {
     case GET_USER:
       return { ...state, user: action.payload }

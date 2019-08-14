@@ -1,16 +1,11 @@
 //this is for using during development so we can quickly move between different components and see what we are doing
 
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 
 import ChildProfileStore, {
   childContext,
-  GET_USER_INFO,
-  GET_PROFILES_AND_AVATARS,
-  UPDATE_SELECTED,
-  SET_LOADED,
+  SET_LOADED
 } from "../context/ChildProfiles/ChildProfileStore";
-
-import firebase from "firebase";
 
 //material
 
@@ -30,6 +25,7 @@ import EditProfilePage from "../components/CreateAndEditProfiles/EditProfilePage
 import AddANewProfilePage from "../components/CreateAndEditProfiles/AddANewProfilePage";
 import StartGame from "../components/StartPages/LoggedInStartPage";
 import CodeView from "../components/part2/CodeView";
+import ChooseWorld from "../components/Worlds/ChooseWorld";
 
 import BackendTester from "../components/backendTester/BackendTester";
 
@@ -37,7 +33,6 @@ import AnimationTest from "../components/part2/AnimationTest";
 
 import Game from "../components/game/Game";
 
-import { getUser } from "../utils/firebaseInteractions";
 import { Loader } from "../utils/Loaders/loaders";
 
 export default function DevMenu(props) {
@@ -45,10 +40,10 @@ export default function DevMenu(props) {
 
   useEffect(() => {
     if (context.loaded && props.logged && !context.user) {
-      dispatch({type: SET_LOADED, payload: false});
+      dispatch({ type: SET_LOADED, payload: false });
       props.setIsLoading(true);
     }
-  }, [props.logged])
+  }, [props.logged]);
 
   return (
     <div className="app">
@@ -132,6 +127,11 @@ export default function DevMenu(props) {
             exact
             path="/backend-tester"
             component={BackendTester}
+          />
+          <PrivateRoute
+            logged={props.logged}
+            path="/chooseworld"
+            component={ChooseWorld}
           />
         </Switch>
       </main>

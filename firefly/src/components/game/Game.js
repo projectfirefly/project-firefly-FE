@@ -1,16 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import FFbox from "./FFbox";
 import GameBoard from "./BlockLine";
 import Toolbox from "./Toolbox";
 import DropDelete from "./DropDelete";
 import uuid from "uuid/v4";
 import styled from "styled-components";
-
+import uifx from 'uifx';
 import { DragDropContext } from "react-beautiful-dnd";
 import StartBlock from "../../images/gameIcons/StartBlock.svg";
-import BlueBlock from "../../images/gameIcons/BlueBlock.svg";
 import BlueBlockLeftSideEndState from "../../images/gameIcons/BlueBlockLeftSideEndState.svg";
-import GreenBlock from "../../images/gameIcons/GreenBlock.svg";
 import GreenBlockRightSideEndState from "../../images/gameIcons/GreenBlockRightSideEndState.svg";
 import RepeatIcon from "../../images/gameIcons/RepeatIcon.svg";
 import LightbulbIcon from "../../images/gameIcons/LightbulbIcon.svg";
@@ -19,29 +17,52 @@ import PlayCircleIcon from "../../images/gameIcons/PlayCircleIcon.svg";
 import PaletteIcon from "../../images/gameIcons/PaletteIcon.svg";
 import ToggleOffIcon from "../../images/gameIcons/ToggleOffIcon.svg";
 import NumberIcon1 from "../../images/gameIcons/NumberIcon1.svg";
+import GridIcon from "../../images/gridBackground.png";
+
+//importing the sound 
+import clickMP3 from '../../assets/sounds/click.mp3';
+import metalDropMP3 from '../../assets/sounds/metalDrop.mp3';
+import paperMP3 from '../../assets/sounds/crumblingPaper.mp3';
+
+//making the sounds variable 
+const click = new uifx({asset: clickMP3});
+const metal = new uifx({asset: metalDropMP3});
+const paper = new uifx({asset: paperMP3});
+
 
 const Board = styled.div`
   /* min-height: 100vh; */
   min-width: 100vw;
-  /* background-image: url(https://images.unsplash.com/photo-1538513633433-8cb0c2f89e56?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3734&q=80); */
+  /* background-image: url(${GridIcon}); */
+  /* margin: -10% 0; */
+  /* padding-bottom: 30%; */
 `;
 
 const ToolboxGreenIcon = styled.img`
   position: absolute;
-  top: 25%;
-  left: 25%;
+  width: 40%;
+  top: 28%;
+  left: 29%;
 `;
 
-const ToolboxBlueIcon = styled.img`
+const ToolboxBlueLedIcon = styled.img`
   position: absolute;
-  top: 25%;
+  width: 40%;
+  top: 27%;
+  left: 34%;
+`;
+
+const ToolboxBlueRepeatIcon = styled.img`
+  position: absolute;
+  width: 40%;
+  top: 30%;
   left: 32%;
 `;
 
 const ToolboxToggleIcon = styled.img`
   position: absolute;
   top: 35%;
-  left: 25%;
+  left: 27%;
 `;
 
 const ToolboxBox = styled.img`
@@ -81,25 +102,6 @@ const move = (source, destination, droppableSource, droppableDestination) => {
   return result;
 };
 
-const deleteIt = (
-  source,
-  destination,
-  droppableSource,
-  droppableDestination
-) => {
-  const sourceClone = Array.from(source);
-  const destClone = Array.from(destination);
-  const [removed] = sourceClone.splice(droppableSource.index, 1);
-
-  destClone.splice(droppableDestination.index, 0, removed);
-
-  const result = {};
-  result[droppableSource.droppableId] = sourceClone;
-  result[droppableDestination.droppableId] = destClone;
-
-  return result;
-};
-
 const ITEMS = [
   {
     id: uuid(),
@@ -112,15 +114,17 @@ const ITEMS = [
   },
   {
     id: uuid(),
-    functionality: <ToolboxBlueIcon src={LightbulbIcon} alt="lightbulbIcon" />,
+    functionality: (
+      <ToolboxBlueLedIcon src={LightbulbIcon} alt="lightbulbIcon" />
+    ),
     content: <ToolboxBox src={BlueBlockLeftSideEndState} alt="blueblock" />,
     used: false,
     rsi: 1
   },
   {
     id: uuid(),
-    functionality: <ToolboxBlueIcon src={RepeatIcon} alt="repeatIcon" />,
-    content: <ToolboxBox src={BlueBlock} alt="blueblock" />,
+    functionality: <ToolboxBlueRepeatIcon src={RepeatIcon} alt="repeatIcon" />,
+    content: <ToolboxBox src={BlueBlockLeftSideEndState} alt="blueblock" />,
     used: false,
     rsi: 2
   },
@@ -128,7 +132,7 @@ const ITEMS = [
   {
     id: uuid(),
     functionality: <ToolboxGreenIcon src={PaletteIcon} alt="paletteIcon" />,
-    content: <ToolboxBox src={GreenBlock} alt="greenblock" />,
+    content: <ToolboxBox src={GreenBlockRightSideEndState} alt="greenblock" />,
     used: false,
     rsi: 3
   },
@@ -142,14 +146,14 @@ const ITEMS = [
   {
     id: uuid(),
     functionality: <ToolboxGreenIcon src={NumberIcon1} alt="numberIcon" />,
-    content: <ToolboxBox src={GreenBlock} alt="greenblock" />,
+    content: <ToolboxBox src={GreenBlockRightSideEndState} alt="greenblock" />,
     used: false,
     rsi: 5
   },
   {
     id: uuid(),
     functionality: <ToolboxToggleIcon src={ToggleOffIcon} alt="toggleIcon" />,
-    content: <ToolboxBox src={GreenBlock} alt="greenblock" />,
+    content: <ToolboxBox src={GreenBlockRightSideEndState} alt="greenblock" />,
     used: false,
     rsi: 6
   }
@@ -158,29 +162,77 @@ const ITEMS = [
 const Game = () => {
   const [list, setList] = useState({ [uuid()]: [] });
   const [tools, setTools] = useState(ITEMS);
+  const [hasStart, setHasStart] = useState(false);
+  const [draggingBlock, isDraggingBlock] = useState(false);
+  
+
+  const onDragStart = () => {
+  isDraggingBlock(true);
+  // to play default sound 'click' when picking up the block
+  click.play();
+  };
 
   const onDragEnd = result => {
     const { source, destination } = result;
 
-    console.log("tools:", tools);
-    console.log("list:", list);
-    console.log("result:", result);
+    isDraggingBlock(false);
+    // metal.play();
+    // console.log("tools:", tools);
+    // console.log("list:", list);
+    // console.log("result:", result);
+
+    // dropped outside the list
+    if (!destination) {
+      return;
+    }
+
+    if (destination.droppableId === "TRASH") {
+      //check to see if we are trying to throw away a tool from the toolbox (we don't want to do that)
+      if (source.droppableId === "ITEMS") {
+        console.log("dropping from toolbox");
+        paper.play();
+        return;
+      }
+    }
 
     if (
       result.draggableId === tools[0].id ||
       result.draggableId === tools[1].id
     ) {
+      if (result.draggableId === tools[0].id) {
+        setHasStart(true);
+      }
       setTools(
         [...tools].map(tool => {
           return tool.id === result.draggableId
             ? { ...tool, used: true }
             : { ...tool };
-        })
+            
+        }),
       );
     }
 
-    // dropped outside the list
-    if (!destination) {
+    if (destination.droppableId === "TRASH") {
+      //Filters out the block that got put into trash
+      const realList = list[`${source.droppableId}`].filter(item => {
+        if (item.id === result.draggableId && item.rsi <= 1) {
+          if (item.id === result.draggableId && item.rsi === 0) {
+            setHasStart(false);
+          }
+          setTools(
+            [...tools].map(tool => {
+              return tool.rsi === item.rsi
+                ? { ...tool, used: false }
+                : { ...tool };
+            })
+          );
+          paper.play();
+        }
+        return item.id !== result.draggableId;
+      });
+
+      //Filters all tools to used:false so they become usable again
+      setList({ realList });
       return;
     }
 
@@ -205,19 +257,9 @@ const Game = () => {
             source,
             destination
           )
-        });
-        break;
-
-      case "TRASH":
-        setList({
-          ...list,
-          [destination.droppableId]: deleteIt(
-            source.droppableId,
-            list[destination.droppableId],
-            source,
-            destination
-          )
-        });
+        }); 
+        // to play default drop sound 'metal' when dropping the block
+        metal.play();
         break;
 
       default:
@@ -235,10 +277,14 @@ const Game = () => {
 
   return (
     <Board>
-      <DragDropContext onDragEnd={onDragEnd}>
+      <DragDropContext onDragEnd={onDragEnd} onDragStart={onDragStart}>
         <Toolbox tools={tools} />
         <FFbox tools={tools} />
-        <GameBoard state={list} />
+        <GameBoard
+          state={list}
+          hasStart={hasStart}
+          draggingBlock={draggingBlock}
+        />
         <DropDelete />
       </DragDropContext>
     </Board>

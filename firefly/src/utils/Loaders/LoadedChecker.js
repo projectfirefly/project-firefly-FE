@@ -26,21 +26,14 @@ export default function LoadedChecker(props) {
   }, []);
 
   useEffect(() => {
-    
-  }, [props.logged])
-
-  useEffect(() => {
     if (props.logged && !context.loaded) {
       getUser(dispatch)
         .then(() => {
           if (atLeast && context.loaded) {
-            console.log("context", context);
-            console.log("HUGE PROBLEM INCOMING")
             props.setIsLoading(false);
           }
         })
     } else if (atLeast && context.loaded) {
-      console.log("LOADED AND ATLEAST", context)
       props.setIsLoading(false);
     }
   }, [props.logged, atLeast, context.loaded])
