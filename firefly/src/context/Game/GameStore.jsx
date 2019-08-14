@@ -9,7 +9,8 @@ const initialState = {
             worldName: "",
             fireflies: [
                 {
-                    id: null,
+                    world_id: "",
+                    id: "",
                     x: null,
                     y: null,
                     codeBlocks: []
@@ -20,61 +21,63 @@ const initialState = {
     loaded: false
 };
 
-export const ADD_BLOCK = "ADD_BLOCK";
-export const SAVE_BLOCKS = "SAVE_BLOCKS";
+export const UPDATE_BLOCK = "UPDATE_BLOCK";
 export const GET_PROFILE_AND_AVATAR = "GET_PROFILE_AND_AVATAR";
-export const DELETE_BLOCK = "DELETE_BLOCK";
 export const RESET_BLOCKS = "RESET_BLOCKS";
 export const GET_WORLDS = "GET_WORLDS";
 export const ADD_WORLD = "ADD_WORLD";
+export const ADD_FIREFLY = "ADD_FIREFLY"
 
 function reducer(state, action){
     switch(action.type){
         case ADD_WORLD:
             const newWorld = [...state.worlds, action.payload]
             return {...state, worlds: newWorld}
-        case GET_WORLDS:
-            return {...state, worlds: action.payload}
-        case ADD_BLOCK:
-            const newWorlds = state.worlds.map(world => {
-                if(world.id === action.payload.world.id){
-                    const newFireflies = world.fireflies.map(firefly => {
-                        if(firefly.id === action.payload.world.firefly.id){
-                            return action.payload.world.firefly
-                        }else{
-                            return firefly
-                        }
-                    })
 
-                    return {...world, fireflies: newFireflies }
+        case GET_WORLDS:
+            console.log({...state, worlds: [...action.payload]})
+            return {...state, worlds: [...action.payload]}
+
+        case ADD_FIREFLY:
+            const fireflyWorld = state.worlds.map(world => {
+                if(world.id === action.payload.world_id){
+                    return {...world, fireflies: [action.payload]}
                 }else{
+                    return { world }
+                }
+            })
+            console.log({...state, worlds: [...fireflyWorld]})
+            return {...state, worlds: [...fireflyWorld]}
+
+        case UPDATE_BLOCK:
+            console.log(state)
+            console.log(action.payload)
+            const newWorlds = state.worlds.map(world => {
+                console.log(world.id === action.payload.world.id)
+                if(world.id === action.payload.world.id){
+                    if(world.fireflies){
+                        const newFireflies = world.fireflies.map(firefly => {
+                            if(firefly.id === action.payload.world.firefly.id){
+                                return action.payload.world.firefly
+                            }else{
+                                return firefly
+                            }
+                        })
+                        console.log(newFireflies)
+                        return {...world, fireflies: newFireflies }
+                    }else{
+                        return {...world, fireflies: [...action.payload.fireflies]}
+                    }
+                }else{
+                    console.log(world)
                     return { world }
                 }
             })
 
             return {...state, worlds: newWorlds }
-
-        case SAVE_BLOCKS:
-            const saveBlocks = state.worlds.map(world => {
-                if(world.id === action.payload.world.id){
-                    const saveFirefly = world.fireflies.map(firefly => {
-                        if(firefly.id === action.payload.world.firefly.id){
-                            return action.payload.world.firefly
-                        }else{
-                            return firefly
-                        }
-                    })
-                    return {...world, fireflies: saveFirefly}
-                }else{
-                    return {world}
-                }
-            })
-
-            return {...state, worlds: saveBlocks}
-        case DELETE_BLOCK:
-            return {...state, codeBlock: action.payload}
         case RESET_BLOCKS:
             return {...state, codeBlock: action.payload}
+
         default:
             throw Error("reducer error");
     }

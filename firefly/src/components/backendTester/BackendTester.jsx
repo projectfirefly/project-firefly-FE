@@ -1,10 +1,10 @@
 import React, { useState, useContext } from 'react'
 import { axiosWithAuth } from '../../utils/axiosWithAuth';
 import firebase from 'firebase';
-import { addProfile, addWorld, getWorld} from "../../utils/firebaseInteractions";
+import { addProfile, addWorld, getWorld, addFirefly, updateBlocks} from "../../utils/firebaseInteractions";
 
 import { childContext, UPDATE_COLOR, UPDATE_SELECTED, ADD_PROFILE } from '../../context/ChildProfiles/ChildProfileStore';
-import { gameContext, ADD_WORLD } from '../../context/Game/GameStore';
+import { gameContext, ADD_WORLD, GET_WORLDS, UPDATE_BLOCK, ADD_FIREFLY} from '../../context/Game/GameStore';
 
 const BackendTester = () => {
 
@@ -20,11 +20,35 @@ const BackendTester = () => {
   };
 
   const worldTest = {
-    worldName: "test2"
+    worldName: "test2",
+    fireflies: [
+        {
+            world_id: "",
+            id: "",
+            x: null,
+            y: null,
+            codeBlocks: []
+        }
+    ]
+  }
+
+  const newBlock = {
+    world_id:"tHGky258uQ2msgLJ55WC",
+    id: "XEUUw3Eehf108avShNl0",
+    x: null,
+    y: null,
+    codeBlocks: ["loop", "led", "timer"]
+  }
+
+  const addNewFirefly = () => {
+    addFirefly(context.selected.id, "tHGky258uQ2msgLJ55WC", ADD_FIREFLY, worldDispatch)
+  }
+  const updateBlock = () => {
+    updateBlocks(context.selected.id, UPDATE_BLOCK, "tHGky258uQ2msgLJ55WC", "XEUUw3Eehf108avShNl0", newBlock, worldDispatch)
   }
 
   const getWorlds = () => {
-    getWorld(context.selected.id)
+    getWorld(context.selected.id, GET_WORLDS, worldDispatch);
   }
 
   const addNewWorld = () => {
@@ -71,6 +95,8 @@ const BackendTester = () => {
       <button onClick={logContext}>Log Context</button>
       <button onClick={addNewWorld}>Add World</button>
       <button onClick={getWorlds}>Get Worlds</button>
+      <button onClick={addNewFirefly}>Add New Firefly</button>
+      <button onClick={updateBlock}>Add Block to Firefly</button>
     </div>
   )
 }
