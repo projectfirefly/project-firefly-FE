@@ -5,12 +5,10 @@ import Toolbox from "./Toolbox";
 import DropDelete from "./DropDelete";
 import uuid from "uuid/v4";
 import styled from "styled-components";
-
+import uifx from 'uifx';
 import { DragDropContext } from "react-beautiful-dnd";
 import StartBlock from "../../images/gameIcons/StartBlock.svg";
-import BlueBlock from "../../images/gameIcons/BlueBlock.svg";
 import BlueBlockLeftSideEndState from "../../images/gameIcons/BlueBlockLeftSideEndState.svg";
-import GreenBlock from "../../images/gameIcons/GreenBlock.svg";
 import GreenBlockRightSideEndState from "../../images/gameIcons/GreenBlockRightSideEndState.svg";
 import RepeatIcon from "../../images/gameIcons/RepeatIcon.svg";
 import LightbulbIcon from "../../images/gameIcons/LightbulbIcon.svg";
@@ -21,27 +19,48 @@ import ToggleOffIcon from "../../images/gameIcons/ToggleOffIcon.svg";
 import NumberIcon1 from "../../images/gameIcons/NumberIcon1.svg";
 import GridIcon from "../../images/gridBackground.png";
 
+//importing the sound 
+import clickWAV from '../../assets/sounds/click.wav';
+import metalDropWAV from '../../assets/sounds/metalDrop.wav';
+
+//making the sounds variable 
+const click = new uifx({asset: clickWAV});
+const metal = new uifx({asset: metalDropWAV});
+
+
 const Board = styled.div`
   /* min-height: 100vh; */
   min-width: 100vw;
+  /* background-image: url(${GridIcon}); */
+  /* margin: -10% 0; */
+  /* padding-bottom: 30%; */
 `;
 
 const ToolboxGreenIcon = styled.img`
   position: absolute;
-  top: 25%;
-  left: 25%;
+  width: 40%;
+  top: 28%;
+  left: 29%;
 `;
 
-const ToolboxBlueIcon = styled.img`
+const ToolboxBlueLedIcon = styled.img`
   position: absolute;
-  top: 25%;
+  width: 40%;
+  top: 27%;
+  left: 34%;
+`;
+
+const ToolboxBlueRepeatIcon = styled.img`
+  position: absolute;
+  width: 40%;
+  top: 30%;
   left: 32%;
 `;
 
 const ToolboxToggleIcon = styled.img`
   position: absolute;
   top: 35%;
-  left: 25%;
+  left: 27%;
 `;
 
 const ToolboxBox = styled.img`
@@ -93,14 +112,16 @@ const ITEMS = [
   },
   {
     id: uuid(),
-    functionality: <ToolboxBlueIcon src={LightbulbIcon} alt="lightbulbIcon" />,
+    functionality: (
+      <ToolboxBlueLedIcon src={LightbulbIcon} alt="lightbulbIcon" />
+    ),
     content: <ToolboxBox src={BlueBlockLeftSideEndState} alt="blueblock" />,
     used: false,
     rsi: 1
   },
   {
     id: uuid(),
-    functionality: <ToolboxBlueIcon src={RepeatIcon} alt="repeatIcon" />,
+    functionality: <ToolboxBlueRepeatIcon src={RepeatIcon} alt="repeatIcon" />,
     content: <ToolboxBox src={BlueBlockLeftSideEndState} alt="blueblock" />,
     used: false,
     rsi: 2
@@ -109,28 +130,28 @@ const ITEMS = [
   {
     id: uuid(),
     functionality: <ToolboxGreenIcon src={PaletteIcon} alt="paletteIcon" />,
-    content: <ToolboxBox src={GreenBlock} alt="greenblock" />,
+    content: <ToolboxBox src={GreenBlockRightSideEndState} alt="greenblock" />,
     used: false,
     rsi: 3
   },
   {
     id: uuid(),
     functionality: <ToolboxGreenIcon src={ClockIcon} alt="clockIcon" />,
-    content: <ToolboxBox src={GreenBlock} alt="greenblock" />,
+    content: <ToolboxBox src={GreenBlockRightSideEndState} alt="greenblock" />,
     used: false,
     rsi: 4
   },
   {
     id: uuid(),
     functionality: <ToolboxGreenIcon src={NumberIcon1} alt="numberIcon" />,
-    content: <ToolboxBox src={GreenBlock} alt="greenblock" />,
+    content: <ToolboxBox src={GreenBlockRightSideEndState} alt="greenblock" />,
     used: false,
     rsi: 5
   },
   {
     id: uuid(),
     functionality: <ToolboxToggleIcon src={ToggleOffIcon} alt="toggleIcon" />,
-    content: <ToolboxBox src={GreenBlock} alt="greenblock" />,
+    content: <ToolboxBox src={GreenBlockRightSideEndState} alt="greenblock" />,
     used: false,
     rsi: 6
   }
@@ -139,22 +160,44 @@ const ITEMS = [
 const Game = () => {
   const [list, setList] = useState({ [uuid()]: [] });
   const [tools, setTools] = useState(ITEMS);
+  const [hasStart, setHasStart] = useState(false);
+  const [draggingBlock, isDraggingBlock] = useState(false);
+  
+
+  const onDragStart = () => {
+  isDraggingBlock(true);
+  click.play();
+  };
 
   const onDragEnd = result => {
     const { source, destination } = result;
 
-    console.log("tools:", tools);
-    console.log("list:", list);
-    console.log("result:", result);
+    isDraggingBlock(false);
+    metal.play();
+    // console.log("tools:", tools);
+    // console.log("list:", list);
+    // console.log("result:", result);
+
     // dropped outside the list
     if (!destination) {
       return;
+    }
+
+    if (destination.droppableId === "TRASH") {
+      //check to see if we are trying to throw away a tool from the toolbox (we don't want to do that)
+      if (source.droppableId === "ITEMS") {
+        console.log("dropping from toolbox");
+        return;
+      }
     }
 
     if (
       result.draggableId === tools[0].id ||
       result.draggableId === tools[1].id
     ) {
+      if (result.draggableId === tools[0].id) {
+        setHasStart(true);
+      }
       setTools(
         [...tools].map(tool => {
           return tool.id === result.draggableId
@@ -168,6 +211,9 @@ const Game = () => {
       //Filters out the block that got put into trash
       const realList = list[`${source.droppableId}`].filter(item => {
         if (item.id === result.draggableId && item.rsi <= 1) {
+          if (item.id === result.draggableId && item.rsi === 0) {
+            setHasStart(false);
+          }
           setTools(
             [...tools].map(tool => {
               return tool.rsi === item.rsi
@@ -180,10 +226,7 @@ const Game = () => {
       });
 
       //Filters all tools to used:false so they become usable again
-
-      console.log("reallist:", realList);
       setList({ realList });
-      console.log("list:", list);
       return;
     }
 
@@ -226,10 +269,14 @@ const Game = () => {
 
   return (
     <Board>
-      <DragDropContext onDragEnd={onDragEnd}>
+      <DragDropContext onDragEnd={onDragEnd} onDragStart={onDragStart}>
         <Toolbox tools={tools} />
         <FFbox tools={tools} />
-        <GameBoard state={list} />
+        <GameBoard
+          state={list}
+          hasStart={hasStart}
+          draggingBlock={draggingBlock}
+        />
         <DropDelete />
       </DragDropContext>
     </Board>

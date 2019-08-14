@@ -1,11 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import { Droppable, Draggable } from "react-beautiful-dnd";
+import StartBlockTarget from "./../../images/gameIcons/StartBlockTarget.svg";
+import EmptyBlockTarget from "./../../images/gameIcons/EmptyBlockTarget.svg";
 
 const List = styled.div`
   height: 100%;
   min-height: 90px;
-  border: 2px ${props => (props.isDraggingOver ? "solid #000" : "solid #ddd")};
   background: none;
   border-radius: 16px;
   width: 88%;
@@ -28,7 +29,6 @@ const Item = styled.div`
 const Tool = styled.div`
   display: flex;
   position: relative;
-
   width: 100px;
 `;
 
@@ -44,7 +44,18 @@ const Notice = styled.div`
   color: #aaa;
 `;
 
-const BlockLine = ({ state }) => {
+const GrayedOutBlock = styled.div`
+  display: flex;
+  opacity: 0.7;
+  position: relative;
+  width: 97px;
+`;
+
+const ButtonBox = styled.img`
+  width: 100%;
+`;
+
+const BlockLine = ({ state, hasStart, draggingBlock }) => {
   return (
     <div>
       {Object.keys(state).map((list, i) => (
@@ -55,6 +66,11 @@ const BlockLine = ({ state }) => {
               innerRef={provided.innerRef}
               isDraggingOver={snapshot.isDraggingOver}
             >
+              {/* Conditional rendering of first start block in code line */}
+
+              <GrayedOutBlock style={hasStart ? { display: "none" } : null}>
+                <ButtonBox src={StartBlockTarget} alt="startblock" />
+              </GrayedOutBlock>
               {state[list].length
                 ? state[list].map((item, index) => (
                     <Draggable
@@ -80,6 +96,23 @@ const BlockLine = ({ state }) => {
                     </Draggable>
                   ))
                 : !provided.placeholder && <Notice>Drop items here</Notice>}
+              <Item>
+                <GrayedOutBlock
+                  style={
+                    draggingBlock && state[list].length > 0
+                      ? {
+                          marginLeft: "10px",
+                          position: "relative",
+                          zIndex: "-1"
+                        }
+                      : {
+                          display: "none"
+                        }
+                  }
+                >
+                  <ButtonBox src={EmptyBlockTarget} alt="emptyblock" />
+                </GrayedOutBlock>
+              </Item>
               {provided.placeholder}
             </List>
           )}

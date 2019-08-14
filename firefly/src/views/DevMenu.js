@@ -4,7 +4,7 @@ import React, { useContext, useEffect } from "react";
 
 import ChildProfileStore, {
   childContext,
-  SET_LOADED,
+  SET_LOADED
 } from "../context/ChildProfiles/ChildProfileStore";
 
 //material
@@ -25,6 +25,7 @@ import EditProfilePage from "../components/CreateAndEditProfiles/EditProfilePage
 import AddANewProfilePage from "../components/CreateAndEditProfiles/AddANewProfilePage";
 import StartGame from "../components/StartPages/LoggedInStartPage";
 import CodeView from "../components/part2/CodeView";
+import ChooseWorld from "../components/Worlds/ChooseWorld";
 
 import BackendTester from "../components/backendTester/BackendTester";
 
@@ -39,10 +40,10 @@ export default function DevMenu(props) {
 
   useEffect(() => {
     if (context.loaded && props.logged && !context.user) {
-      dispatch({type: SET_LOADED, payload: false});
+      dispatch({ type: SET_LOADED, payload: false });
       props.setIsLoading(true);
     }
-  }, [props.logged])
+  }, [props.logged]);
 
   return (
     <div className="app">
@@ -125,6 +126,11 @@ export default function DevMenu(props) {
             exact
             path="/backend-tester"
             component={BackendTester}
+          />
+          <PrivateRoute
+            logged={props.logged}
+            path="/chooseworld"
+            component={ChooseWorld}
           />
         </Switch>
     </div>

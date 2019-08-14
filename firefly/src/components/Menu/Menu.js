@@ -4,7 +4,7 @@ import {
   Drawer,
   List,
   ListItem,
-  ListItemText,
+  ListItemText
 } from "@material-ui/core";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
@@ -14,56 +14,56 @@ import { Link } from "react-router-dom";
 const items = [
   {
     path: "/",
-    text: "LoggedOutStartPage",
+    text: "LoggedOutStartPage"
   },
   {
     path: "/myfirefly",
-    text: "MyFireflyPage",
+    text: "MyFireflyPage"
   },
   {
     path: "/customize",
-    text: "CustomizeFireflyPage",
+    text: "CustomizeFireflyPage"
   },
 
   {
     path: "/signin",
-    text: "SignInPage",
+    text: "SignInPage"
   },
   {
     path: "/signup",
-    text: "SignUpPage",
+    text: "SignUpPage"
   },
   {
     path: "/registration",
-    text: "MultiStepRegistration",
+    text: "MultiStepRegistration"
   },
   {
     path: "/choose-profile",
-    text: "ChooseProfilePage",
+    text: "ChooseProfilePage"
   },
   {
     path: "/account",
-    text: "MyAccountPage",
+    text: "MyAccountPage"
   },
   {
     path: "/addprofile",
-    text: "AddANewProfilePage",
+    text: "AddANewProfilePage"
   },
   {
     path: "/editprofile",
-    text: "EditProfilePage",
+    text: "EditProfilePage"
   },
   {
     path: "/startgame",
-    text: "StartGame",
+    text: "StartGame"
   },
   {
     path: "/codeview",
-    text: "CodeView",
+    text: "CodeView"
   },
   {
     path: "/backend-tester",
-    text: "Backend Tester",
+    text: "Backend Tester"
   },
   {
     path: "/loader",
@@ -72,6 +72,10 @@ const items = [
   {
     path: "/game",
     text: "Game"
+  },
+  {
+    path: "/chooseworld",
+    text: "Choose World"
   }
 ];
 
@@ -89,35 +93,35 @@ function Menu() {
       color: "white",
       "&:hover, &:focus": {
         background: "#d0ccff",
-        opacity: "1",
-      },
+        opacity: "1"
+      }
     },
     root: {
-      display: "flex",
+      display: "flex"
     },
     list: {
       width: "300px",
       background: "#5b4eff",
-      color: "white",
+      color: "white"
     },
     listItem: {
       "&:hover, &:focus": {
-        background: "rgba(208,204,255,.25)",
-      },
+        background: "rgba(208,204,255,.25)"
+      }
     },
     drawer: {
       root: {
-        background: "#5b4eff",
-      },
+        background: "#5b4eff"
+      }
     },
     drawerDiv: {
       height: "100%",
-      background: "#5b4eff",
+      background: "#5b4eff"
     },
     collapse: {
-      marginLeft: "10%",
+      marginLeft: "10%"
     },
-    toolbar: theme.mixins.toolbar,
+    toolbar: theme.mixins.toolbar
   }))();
 
   const toggleDrawer = () => {
