@@ -17,10 +17,6 @@ const accountStyles = makeStyles(theme => ({
     marginTop: "40px",
     justifyContent: "space-between"
   },
-  button: {
-    width: "40%",
-    marginTop: "40px"
-  },
   root: {
     flexGrow: "1",
     marginTop: "3%",

@@ -23,9 +23,20 @@ const chooseProfileStyles = makeStyles(theme => ({
     flexWrap: "wrap",
     justifyContent: "space-between",
     alignItems: "center",
-    overflowY: "scroll",
+    overflowY: "auto",
     width: "100%",
     maxHeight: "70vh",
+    "&::-webkit-scrollbar": {
+      width: "1%",
+    },
+    // "&::-webkit-scrollbar-track": {
+    //   boxShadow: "inset 0 0 5px grey",
+    //   borderRadius: "10px",
+    // },
+    "&::-webkit-scrollbar-thumb": {
+      background: "#b6e699",
+      borderRadius: "10px",
+    },
     //This after stuff is for flex spacing when there's only two in the line
     "&::after": {
       content: "''",
@@ -35,7 +46,7 @@ const chooseProfileStyles = makeStyles(theme => ({
       padding: "2% 1%",
       visibility: "hidden",
       zIndex: "-1000",
-    }
+    },
     // boxSizing: "border-box",
     // background: "#e3e5e8",
     // backgroundRepeat: "repeat",
@@ -44,6 +55,7 @@ const chooseProfileStyles = makeStyles(theme => ({
     // borderRadius: "1rem",
   },
   card: {
+    ...theme.clickable,
     background: "#fff",
     display: "flex",
     flexDirection: "column",
@@ -53,14 +65,14 @@ const chooseProfileStyles = makeStyles(theme => ({
     borderRadius: "10px",
     boxShadow: "0px 3px #8F96A3",
     width: "25%",
-    margin: "1%",
+    margin: "1% 1%",
     padding: "2% 1%",
   },
   backButtonContainer: {
     display: "flex",
     marginTop: "5%",
     width: "100%",
-    marginLeft: "1%",
+    marginLeft: "2%",
   },
   backButtonStyle: {
     ...theme.secondaryButton,

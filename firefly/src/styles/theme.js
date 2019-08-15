@@ -62,7 +62,16 @@ const useTheme = {
       boxShadow: "none",
       margin: "3px 0px -3px 0px"
     }
-  }
+  },
+  clickable: {
+    cursor: "pointer",
+    transition: "all 25ms ease-in-out",
+    "&:active": {
+      boxShadow: "none",
+      marginTop: "3px",
+      marginBottom: "-3px",
+    },
+  },
 }
 
 export default useTheme;
