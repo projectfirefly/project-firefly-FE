@@ -20,12 +20,14 @@ import NumberIcon1 from "../../images/gameIcons/NumberIcon1.svg";
 import GridIcon from "../../images/gridBackground.png";
 
 //importing the sound
-import clickWAV from "../../assets/sounds/click.wav";
-import metalDropWAV from "../../assets/sounds/metalDrop.wav";
+import clickMP3 from "../../assets/sounds/click.mp3";
+import metalDropMP3 from "../../assets/sounds/metalDrop.mp3";
+import paperMP3 from "../../assets/sounds/crumblingPaper.mp3";
 
 //making the sounds variable
-const click = new uifx({ asset: clickWAV });
-const metal = new uifx({ asset: metalDropWAV });
+const click = new uifx({ asset: clickMP3 });
+const metal = new uifx({ asset: metalDropMP3 });
+const paper = new uifx({ asset: paperMP3 });
 
 const Board = styled.div`
   /* min-height: 100vh; */
@@ -171,7 +173,7 @@ const Game = () => {
     const { source, destination } = result;
 
     isDraggingBlock(false);
-    metal.play();
+    // metal.play();
     // console.log("tools:", tools);
     // console.log("list:", list);
     // console.log("result:", result);
@@ -185,6 +187,7 @@ const Game = () => {
       //check to see if we are trying to throw away a tool from the toolbox (we don't want to do that)
       if (source.droppableId === "ITEMS") {
         console.log("dropping from toolbox");
+        paper.play();
         return;
       }
     }
@@ -225,6 +228,7 @@ const Game = () => {
 
       //Filters all tools to used:false so they become usable again
       setList({ realList });
+      paper.play();
       return;
     }
 
@@ -250,6 +254,8 @@ const Game = () => {
             destination
           )
         });
+        // to play default drop sound 'metal' when dropping the block
+        metal.play();
         break;
 
       default:

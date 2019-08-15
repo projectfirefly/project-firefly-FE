@@ -1,4 +1,4 @@
-import firebase from 'firebase';
+import firebase from "firebase";
 
 import {
   GET_USER_INFO,
@@ -8,8 +8,146 @@ import {
   GET_USER,
   SET_HAS_PROFILES,
   GET_AND_LOAD
-}
-  from "../context/ChildProfiles/ChildProfileStore"
+} from "../context/ChildProfiles/ChildProfileStore";
+
+import {
+  GET_WORLDS,
+  ADD_WORLD,
+  ADD_FIREFLY,
+  UPDATE_BLOCK
+} from "../context/Game/GameStore";
+
+export const getWorld = async (child, dispatch) => {
+  const db = firebase.firestore();
+  const uid = firebase.auth().currentUser.uid;
+  db.collection("users")
+    .doc(uid)
+    .collection("profiles")
+    .doc(child)
+    .collection("worlds")
+    .get()
+    .then(async snapshot => {
+      const childWorlds = snapshot.docs.map(async doc => {
+        const fireflies = db
+          .collection("users")
+          .doc(uid)
+          .collection("profiles")
+          .doc(child)
+          .collection("worlds")
+          .doc(doc.id)
+          .collection("fireflies")
+          .get()
+          .then(docRef => {
+            const firefly = docRef.docs.map(doc => {
+              return doc.data();
+            });
+
+            console.log("firefly@@@", firefly);
+            const world = doc.data();
+            return { id: doc.id, ...world, fireflies: [...firefly] };
+          });
+        console.log("Firefly Result", await fireflies);
+        return await fireflies;
+      });
+      const payload = await Promise.all(childWorlds);
+      console.log(payload);
+      dispatch({ type: GET_WORLDS, payload: payload });
+    });
+};
+
+//Add world
+export const addWorld = async (child, payload, dispatch) => {
+  const db = firebase.firestore();
+  const uid = firebase.auth().currentUser.uid;
+  db.collection("users")
+    .doc(uid)
+    .collection("profiles")
+    .doc(child) //Haven't imported this childProfileState.selected.id
+    .collection("worlds")
+    .add(payload) //World that you want to save, this adds it to a new collection under the profile, just put some name in
+    .then(worldDoc => {
+      //This is a reference to the document you just created
+      //do your dispatch in here
+      const newWorld = { id: worldDoc.id, ...payload }; //Creating an object to store locally in context
+      dispatch({ type: ADD_WORLD, payload: newWorld }); //Dispatching to reducers so it can get saved locally in context
+    });
+};
+//Add Firefly
+export const addFirefly = async (child, world_id, dispatch) => {
+  const db = firebase.firestore();
+  const uid = firebase.auth().currentUser.uid;
+  await db
+    .collection("users")
+    .doc(uid)
+    .collection("profiles")
+    .doc(child)
+    .collection("worlds")
+    .doc(world_id)
+    .collection("fireflies")
+    .add({
+      firefly_id: "",
+      x: null,
+      y: null,
+      codeBlocks: []
+    })
+    .then(async docRef => {
+      const firefly = {
+        x: null,
+        y: null,
+        codeBlocks: []
+      };
+      await db
+        .collection("users")
+        .doc(uid)
+        .collection("profiles")
+        .doc(child)
+        .collection("worlds")
+        .doc(world_id)
+        .collection("fireflies")
+        .doc(docRef.id)
+        .set(
+          {
+            firefly_id: docRef.id,
+            ...firefly
+          },
+          { merge: true }
+        )
+        .then(docRef => {
+          dispatch({ type: ADD_FIREFLY, payload: firefly });
+        });
+    });
+};
+//Add block to Firefly
+export const updateBlocks = async (child, requiredIds, payload, dispatch ) => {
+  const db = firebase.firestore();
+  const uid = firebase.auth().currentUser.uid;
+
+  const {firefly_id, world_id} = requiredIds;
+
+  let updatedFirefly = {
+    ...payload
+  };
+
+  delete updatedFirefly["id"];
+
+  db.collection("users")
+    .doc(uid)
+    .collection("profiles")
+    .doc(child)
+    .collection("worlds")
+    .doc(world_id)
+    .collection("fireflies")
+    .doc(firefly_id)
+    .set(
+      {
+        ...updatedFirefly
+      },
+      { merge: true }
+    )
+    .then(docRef => {
+      dispatch({ type: UPDATE_BLOCK, payload: payload });
+    });
+};
 
 export const addProfile = async (type, payload, dispatch) => {
   const db = firebase.firestore();
@@ -22,7 +160,7 @@ export const addProfile = async (type, payload, dispatch) => {
     .doc(uid)
     .collection("profiles")
     .add(uploadProfile)
-    .then((profileDoc) => {
+    .then(profileDoc => {
       db.collection("users")
         .doc(uid)
         .collection("profiles")
@@ -32,7 +170,8 @@ export const addProfile = async (type, payload, dispatch) => {
           color: 53,
           accessory: 0,
           nickname: ""
-        }).then((avatarDoc) => {
+        })
+        .then(avatarDoc => {
           const newPayload = {
             ...payload,
             id: profileDoc.id,
@@ -42,10 +181,10 @@ export const addProfile = async (type, payload, dispatch) => {
               nickname: "",
               id: avatarDoc.id
             }
-          }
-          dispatch({ type: type, payload: newPayload })
-        })
-    })
+          };
+          dispatch({ type: type, payload: newPayload });
+        });
+    });
   dispatch({ type: SET_HAS_PROFILES });
 };
 
@@ -57,13 +196,17 @@ export const updateProfile = async (type, payload, dispatch) => {
   delete uploadProfile["avatar"];
   var uploadAvatar = { ...payload.avatar };
   delete uploadAvatar["id"];
-  await db.collection("users")
+  await db
+    .collection("users")
     .doc(uid)
     .collection("profiles")
     .doc(payload.id)
-    .set({
-      ...uploadProfile
-    }, { merge: true })
+    .set(
+      {
+        ...uploadProfile
+      },
+      { merge: true }
+    )
     .then(() => {
       db.collection("users")
         .doc(uid)
@@ -71,30 +214,35 @@ export const updateProfile = async (type, payload, dispatch) => {
         .doc(payload.id)
         .collection("avatar")
         .doc(payload.avatar.id)
-        .set({
-          ...uploadAvatar
-        }, { merge: true })
+        .set(
+          {
+            ...uploadAvatar
+          },
+          { merge: true }
+        );
     });
   dispatch({ type: type, payload: payload });
-}
+};
 
 export const removeProfile = async (type, payload, dispatch) => {
   const db = firebase.firestore();
   const uid = firebase.auth().currentUser.uid;
-  await db.collection("users")
+  await db
+    .collection("users")
     .doc(uid)
     .collection("profiles")
     .doc(payload.id)
     .collection("avatar")
     .doc(payload.avatar.id)
-    .delete()
-  await db.collection("users")
+    .delete();
+  await db
+    .collection("users")
     .doc(uid)
     .collection("profiles")
     .doc(payload.id)
-    .delete()
+    .delete();
   dispatch({ type: type, payload: payload });
-}
+};
 
 export const updateUser = async (type, payload, dispatch) => {
   const db = firebase.firestore();
@@ -107,36 +255,46 @@ export const updateUser = async (type, payload, dispatch) => {
   delete uploadUser["information"];
   var uploadInformation = { ...payload.information };
   delete uploadInformation["id"];
-  await db.collection("users")
+  await db
+    .collection("users")
     .doc(uid)
-    .set({
-      ...uploadUser
-    }, { merge: true })
-  await db.collection("users")
+    .set(
+      {
+        ...uploadUser
+      },
+      { merge: true }
+    );
+  await db
+    .collection("users")
     .doc(uid)
     .collection("information")
     .doc(payload.information.id)
-    .set({
-      ...uploadInformation
-    }, { merge: true })
+    .set(
+      {
+        ...uploadInformation
+      },
+      { merge: true }
+    );
   dispatch({ type: type, payload: payload });
-}
+};
 
-export const getUser = async (dispatch) => {
+export const getUser = async dispatch => {
   const db = firebase.firestore();
   const uid = firebase.auth().currentUser.uid;
   //get user
   var dispatchUser = {};
 
-  await db.collection("users")
+  await db
+    .collection("users")
     .doc(uid)
     .get()
-    .then((snapshot) => {
-      const userInfo = snapshot.data()
+    .then(snapshot => {
+      const userInfo = snapshot.data();
       dispatchUser = { ...dispatchUser, ...userInfo, id: snapshot.id };
-    })
+    });
   //get information
-  await db.collection("users")
+  await db
+    .collection("users")
     .doc(uid)
     .collection("information")
     .get()
@@ -146,9 +304,10 @@ export const getUser = async (dispatch) => {
         return { ...document, id: doc.id };
       });
       dispatchUser = { ...dispatchUser, information: docList[0] };
-    })
+    });
   //get profiles and avatars
-  await db.collection("users")
+  await db
+    .collection("users")
     .doc(uid)
     .collection("profiles")
     .get()
@@ -174,7 +333,7 @@ export const getUser = async (dispatch) => {
                 const avatarDoc = doc.data();
                 return {
                   ...avatarDoc,
-                  id: doc.id,
+                  id: doc.id
                 };
               });
               return document[0];
@@ -192,7 +351,7 @@ export const getUser = async (dispatch) => {
                       }
                     }
                   ]
-                }
+                };
               } else {
                 dispatchUser = {
                   ...dispatchUser,
@@ -204,12 +363,13 @@ export const getUser = async (dispatch) => {
                       }
                     }
                   ]
-                }
+                };
               }
-            }).then(() => {
-              dispatch({type: GET_AND_LOAD, payload: dispatchUser});
+            })
+            .then(() => {
+              dispatch({ type: GET_AND_LOAD, payload: dispatchUser });
             });
         });
       }
-    })
-}
+    });
+};
