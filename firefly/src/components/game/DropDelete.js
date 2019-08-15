@@ -10,7 +10,7 @@ const Trash = styled.div`
     background: #dc143c;
     font-size: 68px;
     transition: 0.3s;
-    translate(50px 50px);
+    translate: (50px 50px);
     color: #e3e5e8;
   }
   border-top-left-radius: 100%;

@@ -3,7 +3,16 @@ import { BrowserRouter } from "react-router-dom";
 import DevMenu from "./views/DevMenu";
 import firebase from "firebase";
 
+import GameContextStore from "./context/Game/GameStore";
 import ChildProfileStore from "./context/ChildProfiles/ChildProfileStore";
+
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Redirect,
+  withRouter,
+} from "react-router-dom";
 
 //google analytics code start//
 import ReactGA from "react-ga";
@@ -37,11 +46,13 @@ function App() {
     <BrowserRouter>
       {isLoading ? <Loader /> : <div />}
       <ChildProfileStore>
-        {isLoading ? (
-          <LoadedChecker logged={loggedIn} setIsLoading={setIsLoading} />
-        ) : (
-          <DevMenu isLoading={isLoading} setIsLoading={setIsLoading} logged={loggedIn} />
-        )}
+        <GameContextStore>
+          {isLoading ? (
+            <LoadedChecker logged={loggedIn} setIsLoading={setIsLoading} />
+          ) : (
+            <DevMenu isLoading={isLoading} setIsLoading={setIsLoading} logged={loggedIn} />
+          )}
+        </GameContextStore>
       </ChildProfileStore>
     </BrowserRouter>
   );
