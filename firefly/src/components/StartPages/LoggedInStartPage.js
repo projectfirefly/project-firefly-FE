@@ -3,32 +3,32 @@ import { makeStyles } from "@material-ui/core/styles";
 import WelcomeToFirefly from "./../../images/WelcomeToFirefly.png";
 import { Link } from "react-router-dom";
 import firebase from "firebase";
-import { childContext, SIGN_OUT } from "../../context/ChildProfiles/ChildProfileStore";
-import startPageStyles from './StartPageStyles';
+import {
+  childContext,
+  SIGN_OUT,
+} from "../../context/ChildProfiles/ChildProfileStore";
+import startPageStyles from "./StartPageStyles";
 import { Typography } from "@material-ui/core";
 
 const LoggedInStartPage = () => {
-
   const [childProfileState, dispatch] = useContext(childContext);
 
   const classes = startPageStyles();
 
   const signout = () => {
     firebase.auth().signOut();
-    dispatch({type: SIGN_OUT})
+    dispatch({ type: SIGN_OUT });
   };
 
   return (
     <div className={classes.root}>
       <div className={classes.topBar}>
-        <Link to="/signin" className={classes.topBarItem} onClick={signout}>
-            <i className="fas fa-sign-out-alt" />
-            <Typography variant="h6" className={classes.topBarText}>Sign Out</Typography>
+        <Link to="/signin" className={classes.topBarButton} onClick={signout}>
+          <i className="fas fa-sign-out-alt" />
         </Link>
 
-        <Link to="/account" className={classes.topBarItem}>
-            <i className="fas fa-user-alt" />
-            <Typography variant="h6" className={classes.topBarText}>My Account</Typography>
+        <Link to="/account" className={classes.topBarButton}>
+          <i className="fas fa-user-alt" />
         </Link>
       </div>
       <span className={classes.logo}>
@@ -41,12 +41,12 @@ const LoggedInStartPage = () => {
       <div className={classes.buttonContainer}>
         {childProfileState.loaded ? (
           <Link
-            styles={{ "text-decoration": "none" }}
+            className={classes.startButton}
             to={
               childProfileState.hasProfiles ? "/choose-profile" : "/addprofile"
             }
           >
-            <button className={classes.getStarted}>Start</button>
+            <Typography variant="button">Start</Typography>
           </Link>
         ) : (
           <div>Loading...</div>

@@ -76,11 +76,8 @@ const chooseProfileStyles = makeStyles(theme => ({
   },
   backButtonStyle: {
     ...theme.secondaryButton,
-    textDecoration: "none",
     padding: "0.8rem",
     width: "20%",
-    display: "flex",
-    justifyContent: "center",
   },
   text: {
     display: "flex",

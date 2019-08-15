@@ -9,6 +9,12 @@ const useTheme = {
       color: "#5B4Eff",
       textTransform: "uppercase",
     },
+    h2: {
+      fontSize: "2rem",
+      fontWeight: "700",
+      color: "#52AB1A",
+      letterSpacing: ".2rem",
+    },
     h3: {
       fontSize: "1.6rem",
       fontWeight: "700",
@@ -25,6 +31,7 @@ const useTheme = {
       fontSize: "1.6rem",
       letterSpacing: ".1rem",
       fontWeight: "600",
+      textDecoration: "none",
     }
   },
   paper: {
@@ -34,6 +41,9 @@ const useTheme = {
     boxShadow: "0px 2px 4px rgba(0,0,0,0.5)"
   },
   input: {
+    fontFamily: "'Nunito', sans-serif",
+    fontWeight: "900",
+    fontSize: "1.6rem",
     border: "none",
     background: "#E2F5D6",
     padding: "2%",
@@ -43,11 +53,30 @@ const useTheme = {
     }
   },
   headerMargin: {
-    marginTop: "6%",
-    marginBottom: "5.5%",
+    marginTop: "5rem",
+    marginBottom: "4rem",
   },
   primaryButton: {
-
+    backgroundColor: "#4AA810",
+    color: "#E2F5D6",
+    textTransform: "uppercase",
+    fontSize: "1.6rem",
+    textDecoration: "none",
+    border: "none",
+    borderRadius: "1rem",
+    boxShadow: "0px 3px #3E8C0D",
+    cursor: "pointer",
+    transition: "all 25ms ease-in-out",
+    letterSpacing: "1px",
+    display: "flex",
+    justifyContent: "center",
+    "&:active": {
+      boxShadow: "none",
+      margin: "3px 0px -3px 0px",
+    },
+    "&:focus": {
+      outline: "none",
+    }
   },
   secondaryButton: {
     backgroundColor: "#FFF",
@@ -58,9 +87,15 @@ const useTheme = {
     boxShadow: "0px 3px #8F96A3",
     cursor: "pointer",
     transition: "all 25ms ease-in-out",
+    textDecoration: "none",
+    display: "flex",
+    justifyContent: "center",
     "&:active": {
       boxShadow: "none",
       margin: "3px 0px -3px 0px"
+    },
+    "&:focus": {
+      outline: "none",
     }
   },
   clickable: {

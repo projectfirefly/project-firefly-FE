@@ -13,40 +13,18 @@ const startPageStyles = makeStyles(theme => ({
     marginTop: "3%"
   },
   fireflyImage: {
+    ...theme.headerMargin,
     height: "auto",
     maxWidth: "100%"
   },
   buttonContainer: {
     display: "flex",
-    flexDirection: "column",
-    maxWidth: "40%",
-    height: "160px",
-    margin: "0 auto",
-    marginTop: "7%"
-  },
-  getStarted: {
-    backgroundColor: "#4aa810",
-    color: "#e2f5d6",
-    padding: "0.8rem",
-    textTransform: "uppercase",
-    fontSize: "1.3rem",
-    border: "none",
-    borderRadius: "10px",
-    boxShadow: "0px 3px #3e8c0d",
-    cursor: "pointer",
-    opacity: "0.92",
-    transition: "opacity .25s ease-in-out",
-    letterSpacing: "1px",
+    justifyContent: "center",
     width: "100%",
-
-    "&:active": {
-      opacity: "1",
-      boxShadow: "none",
-      margin: "3px 0px -3px 0px"
-    },
-    "&:focus": {
-      outline: "none"
-    }
+  },
+  startButton: {
+    ...theme.primaryButton,
+    padding: ".6rem 12%"
   },
   topBar: {
     position: "absolute",
@@ -58,13 +36,16 @@ const startPageStyles = makeStyles(theme => ({
     marginTop: "2%",
     width: "90%"
   },
-  topBarItem: {
+  topBarButton: {
+    ...theme.secondaryButton,
     display: "flex",
-    color: "#5B4EFF",
+    color: "#4aa810",
     cursor: "pointer",
     alignItems: "center",
     justifyContent: "center",
-    width: "25%",
+    fontSize: "1.8rem",
+    width: "3.4rem",
+    height: "3.4rem",
     textDecoration: "none",
   },
   topBarText: {

@@ -23,7 +23,8 @@ import {
   DialogTitle,
   DialogContent,
   DialogContentText,
-  DialogActions
+  DialogActions,
+  Typography
 } from "@material-ui/core";
 
 import Icon from "../../assets/icons";
@@ -108,11 +109,15 @@ const EditProfilePage = props => {
     return (
       <div className={classes.container}>
         <div className={classes.sizingContainer}>
-          <h2 className={classes.header}>EDIT PROFILE</h2>
+          <div className={classes.header}>
+            <Typography variant="h1">
+              EDIT PROFILE
+            </Typography>
+          </div>
           <div className={classes.cardContainer}>
             <div className={classes.deleteButtonContainer}>
               <button className={classes.delete} onClick={() => setOpen(true)}>
-                <FontAwesomeIcon icon="trash-alt" />
+                <Typography><FontAwesomeIcon icon="trash-alt" /></Typography>
               </button>
             </div>
             <div className={classes.card}>
@@ -124,7 +129,7 @@ const EditProfilePage = props => {
                   lightmidFill={`hsl(${updatedProfile.avatar.color},100%,45%)`}
                   lightbottomFill={`hsl(${
                     updatedProfile.avatar.color
-                  },100%,55%)`}
+                    },100%,55%)`}
                   shineStroke={`hsl(${updatedProfile.avatar.color},100%,55%)`}
                 />
               </div>
@@ -152,17 +157,12 @@ const EditProfilePage = props => {
               </div>
             </div>
             <div className={classes.buttonContainer}>
-              <div className={classes.button}>
-                <Link onClick={() => props.history.push("/choose-profile")}>
-                  <SecondaryButton text={"CANCEL"} />
-                </Link>
-              </div>
-
-              <div className={classes.button}>
-                <Link onClick={saveProfile}>
-                  <PrimaryButton text={"SAVE"} />
-                </Link>
-              </div>
+              <Link to="/account" className={classes.cancel}>
+                <Typography variant="button">Cancel</Typography>
+              </Link>
+              <Link onClick={saveProfile} className={classes.save}>
+                <Typography variant="button">Save</Typography>
+              </Link>
             </div>
           </div>
         </div>
