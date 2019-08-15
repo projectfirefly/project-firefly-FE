@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { Droppable, Draggable } from "react-beautiful-dnd";
+import { Droppable } from "react-beautiful-dnd";
 import StartBlockTarget from "./../../images/gameIcons/StartBlockTarget.svg";
 import EmptyBlockTarget from "./../../images/gameIcons/EmptyBlockTarget.svg";
+import PopperAndItem from "./PopperAndItem";
 
 const List = styled.div`
   height: 100%;
@@ -24,12 +25,6 @@ const Item = styled.div`
   align-items: flex-start;
   align-content: flex-start;
   border-radius: 3px;
-`;
-
-const Tool = styled.div`
-  display: flex;
-  position: relative;
-  width: 100px;
 `;
 
 const Notice = styled.div`
@@ -73,27 +68,7 @@ const BlockLine = ({ state, hasStart, draggingBlock }) => {
               </GrayedOutBlock>
               {state[list].length
                 ? state[list].map((item, index) => (
-                    <Draggable
-                      key={item.id}
-                      draggableId={item.id}
-                      index={index}
-                    >
-                      {(provided, snapshot) => (
-                        <Item
-                          ref={provided.innerRef}
-                          innerRef={provided.innerRef}
-                          {...provided.draggableProps}
-                          {...provided.dragHandleProps}
-                          isDragging={snapshot.isDragging}
-                          style={provided.draggableProps.style}
-                        >
-                          <Tool>
-                            {item.content}
-                            {item.functionality}
-                          </Tool>
-                        </Item>
-                      )}
-                    </Draggable>
+                    <PopperAndItem key={index} item={item} index={index} />
                   ))
                 : !provided.placeholder && <Notice>Drop items here</Notice>}
               <Item>
