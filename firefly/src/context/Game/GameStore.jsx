@@ -25,6 +25,7 @@ export const GET_PROFILE_AND_AVATAR = "GET_PROFILE_AND_AVATAR";
 export const RESET_BLOCKS = "RESET_BLOCKS";
 export const GET_WORLDS = "GET_WORLDS";
 export const ADD_WORLD = "ADD_WORLD";
+export const REMOVE_WORLD = "REMOVE_WORLD";
 export const ADD_FIREFLY = "ADD_FIREFLY"
 
 function reducer(state, action){
@@ -35,19 +36,31 @@ function reducer(state, action){
             return {...state, worlds: newWorld}
 
         case GET_WORLDS:
-            console.log({...state, worlds: action.payload})
-            return {...state, worlds: action.payload}
-
+            console.log({...state, worlds: [...action.payload]})
+            return {...state, worlds: [...action.payload]}
+        case REMOVE_WORLD:
+            const newArr = state.worlds.filter(world => {
+                return world.id !== action.payload.id
+            });
+            // if(world.id === action.payload.id){
+            //     return false;
+            // } else {
+            //     return true;
+            // }
+            return {
+                ...state,
+                worlds: newArr 
+            }
         case ADD_FIREFLY:
-            const fireflyWorld = state.worlds.map(world => {
-                if(world.fireflies){
-                    return {...world, fireflies: [...world.fireflies, action.payload]}
-                }else{
-                    return {...world, fireflies: [action.payload]}
+            const addedFirefly = state.worlds.map(world => {
+                if(world.id === action.payload.world_id){
+                    return { ...world, fireflies: { ...world.fireflies, ...action.payload.firefly}}
+                } else {
+                    return world
                 }
             })
-            console.log({...state, worlds: fireflyWorld})
-            return {...state, worlds: fireflyWorld}
+            console.log({...state, worlds: addedFirefly})
+            return {...state, worlds: addedFirefly}
 
         case UPDATE_BLOCK:
             const newWorlds = state.worlds.map(world => {
