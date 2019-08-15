@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Droppable } from "react-beautiful-dnd";
 import StartBlockTarget from "./../../images/gameIcons/StartBlockTarget.svg";
 import EmptyBlockTarget from "./../../images/gameIcons/EmptyBlockTarget.svg";
-import PopperAndItem from "./PopperAndItem";
 import CodeBlock from "./CodeBlock";
 
 const List = styled.div`
@@ -52,6 +51,12 @@ const ButtonBox = styled.img`
 `;
 
 const BlockLine = ({ state, hasStart, draggingBlock }) => {
+  const [openPopper, setOpenPopper] = useState(false);
+
+  const togglePopper = () => {
+    setOpenPopper(!openPopper);
+  };
+
   return (
     <div>
       {Object.keys(state).map((list, i) => (
@@ -69,7 +74,13 @@ const BlockLine = ({ state, hasStart, draggingBlock }) => {
               </GrayedOutBlock>
               {state[list].length
                 ? state[list].map((item, index) => (
-                    <PopperAndItem key={index} item={item} index={index} />
+                    <CodeBlock
+                      key={index}
+                      item={item}
+                      index={index}
+                      openPopper={openPopper}
+                      togglePopper={togglePopper}
+                    />
                     // <CodeBlock item={item} index={index} />
                   ))
                 : !provided.placeholder && <Notice>Drop items here</Notice>}

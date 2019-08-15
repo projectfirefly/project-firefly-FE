@@ -63,10 +63,13 @@ const useStyles = makeStyles(theme => ({
 export default function Popper({
   children,
   onClick,
+  open,
   togglePalette,
   toggleTimer,
   toggleCount,
-  toggleSwitch
+  toggleSwitch,
+  checkedSwitch,
+  setCheckedSwitch
 }) {
   const classes = useStyles();
 
@@ -88,14 +91,17 @@ export default function Popper({
             : classes.none
         }
       >
-        {togglePalette ? (
+        {togglePalette && open ? (
           <PalettePopper />
-        ) : toggleTimer ? (
+        ) : toggleTimer && open ? (
           <TimerPopper />
-        ) : toggleCount ? (
+        ) : toggleCount && open ? (
           <CountPopper />
-        ) : toggleSwitch ? (
-          <SwitchPopper />
+        ) : toggleSwitch && open ? (
+          <SwitchPopper
+            checkedSwitch={checkedSwitch}
+            setCheckedSwitch={setCheckedSwitch}
+          />
         ) : null}
       </div>
     </div>

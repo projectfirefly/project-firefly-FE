@@ -38,13 +38,9 @@ const CustomSwitch = withStyles({
   track: { backgroundColor: "#D0CCFF" }
 })(Switch);
 
-const SwitchPopper = () => {
-  const [state, setState] = useState({
-    checkedA: false
-  });
-
-  const handleChange = name => event => {
-    setState({ ...state, [name]: event.target.checked });
+const SwitchPopper = ({ checkedSwitch, setCheckedSwitch }) => {
+  const handleChange = () => {
+    setCheckedSwitch(!checkedSwitch);
   };
 
   const classes = useStyles();
@@ -52,9 +48,8 @@ const SwitchPopper = () => {
     <div className={classes.container}>
       <span className={classes.text}>Off</span>
       <CustomSwitch
-        checked={state.checkedA}
-        onChange={handleChange("checkedA")}
-        value="checkedA"
+        checked={checkedSwitch}
+        onChange={() => handleChange()}
         inputProps={{ "aria-label": "secondary checkbox" }}
       />
       <span className={classes.text}>On</span>
