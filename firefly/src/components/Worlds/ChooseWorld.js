@@ -3,6 +3,7 @@ import chooseWorldStyles from "./ChooseWorldStyles";
 import WorldCard from "./WorldCard";
 import fireflyWorld1 from "./fireflyWorld1.png";
 import lockedWorld from "./lockedWorld.png";
+import { SecondaryButton } from "../../utils/buttons/SecondaryButton";
 
 const ChooseWorld = () => {
   const classes = chooseWorldStyles();
@@ -14,6 +15,12 @@ const ChooseWorld = () => {
         <WorldCard title={"Coming Soon"} img={lockedWorld} />
         <WorldCard title={"Coming Soon"} img={lockedWorld} />
         <WorldCard title={"Coming Soon"} img={lockedWorld} />
+
+        <div className={classes.buttonContainer}>
+          <div className={classes.backButton}>
+            <SecondaryButton text={"BACK"} />
+          </div>
+        </div>
       </div>
     </div>
   );

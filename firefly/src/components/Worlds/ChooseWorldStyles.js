@@ -8,7 +8,8 @@ const chooseWorldStyles = makeStyles({
     justifyContent: "center",
     alignItems: "center",
     width: "100%",
-    fontFamily: "'Nunito', sans-serif"
+    fontFamily: "'Nunito', sans-serif",
+    marginBottom: "50px"
   },
   title: {
     fontSize: "34px",
@@ -21,10 +22,10 @@ const chooseWorldStyles = makeStyles({
   worldContainer: {
     display: "flex",
     flexWrap: "wrap",
-    // border: "solid pink 1px",
-    width: "80%",
-    justifyContent: "space-around",
+    width: "65%",
+    justifyContent: "space-between",
     alignItems: "center"
+    // padding: "0 10%"
   },
   ///////// World Card Styling //////
   worldCard: {
@@ -34,18 +35,28 @@ const chooseWorldStyles = makeStyles({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: "20px",
-    boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.5)",
-    backgroundColor: "white",
+    borderRadius: "10px",
+    // boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.5)",
     marginBottom: "50px",
+    border: " 2px solid #abb0ba",
+    backgroundColor: " #ffff",
+    boxShadow: "0px 3px #8f96a3",
     h4: {
-      fontSize: "20px",
+      fontSize: "22px",
       color: "#152F04",
       fontWeight: "bold"
     }
   },
   worldCardImg: {
     width: "50%"
+  },
+  buttonContainer: {
+    marginTop: "-20px",
+    width: "100%"
+    // display: "block"
+  },
+  backButton: {
+    width: "25%"
   }
 });
 
