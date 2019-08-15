@@ -5,7 +5,7 @@ import Toolbox from "./Toolbox";
 import DropDelete from "./DropDelete";
 import uuid from "uuid/v4";
 import styled from "styled-components";
-import uifx from 'uifx';
+import uifx from "uifx";
 import { DragDropContext } from "react-beautiful-dnd";
 import StartBlock from "../../images/gameIcons/StartBlock.svg";
 import BlueBlockLeftSideEndState from "../../images/gameIcons/BlueBlockLeftSideEndState.svg";
@@ -19,16 +19,15 @@ import ToggleOffIcon from "../../images/gameIcons/ToggleOffIcon.svg";
 import NumberIcon1 from "../../images/gameIcons/NumberIcon1.svg";
 import GridIcon from "../../images/gridBackground.png";
 
-//importing the sound 
-import clickMP3 from '../../assets/sounds/click.mp3';
-import metalDropMP3 from '../../assets/sounds/metalDrop.mp3';
-import paperMP3 from '../../assets/sounds/crumblingPaper.mp3';
+//importing the sound
+import clickMP3 from "../../assets/sounds/click.mp3";
+import metalDropMP3 from "../../assets/sounds/metalDrop.mp3";
+import paperMP3 from "../../assets/sounds/crumblingPaper.mp3";
 
-//making the sounds variable 
-const click = new uifx({asset: clickMP3});
-const metal = new uifx({asset: metalDropMP3});
-const paper = new uifx({asset: paperMP3});
-
+//making the sounds variable
+const click = new uifx({ asset: clickMP3 });
+const metal = new uifx({ asset: metalDropMP3 });
+const paper = new uifx({ asset: paperMP3 });
 
 const Board = styled.div`
   /* min-height: 100vh; */
@@ -164,12 +163,10 @@ const Game = () => {
   const [tools, setTools] = useState(ITEMS);
   const [hasStart, setHasStart] = useState(false);
   const [draggingBlock, isDraggingBlock] = useState(false);
-  
 
   const onDragStart = () => {
-  isDraggingBlock(true);
-  // to play default sound 'click' when picking up the block
-  click.play();
+    isDraggingBlock(true);
+    click.play();
   };
 
   const onDragEnd = result => {
@@ -207,8 +204,7 @@ const Game = () => {
           return tool.id === result.draggableId
             ? { ...tool, used: true }
             : { ...tool };
-            
-        }),
+        })
       );
     }
 
@@ -216,7 +212,6 @@ const Game = () => {
       //Filters out the block that got put into trash
       const realList = list[`${source.droppableId}`].filter(item => {
         if (item.id === result.draggableId && item.rsi <= 1) {
-          
           if (item.id === result.draggableId && item.rsi === 0) {
             setHasStart(false);
           }
@@ -227,7 +222,6 @@ const Game = () => {
                 : { ...tool };
             })
           );
-          
         }
         return item.id !== result.draggableId;
       });
@@ -259,7 +253,7 @@ const Game = () => {
             source,
             destination
           )
-        }); 
+        });
         // to play default drop sound 'metal' when dropping the block
         metal.play();
         break;

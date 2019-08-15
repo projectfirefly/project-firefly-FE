@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Droppable } from "react-beautiful-dnd";
 import StartBlockTarget from "./../../images/gameIcons/StartBlockTarget.svg";
 import EmptyBlockTarget from "./../../images/gameIcons/EmptyBlockTarget.svg";
+import PopperAndItem from "./PopperAndItem";
 import CodeBlock from "./CodeBlock";
 
 const List = styled.div`
@@ -68,7 +69,8 @@ const BlockLine = ({ state, hasStart, draggingBlock }) => {
               </GrayedOutBlock>
               {state[list].length
                 ? state[list].map((item, index) => (
-                    <CodeBlock item={item} index={index} />
+                    <PopperAndItem key={index} item={item} index={index} />
+                    // <CodeBlock item={item} index={index} />
                   ))
                 : !provided.placeholder && <Notice>Drop items here</Notice>}
               <Item>
