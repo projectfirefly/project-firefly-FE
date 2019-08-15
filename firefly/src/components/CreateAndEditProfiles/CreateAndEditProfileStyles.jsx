@@ -84,11 +84,12 @@ const createProfileStyles = makeStyles(theme => ({
     ...theme.secondaryButton,
     position: "absolute",
     color: "#c7cbd1",
-    padding: ".5rem 1rem",
-    margin: "1% 0 -1% -1%",
+    padding: ".8rem 1rem",
+    fontSize: "2rem",
+    margin: "2% 0 -2%",
     "&:active": {
       boxShadow: "none",
-      margin: "1.2% 0 -1.2% -1%"
+      margin: "2.2% 0 -2.2%"
     },
     "&:hover": {
       cursor: "pointer"

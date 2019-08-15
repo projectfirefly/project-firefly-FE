@@ -117,7 +117,7 @@ const EditProfilePage = props => {
           <div className={classes.cardContainer}>
             <div className={classes.deleteButtonContainer}>
               <button className={classes.delete} onClick={() => setOpen(true)}>
-                <Typography><FontAwesomeIcon icon="trash-alt" /></Typography>
+                <FontAwesomeIcon icon="trash-alt" />
               </button>
             </div>
             <div className={classes.card}>
@@ -135,7 +135,7 @@ const EditProfilePage = props => {
               </div>
               <div className={classes.inputContainer}>
                 <div className={classes.firstName}>
-                  <h2 className={classes.h2}>First Name</h2>
+                <Typography variant="h2" className={classes.nameHeader}>First Name</Typography>
                   <input
                     type="text"
                     name="firstName"
@@ -145,7 +145,7 @@ const EditProfilePage = props => {
                   />
                 </div>
                 <div className={classes.lastName}>
-                  <h2 className={classes.h2}>Last Name</h2>
+                <Typography variant="h2" className={classes.nameHeader}>Last Name</Typography>
                   <input
                     type="text"
                     name="lastName"
