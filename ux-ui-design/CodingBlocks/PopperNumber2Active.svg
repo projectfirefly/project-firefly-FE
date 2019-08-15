@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48px" height="48px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 57 (83077) - https://sketch.com -->
+    <title>PopperNumber2Active</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Style-Guide" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="CodingBlocks" transform="translate(-1565.000000, -1621.000000)">
+            <g id="Group-6" transform="translate(787.000000, 243.000000)">
+                <g id="PopperNumber2Active" transform="translate(772.000000, 1374.000000)">
+                    <rect id="Rectangle" x="0" y="0" width="59.3137255" height="55"></rect>
+                    <circle id="Oval" stroke="#5B4EFF" stroke-width="2" fill="#D0CCFF" cx="30" cy="28" r="23"></circle>
+                    <text id="2" font-family="Nunito-Bold, Nunito" font-size="30" font-weight="bold" fill="#5B4EFF">
+                        <tspan x="21" y="38">2</tspan>
+                    </text>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
