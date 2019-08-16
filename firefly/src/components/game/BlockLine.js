@@ -72,6 +72,8 @@ const BlockLine = ({ state, hasStart, draggingBlock }) => {
               <GrayedOutBlock style={hasStart ? { display: "none" } : null}>
                 <ButtonBox src={StartBlockTarget} alt="startblock" />
               </GrayedOutBlock>
+
+              {/* Mapping through state[list] to create each code block */}
               {state[list].length
                 ? state[list].map((item, index) => (
                     <CodeBlock
@@ -81,7 +83,6 @@ const BlockLine = ({ state, hasStart, draggingBlock }) => {
                       openPopper={openPopper}
                       togglePopper={togglePopper}
                     />
-                    // <CodeBlock item={item} index={index} />
                   ))
                 : !provided.placeholder && <Notice>Drop items here</Notice>}
               <Item>
