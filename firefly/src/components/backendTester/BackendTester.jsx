@@ -1,12 +1,13 @@
 import React, { useState, useContext } from 'react'
 import firebase from 'firebase';
-import { addProfile, addWorld, removeWorld, getWorld, addFirefly, updateBlocks} from "../../utils/firebaseInteractions";
+import { addProfile, addWorld, removeWorld, getWorld, addFirefly, removeFirefly, updateBlocks} from "../../utils/firebaseInteractions";
 
 import { gameContext, ADD_WORLD, GET_WORLDS, UPDATE_BLOCK, ADD_FIREFLY} from '../../context/Game/GameStore';
 import { childContext, ADD_PROFILE } from '../../context/ChildProfiles/ChildProfileStore'
 
 const BackendTester = () => {
 
+  const [requiredId, setRequiredId] = useState({});
   const [profiles, setProfiles] = useState({});
   const [context, dispatch] = useContext(childContext);
   const [worldContext, worldDispatch] = useContext(gameContext)
@@ -23,26 +24,30 @@ const BackendTester = () => {
   }
 
   const worldRemoveTest = {
-    id: "dIDbUeNYFiTuTpueruv7",
+    id: requiredId.world_id,
   }
 
   const newBlock = {
-    firefly_id: "y2h8RvBJinWoI1n8NWmT",
+    firefly_id: requiredId.firefly_id,
     x: null,
     y: null,
     codeBlocks: ["timer", "flash"]
   }
 
   const requiredIds = {
-    firefly_id: "y2h8RvBJinWoI1n8NWmT",
-    world_id: "dIDbUeNYFiTuTpueruv7"
+    firefly_id: requiredId.firefly_id,
+    world_id: requiredId.world_id
   }
 
   const addNewFirefly = () => {
-    addFirefly(context.selected.id, "dIDbUeNYFiTuTpueruv7", worldDispatch)
+    addFirefly(context.selected.id, requiredId.world_id, worldDispatch)
   }
   const updateBlock = () => {
     updateBlocks(context.selected.id, requiredIds, newBlock, worldDispatch)
+  }
+
+  const removeFireflys = () => {
+    removeFirefly(context.selected.id, requiredIds, worldDispatch)
   }
 
   const getWorlds = () => {
@@ -99,7 +104,12 @@ const BackendTester = () => {
       <button onClick={getWorlds}>Get Worlds</button>
       <button onClick={removeWorlds}>Remove World</button>
       <button onClick={addNewFirefly}>Add New Firefly</button>
+      <button onClick={removeFireflys}>Remove Firefly</button>
       <button onClick={updateBlock}>Add Block to Firefly</button>
+      <br>
+      </br>
+      Firefly Id: <input value={requiredId.firefly_id} onChange={e => setRequiredId({...requiredId, firefly_id: e.target.value})} />
+      World Id: <input value={requiredId.world_id} onChange={e => setRequiredId({...requiredId, world_id: e.target.value})}/> 
     </div>
   )
 }
