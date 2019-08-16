@@ -17,7 +17,13 @@ const FFbox = ({ tools }) => {
     <FireFlyBox
       style={!tools[0].used || !tools[1].used ? { visibility: "hidden" } : null}
     >
-      <FFanim height={250} width={250} accessory="nerdglasses" color={352} />
+      <FFanim
+        height={250}
+        width={250}
+        accessory="nerdglasses"
+        color={352}
+        awake={false}
+      />
     </FireFlyBox>
   );
 };
