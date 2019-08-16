@@ -76,6 +76,10 @@ const items = [
   {
     path: "/chooseworld",
     text: "Choose World"
+  },
+  {
+    path: "/fireflyworld",
+    text: "Firefly World"
   }
 ];
 
