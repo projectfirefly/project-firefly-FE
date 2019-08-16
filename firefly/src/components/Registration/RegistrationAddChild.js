@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 
 import Firefly from "./../../images/Logo.png";
 
-import "./../../styles/RegistrationStepTwo.scss";
+import addChildStyles from "./addChildStyles";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { Typography } from "@material-ui/core";
 
 library.add(faTimes);
 
@@ -15,58 +16,84 @@ const RegistrationAddChild = ({
   idx,
   profile,
   profiles,
-  handleChanges
+  handleChanges,
 }) => {
+  const [touched, setTouched] = useState({
+    first_name: false,
+    last_name: false,
+  });
+
+  const toggleTouched = e => {
+    setTouched({
+      ...touched,
+      [e.target.name]: true,
+    });
+  };
+
   const handleChange = e => {
     handleChanges(e, idx);
   };
 
+  const classes = addChildStyles();
+
   return (
-    <div className="registration-forms-box-2">
+    <div className={classes.paper}>
       <FontAwesomeIcon
         icon="times"
-        className={profiles.length === 1 ? "none" : "close-icon"}
+        className={profiles.length === 1 ? classes.hidden : classes.close}
         onClick={() => clickedClose(idx)}
       />
-      <form className="registration-forms-box__formik">
-        <div className="registration-forms-field-container">
-          <div className="registration-firefly-container">
-            <img
-              className="registration-firefly-container__image"
-              src={Firefly}
-              alt="firefly"
+      <div className={classes.container}>
+          <img
+            className={classes.firefly}
+            src={Firefly}
+            alt="firefly"
+          />
+        <div className={classes.form}>
+          <div className={classes.name}>
+            <Typography variant="h3">First Name</Typography>
+            <input
+              type="text"
+              name="first_name"
+              className={classes.input}
+              value={profile.first_name}
+              onChange={e => handleChange(e)}
+              onBlur={toggleTouched}
             />
+            <Typography
+                variant="subtitle2"
+                className={
+                  profile.first_name === "" && touched.first_name === true
+                    ? classes.error
+                    : classes.hiddenError
+                }
+              >
+              *Required
+            </Typography>
           </div>
-          <div className="registration-forms-field-two">
-            <div className="registration-forms-field-two__field">
-              <h2 className="registration-forms-field-title-two">First Name</h2>
-              <input
-                type="text"
-                name="first_name"
-                className="registration-forms-box__field"
-                value={profile.first_name}
-                onChange={e => handleChange(e)}
-              />
-              <p className={profile.first_name === "" ? "error-step2" : "none"}>
-                *Required
-              </p>
-            </div>
-            <div className="registration-forms-field-two__field">
-              <h2 className="registration-forms-field-title-two">Last Name</h2>
-              <input
-                type="text"
-                name="last_name"
-                value={profile.last_name}
-                onChange={e => handleChange(e)}
-                className="registration-forms-box__field"
-              />
-              <p className={profile.last_name === "" ? "error-step2" : "none"}>
-                *Required
-              </p>
-            </div>
+          <div className={classes.name}>
+            <Typography variant="h3">Last Name</Typography>
+            <input
+              type="text"
+              name="last_name"
+              value={profile.last_name}
+              onChange={e => handleChange(e)}
+              onBlur={toggleTouched}
+              className={classes.input}
+            />
+            <Typography
+                variant="subtitle2"
+                className={
+                  profile.last_name === "" && touched.last_name === true
+                    ? classes.error
+                    : classes.hiddenError
+                }
+              >
+              *Required
+            </Typography>
           </div>
         </div>
-      </form>
+      </div>
     </div>
   );
 };

@@ -27,7 +27,7 @@ const stepOneStyles = makeStyles(theme => ({
     width: "100%",
     justifyContent: "space-around",
     alignItems: "space-around",
-    margin: ".5rem 0"
+    margin: ".5rem 0",
   },
   smallInputSizer: {
     display: "flex",
@@ -38,14 +38,14 @@ const stepOneStyles = makeStyles(theme => ({
     ...theme.input,
     width: "90%",
     margin: "1rem .2rem",
-    padding: "1rem 1rem"
+    padding: "1rem 1rem",
   },
   bigInputContainer: {
     display: "flex",
     flexDirection: "column",
     width: "100%",
     alignItems: "center",
-    margin: ".5rem 0"
+    margin: ".5rem 0",
   },
   bigInputSizer: {
     display: "flex",
@@ -56,7 +56,7 @@ const stepOneStyles = makeStyles(theme => ({
     ...theme.input,
     width: "95.5%",
     margin: "1rem 0",
-    padding: "1rem 1rem"
+    padding: "1rem 1rem",
   },
   hidden: {
     visibility: "hidden",
@@ -69,12 +69,35 @@ const stepOneStyles = makeStyles(theme => ({
   },
   nextButtonDisabled: {
     ...theme.disabledButton,
-    padding: "1rem 5rem",
+    padding: ".7rem 5rem",
   },
   nextButton: {
     ...theme.primaryButton,
-    padding: "1rem 5rem",
-  }
+    padding: ".7rem 5rem",
+  },
+  backButton: {
+    ...theme.secondaryButton,
+    padding: ".7rem 5rem",
+  },
+  addChild: {
+    ...theme.secondaryButton,
+    padding: "1.5rem 0",
+  },
+  childrenContainer: {
+    display: "flex",
+    flexDirection: "column",
+    height: "50vh",
+    overflowY: "scroll",
+    zIndex: "10",
+    marginBottom: "3rem",
+    "&::-webkit-scrollbar": {
+      width: "1%",
+    },
+    "&::-webkit-scrollbar-thumb": {
+      background: "#b6e699",
+      borderRadius: "10px",
+    },
+  },
 }));
 
 export default stepOneStyles;

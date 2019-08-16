@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Typography } from "@material-ui/core";
 
-import stepOneStyles from "./StepOneStyles";
+import stepOneStyles from "./stepOneStyles";
 
 const RegistrationStepOne = ({
   handleStepOneChange,
@@ -168,7 +168,7 @@ const RegistrationStepOne = ({
         </div>
         <div className={classes.buttonContainer}>
           <button className={step === 0 ? classes.hidden : classes.backButton}>
-            Back
+            <Typography variant="button">Back</Typography>
           </button>
 
           <button
@@ -195,7 +195,7 @@ const RegistrationStepOne = ({
                 : null
             }
           >
-            Next
+            <Typography variant="button">Next</Typography>
           </button>
         </div>
       </div>
