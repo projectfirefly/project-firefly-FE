@@ -32,6 +32,11 @@ const useTheme = {
       letterSpacing: ".1rem",
       fontWeight: "600",
       textDecoration: "none",
+    },
+    //subtitle2 is for errors
+    subtitle2: {
+      color: "#f44336",
+      fontSize: "1.4rem",
     }
   },
   paper: {
@@ -94,6 +99,22 @@ const useTheme = {
       boxShadow: "none",
       margin: "3px 0px -3px 0px"
     },
+    "&:focus": {
+      outline: "none",
+    }
+  },
+  disabledButton: {
+    backgroundColor: "#e3e5e8",
+    color: "#ffffff",
+    textTransform: "uppercase",
+    fontSize: "1.3rem",
+    border: "none",
+    borderRadius: "10px",
+    boxShadow: "0px 3px #c7cbd1",
+    cursor: "pointer",
+    opacity: "0.92",
+    letterSpacing: "1px",
+    justifyContent: "center",
     "&:focus": {
       outline: "none",
     }

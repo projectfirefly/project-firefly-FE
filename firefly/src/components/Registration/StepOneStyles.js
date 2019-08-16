@@ -7,13 +7,19 @@ const stepOneStyles = makeStyles(theme => ({
     alignItems: "center",
     width: "100%",
   },
+  sizingContainer: {
+    display: "flex",
+    flexDirection: "column",
+    width: "70%",
+  },
   formsContainer: {
     ...theme.paper,
+    boxSizing: "border-box",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    width: "65%",
-    padding: "4rem 3rem",
+    width: "100%",
+    padding: "2rem 3rem",
     marginTop: "1rem",
   },
   smallInputContainer: {
@@ -54,6 +60,20 @@ const stepOneStyles = makeStyles(theme => ({
   },
   hidden: {
     visibility: "hidden",
+  },
+  buttonContainer: {
+    display: "flex",
+    justifyContent: "space-between",
+    width: "100%",
+    marginTop: "3rem",
+  },
+  nextButtonDisabled: {
+    ...theme.disabledButton,
+    padding: "1rem 5rem",
+  },
+  nextButton: {
+    ...theme.primaryButton,
+    padding: "1rem 5rem",
   }
 }));
 
