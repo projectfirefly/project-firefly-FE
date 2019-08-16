@@ -275,7 +275,7 @@ const Game = () => {
     <Board>
       <DragDropContext onDragEnd={onDragEnd} onDragStart={onDragStart}>
         <Toolbox tools={tools} />
-        <FFbox tools={tools} />
+        <FFbox tools={tools} code={list} />
         <GameBoard
           state={list}
           hasStart={hasStart}
