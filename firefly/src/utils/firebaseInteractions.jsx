@@ -14,6 +14,7 @@ import {
   GET_WORLDS,
   ADD_WORLD,
   ADD_FIREFLY,
+  REMOVE_FIREFLY,
   UPDATE_BLOCK,
   REMOVE_WORLD
 } from "../context/Game/GameStore";
@@ -177,6 +178,27 @@ export const addFirefly = async (child, world_id, dispatch) => {
         });
     });
 };
+
+export const removeFirefly = async (child, requiredIds, dispatch) => {
+  const db = firebase.firestore();
+  const uid = firebase.auth().currentUser.uid;
+
+  const {firefly_id, world_id} = requiredIds;
+
+  db.collection("users")
+    .doc(uid)
+    .collection("profiles")
+    .doc(child)
+    .collection("worlds")
+    .doc(world_id)
+    .collection("fireflies")
+    .doc(firefly_id)
+    .delete()
+
+  dispatch({ type: REMOVE_FIREFLY, payload: requiredIds });
+
+} 
+
 //Add block to Firefly
 export const updateBlocks = async (child, requiredIds, payload, dispatch ) => {
   const db = firebase.firestore();
