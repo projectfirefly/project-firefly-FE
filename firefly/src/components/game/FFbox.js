@@ -8,7 +8,9 @@ const FireFlyBox = styled.div`
   padding: 20px 0;
   margin: 5% auto;
   border-radius: 20px;
-  background-image: linear-gradient(#382eb8, #7068ff);
+
+  background-image: linear-gradient(#555, #fff);
+  /* background-image: linear-gradient(#382eb8, #7068ff); */
   box-shadow: 0px 2px 4px #000000;
 `;
 
