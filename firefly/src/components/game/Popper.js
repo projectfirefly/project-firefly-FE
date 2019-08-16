@@ -69,7 +69,13 @@ export default function Popper({
   toggleCount,
   toggleSwitch,
   checkedSwitch,
-  setCheckedSwitch
+  setCheckedSwitch,
+  number,
+  setNumber,
+  time,
+  setTime,
+  color,
+  setColor
 }) {
   const classes = useStyles();
 
@@ -92,11 +98,11 @@ export default function Popper({
         }
       >
         {togglePalette && open ? (
-          <PalettePopper />
+          <PalettePopper color={color} setColor={setColor} />
         ) : toggleTimer && open ? (
-          <TimerPopper />
+          <TimerPopper time={time} setTime={setTime} />
         ) : toggleCount && open ? (
-          <CountPopper />
+          <CountPopper number={number} setNumber={setNumber} />
         ) : toggleSwitch && open ? (
           <SwitchPopper
             checkedSwitch={checkedSwitch}

@@ -45,141 +45,99 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const CountPopper = () => {
+const CountPopper = ({ number, setNumber }) => {
   const classes = useStyles();
-
-  const [numberOne, setNumberOne] = useState(true);
-  const [numberTwo, setNumberTwo] = useState(false);
-  const [numberThree, setNumberThree] = useState(false);
-  const [numberFour, setNumberFour] = useState(false);
-  const [numberFive, setNumberFive] = useState(false);
-  const [numberSix, setNumberSix] = useState(false);
-  const [numberSeven, setNumberSeven] = useState(false);
-  const [numberEight, setNumberEight] = useState(false);
-  const [numberNine, setNumberNine] = useState(false);
-
-  const [activeNumber, setActiveNumber] = useState(
-    numberOne
-      ? "one"
-      : numberTwo
-      ? "two"
-      : numberThree
-      ? "three"
-      : numberFour
-      ? "four"
-      : numberFive
-      ? "five"
-      : numberSix
-      ? "six"
-      : numberSeven
-      ? "seven"
-      : numberEight
-      ? "eight"
-      : "nine"
-  );
-
-  const pushActiveNumber = active => {
-    setNumberOne(active === "one" ? true : false);
-    setNumberTwo(active === "two" ? true : false);
-    setNumberThree(active === "three" ? true : false);
-    setNumberFour(active === "four" ? true : false);
-    setNumberFive(active === "five" ? true : false);
-    setNumberSix(active === "six" ? true : false);
-    setNumberSeven(active === "seven" ? true : false);
-    setNumberEight(active === "eight" ? true : false);
-    setNumberNine(active === "nine" ? true : false);
-  };
 
   return (
     <div className={classes.container}>
       <div
         className={
-          numberOne
+          number === 1
             ? classes.numberActiveIconContainer
             : classes.numberIconContainer
         }
-        onClick={() => pushActiveNumber("one")}
+        onClick={() => setNumber(1)}
       >
         1
       </div>
 
       <div
         className={
-          numberTwo
+          number === 2
             ? classes.numberActiveIconContainer
             : classes.numberIconContainer
         }
-        onClick={() => pushActiveNumber("two")}
+        onClick={() => setNumber(2)}
       >
         2
       </div>
       <div
         className={
-          numberThree
+          number === 3
             ? classes.numberActiveIconContainer
             : classes.numberIconContainer
         }
-        onClick={() => pushActiveNumber("three")}
+        onClick={() => setNumber(3)}
       >
         3
       </div>
       <div
         className={
-          numberFour
+          number === 4
             ? classes.numberActiveIconContainer
             : classes.numberIconContainer
         }
-        onClick={() => pushActiveNumber("four")}
+        onClick={() => setNumber(4)}
       >
         4
       </div>
       <div
         className={
-          numberFive
+          number === 5
             ? classes.numberActiveIconContainer
             : classes.numberIconContainer
         }
-        onClick={() => pushActiveNumber("five")}
+        onClick={() => setNumber(5)}
       >
         5
       </div>
       <div
         className={
-          numberSix
+          number === 6
             ? classes.numberActiveIconContainer
             : classes.numberIconContainer
         }
-        onClick={() => pushActiveNumber("six")}
+        onClick={() => setNumber(6)}
       >
         6
       </div>
       <div
         className={
-          numberSeven
+          number === 7
             ? classes.numberActiveIconContainer
             : classes.numberIconContainer
         }
-        onClick={() => pushActiveNumber("seven")}
+        onClick={() => setNumber(7)}
       >
         7
       </div>
       <div
         className={
-          numberEight
+          number === 8
             ? classes.numberActiveIconContainer
             : classes.numberIconContainer
         }
-        onClick={() => pushActiveNumber("eight")}
+        onClick={() => setNumber(8)}
       >
         8
       </div>
       <div
         className={
-          numberNine
+          number === 9
             ? classes.numberActiveIconContainer
             : classes.numberIconContainer
         }
-        onClick={() => pushActiveNumber("nine")}
+        onClick={() => setNumber(9)}
       >
         9
       </div>
