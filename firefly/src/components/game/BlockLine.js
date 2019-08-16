@@ -1,30 +1,30 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import GreenBlock from "../../assets/icons/codeblocks/GreenBlock.svg";
-import { Droppable, Draggable } from "react-beautiful-dnd";
+import { Droppable } from "react-beautiful-dnd";
+import StartBlockTarget from "./../../images/gameIcons/StartBlockTarget.svg";
+import EmptyBlockTarget from "./../../images/gameIcons/EmptyBlockTarget.svg";
+import CodeBlock from "./CodeBlock";
+
+const List = styled.div`
+  height: 100%;
+  min-height: 90px;
+  background: none;
+  border-radius: 16px;
+  width: 88%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  margin-left: 130px;
+  display: -webkit-box;
+  align-items: center;
+`;
 
 const Item = styled.div`
   display: flex;
   user-select: none;
-  background-image: url("${GreenBlock}");
-  width: 78px;
-  height: 77px;
-  margin-left: -8px;
-  border: 1px ${props => (props.isDragging ? "dashed #000" : " ")};
-`;
-
-const List = styled.div`
-  min-height: 100px;
-  border: 2px ${props => (props.isDraggingOver ? "solid #000" : "solid #ddd")};
-  background: none;
+  margin: 0 -10px 0 0;
+  align-items: flex-start;
+  align-content: flex-start;
   border-radius: 3px;
-  font-family: sans-serif;
-  width: 500px;
-`;
-
-const Container = styled(List)`
-  display: flex;
-  margin-left: 120px;
 `;
 
 const Notice = styled.div`
@@ -39,41 +39,70 @@ const Notice = styled.div`
   color: #aaa;
 `;
 
-const BlockLine = ({ state }) => {
+const GrayedOutBlock = styled.div`
+  display: flex;
+  opacity: 0.7;
+  position: relative;
+  width: 97px;
+`;
+
+const ButtonBox = styled.img`
+  width: 100%;
+`;
+
+const BlockLine = ({ state, hasStart, draggingBlock }) => {
+  const [openPopper, setOpenPopper] = useState(false);
+
+  const togglePopper = () => {
+    setOpenPopper(!openPopper);
+  };
+
   return (
     <div>
       {Object.keys(state).map((list, i) => (
         <Droppable key={list} droppableId={list} direction="horizontal">
           {(provided, snapshot) => (
-            <Container
+            <List
               ref={provided.innerRef}
               innerRef={provided.innerRef}
               isDraggingOver={snapshot.isDraggingOver}
             >
+              {/* Conditional rendering of first start block in code line */}
+
+              <GrayedOutBlock style={hasStart ? { display: "none" } : null}>
+                <ButtonBox src={StartBlockTarget} alt="startblock" />
+              </GrayedOutBlock>
               {state[list].length
                 ? state[list].map((item, index) => (
-                    <Draggable
-                      key={item.id}
-                      draggableId={item.id}
+                    <CodeBlock
+                      key={index}
+                      item={item}
                       index={index}
-                    >
-                      {(provided, snapshot) => (
-                        <Item
-                          ref={provided.innerRef}
-                          innerRef={provided.innerRef}
-                          {...provided.draggableProps}
-                          {...provided.dragHandleProps}
-                          isDragging={snapshot.isDragging}
-                          style={provided.draggableProps.style}
-                        >
-                          {/* {item.content} */}
-                        </Item>
-                      )}
-                    </Draggable>
+                      openPopper={openPopper}
+                      togglePopper={togglePopper}
+                    />
+                    // <CodeBlock item={item} index={index} />
                   ))
                 : !provided.placeholder && <Notice>Drop items here</Notice>}
+              <Item>
+                <GrayedOutBlock
+                  style={
+                    draggingBlock && state[list].length > 0
+                      ? {
+                          marginLeft: "10px",
+                          position: "relative",
+                          zIndex: "-1"
+                        }
+                      : {
+                          display: "none"
+                        }
+                  }
+                >
+                  <ButtonBox src={EmptyBlockTarget} alt="emptyblock" />
+                </GrayedOutBlock>
+              </Item>
               {provided.placeholder}
-            </Container>
+            </List>
           )}
         </Droppable>
       ))}

@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 //Context
 import { childContext } from "../../context/ChildProfiles/ChildProfileStore";
@@ -9,13 +10,11 @@ import {
 
 import { updateProfile, removeProfile } from "../../utils/firebaseInteractions";
 
-import createProfileStyles from "./CreateAndEditProfileStyles";
 
-import Icon from "../../assets/icons";
 
-import { Link } from "react-router-dom";
 
-//Font Awesome
+
+//Font Awesome & Material UI & Styling
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
@@ -26,6 +25,11 @@ import {
   DialogContentText,
   DialogActions
 } from "@material-ui/core";
+
+import Icon from "../../assets/icons";
+import createProfileStyles from "./CreateAndEditProfileStyles";
+
+//components
 import { SecondaryButton } from "../../utils/buttons/SecondaryButton";
 import { PrimaryButton } from "../../utils/buttons/PrimaryButton";
 

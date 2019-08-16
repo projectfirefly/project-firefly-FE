@@ -1,6 +1,5 @@
 import React, {useContext} from "react";
 import "../../styles/MyAccountPage.scss";
-import { Link } from "react-router-dom";
 
 import Icon from "../../assets/icons";
 import { FaPen } from "react-icons/fa";
@@ -11,7 +10,7 @@ import { UPDATE_SELECTED } from "../../context/ChildProfiles/ChildProfileStore";
 
 const ProfileCard = (props) => {
 
-  const [context, dispatch] = useContext(childContext)
+  const [, dispatch] = useContext(childContext)
 
   const editButton = async () => {
     console.log(props.id)

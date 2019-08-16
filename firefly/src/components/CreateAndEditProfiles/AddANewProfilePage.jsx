@@ -1,21 +1,23 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 
-import createProfileStyles from "./CreateAndEditProfileStyles";
-
 import { addProfile } from "../../utils/firebaseInteractions";
 
 import { childContext } from "../../context/ChildProfiles/ChildProfileStore";
 import { ADD_PROFILE } from "../../context/ChildProfiles/ChildProfileStore";
 
+//Styling
 import Icon from "../../assets/icons";
+import createProfileStyles from "./CreateAndEditProfileStyles";
+
+//Button Components
 import { SecondaryButton } from "../../utils/buttons/SecondaryButton";
 import { PrimaryButton } from "../../utils/buttons/PrimaryButton";
 
 const AddANewProfilePage = props => {
   const classes = createProfileStyles();
 
-  const [childProfileState, dispatch] = useContext(childContext);
+  const [, dispatch] = useContext(childContext);
 
   const [updatedProfile, setUpdatedProfile] = useState({
     first_name: "",

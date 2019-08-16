@@ -1,15 +1,15 @@
 import React, { useState, useContext } from 'react'
-import { axiosWithAuth } from '../../utils/axiosWithAuth';
 import firebase from 'firebase';
-import { addProfile } from "../../utils/firebaseInteractions";
+import { addProfile, addWorld, removeWorld, getWorld, addFirefly, updateBlocks} from "../../utils/firebaseInteractions";
 
-import { childContext, UPDATE_COLOR, UPDATE_SELECTED, ADD_PROFILE } from '../../context/ChildProfiles/ChildProfileStore'
+import { gameContext, ADD_WORLD, GET_WORLDS, UPDATE_BLOCK, ADD_FIREFLY} from '../../context/Game/GameStore';
+import { childContext, ADD_PROFILE } from '../../context/ChildProfiles/ChildProfileStore'
 
 const BackendTester = () => {
 
   const [profiles, setProfiles] = useState({});
-
   const [context, dispatch] = useContext(childContext);
+  const [worldContext, worldDispatch] = useContext(gameContext)
 
   const db = firebase.firestore();
 
@@ -17,6 +17,45 @@ const BackendTester = () => {
     first_name: "asdf",
     last_name: "fdsa"
   };
+
+  const worldTest = {
+    worldName: "test2"
+  }
+
+  const worldRemoveTest = {
+    id: "dIDbUeNYFiTuTpueruv7",
+  }
+
+  const newBlock = {
+    firefly_id: "y2h8RvBJinWoI1n8NWmT",
+    x: null,
+    y: null,
+    codeBlocks: ["timer", "flash"]
+  }
+
+  const requiredIds = {
+    firefly_id: "y2h8RvBJinWoI1n8NWmT",
+    world_id: "dIDbUeNYFiTuTpueruv7"
+  }
+
+  const addNewFirefly = () => {
+    addFirefly(context.selected.id, "dIDbUeNYFiTuTpueruv7", worldDispatch)
+  }
+  const updateBlock = () => {
+    updateBlocks(context.selected.id, requiredIds, newBlock, worldDispatch)
+  }
+
+  const getWorlds = () => {
+    getWorld(context.selected.id, worldDispatch);
+  }
+
+  const removeWorlds = () => {
+    removeWorld(context.selected.id, worldRemoveTest, worldDispatch);
+  }
+
+  const addNewWorld = () => {
+    addWorld(context.selected.id, worldTest, worldDispatch)
+  }
 
   const get = async () => {
     const uid = await firebase.auth().currentUser.uid;
@@ -50,11 +89,17 @@ const BackendTester = () => {
   }
 
   return (
+    console.log("test"),
     <div>
       <button onClick={get}>GET HERE</button>
       <button onClick={create}>Create Child</button>
       <button onClick={update}>Update Child</button>
       <button onClick={logContext}>Log Context</button>
+      <button onClick={addNewWorld}>Add World</button>
+      <button onClick={getWorlds}>Get Worlds</button>
+      <button onClick={removeWorlds}>Remove World</button>
+      <button onClick={addNewFirefly}>Add New Firefly</button>
+      <button onClick={updateBlock}>Add Block to Firefly</button>
     </div>
   )
 }

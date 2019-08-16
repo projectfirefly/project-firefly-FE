@@ -1,18 +1,71 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import FFbox from "./FFbox";
 import GameBoard from "./BlockLine";
 import Toolbox from "./Toolbox";
 import DropDelete from "./DropDelete";
 import uuid from "uuid/v4";
 import styled from "styled-components";
-import { makeStyles } from "@material-ui/styles";
-
+import uifx from "uifx";
 import { DragDropContext } from "react-beautiful-dnd";
+import StartBlock from "../../images/gameIcons/StartBlock.svg";
+import BlueBlockLeftSideEndState from "../../images/gameIcons/BlueBlockLeftSideEndState.svg";
+import GreenBlockRightSideEndState from "../../images/gameIcons/GreenBlockRightSideEndState.svg";
+import RepeatIcon from "../../images/gameIcons/RepeatIcon.svg";
+import LightbulbIcon from "../../images/gameIcons/LightbulbIcon.svg";
+import ClockIcon from "../../images/gameIcons/ClockIcon.svg";
+import PlayCircleIcon from "../../images/gameIcons/PlayCircleIcon.svg";
+import PaletteIcon from "../../images/gameIcons/PaletteIcon.svg";
+import ToggleOffIcon from "../../images/gameIcons/ToggleOffIcon.svg";
+import NumberIcon1 from "../../images/gameIcons/NumberIcon1.svg";
+import GridIcon from "../../images/gridBackground.png";
+
+//importing the sound
+import clickMP3 from "../../assets/sounds/click.mp3";
+import metalDropMP3 from "../../assets/sounds/metalDrop.mp3";
+import paperMP3 from "../../assets/sounds/crumblingPaper.mp3";
+
+//making the sounds variable
+const click = new uifx({ asset: clickMP3 });
+const metal = new uifx({ asset: metalDropMP3 });
+const paper = new uifx({ asset: paperMP3 });
 
 const Board = styled.div`
   /* min-height: 100vh; */
   min-width: 100vw;
-  /* background-image: url(https://images.unsplash.com/photo-1538513633433-8cb0c2f89e56?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3734&q=80); */
+  /* background-image: url(${GridIcon}); */
+  /* margin: -10% 0; */
+  /* padding-bottom: 30%; */
+`;
+
+const ToolboxGreenIcon = styled.img`
+  position: absolute;
+  width: 40%;
+  top: 28%;
+  left: 29%;
+`;
+
+const ToolboxBlueLedIcon = styled.img`
+  position: absolute;
+  width: 40%;
+  top: 27%;
+  left: 34%;
+`;
+
+const ToolboxBlueRepeatIcon = styled.img`
+  position: absolute;
+  width: 40%;
+  top: 30%;
+  left: 32%;
+`;
+
+const ToolboxToggleIcon = styled.img`
+  position: absolute;
+  top: 35%;
+  left: 27%;
+`;
+
+const ToolboxBox = styled.img`
+  width: 100%;
 `;
 // a little function to help us with reordering the result
 const reorder = (list, startIndex, endIndex) => {
@@ -48,109 +101,168 @@ const move = (source, destination, droppableSource, droppableDestination) => {
   return result;
 };
 
-const deleteIt = (
-  source,
-  destination,
-  droppableSource,
-  droppableDestination
-) => {
-  const sourceClone = Array.from(source);
-  const destClone = Array.from(destination);
-  const [removed] = sourceClone.splice(droppableSource.index, 2);
-
-  destClone.splice(droppableDestination.index, 0, removed);
-
-  const result = {};
-  result[droppableSource.droppableId] = sourceClone;
-  result[droppableDestination.droppableId] = destClone;
-
-  return result;
-};
-
 const ITEMS = [
   {
     id: uuid(),
-    content: "START"
+    functionality: (
+      <ToolboxGreenIcon src={PlayCircleIcon} alt="playCircleIcon" />
+    ),
+    content: <ToolboxBox src={StartBlock} alt="startblock" />,
+    used: false,
+    rsi: 0
   },
   {
     id: uuid(),
-    content: "COLOR"
+    functionality: (
+      <ToolboxBlueLedIcon src={LightbulbIcon} alt="lightbulbIcon" />
+    ),
+    content: <ToolboxBox src={BlueBlockLeftSideEndState} alt="blueblock" />,
+    used: false,
+    rsi: 1
   },
   {
     id: uuid(),
-    content: "DELAY"
+    functionality: <ToolboxBlueRepeatIcon src={RepeatIcon} alt="repeatIcon" />,
+    content: <ToolboxBox src={BlueBlockLeftSideEndState} alt="blueblock" />,
+    used: false,
+    rsi: 2
+  },
+
+  {
+    id: uuid(),
+    functionality: <ToolboxGreenIcon src={PaletteIcon} alt="paletteIcon" />,
+    content: <ToolboxBox src={GreenBlockRightSideEndState} alt="greenblock" />,
+    used: false,
+    rsi: 3
   },
   {
     id: uuid(),
-    content: "TOGGLE"
+    functionality: <ToolboxGreenIcon src={ClockIcon} alt="clockIcon" />,
+    content: <ToolboxBox src={GreenBlockRightSideEndState} alt="greenblock" />,
+    used: false,
+    rsi: 4
   },
   {
     id: uuid(),
-    content: "REPEAT"
+    functionality: <ToolboxGreenIcon src={NumberIcon1} alt="numberIcon" />,
+    content: <ToolboxBox src={GreenBlockRightSideEndState} alt="greenblock" />,
+    used: false,
+    rsi: 5
+  },
+  {
+    id: uuid(),
+    functionality: <ToolboxToggleIcon src={ToggleOffIcon} alt="toggleIcon" />,
+    content: <ToolboxBox src={GreenBlockRightSideEndState} alt="greenblock" />,
+    used: false,
+    rsi: 6
   }
 ];
 
-const TRASH = [];
+const Game = () => {
+  const [list, setList] = useState({ [uuid()]: [] });
+  const [tools, setTools] = useState(ITEMS);
+  const [hasStart, setHasStart] = useState(false);
+  const [draggingBlock, isDraggingBlock] = useState(false);
 
-// const gameStyles = makeStyles({
-//   root: {
-//     background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
-//     border: 0,
-//     borderRadius: 3,
-//     boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)",
-//     color: "white",
-//     height: 48,
-//     padding: "0 30px"
-//   }
-// });
-
-export default class Game extends Component {
-  state = {
-    [uuid()]: []
+  const onDragStart = () => {
+    isDraggingBlock(true);
+    click.play();
   };
-  onDragEnd = result => {
+
+  const onDragEnd = result => {
     const { source, destination } = result;
+
+    isDraggingBlock(false);
+    // metal.play();
+    // console.log("tools:", tools);
+    // console.log("list:", list);
+    // console.log("result:", result);
 
     // dropped outside the list
     if (!destination) {
       return;
     }
 
+    if (destination.droppableId === "TRASH") {
+      //check to see if we are trying to throw away a tool from the toolbox (we don't want to do that)
+      if (source.droppableId === "ITEMS") {
+        console.log("dropping from toolbox");
+        paper.play();
+        return;
+      }
+    }
+
+    if (
+      result.draggableId === tools[0].id ||
+      result.draggableId === tools[1].id
+    ) {
+      if (result.draggableId === tools[0].id) {
+        setHasStart(true);
+      }
+      setTools(
+        [...tools].map(tool => {
+          return tool.id === result.draggableId
+            ? { ...tool, used: true }
+            : { ...tool };
+        })
+      );
+    }
+
+    if (destination.droppableId === "TRASH") {
+      //Filters out the block that got put into trash
+      const realList = list[`${source.droppableId}`].filter(item => {
+        if (item.id === result.draggableId && item.rsi <= 1) {
+          if (item.id === result.draggableId && item.rsi === 0) {
+            setHasStart(false);
+          }
+          setTools(
+            [...tools].map(tool => {
+              return tool.rsi === item.rsi
+                ? { ...tool, used: false }
+                : { ...tool };
+            })
+          );
+        }
+        return item.id !== result.draggableId;
+      });
+
+      //Filters all tools to used:false so they become usable again
+      setList({ realList });
+      paper.play();
+      return;
+    }
+
     switch (source.droppableId) {
       case destination.droppableId:
-        this.setState({
+        setList({
+          ...list,
           [destination.droppableId]: reorder(
-            this.state[source.droppableId],
+            list[source.droppableId],
             source.index,
             destination.index
           )
         });
         break;
+
       case "ITEMS":
-        this.setState({
+        setList({
+          ...list,
           [destination.droppableId]: copy(
-            ITEMS,
-            this.state[destination.droppableId],
+            tools,
+            list[destination.droppableId],
             source,
             destination
           )
         });
+        // to play default drop sound 'metal' when dropping the block
+        metal.play();
         break;
-      case "TRASH":
-        this.setState({
-          [destination.droppableId]: move(
-            TRASH,
-            this.state[destination.droppableId],
-            source,
-            destination
-          )
-        });
-        break;
+
       default:
-        this.setState(
+        setList(
           move(
-            this.state[source.droppableId],
-            this.state[destination.droppableId],
+            list[source.droppableId],
+            list[destination.droppableId],
             source,
             destination
           )
@@ -159,20 +271,20 @@ export default class Game extends Component {
     }
   };
 
-  addList = e => {
-    this.setState({ [uuid()]: [] });
-  };
+  return (
+    <Board>
+      <DragDropContext onDragEnd={onDragEnd} onDragStart={onDragStart}>
+        <Toolbox tools={tools} />
+        <FFbox tools={tools} />
+        <GameBoard
+          state={list}
+          hasStart={hasStart}
+          draggingBlock={draggingBlock}
+        />
+        <DropDelete />
+      </DragDropContext>
+    </Board>
+  );
+};
 
-  render() {
-    return (
-      <Board>
-        <DragDropContext onDragEnd={this.onDragEnd}>
-          <Toolbox ITEMS={ITEMS} />
-          <FFbox />
-          <GameBoard state={this.state} />
-          <DropDelete TRASH={TRASH} />
-        </DragDropContext>
-      </Board>
-    );
-  }
-}
+export default Game;

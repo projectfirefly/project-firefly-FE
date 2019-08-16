@@ -3,9 +3,12 @@ import { makeStyles } from "@material-ui/core/styles";
 import WelcomeToFirefly from "./../../images/WelcomeToFirefly.png";
 import { Link } from "react-router-dom";
 import firebase from "firebase";
-import { childContext } from "../../context/ChildProfiles/ChildProfileStore";
+import { childContext, SIGN_OUT } from "../../context/ChildProfiles/ChildProfileStore";
 
 const LoggedInStartPage = () => {
+
+  const [childProfileState, dispatch] = useContext(childContext);
+
   const classes = makeStyles(theme => ({
     root: {},
     logo: {
@@ -73,9 +76,8 @@ const LoggedInStartPage = () => {
 
   const signout = () => {
     firebase.auth().signOut();
+    dispatch({type: SIGN_OUT})
   };
-
-  const [childProfileState] = useContext(childContext);
 
   return (
     <div className={classes.root}>

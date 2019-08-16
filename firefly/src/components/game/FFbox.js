@@ -3,21 +3,22 @@ import React from "react";
 import FFanim from "../../assets/animations/FFanim";
 import styled from "styled-components";
 
-const Styled = styled.div`
-  height: 320px;
-  width: 320px;
+const FireFlyBox = styled.div`
+  width: 40%;
   padding: 20px 0;
-  margin: 1% auto;
+  margin: 5% auto;
   border-radius: 20px;
   background-image: linear-gradient(#382eb8, #7068ff);
   box-shadow: 0px 2px 4px #000000;
 `;
 
-const FFbox = () => {
+const FFbox = ({ tools }) => {
   return (
-    <Styled>
+    <FireFlyBox
+      style={!tools[0].used || !tools[1].used ? { visibility: "hidden" } : null}
+    >
       <FFanim height={250} width={250} accessory="nerdglasses" color={352} />
-    </Styled>
+    </FireFlyBox>
   );
 };
 
