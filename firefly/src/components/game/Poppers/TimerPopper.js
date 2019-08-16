@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
     width: "90%"
   },
 
-  number: { fontSize: "5rem", margin: "20px 0px", color: "#5B4EFF" },
+  time: { fontSize: "5rem", margin: "20px 0px", color: "#5B4EFF" },
 
   arrows: { width: "40px" },
 
@@ -32,20 +32,18 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const TimerPopper = () => {
+const TimerPopper = ({ time, setTime }) => {
   const classes = useStyles();
 
-  const [number, setNumber] = useState(1);
-
   const changeNumber = operator => {
-    if (operator === "up" && number < 10) {
-      setNumber(number + 1);
-    } else if (operator === "up" && number === 10) {
-      setNumber(1);
-    } else if (operator === "down" && number > 1) {
-      setNumber(number - 1);
+    if (operator === "up" && time < 10) {
+      setTime(time + 1);
+    } else if (operator === "up" && time === 10) {
+      setTime(1);
+    } else if (operator === "down" && time > 1) {
+      setTime(time - 1);
     } else {
-      setNumber(10);
+      setTime(10);
     }
   };
 
@@ -55,7 +53,7 @@ const TimerPopper = () => {
         <div onClick={() => changeNumber("up")}>
           <img src={BlueArrowUp} alt="up arrow" className={classes.arrows} />
         </div>
-        <div className={classes.number}>{number}</div>
+        <div className={classes.time}>{time}</div>
         <div onClick={() => changeNumber("down")}>
           <img
             src={BlueArrowDown}
