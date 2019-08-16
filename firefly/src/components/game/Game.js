@@ -29,14 +29,6 @@ const click = new uifx({ asset: clickMP3 });
 const metal = new uifx({ asset: metalDropMP3 });
 const paper = new uifx({ asset: paperMP3 });
 
-const Board = styled.div`
-  /* min-height: 100vh; */
-  min-width: 100vw;
-  /* background-image: url(${GridIcon}); */
-  /* margin: -10% 0; */
-  /* padding-bottom: 30%; */
-`;
-
 const ToolboxGreenIcon = styled.img`
   position: absolute;
   width: 40%;
@@ -274,11 +266,12 @@ const Game = () => {
   console.log("list:", list);
 
   return (
-    <Board>
+    <div>
       <DragDropContext onDragEnd={onDragEnd} onDragStart={onDragStart}>
         <Toolbox tools={tools} />
         <FFbox tools={tools} code={list} />
         <GameBoard
+          tools={tools}
           list={list}
           hasStart={hasStart}
           draggingBlock={draggingBlock}
@@ -286,7 +279,7 @@ const Game = () => {
         />
         <DropDelete />
       </DragDropContext>
-    </Board>
+    </div>
   );
 };
 

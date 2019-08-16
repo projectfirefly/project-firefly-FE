@@ -14,8 +14,8 @@ const FireFlyBox = styled.div`
   box-shadow: 0px 2px 4px #000000;
 `;
 
-const FFbox = ({ tools, code }) => {
-  console.log(code);
+const FFbox = ({ tools, list }) => {
+  console.log(list);
   return (
     <FireFlyBox
       style={!tools[0].used || !tools[1].used ? { visibility: "hidden" } : null}
