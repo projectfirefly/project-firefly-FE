@@ -7,6 +7,7 @@ import { childContext, ADD_PROFILE } from '../../context/ChildProfiles/ChildProf
 
 const BackendTester = () => {
 
+  const [requiredId, setRequiredId] = useState({});
   const [profiles, setProfiles] = useState({});
   const [context, dispatch] = useContext(childContext);
   const [worldContext, worldDispatch] = useContext(gameContext)
@@ -23,23 +24,23 @@ const BackendTester = () => {
   }
 
   const worldRemoveTest = {
-    id: "dIDbUeNYFiTuTpueruv7",
+    id: requiredId.world_id,
   }
 
   const newBlock = {
-    firefly_id: "y2h8RvBJinWoI1n8NWmT",
+    firefly_id: requiredId.firefly_id,
     x: null,
     y: null,
     codeBlocks: ["timer", "flash"]
   }
 
   const requiredIds = {
-    firefly_id: "7UHWtmgbMy3s3SULAZMB",
-    world_id: "vZo0LKWEwmghCq83msKe"
+    firefly_id: requiredId.firefly_id,
+    world_id: requiredId.world_id
   }
 
   const addNewFirefly = () => {
-    addFirefly(context.selected.id, "vZo0LKWEwmghCq83msKe", worldDispatch)
+    addFirefly(context.selected.id, requiredId.world_id, worldDispatch)
   }
   const updateBlock = () => {
     updateBlocks(context.selected.id, requiredIds, newBlock, worldDispatch)
@@ -105,6 +106,10 @@ const BackendTester = () => {
       <button onClick={addNewFirefly}>Add New Firefly</button>
       <button onClick={removeFireflys}>Remove Firefly</button>
       <button onClick={updateBlock}>Add Block to Firefly</button>
+      <br>
+      </br>
+      Firefly Id: <input value={requiredId.firefly_id} onChange={e => setRequiredId({...requiredId, firefly_id: e.target.value})} />
+      World Id: <input value={requiredId.world_id} onChange={e => setRequiredId({...requiredId, world_id: e.target.value})}/> 
     </div>
   )
 }
