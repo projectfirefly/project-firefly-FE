@@ -14,7 +14,8 @@ import {
   GET_WORLDS,
   ADD_WORLD,
   ADD_FIREFLY,
-  UPDATE_BLOCK
+  UPDATE_BLOCK,
+  REMOVE_WORLD
 } from "../context/Game/GameStore";
 
 export const getWorld = async (child, dispatch) => {
@@ -41,12 +42,9 @@ export const getWorld = async (child, dispatch) => {
             const firefly = docRef.docs.map(doc => {
               return doc.data();
             });
-
-            console.log("firefly@@@", firefly);
             const world = doc.data();
             return { id: doc.id, ...world, fireflies: [...firefly] };
           });
-        console.log("Firefly Result", await fireflies);
         return await fireflies;
       });
       const payload = await Promise.all(childWorlds);
@@ -72,6 +70,63 @@ export const addWorld = async (child, payload, dispatch) => {
       dispatch({ type: ADD_WORLD, payload: newWorld }); //Dispatching to reducers so it can get saved locally in context
     });
 };
+
+//remove world
+
+export const removeWorld = async (child, payload, dispatch) => {
+  const db = firebase.firestore();
+  const uid = firebase.auth().currentUser.uid;
+  db.collection("users")
+    .doc(uid)
+    .collection("profiles")
+    .doc(child)
+    .collection("worlds")
+    .doc(payload.id)
+    .collection("fireflies")
+    .get()
+    .then(docRef => {
+      const firefly = docRef.docs.map(doc => {
+        db
+        .collection("users")
+        .doc(uid)
+        .collection("profiles")
+        .doc(child)
+        .collection("worlds")
+        .doc(payload.id)
+        .collection("fireflies")
+        .doc(doc.id)
+        .delete();
+      });
+    });
+    db.collection("users")
+    .doc(uid)
+    .collection("profiles")
+    .doc(child)
+    .collection("worlds")
+    .doc(payload.id)
+    .delete()
+    dispatch({ type: REMOVE_WORLD, payload: payload})
+}
+// export const removeProfile = async (type, payload, dispatch) => {
+//   const db = firebase.firestore();
+//   const uid = firebase.auth().currentUser.uid;
+//   await db
+//     .collection("users")
+//     .doc(uid)
+//     .collection("profiles")
+//     .doc(payload.id)
+//     .collection("avatar")
+//     .doc(payload.avatar.id)
+//     .delete();
+//   await db
+//     .collection("users")
+//     .doc(uid)
+//     .collection("profiles")
+//     .doc(payload.id)
+//     .delete();
+//   dispatch({ type: type, payload: payload });
+// };
+
 //Add Firefly
 export const addFirefly = async (child, world_id, dispatch) => {
   const db = firebase.firestore();
@@ -92,9 +147,7 @@ export const addFirefly = async (child, world_id, dispatch) => {
     })
     .then(async docRef => {
       const firefly = {
-        x: null,
-        y: null,
-        codeBlocks: []
+         x: null, y: null, codeBlocks: []
       };
       await db
         .collection("users")
@@ -112,8 +165,15 @@ export const addFirefly = async (child, world_id, dispatch) => {
           },
           { merge: true }
         )
-        .then(docRef => {
-          dispatch({ type: ADD_FIREFLY, payload: firefly });
+        .then(newDoc => {
+          const finalPayload = {
+            world_id: world_id, 
+            firefly: {
+              ...firefly,
+              firefly_id: docRef.id
+            }
+          }
+          dispatch({ type: ADD_FIREFLY, payload: finalPayload });
         });
     });
 };

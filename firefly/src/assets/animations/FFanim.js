@@ -1,6 +1,7 @@
 import React from "react";
 import Lottie from "react-lottie";
-import animationData from "./ffAnim.json";
+import awakeanimationData from "./ffAnim.json";
+import sleepingAnimation from "./sleeping.json";
 import styled from "styled-components";
 
 const StyledLottie = styled.div.attrs(props => ({}))`
@@ -44,11 +45,17 @@ const StyledLottie = styled.div.attrs(props => ({}))`
   }
 `;
 
-const FFanim = ({ height, width, color, accessory }) => {
+const FFanim = ({ height, width, color, accessory, awake }) => {
+  let animationData2 = {};
+  if (awake) {
+    animationData2 = awakeanimationData;
+  } else {
+    animationData2 = sleepingAnimation;
+  }
   const defaultOptions = {
     loop: true,
     autoplay: true,
-    animationData: animationData,
+    animationData: animationData2,
     rendererSettings: {
       preserveAspectRatio: "xMidYMid slice"
     }

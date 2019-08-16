@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react'
 import firebase from 'firebase';
-import { addProfile, addWorld, getWorld, addFirefly, updateBlocks} from "../../utils/firebaseInteractions";
+import { addProfile, addWorld, removeWorld, getWorld, addFirefly, updateBlocks} from "../../utils/firebaseInteractions";
 
 import { gameContext, ADD_WORLD, GET_WORLDS, UPDATE_BLOCK, ADD_FIREFLY} from '../../context/Game/GameStore';
 import { childContext, ADD_PROFILE } from '../../context/ChildProfiles/ChildProfileStore'
@@ -22,20 +22,24 @@ const BackendTester = () => {
     worldName: "test2"
   }
 
+  const worldRemoveTest = {
+    id: "dIDbUeNYFiTuTpueruv7",
+  }
+
   const newBlock = {
-    firefly_id: "dxK5y56lH4rItuXZ6SeI",
+    firefly_id: "y2h8RvBJinWoI1n8NWmT",
     x: null,
     y: null,
     codeBlocks: ["timer", "flash"]
   }
 
   const requiredIds = {
-    firefly_id: "dxK5y56lH4rItuXZ6SeI",
-    world_id: "wMtPwo2JajHYAF9lGiCg"
+    firefly_id: "y2h8RvBJinWoI1n8NWmT",
+    world_id: "dIDbUeNYFiTuTpueruv7"
   }
 
   const addNewFirefly = () => {
-    addFirefly(context.selected.id, "wMtPwo2JajHYAF9lGiCg",worldDispatch)
+    addFirefly(context.selected.id, "dIDbUeNYFiTuTpueruv7", worldDispatch)
   }
   const updateBlock = () => {
     updateBlocks(context.selected.id, requiredIds, newBlock, worldDispatch)
@@ -45,8 +49,11 @@ const BackendTester = () => {
     getWorld(context.selected.id, worldDispatch);
   }
 
+  const removeWorlds = () => {
+    removeWorld(context.selected.id, worldRemoveTest, worldDispatch);
+  }
+
   const addNewWorld = () => {
-    console.log(worldContext)
     addWorld(context.selected.id, worldTest, worldDispatch)
   }
 
@@ -90,6 +97,7 @@ const BackendTester = () => {
       <button onClick={logContext}>Log Context</button>
       <button onClick={addNewWorld}>Add World</button>
       <button onClick={getWorlds}>Get Worlds</button>
+      <button onClick={removeWorlds}>Remove World</button>
       <button onClick={addNewFirefly}>Add New Firefly</button>
       <button onClick={updateBlock}>Add Block to Firefly</button>
     </div>
