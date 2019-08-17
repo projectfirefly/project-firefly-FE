@@ -21,12 +21,12 @@ import GridIcon from "../../images/gridBackground.png";
 
 //importing the sound
 import clickMP3 from "../../assets/sounds/click.mp3";
-import metalDropMP3 from "../../assets/sounds/metalDrop.mp3";
+import clickTogetherMP3 from "../../assets/sounds/clickTogether.mp3";
 import paperMP3 from "../../assets/sounds/crumblingPaper.mp3";
 import poofMP3 from "../../assets/sounds/poof.mp3";
 //making the sounds variable
 const click = new uifx({ asset: clickMP3 });
-const metal = new uifx({ asset: metalDropMP3 });
+const clickTogether = new uifx({ asset: clickTogetherMP3 });
 const paper = new uifx({ asset: paperMP3 });
 const poof = new uifx({asset: poofMP3});
 
@@ -175,7 +175,7 @@ const Game = () => {
     const { source, destination } = result;
 
     isDraggingBlock(false);
-    // metal.play();
+    // clickTogether.play();
     // console.log("tools:", tools);
     // console.log("list:", list);
     // console.log("result:", result);
@@ -256,8 +256,8 @@ const Game = () => {
             destination
           )
         });
-        // to play default drop sound 'metal' when dropping the block
-        metal.play();
+        // to play default drop sound 'clickTogether' when dropping the block
+        clickTogether.play();
         break;
 
       default:

@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Switch from "@material-ui/core/Switch";
+import uifx from 'uifx';
+
+//importing the sound for the toggle 
+import switchMP3 from "../../../assets/sounds/switch.mp3";
+//making the sound variable
+const toggle = new uifx({ asset: switchMP3 });
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -16,6 +22,7 @@ const useStyles = makeStyles(theme => ({
     fontWeight: "700"
   }
 }));
+
 
 const CustomSwitch = withStyles({
   switchBase: {
@@ -41,6 +48,7 @@ const CustomSwitch = withStyles({
 const SwitchPopper = ({ checkedSwitch, setCheckedSwitch }) => {
   const handleChange = () => {
     setCheckedSwitch(!checkedSwitch);
+    toggle.play();
   };
 
   const classes = useStyles();
