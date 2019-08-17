@@ -1,8 +1,14 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import uifx from "uifx";
 
 import BlueArrowUp from "./../../../images/gameIcons/BlueArrowUp.svg";
 import BlueArrowDown from "./../../../images/gameIcons/BlueArrowDown.svg";
+
+//importing the sounds 
+import buttonMP3 from "../../../assets/sounds/Button.mp3";
+//making the sound variable 
+const button = new uifx({ asset: buttonMP3});
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -50,11 +56,17 @@ const TimerPopper = ({ time, setTime }) => {
   return (
     <div className={classes.container}>
       <div className={classes.timeDisplay}>
-        <div onClick={() => changeNumber("up")}>
+        <div onClick={() => {
+          changeNumber("up")
+          button.play()
+      }}>
           <img src={BlueArrowUp} alt="up arrow" className={classes.arrows} />
         </div>
         <div className={classes.time}>{time}</div>
-        <div onClick={() => changeNumber("down")}>
+        <div onClick={() => {
+          changeNumber("down") 
+          button.play()
+          }}>
           <img
             src={BlueArrowDown}
             alt="down arrow"

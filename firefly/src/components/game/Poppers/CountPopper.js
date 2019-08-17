@@ -1,5 +1,27 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import uifx from "uifx";
+
+//importing the sounds 
+import oneMP3 from "../../../assets/sounds/number1.mp3";
+import twoMP3 from "../../../assets/sounds/number2.mp3";
+import threeMP3 from "../../../assets/sounds/number3.mp3";
+import fourMP3 from "../../../assets/sounds/number4.mp3";
+import fiveMP3 from "../../../assets/sounds/number5.mp3";
+import sixMP3 from "../../../assets/sounds/number6.mp3";
+import sevenMP3 from "../../../assets/sounds/number7.mp3";
+import eightMP3 from "../../../assets/sounds/number8.mp3";
+import nineMP3 from "../../../assets/sounds/number9.mp3";
+//making the sound variables 
+const one = new uifx({ asset: oneMP3, volume:0.1, });
+const two = new uifx({ asset: twoMP3, volume:0.1, });
+const three = new uifx({ asset: threeMP3, volume:0.1, });
+const four = new uifx({ asset: fourMP3, volume:0.1, });
+const five = new uifx({ asset: fiveMP3, volume:0.1, });
+const six = new uifx({ asset: sixMP3, volume:0.1, });
+const seven = new uifx({ asset: sevenMP3, volume:0.1, });
+const eight = new uifx({ asset: eightMP3, volume:0.1, });
+const nine = new uifx({ asset: nineMP3, volume:0.1, });
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -56,7 +78,10 @@ const CountPopper = ({ number, setNumber }) => {
             ? classes.numberActiveIconContainer
             : classes.numberIconContainer
         }
-        onClick={() => setNumber(1)}
+        onClick={() => {
+          setNumber(1) 
+          one.play()
+        }}
       >
         1
       </div>
@@ -67,7 +92,10 @@ const CountPopper = ({ number, setNumber }) => {
             ? classes.numberActiveIconContainer
             : classes.numberIconContainer
         }
-        onClick={() => setNumber(2)}
+        onClick={() => {
+          setNumber(2)
+          two.play()
+        }}
       >
         2
       </div>
@@ -77,7 +105,10 @@ const CountPopper = ({ number, setNumber }) => {
             ? classes.numberActiveIconContainer
             : classes.numberIconContainer
         }
-        onClick={() => setNumber(3)}
+        onClick={() => {
+          setNumber(3)
+          three.play()
+        }}
       >
         3
       </div>
@@ -87,7 +118,10 @@ const CountPopper = ({ number, setNumber }) => {
             ? classes.numberActiveIconContainer
             : classes.numberIconContainer
         }
-        onClick={() => setNumber(4)}
+        onClick={() => {
+          setNumber(4)
+          four.play()
+        }}
       >
         4
       </div>
@@ -97,7 +131,10 @@ const CountPopper = ({ number, setNumber }) => {
             ? classes.numberActiveIconContainer
             : classes.numberIconContainer
         }
-        onClick={() => setNumber(5)}
+        onClick={() => {
+          setNumber(5)
+          five.play()
+        }}
       >
         5
       </div>
@@ -107,7 +144,10 @@ const CountPopper = ({ number, setNumber }) => {
             ? classes.numberActiveIconContainer
             : classes.numberIconContainer
         }
-        onClick={() => setNumber(6)}
+        onClick={() => {
+          setNumber(6)
+          six.play()
+        }}
       >
         6
       </div>
@@ -117,7 +157,10 @@ const CountPopper = ({ number, setNumber }) => {
             ? classes.numberActiveIconContainer
             : classes.numberIconContainer
         }
-        onClick={() => setNumber(7)}
+        onClick={() => {
+          setNumber(7)
+          seven.play()
+        }}
       >
         7
       </div>
@@ -127,7 +170,10 @@ const CountPopper = ({ number, setNumber }) => {
             ? classes.numberActiveIconContainer
             : classes.numberIconContainer
         }
-        onClick={() => setNumber(8)}
+        onClick={() => {
+          setNumber(8)
+          eight.play()
+        }}
       >
         8
       </div>
@@ -137,7 +183,10 @@ const CountPopper = ({ number, setNumber }) => {
             ? classes.numberActiveIconContainer
             : classes.numberIconContainer
         }
-        onClick={() => setNumber(9)}
+        onClick={() => {
+          setNumber(9)
+          nine.play()
+        }}
       >
         9
       </div>
