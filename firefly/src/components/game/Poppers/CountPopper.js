@@ -13,15 +13,15 @@ import sevenMP3 from "../../../assets/sounds/number7.mp3";
 import eightMP3 from "../../../assets/sounds/number8.mp3";
 import nineMP3 from "../../../assets/sounds/number9.mp3";
 //making the sound variables 
-const one = new uifx({ asset: oneMP3 });
-const two = new uifx({ asset: twoMP3 });
-const three = new uifx({ asset: threeMP3 });
-const four = new uifx({ asset: fourMP3 });
-const five = new uifx({ asset: fiveMP3 });
-const six = new uifx({ asset: sixMP3 });
-const seven = new uifx({ asset: sevenMP3 });
-const eight = new uifx({ asset: eightMP3 });
-const nine = new uifx({ asset: nineMP3 });
+const one = new uifx({ asset: oneMP3, volume:0.1, });
+const two = new uifx({ asset: twoMP3, volume:0.1, });
+const three = new uifx({ asset: threeMP3, volume:0.1, });
+const four = new uifx({ asset: fourMP3, volume:0.1, });
+const five = new uifx({ asset: fiveMP3, volume:0.1, });
+const six = new uifx({ asset: sixMP3, volume:0.1, });
+const seven = new uifx({ asset: sevenMP3, volume:0.1, });
+const eight = new uifx({ asset: eightMP3, volume:0.1, });
+const nine = new uifx({ asset: nineMP3, volume:0.1, });
 
 const useStyles = makeStyles(theme => ({
   container: {
