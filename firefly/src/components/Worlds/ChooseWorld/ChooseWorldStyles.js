@@ -57,6 +57,10 @@ const chooseWorldStyles = makeStyles({
   },
   backButton: {
     width: "25%"
+  },
+  links: {
+    textDecoration: "none",
+    color: "#152F04"
   }
 });
 

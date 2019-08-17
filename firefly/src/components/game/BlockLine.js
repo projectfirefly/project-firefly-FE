@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Droppable } from "react-beautiful-dnd";
 import StartBlockTarget from "./../../images/gameIcons/StartBlockTarget.svg";
@@ -50,17 +50,28 @@ const ButtonBox = styled.img`
   width: 100%;
 `;
 
-const BlockLine = ({ state, hasStart, draggingBlock }) => {
+const BlockLine = ({ list, setList, hasStart, draggingBlock }) => {
   const [openPopper, setOpenPopper] = useState(false);
 
-  const togglePopper = () => {
+  const togglePopper = (id, blocks, type, value) => {
+    if (openPopper) {
+      setList({
+        ...list,
+        [blocks]: list[blocks].map(block => {
+          if (block.id === id) {
+            return { ...block, [type]: value };
+          }
+          return block;
+        })
+      });
+    }
     setOpenPopper(!openPopper);
   };
 
   return (
     <div>
-      {Object.keys(state).map((list, i) => (
-        <Droppable key={list} droppableId={list} direction="horizontal">
+      {Object.keys(list).map((blocks, i) => (
+        <Droppable key={blocks} droppableId={blocks} direction="horizontal">
           {(provided, snapshot) => (
             <List
               ref={provided.innerRef}
@@ -72,22 +83,27 @@ const BlockLine = ({ state, hasStart, draggingBlock }) => {
               <GrayedOutBlock style={hasStart ? { display: "none" } : null}>
                 <ButtonBox src={StartBlockTarget} alt="startblock" />
               </GrayedOutBlock>
-              {state[list].length
-                ? state[list].map((item, index) => (
+
+              {/* Mapping through list[blocks] to create each code block */}
+              {list[blocks].length
+                ? list[blocks].map((item, index) => (
                     <CodeBlock
-                      key={index}
+                      key={item.id}
                       item={item}
                       index={index}
+                      id={item.id}
                       openPopper={openPopper}
                       togglePopper={togglePopper}
+                      list={list}
+                      setList={setList}
+                      blocks={blocks}
                     />
-                    // <CodeBlock item={item} index={index} />
                   ))
                 : !provided.placeholder && <Notice>Drop items here</Notice>}
               <Item>
                 <GrayedOutBlock
                   style={
-                    draggingBlock && state[list].length > 0
+                    draggingBlock && list[blocks].length > 0
                       ? {
                           marginLeft: "10px",
                           position: "relative",

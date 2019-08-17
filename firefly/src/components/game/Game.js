@@ -273,15 +273,18 @@ const Game = () => {
     }
   };
 
+  console.log("list:", list);
+
   return (
     <Board>
       <DragDropContext onDragEnd={onDragEnd} onDragStart={onDragStart}>
         <Toolbox tools={tools} />
         <FFbox tools={tools} />
         <GameBoard
-          state={list}
+          list={list}
           hasStart={hasStart}
           draggingBlock={draggingBlock}
+          setList={setList}
         />
         <DropDelete />
       </DragDropContext>
