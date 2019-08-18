@@ -14,16 +14,12 @@ import {
 } from "../../context/ChildProfiles/ChildProfileStore";
 import { updateUser, addProfile } from "../../utils/firebaseInteractions";
 
-import "../../styles/RegistrationStepThree.scss";
+import stepOneStyles from "./stepOneStyles";
+import { Typography } from "@material-ui/core";
 
 library.add(faArrowUp, faArrowDown);
 
-const RegistrationStepThree = ({
-  step,
-  updateStep,
-  info,
-  profiles,
-}) => {
+const RegistrationStepThree = ({ step, updateStep, info, profiles }) => {
   const [childProfileState, dispatch] = useContext(childContext);
   const [finishedLoading, setFinishedLoading] = useState(false);
 
@@ -37,6 +33,8 @@ const RegistrationStepThree = ({
       zip: "",
     },
   });
+
+  const classes = stepOneStyles();
 
   useEffect(() => {
     if (childProfileState.loaded && !finishedLoading) {
@@ -71,85 +69,80 @@ const RegistrationStepThree = ({
   };
 
   return (
-    <div className="registration-container">
-      <div className="registration-forms-container">
-        <div className="registation-forms-boxes">
-          <div className="registration-forms-box3">
-            <div className="registration-step3-box">
-              <h2 className="step3-header">Access My Account</h2>
-              <i
-                class="fas fa-arrow-alt-down"
-                style={{
-                  color: "#5B4EFF",
-                  alignSelf: "flex-end",
-                  marginRight: "10%",
-                  fontSize: "1.4rem",
-                  marginTop: "14px",
-                }}
-              />
+    <div className={classes.container}>
+      <div className={classes.boxes}>
+        <div className={classes.box}>
+          <Typography variant="h2" className={classes.tutorialH}>
+            Access My Account
+          </Typography>
+          <i
+            className="fas fa-arrow-alt-down"
+            style={{
+              color: "#5B4EFF",
+              alignSelf: "flex-end",
+              marginRight: "5%",
+              fontSize: "1.4rem",
+              marginBottom: "-5%",
+            }}
+          />
 
-              <img
-                className="step3-image"
-                src={TutorialOne}
-                alt="tutorial-one"
-                style={{ marginTop: "4px" }}
-              />
-            </div>
-          </div>
-
-          <div className="registration-forms-box3">
-            <div className="registration-step3-box">
-              <h2 className="step3-header">Manage Account</h2>
-              <img
-                className="step3-image"
-                src={TutorialTwo}
-                alt="tutorial-two"
-              />
-              <ul className="step3-list">
-                <li>Manage Profiles</li>
-                <li>Update Account Information</li>
-                <li>Manage Payment Information</li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="registration-forms-box3">
-            <div className="registration-step3-box">
-              <h2 className="step3-header">Start Our Adventure</h2>
-              <img
-                className="step3-image"
-                src={TutorialTwo}
-                alt="tutorial-two"
-                style={{ marginBottom: "4px" }}
-              />
-              <i
-                class="fas fa-arrow-alt-up"
-                style={{
-                  color: "#5B4EFF",
-                  alignSelf: "flex-end",
-                  marginRight: "22%",
-                  fontSize: "1.4rem",
-                }}
-              />
-            </div>
-          </div>
+          <img
+            className={classes.image}
+            src={TutorialOne}
+            alt="tutorial-one"
+          />
         </div>
-        <div className="registration-buttons">
+
+        <div className={classes.box + " middle"}>
+          <Typography variant="h2" className={classes.tutorialH}>
+            Manage Account
+          </Typography>
+          <img className={classes.image} src={TutorialTwo} alt="tutorial-two" />
+          <ul className={classes.tutorialSteps}>
+            <li>Manage Profiles</li>
+            <li>Update Account Information</li>
+            <li>Manage Payment Information</li>
+          </ul>
+        </div>
+
+        <div className={classes.box}>
+          <Typography variant="h2" className={classes.tutorialH}>
+            Start Our Adventure
+          </Typography>
+          <img
+            className={classes.image}
+            src={TutorialTwo}
+            alt="tutorial-two"
+          />
+          <i
+            className="fas fa-arrow-alt-up"
+            style={{
+              color: "#5B4EFF",
+              alignSelf: "flex-end",
+              marginRight: "22%",
+              marginTop: "-4%",
+              fontSize: "1.4rem",
+            }}
+          />
+        </div>
+      </div>
+      <div className={classes.tutorialSize}>
+        <div className={classes.buttonContainer}>
           <button
-            className={step === 0 ? "none" : "registration-buttons__back"}
+            className={step === 0 ? classes.hidden : classes.backButton}
             onClick={() => updateStep("subtract")}
           >
-            BACK
+            <Typography variant="button">Back</Typography>
           </button>
 
           <button
-            className="registration-buttons__next"
+            className={classes.nextButton}
             onClick={() => {
               sendUserInfo(info);
               addProfiles(profiles);
             }}
           >
-            Finish
+            <Typography variant="button">My Account</Typography>
           </button>
         </div>
       </div>

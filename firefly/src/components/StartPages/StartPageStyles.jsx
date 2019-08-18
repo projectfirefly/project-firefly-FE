@@ -19,12 +19,18 @@ const startPageStyles = makeStyles(theme => ({
   },
   buttonContainer: {
     display: "flex",
-    justifyContent: "center",
+    flexDirection: "column",
+    alignItems: "center",
     width: "100%",
   },
   startButton: {
     ...theme.primaryButton,
     padding: ".6rem 12%"
+  },
+  secondaryButton: {
+    ...theme.secondaryButton,
+    padding: ".6rem 4.5%",
+    marginTop: "3rem",
   },
   topBar: {
     position: "absolute",

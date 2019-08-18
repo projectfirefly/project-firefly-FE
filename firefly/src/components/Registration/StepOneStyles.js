@@ -98,6 +98,44 @@ const stepOneStyles = makeStyles(theme => ({
       borderRadius: "10px",
     },
   },
+  tutorialSize: {
+    display: "flex",
+    flexDirection: "column",
+    width: "70%",
+  },
+  boxes: {
+    display: "flex",
+    width: "85%",
+    justifyContent: "space-between",
+    marginBottom: "1rem",
+  },
+  box: {
+    ...theme.paper,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    width: "28%",
+    padding: "2%",
+    height: "45vh",
+    "&.middle": {
+      margin: "0 1%",
+    },
+  },
+  image: {
+    width: "100%",
+    height: "auto",
+    objectFit: "contain",
+  },
+  tutorialH: {
+    color: "black",
+    letterSpacing: "0",
+    marginBottom: "20%",
+  },
+  tutorialSteps: {
+    ...theme.typography.h6,
+    fontWeight: "600",
+    listStyle: "disc",
+  }
 }));
 
 export default stepOneStyles;
