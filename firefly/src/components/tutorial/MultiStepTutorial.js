@@ -6,7 +6,10 @@ import { makeStyles } from "@material-ui/core/styles";
 import CustomStepper from "../Steppers/CustomStepper";
 import { Typography } from "@material-ui/core";
 
-const MultiStepRegistration = () => {
+//import game
+import Game from "../game/Game"
+
+const MultiStepTutorial = () => {
   const classes = makeStyles(theme => ({
     app: {},
     header: {
@@ -35,3 +38,28 @@ const MultiStepRegistration = () => {
       width: "100%"
     }
   }))();
+
+const [step, setStep] = useState(0);
+
+const updateStep = operation => {
+operation === "add" ? setStep(step + 1) : setStep(step - 1);
+};
+
+ return step === 0 ? (
+    <div className={classes.root}>
+      <div className={classes.header}>
+        <Game   />
+      </div>
+      <div className={classes.wrapper}>
+      </div>
+    </div>
+  ) : step === 1 ? (
+      <div>
+    </div>
+  ) : (
+      <div>
+    </div>
+  );
+};
+
+export default MultiStepTutorial;
