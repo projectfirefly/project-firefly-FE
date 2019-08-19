@@ -14,7 +14,7 @@ import {
 } from "../../context/ChildProfiles/ChildProfileStore";
 import { updateUser, addProfile } from "../../utils/firebaseInteractions";
 
-import stepOneStyles from "./StepOneStyles";
+import stepOneStyles from "./stepOneStyles";
 import { Typography } from "@material-ui/core";
 
 library.add(faArrowUp, faArrowDown);
