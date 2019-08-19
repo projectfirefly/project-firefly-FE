@@ -11,12 +11,12 @@ import { FaPen, FaPlus } from "react-icons/fa";
 import { PrimaryButton } from "../../utils/buttons/PrimaryButton";
 import { SecondaryButton } from "../../utils/buttons/SecondaryButton";
 import accountStyles from "./MyAccountStyles";
-import "../../styles/MyAccountPage.scss";
 
 //context
 import { childContext } from "../../context/ChildProfiles/ChildProfileStore";
 import { UPDATE_USER } from "../../context/ChildProfiles/ChildProfileStore";
 import { updateUser } from "../../utils/firebaseInteractions";
+import { Typography } from "@material-ui/core";
 
 export default function ProfileView(props) {
   const classes = accountStyles();
@@ -32,8 +32,8 @@ export default function ProfileView(props) {
     first_name: "",
     last_name: "",
     information: {
-      address: ""
-    }
+      address: "",
+    },
   });
 
   console.log("myaccountpage state", childProfileState);
@@ -45,7 +45,7 @@ export default function ProfileView(props) {
       !finishedLoading
     ) {
       setUpdatedInfo({
-        ...childProfileState.user
+        ...childProfileState.user,
       });
       setFinishedLoading(true);
     }
@@ -54,7 +54,7 @@ export default function ProfileView(props) {
   const toggleEditing = () => {
     setEditing(!editing);
     setUpdatedInfo({
-      ...childProfileState.user
+      ...childProfileState.user,
     });
     console.log(process.env.REACT_APP_SOMETHING);
   };
@@ -62,7 +62,7 @@ export default function ProfileView(props) {
   const handleChanges = e => {
     setUpdatedInfo({
       ...updatedInfo,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -71,8 +71,8 @@ export default function ProfileView(props) {
       ...updatedInfo,
       information: {
         ...updatedInfo.information,
-        [e.target.name]: e.target.value
-      }
+        [e.target.name]: e.target.value,
+      },
     });
   };
 
@@ -88,7 +88,9 @@ export default function ProfileView(props) {
   ) {
     return (
       <Container className={classes.root} maxWidth="lg">
-        <h1 className={classes.header}>My Account</h1>
+        <div className={classes.mainHeader}>
+          <Typography variant="h1">My Account</Typography>
+        </div>
 
         <div className={classes.container}>
           <div className={classes.left}>
@@ -103,12 +105,12 @@ export default function ProfileView(props) {
                 </div>
                 <Grid container spacing={3}>
                   <Grid item xs={2}>
-                    <div className={classes.infoLabel}>Email</div>
+                    <Typography variant="h5" className={classes.infoLabel}>Email:</Typography>
                   </Grid>
                   <Grid item xs={6}>
                     {!editing ? (
                       <div className={classes.userInfo}>
-                        {childProfileState.user.email}
+                        <Typography> {childProfileState.user.email}</Typography>
                       </div>
                     ) : (
                       <input
@@ -122,13 +124,15 @@ export default function ProfileView(props) {
                 </Grid>
                 <Grid container spacing={3}>
                   <Grid item xs={2}>
-                    <div className={classes.infoLabel}>Name</div>
+                    <Typography variant="h5" className={classes.infoLabel}>Name:</Typography>
                   </Grid>
                   <Grid item xs={6}>
                     {!editing ? (
                       <div className={classes.userInfo}>
-                        {childProfileState.user.first_name}{" "}
-                        {childProfileState.user.last_name}
+                        <Typography>
+                          {childProfileState.user.first_name}{" "}
+                          {childProfileState.user.last_name}
+                        </Typography>
                       </div>
                     ) : (
                       <div>
@@ -150,12 +154,12 @@ export default function ProfileView(props) {
                 </Grid>
                 <Grid container spacing={3}>
                   <Grid item xs={2}>
-                    <div className={classes.infoLabel}>Address</div>
+                    <Typography variant="h5" className={classes.infoLabel}>Address:</Typography>
                   </Grid>
                   <Grid item xs={6}>
                     {!editing ? (
                       <div className={classes.userInfo}>
-                        {childProfileState.user.information.address}
+                        <Typography>{childProfileState.user.information.address}</Typography>
                       </div>
                     ) : (
                       <input
@@ -187,14 +191,14 @@ export default function ProfileView(props) {
                 </h2>
                 <div className={classes.researchSection}>
                   <div className={classes.checkboxContainer}>
-                    <label className="checkbox-label">
+                    <label className={classes.checkboxLabel}>
                       <input type="checkbox" />
-                      <span className="checkbox-custom"> {""}</span>
+                      <span className={classes.checkboxCustom}> {""}</span>
                     </label>
                   </div>
-                  <p className={classes.p}>
+                  <Typography className={classes.p}>
                     I would like to participate in the Educational Research
-                  </p>
+                  </Typography>
                 </div>
                 <br />
               </Paper>
@@ -216,7 +220,7 @@ export default function ProfileView(props) {
                   <Icon
                     name="Firefly"
                     style={{
-                      width: "40%"
+                      width: "40%",
                     }}
                   />
                 </div>
