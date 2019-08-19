@@ -69,7 +69,7 @@ const [step, setStep] = useState(0);
                   <img className={classes.image} src={screen3} onClick={() => setStep(step + 1)}/>
                 </div>
               </div>;      
-    case 2:
+    case 3:
       return <div className={classes.root}>
                 <div className={classes.header}>
                   
@@ -78,7 +78,7 @@ const [step, setStep] = useState(0);
                   <img className={classes.image} src={screen4} onClick={() => setStep(step + 1)}/>
                 </div>
               </div>;      
-    case 2:
+    case 4:
       return <div className={classes.root}>
                 <div className={classes.header}>
                   
