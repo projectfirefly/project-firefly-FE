@@ -10,11 +10,11 @@ import TutorialTwo from "./../../images/Step3Tutorial-2.png";
 import {
   UPDATE_USER,
   ADD_PROFILE,
-  childContext,
+  childContext
 } from "../../context/ChildProfiles/ChildProfileStore";
 import { updateUser, addProfile } from "../../utils/firebaseInteractions";
 
-import stepOneStyles from "./stepOneStyles";
+import stepOneStyles from "./StepOneStyles";
 import { Typography } from "@material-ui/core";
 
 library.add(faArrowUp, faArrowDown);
@@ -30,8 +30,8 @@ const RegistrationStepThree = ({ step, updateStep, info, profiles }) => {
       city: "",
       address: "",
       state: "",
-      zip: "",
-    },
+      zip: ""
+    }
   });
 
   const classes = stepOneStyles();
@@ -53,8 +53,8 @@ const RegistrationStepThree = ({ step, updateStep, info, profiles }) => {
         address: info.address,
         city: info.city,
         state: info.state,
-        zip: info.zipCode,
-      },
+        zip: info.zipCode
+      }
     };
     updateUser(UPDATE_USER, newUpdatedUser, dispatch);
   };
@@ -82,15 +82,11 @@ const RegistrationStepThree = ({ step, updateStep, info, profiles }) => {
               alignSelf: "flex-end",
               marginRight: "5%",
               fontSize: "1.4rem",
-              marginBottom: "-5%",
+              marginBottom: "-5%"
             }}
           />
 
-          <img
-            className={classes.image}
-            src={TutorialOne}
-            alt="tutorial-one"
-          />
+          <img className={classes.image} src={TutorialOne} alt="tutorial-one" />
         </div>
 
         <div className={classes.box + " middle"}>
@@ -109,11 +105,7 @@ const RegistrationStepThree = ({ step, updateStep, info, profiles }) => {
           <Typography variant="h2" className={classes.tutorialH}>
             Start Our Adventure
           </Typography>
-          <img
-            className={classes.image}
-            src={TutorialTwo}
-            alt="tutorial-two"
-          />
+          <img className={classes.image} src={TutorialTwo} alt="tutorial-two" />
           <i
             className="fas fa-arrow-alt-up"
             style={{
@@ -121,7 +113,7 @@ const RegistrationStepThree = ({ step, updateStep, info, profiles }) => {
               alignSelf: "flex-end",
               marginRight: "22%",
               marginTop: "-4%",
-              fontSize: "1.4rem",
+              fontSize: "1.4rem"
             }}
           />
         </div>

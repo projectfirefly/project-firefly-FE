@@ -1,7 +1,7 @@
 import React from "react";
 import "./../../styles/RegistrationStepTwo.scss";
 import RegistrationAddChild from "./RegistrationAddChild";
-import stepOneStyles from "./stepOneStyles";
+import stepOneStyles from "./StepOneStyles";
 import { Typography } from "@material-ui/core";
 
 const AddChild = ({
@@ -44,9 +44,7 @@ const AddChild = ({
             setProfiles([...profiles, { first_name: "", last_name: "" }])
           }
         >
-          <Typography variant="button">
-            + Add another child profile
-          </Typography>
+          <Typography variant="button">+ Add another child profile</Typography>
         </div>
 
         <div className={classes.buttonContainer}>
