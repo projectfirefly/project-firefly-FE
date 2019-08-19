@@ -12,7 +12,7 @@ import { SecondaryButton } from "../../utils/buttons/SecondaryButton";
 import ColorSlider from "../ColorSlider/ColorSlider";
 import Accessories from "./Accessories";
 
-import createProfileClasses from "./createProfileStyles";
+import createProfileClasses from "./CreateProfileStyles";
 import Icon from "../../assets/icons";
 import { Typography } from "@material-ui/core";
 
@@ -58,8 +58,8 @@ export default function CustomizeFireflyPage(props) {
       ...updatedProfile,
       avatar: {
         ...updatedProfile.avatar,
-        nickname: e.target.value,
-      },
+        nickname: e.target.value
+      }
     });
   };
 
@@ -91,7 +91,9 @@ export default function CustomizeFireflyPage(props) {
             </div>
             <div className={classes.card + " right"}>
               <div style={{}}>
-                <Typography variant="h3" className={classes.h3 + " nickname"}>NICKNAME</Typography>
+                <Typography variant="h3" className={classes.h3 + " nickname"}>
+                  NICKNAME
+                </Typography>
               </div>
               <input
                 className={classes.input}
@@ -100,14 +102,18 @@ export default function CustomizeFireflyPage(props) {
                 onChange={handleChange}
               />
               <div>
-                <Typography variant="h3" className={classes.h3}>ACCESSORIES</Typography>
+                <Typography variant="h3" className={classes.h3}>
+                  ACCESSORIES
+                </Typography>
                 <Accessories
                   accessory={updatedProfile.avatar.accessory}
                   accessoryChange={accessoryChange}
                 />
               </div>
               <div className={classes.lightColor}>
-                <Typography variant="h3" className={classes.h3}>LIGHT COLOR</Typography>
+                <Typography variant="h3" className={classes.h3}>
+                  LIGHT COLOR
+                </Typography>
                 <div className={classes.slider}>
                   <ColorSlider
                     value={updatedProfile.avatar.color}

@@ -10,10 +10,6 @@ import {
 
 import { updateProfile, removeProfile } from "../../utils/firebaseInteractions";
 
-
-
-
-
 //Font Awesome & Material UI & Styling
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -28,7 +24,7 @@ import {
 } from "@material-ui/core";
 
 import Icon from "../../assets/icons";
-import createProfileStyles from "./createAndEditProfileStyles";
+import createProfileStyles from "./CreateAndEditProfileStyles";
 
 //components
 import { SecondaryButton } from "../../utils/buttons/SecondaryButton";
@@ -110,9 +106,7 @@ const EditProfilePage = props => {
       <div className={classes.container}>
         <div className={classes.sizingContainer}>
           <div className={classes.header}>
-            <Typography variant="h1">
-              EDIT PROFILE
-            </Typography>
+            <Typography variant="h1">EDIT PROFILE</Typography>
           </div>
           <div className={classes.cardContainer}>
             <div className={classes.deleteButtonContainer}>
@@ -129,13 +123,15 @@ const EditProfilePage = props => {
                   lightmidFill={`hsl(${updatedProfile.avatar.color},100%,45%)`}
                   lightbottomFill={`hsl(${
                     updatedProfile.avatar.color
-                    },100%,55%)`}
+                  },100%,55%)`}
                   shineStroke={`hsl(${updatedProfile.avatar.color},100%,55%)`}
                 />
               </div>
               <div className={classes.inputContainer}>
                 <div className={classes.firstName}>
-                <Typography variant="h2" className={classes.nameHeader}>First Name</Typography>
+                  <Typography variant="h2" className={classes.nameHeader}>
+                    First Name
+                  </Typography>
                   <input
                     type="text"
                     name="firstName"
@@ -145,7 +141,9 @@ const EditProfilePage = props => {
                   />
                 </div>
                 <div className={classes.lastName}>
-                <Typography variant="h2" className={classes.nameHeader}>Last Name</Typography>
+                  <Typography variant="h2" className={classes.nameHeader}>
+                    Last Name
+                  </Typography>
                   <input
                     type="text"
                     name="lastName"
