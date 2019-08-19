@@ -18,7 +18,7 @@ const accountStyles = makeStyles(theme => ({
   },
   editButtons: {
     display: "flex",
-    marginTop: "40px",
+    marginTop: "4rem",
     justifyContent: "space-between",
   },
   root: {
@@ -95,54 +95,51 @@ const accountStyles = makeStyles(theme => ({
     width: "100%",
   },
   fireflyIcon: {
-    width: "90%",
+    width: "100%",
     alignItems: "center",
     justifyContent: "center",
   },
   img: {
     width: "45%",
   },
-
   style1: {
-    borderTop: " 1px solid #b6e699",
+    borderTop: "1px solid #b6e699",
     width: "100%",
   },
   edit: {
     width: "100%",
     display: "flex",
-    justifyContent: "flex-end",
+    justifyContent: "space-between",
     alignItems: "center",
+    "&::before": {
+      content: "''",
+      padding: "1rem 2rem",
+      fontSize: "1.4rem",
+      visibility: "hidden",
+    },
   },
   iconButton: {
     ...theme.secondaryButton,
-    marginLeft: "20%",
-    display: "flex",
-    width: "40px",
-    height: "40px",
-    textAlign: "right",
-    alignItems: "center",
-    justifyContent: "center",
-    color: " #4aa810",
-    fontWeight: "bold",
-    fontSize: "18px",
-    border: " 2px solid #abb0ba",
-    borderRadius: " 10px",
-    backgroundColor: " #ffffff",
-    boxShadow: "0px 3px #8f96a3",
+    padding: "1rem 1.2rem",
+    fontSize: "1.4rem",
+  },
+  textInput: {
+    ...theme.input,
+    width: "100%",
   },
   button: {
-    display: "block",
-    marginTop: "40px",
+    ...theme.primaryButton,
+    width: "40%",
+    padding: ".7rem 1rem",
+    "&.back": {
+      ...theme.secondaryButton,
+    }
   },
   researchSection: {
     display: "flex",
   },
-  p: {
-    paddingTop: " 5px",
-    fontSize: "16px",
-  },
   checkboxContainer: {
-    marginRight: "5%",
+    marginRight: "7%",
   },
   checkboxLabel: {
     position: "relative",
