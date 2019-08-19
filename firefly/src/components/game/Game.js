@@ -200,16 +200,18 @@ const Game = () => {
       result.draggableId === tools[0].id ||
       result.draggableId === tools[1].id
     ) {
-      if (result.draggableId === tools[0].id) {
-        setHasStart(true);
+      if (destination.droppableId !== "ITEMS") {
+        if (result.draggableId === tools[0].id) {
+          setHasStart(true);
+        }
+        setTools(
+          [...tools].map(tool => {
+            return tool.id === result.draggableId
+              ? { ...tool, used: true }
+              : { ...tool };
+          })
+        );
       }
-      setTools(
-        [...tools].map(tool => {
-          return tool.id === result.draggableId
-            ? { ...tool, used: true }
-            : { ...tool };
-        })
-      );
     }
 
     if (destination.droppableId === "TRASH") {
@@ -248,7 +250,7 @@ const Game = () => {
             ),
           });
         }
-        console.log('yo');
+        console.log("yo");
         break;
 
       case "ITEMS":
