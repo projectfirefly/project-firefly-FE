@@ -17,14 +17,15 @@ const FireFlyBox = styled.div`
 const FFbox = ({ tools }) => {
   return (
     <FireFlyBox
-      style={!tools[0].used || !tools[1].used ? { visibility: "hidden" } : null}
+    //Conditionally render the FF box depending on play AND led blocks are on. We don't need it anymore.
+    // style={!tools[0].used || !tools[1].used ? { visibility: "hidden" } : null}
     >
       <FFanim
         height={250}
         width={250}
         accessory="nerdglasses"
-        color={352}
-        awake={false}
+        color={58}
+        awake={tools[1].used ? true : false}
       />
     </FireFlyBox>
   );
