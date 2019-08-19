@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { makeStyles } from '@material-ui/core';
+import { makeStyles, Typography } from '@material-ui/core';
 
 import Icon from '../../assets/icons';
 
@@ -8,6 +8,7 @@ export const Loader = (props) => {
 
   const classes = makeStyles({
     container: {
+      marginTop: "13%",
       display: "flex",
       flexDirection: "column",
       justifyContent: "center",
@@ -28,13 +29,6 @@ export const Loader = (props) => {
       alignItems: "center",
       marginTop: "2rem",
     },
-    loaderText: {
-      textTransform: "uppercase",
-      fontSize: "2.4rem",
-      color: "#5b4eff",
-      fontWeight: "900",
-      letterSpacing: ".7rem",
-    },
   })();
 
   return (
@@ -47,7 +41,7 @@ export const Loader = (props) => {
           viewBox={"0 0 1024 1024"}
         />
         <div className={classes.loaderContainer}>
-          <h2 className={classes.loaderText}>Loading</h2>
+          <Typography variant="h1">Loading</Typography>
           <CircleLoader />
         </div>
       </div>

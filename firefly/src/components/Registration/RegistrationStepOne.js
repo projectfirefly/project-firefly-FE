@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
+import { Typography } from "@material-ui/core";
 
-import "../../styles/RegistrationStepOne.scss";
-// import stepOneStyles from "./StepOneStyles";
+import stepOneStyles from "./StepOneStyles";
 
 const RegistrationStepOne = ({
   handleStepOneChange,
@@ -9,100 +9,166 @@ const RegistrationStepOne = ({
   updateStep,
   info
 }) => {
+  const classes = stepOneStyles();
+
+  const [touched, setTouched] = useState({
+    first_name: false,
+    last_name: false,
+    address: false,
+    city: false,
+    state: false,
+    zipCode: false
+  });
+
+  const toggleTouched = e => {
+    setTouched({
+      ...touched,
+      [e.target.name]: true
+    });
+  };
+
   return (
-    <div className="registration-container">
-      <div className="registration-forms-container">
-        <div className="registration-forms-box">
-          <form className="registration-forms-box__formik">
-            <div className="registration-forms-two-field top-buttons">
-              <div className="registration-forms-field-small">
-                <h2 className="registration-forms-field-title">First Name</h2>
-                <input
-                  type="text"
-                  name="first_name"
-                  className="registration-forms-box__field-small"
-                  onChange={handleStepOneChange}
-                  value={info.first_name}
-                />
-                <p className={info.first_name === "" ? "error" : "none"}>
-                  *Required
-                </p>
-              </div>
-              <div className="registration-forms-field-small">
-                <h2 className="registration-forms-field-title">Last Name</h2>
-                <input
-                  name="last_name"
-                  type="text"
-                  className="registration-forms-box__field-small"
-                  onChange={handleStepOneChange}
-                  value={info.last_name}
-                />
-                <p className={info.last_name === "" ? "error" : "none"}>
-                  *Required
-                </p>
-              </div>
+    <div className={classes.container}>
+      <div className={classes.sizingContainer}>
+        <div className={classes.formsContainer}>
+          <div className={classes.smallInputContainer}>
+            <div className={classes.smallInputSizer}>
+              <Typography variant="h3">First Name</Typography>
+              <input
+                type="text"
+                name="first_name"
+                className={classes.smallInput}
+                onChange={handleStepOneChange}
+                value={info.first_name}
+                onBlur={toggleTouched}
+              />
+              <Typography
+                variant="subtitle2"
+                className={
+                  info.first_name === "" && touched.first_name === true
+                    ? classes.error
+                    : classes.hidden
+                }
+              >
+                *Required
+              </Typography>
             </div>
-            <div className="registration-forms-field">
-              <h2 className="registration-forms-field-title-big">Address</h2>
+            <div className={classes.smallInputSizer}>
+              <Typography variant="h3">Last Name</Typography>
+              <input
+                name="last_name"
+                type="text"
+                className={classes.smallInput}
+                onChange={handleStepOneChange}
+                value={info.last_name}
+                onBlur={toggleTouched}
+              />
+              <Typography
+                variant="subtitle2"
+                className={
+                  info.last_name === "" && touched.last_name === true
+                    ? classes.error
+                    : classes.hidden
+                }
+              >
+                *Required
+              </Typography>
+            </div>
+          </div>
+          <div className={classes.bigInputContainer}>
+            <div className={classes.bigInputSizer}>
+              <Typography variant="h3">Address</Typography>
               <input
                 name="address"
-                className="registration-forms-box__field"
+                className={classes.bigInput}
                 type="text"
                 value={info.address}
                 onChange={handleStepOneChange}
+                onBlur={toggleTouched}
               />
-              <p className={info.address === "" ? "error-big" : "none"}>
+              <Typography
+                variant="subtitle2"
+                className={
+                  info.address === "" && touched.address === true
+                    ? classes.error
+                    : classes.hidden
+                }
+              >
                 *Required
-              </p>
+              </Typography>
             </div>
-            <div className="registration-forms-field">
-              <h2 className="registration-forms-field-title-big">City</h2>
+          </div>
+          <div className={classes.bigInputContainer}>
+            <div className={classes.bigInputSizer}>
+              <Typography variant="h3">City</Typography>
               <input
                 name="city"
-                className="registration-forms-box__field"
+                className={classes.bigInput}
                 type="text"
                 value={info.city}
                 onChange={handleStepOneChange}
+                onBlur={toggleTouched}
               />
-              <p className={info.city === "" ? "error-big" : "none"}>
+              <Typography
+                variant="subtitle2"
+                className={
+                  info.city === "" && touched.city === true
+                    ? classes.error
+                    : classes.hidden
+                }
+              >
                 *Required
-              </p>
+              </Typography>
             </div>
-            <div className="registration-forms-two-field bottom-buttons">
-              <div className="registration-forms-field-small">
-                <h2 className="registration-forms-field-title">State</h2>
-                <input
-                  name="state"
-                  className="registration-forms-box__field-small"
-                  onChange={handleStepOneChange}
-                  type="text"
-                  value={info.state}
-                />
-                <p className={info.state === "" ? "error" : "none"}>
-                  *Required
-                </p>
-              </div>
-              <div className="registration-forms-field-small">
-                <h2 className="registration-forms-field-title">Zip Code</h2>
-                <input
-                  name="zipCode"
-                  className="registration-forms-box__field-small"
-                  onChange={handleStepOneChange}
-                  type="text"
-                  value={info.zipCode}
-                />
-                <p className={info.zipCode === "" ? "error" : "none"}>
-                  *Required
-                </p>
-              </div>
+          </div>
+          <div className={classes.smallInputContainer}>
+            <div className={classes.smallInputSizer}>
+              <Typography variant="h3">State</Typography>
+              <input
+                name="state"
+                className={classes.smallInput}
+                onChange={handleStepOneChange}
+                type="text"
+                value={info.state}
+                onBlur={toggleTouched}
+              />
+              <Typography
+                variant="subtitle2"
+                className={
+                  info.state === "" && touched.state === true
+                    ? classes.error
+                    : classes.hidden
+                }
+              >
+                *Required
+              </Typography>
             </div>
-          </form>
+            <div className={classes.smallInputSizer}>
+              <Typography variant="h3">Zip Code</Typography>
+              <input
+                name="zipCode"
+                className={classes.smallInput}
+                onChange={handleStepOneChange}
+                type="text"
+                value={info.zipCode}
+                onBlur={toggleTouched}
+              />
+              <Typography
+                variant="subtitle2"
+                className={
+                  info.zipCode === "" && touched.zipCode === true
+                    ? classes.error
+                    : classes.hidden
+                }
+              >
+                *Required
+              </Typography>
+            </div>
+          </div>
         </div>
-        <div className="registration-buttons">
-          <button
-            className={step === 0 ? "none" : "registration-buttons__back"}
-          >
-            Back
+        <div className={classes.buttonContainer}>
+          <button className={step === 0 ? classes.hidden : classes.backButton}>
+            <Typography variant="button">Back</Typography>
           </button>
 
           <button
@@ -113,8 +179,8 @@ const RegistrationStepOne = ({
               info.city !== "" &&
               info.state !== "" &&
               info.zipCode !== ""
-                ? "registration-buttons__next"
-                : "registration-buttons__next-disabled"
+                ? classes.nextButton
+                : classes.nextButtonDisabled
             }
             onClick={
               info.first_name !== "" &&
@@ -129,7 +195,7 @@ const RegistrationStepOne = ({
                 : null
             }
           >
-            Next
+            <Typography variant="button">Next</Typography>
           </button>
         </div>
       </div>

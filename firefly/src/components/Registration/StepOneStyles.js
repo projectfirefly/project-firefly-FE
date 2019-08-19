@@ -1,251 +1,141 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-const stepOneStyles = makeStyles({
-  registrationHeader: {
-    textTransform: "uppercase",
-    textAlign: "center",
-    fontSize: "34px",
-    letterSpacing: "7px",
-    fontWeight: "900",
-    color: "#5b4eff",
-    marginBottom: "10px"
-  },
-  registrationFormsContainer: {
+const stepOneStyles = makeStyles(theme => ({
+  container: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    width: "100%"
-  },
-  registrationFormsField: {
-    marginTop: "30px",
     width: "100%",
+  },
+  sizingContainer: {
     display: "flex",
     flexDirection: "column",
-    alignItems: "center"
+    width: "70%",
   },
-  registrationFormsFieldSmall: {
-    marginTop: "30px",
-    width: "100%",
+  formsContainer: {
+    ...theme.paper,
+    boxSizing: "border-box",
     display: "flex",
     flexDirection: "column",
-    alignItems: "center"
-  },
-  registrationFormsTwoField: {
-    display: "flex",
-    justifyContent: " space-between",
-    width: "100%"
-  },
-  registrationFormsBox: {
-    width: " 714px !important",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
     alignItems: "center",
-    borderRadius: "20px",
-    boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.5)",
-    backgroundColor: "white",
-
-    "&.fieldSmall": {
-      display: "flex",
-      justifyContent: "center",
-      width: "80%",
-      height: " 44px !important",
-      color: " #152f04",
-      fontSize: "1.2rem",
-      fontWeight: "900",
-      letterSpacing: "2px",
-      paddingLeft: "4%",
-      borderRadius: "10px",
-      outline: "none",
-      backgroundColor: "#e2f5d6",
-      border: "none"
-    },
-
-    "&.formik": {
-      width: "100%",
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      justifyContent: "center"
-    },
-
-    // "&.formik"
-    "&.field ": {
-      display: "flex",
-      justifyContent: "center",
-      width: "89%",
-      height: " 44px !important",
-      color: "#152f04",
-      fontSize: "1.2rem",
-      fontWeight: "900",
-      letterSpacing: "2px",
-      paddingLeft: "2%",
-      borderRadius: "10px",
-      outline: "none",
-      backgroundColor: "#e2f5d6",
-      border: "none"
-    },
-
-    " &.formikButton": {
-      backgroundColor: "#4aa810",
-      color: "#e2f5d6",
-      padding: "0.8rem",
-      textTransform: "uppercase",
-      fontSize: "1.3rem",
-      borderRadius: "10px",
-      boxShadow: "0px 3px #3e8c0d",
-      cursor: "pointer",
-      opacity: "0.92",
-      transition: "opacity 0.25s ease-in-out",
-      letterSpacing: "1px",
-      marginBottom: "20px",
-      width: "80.5%",
-      justifyContent: "center",
-
-      "&:active": {
-        opacity: "1",
-        boxShadow: "none",
-        margin: "3px 0px 17px 0px"
-      },
-
-      " &:focus": {
-        outline: "none"
-      }
-    }
+    width: "100%",
+    padding: "2rem 3rem",
+    marginTop: "1rem",
   },
-  error: {
-    color: " #f44336",
-    fontSize: "0.75rem",
-    minHeight: "1em",
-    textAlign: "left",
-    fontWeight: "400",
-    lineHeight: " 1em",
-    letterSpacing: "0.03333em",
-    marginLeft: "12%",
-    alignSelf: " flex-start",
-    marginBottom: "0px"
+  smallInputContainer: {
+    display: "flex",
+    width: "100%",
+    justifyContent: "space-around",
+    alignItems: "space-around",
+    margin: ".5rem 0",
   },
-
-  errorBig: {
-    color: " #f44336",
-    fontSize: "0.75rem",
-    minHeight: "1em",
-    textAlign: "left",
-    fontWeight: "400",
-    lineHeight: "1em",
-    letterSpacing: " 0.03333em",
-    marginLeft: "6%",
-    alignSelf: "flex-start",
-    marginBottom: "0px"
+  smallInputSizer: {
+    display: "flex",
+    flexDirection: "column",
+    width: "45%",
   },
-  registrationFormsFieldTitle: {
-    margin: "0px",
-    textTransform: "uppercase",
-    alignSelf: "flex-start",
-    marginLeft: "10%",
-    fontSize: "1rem",
-    fontWeight: "600",
-    letterSpacing: "2px",
-    marginBottom: "3px",
-    color: "#4aa810"
+  smallInput: {
+    ...theme.input,
+    width: "90%",
+    margin: "1rem .2rem",
+    padding: "1rem 1rem",
   },
-  registrationFormsFieldTitleBig: {
-    margin: "0px",
-    textTransform: "uppercase",
-    alignSelf: "flex-start",
-    marginLeft: "5%",
-    fontSize: "16px",
-    fontWeight: "600",
-    letterSpacing: "2px",
-    marginBottom: "3px",
-    color: " #4aa810"
+  bigInputContainer: {
+    display: "flex",
+    flexDirection: "column",
+    width: "100%",
+    alignItems: "center",
+    margin: ".5rem 0",
   },
-  bottomButtons: {
-    marginBottom: "50px"
+  bigInputSizer: {
+    display: "flex",
+    width: "95%",
+    flexDirection: "column",
   },
-  topButtons: {
-    marginTop: "15px"
+  bigInput: {
+    ...theme.input,
+    width: "95.5%",
+    margin: "1rem 0",
+    padding: "1rem 1rem",
   },
-  none: {
-    visibility: "hidden"
+  hidden: {
+    visibility: "hidden",
   },
-  registrationButtons: {
-    width: "714px !important",
+  buttonContainer: {
     display: "flex",
     justifyContent: "space-between",
-    marginTop: " 23px !important",
-
-    "&.back": {
-      backgroundColor: " #fff",
-      border: "2px solid #abb0ba",
-      color: "#4aa810",
-      padding: "0.8rem",
-      textTransform: "uppercase",
-      fontSize: "1.3rem",
-      borderRadius: "10px",
-      boxShadow: "0px 3px #8f96a3",
-      cursor: "pointer",
-      opacity: "0.92",
-      transition: "opacity 0.25s ease-in-out",
-      letterSpacing: "1px",
-      width: "25%",
-      justifyContent: "center",
-      "&:active ": {
-        opacity: "1",
-        boxShadow: "none",
-        margin: "3px 0px -3px 0px"
-      },
-
-      "&:focus ": {
-        outline: "none"
-      }
+    width: "100%",
+    marginTop: "3rem",
+  },
+  nextButtonDisabled: {
+    ...theme.disabledButton,
+    padding: ".7rem 5rem",
+  },
+  nextButton: {
+    ...theme.primaryButton,
+    padding: ".7rem 5rem",
+  },
+  backButton: {
+    ...theme.secondaryButton,
+    padding: ".7rem 5rem",
+  },
+  addChild: {
+    ...theme.secondaryButton,
+    padding: "1.5rem 0",
+  },
+  childrenContainer: {
+    display: "flex",
+    flexDirection: "column",
+    height: "50vh",
+    overflowY: "scroll",
+    zIndex: "10",
+    marginBottom: "3rem",
+    "&::-webkit-scrollbar": {
+      width: "1%",
     },
-
-    "&.next": {
-      backgroundColor: "#4aa810",
-      color: "#e2f5d6",
-      padding: "0.8rem",
-      textTransform: "uppercase",
-      fontSize: "1.3rem",
-      border: "none",
+    "&::-webkit-scrollbar-thumb": {
+      background: "#b6e699",
       borderRadius: "10px",
-      boxShadow: "0px 3px #3e8c0d",
-      cursor: "pointer",
-      opacity: " 0.92",
-      transition: " opacity 0.25s ease-in-out",
-      letterSpacing: "1px",
-      width: "25%",
-      justifyContent: "center",
-      "&:active ": {
-        opacity: "1",
-        boxShadow: "none",
-        margin: "3px 0px -3px 0px"
-      },
-
-      "&:focus": {
-        outline: "none"
-      }
     },
-    "&.next-disabled ": {
-      backgroundColor: "#e3e5e8",
-      color: " #ffffff",
-      padding: " 0.8rem",
-      textTransform: "uppercase",
-      fontSize: "1.3rem",
-      border: "none",
-      borderRadius: "10px",
-      boxShadow: "0px 3px #c7cbd1",
-      cursor: "pointer",
-      opacity: "0.92",
-      transition: "opacity 0.25s ease-in-out",
-      letterSpacing: "1px",
-      width: "25%",
-      justifyContent: "center",
-      "&:focus": {
-        outline: "none"
-      }
-    }
+  },
+  tutorialSize: {
+    display: "flex",
+    flexDirection: "column",
+    width: "70%",
+  },
+  boxes: {
+    display: "flex",
+    width: "85%",
+    justifyContent: "space-between",
+    marginBottom: "1rem",
+  },
+  box: {
+    ...theme.paper,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    width: "28%",
+    padding: "2%",
+    height: "45vh",
+    "&.middle": {
+      margin: "0 1%",
+    },
+  },
+  image: {
+    width: "100%",
+    height: "auto",
+    objectFit: "contain",
+  },
+  tutorialH: {
+    color: "black",
+    letterSpacing: "0",
+    marginBottom: "20%",
+  },
+  tutorialSteps: {
+    ...theme.typography.h6,
+    fontWeight: "600",
+    listStyle: "disc",
   }
-});
+}));
 
 export default stepOneStyles;

@@ -21,14 +21,16 @@ import GridIcon from "../../images/gridBackground.png";
 
 //importing the sound
 import clickMP3 from "../../assets/sounds/click.mp3";
-import metalDropMP3 from "../../assets/sounds/metalDrop.mp3";
+import clickTogetherMP3 from "../../assets/sounds/clickTogether.mp3";
 import paperMP3 from "../../assets/sounds/crumblingPaper.mp3";
-
+import poofMP3 from "../../assets/sounds/poof.mp3";
 //making the sounds variable
 const click = new uifx({ asset: clickMP3 });
-const metal = new uifx({ asset: metalDropMP3 });
+const clickTogether = new uifx({ asset: clickTogetherMP3 });
 const paper = new uifx({ asset: paperMP3 });
+const poof = new uifx({asset: poofMP3});
 
+//styling 
 const Board = styled.div`
   /* min-height: 100vh; */
   min-width: 100vw;
@@ -173,7 +175,7 @@ const Game = () => {
     const { source, destination } = result;
 
     isDraggingBlock(false);
-    // metal.play();
+    // clickTogether.play();
     // console.log("tools:", tools);
     // console.log("list:", list);
     // console.log("result:", result);
@@ -187,7 +189,7 @@ const Game = () => {
       //check to see if we are trying to throw away a tool from the toolbox (we don't want to do that)
       if (source.droppableId === "ITEMS") {
         console.log("dropping from toolbox");
-        paper.play();
+        poof.play();
         return;
       }
     }
@@ -228,7 +230,7 @@ const Game = () => {
 
       //Filters all tools to used:false so they become usable again
       setList({ realList });
-      paper.play();
+      poof.play();
       return;
     }
 
@@ -254,8 +256,8 @@ const Game = () => {
             destination
           )
         });
-        // to play default drop sound 'metal' when dropping the block
-        metal.play();
+        // to play default drop sound 'clickTogether' when dropping the block
+        clickTogether.play();
         break;
 
       default:
@@ -271,15 +273,18 @@ const Game = () => {
     }
   };
 
+  console.log("list:", list);
+
   return (
     <Board>
       <DragDropContext onDragEnd={onDragEnd} onDragStart={onDragStart}>
         <Toolbox tools={tools} />
         <FFbox tools={tools} />
         <GameBoard
-          state={list}
+          list={list}
           hasStart={hasStart}
           draggingBlock={draggingBlock}
+          setList={setList}
         />
         <DropDelete />
       </DragDropContext>
