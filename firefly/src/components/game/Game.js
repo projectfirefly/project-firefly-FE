@@ -28,9 +28,9 @@ import poofMP3 from "../../assets/sounds/poof.mp3";
 const click = new uifx({ asset: clickMP3 });
 const clickTogether = new uifx({ asset: clickTogetherMP3 });
 const paper = new uifx({ asset: paperMP3 });
-const poof = new uifx({asset: poofMP3});
+const poof = new uifx({ asset: poofMP3 });
 
-//styling 
+//styling
 const Board = styled.div`
   /* min-height: 100vh; */
   min-width: 100vw;
@@ -71,11 +71,13 @@ const ToolboxBox = styled.img`
 `;
 // a little function to help us with reordering the result
 const reorder = (list, startIndex, endIndex) => {
+  // if (list) {
   const result = Array.from(list);
   const [removed] = result.splice(startIndex, 1);
   result.splice(endIndex, 0, removed);
 
   return result;
+  // }
 };
 /**
  * Moves an item from one list to another list.
@@ -111,7 +113,7 @@ const ITEMS = [
     ),
     content: <ToolboxBox src={StartBlock} alt="startblock" />,
     used: false,
-    rsi: 0
+    rsi: 0,
   },
   {
     id: uuid(),
@@ -120,14 +122,14 @@ const ITEMS = [
     ),
     content: <ToolboxBox src={BlueBlockLeftSideEndState} alt="blueblock" />,
     used: false,
-    rsi: 1
+    rsi: 1,
   },
   {
     id: uuid(),
     functionality: <ToolboxBlueRepeatIcon src={RepeatIcon} alt="repeatIcon" />,
     content: <ToolboxBox src={BlueBlockLeftSideEndState} alt="blueblock" />,
     used: false,
-    rsi: 2
+    rsi: 2,
   },
 
   {
@@ -135,29 +137,29 @@ const ITEMS = [
     functionality: <ToolboxGreenIcon src={PaletteIcon} alt="paletteIcon" />,
     content: <ToolboxBox src={GreenBlockRightSideEndState} alt="greenblock" />,
     used: false,
-    rsi: 3
+    rsi: 3,
   },
   {
     id: uuid(),
     functionality: <ToolboxGreenIcon src={ClockIcon} alt="clockIcon" />,
     content: <ToolboxBox src={GreenBlockRightSideEndState} alt="greenblock" />,
     used: false,
-    rsi: 4
+    rsi: 4,
   },
   {
     id: uuid(),
     functionality: <ToolboxGreenIcon src={NumberIcon1} alt="numberIcon" />,
     content: <ToolboxBox src={GreenBlockRightSideEndState} alt="greenblock" />,
     used: false,
-    rsi: 5
+    rsi: 5,
   },
   {
     id: uuid(),
     functionality: <ToolboxToggleIcon src={ToggleOffIcon} alt="toggleIcon" />,
     content: <ToolboxBox src={GreenBlockRightSideEndState} alt="greenblock" />,
     used: false,
-    rsi: 6
-  }
+    rsi: 6,
+  },
 ];
 
 const Game = () => {
@@ -236,14 +238,17 @@ const Game = () => {
 
     switch (source.droppableId) {
       case destination.droppableId:
-        setList({
-          ...list,
-          [destination.droppableId]: reorder(
-            list[source.droppableId],
-            source.index,
-            destination.index
-          )
-        });
+        if (destination.droppableId !== "ITEMS") {
+          setList({
+            ...list,
+            [destination.droppableId]: reorder(
+              list[source.droppableId],
+              source.index,
+              destination.index
+            ),
+          });
+        }
+        console.log('yo');
         break;
 
       case "ITEMS":
@@ -254,7 +259,7 @@ const Game = () => {
             list[destination.droppableId],
             source,
             destination
-          )
+          ),
         });
         // to play default drop sound 'clickTogether' when dropping the block
         clickTogether.play();
