@@ -5,47 +5,6 @@ import sleepingAnimation from "./sleeping.json";
 import styled from "styled-components";
 import { makeStyles } from "@material-ui/styles";
 
-const StyledLottie = styled.div.attrs(props => ({}))`
-  .lambdahat {
-    ${props =>
-      props.accessory === "lambdahat"
-        ? "display: block !important;"
-        : "display: none !important;"}
-  }
-  .sunglasses {
-    ${props =>
-      props.accessory === "sunglasses"
-        ? "display: block !important;"
-        : "display: none !important;"}
-  }
-  .headphones {
-    ${props =>
-      props.accessory === "headphones"
-        ? "display: block !important;"
-        : "display: none !important;"}
-  }
-  .nerdglasses {
-    ${props =>
-      props.accessory === "nerdglasses"
-        ? "display: block !important;"
-        : "display: none !important;"}
-  }
-  .bodyLightTop path {
-    fill: hsl(${props => props.color}, 100%, 30%);
-  }
-  .bodyLightMid path {
-    fill: hsl(${props => props.color}, 100%, 40%);
-  }
-  .bodyLightBottom path {
-    fill: hsl(${props => props.color}, 100%, 55%);
-  }
-  .lightL path,
-  .lightM path,
-  .lightR path {
-    stroke: hsl(${props => props.color}, 100%, 55%);
-  }
-`;
-
 const FFanim = ({ height, width, color, accessory, awake }) => {
   function accessorySwitch( selector ) {
     if (accessory === selector) {
@@ -118,11 +77,9 @@ const FFanim = ({ height, width, color, accessory, awake }) => {
   };
 
   return (
-    // <StyledLottie accessory={accessory} color={color}>
     <div className={classes.wrapper}>
       <Lottie options={defaultOptions} height={height} width={width} />
     </div>
-    // </StyledLottie>
   );
 };
 
