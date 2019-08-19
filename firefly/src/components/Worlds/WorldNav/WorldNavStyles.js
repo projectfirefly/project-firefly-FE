@@ -2,16 +2,18 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const WorldNavStyles = makeStyles({
   navContainer: {
-    width: "100%",
-    height: "100%",
-    border: "white 6px soild"
-  },
-  iconButton: {
-    marginLeft: "50px",
-    marginTop: "50px",
     display: "flex",
-    width: "40px",
-    height: "40px",
+    width: "100%",
+    // border: "white 6px solid",
+    justifyContent: "space-between",
+    marginTop: "50px"
+  },
+
+  iconButton: {
+    display: "flex",
+    width: "44px",
+    height: "44px",
+    fontSize: "20px",
     textAlign: "right",
     alignItems: "center",
     justifyContent: "center",
@@ -21,7 +23,27 @@ const WorldNavStyles = makeStyles({
     border: " 2px solid #abb0ba",
     borderRadius: " 10px",
     backgroundColor: " #ffffff",
-    boxShadow: "0px 3px #8f96a3"
+    boxShadow: "0px 3px #8f96a3",
+    marginLeft: "50px"
+  },
+
+  addButton: {
+    display: "flex",
+    width: "113px",
+    height: "85px",
+    fontSize: "36px",
+    lineHeight: "37px",
+    textAlign: "right",
+    alignItems: "center",
+    justifyContent: "center",
+    color: " #4aa810",
+    fontWeight: "bold",
+    fontSize: "18px",
+    border: " 2px solid #abb0ba",
+    borderRadius: " 10px",
+    backgroundColor: " #ffffff",
+    boxShadow: "0px 3px #8f96a3",
+    marginRight: "50px"
   }
 });
 

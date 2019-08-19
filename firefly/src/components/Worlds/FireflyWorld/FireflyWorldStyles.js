@@ -6,7 +6,7 @@ const chooseWorldStyles = makeStyles({
     backgroundImage: `url(${background})`,
     backgroundPosition: "0px 0px",
     minWidth: "100vw",
-    height: "100vh",
+    height: "102vh",
     backgroundSize: "cover",
     backgroundPosition: " 0px 0px",
     backgroundRepeat: "no-repeat"
@@ -22,8 +22,8 @@ const chooseWorldStyles = makeStyles({
   },
   fireflyContainer: {
     // border: "dashed yellow 2px",
-    marginTop: "261px",
-    padding: "20px 0",
+    marginTop: "10%",
+    // padding: "20px 0",
     width: "100%",
     height: "400px"
   },

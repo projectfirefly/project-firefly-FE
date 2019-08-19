@@ -1,6 +1,7 @@
 import React from "react";
 import WorldNavStyles from "./WorldNavStyles";
-import { FaTimes } from "react-icons/fa";
+import { FaTimes, FaPlus } from "react-icons/fa";
+import FireflyOutline from "../../../assets/icons/firefly/OutlineFrieflyIcon.svg";
 
 export const WorldNav = () => {
   const classes = WorldNavStyles();
@@ -10,6 +11,12 @@ export const WorldNav = () => {
       <div className={classes.iconButton} onClick={""}>
         <FaTimes />
       </div>
+
+      <div className={classes.addButton} onClick={""}>
+        <FaPlus />
+        <FaTimes />
+      </div>
+      {/* <FireflyOutline /> */}
     </div>
   );
 };
