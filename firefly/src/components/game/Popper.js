@@ -4,7 +4,15 @@ import PalettePopper from "./Poppers/PalettePopper";
 import TimerPopper from "./Poppers/TimerPopper";
 import CountPopper from "./Poppers/CountPopper";
 import SwitchPopper from "./Poppers/SwitchPopper";
+import uifx from "uifx";
 
+//importing the sound
+import clickMP3 from "../../assets/sounds/Button.mp3";
+//making the sound variable
+const click = new uifx({ asset: clickMP3});
+/* 
+have to add the click.play() to the popper but when I do right now the game freezes up and becomes laggy 
+*/
 const useStyles = makeStyles(theme => ({
   root: {},
 
@@ -85,6 +93,7 @@ export default function Popper({
         {children}
       </div>
       <div
+      
         className={
           togglePalette
             ? classes.popperPaletteContainer
