@@ -1,17 +1,13 @@
 import React, { useState, useContext, useEffect } from "react";
 import Container from "@material-ui/core/Container";
-import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-import "../../styles/MyAccountPage.scss";
 import { Link } from "react-router-dom";
 import ProfileCard from "./ProfileCard";
 import Icon from "../../assets/icons";
 import { FaPen, FaPlus } from "react-icons/fa";
-import { PrimaryButton } from "../../utils/buttons/PrimaryButton";
-import { SecondaryButton } from "../../utils/buttons/SecondaryButton";
 import accountStyles from "./MyAccountStyles";
-import "../../styles/MyAccountPage.scss";
+import { Typography } from "@material-ui/core";
 
 //context
 import { childContext } from "../../context/ChildProfiles/ChildProfileStore";
@@ -32,8 +28,8 @@ export default function ProfileView(props) {
     first_name: "",
     last_name: "",
     information: {
-      address: ""
-    }
+      address: "",
+    },
   });
 
   console.log("myaccountpage state", childProfileState);
@@ -45,7 +41,7 @@ export default function ProfileView(props) {
       !finishedLoading
     ) {
       setUpdatedInfo({
-        ...childProfileState.user
+        ...childProfileState.user,
       });
       setFinishedLoading(true);
     }
@@ -54,7 +50,7 @@ export default function ProfileView(props) {
   const toggleEditing = () => {
     setEditing(!editing);
     setUpdatedInfo({
-      ...childProfileState.user
+      ...childProfileState.user,
     });
     console.log(process.env.REACT_APP_SOMETHING);
   };
@@ -62,7 +58,7 @@ export default function ProfileView(props) {
   const handleChanges = e => {
     setUpdatedInfo({
       ...updatedInfo,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -71,8 +67,8 @@ export default function ProfileView(props) {
       ...updatedInfo,
       information: {
         ...updatedInfo.information,
-        [e.target.name]: e.target.value
-      }
+        [e.target.name]: e.target.value,
+      },
     });
   };
 
@@ -88,7 +84,9 @@ export default function ProfileView(props) {
   ) {
     return (
       <Container className={classes.root} maxWidth="lg">
-        <h1 className={classes.header}>My Account</h1>
+        <div className={classes.mainHeader}>
+          <Typography variant="h1">My Account</Typography>
+        </div>
 
         <div className={classes.container}>
           <div className={classes.left}>
@@ -103,12 +101,14 @@ export default function ProfileView(props) {
                 </div>
                 <Grid container spacing={3}>
                   <Grid item xs={2}>
-                    <div className={classes.infoLabel}>Email</div>
+                    <Typography variant="h5" className={classes.infoLabel}>
+                      Email:
+                    </Typography>
                   </Grid>
                   <Grid item xs={6}>
                     {!editing ? (
                       <div className={classes.userInfo}>
-                        {childProfileState.user.email}
+                        <Typography> {childProfileState.user.email}</Typography>
                       </div>
                     ) : (
                       <input
@@ -116,19 +116,24 @@ export default function ProfileView(props) {
                         value={updatedInfo.email}
                         name="email"
                         onChange={handleChanges}
+                        className={classes.textInput}
                       />
                     )}
                   </Grid>
                 </Grid>
                 <Grid container spacing={3}>
                   <Grid item xs={2}>
-                    <div className={classes.infoLabel}>Name</div>
+                    <Typography variant="h5" className={classes.infoLabel}>
+                      Name:
+                    </Typography>
                   </Grid>
                   <Grid item xs={6}>
                     {!editing ? (
                       <div className={classes.userInfo}>
-                        {childProfileState.user.first_name}{" "}
-                        {childProfileState.user.last_name}
+                        <Typography>
+                          {childProfileState.user.first_name}{" "}
+                          {childProfileState.user.last_name}
+                        </Typography>
                       </div>
                     ) : (
                       <div>
@@ -137,12 +142,14 @@ export default function ProfileView(props) {
                           value={updatedInfo.first_name}
                           name="first_name"
                           onChange={handleChanges}
+                          className={classes.textInput}
                         />
                         <input
                           type="text"
                           value={updatedInfo.last_name}
                           name="last_name"
                           onChange={handleChanges}
+                          className={classes.textInput}
                         />
                       </div>
                     )}
@@ -150,12 +157,16 @@ export default function ProfileView(props) {
                 </Grid>
                 <Grid container spacing={3}>
                   <Grid item xs={2}>
-                    <div className={classes.infoLabel}>Address</div>
+                    <Typography variant="h5" className={classes.infoLabel}>
+                      Address:
+                    </Typography>
                   </Grid>
                   <Grid item xs={6}>
                     {!editing ? (
                       <div className={classes.userInfo}>
-                        {childProfileState.user.information.address}
+                        <Typography>
+                          {childProfileState.user.information.address}
+                        </Typography>
                       </div>
                     ) : (
                       <input
@@ -163,6 +174,7 @@ export default function ProfileView(props) {
                         value={updatedInfo.information.address}
                         name="address"
                         onChange={handleInformationChanges}
+                        className={classes.textInput}
                       />
                     )}
                   </Grid>
@@ -187,14 +199,14 @@ export default function ProfileView(props) {
                 </h2>
                 <div className={classes.researchSection}>
                   <div className={classes.checkboxContainer}>
-                    <label className="checkbox-label">
+                    <label className={classes.checkboxLabel}>
                       <input type="checkbox" />
-                      <span className="checkbox-custom"> {""}</span>
+                      <span className={classes.checkboxCustom}> {""}</span>
                     </label>
                   </div>
-                  <p className={classes.p}>
+                  <Typography>
                     I would like to participate in the Educational Research
-                  </p>
+                  </Typography>
                 </div>
                 <br />
               </Paper>
@@ -206,7 +218,7 @@ export default function ProfileView(props) {
               <h2 className={classes.sectionHeaderRight}>Manage Profile</h2>
               <div className={classes.fireflyContainer}>
                 <div className={classes.edit}>
-                  <p>New Profile</p>
+                  <Typography variant="h6">New Profile</Typography>
                   <Link to="/addprofile" className={classes.iconButton}>
                     <FaPlus />
                   </Link>
@@ -216,7 +228,7 @@ export default function ProfileView(props) {
                   <Icon
                     name="Firefly"
                     style={{
-                      width: "40%"
+                      width: "40%",
                     }}
                   />
                 </div>
@@ -236,16 +248,18 @@ export default function ProfileView(props) {
             </Paper>
 
             {!editing ? (
-              <Link to="/startgame" className={classes.button}>
-                <PrimaryButton text={"BACK TO GAME"} />
-              </Link>
+              <div className={classes.editButtons}>
+                <Link to="/startgame" className={classes.button}>
+                  <Typography variant="button">Back To Game</Typography>
+                </Link>
+              </div>
             ) : (
               <div className={classes.editButtons}>
-                <div className={classes.button} onClick={toggleEditing}>
-                  <SecondaryButton text="Cancel" />
+                <div className={classes.button + " back"} onClick={toggleEditing}>
+                  <Typography variant="button">Back</Typography>
                 </div>
                 <div className={classes.button} onClick={submit}>
-                  <PrimaryButton text="Save" />
+                  <Typography variant="button">Save</Typography>
                 </div>
               </div>
             )}

@@ -1,14 +1,10 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-
 //Context
 import { childContext } from "../../context/ChildProfiles/ChildProfileStore";
 import { UPDATE_PROFILE } from "../../context/ChildProfiles/ChildProfileStore";
 import { updateProfile } from "../../utils/firebaseInteractions";
-
-
-
 
 //components
 import { PrimaryButton } from "../../utils/buttons/PrimaryButton";
@@ -16,9 +12,9 @@ import { SecondaryButton } from "../../utils/buttons/SecondaryButton";
 import ColorSlider from "../ColorSlider/ColorSlider";
 import Accessories from "./Accessories";
 
-import createProfileClasses from "./CreateProfileStyles";
+import createProfileClasses from "./createProfileStyles";
 import Icon from "../../assets/icons";
-
+import { Typography } from "@material-ui/core";
 
 export default function CustomizeFireflyPage(props) {
   const classes = createProfileClasses();
@@ -68,30 +64,34 @@ export default function CustomizeFireflyPage(props) {
   };
 
   //Return nothing for a microsecond while updatedProfile populates.
-  if (
-    updatedProfile
-  ) {
+  if (updatedProfile) {
     return (
       <div className={classes.rootContainer}>
-        <h1 className={classes.header}>Customize Your Firefly</h1>
+        <div className={classes.header}>
+          <Typography variant="h1">Customize Your Firefly</Typography>
+        </div>
 
         <div className={classes.sizingContainer}>
           <div className={classes.cardContainer}>
             <div className={classes.card + " left"}>
-              <Icon
-                name="Firefly"
-                width={"100%"}
-                viewBox={"0 0 1024 1024"}
-                accessory={updatedProfile.avatar.accessory}
-                lighttopFill={`hsl(${updatedProfile.avatar.color},100%,35%)`}
-                lightmidFill={`hsl(${updatedProfile.avatar.color},100%,45%)`}
-                lightbottomFill={`hsl(${updatedProfile.avatar.color},100%,55%)`}
-                shineStroke={`hsl(${updatedProfile.avatar.color},100%,55%)`}
-              />
+              <div className={classes.firefly}>
+                <Icon
+                  name="Firefly"
+                  width={"100%"}
+                  viewBox={"0 0 1024 1024"}
+                  accessory={updatedProfile.avatar.accessory}
+                  lighttopFill={`hsl(${updatedProfile.avatar.color},100%,35%)`}
+                  lightmidFill={`hsl(${updatedProfile.avatar.color},100%,45%)`}
+                  lightbottomFill={`hsl(${
+                    updatedProfile.avatar.color
+                  },100%,55%)`}
+                  shineStroke={`hsl(${updatedProfile.avatar.color},100%,55%)`}
+                />
+              </div>
             </div>
             <div className={classes.card + " right"}>
               <div style={{}}>
-                <h2 className={classes.h2 + " nickname"}>NICKNAME</h2>
+                <Typography variant="h3" className={classes.h3 + " nickname"}>NICKNAME</Typography>
               </div>
               <input
                 className={classes.input}
@@ -100,14 +100,14 @@ export default function CustomizeFireflyPage(props) {
                 onChange={handleChange}
               />
               <div>
-                <h2 className={classes.h2}>ACCESSORIES</h2>
+                <Typography variant="h3" className={classes.h3}>ACCESSORIES</Typography>
                 <Accessories
                   accessory={updatedProfile.avatar.accessory}
                   accessoryChange={accessoryChange}
                 />
               </div>
               <div className={classes.lightColor}>
-                <h2 className={classes.h2}>LIGHT COLOR</h2>
+                <Typography variant="h3" className={classes.h3}>LIGHT COLOR</Typography>
                 <div className={classes.slider}>
                   <ColorSlider
                     value={updatedProfile.avatar.color}
@@ -117,16 +117,16 @@ export default function CustomizeFireflyPage(props) {
               </div>
             </div>
           </div>
-        </div>
-        <div className={classes.buttonContainer}>
-          <Link to='/choose-profile' className={classes.a}>
-            <SecondaryButton
-              text={"BACK"}
-              onClick={"window.history.back(-1)"}
-            />
-          </Link>
-          <div className={classes.a} onClick={saveProfile}>
-            <PrimaryButton text={"SAVE"} />
+          <div className={classes.buttonContainer}>
+            <Link to="/choose-profile" className={classes.a}>
+              <SecondaryButton
+                text={"BACK"}
+                onClick={"window.history.back(-1)"}
+              />
+            </Link>
+            <div className={classes.a} onClick={saveProfile}>
+              <PrimaryButton text={"SAVE"} />
+            </div>
           </div>
         </div>
       </div>

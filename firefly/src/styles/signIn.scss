@@ -120,13 +120,14 @@
 }
 
 #firebaseui_container {
+  display: flex !important;
   width: 100%;
   margin: 26px auto 0;
 }
 
-.firebaseui-idp-google {
-  // margin-top: 35px !important;
-}
+// .firebaseui-idp-google {
+//   // margin-top: 35px !important;
+// }
 
 .firebaseui-idp-button {
   padding: 0.8rem !important;
