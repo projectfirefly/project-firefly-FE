@@ -2,6 +2,12 @@ import React, { useState } from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
 
+import screen1 from "../../assets/images/screen1.png";
+import screen2 from "../../assets/images/screen2.png";
+import screen3 from "../../assets/images/screen3.png";
+import screen4 from "../../assets/images/screen4.png";
+import screen5 from "../../assets/images/screen5.png";
+
 //import components for each step. 
 import CustomStepper from "../Steppers/CustomStepper";
 import { Typography } from "@material-ui/core";
@@ -22,44 +28,67 @@ const MultiStepTutorial = () => {
       alignItems: "center",
       justifyContent: "center",
     },
-    second: {
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      justifyContent: "center"
-    },
-    third: {
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      justifyContent: "center"
+    image: {
+      height: '80vh',
+      border: '1px solid black',
     },
     wrapper: {
-      width: "100%"
+      width: "100%",
+      display: 'flex',
+      justifyContent: 'center',
     }
   }))();
 
 const [step, setStep] = useState(0);
 
-const updateStep = operation => {
-operation === "add" ? setStep(step + 1) : setStep(step - 1);
-};
+  switch(step) {
+    default: 
+      return <div className={classes.root}>
+                <div className={classes.header}>
 
- return step === 0 ? (
-    <div className={classes.root}>
-      <div className={classes.header}>
-        <Game   />
-      </div>
-      <div className={classes.wrapper}>
-      </div>
-    </div>
-  ) : step === 1 ? (
-      <div>
-    </div>
-  ) : (
-      <div>
-    </div>
-  );
+                </div>
+                <div className={classes.wrapper}>
+                  <img className={classes.image} src={screen1} onClick={() => setStep(step + 1)}/>
+                </div>
+              </div>;
+    case 1:
+      return <div className={classes.root}>
+                <div className={classes.header}>
+                  
+                </div>
+                <div className={classes.wrapper}>
+                  <img className={classes.image} src={screen2} onClick={() => setStep(step + 1)}/>
+                </div>
+              </div>;
+    case 2:
+      return <div className={classes.root}>
+                <div className={classes.header}>
+                  
+                </div>
+                <div className={classes.wrapper}>
+                  <img className={classes.image} src={screen3} onClick={() => setStep(step + 1)}/>
+                </div>
+              </div>;      
+    case 2:
+      return <div className={classes.root}>
+                <div className={classes.header}>
+                  
+                </div>
+                <div className={classes.wrapper}>
+                  <img className={classes.image} src={screen4} onClick={() => setStep(step + 1)}/>
+                </div>
+              </div>;      
+    case 2:
+      return <div className={classes.root}>
+                <div className={classes.header}>
+                  
+                </div>
+                <div className={classes.wrapper}>
+                  <img className={classes.image} src={screen5} onClick={() => setStep(0git )}/>
+                </div>
+              </div>;      
+  }
+
 };
 
 export default MultiStepTutorial;
