@@ -84,7 +84,7 @@ const [step, setStep] = useState(0);
                   
                 </div>
                 <div className={classes.wrapper}>
-                  <img className={classes.image} src={screen5} onClick={() => setStep(0git )}/>
+                  <img className={classes.image} src={screen5} onClick={() => setStep(0)}/>
                 </div>
               </div>;      
   }
