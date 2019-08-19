@@ -54,16 +54,23 @@ export default function ColorSlider(props) {
 
     const classes = useStyles();
 
+    const change = (event, newValue) => {
+      setSliderValue(newValue);
+      const d = new Date();
+      if (d.getTime() % 7 === 0) {
+        props.updateColor(newValue);
+      }
+    }
+
     const commitChange = (event, newValue) => {
         props.updateColor(newValue);
-        setSliderValue(newValue);
     }
 
     return (
         <div style={{ width: '100%', height:'100%' }}>
             <div>
                 {sliderValue > -1 ?
-                    <Slider classes={classes} value={sliderValue} max={360} onChange={commitChange} onChangeCommitted={commitChange} aria-label="Color slider" />
+                    <Slider classes={classes} value={sliderValue} max={360} onChange={change} onChangeCommitted={commitChange} aria-label="Color slider" />
                     :
                     <h2>loading...</h2>
                 }
