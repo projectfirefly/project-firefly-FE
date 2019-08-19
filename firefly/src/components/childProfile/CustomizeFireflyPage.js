@@ -12,7 +12,7 @@ import { SecondaryButton } from "../../utils/buttons/SecondaryButton";
 import ColorSlider from "../ColorSlider/ColorSlider";
 import Accessories from "./Accessories";
 
-import createProfileClasses from "./createProfileStyles";
+import createProfileClasses from "./CreateProfileStyles";
 import Icon from "../../assets/icons";
 import { Typography } from "@material-ui/core";
 

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Typography } from "@material-ui/core";
 
-import stepOneStyles from "./stepOneStyles";
+import stepOneStyles from "./StepOneStyles";
 
 const RegistrationStepOne = ({
   handleStepOneChange,

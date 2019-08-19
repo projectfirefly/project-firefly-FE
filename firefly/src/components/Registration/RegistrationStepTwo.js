@@ -1,7 +1,7 @@
 import React from "react";
 import "./../../styles/RegistrationStepTwo.scss";
 import RegistrationAddChild from "./RegistrationAddChild";
-import stepOneStyles from "./stepOneStyles";
+import stepOneStyles from "./StepOneStyles";
 import { Typography } from "@material-ui/core";
 
 const AddChild = ({

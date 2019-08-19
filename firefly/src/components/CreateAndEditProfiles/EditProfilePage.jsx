@@ -24,7 +24,7 @@ import {
 } from "@material-ui/core";
 
 import Icon from "../../assets/icons";
-import createProfileStyles from "./createAndEditProfileStyles";
+import createProfileStyles from "./CreateAndEditProfileStyles";
 
 //components
 import { SecondaryButton } from "../../utils/buttons/SecondaryButton";
