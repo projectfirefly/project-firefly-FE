@@ -77,8 +77,15 @@ export default function MyFireflyPage() {
               </div>
             </div>
 
+
             <div className={classes.rightContainer}>
-              <div className={classes.rightCards}>
+
+
+              <Link
+                className={classes.rightCards}
+                style={{ textDecoration: "none" }}
+                to="/tutorialtest"
+              >
                 <div className={classes.rightCardContent}>
                   <img
                     className={classes.rightCardsImg}
@@ -87,7 +94,7 @@ export default function MyFireflyPage() {
                   />
                   <h4 className={classes.rightCardsText}>Learn How to Play</h4>
                 </div>
-              </div>
+              </Link>
 
               <Link
                 className={classes.rightCards + " bottom"}
