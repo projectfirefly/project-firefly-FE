@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { Typography } from "@material-ui/core";
 
-import stepOneStyles from "./stepOneStyles";
+import stepOneStyles from "./StepOneStyles";
 
 const RegistrationStepOne = ({
   handleStepOneChange,
   step,
   updateStep,
-  info,
+  info
 }) => {
   const classes = stepOneStyles();
 
@@ -17,13 +17,13 @@ const RegistrationStepOne = ({
     address: false,
     city: false,
     state: false,
-    zipCode: false,
+    zipCode: false
   });
 
   const toggleTouched = e => {
     setTouched({
       ...touched,
-      [e.target.name]: true,
+      [e.target.name]: true
     });
   };
 

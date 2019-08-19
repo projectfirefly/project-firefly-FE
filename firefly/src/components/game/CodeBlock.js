@@ -65,7 +65,7 @@ const useStyles = makeStyles({
 
   count: {
     position: "absolute",
-    fontSize: "2.5rem",
+    fontSize: "4.5rem",
     fontFamily: "Nunito",
     left: "25%",
     color: "white",

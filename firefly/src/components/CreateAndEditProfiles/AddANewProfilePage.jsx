@@ -8,7 +8,7 @@ import { ADD_PROFILE } from "../../context/ChildProfiles/ChildProfileStore";
 
 //Styling
 import Icon from "../../assets/icons";
-import createProfileStyles from "./createAndEditProfileStyles";
+import createProfileStyles from "./CreateAndEditProfileStyles";
 
 //Button Components
 import { SecondaryButton } from "../../utils/buttons/SecondaryButton";
@@ -49,9 +49,7 @@ const AddANewProfilePage = props => {
     <div className={classes.container}>
       <div className={classes.sizingContainer}>
         <div className={classes.header}>
-          <Typography variant="h1">
-            ADD A NEW PROFILE
-          </Typography>
+          <Typography variant="h1">ADD A NEW PROFILE</Typography>
         </div>
         <div className={classes.card}>
           <div className={classes.firefly}>
@@ -59,7 +57,9 @@ const AddANewProfilePage = props => {
           </div>
           <div className={classes.inputContainer}>
             <div className={classes.firstName}>
-              <Typography variant="h2" className={classes.nameHeader}>First Name</Typography>
+              <Typography variant="h2" className={classes.nameHeader}>
+                First Name
+              </Typography>
               <input
                 type="text"
                 name="firstName"
@@ -69,7 +69,9 @@ const AddANewProfilePage = props => {
               />
             </div>
             <div className={classes.lastName}>
-            <Typography variant="h2" className={classes.nameHeader}>Last Name</Typography>
+              <Typography variant="h2" className={classes.nameHeader}>
+                Last Name
+              </Typography>
               <input
                 type="text"
                 name="lastName"
@@ -81,12 +83,12 @@ const AddANewProfilePage = props => {
           </div>
         </div>
         <div className={classes.buttonContainer}>
-            <Link to="/account" className={classes.cancel}>
-              <Typography variant="button">Cancel</Typography>
-            </Link>
-            <Link onClick={saveProfile} className={classes.save}>
-              <Typography variant="button">Save</Typography>
-            </Link>
+          <Link to="/account" className={classes.cancel}>
+            <Typography variant="button">Cancel</Typography>
+          </Link>
+          <Link onClick={saveProfile} className={classes.save}>
+            <Typography variant="button">Save</Typography>
+          </Link>
         </div>
       </div>
     </div>
