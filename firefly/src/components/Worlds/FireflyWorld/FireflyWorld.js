@@ -1,7 +1,7 @@
 import React from "react";
 import fireflyStyles from "./FireflyWorldStyles";
 import { WorldNav } from "../WorldNav/WorldNav";
-import FFanim from "../../../assets/animations/FFanim";
+import WorldFirefly from "../WorldFirefly/WorldFirefly";
 
 const FireflyWorld = () => {
   const classes = fireflyStyles();
@@ -12,31 +12,7 @@ const FireflyWorld = () => {
         <div className={classes.rootContainer}>
           <WorldNav />
           <div className={classes.fireflyContainer}>
-            <FFanim
-              height={129}
-              width={132}
-              accessory="none"
-              color={642}
-              awake={true}
-            />
-            <div className={classes.tempFirefly}>
-              <FFanim
-                height={129}
-                width={132}
-                accessory="none"
-                color={642}
-                awake={false}
-              />
-            </div>
-            <div className={classes.tempFirefly2}>
-              <FFanim
-                height={129}
-                width={132}
-                accessory="none"
-                color={142}
-                awake={true}
-              />
-            </div>
+            <WorldFirefly />
           </div>
         </div>
       </div>
