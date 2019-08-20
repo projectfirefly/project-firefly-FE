@@ -46,6 +46,10 @@ const items = [
     text: "MyAccountPage"
   },
   {
+    path: "/tutorialtest",
+    text: "TutorialTest"
+  },
+  {
     path: "/addprofile",
     text: "AddANewProfilePage"
   },
@@ -76,6 +80,10 @@ const items = [
   {
     path: "/chooseworld",
     text: "Choose World"
+  },
+  {
+    path: "/fireflyworld",
+    text: "Firefly World"
   }
 ];
 

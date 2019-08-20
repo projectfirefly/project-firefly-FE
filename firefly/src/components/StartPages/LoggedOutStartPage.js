@@ -1,27 +1,32 @@
 import React from "react";
-import "../../styles/LoggedOutStartPage.scss";
 import WelcomeToFirefly from "./../../images/WelcomeToFirefly.png";
 
+import startPageStyles from './StartPageStyles';
+
 import { Link } from "react-router-dom";
+import { Typography } from "@material-ui/core";
 
 const LoggedOutStartPage = () => {
+
+  const classes = startPageStyles();
+
   return (
-    <div className="choose-login-container">
-      <span className="logo">
+    <div className={classes.root}>
+      <span className={classes.logo}>
         <img
           src={WelcomeToFirefly}
           alt="WelcomeToFirefly"
-          className="logo__image"
+          className={classes.fireflyImage}
         />
       </span>
-      <div className="buttons">
-        <Link styles={{ "text-decoration": "none" }} to="/signup">
-          <button className="buttons__get-started">Get Started</button>
+      <div className={classes.buttonContainer}>
+        <Link className={classes.startButton} to="/signup">
+          <Typography variant="button">Get Started</Typography>
         </Link>
-        <Link styles={{ "text-decoration": "none" }} to="/signin">
-          <button className="buttons__already-have-account">
+        <Link className={classes.secondaryButton} to="/signin">
+          <Typography variant="button">
             I Already Have An Account
-          </button>
+          </Typography>
         </Link>
       </div>
     </div>

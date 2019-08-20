@@ -1,25 +1,20 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-const createProfileClasses = makeStyles({
+const createProfileClasses = makeStyles(theme => ({
   rootContainer: {
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    marginTop: "3%",
     width: "100%",
     fontFamily: "'Nunito', sans-serif"
   },
   sizingContainer: {
-    width: "80%"
+    width: "85%",
+    height: "100%",
   },
   header: {
-    fontSize: "34px",
-    letterSpacing: "7px",
-    fontWeight: "900",
-    color: "#5B4EFF",
-    textTransform: "uppercase",
-    marginBottom: "50px"
+    ...theme.headerMargin,
   },
   cardContainer: {
     height: "445px",
@@ -28,24 +23,22 @@ const createProfileClasses = makeStyles({
     justifyContent: "center"
   },
   card: {
-    backgroundColor: "#FFFFFF",
-    border: "2px solid #ABB0BA",
-    borderRadius: "10px",
-    boxShadow: "0px 3px #8F96A3",
+    ...theme.paper,
     "&.left": {
       display: "flex",
       justifyContent: "center",
       alignContent: "center",
-      margin: "0 76px 0 0"
+      marginRight: "5%",
+      padding: "0 5%",
     },
     "&.right": {
       padding: "3%",
-      // width: "500px"
+      width: "500px"
     }
   },
   firefly: {
     display: "flex",
-    width: "264px"
+    width: "100%",
   },
   accessory: {
     display: "flex",
@@ -56,21 +49,15 @@ const createProfileClasses = makeStyles({
   lightColor: {
     marginTop: "20%"
   },
-  h2: {
-    fontSize: "16px",
-    fontWeight: "bold",
+  h3: {
     margin: "3%",
     marginBottom: "5px",
-    color: "#52ab1a"
   },
   input: {
+    ...theme.input,
     fontSize: "18px",
-    border: "none",
-    background: "#e2f5d6",
     margin: "3%",
     marginBottom: "57px",
-    padding: "2%",
-    borderRadius: "5px",
     width: "90%",
     "&:focus": {
       outline: "none"
@@ -85,8 +72,8 @@ const createProfileClasses = makeStyles({
   },
   buttonContainer: {
     display: "flex",
-    width: "80%",
-    margin: "50px",
+    width: "100%",
+    marginTop: "5%",
     justifyContent: "space-between",
     alignItems: "center"
   },
@@ -135,6 +122,6 @@ const createProfileClasses = makeStyles({
       cursor: "pointer"
     }
   }
-});
+}));
 
 export default createProfileClasses;

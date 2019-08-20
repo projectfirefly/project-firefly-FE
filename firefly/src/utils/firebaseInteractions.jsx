@@ -14,9 +14,9 @@ import {
   GET_WORLDS,
   ADD_WORLD,
   ADD_FIREFLY,
+  REMOVE_FIREFLY,
   UPDATE_BLOCK,
-  REMOVE_WORLD,
-  REMOVE_FIREFLY
+  REMOVE_WORLD
 } from "../context/Game/GameStore";
 
 export const getWorld = async (child, dispatch) => {
@@ -179,7 +179,6 @@ export const addFirefly = async (child, world_id, dispatch) => {
     });
 };
 
-// Delete Firefly
 export const removeFirefly = async (child, requiredIds, dispatch) => {
   const db = firebase.firestore();
   const uid = firebase.auth().currentUser.uid;
@@ -199,6 +198,7 @@ export const removeFirefly = async (child, requiredIds, dispatch) => {
   dispatch({ type: REMOVE_FIREFLY, payload: requiredIds });
 
 }
+
 //Add block to Firefly
 export const updateBlocks = async (child, requiredIds, payload, dispatch ) => {
   const db = firebase.firestore();

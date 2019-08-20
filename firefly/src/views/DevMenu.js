@@ -19,13 +19,15 @@ import ChooseProfilePage from "../components/ChildProfiles/ChooseProfilePage";
 import SignUpPage from "../components/SignInAndSignUp/SignUpPage";
 import SignInPage from "../components/SignInAndSignUp/SignInPage";
 import MultiStepRegistration from "../components/Registration/MultiStepRegistration";
+import MultiStepTutorial from "../components/tutorial/MultiStepTutorial";
 
 import MyAccountPage from "../components/MyAccount/MyAccountPage";
 import EditProfilePage from "../components/CreateAndEditProfiles/EditProfilePage";
 import AddANewProfilePage from "../components/CreateAndEditProfiles/AddANewProfilePage";
 import StartGame from "../components/StartPages/LoggedInStartPage";
 import CodeView from "../components/part2/CodeView";
-import ChooseWorld from "../components/Worlds/ChooseWorld";
+import ChooseWorld from "../components/Worlds/ChooseWorld/ChooseWorld";
+import FireflyWorld from "../components/Worlds/FireflyWorld/FireflyWorld";
 
 import BackendTester from "../components/backendTester/BackendTester";
 
@@ -52,7 +54,6 @@ export default function DevMenu(props) {
           <Menu />
         </div>
       ) : null}
-      <main className="app__content">
         <Switch>
           <Route exact path="/loader" component={Loader} />
           <PublicRoute
@@ -107,6 +108,12 @@ export default function DevMenu(props) {
           <PrivateRoute
             logged={props.logged}
             exact
+            path="/tutorialtest"
+            component={MultiStepTutorial}
+          />
+          <PrivateRoute
+            logged={props.logged}
+            exact
             path="/addprofile"
             component={AddANewProfilePage}
           />
@@ -133,8 +140,12 @@ export default function DevMenu(props) {
             path="/chooseworld"
             component={ChooseWorld}
           />
+          <PrivateRoute
+            logged={props.logged}
+            path="/fireflyworld"
+            component={FireflyWorld}
+          />
         </Switch>
-      </main>
     </div>
   );
 }

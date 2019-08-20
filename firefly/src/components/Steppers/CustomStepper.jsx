@@ -30,28 +30,28 @@ const CustomStepper = (props) => {
             '& $connectorLine': {
                 borderTop: '8px solid #5b4eff',
                 borderRadius: '2px',
-                marginTop: '-2px',
+                marginTop: '-3.5px',
             },
         },
         connectorCompleted: {
             '& $connectorLine': {
                 borderTop: '8px solid #5b4eff',
                 borderRadius: '2px',
-                marginTop: '-2px'
+                marginTop: '-3.5px'
             },
         },
         connectorDisabled: {
             '& $connectorLine': {
                 borderTop: '8px solid #d0ccff',
                 borderRadius: '2px',
-                marginTop: '-2px'
+                marginTop: '-3.5px'
             },
         },
         connectorLine: {
             '& $connectorLine': {
                 borderTop: '8px solid #d0ccff',
                 borderRadius: '2px',
-                marginTop: '-2px'
+                marginTop: '-3.5px'
             },
             transition: theme.transitions.create('border-color'),
         },

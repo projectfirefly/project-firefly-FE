@@ -1,5 +1,27 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import uifx from "uifx";
+
+//importing the sounds
+import oneMP3 from "../../../assets/sounds/number1.mp3";
+import twoMP3 from "../../../assets/sounds/number2.mp3";
+import threeMP3 from "../../../assets/sounds/number3.mp3";
+import fourMP3 from "../../../assets/sounds/number4.mp3";
+import fiveMP3 from "../../../assets/sounds/number5.mp3";
+import sixMP3 from "../../../assets/sounds/number6.mp3";
+import sevenMP3 from "../../../assets/sounds/number7.mp3";
+import eightMP3 from "../../../assets/sounds/number8.mp3";
+import nineMP3 from "../../../assets/sounds/number9.mp3";
+//making the sound variables
+const one = new uifx({ asset: oneMP3, volume: 0.1 });
+const two = new uifx({ asset: twoMP3, volume: 0.1 });
+const three = new uifx({ asset: threeMP3, volume: 0.1 });
+const four = new uifx({ asset: fourMP3, volume: 0.1 });
+const five = new uifx({ asset: fiveMP3, volume: 0.1 });
+const six = new uifx({ asset: sixMP3, volume: 0.1 });
+const seven = new uifx({ asset: sevenMP3, volume: 0.1 });
+const eight = new uifx({ asset: eightMP3, volume: 0.1 });
+const nine = new uifx({ asset: nineMP3, volume: 0.1 });
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -18,7 +40,7 @@ const useStyles = makeStyles(theme => ({
     margin: "5px 0px",
     cursor: "pointer",
     fontFamily: "Nunito",
-    fontSize: "2rem",
+    fontSize: "4rem",
     border: "2px solid #AFB4BE",
     borderRadius: "50%",
     display: "flex",
@@ -33,7 +55,7 @@ const useStyles = makeStyles(theme => ({
     margin: "5px 0px",
     cursor: "pointer",
     fontFamily: "Nunito",
-    fontSize: "2rem",
+    fontSize: "4rem",
     border: "2px solid #6459FF",
     borderRadius: "50%",
     display: "flex",
@@ -45,141 +67,126 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const CountPopper = () => {
+const CountPopper = ({ number, setNumber }) => {
   const classes = useStyles();
-
-  const [numberOne, setNumberOne] = useState(true);
-  const [numberTwo, setNumberTwo] = useState(false);
-  const [numberThree, setNumberThree] = useState(false);
-  const [numberFour, setNumberFour] = useState(false);
-  const [numberFive, setNumberFive] = useState(false);
-  const [numberSix, setNumberSix] = useState(false);
-  const [numberSeven, setNumberSeven] = useState(false);
-  const [numberEight, setNumberEight] = useState(false);
-  const [numberNine, setNumberNine] = useState(false);
-
-  const [activeNumber, setActiveNumber] = useState(
-    numberOne
-      ? "one"
-      : numberTwo
-      ? "two"
-      : numberThree
-      ? "three"
-      : numberFour
-      ? "four"
-      : numberFive
-      ? "five"
-      : numberSix
-      ? "six"
-      : numberSeven
-      ? "seven"
-      : numberEight
-      ? "eight"
-      : "nine"
-  );
-
-  const pushActiveNumber = active => {
-    setNumberOne(active === "one" ? true : false);
-    setNumberTwo(active === "two" ? true : false);
-    setNumberThree(active === "three" ? true : false);
-    setNumberFour(active === "four" ? true : false);
-    setNumberFive(active === "five" ? true : false);
-    setNumberSix(active === "six" ? true : false);
-    setNumberSeven(active === "seven" ? true : false);
-    setNumberEight(active === "eight" ? true : false);
-    setNumberNine(active === "nine" ? true : false);
-  };
 
   return (
     <div className={classes.container}>
       <div
         className={
-          numberOne
+          number === 1
             ? classes.numberActiveIconContainer
             : classes.numberIconContainer
         }
-        onClick={() => pushActiveNumber("one")}
+        onClick={() => {
+          setNumber(1);
+          one.play();
+        }}
       >
         1
       </div>
 
       <div
         className={
-          numberTwo
+          number === 2
             ? classes.numberActiveIconContainer
             : classes.numberIconContainer
         }
-        onClick={() => pushActiveNumber("two")}
+        onClick={() => {
+          setNumber(2);
+          two.play();
+        }}
       >
         2
       </div>
       <div
         className={
-          numberThree
+          number === 3
             ? classes.numberActiveIconContainer
             : classes.numberIconContainer
         }
-        onClick={() => pushActiveNumber("three")}
+        onClick={() => {
+          setNumber(3);
+          three.play();
+        }}
       >
         3
       </div>
       <div
         className={
-          numberFour
+          number === 4
             ? classes.numberActiveIconContainer
             : classes.numberIconContainer
         }
-        onClick={() => pushActiveNumber("four")}
+        onClick={() => {
+          setNumber(4);
+          four.play();
+        }}
       >
         4
       </div>
       <div
         className={
-          numberFive
+          number === 5
             ? classes.numberActiveIconContainer
             : classes.numberIconContainer
         }
-        onClick={() => pushActiveNumber("five")}
+        onClick={() => {
+          setNumber(5);
+          five.play();
+        }}
       >
         5
       </div>
       <div
         className={
-          numberSix
+          number === 6
             ? classes.numberActiveIconContainer
             : classes.numberIconContainer
         }
-        onClick={() => pushActiveNumber("six")}
+        onClick={() => {
+          setNumber(6);
+          six.play();
+        }}
       >
         6
       </div>
       <div
         className={
-          numberSeven
+          number === 7
             ? classes.numberActiveIconContainer
             : classes.numberIconContainer
         }
-        onClick={() => pushActiveNumber("seven")}
+        onClick={() => {
+          setNumber(7);
+          seven.play();
+        }}
       >
         7
       </div>
       <div
         className={
-          numberEight
+          number === 8
             ? classes.numberActiveIconContainer
             : classes.numberIconContainer
         }
-        onClick={() => pushActiveNumber("eight")}
+        onClick={() => {
+          setNumber(8);
+          eight.play();
+        }}
       >
         8
       </div>
       <div
         className={
-          numberNine
+          number === 9
             ? classes.numberActiveIconContainer
             : classes.numberIconContainer
         }
-        onClick={() => pushActiveNumber("nine")}
+        onClick={() => {
+          setNumber(9);
+          nine.play();
+        }}
       >
         9
       </div>

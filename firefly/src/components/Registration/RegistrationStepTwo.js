@@ -1,6 +1,8 @@
 import React from "react";
 import "./../../styles/RegistrationStepTwo.scss";
 import RegistrationAddChild from "./RegistrationAddChild";
+import stepOneStyles from "./StepOneStyles";
+import { Typography } from "@material-ui/core";
 
 const AddChild = ({
   step,
@@ -16,39 +18,41 @@ const AddChild = ({
     setProfiles(current);
   };
 
+  const classes = stepOneStyles();
+
   return (
-    <div className="registration-container">
-      <div className="registration-forms-container">
-        {profiles.map((profile, idx) => {
-          return (
-            <RegistrationAddChild
-              clickedClose={clickedClose}
-              idx={idx}
-              profile={profile}
-              profiles={profiles}
-              setProfiles={setProfiles}
-              handleChanges={handleChanges}
-            />
-          );
-        })}
+    <div className={classes.container}>
+      <div className={classes.sizingContainer}>
+        <div className={classes.childrenContainer}>
+          {profiles.map((profile, idx) => {
+            return (
+              <RegistrationAddChild
+                clickedClose={clickedClose}
+                idx={idx}
+                profile={profile}
+                profiles={profiles}
+                setProfiles={setProfiles}
+                handleChanges={handleChanges}
+              />
+            );
+          })}
+        </div>
 
         <div
-          className="registration-forms-box-2 registration-add-child-profile"
+          className={classes.addChild}
           onClick={() =>
             setProfiles([...profiles, { first_name: "", last_name: "" }])
           }
         >
-          <h2 className="registration-add-child-profile__text">
-            + Add another child profile
-          </h2>
+          <Typography variant="button">+ Add another child profile</Typography>
         </div>
 
-        <div className="registration-buttons">
+        <div className={classes.buttonContainer}>
           <button
-            className={step === 0 ? "none" : "registration-buttons__back"}
+            className={step === 0 ? classes.hidden : classes.backButton}
             onClick={() => updateStep("subtract")}
           >
-            Back
+            <Typography variant="button">Back</Typography>
           </button>
           <button
             className={
@@ -58,8 +62,8 @@ const AddChild = ({
                     profile.first_name !== "" && profile.last_name !== ""
                 )
                 .includes(false)
-                ? "registration-buttons__next-disabled"
-                : "registration-buttons__next"
+                ? classes.nextButtonDisabled
+                : classes.nextButton
             }
             onClick={
               profiles[0].first_name === "" || profiles[0].last_name === ""
@@ -67,7 +71,7 @@ const AddChild = ({
                 : () => updateStep("add")
             }
           >
-            Next
+            <Typography variant="button">Next</Typography>
           </button>
         </div>
       </div>

@@ -10,7 +10,7 @@ import { DragDropContext } from "react-beautiful-dnd";
 import StartBlock from "../../images/gameIcons/StartBlock.svg";
 import BlueBlockLeftSideEndState from "../../images/gameIcons/BlueBlockLeftSideEndState.svg";
 import GreenBlockRightSideEndState from "../../images/gameIcons/GreenBlockRightSideEndState.svg";
-import RepeatIcon from "../../images/gameIcons/RepeatIcon.svg";
+import RepeatIconNew from "../../images/gameIcons/RepeatIconNew.svg";
 import LightbulbIcon from "../../images/gameIcons/LightbulbIcon.svg";
 import ClockIcon from "../../images/gameIcons/ClockIcon.svg";
 import PlayCircleIcon from "../../images/gameIcons/PlayCircleIcon.svg";
@@ -21,14 +21,16 @@ import GridIcon from "../../images/gridBackground.png";
 
 //importing the sound
 import clickMP3 from "../../assets/sounds/click.mp3";
-import metalDropMP3 from "../../assets/sounds/metalDrop.mp3";
+import clickTogetherMP3 from "../../assets/sounds/clickTogether.mp3";
 import paperMP3 from "../../assets/sounds/crumblingPaper.mp3";
-
+import poofMP3 from "../../assets/sounds/poof.mp3";
 //making the sounds variable
 const click = new uifx({ asset: clickMP3 });
-const metal = new uifx({ asset: metalDropMP3 });
+const clickTogether = new uifx({ asset: clickTogetherMP3 });
 const paper = new uifx({ asset: paperMP3 });
+const poof = new uifx({ asset: poofMP3 });
 
+//styling
 const Board = styled.div`
   /* min-height: 100vh; */
   min-width: 100vw;
@@ -53,9 +55,9 @@ const ToolboxBlueLedIcon = styled.img`
 
 const ToolboxBlueRepeatIcon = styled.img`
   position: absolute;
-  width: 40%;
-  top: 30%;
-  left: 32%;
+  width: 50%;
+  top: 26%;
+  left: 23%;
 `;
 
 const ToolboxToggleIcon = styled.img`
@@ -69,11 +71,13 @@ const ToolboxBox = styled.img`
 `;
 // a little function to help us with reordering the result
 const reorder = (list, startIndex, endIndex) => {
+  // if (list) {
   const result = Array.from(list);
   const [removed] = result.splice(startIndex, 1);
   result.splice(endIndex, 0, removed);
 
   return result;
+  // }
 };
 /**
  * Moves an item from one list to another list.
@@ -122,8 +126,10 @@ const ITEMS = [
   },
   {
     id: uuid(),
-    functionality: <ToolboxBlueRepeatIcon src={RepeatIcon} alt="repeatIcon" />,
-    content: <ToolboxBox src={BlueBlockLeftSideEndState} alt="blueblock" />,
+    functionality: (
+      <ToolboxBlueRepeatIcon src={RepeatIconNew} alt="repeatIcon" />
+    ),
+    content: <ToolboxBox src={GreenBlockRightSideEndState} alt="greenblock" />,
     used: false,
     rsi: 2
   },
@@ -142,13 +148,13 @@ const ITEMS = [
     used: false,
     rsi: 4
   },
-  {
-    id: uuid(),
-    functionality: <ToolboxGreenIcon src={NumberIcon1} alt="numberIcon" />,
-    content: <ToolboxBox src={GreenBlockRightSideEndState} alt="greenblock" />,
-    used: false,
-    rsi: 5
-  },
+  // {
+  //   id: uuid(),
+  //   functionality: <ToolboxGreenIcon src={NumberIcon1} alt="numberIcon" />,
+  //   content: <ToolboxBox src={GreenBlockRightSideEndState} alt="greenblock" />,
+  //   used: false,
+  //   rsi: 5
+  // },
   {
     id: uuid(),
     functionality: <ToolboxToggleIcon src={ToggleOffIcon} alt="toggleIcon" />,
@@ -173,7 +179,7 @@ const Game = () => {
     const { source, destination } = result;
 
     isDraggingBlock(false);
-    // metal.play();
+    // clickTogether.play();
     // console.log("tools:", tools);
     // console.log("list:", list);
     // console.log("result:", result);
@@ -187,7 +193,7 @@ const Game = () => {
       //check to see if we are trying to throw away a tool from the toolbox (we don't want to do that)
       if (source.droppableId === "ITEMS") {
         console.log("dropping from toolbox");
-        paper.play();
+        poof.play();
         return;
       }
     }
@@ -196,16 +202,18 @@ const Game = () => {
       result.draggableId === tools[0].id ||
       result.draggableId === tools[1].id
     ) {
-      if (result.draggableId === tools[0].id) {
-        setHasStart(true);
+      if (destination.droppableId !== "ITEMS") {
+        if (result.draggableId === tools[0].id) {
+          setHasStart(true);
+        }
+        setTools(
+          [...tools].map(tool => {
+            return tool.id === result.draggableId
+              ? { ...tool, used: true }
+              : { ...tool };
+          })
+        );
       }
-      setTools(
-        [...tools].map(tool => {
-          return tool.id === result.draggableId
-            ? { ...tool, used: true }
-            : { ...tool };
-        })
-      );
     }
 
     if (destination.droppableId === "TRASH") {
@@ -228,20 +236,23 @@ const Game = () => {
 
       //Filters all tools to used:false so they become usable again
       setList({ realList });
-      paper.play();
+      poof.play();
       return;
     }
 
     switch (source.droppableId) {
       case destination.droppableId:
-        setList({
-          ...list,
-          [destination.droppableId]: reorder(
-            list[source.droppableId],
-            source.index,
-            destination.index
-          )
-        });
+        if (destination.droppableId !== "ITEMS") {
+          setList({
+            ...list,
+            [destination.droppableId]: reorder(
+              list[source.droppableId],
+              source.index,
+              destination.index
+            )
+          });
+        }
+        console.log("yo");
         break;
 
       case "ITEMS":
@@ -254,8 +265,8 @@ const Game = () => {
             destination
           )
         });
-        // to play default drop sound 'metal' when dropping the block
-        metal.play();
+        // to play default drop sound 'clickTogether' when dropping the block
+        clickTogether.play();
         break;
 
       default:
@@ -271,15 +282,18 @@ const Game = () => {
     }
   };
 
+  console.log("list:", list);
+
   return (
     <Board>
       <DragDropContext onDragEnd={onDragEnd} onDragStart={onDragStart}>
         <Toolbox tools={tools} />
         <FFbox tools={tools} />
         <GameBoard
-          state={list}
+          list={list}
           hasStart={hasStart}
           draggingBlock={draggingBlock}
+          setList={setList}
         />
         <DropDelete />
       </DragDropContext>
