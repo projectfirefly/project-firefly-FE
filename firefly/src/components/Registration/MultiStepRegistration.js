@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -6,16 +6,20 @@ import RegistrationStepOne from "./RegistrationStepOne";
 import RegistrationStepTwo from "./RegistrationStepTwo";
 import RegistrationStepThree from "./RegistrationStepThree";
 import CustomStepper from "../Steppers/CustomStepper";
+import { Typography } from "@material-ui/core";
 
 const MultiStepRegistration = () => {
   const classes = makeStyles(theme => ({
     app: {},
+    header: {
+      ...theme.headerMargin,
+      marginBottom: "2rem",
+    },
     root: {
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
       justifyContent: "center",
-      height: "623px"
     },
     second: {
       display: "flex",
@@ -72,7 +76,9 @@ const MultiStepRegistration = () => {
 
   return step === 0 ? (
     <div className={classes.root}>
-      <h1 className="registration-header"> Step 1: Account Information</h1>
+      <div className={classes.header}>
+        <Typography variant="h1"> Step 1: Account Information</Typography>
+      </div>
       <CustomStepper activeStep={step} />
       <div className={classes.wrapper}>
         <RegistrationStepOne
@@ -85,7 +91,7 @@ const MultiStepRegistration = () => {
     </div>
   ) : step === 1 ? (
     <div className={classes.second}>
-      <h1 className="registration-header">Step 2: Add a Child Profile</h1>
+      <Typography variant="h1" className={classes.header}>Step 2: Add a Child Profile</Typography>
       <CustomStepper activeStep={step} />
       <div className={classes.wrapper}>
         <RegistrationStepTwo
@@ -99,7 +105,7 @@ const MultiStepRegistration = () => {
     </div>
   ) : (
     <div className={classes.third}>
-      <h1 className="registration-header">Step 3: How it Works</h1>
+      <Typography variant="h1" className={classes.header}>Step 3: How it Works</Typography>
       <CustomStepper activeStep={step} />
       <div className={classes.wrapper}>
         <RegistrationStepThree

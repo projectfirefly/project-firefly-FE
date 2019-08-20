@@ -4,12 +4,8 @@ import React, { useContext, useEffect } from "react";
 
 import ChildProfileStore, {
   childContext,
-  GET_USER_INFO,
-  GET_PROFILES_AND_AVATARS,
-  UPDATE_SELECTED,
+  SET_LOADED
 } from "../context/ChildProfiles/ChildProfileStore";
-
-import firebase from "firebase";
 
 //material
 
@@ -23,12 +19,15 @@ import ChooseProfilePage from "../components/ChildProfiles/ChooseProfilePage";
 import SignUpPage from "../components/SignInAndSignUp/SignUpPage";
 import SignInPage from "../components/SignInAndSignUp/SignInPage";
 import MultiStepRegistration from "../components/Registration/MultiStepRegistration";
+import MultiStepTutorial from "../components/tutorial/MultiStepTutorial";
 
 import MyAccountPage from "../components/MyAccount/MyAccountPage";
 import EditProfilePage from "../components/CreateAndEditProfiles/EditProfilePage";
 import AddANewProfilePage from "../components/CreateAndEditProfiles/AddANewProfilePage";
 import StartGame from "../components/StartPages/LoggedInStartPage";
 import CodeView from "../components/part2/CodeView";
+import ChooseWorld from "../components/Worlds/ChooseWorld/ChooseWorld";
+import FireflyWorld from "../components/Worlds/FireflyWorld/FireflyWorld";
 
 import BackendTester from "../components/backendTester/BackendTester";
 
@@ -36,49 +35,17 @@ import AnimationTest from "../components/part2/AnimationTest";
 
 import Game from "../components/game/Game";
 
-import { getUser } from "../utils/firebaseInteractions";
-import { Loader } from "../utils/loaders";
+import { Loader } from "../utils/Loaders/loaders";
 
-export default function Layout(props) {
+export default function DevMenu(props) {
   const [context, dispatch] = useContext(childContext);
 
-  //Getting my user information from Firestore
-  //This is a monster function, I'll fix it some day.
   useEffect(() => {
-    if (props.logged) {
-      getUser(dispatch);
+    if (context.loaded && props.logged && !context.user) {
+      dispatch({ type: SET_LOADED, payload: false });
+      props.setIsLoading(true);
     }
-  }, [dispatch, props.logged]);
-
-  function PrivateRoute({ component: Component, logged, ...rest }) {
-    return (
-      <Route
-        {...rest}
-        render={props =>
-          logged === true ? (
-            <Component {...props} />
-          ) : (
-            <Redirect to={{ pathname: "/", state: { from: props.location } }} />
-          )
-        }
-      />
-    );
-  }
-
-  function PublicRoute({ component: Component, logged, ...rest }) {
-    return (
-      <Route
-        {...rest}
-        render={props =>
-          logged === false ? (
-            <Component {...props} />
-          ) : (
-            <Redirect to="/startgame" />
-          )
-        }
-      />
-    );
-  }
+  }, [props.logged]);
 
   return (
     <div className="app">
@@ -87,7 +54,6 @@ export default function Layout(props) {
           <Menu />
         </div>
       ) : null}
-      <main className="app__content">
         <Switch>
           <Route exact path="/loader" component={Loader} />
           <PublicRoute
@@ -142,6 +108,12 @@ export default function Layout(props) {
           <PrivateRoute
             logged={props.logged}
             exact
+            path="/tutorialtest"
+            component={MultiStepTutorial}
+          />
+          <PrivateRoute
+            logged={props.logged}
+            exact
             path="/addprofile"
             component={AddANewProfilePage}
           />
@@ -163,8 +135,47 @@ export default function Layout(props) {
             path="/backend-tester"
             component={BackendTester}
           />
+          <PrivateRoute
+            logged={props.logged}
+            path="/chooseworld"
+            component={ChooseWorld}
+          />
+          <PrivateRoute
+            logged={props.logged}
+            path="/fireflyworld"
+            component={FireflyWorld}
+          />
         </Switch>
-      </main>
     </div>
+  );
+}
+
+function PrivateRoute({ component: Component, logged, ...rest }) {
+  return (
+    <Route
+      {...rest}
+      render={props =>
+        logged === true ? (
+          <Component {...props} />
+        ) : (
+          <Redirect to={{ pathname: "/", state: { from: props.location } }} />
+        )
+      }
+    />
+  );
+}
+
+function PublicRoute({ component: Component, logged, ...rest }) {
+  return (
+    <Route
+      {...rest}
+      render={props =>
+        logged === false ? (
+          <Component {...props} />
+        ) : (
+          <Redirect to="/startgame" />
+        )
+      }
+    />
   );
 }

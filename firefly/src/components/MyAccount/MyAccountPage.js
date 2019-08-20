@@ -1,23 +1,22 @@
 import React, { useState, useContext, useEffect } from "react";
 import Container from "@material-ui/core/Container";
-import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-import "../../styles/MyAccountPage.scss";
 import { Link } from "react-router-dom";
 import ProfileCard from "./ProfileCard";
 import Icon from "../../assets/icons";
 import { FaPen, FaPlus } from "react-icons/fa";
-import { PrimaryButton } from "../../utils/buttons/PrimaryButton";
-import { SecondaryButton } from "../../utils/buttons/SecondaryButton";
+import accountStyles from "./MyAccountStyles";
+import { Typography } from "@material-ui/core";
 
 //context
 import { childContext } from "../../context/ChildProfiles/ChildProfileStore";
 import { UPDATE_USER } from "../../context/ChildProfiles/ChildProfileStore";
 import { updateUser } from "../../utils/firebaseInteractions";
-import { flexbox } from "@material-ui/system";
 
 export default function ProfileView(props) {
+  const classes = accountStyles();
+
   const [editing, setEditing] = useState(false);
 
   const [finishedLoading, setFinishedLoading] = useState(false);
@@ -33,6 +32,8 @@ export default function ProfileView(props) {
     },
   });
 
+  console.log("myaccountpage state", childProfileState);
+
   useEffect(() => {
     if (
       childProfileState.loaded &&
@@ -44,7 +45,7 @@ export default function ProfileView(props) {
       });
       setFinishedLoading(true);
     }
-  }, [childProfileState]);
+  }, [childProfileState, finishedLoading]);
 
   const toggleEditing = () => {
     setEditing(!editing);
@@ -53,29 +54,6 @@ export default function ProfileView(props) {
     });
     console.log(process.env.REACT_APP_SOMETHING);
   };
-
-  const classes = makeStyles(theme => ({
-    paper: {
-      padding: "20px 20px",
-      textAlign: "left",
-      color: theme.palette.text.secondary,
-      borderRadius: " 20px",
-      // marginBottom: "32px",
-    },
-    headerContainer: {
-      display: "flex",
-      justifyContent: "space-between",
-    },
-    editButtons: {
-      display: "flex",
-      marginTop: "40px",
-      justifyContent: "space-between",
-    },
-    button: {
-      width: "40%",
-      marginTop: "40px",
-    },
-  }))();
 
   const handleChanges = e => {
     setUpdatedInfo({
@@ -105,28 +83,32 @@ export default function ProfileView(props) {
     finishedLoading
   ) {
     return (
-      <Container className="root" maxWidth="lg">
-        <h1 className="header">My Account</h1>
+      <Container className={classes.root} maxWidth="lg">
+        <div className={classes.mainHeader}>
+          <Typography variant="h1">My Account</Typography>
+        </div>
 
-        <div className="container">
-          <div className="left">
+        <div className={classes.container}>
+          <div className={classes.left}>
             {/* Account Info */}
-            <div className="leftContainerOne">
+            <div className={classes.leftContainerOne}>
               <Paper className={classes.paper}>
                 <div className={classes.headerContainer}>
-                  <h2 className="sectionHeader">Account Information</h2>
-                  <div className="iconButton" onClick={toggleEditing}>
+                  <h2 className={classes.sectionHeader}>Account Information</h2>
+                  <div className={classes.iconButton} onClick={toggleEditing}>
                     <FaPen />
                   </div>
                 </div>
                 <Grid container spacing={3}>
                   <Grid item xs={2}>
-                    <div className="infoLabel">Email</div>
+                    <Typography variant="h5" className={classes.infoLabel}>
+                      Email:
+                    </Typography>
                   </Grid>
                   <Grid item xs={6}>
                     {!editing ? (
-                      <div className="userInfo">
-                        {childProfileState.user.email}
+                      <div className={classes.userInfo}>
+                        <Typography> {childProfileState.user.email}</Typography>
                       </div>
                     ) : (
                       <input
@@ -134,19 +116,24 @@ export default function ProfileView(props) {
                         value={updatedInfo.email}
                         name="email"
                         onChange={handleChanges}
+                        className={classes.textInput}
                       />
                     )}
                   </Grid>
                 </Grid>
                 <Grid container spacing={3}>
                   <Grid item xs={2}>
-                    <div className="infoLabel">Name</div>
+                    <Typography variant="h5" className={classes.infoLabel}>
+                      Name:
+                    </Typography>
                   </Grid>
                   <Grid item xs={6}>
                     {!editing ? (
-                      <div className="userInfo">
-                        {childProfileState.user.first_name}{" "}
-                        {childProfileState.user.last_name}
+                      <div className={classes.userInfo}>
+                        <Typography>
+                          {childProfileState.user.first_name}{" "}
+                          {childProfileState.user.last_name}
+                        </Typography>
                       </div>
                     ) : (
                       <div>
@@ -155,12 +142,14 @@ export default function ProfileView(props) {
                           value={updatedInfo.first_name}
                           name="first_name"
                           onChange={handleChanges}
+                          className={classes.textInput}
                         />
                         <input
                           type="text"
                           value={updatedInfo.last_name}
                           name="last_name"
                           onChange={handleChanges}
+                          className={classes.textInput}
                         />
                       </div>
                     )}
@@ -168,12 +157,16 @@ export default function ProfileView(props) {
                 </Grid>
                 <Grid container spacing={3}>
                   <Grid item xs={2}>
-                    <div className="infoLabel">Address</div>
+                    <Typography variant="h5" className={classes.infoLabel}>
+                      Address:
+                    </Typography>
                   </Grid>
                   <Grid item xs={6}>
                     {!editing ? (
-                      <div className="userInfo">
-                        {childProfileState.user.information.address}
+                      <div className={classes.userInfo}>
+                        <Typography>
+                          {childProfileState.user.information.address}
+                        </Typography>
                       </div>
                     ) : (
                       <input
@@ -181,6 +174,7 @@ export default function ProfileView(props) {
                         value={updatedInfo.information.address}
                         name="address"
                         onChange={handleInformationChanges}
+                        className={classes.textInput}
                       />
                     )}
                   </Grid>
@@ -189,47 +183,48 @@ export default function ProfileView(props) {
               </Paper>
             </div>
             {/* Payment Info */}
-            <div className="leftContainerTwo">
+            <div className={classes.leftContainerTwo}>
               <Paper className={classes.paper}>
-                <h2 className="sectionHeader"> Payment Information</h2>
+                <h2 className={classes.sectionHeader}> Payment Information</h2>
                 <br />
                 <br />
                 <br />
               </Paper>
             </div>
             {/* Educational Research */}
-            <div className="leftContainer">
+            <div className={classes.leftContainer}>
               <Paper className={classes.paper}>
-                <h2 className="sectionHeader">
+                <h2 className={classes.sectionHeader}>
                   Educational Research Participation
                 </h2>
-                <div className="research-section">
-                  <div className="checkbox-container">
-                    <label className="checkbox-label">
+                <div className={classes.researchSection}>
+                  <div className={classes.checkboxContainer}>
+                    <label className={classes.checkboxLabel}>
                       <input type="checkbox" />
-                      <span className="checkbox-custom"> {""}</span>
+                      <span className={classes.checkboxCustom}> {""}</span>
                     </label>
                   </div>
-                  <p>I would like to participate in the Educational Research</p>
+                  <Typography>
+                    I would like to participate in the Educational Research
+                  </Typography>
                 </div>
                 <br />
               </Paper>
             </div>
           </div>
 
-          <div className="rightCards">
+          <div className={classes.rightCards}>
             <Paper className={classes.paper}>
-              <h2 className="sectionHeaderRight">Manage Profile</h2>
-              <div className="fireflyContainer">
-                <div className="edit">
-                  <p>New Profile</p>
-                  <Link to="/addprofile" className="iconButton">
+              <h2 className={classes.sectionHeaderRight}>Manage Profile</h2>
+              <div className={classes.fireflyContainer}>
+                <div className={classes.edit}>
+                  <Typography variant="h6">New Profile</Typography>
+                  <Link to="/addprofile" className={classes.iconButton}>
                     <FaPlus />
                   </Link>
                 </div>
 
-                {/* New Profile card. Later make into a component */}
-                <div className="fireflyIcon">
+                <div className={classes.fireflyIcon}>
                   <Icon
                     name="Firefly"
                     style={{
@@ -238,7 +233,7 @@ export default function ProfileView(props) {
                   />
                 </div>
 
-                <hr className="style1" />
+                <hr className={classes.style1} />
                 {childProfileState.user.profiles.map(profile => {
                   return (
                     <ProfileCard
@@ -253,16 +248,18 @@ export default function ProfileView(props) {
             </Paper>
 
             {!editing ? (
-              <Link to="/startgame" className="button">
-                <PrimaryButton text={"BACK TO GAME"} />
-              </Link>
+              <div className={classes.editButtons}>
+                <Link to="/startgame" className={classes.button}>
+                  <Typography variant="button">Back To Game</Typography>
+                </Link>
+              </div>
             ) : (
               <div className={classes.editButtons}>
-                <div className={classes.button} onClick={toggleEditing}>
-                  <SecondaryButton text="Cancel" />
+                <div className={classes.button + " back"} onClick={toggleEditing}>
+                  <Typography variant="button">Back</Typography>
                 </div>
                 <div className={classes.button} onClick={submit}>
-                  <PrimaryButton text="Save" />
+                  <Typography variant="button">Save</Typography>
                 </div>
               </div>
             )}

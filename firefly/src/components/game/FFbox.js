@@ -1,23 +1,44 @@
 import React from "react";
 // import AnimationTest from "../part2/AnimationTest";
 import FFanim from "../../assets/animations/FFanim";
-import styled from "styled-components";
+import { makeStyles } from "@material-ui/core/styles";
 
-const Styled = styled.div`
-  height: 320px;
-  width: 320px;
-  padding: 20px 0;
-  margin: 1% auto;
-  border-radius: 20px;
-  background-image: linear-gradient(#382eb8, #7068ff);
-  box-shadow: 0px 2px 4px #000000;
-`;
+const useStyles = makeStyles({
+  fireFlyBox: {
+    width: "40%",
+    padding: "20px 0",
+    margin: "5% auto",
+    borderRadius: "20px",
+    boxShadow: "0px 2px 4px #000000",
+    backgroundImage: "linear-gradient(#382eb8, #7068ff)"
+  },
 
-const FFbox = () => {
+  fireFlyBoxSleep: {
+    width: "40%",
+    padding: "20px 0",
+    margin: "5% auto",
+    borderRadius: "20px",
+    boxShadow: "0px 1px 4px #000000",
+    backgroundImage: "linear-gradient(#555, #fff)"
+  }
+});
+
+const FFbox = ({ tools }) => {
+  const classes = useStyles();
   return (
-    <Styled>
-      <FFanim height={250} width={250} accessory="nerdglasses" color={352} />
-    </Styled>
+    <div
+      className={tools[1].used ? classes.fireFlyBox : classes.fireFlyBoxSleep}
+      //Conditionally render the FF box depending on play AND led blocks are on. We don't need it anymore.
+      // style={!tools[0].used || !tools[1].used ? { visibility: "hidden" } : null}
+    >
+      <FFanim
+        height={250}
+        width={250}
+        accessory="nerdglasses"
+        color={58}
+        awake={tools[1].used ? true : false}
+      />
+    </div>
   );
 };
 

@@ -16,11 +16,7 @@ const createProfileStyles = makeStyles(theme => ({
     width: "60%"
   },
   header: {
-    color: "#5b4eff",
-    fontWeight: "900",
-    letterSpacing: "5px",
-    fontSize: "34px",
-    marginBottom: "8%"
+    ...theme.headerMargin,
   },
   cardContainer: {
     width: "100%",
@@ -29,11 +25,9 @@ const createProfileStyles = makeStyles(theme => ({
     alignItems: "center"
   },
   card: {
+    ...theme.paper,
     display: "flex",
     width: "100%",
-    background: "white",
-    borderRadius: "20px",
-    boxShadow: "0px 2px 4px rgba(0,0,0,.5)",
     alignItems: "center",
     padding: "7% 4%"
   },
@@ -56,33 +50,16 @@ const createProfileStyles = makeStyles(theme => ({
   lastName: {
     width: "100%"
   },
-  h2: {
+  nameHeader: {
     margin: 0,
     padding: 0,
     textTransform: "uppercase",
-    fontSize: "28px",
-    fontWeight: "600",
-    letterSpacing: "2px",
     marginBottom: "3px",
-    color: "#4AA810",
     marginLeft: "1%"
   },
   field: {
-    display: "flex",
-    background: "#E2F5D6",
-    border: "none",
-    borderRadius: "10px",
-    width: "90%",
-    padding: "4%",
-    marginTop: "2%",
-    color: "#152F04",
-    fontFamily: "'Nunito', sans-serif",
-    fontSize: "1.2rem",
-    fontWeight: "900",
-    letterSpacing: "2px",
-    "&:focus": {
-      outline: "none"
-    }
+    ...theme.input,
+    paddingRight: "20%",
   },
   buttonContainer: {
     display: "flex",
@@ -93,26 +70,26 @@ const createProfileStyles = makeStyles(theme => ({
     alignItems: "center",
     paddingBottom: "3px"
   },
-  button: {
-    width: "25%"
+  cancel: {
+    ...theme.secondaryButton,
+    width: "25%",
+    padding: ".5rem 0",
+  },
+  save: {
+    ...theme.primaryButton,
+    width: "25%",
+    padding: ".5rem 0",
   },
   delete: {
+    ...theme.secondaryButton,
     position: "absolute",
-    marginTop: "1%",
-    marginLeft: "-1%",
-    fontWeight: "600",
-    fontFamily: "'Nunito', sans-serif",
-    borderRadius: "7px",
-    border: "2px solid #ABB0BA",
-    boxShadow: "0px 2px #8F96A3",
-    padding: ".2rem .5rem",
-    letterSpacing: "1px",
-    fontSize: "calc(1.2rem + .5vw)",
-    background: "#fff",
-    color: "#ABB0BA",
+    color: "#c7cbd1",
+    padding: ".8rem 1rem",
+    fontSize: "2rem",
+    margin: "2% 0 -2%",
     "&:active": {
       boxShadow: "none",
-      margin: "1.2% 0 -1% -1%"
+      margin: "2.2% 0 -2.2%"
     },
     "&:hover": {
       cursor: "pointer"
@@ -181,7 +158,7 @@ const createProfileStyles = makeStyles(theme => ({
     display: "flex",
     width: "100%",
     justifyContent: "flex-start"
-  }
+  },
 }));
 
 export default createProfileStyles;

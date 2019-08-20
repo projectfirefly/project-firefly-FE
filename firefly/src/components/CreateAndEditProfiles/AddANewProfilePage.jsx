@@ -1,21 +1,24 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 
-import createProfileStyles from "./CreateAndEditProfileStyles";
-
 import { addProfile } from "../../utils/firebaseInteractions";
 
 import { childContext } from "../../context/ChildProfiles/ChildProfileStore";
 import { ADD_PROFILE } from "../../context/ChildProfiles/ChildProfileStore";
 
+//Styling
 import Icon from "../../assets/icons";
+import createProfileStyles from "./CreateAndEditProfileStyles";
+
+//Button Components
 import { SecondaryButton } from "../../utils/buttons/SecondaryButton";
 import { PrimaryButton } from "../../utils/buttons/PrimaryButton";
+import { Typography } from "@material-ui/core";
 
 const AddANewProfilePage = props => {
   const classes = createProfileStyles();
 
-  const [childProfileState, dispatch] = useContext(childContext);
+  const [, dispatch] = useContext(childContext);
 
   const [updatedProfile, setUpdatedProfile] = useState({
     first_name: "",
@@ -45,14 +48,18 @@ const AddANewProfilePage = props => {
   return (
     <div className={classes.container}>
       <div className={classes.sizingContainer}>
-        <h2 className={classes.header}>ADD A NEW PROFILE</h2>
+        <div className={classes.header}>
+          <Typography variant="h1">ADD A NEW PROFILE</Typography>
+        </div>
         <div className={classes.card}>
           <div className={classes.firefly}>
             <Icon name="Firefly" />
           </div>
           <div className={classes.inputContainer}>
             <div className={classes.firstName}>
-              <h2 className={classes.h2}>First Name</h2>
+              <Typography variant="h2" className={classes.nameHeader}>
+                First Name
+              </Typography>
               <input
                 type="text"
                 name="firstName"
@@ -62,7 +69,9 @@ const AddANewProfilePage = props => {
               />
             </div>
             <div className={classes.lastName}>
-              <h2 className={classes.h2}>Last Name</h2>
+              <Typography variant="h2" className={classes.nameHeader}>
+                Last Name
+              </Typography>
               <input
                 type="text"
                 name="lastName"
@@ -74,17 +83,12 @@ const AddANewProfilePage = props => {
           </div>
         </div>
         <div className={classes.buttonContainer}>
-          <div className={classes.button}>
-            <Link to="/account">
-              <SecondaryButton text={"CANCEL"} />
-            </Link>
-          </div>
-
-          <div className={classes.button}>
-            <Link onClick={saveProfile}>
-              <PrimaryButton text={"SAVE"} />
-            </Link>
-          </div>
+          <Link to="/account" className={classes.cancel}>
+            <Typography variant="button">Cancel</Typography>
+          </Link>
+          <Link onClick={saveProfile} className={classes.save}>
+            <Typography variant="button">Save</Typography>
+          </Link>
         </div>
       </div>
     </div>
