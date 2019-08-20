@@ -26,7 +26,8 @@ export const RESET_BLOCKS = "RESET_BLOCKS";
 export const GET_WORLDS = "GET_WORLDS";
 export const ADD_WORLD = "ADD_WORLD";
 export const REMOVE_WORLD = "REMOVE_WORLD";
-export const ADD_FIREFLY = "ADD_FIREFLY"
+export const ADD_FIREFLY = "ADD_FIREFLY";
+export const REMOVE_FIREFLY = "REMOVE_FIREFLY";
 
 function reducer(state, action){
     switch(action.type){
@@ -49,7 +50,7 @@ function reducer(state, action){
             // }
             return {
                 ...state,
-                worlds: newArr 
+                worlds: newArr
             }
         case ADD_FIREFLY:
             const addedFirefly = state.worlds.map(world => {
@@ -61,6 +62,17 @@ function reducer(state, action){
             })
             console.log({...state, worlds: addedFirefly})
             return {...state, worlds: addedFirefly}
+        case REMOVE_FIREFLY:
+            const worldArr = state.worlds.map(world => {
+                const fireflyArr = world.fireflies.filter(firefly => {
+                    return firefly.firefly_id !== action.payload.firefly_id
+                })
+
+                return {...world, fireflies: fireflyArr }
+            })
+
+            console.log({...state, worlds:  worldArr})
+            return {...state, worlds:  worldArr}
 
         case UPDATE_BLOCK:
             const newWorlds = state.worlds.map(world => {

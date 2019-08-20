@@ -9166,6 +9166,13 @@ react-ga@^2.6.0:
   resolved "https://registry.yarnpkg.com/react-ga/-/react-ga-2.6.0.tgz#c3fe830ead2ad25117e1d33280d9698de9b28496"
   integrity sha512-GWHBWZDFjDGMkIk1LzroIn0mNTygKw3adXuqvGvheFZvlbpqMPbHsQsTdQBIxRRdXGQM/Zq+dQLRPKbwIHMTaw==
 
+react-icons@^3.7.0:
+  version "3.7.0"
+  resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-3.7.0.tgz#64fe46231fabfeea27895edeae6c3b78114b8c8f"
+  integrity sha512-7MyPwjIhuyW0D2N3s4DEd0hGPGFf0sK+IIRKhc1FvSpZNVmnUoGvHbmAwzGJU+3my+fvihVWgwU5SDtlAri56Q==
+  dependencies:
+    camelcase "^5.0.0"
+
 react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.4, react-is@^16.8.6:
   version "16.9.0"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.9.0.tgz#21ca9561399aad0ff1a7701c01683e8ca981edcb"
@@ -10826,10 +10833,10 @@ uglify-js@^3.1.4:
     commander "~2.20.0"
     source-map "~0.6.1"
 
-uifx@^1.0.8:
-  version "1.0.8"
-  resolved "https://registry.yarnpkg.com/uifx/-/uifx-1.0.8.tgz#c276f2f76a4a66c67b795f761f067203ee0bcfec"
-  integrity sha512-kVfvaaUrM4mwwf8vt40UtjS5t5VVkbh+qZOYDcJYyT8R8qy+mja9FJ5X4Aap9lXPv3JnOVe2xpCctOR0H5PJ3A==
+uifx@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/uifx/-/uifx-2.0.3.tgz#2cae3b2d7e182b7bfbc46e719dc1c559bd5912f3"
+  integrity sha512-Y4o8DbiM3tzGmnTlU21WO7mDNVcsBZ8oONCRMt9L3Hgd7VihxH7oE5CTKUBpby8mn05dF4OGGA9UKUq1EGUAQA==
 
 unicode-canonical-property-names-ecmascript@^1.0.4:
   version "1.0.4"
