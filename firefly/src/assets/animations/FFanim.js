@@ -40,7 +40,7 @@ const FFanim = ({ height, width, color, accessory, awake }) => {
       "&.whatever": {
         "& .bodyLightMid": {
           "& path": {
-            fill: `hsl(359, 100%, 40%)`,
+            fill: `hsl(270, 100%, 40%)`,
             transition: "fill 2s ease-in-out",
           }
         }
@@ -68,16 +68,18 @@ const FFanim = ({ height, width, color, accessory, awake }) => {
     },
   }))();
 
+  console.log("rerender");
+
   useEffect(() => {
-    console.log(myRef.current);
+    console.log(`.${classes.wrapper} svg .bodyLightBottom path`);
     anime({
-      targets: `${myRef.current} .bodyLightBottom path`,
-      fill: `#FFF`,
+      targets: `.${classes.wrapper} svg .bodyLightBottom path`,
+      fill: "#fff",
       easing: 'easeInOutQuad',
       round: 1,
       loop: true,
     });
-  }, [])
+  }, [classes.wrapper])
 
   function accessorySwitch(selector) {
     if (accessory === selector) {
@@ -103,7 +105,7 @@ const FFanim = ({ height, width, color, accessory, awake }) => {
   };
 
   function whatnever() {
-    setWhatever(".whatever");
+    setWhatever("whatever");
   }
 
   return (

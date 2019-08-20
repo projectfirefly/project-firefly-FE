@@ -5,8 +5,6 @@ import Slider from "@material-ui/core/Slider";
 export default function ColorSlider(props) {
   const [sliderValue, setSliderValue] = useState();
 
-  const [sliderValue, setSliderValue] = useState();
-
   useEffect(() => {
     setSliderValue(props.value);
   }, [props])
