@@ -10,7 +10,7 @@ import { DragDropContext } from "react-beautiful-dnd";
 import StartBlock from "../../images/gameIcons/StartBlock.svg";
 import BlueBlockLeftSideEndState from "../../images/gameIcons/BlueBlockLeftSideEndState.svg";
 import GreenBlockRightSideEndState from "../../images/gameIcons/GreenBlockRightSideEndState.svg";
-import RepeatIcon from "../../images/gameIcons/RepeatIcon.svg";
+import RepeatIconNew from "../../images/gameIcons/RepeatIconNew.svg";
 import LightbulbIcon from "../../images/gameIcons/LightbulbIcon.svg";
 import ClockIcon from "../../images/gameIcons/ClockIcon.svg";
 import PlayCircleIcon from "../../images/gameIcons/PlayCircleIcon.svg";
@@ -55,9 +55,9 @@ const ToolboxBlueLedIcon = styled.img`
 
 const ToolboxBlueRepeatIcon = styled.img`
   position: absolute;
-  width: 40%;
-  top: 30%;
-  left: 32%;
+  width: 50%;
+  top: 26%;
+  left: 23%;
 `;
 
 const ToolboxToggleIcon = styled.img`
@@ -113,7 +113,7 @@ const ITEMS = [
     ),
     content: <ToolboxBox src={StartBlock} alt="startblock" />,
     used: false,
-    rsi: 0,
+    rsi: 0
   },
   {
     id: uuid(),
@@ -122,14 +122,16 @@ const ITEMS = [
     ),
     content: <ToolboxBox src={BlueBlockLeftSideEndState} alt="blueblock" />,
     used: false,
-    rsi: 1,
+    rsi: 1
   },
   {
     id: uuid(),
-    functionality: <ToolboxBlueRepeatIcon src={RepeatIcon} alt="repeatIcon" />,
-    content: <ToolboxBox src={BlueBlockLeftSideEndState} alt="blueblock" />,
+    functionality: (
+      <ToolboxBlueRepeatIcon src={RepeatIconNew} alt="repeatIcon" />
+    ),
+    content: <ToolboxBox src={GreenBlockRightSideEndState} alt="greenblock" />,
     used: false,
-    rsi: 2,
+    rsi: 2
   },
 
   {
@@ -137,29 +139,29 @@ const ITEMS = [
     functionality: <ToolboxGreenIcon src={PaletteIcon} alt="paletteIcon" />,
     content: <ToolboxBox src={GreenBlockRightSideEndState} alt="greenblock" />,
     used: false,
-    rsi: 3,
+    rsi: 3
   },
   {
     id: uuid(),
     functionality: <ToolboxGreenIcon src={ClockIcon} alt="clockIcon" />,
     content: <ToolboxBox src={GreenBlockRightSideEndState} alt="greenblock" />,
     used: false,
-    rsi: 4,
+    rsi: 4
   },
-  {
-    id: uuid(),
-    functionality: <ToolboxGreenIcon src={NumberIcon1} alt="numberIcon" />,
-    content: <ToolboxBox src={GreenBlockRightSideEndState} alt="greenblock" />,
-    used: false,
-    rsi: 5,
-  },
+  // {
+  //   id: uuid(),
+  //   functionality: <ToolboxGreenIcon src={NumberIcon1} alt="numberIcon" />,
+  //   content: <ToolboxBox src={GreenBlockRightSideEndState} alt="greenblock" />,
+  //   used: false,
+  //   rsi: 5
+  // },
   {
     id: uuid(),
     functionality: <ToolboxToggleIcon src={ToggleOffIcon} alt="toggleIcon" />,
     content: <ToolboxBox src={GreenBlockRightSideEndState} alt="greenblock" />,
     used: false,
-    rsi: 6,
-  },
+    rsi: 6
+  }
 ];
 
 const Game = () => {
@@ -247,7 +249,7 @@ const Game = () => {
               list[source.droppableId],
               source.index,
               destination.index
-            ),
+            )
           });
         }
         console.log("yo");
@@ -261,7 +263,7 @@ const Game = () => {
             list[destination.droppableId],
             source,
             destination
-          ),
+          )
         });
         // to play default drop sound 'clickTogether' when dropping the block
         clickTogether.play();

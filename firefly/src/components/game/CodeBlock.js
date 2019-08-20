@@ -5,15 +5,17 @@ import PaletteIcon from "./Poppers/PaletteIcon.js";
 import CheckCircleIcon from "./../../images/gameIcons/CheckCircleIcon.svg";
 import ToggleOnIcon from "./../../images/gameIcons/ToggleOnIcon.svg";
 import ToggleOffIcon from "./../../images/gameIcons/ToggleOffIcon.svg";
-import NumberIcon1 from "./../../images/gameIcons/NumberIcon1.svg";
-import NumberIcon2 from "./../../images/gameIcons/NumberIcon2.svg";
-import NumberIcon3 from "./../../images/gameIcons/NumberIcon3.svg";
-import NumberIcon4 from "./../../images/gameIcons/NumberIcon4.svg";
-import NumberIcon5 from "./../../images/gameIcons/NumberIcon5.svg";
-import NumberIcon6 from "./../../images/gameIcons/NumberIcon6.svg";
-import NumberIcon7 from "./../../images/gameIcons/NumberIcon7.svg";
-import NumberIcon8 from "./../../images/gameIcons/NumberIcon8.svg";
-import NumberIcon9 from "./../../images/gameIcons/NumberIcon9.svg";
+// import NumberIcon1 from "./../../images/gameIcons/NumberIcon1.svg";
+// import NumberIcon2 from "./../../images/gameIcons/NumberIcon2.svg";
+// import NumberIcon3 from "./../../images/gameIcons/NumberIcon3.svg";
+// import NumberIcon4 from "./../../images/gameIcons/NumberIcon4.svg";
+// import NumberIcon5 from "./../../images/gameIcons/NumberIcon5.svg";
+// import NumberIcon6 from "./../../images/gameIcons/NumberIcon6.svg";
+// import NumberIcon7 from "./../../images/gameIcons/NumberIcon7.svg";
+// import NumberIcon8 from "./../../images/gameIcons/NumberIcon8.svg";
+// import NumberIcon9 from "./../../images/gameIcons/NumberIcon9.svg";
+import RepeatIconNew from "./../../images/gameIcons/RepeatIconNew.svg";
+
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
@@ -91,6 +93,21 @@ const useStyles = makeStyles({
       width: "40px",
       height: "40px"
     }
+  },
+
+  repeatIcon: {
+    top: "19%",
+    left: "17%",
+    width: "60%",
+    position: "absolute"
+  },
+
+  repeatNumber: {
+    position: "absolute",
+    left: "44%",
+    top: "32%",
+    fontSize: "2.8rem",
+    color: "white"
   }
 });
 
@@ -159,7 +176,120 @@ const CodeBlock = ({
             isDragging={snapshot.isDragging}
             style={provided.draggableProps.style}
           >
-            {//Palette
+            {//Repeat
+            item.rsi === 2 ? (
+              <Popper
+                onClick={
+                  !openPopper || toggleCount
+                    ? () => {
+                        togglePopper(id, blocks, "number", number);
+                        setCount();
+                      }
+                    : null
+                }
+                open={openPopper}
+                toggleCount={toggleCount}
+                number={number}
+                setNumber={setNumber}
+              >
+                {toggleCount ? (
+                  <div className={classes.tool}>
+                    {item.content}
+                    <img
+                      src={CheckCircleIcon}
+                      alt="check circle"
+                      className={classes.checkmark}
+                    />
+                  </div>
+                ) : (
+                  <div className={classes.tool}>
+                    {item.content}
+                    {number === 1 ? (
+                      <div>
+                        <img
+                          src={RepeatIconNew}
+                          alt="number one"
+                          className={classes.repeatIcon}
+                        />
+                        <p className={classes.repeatNumber}>1</p>
+                      </div>
+                    ) : number === 2 ? (
+                      <div>
+                        <img
+                          src={RepeatIconNew}
+                          alt="number two"
+                          className={classes.repeatIcon}
+                        />
+                        <p className={classes.repeatNumber}>2</p>
+                      </div>
+                    ) : number === 3 ? (
+                      <div>
+                        <img
+                          src={RepeatIconNew}
+                          alt="number three"
+                          className={classes.repeatIcon}
+                        />
+                        <p className={classes.repeatNumber}>3</p>
+                      </div>
+                    ) : number === 4 ? (
+                      <div>
+                        <img
+                          src={RepeatIconNew}
+                          alt="number four"
+                          className={classes.repeatIcon}
+                        />
+                        <p className={classes.repeatNumber}>4</p>
+                      </div>
+                    ) : number === 5 ? (
+                      <div>
+                        <img
+                          src={RepeatIconNew}
+                          alt="number five"
+                          className={classes.repeatIcon}
+                        />
+                        <p className={classes.repeatNumber}>5</p>
+                      </div>
+                    ) : number === 6 ? (
+                      <div>
+                        <img
+                          src={RepeatIconNew}
+                          alt="number six"
+                          className={classes.repeatIcon}
+                        />
+                        <p className={classes.repeatNumber}>6</p>
+                      </div>
+                    ) : number === 7 ? (
+                      <div>
+                        <img
+                          src={RepeatIconNew}
+                          alt="number seven"
+                          className={classes.repeatIcon}
+                        />
+                        <p className={classes.repeatNumber}>7</p>
+                      </div>
+                    ) : number === 8 ? (
+                      <div>
+                        <img
+                          src={RepeatIconNew}
+                          alt="number eight"
+                          className={classes.repeatIcon}
+                        />
+                        <p className={classes.repeatNumber}>8</p>
+                      </div>
+                    ) : number === 9 ? (
+                      <div>
+                        <img
+                          src={RepeatIconNew}
+                          alt="number nine"
+                          className={classes.repeatIcon}
+                        />
+                        <p className={classes.repeatNumber}>9</p>
+                      </div>
+                    ) : null}
+                  </div>
+                )}
+              </Popper>
+            ) : //Palette
             item.rsi === 3 ? (
               <Popper
                 onClick={
@@ -255,93 +385,94 @@ const CodeBlock = ({
                   </div>
                 )}
               </Popper>
-            ) : //Count
-            item.rsi === 5 ? (
-              <Popper
-                onClick={
-                  !openPopper || toggleCount
-                    ? () => {
-                        togglePopper(id, blocks, "number", number);
-                        setCount();
-                      }
-                    : null
-                }
-                open={openPopper}
-                toggleCount={toggleCount}
-                number={number}
-                setNumber={setNumber}
-              >
-                {toggleCount ? (
-                  <div className={classes.tool}>
-                    {item.content}
-                    <img
-                      src={CheckCircleIcon}
-                      alt="check circle"
-                      className={classes.checkmark}
-                    />
-                  </div>
-                ) : (
-                  <div className={classes.tool}>
-                    {item.content}
-                    {number === 1 ? (
-                      <img
-                        src={NumberIcon1}
-                        alt="number one"
-                        className={classes.number}
-                      />
-                    ) : number === 2 ? (
-                      <img
-                        src={NumberIcon2}
-                        alt="number two"
-                        className={classes.number}
-                      />
-                    ) : number === 3 ? (
-                      <img
-                        src={NumberIcon3}
-                        alt="number three"
-                        className={classes.number}
-                      />
-                    ) : number === 4 ? (
-                      <img
-                        src={NumberIcon4}
-                        alt="number four"
-                        className={classes.number}
-                      />
-                    ) : number === 5 ? (
-                      <img
-                        src={NumberIcon5}
-                        alt="number five"
-                        className={classes.number}
-                      />
-                    ) : number === 6 ? (
-                      <img
-                        src={NumberIcon6}
-                        alt="number six"
-                        className={classes.number}
-                      />
-                    ) : number === 7 ? (
-                      <img
-                        src={NumberIcon7}
-                        alt="number seven"
-                        className={classes.number}
-                      />
-                    ) : number === 8 ? (
-                      <img
-                        src={NumberIcon8}
-                        alt="number eight"
-                        className={classes.number}
-                      />
-                    ) : number === 9 ? (
-                      <img
-                        src={NumberIcon9}
-                        alt="number nine"
-                        className={classes.number}
-                      />
-                    ) : null}
-                  </div>
-                )}
-              </Popper>
-            ) : //Switch
+            ) : // ) : //Count
+            // item.rsi === 5 ? (
+            //   <Popper
+            //     onClick={
+            //       !openPopper || toggleCount
+            //         ? () => {
+            //             togglePopper(id, blocks, "number", number);
+            //             setCount();
+            //           }
+            //         : null
+            //     }
+            //     open={openPopper}
+            //     toggleCount={toggleCount}
+            //     number={number}
+            //     setNumber={setNumber}
+            //   >
+            //     {toggleCount ? (
+            //       <div className={classes.tool}>
+            //         {item.content}
+            //         <img
+            //           src={CheckCircleIcon}
+            //           alt="check circle"
+            //           className={classes.checkmark}
+            //         />
+            //       </div>
+            //     ) : (
+            //       <div className={classes.tool}>
+            //         {item.content}
+            //         {number === 1 ? (
+            //           <img
+            //             src={NumberIcon1}
+            //             alt="number one"
+            //             className={classes.number}
+            //           />
+            //         ) : number === 2 ? (
+            //           <img
+            //             src={NumberIcon2}
+            //             alt="number two"
+            //             className={classes.number}
+            //           />
+            //         ) : number === 3 ? (
+            //           <img
+            //             src={NumberIcon3}
+            //             alt="number three"
+            //             className={classes.number}
+            //           />
+            //         ) : number === 4 ? (
+            //           <img
+            //             src={NumberIcon4}
+            //             alt="number four"
+            //             className={classes.number}
+            //           />
+            //         ) : number === 5 ? (
+            //           <img
+            //             src={NumberIcon5}
+            //             alt="number five"
+            //             className={classes.number}
+            //           />
+            //         ) : number === 6 ? (
+            //           <img
+            //             src={NumberIcon6}
+            //             alt="number six"
+            //             className={classes.number}
+            //           />
+            //         ) : number === 7 ? (
+            //           <img
+            //             src={NumberIcon7}
+            //             alt="number seven"
+            //             className={classes.number}
+            //           />
+            //         ) : number === 8 ? (
+            //           <img
+            //             src={NumberIcon8}
+            //             alt="number eight"
+            //             className={classes.number}
+            //           />
+            //         ) : number === 9 ? (
+            //           <img
+            //             src={NumberIcon9}
+            //             alt="number nine"
+            //             className={classes.number}
+            //           />
+            //         ) : null}
+            //       </div>
+            //     )}
+            //   </Popper>
+
+            //Switch
             item.rsi === 6 ? (
               <Popper
                 onClick={
