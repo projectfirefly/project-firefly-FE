@@ -18,10 +18,6 @@ import Game from "../game/Game"
 const MultiStepTutorial = () => {
   const classes = makeStyles(theme => ({
     app: {},
-    header: {
-      ...theme.headerMargin,
-      marginBottom: "2rem",
-    },
     root: {
       display: "flex",
       flexDirection: "column",
@@ -29,14 +25,10 @@ const MultiStepTutorial = () => {
       justifyContent: "center",
     },
     image: {
-      height: '80vh',
+      width: '100vw',
       border: '1px solid black',
     },
-    wrapper: {
-      width: "100%",
-      display: 'flex',
-      justifyContent: 'center',
-    }
+
   }))();
 
 const [step, setStep] = useState(0);
@@ -44,45 +36,34 @@ const [step, setStep] = useState(0);
   switch(step) {
     default: 
       return <div className={classes.root}>
-                <div className={classes.header}>
-
-                </div>
                 <div className={classes.wrapper}>
                   <img className={classes.image} src={screen1} onClick={() => setStep(step + 1)}/>
                 </div>
               </div>;
     case 1:
       return <div className={classes.root}>
-                <div className={classes.header}>
-                  
-                </div>
+
                 <div className={classes.wrapper}>
                   <img className={classes.image} src={screen2} onClick={() => setStep(step + 1)}/>
                 </div>
               </div>;
     case 2:
       return <div className={classes.root}>
-                <div className={classes.header}>
-                  
-                </div>
+
                 <div className={classes.wrapper}>
                   <img className={classes.image} src={screen3} onClick={() => setStep(step + 1)}/>
                 </div>
               </div>;      
     case 3:
       return <div className={classes.root}>
-                <div className={classes.header}>
-                  
-                </div>
+
                 <div className={classes.wrapper}>
                   <img className={classes.image} src={screen4} onClick={() => setStep(step + 1)}/>
                 </div>
               </div>;      
     case 4:
       return <div className={classes.root}>
-                <div className={classes.header}>
-                  
-                </div>
+
                 <div className={classes.wrapper}>
                   <img className={classes.image} src={screen5} onClick={() => setStep(0)}/>
                 </div>
