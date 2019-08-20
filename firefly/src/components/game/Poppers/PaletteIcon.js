@@ -1,13 +1,6 @@
 import React from "react";
-import uifx from "uifx";
-
-//importing the sound
-import clickMP3 from "../../../assets/sounds/switch.mp3";
-//making sound variables 
-const click = new uifx({ asset: clickMP3});
 
 const PaletteIcon = ({ fill, hasBeenClicked }) => {
-  //click.play() <== have a bug when dragging the color palette
   function hslToHex(h, s, l) {
     h /= 360;
     s /= 100;
