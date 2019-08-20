@@ -93,7 +93,7 @@ export default function Popper({
         {children}
       </div>
       <div
-      
+        // onClick={click.play()}
         className={
           togglePalette
             ? classes.popperPaletteContainer

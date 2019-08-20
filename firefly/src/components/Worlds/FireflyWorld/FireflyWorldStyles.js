@@ -25,7 +25,7 @@ const chooseWorldStyles = makeStyles(theme => ({
     // border: "dashed yellow 2px",
     marginTop: "10%",
     width: "100%",
-    height: "400px"
+    height: "525px"
   },
   tempFirefly: {
     paddingRight: "700px"
