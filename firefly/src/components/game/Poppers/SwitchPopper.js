@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Switch from "@material-ui/core/Switch";
-import uifx from 'uifx';
+import uifx from "uifx";
 
-//importing the sound for the toggle 
+//importing the sound for the toggle
 import switchMP3 from "../../../assets/sounds/switch.mp3";
 //making the sound variable
 const toggle = new uifx({ asset: switchMP3 });
@@ -16,13 +16,12 @@ const useStyles = makeStyles(theme => ({
   },
   text: {
     fontFamily: "Nunito",
-    fontSize: "1.5rem",
+    fontSize: "2.7rem",
     textTransform: "uppercase",
     color: "#6459FF",
     fontWeight: "700"
   }
 }));
-
 
 const CustomSwitch = withStyles({
   switchBase: {

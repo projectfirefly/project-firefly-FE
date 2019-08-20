@@ -19,6 +19,7 @@ import ChooseProfilePage from "../components/ChildProfiles/ChooseProfilePage";
 import SignUpPage from "../components/SignInAndSignUp/SignUpPage";
 import SignInPage from "../components/SignInAndSignUp/SignInPage";
 import MultiStepRegistration from "../components/Registration/MultiStepRegistration";
+import MultiStepTutorial from "../components/tutorial/MultiStepTutorial";
 
 import MyAccountPage from "../components/MyAccount/MyAccountPage";
 import EditProfilePage from "../components/CreateAndEditProfiles/EditProfilePage";
@@ -103,6 +104,12 @@ export default function DevMenu(props) {
             exact
             path="/editprofile"
             component={EditProfilePage}
+          />
+          <PrivateRoute
+            logged={props.logged}
+            exact
+            path="/tutorialtest"
+            component={MultiStepTutorial}
           />
           <PrivateRoute
             logged={props.logged}
