@@ -1,7 +1,14 @@
 import React from "react";
 import fireflyStyles from "./FireflyWorldStyles";
 import { WorldNav } from "../WorldNav/WorldNav";
-import FFanim from "../../../assets/animations/FFanim";
+//the target area for the drop items  
+import FireflyContainer from "../FireflyWorld/FireflyContainer.js";
+//the draggable items 
+import FireflyItem from '../FireflyWorld/FireflyItem.js';
+// import HTML5Backend from 'react-dnd-html5-backend';
+// import {DragDropContext} from 'react-dnd'
+
+
 
 const FireflyWorld = () => {
   const classes = fireflyStyles();
@@ -11,33 +18,8 @@ const FireflyWorld = () => {
       <div className={classes.body}>
         <div className={classes.rootContainer}>
           <WorldNav />
-          <div className={classes.fireflyContainer}>
-            <FFanim
-              height={129}
-              width={132}
-              accessory="none"
-              color={642}
-              awake={true}
-            />
-            <div className={classes.tempFirefly}>
-              <FFanim
-                height={129}
-                width={132}
-                accessory="none"
-                color={642}
-                awake={false}
-              />
-            </div>
-            <div className={classes.tempFirefly2}>
-              <FFanim
-                height={129}
-                width={132}
-                accessory="none"
-                color={142}
-                awake={true}
-              />
-            </div>
-          </div>
+          <FireflyContainer />
+
         </div>
       </div>
     </div>
