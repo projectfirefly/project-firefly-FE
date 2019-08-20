@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Slider from "@material-ui/core/Slider";
 
 export default function ColorSlider(props) {
+  const [sliderValue, setSliderValue] = useState();
 
   const [sliderValue, setSliderValue] = useState();
 

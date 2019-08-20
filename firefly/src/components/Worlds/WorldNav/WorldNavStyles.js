@@ -44,7 +44,8 @@ const WorldNavStyles = makeStyles({
     backgroundColor: " #ffffff",
     boxShadow: "0px 3px #8f96a3",
     marginRight: "50px"
-  }
+  },
+  link: { textDecoration: "none", color: " #4aa810" }
 });
 
 export default WorldNavStyles;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Lottie from "react-lottie";
 import awakeanimationData from "./ffAnim.json";
 import sleepingAnimation from "./sleeping.json";
@@ -7,6 +7,11 @@ import { makeStyles } from "@material-ui/styles";
 import anime from "animejs";
 
 const FFanim = ({ height, width, color, accessory, awake }) => {
+
+  const [whatever, setWhatever] = useState("")
+
+  const myRef = React.createRef();
+
   const classes = makeStyles(theme => ({
     wrapper: {
       "& .lambdahat": {
@@ -29,11 +34,20 @@ const FFanim = ({ height, width, color, accessory, awake }) => {
       "& .bodyLightMid": {
         "& path": {
           fill: `hsl(${color}, 100%, 40%)`,
+          transition: "fill 2s ease-in-out",
         },
+      },
+      "&.whatever": {
+        "& .bodyLightMid": {
+          "& path": {
+            fill: `hsl(359, 100%, 40%)`,
+            transition: "fill 2s ease-in-out",
+          }
+        }
       },
       "& .bodyLightBottom": {
         "& path": {
-          fill: `hsl(${color}, 100%, 55%)`,
+          fill: `#000`,
         },
       },
       "& .lightL": {
@@ -54,6 +68,17 @@ const FFanim = ({ height, width, color, accessory, awake }) => {
     },
   }))();
 
+  useEffect(() => {
+    console.log(myRef.current);
+    anime({
+      targets: `${myRef.current} .bodyLightBottom path`,
+      fill: `#FFF`,
+      easing: 'easeInOutQuad',
+      round: 1,
+      loop: true,
+    });
+  }, [])
+
   function accessorySwitch(selector) {
     if (accessory === selector) {
       return "block !important";
@@ -61,12 +86,6 @@ const FFanim = ({ height, width, color, accessory, awake }) => {
       return "none !important";
     }
   }
-
-  anime({
-    targets: `.${classes.wrapper} .`,
-    fill: `hsl(250, 100%, 55%)`,
-    easing: `easeInOutQuad`
-  });
 
   let animationData2 = {};
   if (awake) {
@@ -83,8 +102,13 @@ const FFanim = ({ height, width, color, accessory, awake }) => {
     },
   };
 
+  function whatnever() {
+    setWhatever(".whatever");
+  }
+
   return (
-    <div className={classes.wrapper}>
+    <div ref={myRef} className={classes.wrapper + " " + whatever}>
+      <button onClick={whatnever}>WHATEVER</button>
       <Lottie options={defaultOptions} height={height} width={width} />
     </div>
   );
