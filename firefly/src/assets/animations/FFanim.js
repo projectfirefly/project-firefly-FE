@@ -4,16 +4,9 @@ import awakeanimationData from "./ffAnim.json";
 import sleepingAnimation from "./sleeping.json";
 import styled from "styled-components";
 import { makeStyles } from "@material-ui/styles";
+import anime from "animejs";
 
 const FFanim = ({ height, width, color, accessory, awake }) => {
-  function accessorySwitch( selector ) {
-    if (accessory === selector) {
-      return "block !important"
-    } else {
-      return "none !important"
-    }
-  }
-
   const classes = makeStyles(theme => ({
     wrapper: {
       "& .lambdahat": {
@@ -60,6 +53,20 @@ const FFanim = ({ height, width, color, accessory, awake }) => {
       },
     },
   }))();
+
+  function accessorySwitch(selector) {
+    if (accessory === selector) {
+      return "block !important";
+    } else {
+      return "none !important";
+    }
+  }
+
+  anime({
+    targets: `.${classes.wrapper} .`,
+    fill: `hsl(250, 100%, 55%)`,
+    easing: `easeInOutQuad`
+  });
 
   let animationData2 = {};
   if (awake) {
