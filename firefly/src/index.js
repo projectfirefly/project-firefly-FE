@@ -3,6 +3,15 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
+import ChildProfileStore from "./context/ChildProfiles/ChildProfileStore";
+
+import "./styles/reset.scss";
+import "./styles/AnimatedBackground.scss"
+
+//This import is important, the const is to keep it from getting accidentally cleaned up.
+import firebaseConfig from "./firebase";
+const firebase = firebaseConfig;
+
 ReactDOM.render(<App />, document.getElementById("root"));
 
 // If you want your app to work offline and load faster, you can change
