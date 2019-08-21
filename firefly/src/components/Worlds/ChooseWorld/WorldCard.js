@@ -3,7 +3,7 @@ import chooseWorldStyles from "./ChooseWorldStyles";
 
 const WorldCard = props => {
   const classes = chooseWorldStyles();
-  console.log("IMG" + props.img);
+  // console.log("IMG" + props.img);
   return (
     <div className={classes.worldCard}>
       <h4>{props.title}</h4>
