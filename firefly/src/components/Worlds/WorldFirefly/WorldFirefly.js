@@ -1,9 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import {
-  removeFirefly,
-  addFirefly
-} from "../../../utils/firebaseInteractions.jsx";
 
 import FFanim from "../../../assets/animations/FFanim";
 import FFicon from "../../../assets/icons/firefly/Firefly";
@@ -23,7 +19,10 @@ import {
   DialogActions,
   Typography
 } from "@material-ui/core";
-import { ADD_FIREFLY, REMOVE_FIREFLY } from "../../../context/Game/GameStore";
+
+import { REMOVE_FIREFLY } from "../../../context/Game/GameStore.jsx";
+import { removeFirefly } from "../../../utils/firebaseInteractions.jsx";
+import { gameContext } from "../../../context/Game/GameStore.jsx";
 
 const WorldFirefly = props => {
   const [menuActive, setMenuState] = useState(false);
