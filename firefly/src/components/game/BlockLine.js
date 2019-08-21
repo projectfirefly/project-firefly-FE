@@ -13,8 +13,23 @@ const List = styled.div`
   width: 88%;
   overflow-x: auto;
   overflow-y: hidden;
+  display: -webkit-box;
+  align-items: center;
+`;
+
+const ListContainer = styled.div`
+  height: 100%;
+  min-height: 90px;
+  background: none;
+  border-radius: 16px;
+  width: 88%;
+  overflow-x: auto;
+  overflow-y: hidden;
   margin-left: 130px;
   display: -webkit-box;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
 `;
 
@@ -69,7 +84,7 @@ const BlockLine = ({ list, setList, hasStart, draggingBlock }) => {
   };
 
   return (
-    <div>
+    <ListContainer>
       {Object.keys(list).map((blocks, i) => (
         <Droppable key={blocks} droppableId={blocks} direction="horizontal">
           {(provided, snapshot) => (
@@ -122,7 +137,7 @@ const BlockLine = ({ list, setList, hasStart, draggingBlock }) => {
           )}
         </Droppable>
       ))}
-    </div>
+    </ListContainer>
   );
 };
 
