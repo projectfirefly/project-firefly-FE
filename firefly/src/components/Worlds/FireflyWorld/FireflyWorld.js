@@ -17,7 +17,7 @@ const FireflyWorld = () => {
         <div className={classes.rootContainer}>
           <WorldNav />
           <div className={classes.fireflyContainer}>
-            <FireflyContainer />
+            <WorldFirefly />
           </div>
         </div>
       </div>

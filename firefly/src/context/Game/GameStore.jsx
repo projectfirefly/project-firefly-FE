@@ -3,6 +3,9 @@ import React, { useState, useReducer } from "react";
 export const gameContext = React.createContext();
 
 const initialState = {
+  selected: {
+    id: "0"
+  },
   worlds: [
     {
       id: "",
@@ -28,33 +31,42 @@ export const ADD_WORLD = "ADD_WORLD";
 export const REMOVE_WORLD = "REMOVE_WORLD";
 export const ADD_FIREFLY = "ADD_FIREFLY";
 export const REMOVE_FIREFLY = "REMOVE_FIREFLY";
+export const UPDATE_SELECTED = "UPDATE_SELECTED";
+export const SELECTED_WORLD = "SELECTED_WORLD";
 
 function reducer(state, action) {
   switch (action.type) {
+    case UPDATE_SELECTED:
+      console.log({ ...state, selected: { id: action.payload } });
+      return { ...state, selected: { id: action.payload } };
+    case SELECTED_WORLD:
+      const selectedWorld = state.worlds.filter(world => {
+        return world.id === state.selected.id
+      })
+      console.log('this is the selected world',{ ...state, worlds: selectedWorld});
+      return { ...state, worlds: selectedWorld};
     case ADD_WORLD:
       let newWorld = [];
       if (state.worlds[0] === state.worlds) {
         newWorld = [action.payload];
-        console.log(newWorld, 'this is the if statement in GameStore');
+        console.log(newWorld, "this is the if statement in GameStore");
         return { ...state, worlds: newWorld };
       } else {
         newWorld = [...state.worlds, action.payload];
-        console.log(newWorld, 'this is the else statement in GameStore')
+        console.log(newWorld, "this is the else statement in GameStore");
         return { ...state, worlds: newWorld };
       }
 
+      
     case GET_WORLDS:
       console.log({ ...state, worlds: [...action.payload] });
       return { ...state, worlds: [...action.payload] };
+      
     case REMOVE_WORLD:
       const newArr = state.worlds.filter(world => {
         return world.id !== action.payload.id;
       });
-      // if(world.id === action.payload.id){
-      //     return false;
-      // } else {
-      //     return true;
-      // }
+      console.log(newArr,'this is the remove world')
       return {
         ...state,
         worlds: newArr

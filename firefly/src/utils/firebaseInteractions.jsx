@@ -49,7 +49,7 @@ export const getWorld = async (child, dispatch) => {
         return await fireflies;
       });
       const payload = await Promise.all(childWorlds);
-      console.log(payload);
+      // console.log(payload);
       dispatch({ type: GET_WORLDS, payload: payload });
     });
 };
@@ -77,7 +77,7 @@ export const addWorld = async (child, payload, dispatch) => {
 export const removeWorld = async (child, payload, dispatch) => {
   const db = firebase.firestore();
   const uid = firebase.auth().currentUser.uid;
-  db.collection("users")
+  await db.collection("users")
     .doc(uid)
     .collection("profiles")
     .doc(child)
@@ -86,8 +86,8 @@ export const removeWorld = async (child, payload, dispatch) => {
     .collection("fireflies")
     .get()
     .then(docRef => {
-      const firefly = docRef.docs.map(doc => {
-        db
+      docRef.docs.map(async doc => {
+        await db
         .collection("users")
         .doc(uid)
         .collection("profiles")
@@ -99,7 +99,7 @@ export const removeWorld = async (child, payload, dispatch) => {
         .delete();
       });
     });
-    db.collection("users")
+    await db.collection("users")
     .doc(uid)
     .collection("profiles")
     .doc(child)

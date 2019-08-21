@@ -15,7 +15,7 @@ function collect(connect, monitor) {
 
 const FireflyContainer = () => {
     const [worldContext, worldDispatch] = useContext(gameContext)
-    console.log(worldContext)
+    console.log(worldContext.selected)
     // const { connectDropTarget, item } = '';
     // //variable for the styles
     // const classes = fireflyStyles();
