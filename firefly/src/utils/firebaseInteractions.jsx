@@ -14,8 +14,10 @@ import {
   ADD_FIREFLY,
   REMOVE_FIREFLY,
   UPDATE_BLOCK,
-  REMOVE_WORLD
+  REMOVE_WORLD,
+  SET_GAME_LOADED
 } from "../context/Game/GameStore";
+
 export const getWorld = async (child, dispatch) => {
   const db = firebase.firestore();
   const uid = firebase.auth().currentUser.uid;
@@ -49,7 +51,8 @@ export const getWorld = async (child, dispatch) => {
       console.log(payload);
       dispatch({ type: GET_WORLDS, payload: payload });
     });
-};
+    dispatch({ type: SET_GAME_LOADED })
+  };
 //Add world
 export const addWorld = async (child, payload, dispatch) => {
   const db = firebase.firestore();
