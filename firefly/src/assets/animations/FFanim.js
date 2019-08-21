@@ -7,11 +7,6 @@ import { makeStyles } from "@material-ui/styles";
 import anime from "animejs";
 
 const FFanim = ({ height, width, color, accessory, awake }) => {
-
-  const [whatever, setWhatever] = useState("")
-
-  const myRef = React.createRef();
-
   const classes = makeStyles(theme => ({
     wrapper: {
       "& .lambdahat": {
@@ -26,60 +21,296 @@ const FFanim = ({ height, width, color, accessory, awake }) => {
       "& .nerdglasses": {
         display: `${accessorySwitch("nerdglasses")}`,
       },
-      "& .bodyLightTop": {
-        "& path": {
-          fill: `hsl(${color}, 100%, 30%)`,
-        },
-      },
-      "& .bodyLightMid": {
-        "& path": {
-          fill: `hsl(${color}, 100%, 40%)`,
-          transition: "fill 2s ease-in-out",
-        },
-      },
-      "&.whatever": {
-        "& .bodyLightMid": {
-          "& path": {
-            fill: `hsl(270, 100%, 40%)`,
-            transition: "fill 2s ease-in-out",
-          }
-        }
-      },
-      "& .bodyLightBottom": {
-        "& path": {
-          fill: `#000`,
-        },
-      },
-      "& .lightL": {
-        "& path": {
-          stroke: `hsl(${color}, 100%, 55%)`,
-        },
-      },
-      "& .lightM": {
-        "& path": {
-          stroke: `hsl(${color}, 100%, 55%)`,
-        },
-      },
-      "& .lightR": {
-        "& path": {
-          stroke: `hsl(${color}, 100%, 55%)`,
-        },
-      },
     },
   }))();
 
-  console.log("rerender");
+
+  //set these only when awake
+
+  let t1 = anime.timeline({
+    autoplay: false,
+  });
+  let t2 = anime.timeline({
+    autoplay: false,
+  });
+  let t3 = anime.timeline({
+    autoplay: false,
+  });
+
+  const animationParameters = {
+    easing: "easeInOutQuad",
+    duration: 500,
+  };
+
+  const fakeArray = [
+    {
+      type: "timer",
+      value: 3,
+    },
+    {
+      type: "color",
+      value: "270",
+    },
+    {
+      type: "timer",
+      value: 3,
+    },
+    {
+      type: "onOff",
+      value: false,
+    },
+    {
+      type: "timer",
+      value: 2,
+    },
+    {
+      type: "onOff",
+      value: true,
+    },
+    {
+      type: "color",
+      value: "120",
+    },
+    {
+      type: "timer",
+      value: 2,
+    },
+    {
+      type: "repeat",
+      value: 1,
+    },
+  ];
+
+  function parseColorCode(blocks) {
+    //Write an add function that takes in array of objects, and/or number of times to add
+
+    //Array of objects
+    //Needs to be an array so I can add the whole array multiple times in order if there's a loop
+    //Store current color
+    //Each object contains duration and color and on/off
+    //If setting to off, turn color to -1
+    //If going from off to on, set color to previous color
+    //If storing a previously existing property, push to the array
+    //When I hit a loop, or the end of the blocks array, send to add function.
+
+    //55 40 30
+    //color timer switch repeat
+
+    // {
+    //   color: 52,
+    //   onOff: true,
+    //   timer: 3,
+    // }
+    // convert to
+    // {
+    //   fill: "hsl(color, 100%, 55%)",  //off is #e2e4e8, #c6cad1, #abafb9
+    //   duration: (timer in ms),
+    // }
+
+    //if onOff === true && !element.color, element.color = currentColor
+
+    function addToAnime(array, repeat) {
+      console.log(array);
+
+      let currentColor = 52;
+
+      if (repeat) {
+        for (let i = 0; i <= repeat; i++) {
+          console.log("addToAnime");
+          array.map((element, index) => {
+            let keyframe = {};
+
+            //no color, switch true
+            if (
+              !element.color &&
+              (element.onOff === true || element.onOff === undefined)
+            ) {
+              keyframe = {
+                ...keyframe,
+                fill: currentColor,
+              };
+            }
+
+            //has a color
+            if (element.color) {
+              keyframe = {
+                ...keyframe,
+                fill: element.color,
+              };
+              currentColor = element.color;
+            }
+
+            //duration
+            if (element.timer) {
+              keyframe = {
+                ...keyframe,
+                duration: element.timer * 1000,
+              };
+            }
+
+            if (element.onOff === false) {
+              t1.add({
+                ...keyframe,
+                fill: "hsl(220, 12%, 90%)",
+              });
+
+              t2.add({
+                ...keyframe,
+                fill: "hsl(218, 11%, 80%)",
+              });
+
+              t3.add({
+                ...keyframe,
+                fill: "hsl(223, 9%, 70%)",
+              });
+              console.log("switch false", keyframe);
+            } else if (element.onOff === true || element.onOff === undefined) {
+              t1.add({
+                ...keyframe,
+                fill: `hsl(${keyframe.fill}, 100%, 55%)`,
+              });
+
+              t2.add({
+                ...keyframe,
+                fill: `hsl(${keyframe.fill}, 100%, 40%)`,
+              });
+
+              t3.add({
+                ...keyframe,
+                fill: `hsl(${keyframe.fill}, 100%, 30%)`,
+              });
+              console.log("switch true or undefined", keyframe);
+            }
+          });
+        }
+      } else {
+      }
+    }
+
+    let codeArray = [];
+
+    let currentCode = {};
+
+    let currentOnOffState = true;
+
+    //timers are breakpoints for creating currentCode object
+
+    blocks.map((block, index) => {
+      if (block.type === "color") {
+        //Maybe Done
+        if (index === blocks.length - 1) {
+          currentCode = {
+            ...currentCode,
+            color: block.value,
+          };
+          codeArray.push(currentCode);
+          addToAnime(codeArray);
+        } else if (
+          currentCode.onOff != undefined &&
+          currentCode.onOff === false
+        ) {
+          codeArray.push(currentCode);
+          currentCode = {};
+          currentCode = {
+            ...currentCode,
+            color: block.value,
+          };
+        } else if (currentCode["color"]) {
+          codeArray.push(currentCode);
+          currentCode = {};
+          currentCode = {
+            ...currentCode,
+            color: block.value,
+          };
+        } else {
+          currentCode = {
+            ...currentCode,
+            color: block.value,
+          };
+        }
+      } else if (block.type === "onOff") {
+        //Maybe done
+        if (index === blocks.length - 1) {
+          currentCode = {
+            ...currentCode,
+            onOff: block.value,
+          };
+          codeArray.push(currentCode);
+          addToAnime(codeArray);
+        } else if (currentCode.color && block.value === false) {
+          codeArray.push(currentCode);
+          currentCode = {};
+          currentCode = {
+            ...currentCode,
+            onOff: block.value,
+          };
+        } else if (currentCode["onOff"]) {
+          codeArray.push(currentCode);
+          currentCode = {};
+          currentCode = {
+            ...currentCode,
+            onOff: block.value,
+          };
+        } else {
+          currentCode = {
+            ...currentCode,
+            onOff: block.value,
+          };
+        }
+      } else if (block.type === "timer") {
+        //Done I think
+        currentCode = {
+          ...currentCode,
+          timer: block.value,
+        };
+        codeArray.push(currentCode);
+        currentCode = {};
+        if (index === blocks.length - 1) {
+          addToAnime(codeArray);
+        }
+      } else if (block.type === "repeat") {
+        codeArray.push(currentCode);
+        currentCode = {};
+        addToAnime(codeArray, block.value);
+        codeArray = [];
+      }
+    });
+  }
 
   useEffect(() => {
-    console.log(`.${classes.wrapper} svg .bodyLightBottom path`);
-    anime({
-      targets: `.${classes.wrapper} svg .bodyLightBottom path`,
-      fill: "#fff",
-      easing: 'easeInOutQuad',
-      round: 1,
-      loop: true,
-    });
-  }, [classes.wrapper])
+    console.log(awake);
+    if (awake) {
+      t1 = anime.timeline({
+        targets: `.${classes.wrapper} svg .bodyLightBottom path`,
+        autoplay: false,
+        ...animationParameters,
+      });
+      t2 = anime.timeline({
+        targets: `.${classes.wrapper} svg .bodyLightMid path`,
+        autoplay: false,
+        ...animationParameters,
+      });
+      t3 = anime.timeline({
+        targets: `.${classes.wrapper} svg .bodyLightTop path`,
+        autoplay: false,
+        ...animationParameters,
+      });
+      parseColorCode(fakeArray);
+    }
+    console.log("useEffect");
+  }, [classes.wrapper, awake]);
+
+  // useEffect(() => {
+  //   console.log(`.${classes.wrapper} svg .bodyLightBottom path`);
+  //   anime({
+  //     targets: `.${classes.wrapper} svg .bodyLightBottom path`,
+  //     fill: "#fff",
+  //     easing: "easeInOutQuad",
+  //     round: 1,
+  //     direction: "alternate",
+  //     loop: true,
+  //   });
+  // }, [classes.wrapper]);
 
   function accessorySwitch(selector) {
     if (accessory === selector) {
@@ -104,13 +335,18 @@ const FFanim = ({ height, width, color, accessory, awake }) => {
     },
   };
 
-  function whatnever() {
-    setWhatever("whatever");
-  }
-
   return (
-    <div ref={myRef} className={classes.wrapper + " " + whatever}>
-      <button onClick={whatnever}>WHATEVER</button>
+    <div className={classes.wrapper}>
+      <button
+        onClick={() => {
+          t1.play();
+          t2.play();
+          t3.play();
+          console.log(t1);
+        }}
+      >
+        click
+      </button>
       <Lottie options={defaultOptions} height={height} width={width} />
     </div>
   );
