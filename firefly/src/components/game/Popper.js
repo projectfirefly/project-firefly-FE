@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import PalettePopper from "./Poppers/PalettePopper";
 import TimerPopper from "./Poppers/TimerPopper";
-import CountPopper from "./Poppers/CountPopper";
-import SwitchPopper from "./Poppers/SwitchPopper";
+import RepeatPopper from "./Poppers/RepeatPopper";
+import OnOffPopper from "./Poppers/OnOffPopper";
 import uifx from "uifx";
 
 //importing the sound
 import clickMP3 from "../../assets/sounds/Button.mp3";
 //making the sound variable
-const click = new uifx({ asset: clickMP3});
+const click = new uifx({ asset: clickMP3 });
 /* 
 have to add the click.play() to the popper but when I do right now the game freezes up and becomes laggy 
 */
@@ -74,12 +74,12 @@ export default function Popper({
   open,
   togglePalette,
   toggleTimer,
-  toggleCount,
-  toggleSwitch,
-  checkedSwitch,
-  setCheckedSwitch,
-  number,
-  setNumber,
+  toggleRepeat,
+  toggleOnOff,
+  onOff,
+  setOnOff,
+  repeat,
+  setRepeat,
   time,
   setTime,
   color,
@@ -97,9 +97,9 @@ export default function Popper({
         className={
           togglePalette
             ? classes.popperPaletteContainer
-            : toggleCount
+            : toggleRepeat
             ? classes.popperCountContainer
-            : toggleSwitch
+            : toggleOnOff
             ? classes.popperSwitchContainer
             : toggleTimer
             ? classes.popperTimerContainer
@@ -110,13 +110,10 @@ export default function Popper({
           <PalettePopper color={color} setColor={setColor} />
         ) : toggleTimer && open ? (
           <TimerPopper time={time} setTime={setTime} />
-        ) : toggleCount && open ? (
-          <CountPopper number={number} setNumber={setNumber} />
-        ) : toggleSwitch && open ? (
-          <SwitchPopper
-            checkedSwitch={checkedSwitch}
-            setCheckedSwitch={setCheckedSwitch}
-          />
+        ) : toggleRepeat && open ? (
+          <RepeatPopper repeat={repeat} setRepeat={setRepeat} />
+        ) : toggleOnOff && open ? (
+          <OnOffPopper onOff={onOff} setOnOff={setOnOff} />
         ) : null}
       </div>
     </div>
