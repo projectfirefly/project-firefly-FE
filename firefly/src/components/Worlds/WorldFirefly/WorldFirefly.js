@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
-
+//importing game store
+import { gameContext, SELECTED_WORLD } from "../../../context/Game/GameStore";
 import FFanim from "../../../assets/animations/FFanim";
 import FFicon from "../../../assets/icons/firefly/Firefly";
 import WorldFireflyStyles from "./WorldFireflyStyles";
@@ -22,10 +23,16 @@ import {
 
 import { REMOVE_FIREFLY } from "../../../context/Game/GameStore.jsx";
 import { removeFirefly } from "../../../utils/firebaseInteractions.jsx";
-import { gameContext } from "../../../context/Game/GameStore.jsx";
+
 
 const WorldFirefly = props => {
   const [menuActive, setMenuState] = useState(false);
+  const [trashActive, setTrashState] = useState(false);
+  const [worldContext, worldDispatch] = useContext(gameContext);
+  useEffect(() => {
+    worldDispatch({ type: SELECTED_WORLD, payload: "" });
+  }, []);
+  console.log("this is the world context", worldContext);
   const [trashOpen, setTrashOpen] = useState(false);
 
   const confirmRemove = () => {
@@ -47,15 +54,22 @@ const WorldFirefly = props => {
           <FaTrashAlt className={classes.trash} />
         </div>
       </div>
-      <div onClick={() => setMenuState(!menuActive)}>
-        <FFanim
-          height={129}
-          width={132}
-          accessory="none"
-          color={642}
-          awake={true}
-        />
-      </div>
+      {worldContext.worlds.fireflies
+        ? worldContext.worlds.fireflies.map(firefly => {
+            return (
+              <div onClick={() => setMenuState(!menuActive)}>
+                {console.log(firefly)},
+                <FFanim
+                  height={129}
+                  width={132}
+                  accessory="none"
+                  color={642}
+                  awake={true}
+                />
+              </div>
+            );
+          })
+        : console.log(null)}
       <Dialog
         open={trashOpen}
         onClose={() => setTrashOpen(false)}
