@@ -41,21 +41,14 @@ const ChooseWorld = () => {
   const classes = chooseWorldStyles();
   const defaultWorld = { worldName: "Main World" };
   return (
-    // console.log(worldContext),
     <div className={classes.rootContainer}>
       <hl className={classes.title}> CHOOSE YOUR WORLD </hl>
       <div className={classes.worldContainer}>
-        {worldArr === undefined
-          ? null
-          : worldArr.worlds.worldName !== "Main World"
-          ?  console.log('added a world') // addWorld(context.selected.id, defaultWorld, worldDispatch) 
-          && (
-              <div> TEST!!! </div>
-            )
+        {worldArr
+          ? console.log("added a world") && <div> TEST!!! </div> // addWorld(context.selected.id, defaultWorld, worldDispatch)
           : worldArr.worlds.map(world => {
-              // console.log(worldContext.worlds.length)
               return (
-                <Link 
+                <Link
                   to="fireflyworld"
                   className={classes.links}
                   onClick={() => GameState(world)}
