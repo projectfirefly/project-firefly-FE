@@ -61,7 +61,6 @@ const WorldFirefly = props => {
         open={trashOpen}
         onClose={() => setTrashOpen(false)}
         are-labelledby="remove-profile-dialog"
-        // className={classes.dialog}
         classes={{
           paper: classes.dialogPaper
         }}
@@ -84,7 +83,7 @@ const WorldFirefly = props => {
               </button>
 
               <button
-                onClick={confirmRemove}
+                // onClick={confirmRemove}
                 className={classes.dialogButtons + " remove"}
               >
                 <FaCheck />
