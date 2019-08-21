@@ -22,14 +22,17 @@ const ChooseWorld = () => {
   const [context, dispatch] = useContext(childContext);
   const [worldContext, worldDispatch] = useContext(gameContext);
   const [worldArr, updatedWorldArr] = useState();
+  const gettingWorld = async () => {
+    await (getWorld(context.selected.id, worldDispatch),
+    updatedWorldArr(worldContext));
+  };
   useEffect(() => {
-    getWorld(context.selected.id, worldDispatch);
+    gettingWorld();
     console.log(worldContext, "this is the world context form useEffect");
-    updatedWorldArr(worldContext);
-  },[worldArr]);
+  }, []);
 
   console.log(worldArr, "this is the world array");
-
+  console.log(context.selected.id, "this is the context");
   const GameState = world => {
     worldDispatch({ type: UPDATE_SELECTED, payload: world.id });
   };
@@ -42,14 +45,17 @@ const ChooseWorld = () => {
     <div className={classes.rootContainer}>
       <hl className={classes.title}> CHOOSE YOUR WORLD </hl>
       <div className={classes.worldContainer}>
-        {/* {worldArr.worlds[0].worldName !== "Main World"
-          ? addWorld(context.selected.id, defaultWorld, worldDispatch) && (
+        {worldArr === undefined
+          ? null
+          : worldArr.worlds.worldName !== "Main World"
+          ?  console.log('added a world') // addWorld(context.selected.id, defaultWorld, worldDispatch) 
+          && (
               <div> TEST!!! </div>
             )
           : worldArr.worlds.map(world => {
               // console.log(worldContext.worlds.length)
               return (
-                <Link
+                <Link 
                   to="fireflyworld"
                   className={classes.links}
                   onClick={() => GameState(world)}
@@ -57,7 +63,7 @@ const ChooseWorld = () => {
                   <WorldCard title={`${world.worldName}`} img={fireflyWorld1} />
                 </Link>
               );
-            })} */}
+            })}
         <WorldCard title={"Coming Soon"} img={lockedWorld} />
 
         <WorldCard title={"Coming Soon"} img={lockedWorld} />

@@ -5,7 +5,8 @@ const WorldFireflyStyles = makeStyles({
     // border: " solid pink 2px",
     position: "absolute",
     marginLeft: "200px",
-    width: "170px"
+    width: "170px",
+    zIndex: "1"
   },
   menu: {
     display: "flex",
@@ -32,6 +33,67 @@ const WorldFireflyStyles = makeStyles({
     fontSize: "26px",
     color: "#f9dc28",
     marginTop: "19px"
+  },
+
+  dialogPaper: {
+    maxWidth: "80%",
+    borderRadius: "20px",
+    padding: "2% 1%",
+    width: "598px",
+    height: "325px"
+  },
+  dialogContainer: {
+    fontFamily: "'Nunito', sans-serif"
+  },
+  dialogTop: {
+    display: "flex"
+  },
+  dialogText: {
+    width: "100%",
+    fontSize: "34px",
+    letterSpacing: "7px",
+    color: "#5B4EFF",
+    fontWeight: "900",
+    textAlign: "center",
+    paddingTop: "110px"
+  },
+  dialogButtonContainer: {
+    display: "flex",
+    justifyContent: "space-between",
+    width: "100%"
+  },
+  dialogButtons: {
+    borderRadius: "10px",
+    border: "2px solid #ABB0BA",
+    boxShadow: "0px 2px #8F96A3",
+    width: "44px",
+    height: "44px",
+    letterSpacing: "1px",
+    fontSize: "20px",
+    paddingTop: "4px",
+
+    "&.cancel": {
+      color: "#727C8C",
+      "&:active": {
+        boxShadow: "none",
+        marginTop: "3px",
+        marginBottom: "-3px"
+      },
+      "&:hover": {
+        cursor: "pointer"
+      }
+    },
+    "&.remove": {
+      color: "#4BA810",
+      "&:active": {
+        boxShadow: "none",
+        marginTop: "3px",
+        marginBottom: "-3px"
+      },
+      "&:hover": {
+        cursor: "pointer"
+      }
+    }
   }
 });
 

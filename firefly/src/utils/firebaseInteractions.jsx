@@ -1,5 +1,4 @@
 import firebase from "firebase";
-
 import {
   GET_USER_INFO,
   GET_PROFILES_AND_AVATARS,
@@ -9,7 +8,6 @@ import {
   SET_HAS_PROFILES,
   GET_AND_LOAD
 } from "../context/ChildProfiles/ChildProfileStore";
-
 import {
   GET_WORLDS,
   ADD_WORLD,
@@ -18,7 +16,6 @@ import {
   UPDATE_BLOCK,
   REMOVE_WORLD
 } from "../context/Game/GameStore";
-
 export const getWorld = async (child, dispatch) => {
   const db = firebase.firestore();
   const uid = firebase.auth().currentUser.uid;
@@ -49,11 +46,10 @@ export const getWorld = async (child, dispatch) => {
         return await fireflies;
       });
       const payload = await Promise.all(childWorlds);
-      // console.log(payload);
+      console.log(payload);
       dispatch({ type: GET_WORLDS, payload: payload });
     });
 };
-
 //Add world
 export const addWorld = async (child, payload, dispatch) => {
   const db = firebase.firestore();
@@ -71,13 +67,11 @@ export const addWorld = async (child, payload, dispatch) => {
       dispatch({ type: ADD_WORLD, payload: newWorld }); //Dispatching to reducers so it can get saved locally in context
     });
 };
-
 //remove world
-
 export const removeWorld = async (child, payload, dispatch) => {
   const db = firebase.firestore();
   const uid = firebase.auth().currentUser.uid;
-  await db.collection("users")
+  db.collection("users")
     .doc(uid)
     .collection("profiles")
     .doc(child)
@@ -86,8 +80,8 @@ export const removeWorld = async (child, payload, dispatch) => {
     .collection("fireflies")
     .get()
     .then(docRef => {
-      docRef.docs.map(async doc => {
-        await db
+      const firefly = docRef.docs.map(doc => {
+        db
         .collection("users")
         .doc(uid)
         .collection("profiles")
@@ -99,7 +93,7 @@ export const removeWorld = async (child, payload, dispatch) => {
         .delete();
       });
     });
-    await db.collection("users")
+    db.collection("users")
     .doc(uid)
     .collection("profiles")
     .doc(child)
@@ -127,7 +121,6 @@ export const removeWorld = async (child, payload, dispatch) => {
 //     .delete();
 //   dispatch({ type: type, payload: payload });
 // };
-
 //Add Firefly
 export const addFirefly = async (child, world_id, dispatch) => {
   const db = firebase.firestore();
@@ -178,13 +171,10 @@ export const addFirefly = async (child, world_id, dispatch) => {
         });
     });
 };
-
 export const removeFirefly = async (child, requiredIds, dispatch) => {
   const db = firebase.firestore();
   const uid = firebase.auth().currentUser.uid;
-
   const {firefly_id, world_id} = requiredIds;
-
   db.collection("users")
     .doc(uid)
     .collection("profiles")
@@ -194,24 +184,17 @@ export const removeFirefly = async (child, requiredIds, dispatch) => {
     .collection("fireflies")
     .doc(firefly_id)
     .delete()
-
   dispatch({ type: REMOVE_FIREFLY, payload: requiredIds });
-
 } 
-
 //Add block to Firefly
 export const updateBlocks = async (child, requiredIds, payload, dispatch ) => {
   const db = firebase.firestore();
   const uid = firebase.auth().currentUser.uid;
-
   const {firefly_id, world_id} = requiredIds;
-
   let updatedFirefly = {
     ...payload
   };
-
   delete updatedFirefly["id"];
-
   db.collection("users")
     .doc(uid)
     .collection("profiles")
@@ -230,7 +213,6 @@ export const updateBlocks = async (child, requiredIds, payload, dispatch ) => {
       dispatch({ type: UPDATE_BLOCK, payload: payload });
     });
 };
-
 export const addProfile = async (type, payload, dispatch) => {
   const db = firebase.firestore();
   const uid = firebase.auth().currentUser.uid;
@@ -269,7 +251,6 @@ export const addProfile = async (type, payload, dispatch) => {
     });
   dispatch({ type: SET_HAS_PROFILES });
 };
-
 export const updateProfile = async (type, payload, dispatch) => {
   const db = firebase.firestore();
   const uid = firebase.auth().currentUser.uid;
@@ -305,7 +286,6 @@ export const updateProfile = async (type, payload, dispatch) => {
     });
   dispatch({ type: type, payload: payload });
 };
-
 export const removeProfile = async (type, payload, dispatch) => {
   const db = firebase.firestore();
   const uid = firebase.auth().currentUser.uid;
@@ -325,7 +305,6 @@ export const removeProfile = async (type, payload, dispatch) => {
     .delete();
   dispatch({ type: type, payload: payload });
 };
-
 export const updateUser = async (type, payload, dispatch) => {
   const db = firebase.firestore();
   const uid = firebase.auth().currentUser.uid;
@@ -359,13 +338,11 @@ export const updateUser = async (type, payload, dispatch) => {
     );
   dispatch({ type: type, payload: payload });
 };
-
 export const getUser = async dispatch => {
   const db = firebase.firestore();
   const uid = firebase.auth().currentUser.uid;
   //get user
   var dispatchUser = {};
-
   await db
     .collection("users")
     .doc(uid)
@@ -453,5 +430,4 @@ export const getUser = async dispatch => {
             });
         });
       }
-    });
-};
+    })};
