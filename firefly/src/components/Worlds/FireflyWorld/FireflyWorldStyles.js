@@ -9,7 +9,6 @@ const chooseWorldStyles = makeStyles(theme => ({
     minWidth: "100vw",
     height: "102vh",
     backgroundSize: "cover",
-    backgroundPosition: " 0px 0px",
     backgroundRepeat: "no-repeat"
   },
   body: {},

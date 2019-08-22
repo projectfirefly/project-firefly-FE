@@ -17,18 +17,15 @@ import ClockIcon from "../../images/gameIcons/ClockIcon.svg";
 import PlayCircleIcon from "../../images/gameIcons/PlayCircleIcon.svg";
 import PaletteIcon from "../../images/gameIcons/PaletteIcon.svg";
 import ToggleOffIcon from "../../images/gameIcons/ToggleOffIcon.svg";
-// import NumberIcon1 from "../../images/gameIcons/NumberIcon1.svg";
 import GridIcon from "../../images/gridBackground.png";
 
 //importing the sound
 import clickMP3 from "../../assets/sounds/click.mp3";
 import clickTogetherMP3 from "../../assets/sounds/clickTogether.mp3";
-import paperMP3 from "../../assets/sounds/crumblingPaper.mp3";
 import poofMP3 from "../../assets/sounds/poof.mp3";
 //making the sounds variable
 const click = new uifx({ asset: clickMP3 });
 const clickTogether = new uifx({ asset: clickTogetherMP3 });
-const paper = new uifx({ asset: paperMP3 });
 const poof = new uifx({ asset: poofMP3 });
 
 //styling
