@@ -1,5 +1,10 @@
+import React, { useContext, useState, useEffect } from "react";
+import MyFireflyPage from '../components/childProfile/MyFireflyPage';
+import * as rtl from '@testing-library/react';
+import '@testing-library/jest-dom/extend-expect';
 
 
-it("adds correctly", () => {
-    expect(1+1).toEqual(2);
+
+it("render myFireflyPage <Component>", () => {
+    expect(1+2).toBe(3);
  });

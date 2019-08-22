@@ -43,7 +43,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "jest",
+    "test": "react-scripts test --watch",
     "eject": "react-scripts eject",
     "deploy-staging": "npm run build && firebase use staging && firebase deploy;",
     "deploy-production": "--env=production react-scripts start"
