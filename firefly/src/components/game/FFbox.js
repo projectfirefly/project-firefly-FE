@@ -23,7 +23,7 @@ const useStyles = makeStyles({
   }
 });
 
-const FFbox = ({ tools }) => {
+const FFbox = ({ tools, animationList }) => {
   const classes = useStyles();
   return (
     <div
@@ -37,6 +37,7 @@ const FFbox = ({ tools }) => {
         accessory="nerdglasses"
         color={58}
         awake={tools[1].used ? true : false}
+        animationList={animationList}
       />
     </div>
   );
