@@ -11,12 +11,6 @@ import screen5 from "../../assets/images/screen5.png";
 import leftarrow from "../../assets/images/BlueLeftArrow.svg";
 import rightarrow from "../../assets/images/BlueRightArrow.svg";
 
-//import components for each step.
-import CustomStepper from "../Steppers/CustomStepper";
-import { Typography } from "@material-ui/core";
-
-//import game
-import Game from "../game/Game";
 
 const MultiStepTutorial = () => {
   const classes = makeStyles(theme => ({
@@ -59,10 +53,10 @@ const MultiStepTutorial = () => {
         <div className={classes.root}>
           <div className={classes.wrapper}>
             <div className={classes.arrowcontainer}>
-              <img src={leftarrow} className={classes.disabled} />
-              <img src={rightarrow} onClick={() => setStep(step + 1)} />
+              <img src={leftarrow} alt={''} className={classes.disabled} />
+              <img src={rightarrow} alt={''} onClick={() => setStep(step + 1)} />
             </div>
-            <img className={classes.image} src={screen1} />
+            <img className={classes.image} src={screen1} alt={''} />
           </div>
         </div>
       );
@@ -71,12 +65,12 @@ const MultiStepTutorial = () => {
         <div className={classes.root}>
           <div className={classes.wrapper}>
             <div className={classes.arrowcontainer}>
-              <img src={leftarrow} onClick={() => setStep(step - 1)} />
-              <img src={rightarrow} onClick={() => setStep(step + 1)} />
+              <img src={leftarrow} alt={''} onClick={() => setStep(step - 1)} />
+              <img src={rightarrow} alt={''} onClick={() => setStep(step + 1)} />
             </div>
             <img
               className={classes.image}
-              src={screen2}
+              src={screen2} alt={''}
             />
           </div>
         </div>
@@ -86,12 +80,12 @@ const MultiStepTutorial = () => {
         <div className={classes.root}>
           <div className={classes.wrapper}>
             <div className={classes.arrowcontainer}>
-              <img src={leftarrow} onClick={() => setStep(step - 1)} />
-              <img src={rightarrow} onClick={() => setStep(step + 1)} />
+              <img src={leftarrow} alt={''} onClick={() => setStep(step - 1)} />
+              <img src={rightarrow} alt={''} onClick={() => setStep(step + 1)} />
             </div>
             <img
               className={classes.image}
-              src={screen3}
+              src={screen3} alt={''}
             />
           </div>
         </div>
@@ -101,12 +95,12 @@ const MultiStepTutorial = () => {
         <div className={classes.root}>
           <div className={classes.wrapper}>
             <div className={classes.arrowcontainer}>
-              <img src={leftarrow} onClick={() => setStep(step - 1)} />
-              <img src={rightarrow} onClick={() => setStep(step + 1)} />
+              <img src={leftarrow} alt={''} onClick={() => setStep(step - 1)} />
+              <img src={rightarrow} alt={''} onClick={() => setStep(step + 1)} />
             </div>
             <img
               className={classes.image}
-              src={screen4}
+              src={screen4} alt={''}
             />
           </div>
         </div>
@@ -116,12 +110,12 @@ const MultiStepTutorial = () => {
         <div className={classes.root}>
           <div className={classes.wrapper}>
             <div className={classes.arrowcontainer}>
-              <img src={leftarrow} onClick={() => setStep(step - 1)} />
-              <img src={rightarrow} className={classes.disabled}/>
+              <img src={leftarrow} alt={''} onClick={() => setStep(step - 1)} />
+              <img src={rightarrow} alt={''} className={classes.disabled}/>
             </div>
             <img
               className={classes.image}
-              src={screen5}
+              src={screen5} alt={''}
               onClick={() => setStep(0)}
             />
           </div>

@@ -11,8 +11,6 @@ import Icon from "../../assets/icons";
 import createProfileStyles from "./CreateAndEditProfileStyles";
 
 //Button Components
-import { SecondaryButton } from "../../utils/buttons/SecondaryButton";
-import { PrimaryButton } from "../../utils/buttons/PrimaryButton";
 import { Typography } from "@material-ui/core";
 
 const AddANewProfilePage = props => {

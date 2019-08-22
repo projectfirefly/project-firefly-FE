@@ -33,7 +33,7 @@ export default function LoadedChecker(props) {
             props.setIsLoading(false);
           }
         })
-        getWorld(gameDispatch).then(() => {
+        getWorld(context.selected.id, gameDispatch).then(() => {
           if (atLeast && game.loaded) {
             props.setIsLoading(false)
           }
