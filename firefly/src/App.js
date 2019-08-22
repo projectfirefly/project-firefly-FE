@@ -20,9 +20,9 @@ ReactGA.pageview(window.location.pathname + window.location.search);
 //google analytics code end//
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
 
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   // console.log("App Render");
 

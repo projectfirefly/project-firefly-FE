@@ -10,75 +10,74 @@ const FFanim = ({ height, width, color, accessory, awake }) => {
   const classes = makeStyles(theme => ({
     wrapper: {
       "& .lambdahat": {
-        display: `${accessorySwitch("lambdahat")}`,
+        display: `${accessorySwitch("lambdahat")}`
       },
       "& .sunglasses": {
-        display: `${accessorySwitch("sunglasses")}`,
+        display: `${accessorySwitch("sunglasses")}`
       },
       "& .headphones": {
-        display: `${accessorySwitch("headphones")}`,
+        display: `${accessorySwitch("headphones")}`
       },
       "& .nerdglasses": {
-        display: `${accessorySwitch("nerdglasses")}`,
-      },
-    },
+        display: `${accessorySwitch("nerdglasses")}`
+      }
+    }
   }))();
-
 
   //set these only when awake
 
   let t1 = anime.timeline({
-    autoplay: false,
+    autoplay: false
   });
   let t2 = anime.timeline({
-    autoplay: false,
+    autoplay: false
   });
   let t3 = anime.timeline({
-    autoplay: false,
+    autoplay: false
   });
 
   const animationParameters = {
     easing: "easeInOutQuad",
-    duration: 500,
+    duration: 500
   };
 
   const fakeArray = [
     {
       type: "timer",
-      value: 3,
+      value: 3
     },
     {
       type: "color",
-      value: "270",
+      value: "270"
     },
     {
       type: "timer",
-      value: 3,
+      value: 3
     },
     {
       type: "onOff",
-      value: false,
+      value: false
     },
     {
       type: "timer",
-      value: 2,
+      value: 2
     },
     {
       type: "onOff",
-      value: true,
+      value: true
     },
     {
       type: "color",
-      value: "120",
+      value: "120"
     },
     {
       type: "timer",
-      value: 2,
+      value: 2
     },
     {
       type: "repeat",
-      value: 1,
-    },
+      value: 1
+    }
   ];
 
   function parseColorCode(blocks) {
@@ -127,7 +126,7 @@ const FFanim = ({ height, width, color, accessory, awake }) => {
             ) {
               keyframe = {
                 ...keyframe,
-                fill: currentColor,
+                fill: currentColor
               };
             }
 
@@ -135,7 +134,7 @@ const FFanim = ({ height, width, color, accessory, awake }) => {
             if (element.color) {
               keyframe = {
                 ...keyframe,
-                fill: element.color,
+                fill: element.color
               };
               currentColor = element.color;
             }
@@ -144,40 +143,40 @@ const FFanim = ({ height, width, color, accessory, awake }) => {
             if (element.timer) {
               keyframe = {
                 ...keyframe,
-                duration: element.timer * 1000,
+                duration: element.timer * 1000
               };
             }
 
             if (element.onOff === false) {
               t1.add({
                 ...keyframe,
-                fill: "hsl(220, 12%, 90%)",
+                fill: "hsl(220, 12%, 90%)"
               });
 
               t2.add({
                 ...keyframe,
-                fill: "hsl(218, 11%, 80%)",
+                fill: "hsl(218, 11%, 80%)"
               });
 
               t3.add({
                 ...keyframe,
-                fill: "hsl(223, 9%, 70%)",
+                fill: "hsl(223, 9%, 70%)"
               });
               console.log("switch false", keyframe);
             } else if (element.onOff === true || element.onOff === undefined) {
               t1.add({
                 ...keyframe,
-                fill: `hsl(${keyframe.fill}, 100%, 55%)`,
+                fill: `hsl(${keyframe.fill}, 100%, 55%)`
               });
 
               t2.add({
                 ...keyframe,
-                fill: `hsl(${keyframe.fill}, 100%, 40%)`,
+                fill: `hsl(${keyframe.fill}, 100%, 40%)`
               });
 
               t3.add({
                 ...keyframe,
-                fill: `hsl(${keyframe.fill}, 100%, 30%)`,
+                fill: `hsl(${keyframe.fill}, 100%, 30%)`
               });
               console.log("switch true or undefined", keyframe);
             }
@@ -201,7 +200,7 @@ const FFanim = ({ height, width, color, accessory, awake }) => {
         if (index === blocks.length - 1) {
           currentCode = {
             ...currentCode,
-            color: block.value,
+            color: block.value
           };
           codeArray.push(currentCode);
           addToAnime(codeArray);
@@ -213,19 +212,19 @@ const FFanim = ({ height, width, color, accessory, awake }) => {
           currentCode = {};
           currentCode = {
             ...currentCode,
-            color: block.value,
+            color: block.value
           };
         } else if (currentCode["color"]) {
           codeArray.push(currentCode);
           currentCode = {};
           currentCode = {
             ...currentCode,
-            color: block.value,
+            color: block.value
           };
         } else {
           currentCode = {
             ...currentCode,
-            color: block.value,
+            color: block.value
           };
         }
       } else if (block.type === "onOff") {
@@ -233,7 +232,7 @@ const FFanim = ({ height, width, color, accessory, awake }) => {
         if (index === blocks.length - 1) {
           currentCode = {
             ...currentCode,
-            onOff: block.value,
+            onOff: block.value
           };
           codeArray.push(currentCode);
           addToAnime(codeArray);
@@ -242,26 +241,26 @@ const FFanim = ({ height, width, color, accessory, awake }) => {
           currentCode = {};
           currentCode = {
             ...currentCode,
-            onOff: block.value,
+            onOff: block.value
           };
         } else if (currentCode["onOff"]) {
           codeArray.push(currentCode);
           currentCode = {};
           currentCode = {
             ...currentCode,
-            onOff: block.value,
+            onOff: block.value
           };
         } else {
           currentCode = {
             ...currentCode,
-            onOff: block.value,
+            onOff: block.value
           };
         }
       } else if (block.type === "timer") {
         //Done I think
         currentCode = {
           ...currentCode,
-          timer: block.value,
+          timer: block.value
         };
         codeArray.push(currentCode);
         currentCode = {};
@@ -283,17 +282,17 @@ const FFanim = ({ height, width, color, accessory, awake }) => {
       t1 = anime.timeline({
         targets: `.${classes.wrapper} svg .bodyLightBottom path`,
         autoplay: false,
-        ...animationParameters,
+        ...animationParameters
       });
       t2 = anime.timeline({
         targets: `.${classes.wrapper} svg .bodyLightMid path`,
         autoplay: false,
-        ...animationParameters,
+        ...animationParameters
       });
       t3 = anime.timeline({
         targets: `.${classes.wrapper} svg .bodyLightTop path`,
         autoplay: false,
-        ...animationParameters,
+        ...animationParameters
       });
       parseColorCode(fakeArray);
     }
@@ -331,8 +330,8 @@ const FFanim = ({ height, width, color, accessory, awake }) => {
     autoplay: true,
     animationData: animationData2,
     rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice",
-    },
+      preserveAspectRatio: "xMidYMid slice"
+    }
   };
 
   return (
