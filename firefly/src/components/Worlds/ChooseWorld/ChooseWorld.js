@@ -19,34 +19,28 @@ import { childContext } from "../../../context/ChildProfiles/ChildProfileStore";
 
 const ChooseWorld = () => {
   //making the states from the stores
-  const [context, dispatch] = useContext(childContext);
   const [worldContext, worldDispatch] = useContext(gameContext);
-  const [worldArr, updatedWorldArr] = useState();
-  const gettingWorld = async () => {
-    await (getWorld(context.selected.id, worldDispatch),
-    updatedWorldArr(worldContext));
-  };
+
   useEffect(() => {
-    gettingWorld();
-    console.log(worldContext, "this is the world context form useEffect");
+    console.log(worldContext)
   }, []);
 
-  console.log(worldArr, "this is the world array");
-  console.log(context.selected.id, "this is the context");
+
+  //gets the world id when clicked
   const GameState = world => {
     worldDispatch({ type: UPDATE_SELECTED, payload: world.id });
   };
 
   //this is the style
   const classes = chooseWorldStyles();
-  const defaultWorld = { worldName: "Main World" };
+  // const defaultWorld = { worldName: "Main World" };
   return (
     <div className={classes.rootContainer}>
       <hl className={classes.title}> CHOOSE YOUR WORLD </hl>
       <div className={classes.worldContainer}>
-        {worldArr === undefined 
-          ? console.log("added a world") && <div> TEST!!! </div> // addWorld(context.selected.id, defaultWorld, worldDispatch)
-          : worldArr.worlds.map(world => {
+        {worldContext === undefined
+          ? null
+          : worldContext.worlds.map(world => {
               return (
                 <Link
                   to="fireflyworld"

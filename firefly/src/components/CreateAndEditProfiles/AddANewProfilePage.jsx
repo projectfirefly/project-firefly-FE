@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 import { addProfile } from "../../utils/firebaseInteractions";
 
-import { childContext } from "../../context/ChildProfiles/ChildProfileStore";
-import { ADD_PROFILE } from "../../context/ChildProfiles/ChildProfileStore";
+import { childContext, ADD_PROFILE } from "../../context/ChildProfiles/ChildProfileStore";
+
 
 //Styling
 import Icon from "../../assets/icons";
@@ -16,7 +16,7 @@ import { Typography } from "@material-ui/core";
 const AddANewProfilePage = props => {
   const classes = createProfileStyles();
 
-  const [, dispatch] = useContext(childContext);
+  const [context, dispatch] = useContext(childContext);
 
   const [updatedProfile, setUpdatedProfile] = useState({
     first_name: "",
