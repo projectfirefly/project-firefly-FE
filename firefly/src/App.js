@@ -23,7 +23,7 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   //set to false
 
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   //set to true
 
   // console.log("App Render");

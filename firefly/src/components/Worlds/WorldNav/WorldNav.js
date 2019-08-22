@@ -19,7 +19,7 @@ export const WorldNav = props => {
   const [worldContext, worldDispatch] = useContext(gameContext);
   const [context, contextDispatch] = useContext(childContext);
 
-  const newFF = () => {
+  const newFF = props => {
     addFirefly(
       context.selected.id,
       worldContext.selected.id,
