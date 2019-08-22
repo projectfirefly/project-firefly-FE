@@ -432,5 +432,7 @@ export const getUser = async dispatch => {
               dispatch({ type: GET_AND_LOAD, payload: dispatchUser });
             });
         });
+      } else {
+        dispatch({ type: GET_AND_LOAD, payload: dispatchUser });
       }
     })};
