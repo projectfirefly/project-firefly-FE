@@ -13,82 +13,82 @@ const FFanim = ({
   accessory,
   awake,
   animationList,
-  playing,
+  playing
 }) => {
   const classes = makeStyles(theme => ({
     wrapper: {
       "& .lambdahat": {
-        display: `${accessorySwitch("lambdahat")}`,
+        display: `${accessorySwitch("lambdahat")}`
       },
       "& .sunglasses": {
-        display: `${accessorySwitch("sunglasses")}`,
+        display: `${accessorySwitch("sunglasses")}`
       },
       "& .headphones": {
-        display: `${accessorySwitch("headphones")}`,
+        display: `${accessorySwitch("headphones")}`
       },
       "& .nerdglasses": {
-        display: `${accessorySwitch("nerdglasses")}`,
-      },
-    },
+        display: `${accessorySwitch("nerdglasses")}`
+      }
+    }
   }))();
 
   //set these only when awake
 
   let t1 = anime.timeline({
-    autoplay: false,
+    autoplay: false
   });
   let t2 = anime.timeline({
-    autoplay: false,
+    autoplay: false
   });
   let t3 = anime.timeline({
-    autoplay: false,
+    autoplay: false
   });
   let t4 = anime.timeline({
-    autoplay: false,
+    autoplay: false
   });
 
   const animationParameters = {
     easing: "easeInOutQuad",
-    duration: 500,
+    duration: 500
   };
 
   const fakeArray = [
     {
       type: "timer",
-      value: 1,
+      value: 1
     },
     {
       type: "color",
-      value: 270,
+      value: 270
     },
     {
       type: "timer",
-      value: 3,
+      value: 3
     },
     {
       type: "onOff",
-      value: false,
+      value: false
     },
     {
       type: "timer",
-      value: 2,
+      value: 2
     },
     {
       type: "onOff",
-      value: true,
+      value: true
     },
     {
       type: "color",
-      value: 120,
+      value: 120
     },
     {
       type: "timer",
-      value: 2,
+      value: 2
     },
     {
       type: "repeat",
-      value: 1,
-    },
+      value: 1
+    }
   ];
 
   function parseColorCode(blocks) {
@@ -141,7 +141,7 @@ const FFanim = ({
           ) {
             keyframe = {
               ...keyframe,
-              fill: currentColor,
+              fill: currentColor
             };
           }
 
@@ -149,7 +149,7 @@ const FFanim = ({
           if (element.color) {
             keyframe = {
               ...keyframe,
-              fill: element.color,
+              fill: element.color
             };
             currentColor = element.color;
           }
@@ -158,50 +158,50 @@ const FFanim = ({
           if (element.timer) {
             keyframe = {
               ...keyframe,
-              duration: element.timer * 1000,
+              duration: element.timer * 1000
             };
           }
 
           if (element.onOff === false) {
             t1.add({
               ...keyframe,
-              fill: "hsl(220, 12%, 90%)",
+              fill: "hsl(220, 12%, 90%)"
             });
 
             t2.add({
               ...keyframe,
-              fill: "hsl(218, 11%, 80%)",
+              fill: "hsl(218, 11%, 80%)"
             });
 
             t3.add({
               ...keyframe,
-              fill: "hsl(223, 9%, 70%)",
+              fill: "hsl(223, 9%, 70%)"
             });
 
             t4.add({
               ...keyframe,
-              stroke: "hsl(220, 12%, 90%)",
+              stroke: "hsl(220, 12%, 90%)"
             });
             console.log("switch false", keyframe);
           } else if (element.onOff === true || element.onOff === undefined) {
             t1.add({
               ...keyframe,
-              fill: `hsl(${keyframe.fill}, 100%, 55%)`,
+              fill: `hsl(${keyframe.fill}, 100%, 55%)`
             });
 
             t2.add({
               ...keyframe,
-              fill: `hsl(${keyframe.fill}, 100%, 40%)`,
+              fill: `hsl(${keyframe.fill}, 100%, 40%)`
             });
 
             t3.add({
               ...keyframe,
-              fill: `hsl(${keyframe.fill}, 100%, 30%)`,
+              fill: `hsl(${keyframe.fill}, 100%, 30%)`
             });
 
             t4.add({
               ...keyframe,
-              stroke: `hsl(${keyframe.fill}, 100%, 55%)`,
+              stroke: `hsl(${keyframe.fill}, 100%, 55%)`
             });
             console.log("switch true or undefined", keyframe);
           }
@@ -241,7 +241,7 @@ const FFanim = ({
         if (index === blocks.length - 1) {
           currentCode = {
             ...currentCode,
-            color: block.value,
+            color: block.value
           };
           codeArray.push(currentCode);
           addToAnime(codeArray);
@@ -253,19 +253,19 @@ const FFanim = ({
           currentCode = {};
           currentCode = {
             ...currentCode,
-            color: block.value,
+            color: block.value
           };
         } else if (currentCode["color"]) {
           codeArray.push(currentCode);
           currentCode = {};
           currentCode = {
             ...currentCode,
-            color: block.value,
+            color: block.value
           };
         } else {
           currentCode = {
             ...currentCode,
-            color: block.value,
+            color: block.value
           };
         }
       } else if (block.type === "onOff") {
@@ -273,7 +273,7 @@ const FFanim = ({
         if (index === blocks.length - 1) {
           currentCode = {
             ...currentCode,
-            onOff: block.value,
+            onOff: block.value
           };
           codeArray.push(currentCode);
           addToAnime(codeArray);
@@ -282,19 +282,19 @@ const FFanim = ({
           currentCode = {};
           currentCode = {
             ...currentCode,
-            onOff: block.value,
+            onOff: block.value
           };
         } else if (currentCode["onOff"]) {
           codeArray.push(currentCode);
           currentCode = {};
           currentCode = {
             ...currentCode,
-            onOff: block.value,
+            onOff: block.value
           };
         } else {
           currentCode = {
             ...currentCode,
-            onOff: block.value,
+            onOff: block.value
           };
         }
       } else if (block.type === "timer") {
@@ -303,7 +303,7 @@ const FFanim = ({
         currentCode = {};
         currentCode = {
           ...currentCode,
-          timer: block.value,
+          timer: block.value
         };
         if (index === blocks.length - 1) {
           addToAnime(codeArray);
@@ -321,30 +321,31 @@ const FFanim = ({
   }
 
   useEffect(() => {
+    console.log("animationList:", animationList);
+
     if (awake) {
       t1 = anime.timeline({
         targets: `.${classes.wrapper} svg .bodyLightBottom path`,
         autoplay: false,
-        ...animationParameters,
+        ...animationParameters
       });
       t2 = anime.timeline({
         targets: `.${classes.wrapper} svg .bodyLightMid path`,
         autoplay: false,
-        ...animationParameters,
+        ...animationParameters
       });
       t3 = anime.timeline({
         targets: `.${classes.wrapper} svg .bodyLightTop path`,
         autoplay: false,
-        ...animationParameters,
+        ...animationParameters
       });
       t4 = anime.timeline({
         targets: `.${classes.wrapper} svg .lightL path, .${
           classes.wrapper
         } svg .lightM path, .${classes.wrapper} svg .lightR path`,
         autoplay: false,
-        ...animationParameters,
+        ...animationParameters
       });
-      console.log(animationList);
       parseColorCode(animationList);
     }
   }, [classes.wrapper, awake, animationList, playing]);
@@ -378,8 +379,8 @@ const FFanim = ({
     autoplay: true,
     animationData: animationData2,
     rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice",
-    },
+      preserveAspectRatio: "xMidYMid slice"
+    }
   };
 
   return (
