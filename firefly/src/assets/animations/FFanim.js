@@ -36,6 +36,9 @@ const FFanim = ({ height, width, color, accessory, awake }) => {
   let t3 = anime.timeline({
     autoplay: false,
   });
+  let t4 = anime.timeline({
+    autoplay: false,
+  });
 
   const animationParameters = {
     easing: "easeInOutQuad",
@@ -45,11 +48,11 @@ const FFanim = ({ height, width, color, accessory, awake }) => {
   const fakeArray = [
     {
       type: "timer",
-      value: 3,
+      value: 1,
     },
     {
       type: "color",
-      value: "270",
+      value: 270,
     },
     {
       type: "timer",
@@ -69,7 +72,7 @@ const FFanim = ({ height, width, color, accessory, awake }) => {
     },
     {
       type: "color",
-      value: "120",
+      value: 120,
     },
     {
       type: "timer",
@@ -163,6 +166,11 @@ const FFanim = ({ height, width, color, accessory, awake }) => {
                 ...keyframe,
                 fill: "hsl(223, 9%, 70%)",
               });
+              
+              t4.add({
+                ...keyframe,
+                stroke: "hsl(220, 12%, 90%)",
+              });
               console.log("switch false", keyframe);
             } else if (element.onOff === true || element.onOff === undefined) {
               t1.add({
@@ -178,6 +186,11 @@ const FFanim = ({ height, width, color, accessory, awake }) => {
               t3.add({
                 ...keyframe,
                 fill: `hsl(${keyframe.fill}, 100%, 30%)`,
+              });
+
+              t4.add({
+                ...keyframe,
+                stroke: `hsl(${keyframe.fill}, 100%, 55%)`,
               });
               console.log("switch true or undefined", keyframe);
             }
@@ -295,22 +308,15 @@ const FFanim = ({ height, width, color, accessory, awake }) => {
         autoplay: false,
         ...animationParameters,
       });
+      t4 = anime.timeline({
+        targets: `.${classes.wrapper} svg .lightL path, .${classes.wrapper} svg .lightM path, .${classes.wrapper} svg .lightR path`,
+        autoplay: false,
+        ...animationParameters,
+      })
       parseColorCode(fakeArray);
     }
     console.log("useEffect");
   }, [classes.wrapper, awake]);
-
-  // useEffect(() => {
-  //   console.log(`.${classes.wrapper} svg .bodyLightBottom path`);
-  //   anime({
-  //     targets: `.${classes.wrapper} svg .bodyLightBottom path`,
-  //     fill: "#fff",
-  //     easing: "easeInOutQuad",
-  //     round: 1,
-  //     direction: "alternate",
-  //     loop: true,
-  //   });
-  // }, [classes.wrapper]);
 
   function accessorySwitch(selector) {
     if (accessory === selector) {
@@ -342,6 +348,7 @@ const FFanim = ({ height, width, color, accessory, awake }) => {
           t1.play();
           t2.play();
           t3.play();
+          t4.play();
           console.log(t1);
         }}
       >
