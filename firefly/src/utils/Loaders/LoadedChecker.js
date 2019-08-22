@@ -11,7 +11,6 @@ import { getUser, getWorld } from "../firebaseInteractions";
 export default function LoadedChecker(props) {
   const [context, dispatch] = useContext(childContext);
   const [atLeast, setAtLeast] = useState(false);
-  // const [game, gameDispatch] = useContext(gameContext);
 
   useEffect(() => {
     if (!atLeast) {
