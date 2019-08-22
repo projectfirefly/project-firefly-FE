@@ -41,7 +41,7 @@ export const WorldNav = props => {
       </div>
 
       <div className={classes.addButton} onClick={""}>
-        <Link className={classes.link} onClick={newFF}>
+        <Link className={classes.link} onClick={newFF} to="/game">
           <Typography variant="button">
             <FaPlus />
             {/* <FireflyOutline />  */}
