@@ -2,8 +2,6 @@ import React, { useState, useEffect, useContext } from 'react'
 
 import { childContext, SET_LOADED } from '../../context/ChildProfiles/ChildProfileStore';
 
-// import { gameContext } from '../../context/Game/GameStore';
-
 import { getUser, getWorld } from "../firebaseInteractions";
 
 
@@ -33,11 +31,6 @@ export default function LoadedChecker(props) {
             props.setIsLoading(false);
           }
         })
-        // getWorld(context.selected.id, gameDispatch).then(() => {
-        //   if (atLeast && game.loaded) {
-        //     props.setIsLoading(false)
-        //   }
-        // })
     } else if (atLeast && context.loaded) {
       props.setIsLoading(false);
     }
