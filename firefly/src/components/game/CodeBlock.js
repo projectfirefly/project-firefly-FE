@@ -125,15 +125,15 @@ const CodeBlock = ({
 
   const [togglePalette, setTogglePalette] = useState(false);
   const [toggleTimer, setToggleTimer] = useState(false);
-  const [toggleCount, setToggleCount] = useState(false);
-  const [toggleSwitch, setToggleSwitch] = useState(false);
+  const [toggleRepeat, setToggleRepeat] = useState(false);
+  const [toggleOnOff, setToggleOnOff] = useState(false);
 
   //state that's used in lower levels. These are passed in props to different poppers
   //Switch State
-  const [checkedSwitch, setCheckedSwitch] = useState(false);
+  const [onOff, setOnOff] = useState(false);
 
-  //Count State
-  const [number, setNumber] = useState(1);
+  //Repeat State
+  const [repeat, setRepeat] = useState(1);
 
   //Timer State
   const [time, setTime] = useState(0);
@@ -150,12 +150,12 @@ const CodeBlock = ({
     setToggleTimer(!toggleTimer);
   };
 
-  const setCount = () => {
-    setToggleCount(!toggleCount);
+  const toggleSetRepeat = () => {
+    setToggleRepeat(!toggleRepeat);
   };
 
-  const setSwitch = () => {
-    setToggleSwitch(!toggleSwitch);
+  const setOnOffSwitch = () => {
+    setToggleOnOff(!toggleOnOff);
   };
 
   return (
@@ -180,19 +180,19 @@ const CodeBlock = ({
             item.rsi === 2 ? (
               <Popper
                 onClick={
-                  !openPopper || toggleCount
+                  !openPopper || toggleRepeat
                     ? () => {
-                        togglePopper(id, blocks, "number", number);
-                        setCount();
+                        togglePopper(id, blocks, "repeat", repeat);
+                        toggleSetRepeat();
                       }
                     : null
                 }
                 open={openPopper}
-                toggleCount={toggleCount}
-                number={number}
-                setNumber={setNumber}
+                toggleRepeat={toggleRepeat}
+                repeat={repeat}
+                setRepeat={setRepeat}
               >
-                {toggleCount ? (
+                {toggleRepeat ? (
                   <div className={classes.tool}>
                     {item.content}
                     <img
@@ -204,83 +204,83 @@ const CodeBlock = ({
                 ) : (
                   <div className={classes.tool}>
                     {item.content}
-                    {number === 1 ? (
+                    {repeat === 1 ? (
                       <div>
                         <img
                           src={RepeatIconNew}
-                          alt="number one"
+                          alt="repeat one"
                           className={classes.repeatIcon}
                         />
                         <p className={classes.repeatNumber}>1</p>
                       </div>
-                    ) : number === 2 ? (
+                    ) : repeat === 2 ? (
                       <div>
                         <img
                           src={RepeatIconNew}
-                          alt="number two"
+                          alt="repeat two"
                           className={classes.repeatIcon}
                         />
                         <p className={classes.repeatNumber}>2</p>
                       </div>
-                    ) : number === 3 ? (
+                    ) : repeat === 3 ? (
                       <div>
                         <img
                           src={RepeatIconNew}
-                          alt="number three"
+                          alt="repeat three"
                           className={classes.repeatIcon}
                         />
                         <p className={classes.repeatNumber}>3</p>
                       </div>
-                    ) : number === 4 ? (
+                    ) : repeat === 4 ? (
                       <div>
                         <img
                           src={RepeatIconNew}
-                          alt="number four"
+                          alt="repeat four"
                           className={classes.repeatIcon}
                         />
                         <p className={classes.repeatNumber}>4</p>
                       </div>
-                    ) : number === 5 ? (
+                    ) : repeat === 5 ? (
                       <div>
                         <img
                           src={RepeatIconNew}
-                          alt="number five"
+                          alt="repeat five"
                           className={classes.repeatIcon}
                         />
                         <p className={classes.repeatNumber}>5</p>
                       </div>
-                    ) : number === 6 ? (
+                    ) : repeat === 6 ? (
                       <div>
                         <img
                           src={RepeatIconNew}
-                          alt="number six"
+                          alt="repeat six"
                           className={classes.repeatIcon}
                         />
                         <p className={classes.repeatNumber}>6</p>
                       </div>
-                    ) : number === 7 ? (
+                    ) : repeat === 7 ? (
                       <div>
                         <img
                           src={RepeatIconNew}
-                          alt="number seven"
+                          alt="repeat seven"
                           className={classes.repeatIcon}
                         />
                         <p className={classes.repeatNumber}>7</p>
                       </div>
-                    ) : number === 8 ? (
+                    ) : repeat === 8 ? (
                       <div>
                         <img
                           src={RepeatIconNew}
-                          alt="number eight"
+                          alt="repeat eight"
                           className={classes.repeatIcon}
                         />
                         <p className={classes.repeatNumber}>8</p>
                       </div>
-                    ) : number === 9 ? (
+                    ) : repeat === 9 ? (
                       <div>
                         <img
                           src={RepeatIconNew}
-                          alt="number nine"
+                          alt="repeat nine"
                           className={classes.repeatIcon}
                         />
                         <p className={classes.repeatNumber}>9</p>
@@ -476,19 +476,19 @@ const CodeBlock = ({
             item.rsi === 6 ? (
               <Popper
                 onClick={
-                  !openPopper || toggleSwitch
+                  !openPopper || toggleOnOff
                     ? () => {
-                        togglePopper(id, blocks, "switch", checkedSwitch);
-                        setSwitch();
+                        togglePopper(id, blocks, "onOff", onOff);
+                        setOnOffSwitch();
                       }
                     : null
                 }
-                checkedSwitch={checkedSwitch}
-                setCheckedSwitch={setCheckedSwitch}
+                onOff={onOff}
+                setOnOff={setOnOff}
                 open={openPopper}
-                toggleSwitch={toggleSwitch}
+                toggleOnOff={toggleOnOff}
               >
-                {toggleSwitch ? (
+                {toggleOnOff ? (
                   <div className={classes.tool}>
                     {item.content}
                     <img
@@ -500,7 +500,7 @@ const CodeBlock = ({
                 ) : (
                   <div className={classes.tool}>
                     {item.content}
-                    {checkedSwitch ? (
+                    {onOff ? (
                       <img
                         src={ToggleOnIcon}
                         alt="toggle on"

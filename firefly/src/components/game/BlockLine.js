@@ -100,6 +100,7 @@ const BlockLine = ({ list, setList, hasStart, draggingBlock }) => {
               </GrayedOutBlock>
 
               {/* Mapping through list[blocks] to create each code block */}
+              {console.log("blockline list:", list)}
               {list[blocks].length
                 ? list[blocks].map((item, index) => (
                     <CodeBlock

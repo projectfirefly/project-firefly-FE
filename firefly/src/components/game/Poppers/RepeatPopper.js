@@ -12,7 +12,8 @@ import sixMP3 from "../../../assets/sounds/number6.mp3";
 import sevenMP3 from "../../../assets/sounds/number7.mp3";
 import eightMP3 from "../../../assets/sounds/number8.mp3";
 import nineMP3 from "../../../assets/sounds/number9.mp3";
-//making the sound variables
+
+//making the sound variables for numpad
 const one = new uifx({ asset: oneMP3, volume: 0.1 });
 const two = new uifx({ asset: twoMP3, volume: 0.1 });
 const three = new uifx({ asset: threeMP3, volume: 0.1 });
@@ -67,19 +68,19 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const CountPopper = ({ number, setNumber }) => {
+const RepeatPopper = ({ repeat, setRepeat }) => {
   const classes = useStyles();
 
   return (
     <div className={classes.container}>
       <div
         className={
-          number === 1
+          repeat === 1
             ? classes.numberActiveIconContainer
             : classes.numberIconContainer
         }
         onClick={() => {
-          setNumber(1);
+          setRepeat(1);
           one.play();
         }}
       >
@@ -88,12 +89,12 @@ const CountPopper = ({ number, setNumber }) => {
 
       <div
         className={
-          number === 2
+          repeat === 2
             ? classes.numberActiveIconContainer
             : classes.numberIconContainer
         }
         onClick={() => {
-          setNumber(2);
+          setRepeat(2);
           two.play();
         }}
       >
@@ -101,12 +102,12 @@ const CountPopper = ({ number, setNumber }) => {
       </div>
       <div
         className={
-          number === 3
+          repeat === 3
             ? classes.numberActiveIconContainer
             : classes.numberIconContainer
         }
         onClick={() => {
-          setNumber(3);
+          setRepeat(3);
           three.play();
         }}
       >
@@ -114,12 +115,12 @@ const CountPopper = ({ number, setNumber }) => {
       </div>
       <div
         className={
-          number === 4
+          repeat === 4
             ? classes.numberActiveIconContainer
             : classes.numberIconContainer
         }
         onClick={() => {
-          setNumber(4);
+          setRepeat(4);
           four.play();
         }}
       >
@@ -127,12 +128,12 @@ const CountPopper = ({ number, setNumber }) => {
       </div>
       <div
         className={
-          number === 5
+          repeat === 5
             ? classes.numberActiveIconContainer
             : classes.numberIconContainer
         }
         onClick={() => {
-          setNumber(5);
+          setRepeat(5);
           five.play();
         }}
       >
@@ -140,12 +141,12 @@ const CountPopper = ({ number, setNumber }) => {
       </div>
       <div
         className={
-          number === 6
+          repeat === 6
             ? classes.numberActiveIconContainer
             : classes.numberIconContainer
         }
         onClick={() => {
-          setNumber(6);
+          setRepeat(6);
           six.play();
         }}
       >
@@ -153,12 +154,12 @@ const CountPopper = ({ number, setNumber }) => {
       </div>
       <div
         className={
-          number === 7
+          repeat === 7
             ? classes.numberActiveIconContainer
             : classes.numberIconContainer
         }
         onClick={() => {
-          setNumber(7);
+          setRepeat(7);
           seven.play();
         }}
       >
@@ -166,12 +167,12 @@ const CountPopper = ({ number, setNumber }) => {
       </div>
       <div
         className={
-          number === 8
+          repeat === 8
             ? classes.numberActiveIconContainer
             : classes.numberIconContainer
         }
         onClick={() => {
-          setNumber(8);
+          setRepeat(8);
           eight.play();
         }}
       >
@@ -179,12 +180,12 @@ const CountPopper = ({ number, setNumber }) => {
       </div>
       <div
         className={
-          number === 9
+          repeat === 9
             ? classes.numberActiveIconContainer
             : classes.numberIconContainer
         }
         onClick={() => {
-          setNumber(9);
+          setRepeat(9);
           nine.play();
         }}
       >
@@ -194,4 +195,4 @@ const CountPopper = ({ number, setNumber }) => {
   );
 };
 
-export default CountPopper;
+export default RepeatPopper;
