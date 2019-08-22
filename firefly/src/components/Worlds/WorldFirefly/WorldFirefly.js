@@ -14,11 +14,11 @@ import {
 } from "react-icons/fa";
 import {
   Dialog,
-  DialogTitle,
+  // DialogTitle,
   DialogContent,
   DialogContentText,
   DialogActions,
-  Typography
+  // Typography
 } from "@material-ui/core";
 
 import { REMOVE_FIREFLY } from "../../../context/Game/GameStore.jsx";
@@ -27,7 +27,7 @@ import { removeFirefly } from "../../../utils/firebaseInteractions.jsx";
 
 const WorldFirefly = props => {
   const [menuActive, setMenuState] = useState(false);
-  const [trashActive, setTrashState] = useState(false);
+  // const [trashActive, setTrashState] = useState(false);
   const [worldContext, worldDispatch] = useContext(gameContext);
   useEffect(() => {
     worldDispatch({ type: SELECTED_WORLD, payload: "" });
@@ -35,11 +35,11 @@ const WorldFirefly = props => {
   console.log("this is the world context", worldContext);
   const [trashOpen, setTrashOpen] = useState(false);
 
-  const confirmRemove = () => {
-    removeFirefly(REMOVE_FIREFLY).then(() => {
-      props.history.push("/choose-profile");
-    });
-  };
+  // const confirmRemove = () => {
+  //   removeFirefly(REMOVE_FIREFLY).then(() => {
+  //     props.history.push("/choose-profile");
+  //   });
+  // };
 
   const classes = WorldFireflyStyles();
 
