@@ -281,12 +281,12 @@ const FFanim = ({
         }
       } else if (block.type === "timer") {
         //Done I think
+        codeArray.push(currentCode);
+        currentCode = {};
         currentCode = {
           ...currentCode,
           timer: block.value,
         };
-        codeArray.push(currentCode);
-        currentCode = {};
         if (index === blocks.length - 1) {
           addToAnime(codeArray);
         }
@@ -330,11 +330,11 @@ const FFanim = ({
 
   useEffect(() => {
     // if (playing) {
-      console.log("playing", playing);
-      t1.play();
-      t2.play();
-      t3.play();
-      t4.play();
+    console.log("playing", playing);
+    t1.play();
+    t2.play();
+    t3.play();
+    t4.play();
     // }
   }, [playing]);
 
