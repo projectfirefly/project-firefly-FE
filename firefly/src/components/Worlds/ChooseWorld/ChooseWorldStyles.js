@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-const chooseWorldStyles = makeStyles({
+const chooseWorldStyles = makeStyles(theme => ({
   rootContainer: {
     marginTop: "10%",
     display: "flex",
@@ -56,12 +56,13 @@ const chooseWorldStyles = makeStyles({
     // display: "block"
   },
   backButton: {
+    ...theme.secondaryButton,
     width: "25%"
   },
   links: {
     textDecoration: "none",
     color: "#152F04"
   }
-});
+}));
 
 export default chooseWorldStyles;

@@ -10,21 +10,19 @@ import chooseWorldStyles from "./ChooseWorldStyles";
 import WorldCard from "./WorldCard";
 import fireflyWorld1 from "./fireflyWorld1.png";
 import lockedWorld from "./lockedWorld.png";
-import { SecondaryButton } from "../../../utils/buttons/SecondaryButton";
+import { Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
 
 //importing the stores
 import { gameContext, UPDATE_SELECTED } from "../../../context/Game/GameStore";
-import { childContext } from "../../../context/ChildProfiles/ChildProfileStore";
 
 const ChooseWorld = () => {
   //making the states from the stores
   const [worldContext, worldDispatch] = useContext(gameContext);
 
   useEffect(() => {
-    console.log(worldContext)
+    console.log(worldContext);
   }, []);
-
 
   //gets the world id when clicked
   const GameState = world => {
@@ -58,9 +56,9 @@ const ChooseWorld = () => {
         <WorldCard title={"Coming Soon"} img={lockedWorld} />
 
         <div className={classes.buttonContainer}>
-          <div className={classes.backButton}>
-            <SecondaryButton text={"BACK"} />
-          </div>
+          <Link to="/myfirefly" className={classes.backButton}>
+            <Typography variant="button">Back</Typography>
+          </Link>
         </div>
       </div>
     </div>
