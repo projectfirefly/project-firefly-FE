@@ -47,66 +47,76 @@ const WorldFirefly = props => {
 
   return (
     <div className={classes.container}>
-      <div className={`${menuActive ? classes.menu : classes.hidden}`}>
-        <FaArrowsAlt className={classes.move} />
-        <Link to="/game">
-          <FaPen className={classes.pen} />
-        </Link>
-        <div onClick={() => setTrashOpen(true)}>
-          <FaTrashAlt className={classes.trash} />
-        </div>
-      </div>
       {worldContext.worlds[0].fireflies
         ? worldContext.worlds[0].fireflies.map(firefly => {
             return (
-              <div onClick={() => setMenuState(!menuActive)}>
-                {console.log(firefly)},
-                <FFanim
-                  height={129}
-                  width={132}
-                  accessory="none"
-                  color={642}
-                  awake={true}
-                />
+              <div>
+                <div
+                  className={`${menuActive ? classes.menu : classes.hidden}`}
+                >
+                  <FaArrowsAlt className={classes.move} />
+                  <Link to="/game">
+                    <FaPen className={classes.pen} />
+                  </Link>
+                  <div onClick={() => setTrashOpen(true)}>
+                    <FaTrashAlt className={classes.trash} />
+                  </div>
+                </div>
+
+                <div onClick={() => setMenuState(!menuActive)}>
+                  {console.log(firefly)},
+                  <FFanim
+                    height={129}
+                    width={132}
+                    accessory="none"
+                    color={642}
+                    awake={true}
+                  />
+                </div>
+                <Dialog
+                  open={trashOpen}
+                  onClose={() => setTrashOpen(false)}
+                  are-labelledby="remove-profile-dialog"
+                  classes={{
+                    paper: classes.dialogPaper
+                  }}
+                >
+                  <DialogContent className={classes.dialogContainer}>
+                    <div className={classes.dialogTop}>
+                      <FFicon
+                        height={257}
+                        width={264}
+                        accessory="none"
+                        color={642}
+                      />
+                      <DialogContentText className={classes.dialogText}>
+                        BYE BYE!
+                      </DialogContentText>
+                    </div>
+
+                    <DialogActions>
+                      <div className={classes.dialogButtonContainer}>
+                        <button
+                          className={classes.dialogButtons + " cancel"}
+                          onClick={() => setTrashOpen(false)}
+                        >
+                          <FaTimes />
+                        </button>
+
+                        <button
+                          // onClick={confirmRemove}
+                          className={classes.dialogButtons + " remove"}
+                        >
+                          <FaCheck />
+                        </button>
+                      </div>
+                    </DialogActions>
+                  </DialogContent>
+                </Dialog>
               </div>
             );
           })
         : console.log(null)}
-      <Dialog
-        open={trashOpen}
-        onClose={() => setTrashOpen(false)}
-        are-labelledby="remove-profile-dialog"
-        classes={{
-          paper: classes.dialogPaper
-        }}
-      >
-        <DialogContent className={classes.dialogContainer}>
-          <div className={classes.dialogTop}>
-            <FFicon height={257} width={264} accessory="none" color={642} />
-            <DialogContentText className={classes.dialogText}>
-              BYE BYE!
-            </DialogContentText>
-          </div>
-
-          <DialogActions>
-            <div className={classes.dialogButtonContainer}>
-              <button
-                className={classes.dialogButtons + " cancel"}
-                onClick={() => setTrashOpen(false)}
-              >
-                <FaTimes />
-              </button>
-
-              <button
-                // onClick={confirmRemove}
-                className={classes.dialogButtons + " remove"}
-              >
-                <FaCheck />
-              </button>
-            </div>
-          </DialogActions>
-        </DialogContent>
-      </Dialog>
     </div>
   );
 };
