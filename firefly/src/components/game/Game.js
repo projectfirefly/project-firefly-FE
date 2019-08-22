@@ -17,10 +17,6 @@ import ClockIcon from "../../images/gameIcons/ClockIcon.svg";
 import PlayCircleIcon from "../../images/gameIcons/PlayCircleIcon.svg";
 import PaletteIcon from "../../images/gameIcons/PaletteIcon.svg";
 import ToggleOffIcon from "../../images/gameIcons/ToggleOffIcon.svg";
-<<<<<<< HEAD
-=======
-// import NumberIcon1 from "../../images/gameIcons/NumberIcon1.svg";
->>>>>>> cc343deb202a61779fa9c59c267c9461098ad5a2
 import GridIcon from "../../images/gridBackground.png";
 
 //importing the sound
