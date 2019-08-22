@@ -6,7 +6,15 @@ import styled from "styled-components";
 import { makeStyles } from "@material-ui/styles";
 import anime from "animejs";
 
-const FFanim = ({ height, width, color, accessory, awake }) => {
+const FFanim = ({
+  height,
+  width,
+  color,
+  accessory,
+  awake,
+  animationList,
+  playing,
+}) => {
   const classes = makeStyles(theme => ({
     wrapper: {
       "& .lambdahat": {
@@ -24,7 +32,6 @@ const FFanim = ({ height, width, color, accessory, awake }) => {
     },
   }))();
 
-
   //set these only when awake
 
   let t1 = anime.timeline({
@@ -36,6 +43,9 @@ const FFanim = ({ height, width, color, accessory, awake }) => {
   let t3 = anime.timeline({
     autoplay: false,
   });
+  let t4 = anime.timeline({
+    autoplay: false,
+  });
 
   const animationParameters = {
     easing: "easeInOutQuad",
@@ -45,11 +55,11 @@ const FFanim = ({ height, width, color, accessory, awake }) => {
   const fakeArray = [
     {
       type: "timer",
-      value: 3,
+      value: 1,
     },
     {
       type: "color",
-      value: "270",
+      value: 270,
     },
     {
       type: "timer",
@@ -69,7 +79,7 @@ const FFanim = ({ height, width, color, accessory, awake }) => {
     },
     {
       type: "color",
-      value: "120",
+      value: 120,
     },
     {
       type: "timer",
@@ -109,81 +119,93 @@ const FFanim = ({ height, width, color, accessory, awake }) => {
 
     //if onOff === true && !element.color, element.color = currentColor
 
+    let currentColor = 52;
+
     function addToAnime(array, repeat) {
       console.log(array);
 
-      let currentColor = 52;
-
+      var animationRepeat = 0;
       if (repeat) {
-        for (let i = 0; i <= repeat; i++) {
-          console.log("addToAnime");
-          array.map((element, index) => {
-            let keyframe = {};
+        animationRepeat = repeat;
+      }
 
-            //no color, switch true
-            if (
-              !element.color &&
-              (element.onOff === true || element.onOff === undefined)
-            ) {
-              keyframe = {
-                ...keyframe,
-                fill: currentColor,
-              };
-            }
+      for (let i = 0; i <= animationRepeat; i++) {
+        console.log("addToAnime");
+        array.map((element, index) => {
+          let keyframe = {};
 
-            //has a color
-            if (element.color) {
-              keyframe = {
-                ...keyframe,
-                fill: element.color,
-              };
-              currentColor = element.color;
-            }
+          //no color, switch true
+          if (
+            !element.color &&
+            (element.onOff === true || element.onOff === undefined)
+          ) {
+            keyframe = {
+              ...keyframe,
+              fill: currentColor,
+            };
+          }
 
-            //duration
-            if (element.timer) {
-              keyframe = {
-                ...keyframe,
-                duration: element.timer * 1000,
-              };
-            }
+          //has a color
+          if (element.color) {
+            keyframe = {
+              ...keyframe,
+              fill: element.color,
+            };
+            currentColor = element.color;
+          }
 
-            if (element.onOff === false) {
-              t1.add({
-                ...keyframe,
-                fill: "hsl(220, 12%, 90%)",
-              });
+          //duration
+          if (element.timer) {
+            keyframe = {
+              ...keyframe,
+              duration: element.timer * 1000,
+            };
+          }
 
-              t2.add({
-                ...keyframe,
-                fill: "hsl(218, 11%, 80%)",
-              });
+          if (element.onOff === false) {
+            t1.add({
+              ...keyframe,
+              fill: "hsl(220, 12%, 90%)",
+            });
 
-              t3.add({
-                ...keyframe,
-                fill: "hsl(223, 9%, 70%)",
-              });
-              console.log("switch false", keyframe);
-            } else if (element.onOff === true || element.onOff === undefined) {
-              t1.add({
-                ...keyframe,
-                fill: `hsl(${keyframe.fill}, 100%, 55%)`,
-              });
+            t2.add({
+              ...keyframe,
+              fill: "hsl(218, 11%, 80%)",
+            });
 
-              t2.add({
-                ...keyframe,
-                fill: `hsl(${keyframe.fill}, 100%, 40%)`,
-              });
+            t3.add({
+              ...keyframe,
+              fill: "hsl(223, 9%, 70%)",
+            });
 
-              t3.add({
-                ...keyframe,
-                fill: `hsl(${keyframe.fill}, 100%, 30%)`,
-              });
-              console.log("switch true or undefined", keyframe);
-            }
-          });
-        }
-      } else {
+            t4.add({
+              ...keyframe,
+              stroke: "hsl(220, 12%, 90%)",
+            });
+            console.log("switch false", keyframe);
+          } else if (element.onOff === true || element.onOff === undefined) {
+            t1.add({
+              ...keyframe,
+              fill: `hsl(${keyframe.fill}, 100%, 55%)`,
+            });
+
+            t2.add({
+              ...keyframe,
+              fill: `hsl(${keyframe.fill}, 100%, 40%)`,
+            });
+
+            t3.add({
+              ...keyframe,
+              fill: `hsl(${keyframe.fill}, 100%, 30%)`,
+            });
+
+            t4.add({
+              ...keyframe,
+              stroke: `hsl(${keyframe.fill}, 100%, 55%)`,
+            });
+            console.log("switch true or undefined", keyframe);
+          }
+        });
       }
     }
 
@@ -278,7 +300,6 @@ const FFanim = ({ height, width, color, accessory, awake }) => {
   }
 
   useEffect(() => {
-    console.log(awake);
     if (awake) {
       t1 = anime.timeline({
         targets: `.${classes.wrapper} svg .bodyLightBottom path`,
@@ -295,22 +316,27 @@ const FFanim = ({ height, width, color, accessory, awake }) => {
         autoplay: false,
         ...animationParameters,
       });
-      parseColorCode(fakeArray);
+      t4 = anime.timeline({
+        targets: `.${classes.wrapper} svg .lightL path, .${
+          classes.wrapper
+        } svg .lightM path, .${classes.wrapper} svg .lightR path`,
+        autoplay: false,
+        ...animationParameters,
+      });
+      console.log(animationList);
+      parseColorCode(animationList);
     }
-    console.log("useEffect");
-  }, [classes.wrapper, awake]);
+  }, [classes.wrapper, awake, animationList, playing]);
 
-  // useEffect(() => {
-  //   console.log(`.${classes.wrapper} svg .bodyLightBottom path`);
-  //   anime({
-  //     targets: `.${classes.wrapper} svg .bodyLightBottom path`,
-  //     fill: "#fff",
-  //     easing: "easeInOutQuad",
-  //     round: 1,
-  //     direction: "alternate",
-  //     loop: true,
-  //   });
-  // }, [classes.wrapper]);
+  useEffect(() => {
+    // if (playing) {
+      console.log("playing", playing);
+      t1.play();
+      t2.play();
+      t3.play();
+      t4.play();
+    // }
+  }, [playing]);
 
   function accessorySwitch(selector) {
     if (accessory === selector) {
@@ -337,16 +363,6 @@ const FFanim = ({ height, width, color, accessory, awake }) => {
 
   return (
     <div className={classes.wrapper}>
-      <button
-        onClick={() => {
-          t1.play();
-          t2.play();
-          t3.play();
-          console.log(t1);
-        }}
-      >
-        click
-      </button>
       <Lottie options={defaultOptions} height={height} width={width} />
     </div>
   );

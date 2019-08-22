@@ -167,8 +167,37 @@ const Game = () => {
   const [tools, setTools] = useState(ITEMS);
   const [hasStart, setHasStart] = useState(false);
   const [draggingBlock, isDraggingBlock] = useState(false);
+  const [animationList, setAnimationList] = useState([]);
+  const [playing, setPlaying] = useState(false);
 
-  useEffect(() => console.log("useEffect list:", list), [list]);
+  useEffect(() => {
+    if (list.length !== 0) {
+      Object.values(list).map(blockArray => {
+        const newBlockArray = blockArray
+          .map(block => {
+            console.log("block:", block);
+            if (block.color) {
+              return { type: "color", value: block.color };
+            } else if (block.onOff !== undefined) {
+              return { type: "onOff", value: block.onOff };
+            } else if (block.timer) {
+              return { type: "timer", value: block.timer };
+            } else if (block.repeat) {
+              return { type: "repeat", value: block.repeat };
+            }
+          })
+          .filter(block => {
+            if (block === undefined) {
+              return false;
+            } else {
+              return true;
+            }
+          });
+        setAnimationList([...newBlockArray]);
+        console.log(newBlockArray);
+      });
+    }
+  }, [list]);
 
   const onDragStart = () => {
     isDraggingBlock(true);
@@ -234,9 +263,10 @@ const Game = () => {
         }
         return item.id !== result.draggableId;
       });
-
       //Filters all tools to used:false so they become usable again
-      setList({ realList });
+      setList({
+        [source.droppableId]: realList
+      });
       poof.play();
       return;
     }
@@ -282,18 +312,23 @@ const Game = () => {
     }
   };
 
-  console.log("list:", list);
+  const playAnimation = () => {
+    setPlaying(!playing);
+  }
 
   return (
     <Board>
       <DragDropContext onDragEnd={onDragEnd} onDragStart={onDragStart}>
         <Toolbox tools={tools} />
-        <FFbox tools={tools} />
+        <button onClick={playAnimation}>CLICK ME TO PLAY HEHEHEHEHEH</button>
+        <FFbox tools={tools} animationList={animationList} playing={playing}/>
         <BlockLine
           list={list}
           hasStart={hasStart}
           draggingBlock={draggingBlock}
           setList={setList}
+          animationList={animationList}
+          setAnimationList={setAnimationList}
         />
         <DropDelete />
       </DragDropContext>
