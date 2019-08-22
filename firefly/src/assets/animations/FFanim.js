@@ -346,7 +346,13 @@ const FFanim = ({
         autoplay: false,
         ...animationParameters
       });
+<<<<<<< HEAD
+      if (animationList) {
+        parseColorCode(animationList);
+      }
+=======
       parseColorCode(animationList);
+>>>>>>> 2300887903b2db11d647aad11e5985d6b548e40a
     }
   }, [classes.wrapper, awake, animationList, playing]);
 
