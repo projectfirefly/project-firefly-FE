@@ -344,8 +344,9 @@ const FFanim = ({
         autoplay: false,
         ...animationParameters,
       });
-      console.log(animationList);
-      parseColorCode(animationList);
+      if (animationList) {
+        parseColorCode(animationList);
+      }
     }
   }, [classes.wrapper, awake, animationList, playing]);
 
