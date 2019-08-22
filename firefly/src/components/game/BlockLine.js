@@ -65,7 +65,14 @@ const ButtonBox = styled.img`
   width: 100%;
 `;
 
-const BlockLine = ({ list, setList, hasStart, draggingBlock }) => {
+const BlockLine = ({
+  list,
+  setList,
+  hasStart,
+  draggingBlock,
+  animationList,
+  setAnimationList
+}) => {
   const [openPopper, setOpenPopper] = useState(false);
 
   const togglePopper = (id, blocks, type, value) => {
@@ -112,6 +119,8 @@ const BlockLine = ({ list, setList, hasStart, draggingBlock }) => {
                       list={list}
                       setList={setList}
                       blocks={blocks}
+                      animationList={animationList}
+                      setAnimationList={setAnimationList}
                     />
                   ))
                 : !provided.placeholder && <Notice>Drop items here</Notice>}

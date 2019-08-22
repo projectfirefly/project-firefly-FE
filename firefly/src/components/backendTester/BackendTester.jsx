@@ -94,7 +94,6 @@ const BackendTester = () => {
   }
 
   return (
-    console.log("test"),
     <div>
       <button onClick={get}>GET HERE</button>
       <button onClick={create}>Create Child</button>

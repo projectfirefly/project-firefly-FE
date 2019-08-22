@@ -44,9 +44,9 @@ const CustomSwitch = withStyles({
   track: { backgroundColor: "#D0CCFF" }
 })(Switch);
 
-const SwitchPopper = ({ checkedSwitch, setCheckedSwitch }) => {
+const SwitchPopper = ({ onOff, setOnOff }) => {
   const handleChange = () => {
-    setCheckedSwitch(!checkedSwitch);
+    setOnOff(!onOff);
     toggle.play();
   };
 
@@ -55,7 +55,7 @@ const SwitchPopper = ({ checkedSwitch, setCheckedSwitch }) => {
     <div className={classes.container}>
       <span className={classes.text}>Off</span>
       <CustomSwitch
-        checked={checkedSwitch}
+        checked={onOff}
         onChange={() => handleChange()}
         inputProps={{ "aria-label": "secondary checkbox" }}
       />
