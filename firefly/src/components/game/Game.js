@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import FFbox from "./FFbox";
-import GameBoard from "./BlockLine";
+// import GameBoard from "./BlockLine";
+import BlockLine from "./BlockLine";
 import Toolbox from "./Toolbox";
 import DropDelete from "./DropDelete";
 import uuid from "uuid/v4";
@@ -16,7 +17,7 @@ import ClockIcon from "../../images/gameIcons/ClockIcon.svg";
 import PlayCircleIcon from "../../images/gameIcons/PlayCircleIcon.svg";
 import PaletteIcon from "../../images/gameIcons/PaletteIcon.svg";
 import ToggleOffIcon from "../../images/gameIcons/ToggleOffIcon.svg";
-import NumberIcon1 from "../../images/gameIcons/NumberIcon1.svg";
+// import NumberIcon1 from "../../images/gameIcons/NumberIcon1.svg";
 import GridIcon from "../../images/gridBackground.png";
 
 //importing the sound
@@ -48,9 +49,9 @@ const ToolboxGreenIcon = styled.img`
 
 const ToolboxBlueLedIcon = styled.img`
   position: absolute;
-  width: 40%;
-  top: 27%;
-  left: 34%;
+  width: 45%;
+  top: 18%;
+  left: 26%;
 `;
 
 const ToolboxBlueRepeatIcon = styled.img`
@@ -169,6 +170,37 @@ const Game = () => {
   const [tools, setTools] = useState(ITEMS);
   const [hasStart, setHasStart] = useState(false);
   const [draggingBlock, isDraggingBlock] = useState(false);
+  const [animationList, setAnimationList] = useState([]);
+  const [playing, setPlaying] = useState(false);
+
+  useEffect(() => {
+    if (list.length !== 0) {
+      Object.values(list).map(blockArray => {
+        const newBlockArray = blockArray
+          .map(block => {
+            console.log("block:", block);
+            if (block.color) {
+              return { type: "color", value: block.color };
+            } else if (block.onOff !== undefined) {
+              return { type: "onOff", value: block.onOff };
+            } else if (block.timer) {
+              return { type: "timer", value: block.timer };
+            } else if (block.repeat) {
+              return { type: "repeat", value: block.repeat };
+            }
+          })
+          .filter(block => {
+            if (block === undefined) {
+              return false;
+            } else {
+              return true;
+            }
+          });
+        setAnimationList([...newBlockArray]);
+        console.log(newBlockArray);
+      });
+    }
+  }, [list]);
 
   const onDragStart = () => {
     isDraggingBlock(true);
@@ -223,6 +255,7 @@ const Game = () => {
           if (item.id === result.draggableId && item.rsi === 0) {
             setHasStart(false);
           }
+
           setTools(
             [...tools].map(tool => {
               return tool.rsi === item.rsi
@@ -233,9 +266,10 @@ const Game = () => {
         }
         return item.id !== result.draggableId;
       });
-
       //Filters all tools to used:false so they become usable again
-      setList({ realList });
+      setList({
+        [source.droppableId]: realList
+      });
       poof.play();
       return;
     }
@@ -252,7 +286,6 @@ const Game = () => {
             )
           });
         }
-        console.log("yo");
         break;
 
       case "ITEMS":
@@ -282,18 +315,23 @@ const Game = () => {
     }
   };
 
-  console.log("list:", list);
+  const playAnimation = () => {
+    setPlaying(!playing);
+  }
 
   return (
     <Board>
       <DragDropContext onDragEnd={onDragEnd} onDragStart={onDragStart}>
         <Toolbox tools={tools} />
-        <FFbox tools={tools} />
-        <GameBoard
+        <button onClick={playAnimation}>CLICK ME TO PLAY HEHEHEHEHEH</button>
+        <FFbox tools={tools} animationList={animationList} playing={playing}/>
+        <BlockLine
           list={list}
           hasStart={hasStart}
           draggingBlock={draggingBlock}
           setList={setList}
+          animationList={animationList}
+          setAnimationList={setAnimationList}
         />
         <DropDelete />
       </DragDropContext>

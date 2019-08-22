@@ -42,14 +42,14 @@ const TimerPopper = ({ time, setTime }) => {
   const classes = useStyles();
 
   const changeNumber = operator => {
-    if (operator === "up" && time < 10) {
+    if (operator === "up" && time < 5) {
       setTime(time + 1);
-    } else if (operator === "up" && time === 10) {
+    } else if (operator === "up" && time === 5) {
       setTime(1);
     } else if (operator === "down" && time > 1) {
       setTime(time - 1);
     } else {
-      setTime(10);
+      setTime(5);
     }
   };
 
