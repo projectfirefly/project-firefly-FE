@@ -11,6 +11,7 @@ import { DragDropContext } from "react-beautiful-dnd";
 import StartBlock from "../../images/gameIcons/StartBlock.svg";
 import BlueBlockLeftSideEndState from "../../images/gameIcons/BlueBlockLeftSideEndState.svg";
 import GreenBlockRightSideEndState from "../../images/gameIcons/GreenBlockRightSideEndState.svg";
+import GreenBlockError from "../../images/gameIcons/GreenBlockError.svg";
 import RepeatIconNew from "../../images/gameIcons/RepeatIconNew.svg";
 import LightbulbIcon from "../../images/gameIcons/LightbulbIcon.svg";
 import ClockIcon from "../../images/gameIcons/ClockIcon.svg";
@@ -19,10 +20,14 @@ import PaletteIcon from "../../images/gameIcons/PaletteIcon.svg";
 import ToggleOffIcon from "../../images/gameIcons/ToggleOffIcon.svg";
 import GridIcon from "../../images/gridBackground.png";
 
+//import svg components
+import GreenBlockRightSideSvg from "./reactSvg/GreenBlockRightSideSvg";
+
 //importing the sound
 import clickMP3 from "../../assets/sounds/click.mp3";
 import clickTogetherMP3 from "../../assets/sounds/clickTogether.mp3";
 import poofMP3 from "../../assets/sounds/poof.mp3";
+import { nextTick } from "q";
 //making the sounds variable
 const click = new uifx({ asset: clickMP3 });
 const clickTogether = new uifx({ asset: clickTogetherMP3 });
@@ -129,7 +134,8 @@ const ITEMS = [
     ),
     content: <ToolboxBox src={GreenBlockRightSideEndState} alt="greenblock" />,
     used: false,
-    rsi: 2
+    rsi: 2,
+    repeat: 1
   },
 
   {
@@ -144,7 +150,8 @@ const ITEMS = [
     functionality: <ToolboxGreenIcon src={ClockIcon} alt="clockIcon" />,
     content: <ToolboxBox src={GreenBlockRightSideEndState} alt="greenblock" />,
     used: false,
-    rsi: 4
+    rsi: 4,
+    timer: 1
   },
   // {
   //   id: uuid(),
@@ -158,7 +165,8 @@ const ITEMS = [
     functionality: <ToolboxToggleIcon src={ToggleOffIcon} alt="toggleIcon" />,
     content: <ToolboxBox src={GreenBlockRightSideEndState} alt="greenblock" />,
     used: false,
-    rsi: 6
+    rsi: 6,
+    onOff: false
   }
 ];
 
@@ -221,7 +229,6 @@ const Game = () => {
     if (destination.droppableId === "TRASH") {
       //check to see if we are trying to throw away a tool from the toolbox (we don't want to do that)
       if (source.droppableId === "ITEMS") {
-        console.log("dropping from toolbox");
         poof.play();
         return;
       }
@@ -286,6 +293,11 @@ const Game = () => {
         break;
 
       case "ITEMS":
+        //On Drop of the code list, this renders
+        // console.log("source:", source);
+        // console.log("tools:", tools);
+        // console.log("list:", list);
+
         setList({
           ...list,
           [destination.droppableId]: copy(
@@ -312,16 +324,45 @@ const Game = () => {
     }
   };
 
+  // {
+  //   id: uuid(),
+  //     functionality: <ToolboxGreenIcon src={PaletteIcon} alt="paletteIcon" /> ,
+  //       content: <ToolboxBox src={GreenBlockRightSideEndState} alt="greenblock" /> ,
+  //         used: false,
+  //           rsi: 3
+  // },
+
   const playAnimation = () => {
+    // Object.values(list).map(blockList => {
+    //   blockList.map((block, index) => {
+    //     console.log(block);
+    //     console.log(index);
+    //   });
+    // });
+    Object.values(list).map(blockList => {
+      blockList.map((block, index) => {
+        if (blockList.length - 1 > index) {
+          console.log("block:", block);
+          if (block.repeat && blockList[index + 1].repeat) {
+            console.log("ERROR");
+            block = {
+              ...block,
+              content: <img src={GreenBlockError} alt="error" />
+            };
+          }
+        }
+      });
+    });
+
     setPlaying(!playing);
-  }
+  };
+  console.log(GreenBlockRightSideSvg);
 
   return (
     <Board>
       <DragDropContext onDragEnd={onDragEnd} onDragStart={onDragStart}>
         <Toolbox tools={tools} />
-        <button onClick={playAnimation}>CLICK ME TO PLAY HEHEHEHEHEH</button>
-        <FFbox tools={tools} animationList={animationList} playing={playing}/>
+        <FFbox tools={tools} animationList={animationList} playing={playing} />
         <BlockLine
           list={list}
           hasStart={hasStart}
@@ -329,6 +370,7 @@ const Game = () => {
           setList={setList}
           animationList={animationList}
           setAnimationList={setAnimationList}
+          playAnimation={playAnimation}
         />
         <DropDelete />
       </DragDropContext>
