@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import FFbox from "./FFbox";
-import GameBoard from "./BlockLine";
+// import GameBoard from "./BlockLine";
+import BlockLine from "./BlockLine";
 import Toolbox from "./Toolbox";
 import DropDelete from "./DropDelete";
 import uuid from "uuid/v4";
@@ -16,6 +17,7 @@ import ClockIcon from "../../images/gameIcons/ClockIcon.svg";
 import PlayCircleIcon from "../../images/gameIcons/PlayCircleIcon.svg";
 import PaletteIcon from "../../images/gameIcons/PaletteIcon.svg";
 import ToggleOffIcon from "../../images/gameIcons/ToggleOffIcon.svg";
+
 import GridIcon from "../../images/gridBackground.png";
 
 //importing the sound
@@ -45,9 +47,9 @@ const ToolboxGreenIcon = styled.img`
 
 const ToolboxBlueLedIcon = styled.img`
   position: absolute;
-  width: 40%;
-  top: 27%;
-  left: 34%;
+  width: 45%;
+  top: 18%;
+  left: 26%;
 `;
 
 const ToolboxBlueRepeatIcon = styled.img`
@@ -167,6 +169,8 @@ const Game = () => {
   const [hasStart, setHasStart] = useState(false);
   const [draggingBlock, isDraggingBlock] = useState(false);
 
+  useEffect(() => console.log("useEffect list:", list), [list]);
+
   const onDragStart = () => {
     isDraggingBlock(true);
     click.play();
@@ -220,6 +224,7 @@ const Game = () => {
           if (item.id === result.draggableId && item.rsi === 0) {
             setHasStart(false);
           }
+
           setTools(
             [...tools].map(tool => {
               return tool.rsi === item.rsi
@@ -249,7 +254,6 @@ const Game = () => {
             )
           });
         }
-        console.log("yo");
         break;
 
       case "ITEMS":
@@ -286,7 +290,7 @@ const Game = () => {
       <DragDropContext onDragEnd={onDragEnd} onDragStart={onDragStart}>
         <Toolbox tools={tools} />
         <FFbox tools={tools} />
-        <GameBoard
+        <BlockLine
           list={list}
           hasStart={hasStart}
           draggingBlock={draggingBlock}
