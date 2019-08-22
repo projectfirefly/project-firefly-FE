@@ -119,7 +119,8 @@ const CodeBlock = ({
   list,
   setList,
   id,
-  blocks
+  blocks,
+  playAnimation
 }) => {
   const classes = useStyles();
 
@@ -136,7 +137,7 @@ const CodeBlock = ({
   const [repeat, setRepeat] = useState(1);
 
   //Timer State
-  const [time, setTime] = useState(0);
+  const [time, setTime] = useState(1);
 
   //Palette State
   const [color, setColor] = useState(1, 0, 100);
@@ -176,7 +177,13 @@ const CodeBlock = ({
             isDragging={snapshot.isDragging}
             style={provided.draggableProps.style}
           >
-            {//Repeat
+            {//Play/Start
+            item.rsi === 0 ? (
+              <div className={classes.tool} onClick={playAnimation}>
+                {item.content}
+                {item.functionality}
+              </div>
+            ) : //Repeat
             item.rsi === 2 ? (
               <Popper
                 onClick={

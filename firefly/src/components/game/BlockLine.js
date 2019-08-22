@@ -71,7 +71,8 @@ const BlockLine = ({
   hasStart,
   draggingBlock,
   animationList,
-  setAnimationList
+  setAnimationList,
+  playAnimation
 }) => {
   const [openPopper, setOpenPopper] = useState(false);
 
@@ -121,6 +122,7 @@ const BlockLine = ({
                       blocks={blocks}
                       animationList={animationList}
                       setAnimationList={setAnimationList}
+                      playAnimation={playAnimation}
                     />
                   ))
                 : !provided.placeholder && <Notice>Drop items here</Notice>}
