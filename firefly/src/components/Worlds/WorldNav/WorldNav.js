@@ -25,7 +25,7 @@ export const WorldNav = props => {
       worldContext.selected.id,
       worldDispatch
     ).then(() => {
-      console.log("console log from nav" + worldContext);
+      // console.log("console log from nav" + props);
       // props.history.push("/game");
     });
   };
