@@ -45,7 +45,7 @@ const ChooseWorld = () => {
       <hl className={classes.title}> CHOOSE YOUR WORLD </hl>
       <div className={classes.worldContainer}>
         {worldArr === undefined 
-          ? addWorld(defaultWorld, worldDispatch)
+          ? console.log("added a world") && <div> TEST!!! </div> // addWorld(context.selected.id, defaultWorld, worldDispatch)
           : worldArr.worlds.map(world => {
               return (
                 <Link
