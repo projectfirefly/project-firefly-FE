@@ -171,6 +171,7 @@ const Game = () => {
   const [hasStart, setHasStart] = useState(false);
   const [draggingBlock, isDraggingBlock] = useState(false);
   const [animationList, setAnimationList] = useState([]);
+  const [playing, setPlaying] = useState(false);
 
   useEffect(() => {
     if (list.length !== 0) {
@@ -180,7 +181,7 @@ const Game = () => {
             console.log("block:", block);
             if (block.color) {
               return { type: "color", value: block.color };
-            } else if (block.onOff) {
+            } else if (block.onOff !== undefined) {
               return { type: "onOff", value: block.onOff };
             } else if (block.timer) {
               return { type: "timer", value: block.timer };
@@ -314,11 +315,16 @@ const Game = () => {
     }
   };
 
+  const playAnimation = () => {
+    setPlaying(!playing);
+  }
+
   return (
     <Board>
       <DragDropContext onDragEnd={onDragEnd} onDragStart={onDragStart}>
         <Toolbox tools={tools} />
-        <FFbox tools={tools} animationList={animationList} />
+        <button onClick={playAnimation}>CLICK ME TO PLAY HEHEHEHEHEH</button>
+        <FFbox tools={tools} animationList={animationList} playing={playing}/>
         <BlockLine
           list={list}
           hasStart={hasStart}
