@@ -23,7 +23,7 @@ const useStyles = makeStyles({
   }
 });
 
-const FFbox = ({ tools, animationList }) => {
+const FFbox = ({ tools, animationList, playing }) => {
   const classes = useStyles();
   return (
     <div
@@ -38,6 +38,7 @@ const FFbox = ({ tools, animationList }) => {
         color={58}
         awake={tools[1].used ? true : false}
         animationList={animationList}
+        playing={playing}
       />
     </div>
   );
