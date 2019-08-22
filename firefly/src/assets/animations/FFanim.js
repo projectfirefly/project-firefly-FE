@@ -209,6 +209,24 @@ const FFanim = ({
       }
     }
 
+    function addFinal() {
+      t1.add({
+        fill: `hsl(52, 100%, 55%)`,
+      });
+
+      t2.add({
+        fill: `hsl(52, 100%, 40%)`,
+      });
+
+      t3.add({
+        fill: `hsl(52, 100%, 30%)`,
+      });
+
+      t4.add({
+        stroke: `hsl(52, 100%, 55%)`,
+      });
+    }
+
     let codeArray = [];
 
     let currentCode = {};
@@ -281,12 +299,12 @@ const FFanim = ({
         }
       } else if (block.type === "timer") {
         //Done I think
+        codeArray.push(currentCode);
+        currentCode = {};
         currentCode = {
           ...currentCode,
           timer: block.value,
         };
-        codeArray.push(currentCode);
-        currentCode = {};
         if (index === blocks.length - 1) {
           addToAnime(codeArray);
         }
@@ -295,6 +313,9 @@ const FFanim = ({
         currentCode = {};
         addToAnime(codeArray, block.value);
         codeArray = [];
+      }
+      if (index === blocks.length-1) {
+        addFinal();
       }
     });
   }
@@ -330,11 +351,11 @@ const FFanim = ({
 
   useEffect(() => {
     // if (playing) {
-      console.log("playing", playing);
-      t1.play();
-      t2.play();
-      t3.play();
-      t4.play();
+    console.log("playing", playing);
+    t1.play();
+    t2.play();
+    t3.play();
+    t4.play();
     // }
   }, [playing]);
 
