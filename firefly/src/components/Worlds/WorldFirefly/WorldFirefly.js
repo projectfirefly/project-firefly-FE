@@ -1,7 +1,13 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 //importing game store
-import { gameContext, SELECTED_WORLD } from "../../../context/Game/GameStore";
+import {
+  gameContext,
+  SELECTED_WORLD,
+  REMOVE_FIREFLY
+} from "../../../context/Game/GameStore";
+//importing the firebase stuff needed
+import { removeFirefly } from "../../../utils/firebaseInteractions.jsx";
 import FFanim from "../../../assets/animations/FFanim";
 import FFicon from "../../../assets/icons/firefly/Firefly";
 import WorldFireflyStyles from "./WorldFireflyStyles";
@@ -17,22 +23,18 @@ import {
   // DialogTitle,
   DialogContent,
   DialogContentText,
-  DialogActions,
+  DialogActions
   // Typography
 } from "@material-ui/core";
-
-import { REMOVE_FIREFLY } from "../../../context/Game/GameStore.jsx";
-import { removeFirefly } from "../../../utils/firebaseInteractions.jsx";
-
 
 const WorldFirefly = props => {
   const [menuActive, setMenuState] = useState(false);
   // const [trashActive, setTrashState] = useState(false);
   const [worldContext, worldDispatch] = useContext(gameContext);
-  useEffect(() => {
-    worldDispatch({ type: SELECTED_WORLD, payload: "" });
-  }, []);
-  console.log("this is the world context", worldContext);
+  // useEffect(() => {
+  // worldDispatch({ type: SELECTED_WORLD, payload: "" });
+  // }, []);
+
   const [trashOpen, setTrashOpen] = useState(false);
 
   // const confirmRemove = () => {
@@ -54,8 +56,8 @@ const WorldFirefly = props => {
           <FaTrashAlt className={classes.trash} />
         </div>
       </div>
-      {worldContext.worlds.fireflies
-        ? worldContext.worlds.fireflies.map(firefly => {
+      {worldContext.worlds[0].fireflies
+        ? worldContext.worlds[0].fireflies.map(firefly => {
             return (
               <div onClick={() => setMenuState(!menuActive)}>
                 {console.log(firefly)},
