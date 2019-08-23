@@ -15,6 +15,7 @@ import ToggleOffIcon from "./../../images/gameIcons/ToggleOffIcon.svg";
 // import NumberIcon8 from "./../../images/gameIcons/NumberIcon8.svg";
 // import NumberIcon9 from "./../../images/gameIcons/NumberIcon9.svg";
 import RepeatIconNew from "./../../images/gameIcons/RepeatIconNew.svg";
+import GreenBlockRightSideSvg from "./reactSvg/GreenBlockRightSideSvg.js";
 
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -108,6 +109,13 @@ const useStyles = makeStyles({
     top: "32%",
     fontSize: "2.8rem",
     color: "white"
+  },
+
+  svgBlock: {
+    // display: "block"
+    // "& path": {
+    //   fill: "#340283"
+    // }
   }
 });
 
@@ -201,7 +209,7 @@ const CodeBlock = ({
               >
                 {toggleRepeat ? (
                   <div className={classes.tool}>
-                    {item.content}
+                    <GreenBlockRightSideSvg className={classes.svgBlock} />
                     <img
                       src={CheckCircleIcon}
                       alt="check circle"
@@ -210,7 +218,7 @@ const CodeBlock = ({
                   </div>
                 ) : (
                   <div className={classes.tool}>
-                    {item.content}
+                    <GreenBlockRightSideSvg className={classes.svgBlock} />
                     {repeat === 1 ? (
                       <div>
                         <img
@@ -317,7 +325,7 @@ const CodeBlock = ({
               >
                 {togglePalette ? (
                   <div className={classes.tool}>
-                    {item.content}
+                    <GreenBlockRightSideSvg className={classes.svgBlock} />
                     <img
                       src={CheckCircleIcon}
                       alt="check circle"
@@ -326,7 +334,7 @@ const CodeBlock = ({
                   </div>
                 ) : (
                   <div className={classes.tool}>
-                    {item.content}
+                    <GreenBlockRightSideSvg className={classes.svgBlock} />
                     {
                       <div className={classes.palette}>
                         <PaletteIcon
@@ -356,7 +364,7 @@ const CodeBlock = ({
               >
                 {toggleTimer ? (
                   <div className={classes.tool}>
-                    {item.content}
+                    <GreenBlockRightSideSvg className={classes.svgBlock} />
                     <img
                       src={CheckCircleIcon}
                       alt="check circle"
@@ -365,7 +373,7 @@ const CodeBlock = ({
                   </div>
                 ) : (
                   <div className={classes.tool}>
-                    {item.content}
+                    <GreenBlockRightSideSvg className={classes.svgBlock} />
                     {time === 1 ? (
                       <p className={classes.count}>1s</p>
                     ) : time === 2 ? (
@@ -410,7 +418,7 @@ const CodeBlock = ({
             //   >
             //     {toggleCount ? (
             //       <div className={classes.tool}>
-            //         {item.content}
+            //         <GreenBlockRightSideSvgclassName={classes.svgBlock}/>
             //         <img
             //           src={CheckCircleIcon}
             //           alt="check circle"
@@ -419,7 +427,7 @@ const CodeBlock = ({
             //       </div>
             //     ) : (
             //       <div className={classes.tool}>
-            //         {item.content}
+            //         <GreenBlockRightSideSvgclassName={classes.svgBlock}/>
             //         {number === 1 ? (
             //           <img
             //             src={NumberIcon1}
@@ -497,7 +505,7 @@ const CodeBlock = ({
               >
                 {toggleOnOff ? (
                   <div className={classes.tool}>
-                    {item.content}
+                    <GreenBlockRightSideSvg className={classes.svgBlock} />
                     <img
                       src={CheckCircleIcon}
                       alt="check circle"
@@ -506,7 +514,7 @@ const CodeBlock = ({
                   </div>
                 ) : (
                   <div className={classes.tool}>
-                    {item.content}
+                    <GreenBlockRightSideSvg className={classes.svgBlock} />
                     {onOff ? (
                       <img
                         src={ToggleOnIcon}

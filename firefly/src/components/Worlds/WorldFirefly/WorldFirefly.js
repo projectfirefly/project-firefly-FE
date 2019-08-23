@@ -52,7 +52,11 @@ const WorldFirefly = props => {
           return (
               <div>
                 <div
-                  className={`${menuActive && ffId === firefly.firefly_id ? classes.menu : classes.hidden}`}
+                  className={`${
+                    menuActive && ffId == firefly.firefly_id
+                      ? classes.menu
+                      : classes.hidden
+                  }`}
                 >
                   <div onClick={() => {}}>
                   <FaArrowsAlt className={classes.move} />

@@ -335,24 +335,18 @@ const Game = () => {
   const playAnimation = () => {
     // Object.values(list).map(blockList => {
     //   blockList.map((block, index) => {
-    //     console.log(block);
-    //     console.log(index);
+    //     if (blockList.length - 1 > index) {
+    //       console.log("block:", block);
+    //       if (block.repeat && blockList[index + 1].repeat) {
+    //         console.log("ERROR");
+    //         block = {
+    //           ...block,
+    //           content: <GreenBlockRightSideSvg />
+    //         };
+    //       }
+    //     }
     //   });
     // });
-    Object.values(list).map(blockList => {
-      blockList.map((block, index) => {
-        if (blockList.length - 1 > index) {
-          console.log("block:", block);
-          if (block.repeat && blockList[index + 1].repeat) {
-            console.log("ERROR");
-            block = {
-              ...block,
-              content: <img src={GreenBlockError} alt="error" />
-            };
-          }
-        }
-      });
-    });
 
     setPlaying(!playing);
   };
