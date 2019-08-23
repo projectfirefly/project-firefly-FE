@@ -122,7 +122,6 @@ const FFanim = ({
     let currentColor = 52;
 
     function addToAnime(array, repeat) {
-
       var animationRepeat = 0;
       if (repeat) {
         animationRepeat = repeat;
@@ -207,19 +206,19 @@ const FFanim = ({
 
     function addFinal() {
       t1.add({
-        fill: `hsl(52, 100%, 55%)`,
+        fill: `hsl(52, 100%, 55%)`
       });
 
       t2.add({
-        fill: `hsl(52, 100%, 40%)`,
+        fill: `hsl(52, 100%, 40%)`
       });
 
       t3.add({
-        fill: `hsl(52, 100%, 30%)`,
+        fill: `hsl(52, 100%, 30%)`
       });
 
       t4.add({
-        stroke: `hsl(52, 100%, 55%)`,
+        stroke: `hsl(52, 100%, 55%)`
       });
     }
 
@@ -295,7 +294,7 @@ const FFanim = ({
         }
       } else if (block.type === "timer") {
         //Done I think
-        if (JSON.stringify(currentCode) !== "{}"){
+        if (JSON.stringify(currentCode) !== "{}") {
           codeArray.push(currentCode);
         }
         currentCode = {};
@@ -312,14 +311,13 @@ const FFanim = ({
         addToAnime(codeArray, block.value);
         codeArray = [];
       }
-      if (index === blocks.length-1) {
+      if (index === blocks.length - 1) {
         addFinal();
       }
     });
   }
 
   useEffect(() => {
-
     if (awake) {
       t1 = anime.timeline({
         targets: `.${classes.wrapper} svg .bodyLightBottom path`,

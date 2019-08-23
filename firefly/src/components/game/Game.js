@@ -11,7 +11,6 @@ import { DragDropContext } from "react-beautiful-dnd";
 import StartBlock from "../../images/gameIcons/StartBlock.svg";
 import BlueBlockLeftSideEndState from "../../images/gameIcons/BlueBlockLeftSideEndState.svg";
 import GreenBlockRightSideEndState from "../../images/gameIcons/GreenBlockRightSideEndState.svg";
-import GreenBlockError from "../../images/gameIcons/GreenBlockError.svg";
 import RepeatIconNew from "../../images/gameIcons/RepeatIconNew.svg";
 import LightbulbIcon from "../../images/gameIcons/LightbulbIcon.svg";
 import ClockIcon from "../../images/gameIcons/ClockIcon.svg";
@@ -19,9 +18,6 @@ import PlayCircleIcon from "../../images/gameIcons/PlayCircleIcon.svg";
 import PaletteIcon from "../../images/gameIcons/PaletteIcon.svg";
 import ToggleOffIcon from "../../images/gameIcons/ToggleOffIcon.svg";
 import GridIcon from "../../images/gridBackground.png";
-
-//import svg components
-import GreenBlockRightSideSvg from "./reactSvg/GreenBlockRightSideSvg";
 
 //importing the sound
 import clickMP3 from "../../assets/sounds/click.mp3";
@@ -202,7 +198,6 @@ const Game = () => {
             }
           });
         setAnimationList([...newBlockArray]);
-        console.log(newBlockArray);
       });
     }
   }, [list]);
@@ -324,33 +319,9 @@ const Game = () => {
     }
   };
 
-  // {
-  //   id: uuid(),
-  //     functionality: <ToolboxGreenIcon src={PaletteIcon} alt="paletteIcon" /> ,
-  //       content: <ToolboxBox src={GreenBlockRightSideEndState} alt="greenblock" /> ,
-  //         used: false,
-  //           rsi: 3
-  // },
-
   const playAnimation = () => {
-    // Object.values(list).map(blockList => {
-    //   blockList.map((block, index) => {
-    //     if (blockList.length - 1 > index) {
-    //       console.log("block:", block);
-    //       if (block.repeat && blockList[index + 1].repeat) {
-    //         console.log("ERROR");
-    //         block = {
-    //           ...block,
-    //           content: <GreenBlockRightSideSvg />
-    //         };
-    //       }
-    //     }
-    //   });
-    // });
-
     setPlaying(!playing);
   };
-  console.log(GreenBlockRightSideSvg);
 
   return (
     <Board>
@@ -365,6 +336,7 @@ const Game = () => {
           animationList={animationList}
           setAnimationList={setAnimationList}
           playAnimation={playAnimation}
+          playing={playing}
         />
         <DropDelete />
       </DragDropContext>

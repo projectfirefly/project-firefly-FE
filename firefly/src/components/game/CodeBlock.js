@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Draggable } from "react-beautiful-dnd";
 import Popper from "./Popper.js";
 import PaletteIcon from "./Poppers/PaletteIcon.js";
@@ -16,6 +16,8 @@ import ToggleOffIcon from "./../../images/gameIcons/ToggleOffIcon.svg";
 // import NumberIcon9 from "./../../images/gameIcons/NumberIcon9.svg";
 import RepeatIconNew from "./../../images/gameIcons/RepeatIconNew.svg";
 import GreenBlockRightSideSvg from "./reactSvg/GreenBlockRightSideSvg.js";
+import OrangeStartBlock from "./reactSvg/OrangeStartBlock.js";
+import BlueBlock from "./reactSvg/BlueBlock.js";
 
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -35,7 +37,23 @@ const useStyles = makeStyles({
   tool: {
     display: "flex",
     position: "relative",
-    width: "100px"
+    width: "100px",
+    "& svg": {
+      width: "100%",
+      height: "100%"
+    },
+    "&.blockError svg.greenBoxRightSide path": {
+      stroke: "#dc143c",
+      strokeWidth: "2"
+    },
+    "&.blockError svg.orangeStartBlock path": {
+      stroke: "#dc143c",
+      strokeWidth: "2"
+    },
+    "&.blockError svg.blueBlock path": {
+      stroke: "#dc143c",
+      strokeWidth: "2"
+    }
   },
 
   item: {
@@ -109,13 +127,6 @@ const useStyles = makeStyles({
     top: "32%",
     fontSize: "2.8rem",
     color: "white"
-  },
-
-  svgBlock: {
-    // display: "block"
-    // "& path": {
-    //   fill: "#340283"
-    // }
   }
 });
 
@@ -128,7 +139,10 @@ const CodeBlock = ({
   setList,
   id,
   blocks,
-  playAnimation
+  playAnimation,
+  clickedPlay,
+  playClicked,
+  errorChecking
 }) => {
   const classes = useStyles();
 
@@ -136,6 +150,7 @@ const CodeBlock = ({
   const [toggleTimer, setToggleTimer] = useState(false);
   const [toggleRepeat, setToggleRepeat] = useState(false);
   const [toggleOnOff, setToggleOnOff] = useState(false);
+  const [error, setError] = useState(false);
 
   //state that's used in lower levels. These are passed in props to different poppers
   //Switch State
@@ -167,6 +182,14 @@ const CodeBlock = ({
     setToggleOnOff(!toggleOnOff);
   };
 
+  const checkForErrors = () => {
+    setError(errorChecking(index));
+  };
+
+  useEffect(() => {
+    checkForErrors();
+  }, [list]);
+
   return (
     <Draggable
       key={item.id}
@@ -185,10 +208,29 @@ const CodeBlock = ({
             isDragging={snapshot.isDragging}
             style={provided.draggableProps.style}
           >
-            {//Play/Start
+            {//Play/Start Orange Block
             item.rsi === 0 ? (
-              <div className={classes.tool} onClick={playAnimation}>
-                {item.content}
+              <div
+                className={
+                  error && playClicked
+                    ? classes.tool + " blockError"
+                    : classes.tool
+                }
+                onClick={clickedPlay}
+              >
+                <OrangeStartBlock />
+                {item.functionality}
+              </div>
+            ) : //BlueBlock
+            item.rsi === 1 ? (
+              <div
+                className={
+                  error && playClicked
+                    ? classes.tool + " blockError"
+                    : classes.tool
+                }
+              >
+                <BlueBlock />
                 {item.functionality}
               </div>
             ) : //Repeat
@@ -209,7 +251,7 @@ const CodeBlock = ({
               >
                 {toggleRepeat ? (
                   <div className={classes.tool}>
-                    <GreenBlockRightSideSvg className={classes.svgBlock} />
+                    <GreenBlockRightSideSvg />
                     <img
                       src={CheckCircleIcon}
                       alt="check circle"
@@ -217,8 +259,14 @@ const CodeBlock = ({
                     />
                   </div>
                 ) : (
-                  <div className={classes.tool}>
-                    <GreenBlockRightSideSvg className={classes.svgBlock} />
+                  <div
+                    className={
+                      error && playClicked
+                        ? classes.tool + " blockError"
+                        : classes.tool
+                    }
+                  >
+                    <GreenBlockRightSideSvg />
                     {repeat === 1 ? (
                       <div>
                         <img
@@ -325,7 +373,7 @@ const CodeBlock = ({
               >
                 {togglePalette ? (
                   <div className={classes.tool}>
-                    <GreenBlockRightSideSvg className={classes.svgBlock} />
+                    <GreenBlockRightSideSvg />
                     <img
                       src={CheckCircleIcon}
                       alt="check circle"
@@ -334,7 +382,7 @@ const CodeBlock = ({
                   </div>
                 ) : (
                   <div className={classes.tool}>
-                    <GreenBlockRightSideSvg className={classes.svgBlock} />
+                    <GreenBlockRightSideSvg />
                     {
                       <div className={classes.palette}>
                         <PaletteIcon
@@ -364,7 +412,7 @@ const CodeBlock = ({
               >
                 {toggleTimer ? (
                   <div className={classes.tool}>
-                    <GreenBlockRightSideSvg className={classes.svgBlock} />
+                    <GreenBlockRightSideSvg />
                     <img
                       src={CheckCircleIcon}
                       alt="check circle"
@@ -373,7 +421,7 @@ const CodeBlock = ({
                   </div>
                 ) : (
                   <div className={classes.tool}>
-                    <GreenBlockRightSideSvg className={classes.svgBlock} />
+                    <GreenBlockRightSideSvg />
                     {time === 1 ? (
                       <p className={classes.count}>1s</p>
                     ) : time === 2 ? (
@@ -505,7 +553,7 @@ const CodeBlock = ({
               >
                 {toggleOnOff ? (
                   <div className={classes.tool}>
-                    <GreenBlockRightSideSvg className={classes.svgBlock} />
+                    <GreenBlockRightSideSvg />
                     <img
                       src={CheckCircleIcon}
                       alt="check circle"
@@ -514,7 +562,7 @@ const CodeBlock = ({
                   </div>
                 ) : (
                   <div className={classes.tool}>
-                    <GreenBlockRightSideSvg className={classes.svgBlock} />
+                    <GreenBlockRightSideSvg />
                     {onOff ? (
                       <img
                         src={ToggleOnIcon}

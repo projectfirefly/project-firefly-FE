@@ -1,7 +1,7 @@
 import React from "react";
 import uuid from "uuid/v4";
 
-function GreenBlockRightSideSvg() {
+function OrangeStartBlock() {
   const id1 = uuid();
   const id2 = uuid();
   const id3 = uuid();
@@ -9,10 +9,10 @@ function GreenBlockRightSideSvg() {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
-      viewBox="0 0 85 76"
+      viewBox="0 0 85 75"
       width="85px"
-      height="76px"
-      className="greenBoxRightSide"
+      height="75px"
+      className="orangeStartBlock"
     >
       <defs>
         <radialGradient
@@ -24,12 +24,12 @@ function GreenBlockRightSideSvg() {
           fy="50%"
           gradientTransform="matrix(0 1 -.88312 0 .942 0)"
         >
-          <stop offset="0%" stopColor="#7CD147" />
-          <stop offset="100%" stopColor="#4AA810" />
+          <stop offset="0%" stopColor="#FBB36A" />
+          <stop offset="100%" stopColor="#F99128" />
         </radialGradient>
         <path
           id={id2}
-          d="M66.003 3.826v-.83C72.788 10.783 77 21.65 77 33.673s-4.212 22.89-10.997 30.675v-.192a9.955 9.955 0 01-5.139 3.462 10 10 0 01-5.478.002c-8.636-2.455-15.763-3.682-21.38-3.682-5.592 0-12.68 1.216-21.263 3.65C7.429 69.091 1.9 66.004.395 60.691a10 10 0 01.003-5.465c2.41-8.464 3.615-15.531 3.615-21.201 0-5.681-1.21-12.763-3.628-21.247C-1.129 7.468 1.95 1.935 7.261.42a10 10 0 015.47-.004c8.688 2.465 15.78 3.697 21.275 3.697 5.519 0 12.65-1.243 21.392-3.73a10.003 10.003 0 0110.605 3.442z"
+          d="M325 304.32v-.703c6.786 7.785 10.998 18.652 10.998 30.675s-4.212 22.89-10.998 30.675v-.306a9.955 9.955 0 01-5.134 3.456 10 10 0 01-5.478.003c-8.637-2.455-15.765-3.683-21.382-3.683-5.593 0-12.681 1.216-21.265 3.65-5.314 1.505-10.842-1.582-12.348-6.895a10 10 0 01.003-5.465c2.41-8.464 3.615-15.531 3.615-21.201 0-5.681-1.21-12.763-3.628-21.247-1.514-5.312 1.564-10.844 6.876-12.359a10 10 0 015.47-.003c8.69 2.465 15.781 3.697 21.277 3.697 5.52 0 12.65-1.243 21.394-3.73a10.003 10.003 0 0110.6 3.436z"
         />
         <filter
           id={id1}
@@ -56,7 +56,7 @@ function GreenBlockRightSideSvg() {
         fillRule="evenodd"
         stroke="none"
         strokeWidth="1"
-        transform="translate(-292 -1924) translate(150 1873) translate(146 53)"
+        transform="translate(-304 -394) translate(49 95)"
       >
         <use fill="#000" filter={`url(#${id1})`} xlinkHref={`#${id2}`} />
         <use fill={`url(#${id3})`} xlinkHref={`#${id2}`} />
@@ -65,4 +65,4 @@ function GreenBlockRightSideSvg() {
   );
 }
 
-export default GreenBlockRightSideSvg;
+export default OrangeStartBlock;
