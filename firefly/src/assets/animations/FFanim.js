@@ -299,7 +299,9 @@ const FFanim = ({
         }
       } else if (block.type === "timer") {
         //Done I think
-        codeArray.push(currentCode);
+        if (JSON.stringify(currentCode) !== "{}"){
+          codeArray.push(currentCode);
+        }
         currentCode = {};
         currentCode = {
           ...currentCode,
