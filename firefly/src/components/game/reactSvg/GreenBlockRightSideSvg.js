@@ -2,13 +2,7 @@ import React from "react";
 
 const GreenBlockRightSideSvg = () => {
   return (
-    <svg
-      width="85px"
-      height="76px"
-      viewBox="0 0 85 76"
-      version="1.1"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+    <svg width="85px" height="76px" viewBox="0 0 85 76" version="1.1">
       <defs>
         <radialGradient
           cx="50%"
