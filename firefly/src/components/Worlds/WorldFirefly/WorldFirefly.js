@@ -44,7 +44,7 @@ const WorldFirefly = props => {
   // };
 
   const classes = WorldFireflyStyles();
-
+  const [ffId, setFFId] = useState();
   return (
     <div className={classes.container}>
       {worldContext.worlds[0].fireflies
@@ -52,7 +52,11 @@ const WorldFirefly = props => {
             return (
               <div>
                 <div
-                  className={`${menuActive ? classes.menu : classes.hidden}`}
+                  className={`${
+                    menuActive && ffId == firefly.firefly_id
+                      ? classes.menu
+                      : classes.hidden
+                  }`}
                 >
                   <FaArrowsAlt className={classes.move} />
                   <Link to="/game">
@@ -63,7 +67,11 @@ const WorldFirefly = props => {
                   </div>
                 </div>
 
-                <div onClick={() => setMenuState(!menuActive)}>
+                <div
+                  onClick={() => (
+                    setMenuState(!menuActive), setFFId(firefly.firefly_id)
+                  )}
+                >
                   {console.log(firefly)},
                   <FFanim
                     height={129}
