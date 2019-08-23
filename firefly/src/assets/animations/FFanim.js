@@ -122,7 +122,6 @@ const FFanim = ({
     let currentColor = 52;
 
     function addToAnime(array, repeat) {
-      console.log(array);
 
       var animationRepeat = 0;
       if (repeat) {
@@ -130,7 +129,6 @@ const FFanim = ({
       }
 
       for (let i = 0; i <= animationRepeat; i++) {
-        console.log("addToAnime");
         array.map((element, index) => {
           let keyframe = {};
 
@@ -182,7 +180,6 @@ const FFanim = ({
               ...keyframe,
               stroke: "hsl(220, 12%, 90%)"
             });
-            console.log("switch false", keyframe);
           } else if (element.onOff === true || element.onOff === undefined) {
             t1.add({
               ...keyframe,
@@ -203,7 +200,6 @@ const FFanim = ({
               ...keyframe,
               stroke: `hsl(${keyframe.fill}, 100%, 55%)`
             });
-            console.log("switch true or undefined", keyframe);
           }
         });
       }
@@ -323,7 +319,6 @@ const FFanim = ({
   }
 
   useEffect(() => {
-    console.log("animationList:", animationList);
 
     if (awake) {
       t1 = anime.timeline({
@@ -356,7 +351,6 @@ const FFanim = ({
 
   useEffect(() => {
     // if (playing) {
-    console.log("playing", playing);
     t1.play();
     t2.play();
     t3.play();
