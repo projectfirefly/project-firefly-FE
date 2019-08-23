@@ -122,15 +122,12 @@ const FFanim = ({
     let currentColor = 52;
 
     function addToAnime(array, repeat) {
-      console.log(array);
-
       var animationRepeat = 0;
       if (repeat) {
         animationRepeat = repeat;
       }
 
       for (let i = 0; i <= animationRepeat; i++) {
-        console.log("addToAnime");
         array.map((element, index) => {
           let keyframe = {};
 
@@ -182,7 +179,6 @@ const FFanim = ({
               ...keyframe,
               stroke: "hsl(220, 12%, 90%)"
             });
-            console.log("switch false", keyframe);
           } else if (element.onOff === true || element.onOff === undefined) {
             t1.add({
               ...keyframe,
@@ -203,7 +199,6 @@ const FFanim = ({
               ...keyframe,
               stroke: `hsl(${keyframe.fill}, 100%, 55%)`
             });
-            console.log("switch true or undefined", keyframe);
           }
         });
       }
@@ -299,7 +294,9 @@ const FFanim = ({
         }
       } else if (block.type === "timer") {
         //Done I think
-        codeArray.push(currentCode);
+        if (JSON.stringify(currentCode) !== "{}") {
+          codeArray.push(currentCode);
+        }
         currentCode = {};
         currentCode = {
           ...currentCode,

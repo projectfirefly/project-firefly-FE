@@ -2,7 +2,6 @@ import React from "react";
 import fireflyStyles from "./FireflyWorldStyles";
 import { WorldNav } from "../WorldNav/WorldNav";
 import WorldFirefly from "../WorldFirefly/WorldFirefly";
-import FireflyContainer from '../WorldFirefly/FireflyContainer';
 
 import HTML5Backend from 'react-dnd-html5-backend';
 import { DndProvider } from 'react-dnd';

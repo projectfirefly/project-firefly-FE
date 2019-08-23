@@ -29,6 +29,7 @@ import {
 
 const WorldFirefly = props => {
   const [menuActive, setMenuState] = useState(false);
+  const [ffId, setFFId] = useState();
   // const [trashActive, setTrashState] = useState(false);
   const [worldContext, worldDispatch] = useContext(gameContext);
   // useEffect(() => {
@@ -44,17 +45,22 @@ const WorldFirefly = props => {
   // };
 
   const classes = WorldFireflyStyles();
-
   return (
     <div className={classes.container}>
       {worldContext.worlds[0].fireflies
         ? worldContext.worlds[0].fireflies.map(firefly => {
-            return (
+          return (
               <div>
                 <div
-                  className={`${menuActive ? classes.menu : classes.hidden}`}
+                  className={`${
+                    menuActive && ffId == firefly.firefly_id
+                      ? classes.menu
+                      : classes.hidden
+                  }`}
                 >
+                  <div onClick={() => {}}>
                   <FaArrowsAlt className={classes.move} />
+                  </div>
                   <Link to="/game">
                     <FaPen className={classes.pen} />
                   </Link>
@@ -63,7 +69,7 @@ const WorldFirefly = props => {
                   </div>
                 </div>
 
-                <div onClick={() => setMenuState(!menuActive)}>
+                <div onClick={() => (setFFId(firefly.firefly_id), setMenuState(!menuActive))}>
                   {console.log(firefly)},
                   <FFanim
                     height={129}
