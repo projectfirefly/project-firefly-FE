@@ -211,19 +211,19 @@ const FFanim = ({
 
     function addFinal() {
       t1.add({
-        fill: `hsl(52, 100%, 55%)`,
+        fill: `hsl(52, 100%, 55%)`
       });
 
       t2.add({
-        fill: `hsl(52, 100%, 40%)`,
+        fill: `hsl(52, 100%, 40%)`
       });
 
       t3.add({
-        fill: `hsl(52, 100%, 30%)`,
+        fill: `hsl(52, 100%, 30%)`
       });
 
       t4.add({
-        stroke: `hsl(52, 100%, 55%)`,
+        stroke: `hsl(52, 100%, 55%)`
       });
     }
 
@@ -314,15 +314,13 @@ const FFanim = ({
         addToAnime(codeArray, block.value);
         codeArray = [];
       }
-      if (index === blocks.length-1) {
+      if (index === blocks.length - 1) {
         addFinal();
       }
     });
   }
 
   useEffect(() => {
-    console.log("animationList:", animationList);
-
     if (awake) {
       t1 = anime.timeline({
         targets: `.${classes.wrapper} svg .bodyLightBottom path`,
@@ -354,7 +352,6 @@ const FFanim = ({
 
   useEffect(() => {
     // if (playing) {
-    console.log("playing", playing);
     t1.play();
     t2.play();
     t3.play();
