@@ -2,12 +2,12 @@ import React from 'react';
 import { DragSource } from 'react-dnd';
 import FFanim from "../../../assets/animations/FFanim";
 
-const itemSource = {
+const dragSource = {
     beginDrag(props) {
       console.log('dragging');
       return props.item;
     },
-    endDrag(props, monitor) {
+    endDrag(props, monitor, component) {
       if (!monitor.didDrop()) {
         return;
       }
@@ -25,11 +25,11 @@ const itemSource = {
 
 const FireflyItem = () => {
 
-    const { isDragging, connectDragSource, item } = this.props;
+    const { isDragging, connectDragSource, fireflyItem } = this.props;
     const opacity = isDragging ? 0 : 1;
 
     return connectDragSource(
-    <div className="item" style={{ opacity }}>
+    <div style={{ opacity }}>
     {/* add the draggable firefly here */}
         <FFanim
             height={129}
@@ -43,4 +43,4 @@ const FireflyItem = () => {
 
   }
   
-  export default DragSource('item', itemSource, collect)(FireflyItem);
+  export default DragSource('firefly', dragSource, collect)(FireflyItem);

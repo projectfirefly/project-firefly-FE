@@ -26,18 +26,19 @@ import {
   DialogActions
   // Typography
 } from "@material-ui/core";
+//DRAG and DROP stuff
 
-const WorldFirefly = props => {
+import FireflyContainer from './FireflyContainer';
+import FireflyItem from "./FireflyItem";
+
+
+const WorldFirefly = () => {
   const [menuActive, setMenuState] = useState(false);
   const [ffId, setFFId] = useState();
-  // const [trashActive, setTrashState] = useState(false);
   const [worldContext, worldDispatch] = useContext(gameContext);
-  // useEffect(() => {
-  // worldDispatch({ type: SELECTED_WORLD, payload: "" });
-  // }, []);
-
   const [trashOpen, setTrashOpen] = useState(false);
-
+  const [passProps, setPassProps] = useState();
+  // const [trashActive, setTrashState] = useState(false);
   // const confirmRemove = () => {
   //   removeFirefly(REMOVE_FIREFLY).then(() => {
   //     props.history.push("/choose-profile");
@@ -46,14 +47,14 @@ const WorldFirefly = props => {
 
   const classes = WorldFireflyStyles();
   return (
-    <div className={classes.container}>
+    <FireflyContainer props={passProps} className={classes.container}>
       {worldContext.worlds[0].fireflies
         ? worldContext.worlds[0].fireflies.map(firefly => {
           return (
-              <div>
+              <div >
                 <div
                   className={`${
-                    menuActive && ffId == firefly.firefly_id
+                    menuActive && ffId === firefly.firefly_id
                       ? classes.menu
                       : classes.hidden
                   }`}
@@ -68,16 +69,10 @@ const WorldFirefly = props => {
                     <FaTrashAlt className={classes.trash} />
                   </div>
                 </div>
-
-                <div onClick={() => (setFFId(firefly.firefly_id), setMenuState(!menuActive))}>
+                  
+                <div onClick={() => (setFFId(firefly.firefly_id), setPassProps({key:firefly.firefly_id, fireflyItem:firefly}), setMenuState(!menuActive))}>
                   {console.log(firefly)},
-                  <FFanim
-                    height={129}
-                    width={132}
-                    accessory="none"
-                    color={642}
-                    awake={true}
-                  />
+                  <FireflyItem  />
                 </div>
                 <Dialog
                   open={trashOpen}
@@ -123,7 +118,7 @@ const WorldFirefly = props => {
             );
           })
         : console.log(null)}
-    </div>
+    </FireflyContainer>
   );
 };
 
