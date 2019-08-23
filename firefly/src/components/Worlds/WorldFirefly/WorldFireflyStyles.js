@@ -4,17 +4,16 @@ const WorldFireflyStyles = makeStyles({
   container: {
     // border: " solid pink 2px",
     position: "absolute",
-    marginLeft: "200px",
-    width: "170px",
-    zIndex: "1"
+    // marginLeft: "200px",
+    width: "170px"
   },
   menu: {
     display: "flex",
     justifyContent: "space-between",
     height: "35px",
+    zIndex: "1",
     filter: "drop-shadow(1px 1px 1px #494d4f)"
   },
-  icon: {},
   hidden: {
     height: "35px",
     visibility: "hidden"
