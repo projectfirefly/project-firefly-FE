@@ -28,17 +28,16 @@ import {
 } from "@material-ui/core";
 //DRAG and DROP stuff
 
-import FireflyContainer from './FireflyContainer';
+import FireflyContainer from "./FireflyContainer";
 import FireflyItem from "./FireflyItem";
-
 
 const WorldFirefly = () => {
   const [menuActive, setMenuState] = useState(false);
   const [ffId, setFFId] = useState();
   const [worldContext, worldDispatch] = useContext(gameContext);
   const [trashOpen, setTrashOpen] = useState(false);
-
-  const [hideSourceOnDrag, setHideSourceOnDrag] = useState(true)
+  const classes = WorldFireflyStyles();
+  const [hideSourceOnDrag, setHideSourceOnDrag] = useState(true);
   // const [trashActive, setTrashState] = useState(false);
   // const confirmRemove = () => {
   //   removeFirefly(REMOVE_FIREFLY).then(() => {
@@ -46,12 +45,7 @@ const WorldFirefly = () => {
   //   });
   // };
 
-  const classes = WorldFireflyStyles();
-  return (
-    <FireflyContainer hideSourceOnDrag={hideSourceOnDrag} className={classes.container}>
-      
-    </FireflyContainer>
-  );
+  return <FireflyContainer hideSourceOnDrag={hideSourceOnDrag} />;
 };
 
 export default WorldFirefly;
