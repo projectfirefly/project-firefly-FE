@@ -1,10 +1,11 @@
 import React from "react";
 import uuid from "uuid/v4";
 
-function GreenBlockRightSideSvg() {
+function BlueBlock() {
   const id1 = uuid();
   const id2 = uuid();
   const id3 = uuid();
+
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -12,7 +13,7 @@ function GreenBlockRightSideSvg() {
       viewBox="0 0 85 76"
       width="85px"
       height="76px"
-      className="greenBoxRightSide"
+      className="blueBlock"
     >
       <defs>
         <radialGradient
@@ -24,8 +25,8 @@ function GreenBlockRightSideSvg() {
           fy="50%"
           gradientTransform="matrix(0 1 -.88312 0 .942 0)"
         >
-          <stop offset="0%" stopColor="#7CD147" />
-          <stop offset="100%" stopColor="#4AA810" />
+          <stop offset="0%" stopColor="#7166FF" />
+          <stop offset="100%" stopColor="#5B4EFF" />
         </radialGradient>
         <path
           id={id2}
@@ -56,7 +57,7 @@ function GreenBlockRightSideSvg() {
         fillRule="evenodd"
         stroke="none"
         strokeWidth="1"
-        transform="translate(-292 -1924) translate(150 1873) translate(146 53)"
+        transform="translate(-232 -1125) translate(108 816) translate(128 311)"
       >
         <use fill="#000" filter={`url(#${id1})`} xlinkHref={`#${id2}`} />
         <use fill={`url(#${id3})`} xlinkHref={`#${id2}`} />
@@ -65,4 +66,4 @@ function GreenBlockRightSideSvg() {
   );
 }
 
-export default GreenBlockRightSideSvg;
+export default BlueBlock;
