@@ -49,7 +49,7 @@ const FireflyItem = ({ id, left, top, hideSourceOnDrag, children }) => {
     collect: monitor => ({
       isDragging: monitor.isDragging()
     })
-  });
+  })
   if (isDragging && hideSourceOnDrag) {
     return (
       <div ref={drag} />
