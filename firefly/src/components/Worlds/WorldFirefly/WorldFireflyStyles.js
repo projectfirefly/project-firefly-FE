@@ -10,7 +10,7 @@ const WorldFireflyStyles = makeStyles({
   },
   draggableFirefly: {
     position: 'absolute',
-    background:'white',
+    // background:'white',
     padding:'0.5rem 1rem',
     cursor: 'move',
   },
