@@ -2,25 +2,25 @@ import React from "react";
 import fireflyStyles from "./FireflyWorldStyles";
 import { WorldNav } from "../WorldNav/WorldNav";
 import WorldFirefly from "../WorldFirefly/WorldFirefly";
-import TouchBackend from 'react-dnd-touch-backend';
-import HTML5Backend from "react-dnd-html5-backend";
+import TouchBackend from "react-dnd-touch-backend";
+// import HTML5TouchBackend from "react-dnd-html5-touch-backend";
 import { DndProvider } from "react-dnd";
 
 const FireflyWorld = () => {
   const classes = fireflyStyles();
   return (
-    <DndProvider backend={ TouchBackend }>
-      <div className={classes.page}>
-        <div className={classes.body}>
-          <div className={classes.rootContainer}>
-            <WorldNav />
-            <div className={classes.fireflyContainer}>
+    <div className={classes.page}>
+      <div className={classes.body}>
+        <div className={classes.rootContainer}>
+          <WorldNav />
+          <div className={classes.fireflyContainer}>
+            <DndProvider backend={TouchBackend}>
               <WorldFirefly />
-            </div>
+            </DndProvider>
           </div>
         </div>
       </div>
-    </DndProvider>
+    </div>
   );
 };
 

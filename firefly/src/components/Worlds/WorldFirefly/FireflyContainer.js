@@ -11,6 +11,7 @@ import WorldFireflyStyles from "./WorldFireflyStyles";
 // 3)need to need the fireflies from the worldContext to the fireflies state using the variable
 // 4)need to make a component for the firefly to render on the fireflyContainer as a item I think this can be done the same way we did it before
 // 5)need to figure out way the left and top is not updating and make it where the fireflies have a collision box around them so they can not be moved of screen and so they do not render on top of each other
+// 6)need to figure out how to enable mouse events for the touch backend 
 
 const FireflyContainer = ({ hideSourceOnDrag }) => {
   
