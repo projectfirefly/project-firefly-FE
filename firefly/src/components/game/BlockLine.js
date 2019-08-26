@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Droppable } from "react-beautiful-dnd";
 import StartBlockTarget from "./../../images/gameIcons/StartBlockTarget.svg";
 import EmptyBlockTarget from "./../../images/gameIcons/EmptyBlockTarget.svg";
 import CodeBlock from "./CodeBlock";
-import usePrevious from "./../../utils/usePrevious";
+
 const List = styled.div`
   height: 100%;
   min-height: 90px;

@@ -65,6 +65,10 @@ const useStyles = makeStyles(theme => ({
     boxShadow: "0 2px 4px rgba(0, 0, 0, 0.5)",
     borderRadius: "10px",
     marginTop: "5px"
+  },
+
+  popperBlock: {
+    position: "relative"
   }
 }));
 
@@ -88,7 +92,7 @@ export default function Popper({
   const classes = useStyles();
 
   return (
-    <div>
+    <div className={classes.popperBlock}>
       <div className={classes.root} onClick={onClick}>
         {children}
       </div>

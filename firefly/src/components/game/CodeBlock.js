@@ -236,6 +236,7 @@ const CodeBlock = ({
             ) : //Repeat
             item.rsi === 2 ? (
               <Popper
+                placement="bottom"
                 onClick={
                   !openPopper || toggleRepeat
                     ? () => {
@@ -355,6 +356,7 @@ const CodeBlock = ({
             ) : //Palette
             item.rsi === 3 ? (
               <Popper
+                placement="bottom"
                 onClick={
                   !openPopper || togglePalette
                     ? () => {
@@ -397,6 +399,7 @@ const CodeBlock = ({
             ) : //Timer
             item.rsi === 4 ? (
               <Popper
+                placement="bottom"
                 onClick={
                   !openPopper || toggleTimer
                     ? () => {
@@ -451,6 +454,7 @@ const CodeBlock = ({
             ) : // ) : //Count
             // item.rsi === 5 ? (
             //   <Popper
+            //     placement='auto-end'
             //     onClick={
             //       !openPopper || toggleCount
             //         ? () => {
@@ -538,6 +542,7 @@ const CodeBlock = ({
             //Switch
             item.rsi === 6 ? (
               <Popper
+                placement="bottom"
                 onClick={
                   !openPopper || toggleOnOff
                     ? () => {
@@ -580,7 +585,7 @@ const CodeBlock = ({
                 )}
               </Popper>
             ) : (
-              //These are for the start, led, and repeat buttons because they dont have poppers
+              //These are for the start, led, because they dont have poppers
               <div className={classes.tool}>
                 {item.content}
                 {item.functionality}
