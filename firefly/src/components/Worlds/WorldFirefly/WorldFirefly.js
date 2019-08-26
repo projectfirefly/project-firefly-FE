@@ -6,6 +6,9 @@ import {
   SELECTED_WORLD,
   REMOVE_FIREFLY
 } from "../../../context/Game/GameStore";
+
+// import { childContext } from "../../../context/ChildProfiles/ChildProfileStore";
+
 //importing the firebase stuff needed
 import { removeFirefly } from "../../../utils/firebaseInteractions.jsx";
 import FFanim from "../../../assets/animations/FFanim";
@@ -32,6 +35,7 @@ const WorldFirefly = props => {
   const [ffId, setFFId] = useState();
   // const [trashActive, setTrashState] = useState(false);
   const [worldContext, worldDispatch] = useContext(gameContext);
+  // const [context, contextDispatch] = useContext(childContext);
   // useEffect(() => {
   // worldDispatch({ type: SELECTED_WORLD, payload: "" });
   // }, []);
@@ -40,8 +44,13 @@ const WorldFirefly = props => {
   // const [context, contextDispatch] = useContext(childContext);
 
   // const confirmRemove = () => {
-  //   removeFirefly(REMOVE_FIREFLY).then(() => {
-  //     props.history.push("/choose-profile");
+  //   removeFirefly(
+  //     context.selected.id,
+  //     worldContext.selected.id,
+  //     worldDispatch
+  //   ).then(() => {
+  //     // props.history.push("/choose-profile");
+  //     console.log("firefly removed: " + context.selected);
   //   });
   // };
 
