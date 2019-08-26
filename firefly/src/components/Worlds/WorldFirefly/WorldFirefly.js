@@ -37,6 +37,7 @@ const WorldFirefly = props => {
   // }, []);
 
   const [trashOpen, setTrashOpen] = useState(false);
+  // const [context, contextDispatch] = useContext(childContext);
 
   // const confirmRemove = () => {
   //   removeFirefly(REMOVE_FIREFLY).then(() => {
@@ -49,7 +50,7 @@ const WorldFirefly = props => {
     <div className={classes.container}>
       {worldContext.worlds[0].fireflies
         ? worldContext.worlds[0].fireflies.map(firefly => {
-          return (
+            return (
               <div>
                 <div
                   className={`${
@@ -59,7 +60,7 @@ const WorldFirefly = props => {
                   }`}
                 >
                   <div onClick={() => {}}>
-                  <FaArrowsAlt className={classes.move} />
+                    <FaArrowsAlt className={classes.move} />
                   </div>
                   <Link to="/game">
                     <FaPen className={classes.pen} />
@@ -69,7 +70,11 @@ const WorldFirefly = props => {
                   </div>
                 </div>
 
-                <div onClick={() => (setFFId(firefly.firefly_id), setMenuState(!menuActive))}>
+                <div
+                  onClick={() => (
+                    setFFId(firefly.firefly_id), setMenuState(!menuActive)
+                  )}
+                >
                   {console.log(firefly)},
                   <FFanim
                     height={129}
