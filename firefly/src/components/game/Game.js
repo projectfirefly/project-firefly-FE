@@ -32,7 +32,7 @@ const poof = new uifx({ asset: poofMP3 });
 //styling
 const Board = styled.div`
   /* min-height: 100vh; */
-  min-width: 100vw;
+  width: 100%;
   /* background-image: url(${GridIcon}); */
   /* margin: -10% 0; */
   /* padding-bottom: 30%; */
@@ -167,6 +167,10 @@ const ITEMS = [
 ];
 
 const Game = () => {
+  //Set list to firefly out of context/firestore
+  //display loader while loading
+  //on cancel setList to list out of context/firestore
+  //on save, send list to context/firestore
   const [list, setList] = useState({ [uuid()]: [] });
   const [tools, setTools] = useState(ITEMS);
   const [hasStart, setHasStart] = useState(false);
@@ -340,6 +344,7 @@ const Game = () => {
         />
         <DropDelete />
       </DragDropContext>
+      <button>HELLO</button>
     </Board>
   );
 };
