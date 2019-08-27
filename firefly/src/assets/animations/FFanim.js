@@ -122,12 +122,12 @@ const FFanim = ({
     let currentColor = 52;
 
     function addToAnime(array, repeat) {
-      var animationRepeat = 0;
+      var animationRepeatCount = 0;
       if (repeat) {
-        animationRepeat = repeat;
+        animationRepeatCount = repeat;
       }
 
-      for (let i = 0; i <= animationRepeat; i++) {
+      for (let i = 0; i <= animationRepeatCount; i++) {
         array.map((element, index) => {
           let keyframe = {};
 

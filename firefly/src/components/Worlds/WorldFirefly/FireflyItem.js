@@ -1,46 +1,36 @@
-import React from 'react';
-import { DragSource } from 'react-dnd';
-import FFanim from "../../../assets/animations/FFanim";
+import React from "react";
+import { useDrag } from "react-dnd";
+import itemType from "./itemType";
+// import WorldFireflyStyles from "./WorldFireflyStyles";
 
-const itemSource = {
-    beginDrag(props) {
-      console.log('dragging');
-      return props.item;
-    },
-    endDrag(props, monitor) {
-      if (!monitor.didDrop()) {
-        return;
-      }
-      return props.handleDrop(props.item.id);
+//using for the drag item
+const style = {
+  position: 'absolute',
+  padding: '0.5rem 1rem',
+  cursor: 'move',
+}
+const FireflyItem = ({ id, left, top, hideSourceOnDrag, canDrag, children }) => {
+  const dragAway = () => {
+    if(canDrag === true){
+      return drag
     }
   }
-  
-  function collect(connect, monitor) {
-    return {
-      connectDragSource: connect.dragSource(),
-      connectDragPreview: connect.dragPreview(),
-      isDragging: monitor.isDragging(),
-    }
-  }
-
-const FireflyItem = () => {
-
-    const { isDragging, connectDragSource, item } = this.props;
-    const opacity = isDragging ? 0 : 1;
-
-    return connectDragSource(
-    <div className="item" style={{ opacity }}>
-    {/* add the draggable firefly here */}
-        <FFanim
-            height={129}
-            width={132}
-            accessory="none"
-            color={642}
-            awake={true}
-        />
-    </div>
+  const [{ isDragging }, drag] = useDrag({
+    item: { id, left, top, type: itemType.Firefly },
+    collect: monitor => ({
+      isDragging: monitor.isDragging()
+    })
+  })
+  if ( isDragging && hideSourceOnDrag) {
+    return (
+      <div ref={dragAway()} />
     );
-
   }
-  
-  export default DragSource('item', itemSource, collect)(FireflyItem);
+  return (
+    <div ref={dragAway()} style={{...style, left, top }}>
+      {children}
+    </div>
+  );
+};
+
+export default FireflyItem;
