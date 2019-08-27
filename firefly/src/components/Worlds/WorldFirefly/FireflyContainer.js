@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useDrop } from "react-dnd";
 import { Link } from "react-router-dom";
 import itemType from "./itemType";
@@ -44,12 +44,14 @@ const FireflyContainer = ({ hideSourceOnDrag }) => {
   const [ffId, setFFId] = useState();
   const [trashOpen, setTrashOpen] = useState(false);
   const [canDrag, setCanDrag] = useState(false);
+  
 
   const theFireflies = worldContext.worlds[0].fireflies
     ? worldContext.worlds[0].fireflies.map(fireflies => {
         return fireflies;
       })
     : null;
+
   const [fireflies, setFireflies] = useState([...theFireflies]);
   const [, drop] = useDrop({
     accept: itemType.Firefly,
@@ -77,6 +79,17 @@ const FireflyContainer = ({ hideSourceOnDrag }) => {
 
     setFireflies([...updatedFireflies]);
   };
+
+  
+  
+  useEffect(() => {
+    console.log('change to the fireflies state')
+    return () => {
+      setFireflies([...worldContext.worlds[0].fireflies])
+      console.log('change was made')
+    }
+  }, [worldContext])
+
   const confirmRemove = () => {
     removeFirefly(
       context.selected.id,
@@ -85,18 +98,20 @@ const FireflyContainer = ({ hideSourceOnDrag }) => {
       worldDispatch
     ).then(() => {
       setTrashOpen(!trashOpen)
-    });
+    })
   };
   
   return (
     <div ref={drop} className={classes.fireflyContainer}>
-      {fireflies.map(firefly => {
+      {fireflies ? fireflies.map(firefly => {
+        // const left =  Math.floor((Math.random() * 100) + 1)
+        // const right =  Math.floor((Math.random() * 100) + 1)
         return (
           <FireflyItem
             key={firefly.firefly_id}
             id={firefly.firefly_id}
-            left={firefly.x}
-            top={firefly.y}
+            left={ firefly.x }
+            top={ firefly.y }
             hideSourceOnDrag={hideSourceOnDrag}
             canDrag={canDrag}
           >
@@ -175,7 +190,7 @@ const FireflyContainer = ({ hideSourceOnDrag }) => {
             </div>
           </FireflyItem>
         );
-      })}
+      }): null }
     </div>
   );
 };
