@@ -424,7 +424,7 @@ const Game = ({ selectedWorldId, firefly }) => {
       setTrashing(true);
       setTimeout(() => {
         setTrashing(false);
-      }, 2000);
+      }, 630);
       poof.play();
       return;
     }
