@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import FFbox from "./FFbox";
 // import GameBoard from "./BlockLine";
 import BlockLine from "./BlockLine";
@@ -18,6 +18,10 @@ import PlayCircleIcon from "../../images/gameIcons/PlayCircleIcon.svg";
 import PaletteIcon from "../../images/gameIcons/PaletteIcon.svg";
 import ToggleOffIcon from "../../images/gameIcons/ToggleOffIcon.svg";
 import GridIcon from "../../images/gridBackground.png";
+import {
+  gameContext,
+} from "../../context/Game/GameStore";
+import { childContext } from "../../context/ChildProfiles/ChildProfileStore";
 
 //importing the sound
 import clickMP3 from "../../assets/sounds/click.mp3";
@@ -32,7 +36,7 @@ const poof = new uifx({ asset: poofMP3 });
 //styling
 const Board = styled.div`
   /* min-height: 100vh; */
-  min-width: 100vw;
+  width: 100%;
   /* background-image: url(${GridIcon}); */
   /* margin: -10% 0; */
   /* padding-bottom: 30%; */
@@ -166,13 +170,150 @@ const ITEMS = [
   }
 ];
 
-const Game = () => {
-  const [list, setList] = useState({ [uuid()]: [] });
+const Game = ({
+  selectedWorldId,
+  firefly
+}) => {
+  //Set list to firefly out of context/firestore
+  //display loader while loading
+  //on cancel setList to list out of context/firestore
+  //on save, send list to context/firestore
+
+  //worldContext.selected (selected world), props.firefly (firefly), profileContext.selected (child ID)
+
+  const [childProfileState, childDispatch] = useContext(childContext);
+  const [worldContext, worldDispatch] = useContext(gameContext);
+
+  const listId = uuid();
+  const [list, setList] = useState({ [listId]: [] });
+
   const [tools, setTools] = useState(ITEMS);
   const [hasStart, setHasStart] = useState(false);
   const [draggingBlock, isDraggingBlock] = useState(false);
   const [animationList, setAnimationList] = useState([]);
   const [playing, setPlaying] = useState(false);
+
+  const createBlocksFromBackend = (blockList) => {
+    const newList = blockList.map((block) => {
+      switch (block.type) {
+        case "repeat":
+          return {
+            ...ITEMS[2],
+            repeat: block.value,
+            id: uuid(),
+          }
+        case "color":
+          return {
+            ...ITEMS[3],
+            color: block.value,
+            id: uuid(),
+          }
+        case "timer":
+          return {
+            ...ITEMS[4],
+            timer: block.value,
+            id: uuid(),
+          }
+        case "onOff":
+          return {
+            ...ITEMS[5],
+            onOff: block.value,
+            id: uuid(),
+          }
+      }
+    })
+
+    setTools(
+      [...tools].map((tool, index) => {
+        if (index === 0 || index === 1) {
+          return {
+            ...tool,
+            used: true
+          }
+        } else {
+          return { ...tool }
+        }
+      })
+    );
+
+    setHasStart(true);
+
+    setList({
+      [listId]: [
+        {
+          ...ITEMS[0],
+          id: uuid(),
+        },
+        {
+          ...ITEMS[1],
+          id: uuid(),
+        },
+        ...newList
+      ]
+    })
+  }
+
+  //Load fireflies from backend
+  useEffect(() => {
+    // Delete this and replace it with the current firefly from worldContext
+    const fakeArray = [
+      {
+        type: "timer",
+        value: 1
+      },
+      {
+        type: "color",
+        value: 270
+      },
+      {
+        type: "timer",
+        value: 3
+      },
+      {
+        type: "onOff",
+        value: false
+      },
+      {
+        type: "timer",
+        value: 2
+      },
+      {
+        type: "onOff",
+        value: true
+      },
+      {
+        type: "color",
+        value: 120
+      },
+      {
+        type: "timer",
+        value: 2
+      },
+      {
+        type: "repeat",
+        value: 1
+      }
+    ];
+
+    createBlocksFromBackend(fakeArray);
+
+  }, [])
+
+  const updateFirefly = () => {
+
+    const updatedFirefly = {
+      // ...props.firefly,
+      codeBlocks: [
+        ...animationList
+      ]
+    }
+
+    // updateBlocks(userContext.selected, firefly.id, selectedWorldId, animationList, worldDispatch)
+  }
+
+  useEffect(() => {
+    console.log(worldContext);
+  }, [worldContext]);
 
   useEffect(() => {
     if (list.length !== 0) {
@@ -340,6 +481,7 @@ const Game = () => {
         />
         <DropDelete />
       </DragDropContext>
+      <button onClick={updateFirefly} style={{marginLeft: "300px"}}>HELLO</button>
     </Board>
   );
 };
