@@ -34,6 +34,7 @@ import {
 import WorldFireflyStyles from "./WorldFireflyStyles";
 import fireflyStyles from "../FireflyWorld/FireflyWorldStyles";
 
+
 // 1)need to import the gameContext to get the world info
 // 2)need to forEach the worldContext and push it to a new variable
 // 3)need to need the fireflies from the worldContext to the fireflies state using the variable
@@ -43,6 +44,14 @@ import fireflyStyles from "../FireflyWorld/FireflyWorldStyles";
 
 const FireflyContainer = ({ hideSourceOnDrag }) => {
   const classes = fireflyStyles();
+  const classed = WorldFireflyStyles();
+  const styles = {
+    width: 600,
+    height: 600,
+    border: "1px solid black",
+    position: "relative"
+  };
+
   const [worldContext, worldDispatch] = useContext(gameContext);
   const [menuActive, setMenuState] = useState(false);
   const [ffId, setFFId] = useState();
@@ -53,64 +62,78 @@ const FireflyContainer = ({ hideSourceOnDrag }) => {
         return fireflies;
       })
     : null;
-  const [fireflies, setFireflies] = useState({
+  const [fireflies, setFireflies] = useState([
     ...theFireflies
-  });
+  ]);
+  console.log(fireflies)
   const [, drop] = useDrop({
     accept: itemType.Firefly,
     drop(item, monitor) {
+      console.log(item,'this is the item from drop')
       const delta = monitor.getDifferenceFromInitialOffset();
-      const left = Math.round(item.x + delta.x);
-      const top = Math.round(item.y + delta.y);
+      const left = Math.round(item.left + delta.x);
+      const top = Math.round(item.top + delta.y);
       moveFirefly(item.id, left, top);
       return undefined;
     }
   });
-  const moveFirefly = (id, left, top) => {
-    setFireflies(
-      update(fireflies, {
-        [id]: {
-          $merge: { left, top }
+  const moveFirefly = (id, left , top) => {
+    console.log(id, left, top, 'this is the moveFirefly')
+
+    const updatedFireflies = fireflies.map((firefly) =>{
+      console.log(firefly)
+      if(firefly.firefly_id === id){
+        return {
+          ...firefly,
+          x: left,
+          y: top,
         }
-      })
+      } else {
+        return firefly
+      }
+    })
+
+    setFireflies(
+      [
+        ...updatedFireflies
+      ]
     );
   };
 
   return (
-    <div ref={drop} className={classes.FireflyContainer}>
-      {Object.keys(fireflies).map(key => {
-        const { left, top } = fireflies[key];
+    <div ref={drop} className={classes.fireflyContainer}>
+      {fireflies.map(firefly => {
         return (
           <FireflyItem
-            key={key}
-            id={key}
-            left={left}
-            top={top}
+            key={firefly.firefly_id}
+            id={firefly.firefly_id}
+            left={firefly.x}
+            top={firefly.y}
             hideSourceOnDrag={hideSourceOnDrag}
           >
-            {console.log(key)}
-            <div className={classes.draggableFirefly}>
+            {/* {console.log(firefly.firefly_id)} */}
+            <div className={classed.draggableFirefly}>
               <div
                 className={`${
-                  menuActive && ffId === key.firefly_id
-                    ? classes.menu
-                    : classes.hidden
+                  menuActive && ffId === firefly.firefly_id
+                    ? classed.menu
+                    : classed.hidden
                 }`}
               >
                 <div>
-                  <FaArrowsAlt className={classes.move} />
+                  <FaArrowsAlt className={classed.move} />
                 </div>
                 <Link to="/game">
-                  <FaPen className={classes.pen} />
+                  <FaPen className={classed.pen} />
                 </Link>
                 <div onClick={() => setTrashOpen(true)}>
-                  <FaTrashAlt className={classes.trash} />
+                  <FaTrashAlt className={classed.trash} />
                 </div>
               </div>
 
               <div
                 onClick={() => (
-                  setFFId(key.firefly_id), setMenuState(!menuActive)
+                  setFFId(firefly.firefly_id), setMenuState(!menuActive)
                 )}
               >
                 <FFanim
@@ -125,27 +148,27 @@ const FireflyContainer = ({ hideSourceOnDrag }) => {
                 open={trashOpen}
                 onClose={() => setTrashOpen(false)}
                 are-labelledby="remove-profile-dialog"
-                classes={{
-                  paper: classes.dialogPaper
+                classed={{
+                  paper: classed.dialogPaper
                 }}
               >
-                <DialogContent className={classes.dialogContainer}>
-                  <div className={classes.dialogTop}>
+                <DialogContent className={classed.dialogContainer}>
+                  <div className={classed.dialogTop}>
                     <FFicon
                       height={257}
                       width={264}
                       accessory="none"
                       color={642}
                     />
-                    <DialogContentText className={classes.dialogText}>
+                    <DialogContentText className={classed.dialogText}>
                       BYE BYE!
                     </DialogContentText>
                   </div>
 
                   <DialogActions>
-                    <div className={classes.dialogButtonContainer}>
+                    <div className={classed.dialogButtonContainer}>
                       <button
-                        className={classes.dialogButtons + " cancel"}
+                        className={classed.dialogButtons + " cancel"}
                         onClick={() => setTrashOpen(false)}
                       >
                         <FaTimes />
@@ -153,7 +176,7 @@ const FireflyContainer = ({ hideSourceOnDrag }) => {
 
                       <button
                         // onClick={confirmRemove}
-                        className={classes.dialogButtons + " remove"}
+                        className={classed.dialogButtons + " remove"}
                       >
                         <FaCheck />
                       </button>

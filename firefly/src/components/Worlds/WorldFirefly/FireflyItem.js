@@ -13,13 +13,17 @@ const FireflyItem = ({ id, left, top, hideSourceOnDrag, children }) => {
   // const classes = WorldFireflyStyles()
   const [{ isDragging }, drag] = useDrag({
     item: { id, left, top, type: itemType.Firefly },
-    collect: monitor => ({
+    collect: monitor => (
+      console.log('hey its dragging'),
+      {
       isDragging: monitor.isDragging()
     })
   })
   if (isDragging && hideSourceOnDrag) {
     return (
       <div ref={drag} />
+        
+     
     );
   }
   return (

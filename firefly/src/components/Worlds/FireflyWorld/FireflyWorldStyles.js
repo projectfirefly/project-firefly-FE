@@ -23,8 +23,8 @@ const chooseWorldStyles = makeStyles(theme => ({
   fireflyContainer: {
     border: "dashed yellow 2px",
     marginTop: "10%",
-    width: "98%",
-    height: "600px",
+    width: 1000,
+    height: 700,
     position:'relative',
 
   },
