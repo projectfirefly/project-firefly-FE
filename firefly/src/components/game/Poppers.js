@@ -115,25 +115,13 @@ export function Poppers({
         }
       >
         {togglePalette && open ? (
-          <PalettePopper
-            color={color}
-            setColor={setColor}
-            openPopper={openPopper}
-          />
+          <PalettePopper color={color} setColor={setColor} />
         ) : toggleTimer && open ? (
-          <TimerPopper time={time} setTime={setTime} openPopper={openPopper} />
+          <TimerPopper time={time} setTime={setTime} />
         ) : toggleRepeat && open ? (
-          <RepeatPopper
-            repeat={repeat}
-            setRepeat={setRepeat}
-            openPopper={openPopper}
-          />
+          <RepeatPopper repeat={repeat} setRepeat={setRepeat} />
         ) : toggleOnOff && open ? (
-          <OnOffPopper
-            onOff={onOff}
-            setOnOff={setOnOff}
-            openPopper={openPopper}
-          />
+          <OnOffPopper onOff={onOff} setOnOff={setOnOff} />
         ) : null}
       </Popper>
     </div>
