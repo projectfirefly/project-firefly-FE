@@ -339,9 +339,7 @@ const FFanim = ({
         ...animationParameters
       });
       t4 = anime.timeline({
-        targets: `.${classes.wrapper} svg .lightL path, .${
-          classes.wrapper
-        } svg .lightM path, .${classes.wrapper} svg .lightR path`,
+        targets: `.${classes.wrapper} svg .lightL path, .${classes.wrapper} svg .lightM path, .${classes.wrapper} svg .lightR path`,
         autoplay: false,
         ...animationParameters
       });
@@ -358,7 +356,7 @@ const FFanim = ({
     t3.play();
     t4.play();
     // }
-  }, [playing]);
+  }, [playing, t1, t2, t3, t4]);
 
   function accessorySwitch(selector) {
     if (accessory === selector) {
@@ -378,6 +376,7 @@ const FFanim = ({
     loop: true,
     autoplay: true,
     animationData: animationData2,
+    isClickToPauseDisabled: true,
     rendererSettings: {
       preserveAspectRatio: "xMidYMid slice"
     }

@@ -1,13 +1,13 @@
 import React from "react";
 import Lottie from "react-lottie";
-import animationData from "./fireflyHover.json";
+import animationData from "./cloud.json";
 
-const fireflyHover = () => {
+const Cloud = () => {
   const defaultOptions = {
-    loop: true,
+    loop: false,
     autoplay: true,
-    animationData: animationData,
     isClickToPauseDisabled: true,
+    animationData: animationData,
     rendererSettings: {
       preserveAspectRatio: "xMidYMid slice"
     }
@@ -16,4 +16,4 @@ const fireflyHover = () => {
   return <Lottie options={defaultOptions} height={400} width={400} />;
 };
 
-export default fireflyHover;
+export default Cloud;
