@@ -8,13 +8,13 @@ const Trash = styled.div`
   height: 150px;
   width: 150px;
   &:hover {
-    background: #dc143c;
+    /* background: #dc143c; */
     font-size: 68px;
     transition: 0.3s;
     translate: (50px 50px);
     color: #e3e5e8;
   }
-  border-top-left-radius: 100%;
+  /* border-top-left-radius: 100%; */
   position: fixed;
   right: 0;
   bottom: 0;
@@ -30,11 +30,11 @@ const Destruction = styled.div`
   height: 350px;
   width: 350px;
 
-  border-top-left-radius: 100%;
+  /* border-top-left-radius: 100%; */
   position: fixed;
   z-index: -5;
-  right: 0;
-  bottom: 0;
+  right: 50px;
+  bottom: 50px;
 `;
 
 const DropDelete = ({ trashing }) => {
