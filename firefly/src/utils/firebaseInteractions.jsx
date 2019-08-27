@@ -192,10 +192,15 @@ export const removeFirefly = async (child, firefly_id, world_id, dispatch) => {
   dispatch({ type: REMOVE_FIREFLY, payload: { firefly_id, world_id } });
 };
 //Add block to Firefly
-export const updateBlocks = async (child, requiredIds, payload, dispatch) => {
+export const updateBlocks = async (
+  child,
+  firefly_id,
+  world_id,
+  payload,
+  dispatch
+) => {
   const db = firebase.firestore();
   const uid = firebase.auth().currentUser.uid;
-  const { firefly_id, world_id } = requiredIds;
   let updatedFirefly = {
     ...payload
   };

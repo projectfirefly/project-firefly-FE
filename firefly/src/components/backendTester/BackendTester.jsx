@@ -43,7 +43,7 @@ const BackendTester = () => {
     addFirefly(context.selected.id, requiredId.world_id, worldDispatch)
   }
   const updateBlock = () => {
-    updateBlocks(context.selected.id, requiredIds, newBlock, worldDispatch)
+    updateBlocks(context.selected.id, requiredId.firefly_id, requiredId.world_id, newBlock, worldDispatch)
   }
 
   const removeFireflys = () => {
