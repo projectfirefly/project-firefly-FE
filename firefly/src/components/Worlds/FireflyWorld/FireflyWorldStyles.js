@@ -21,10 +21,10 @@ const chooseWorldStyles = makeStyles(theme => ({
     fontFamily: "'Nunito', sans-serif"
   },
   fireflyContainer: {
-    border: "dashed yellow 2px",
-    marginTop: "10%",
+    // border: "dashed yellow 2px",
+    marginTop: "2%",
     width: 1000,
-    height: 700,
+    height: 600,
     position: "relative"
   },
   fireflyItem: {
