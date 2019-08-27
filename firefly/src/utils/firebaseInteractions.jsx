@@ -188,13 +188,7 @@ export const removeFirefly = async (child, requiredIds, dispatch) => {
     .doc(firefly_id)
     .delete()
   dispatch({ type: REMOVE_FIREFLY, payload: requiredIds });
-<<<<<<< HEAD
-
 }
-
-=======
-} 
->>>>>>> 7057b2d9f1e80896e77085a89cfd83ef1f3c20d6
 //Add block to Firefly
 export const updateBlocks = async (child, requiredIds, payload, dispatch ) => {
   const db = firebase.firestore();
