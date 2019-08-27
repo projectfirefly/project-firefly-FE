@@ -356,7 +356,7 @@ const FFanim = ({
     t3.play();
     t4.play();
     // }
-  }, [playing, t1, t2, t3, t4]);
+  }, [playing]);
 
   function accessorySwitch(selector) {
     if (accessory === selector) {
