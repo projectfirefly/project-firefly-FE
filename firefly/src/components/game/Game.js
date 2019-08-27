@@ -173,6 +173,7 @@ const Game = () => {
   const [draggingBlock, isDraggingBlock] = useState(false);
   const [animationList, setAnimationList] = useState([]);
   const [playing, setPlaying] = useState(false);
+  const [trashing, setTrashing] = useState(false);
 
   useEffect(() => {
     if (list.length !== 0) {
@@ -269,7 +270,8 @@ const Game = () => {
       setList({
         [source.droppableId]: realList
       });
-      poof.play();
+      setTrashing(true);
+      // poof.play();
       return;
     }
 
@@ -338,7 +340,7 @@ const Game = () => {
           playAnimation={playAnimation}
           playing={playing}
         />
-        <DropDelete />
+        <DropDelete trashing={trashing} setTrashing={setTrashing} />
       </DragDropContext>
     </Board>
   );

@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Droppable, Draggable } from "react-beautiful-dnd";
+import Cloud from "../../assets/animations/Cloud";
 import styled from "styled-components";
 
 const Trash = styled.div`
@@ -42,6 +43,7 @@ const DropDelete = () => {
             icon="trash-alt"
             style={{ paddingLeft: "50px", paddingTop: "50px" }}
           />
+          <Cloud />
         </Trash>
       )}
     </Droppable>
