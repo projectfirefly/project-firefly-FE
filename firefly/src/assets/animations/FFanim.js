@@ -206,19 +206,23 @@ const FFanim = ({
 
     function addFinal() {
       t1.add({
-        fill: `hsl(52, 100%, 55%)`
+        // fill: `hsl(52, 100%, 55%)`
+        fill: `hsl(216, 2%, 91%)`
       });
 
       t2.add({
-        fill: `hsl(52, 100%, 40%)`
+        // fill: `hsl(52, 100%, 40%)`
+        fill: `hsl(216, 5%, 82%)`
       });
 
       t3.add({
-        fill: `hsl(52, 100%, 30%)`
+        // fill: `hsl(52, 100%, 30%)`
+        fill: `hsl(220, 8%, 73%)`
       });
 
       t4.add({
-        stroke: `hsl(52, 100%, 55%)`
+        // stroke: `hsl(52, 100%, 55%)`
+        stroke: `hsl(216, 2%, 91%)`
       });
     }
 
