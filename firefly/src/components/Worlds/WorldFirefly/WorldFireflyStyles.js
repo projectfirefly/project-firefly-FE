@@ -7,6 +7,12 @@ const WorldFireflyStyles = makeStyles({
     // marginLeft: "200px",
     width: "170px"
   },
+  draggableFirefly: {
+    position: 'absolute',
+    // background:'white',
+    padding:'0.5rem 1rem',
+    cursor: 'move',
+  },
   menu: {
     display: "flex",
     justifyContent: "space-between",

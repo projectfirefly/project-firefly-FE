@@ -1,71 +1,68 @@
 import React from "react";
+import uuid from "uuid/v4";
 
-const GreenBlockRightSideSvg = () => {
+function GreenBlockRightSideSvg() {
+  const id1 = uuid();
+  const id2 = uuid();
+  const id3 = uuid();
   return (
-    <svg width="85px" height="76px" viewBox="0 0 85 76" version="1.1">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      xmlnsXlink="http://www.w3.org/1999/xlink"
+      viewBox="0 0 85 76"
+      width="85px"
+      height="76px"
+      className="greenBoxRightSide"
+    >
       <defs>
         <radialGradient
+          id={id3}
           cx="50%"
           cy="50%"
+          r="56.302%"
           fx="50%"
           fy="50%"
-          r="56.3022823%"
-          gradientTransform="translate(0.500000,0.500000),scale(0.883117,1.000000),rotate(90.000000),translate(-0.500000,-0.500000)"
-          id="radialGradient-1"
+          gradientTransform="matrix(0 1 -.88312 0 .942 0)"
         >
-          <stop stop-color="#7CD147" offset="0%" />
-          <stop stop-color="#4AA810" offset="100%" />
+          <stop offset="0%" stopColor="#7CD147" />
+          <stop offset="100%" stopColor="#4AA810" />
         </radialGradient>
         <path
-          d="M66.0025475,3.82639828 L66.0025475,2.99687072 C72.7877608,10.7820361 77,21.6490033 77,33.6718388 C77,45.6946743 72.7877608,56.5616415 66.0025475,64.3468069 L66.0025475,64.1553281 C64.7448191,65.7687632 62.9822636,67.0121582 60.864419,67.6165428 C59.0741291,68.1274507 57.1767606,68.1284326 55.3859429,67.619378 C46.7496529,65.1644421 39.622877,63.9369741 34.0056153,63.9369741 C28.4138299,63.9369741 21.3261918,65.1533333 12.7427009,67.5860516 C7.42914138,69.0920066 1.90082991,66.005338 0.39487031,60.6917799 C-0.111490315,58.9051605 -0.110369046,57.0128361 0.398108491,55.226818 C2.80774487,46.7630142 4.01256306,39.6959219 4.01256306,34.0255411 C4.01256306,28.345017 2.80343061,21.26278 0.385165718,12.7788301 C-1.12876793,7.46753445 1.94960418,1.934594 7.26090036,0.420662245 C9.04854455,-0.0888878156 10.9428314,-0.0900902419 12.731121,0.417189942 C21.4194955,2.88180202 28.5109936,4.11410806 34.0056153,4.11410806 C39.5250386,4.11410806 46.6557869,2.87065213 55.3978602,0.383740251 C59.4208029,-0.760689344 63.5694919,0.728779572 66.0025475,3.82639828 Z"
-          id="path-2"
+          id={id2}
+          d="M66.003 3.826v-.83C72.788 10.783 77 21.65 77 33.673s-4.212 22.89-10.997 30.675v-.192a9.955 9.955 0 01-5.139 3.462 10 10 0 01-5.478.002c-8.636-2.455-15.763-3.682-21.38-3.682-5.592 0-12.68 1.216-21.263 3.65C7.429 69.091 1.9 66.004.395 60.691a10 10 0 01.003-5.465c2.41-8.464 3.615-15.531 3.615-21.201 0-5.681-1.21-12.763-3.628-21.247C-1.129 7.468 1.95 1.935 7.261.42a10 10 0 015.47-.004c8.688 2.465 15.78 3.697 21.275 3.697 5.519 0 12.65-1.243 21.392-3.73a10.003 10.003 0 0110.605 3.442z"
         />
         <filter
-          x="-9.1%"
-          y="-7.4%"
+          id={id1}
           width="118.2%"
           height="120.6%"
+          x="-9.1%"
+          y="-7.4%"
           filterUnits="objectBoundingBox"
-          id="filter-3"
         >
-          <feOffset
-            dx="0"
-            dy="2"
-            in="SourceAlpha"
-            result="shadowOffsetOuter1"
-          />
+          <feOffset dy="2" in="SourceAlpha" result="shadowOffsetOuter1" />
           <feGaussianBlur
-            stdDeviation="2"
             in="shadowOffsetOuter1"
             result="shadowBlurOuter1"
+            stdDeviation="2"
           />
           <feColorMatrix
-            values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0"
-            type="matrix"
             in="shadowBlurOuter1"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0"
           />
         </filter>
       </defs>
       <g
-        id="Style-Guide"
-        stroke="none"
-        stroke-width="1"
         fill="none"
-        fill-rule="evenodd"
+        fillRule="evenodd"
+        stroke="none"
+        strokeWidth="1"
+        transform="translate(-292 -1924) translate(150 1873) translate(146 53)"
       >
-        <g id="CodingBlocks" transform="translate(-292.000000, -1924.000000)">
-          <g id="Group-22" transform="translate(150.000000, 1873.000000)">
-            <g id="Group-5-Copy" transform="translate(146.000000, 53.000000)">
-              <g id="GreenBlockRightSideEndState">
-                <use fill="black" fill-opacity="1" filter="url(#filter-3)" />
-                <use fill="url(#radialGradient-1)" fill-rule="evenodd" />
-              </g>
-            </g>
-          </g>
-        </g>
+        <use fill="#000" filter={`url(#${id1})`} xlinkHref={`#${id2}`} />
+        <use fill={`url(#${id3})`} xlinkHref={`#${id2}`} />
       </g>
     </svg>
   );
-};
+}
 
 export default GreenBlockRightSideSvg;
