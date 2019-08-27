@@ -10,21 +10,24 @@ const style = {
   cursor: 'move',
 }
 const FireflyItem = ({ id, left, top, hideSourceOnDrag, canDrag, children }) => {
+  const dragAway = () => {
+    if(canDrag === true){
+      return drag
+    }
+  }
   const [{ isDragging }, drag] = useDrag({
     item: { id, left, top, type: itemType.Firefly },
     collect: monitor => ({
       isDragging: monitor.isDragging()
     })
   })
-  if (isDragging && hideSourceOnDrag && canDrag) {
+  if ( isDragging && hideSourceOnDrag) {
     return (
-      <div ref={drag} />
-        
-     
+      <div ref={dragAway()} />
     );
   }
   return (
-    <div ref={drag} style={{...style, left, top }}>
+    <div ref={dragAway()} style={{...style, left, top }}>
       {children}
     </div>
   );

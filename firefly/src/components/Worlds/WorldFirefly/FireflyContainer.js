@@ -44,9 +44,8 @@ const FireflyContainer = ({ hideSourceOnDrag }) => {
   const [ffId, setFFId] = useState();
   const [trashOpen, setTrashOpen] = useState(false);
   const [canDrag, setCanDrag] = useState(false);
-  const Clicked = useCallback(() => setCanDrag(!canDrag), [
-    canDrag,
-  ])
+  // const Clicked = useCallback(() => setCanDrag(true),[],console.log('clicked'))
+
   const theFireflies = worldContext.worlds[0].fireflies
     ? worldContext.worlds[0].fireflies.map(fireflies => {
         return fireflies;
@@ -64,14 +63,12 @@ const FireflyContainer = ({ hideSourceOnDrag }) => {
       const left = Math.round(item.left + delta.x);
       const top = Math.round(item.top + delta.y);
       moveFirefly(item.id, left, top);
+      setCanDrag(false);
       return undefined;
     }
   });
   const moveFirefly = (id, left , top) => {
-    // console.log(id, left, top, 'this is the moveFirefly')
-
     const updatedFireflies = fireflies.map((firefly) =>{
-      // console.log(firefly)
       if(firefly.firefly_id === id){
         return {
           ...firefly,
@@ -110,7 +107,7 @@ const FireflyContainer = ({ hideSourceOnDrag }) => {
                     : classed.hidden
                 }`}
               >
-                <div onClick={() => Clicked()}>
+                <div onClick={() => (setCanDrag(true), setMenuState(false))}>
                   <FaArrowsAlt className={classed.move} />
                 </div>
                 <Link to="/game">
