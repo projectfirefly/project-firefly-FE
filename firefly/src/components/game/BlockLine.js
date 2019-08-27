@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { Droppable } from "react-beautiful-dnd";
 import StartBlockTarget from "./../../images/gameIcons/StartBlockTarget.svg";
 import EmptyBlockTarget from "./../../images/gameIcons/EmptyBlockTarget.svg";
 import CodeBlock from "./CodeBlock";
-
+import usePrevious from "./../../utils/usePrevious";
 const List = styled.div`
   height: 100%;
   min-height: 90px;
@@ -65,7 +65,17 @@ const ButtonBox = styled.img`
   width: 100%;
 `;
 
-const BlockLine = ({ list, setList, hasStart, draggingBlock }) => {
+const BlockLine = ({
+  list,
+  setList,
+  hasStart,
+  draggingBlock,
+  animationList,
+  setAnimationList,
+  playAnimation,
+  playing
+}) => {
+  const [playClicked, setPlayClicked] = useState(false);
   const [openPopper, setOpenPopper] = useState(false);
 
   const togglePopper = (id, blocks, type, value) => {
@@ -81,6 +91,64 @@ const BlockLine = ({ list, setList, hasStart, draggingBlock }) => {
       });
     }
     setOpenPopper(!openPopper);
+  };
+
+  const errorChecking = i => {
+    const [restructuredList] = Object.values(list);
+
+    if (restructuredList.length > 1) {
+      //start block error check
+      if (i !== 0 && restructuredList[i].rsi === 0) {
+        return true;
+      }
+      //blue block error check
+      if (i !== 1 && restructuredList[i].rsi === 1) {
+        return true;
+      }
+      if (restructuredList.length > i + 1 && i !== 0) {
+        if (
+          restructuredList[i].repeat &&
+          (restructuredList[i + 1].repeat || restructuredList[i - 1].repeat)
+        ) {
+          return true;
+        } else {
+          return false;
+        }
+      } else if (i === 0) {
+        if (restructuredList[i].repeat && restructuredList[i + 1].repeat) {
+          return true;
+        } else {
+          return false;
+        }
+      } else {
+        if (restructuredList[i].repeat && restructuredList[i - 1].repeat) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    }
+  };
+
+  useEffect(() => {
+    setPlayClicked(false);
+  }, [list]);
+
+  const clickedPlay = () => {
+    const [listArray] = Object.values(list);
+    let lineError = false;
+    setPlayClicked(true);
+
+    for (let i = 0; i < listArray.length; i++) {
+      if (lineError) {
+        break;
+      }
+      lineError = errorChecking(i);
+    }
+
+    if (!lineError) {
+      playAnimation();
+    }
   };
 
   return (
@@ -112,6 +180,12 @@ const BlockLine = ({ list, setList, hasStart, draggingBlock }) => {
                       list={list}
                       setList={setList}
                       blocks={blocks}
+                      animationList={animationList}
+                      setAnimationList={setAnimationList}
+                      playAnimation={playAnimation}
+                      clickedPlay={clickedPlay}
+                      playClicked={playClicked}
+                      errorChecking={errorChecking}
                     />
                   ))
                 : !provided.placeholder && <Notice>Drop items here</Notice>}

@@ -1,20 +1,54 @@
-import React from "react";
+import React, { useState, useContext, useEffect } from "react";
+import firebase from "firebase";
+import {
+  addWorld,
+  removeWorld,
+  getWorld
+} from "../../../utils/firebaseInteractions";
+
 import chooseWorldStyles from "./ChooseWorldStyles";
 import WorldCard from "./WorldCard";
 import fireflyWorld1 from "./fireflyWorld1.png";
 import lockedWorld from "./lockedWorld.png";
-import { SecondaryButton } from "../../../utils/buttons/SecondaryButton";
+import { Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
 
+//importing the stores
+import { gameContext, UPDATE_SELECTED } from "../../../context/Game/GameStore";
+
 const ChooseWorld = () => {
+  //making the states from the stores
+  const [worldContext, worldDispatch] = useContext(gameContext);
+
+  useEffect(() => {
+    console.log(worldContext);
+  }, []);
+
+  //gets the world id when clicked
+  const GameState = world => {
+    worldDispatch({ type: UPDATE_SELECTED, payload: world.id });
+  };
+
+  //this is the style
   const classes = chooseWorldStyles();
+  // const defaultWorld = { worldName: "Main World" };
   return (
     <div className={classes.rootContainer}>
       <hl className={classes.title}> CHOOSE YOUR WORLD </hl>
       <div className={classes.worldContainer}>
-        <Link to="fireflyworld" className={classes.links}>
-          <WorldCard title={"Fireflies"} img={fireflyWorld1} />
-        </Link>
+        {worldContext === undefined
+          ? null
+          : worldContext.worlds.map(world => {
+              return (
+                <Link
+                  to="fireflyworld"
+                  className={classes.links}
+                  onClick={() => GameState(world)}
+                >
+                  <WorldCard title={`${world.worldName}`} img={fireflyWorld1} />
+                </Link>
+              );
+            })}
         <WorldCard title={"Coming Soon"} img={lockedWorld} />
 
         <WorldCard title={"Coming Soon"} img={lockedWorld} />
@@ -22,9 +56,9 @@ const ChooseWorld = () => {
         <WorldCard title={"Coming Soon"} img={lockedWorld} />
 
         <div className={classes.buttonContainer}>
-          <div className={classes.backButton}>
-            <SecondaryButton text={"BACK"} />
-          </div>
+          <Link to="/myfirefly" className={classes.backButton}>
+            <Typography variant="button">Back</Typography>
+          </Link>
         </div>
       </div>
     </div>

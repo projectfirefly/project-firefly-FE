@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Draggable } from "react-beautiful-dnd";
 import Popper from "./Popper.js";
 import PaletteIcon from "./Poppers/PaletteIcon.js";
@@ -15,6 +15,9 @@ import ToggleOffIcon from "./../../images/gameIcons/ToggleOffIcon.svg";
 // import NumberIcon8 from "./../../images/gameIcons/NumberIcon8.svg";
 // import NumberIcon9 from "./../../images/gameIcons/NumberIcon9.svg";
 import RepeatIconNew from "./../../images/gameIcons/RepeatIconNew.svg";
+import GreenBlockRightSideSvg from "./reactSvg/GreenBlockRightSideSvg.js";
+import OrangeStartBlock from "./reactSvg/OrangeStartBlock.js";
+import BlueBlock from "./reactSvg/BlueBlock.js";
 
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -34,7 +37,23 @@ const useStyles = makeStyles({
   tool: {
     display: "flex",
     position: "relative",
-    width: "100px"
+    width: "100px",
+    "& svg": {
+      width: "100%",
+      height: "100%"
+    },
+    "&.blockError svg.greenBoxRightSide path": {
+      stroke: "#dc143c",
+      strokeWidth: "2"
+    },
+    "&.blockError svg.orangeStartBlock path": {
+      stroke: "#dc143c",
+      strokeWidth: "2"
+    },
+    "&.blockError svg.blueBlock path": {
+      stroke: "#dc143c",
+      strokeWidth: "2"
+    }
   },
 
   item: {
@@ -119,24 +138,29 @@ const CodeBlock = ({
   list,
   setList,
   id,
-  blocks
+  blocks,
+  playAnimation,
+  clickedPlay,
+  playClicked,
+  errorChecking
 }) => {
   const classes = useStyles();
 
   const [togglePalette, setTogglePalette] = useState(false);
   const [toggleTimer, setToggleTimer] = useState(false);
-  const [toggleCount, setToggleCount] = useState(false);
-  const [toggleSwitch, setToggleSwitch] = useState(false);
+  const [toggleRepeat, setToggleRepeat] = useState(false);
+  const [toggleOnOff, setToggleOnOff] = useState(false);
+  const [error, setError] = useState(false);
 
   //state that's used in lower levels. These are passed in props to different poppers
   //Switch State
-  const [checkedSwitch, setCheckedSwitch] = useState(false);
+  const [onOff, setOnOff] = useState(false);
 
-  //Count State
-  const [number, setNumber] = useState(1);
+  //Repeat State
+  const [repeat, setRepeat] = useState(1);
 
   //Timer State
-  const [time, setTime] = useState(0);
+  const [time, setTime] = useState(1);
 
   //Palette State
   const [color, setColor] = useState(1, 0, 100);
@@ -150,13 +174,21 @@ const CodeBlock = ({
     setToggleTimer(!toggleTimer);
   };
 
-  const setCount = () => {
-    setToggleCount(!toggleCount);
+  const toggleSetRepeat = () => {
+    setToggleRepeat(!toggleRepeat);
   };
 
-  const setSwitch = () => {
-    setToggleSwitch(!toggleSwitch);
+  const setOnOffSwitch = () => {
+    setToggleOnOff(!toggleOnOff);
   };
+
+  const checkForErrors = () => {
+    setError(errorChecking(index));
+  };
+
+  useEffect(() => {
+    checkForErrors();
+  }, [list]);
 
   return (
     <Draggable
@@ -176,25 +208,50 @@ const CodeBlock = ({
             isDragging={snapshot.isDragging}
             style={provided.draggableProps.style}
           >
-            {//Repeat
+            {//Play/Start Orange Block
+            item.rsi === 0 ? (
+              <div
+                className={
+                  error && playClicked
+                    ? classes.tool + " blockError"
+                    : classes.tool
+                }
+                onClick={clickedPlay}
+              >
+                <OrangeStartBlock />
+                {item.functionality}
+              </div>
+            ) : //BlueBlock
+            item.rsi === 1 ? (
+              <div
+                className={
+                  error && playClicked
+                    ? classes.tool + " blockError"
+                    : classes.tool
+                }
+              >
+                <BlueBlock />
+                {item.functionality}
+              </div>
+            ) : //Repeat
             item.rsi === 2 ? (
               <Popper
                 onClick={
-                  !openPopper || toggleCount
+                  !openPopper || toggleRepeat
                     ? () => {
-                        togglePopper(id, blocks, "number", number);
-                        setCount();
+                        togglePopper(id, blocks, "repeat", repeat);
+                        toggleSetRepeat();
                       }
                     : null
                 }
                 open={openPopper}
-                toggleCount={toggleCount}
-                number={number}
-                setNumber={setNumber}
+                toggleRepeat={toggleRepeat}
+                repeat={repeat}
+                setRepeat={setRepeat}
               >
-                {toggleCount ? (
+                {toggleRepeat ? (
                   <div className={classes.tool}>
-                    {item.content}
+                    <GreenBlockRightSideSvg />
                     <img
                       src={CheckCircleIcon}
                       alt="check circle"
@@ -202,85 +259,91 @@ const CodeBlock = ({
                     />
                   </div>
                 ) : (
-                  <div className={classes.tool}>
-                    {item.content}
-                    {number === 1 ? (
+                  <div
+                    className={
+                      error && playClicked
+                        ? classes.tool + " blockError"
+                        : classes.tool
+                    }
+                  >
+                    <GreenBlockRightSideSvg />
+                    {repeat === 1 ? (
                       <div>
                         <img
                           src={RepeatIconNew}
-                          alt="number one"
+                          alt="repeat one"
                           className={classes.repeatIcon}
                         />
                         <p className={classes.repeatNumber}>1</p>
                       </div>
-                    ) : number === 2 ? (
+                    ) : repeat === 2 ? (
                       <div>
                         <img
                           src={RepeatIconNew}
-                          alt="number two"
+                          alt="repeat two"
                           className={classes.repeatIcon}
                         />
                         <p className={classes.repeatNumber}>2</p>
                       </div>
-                    ) : number === 3 ? (
+                    ) : repeat === 3 ? (
                       <div>
                         <img
                           src={RepeatIconNew}
-                          alt="number three"
+                          alt="repeat three"
                           className={classes.repeatIcon}
                         />
                         <p className={classes.repeatNumber}>3</p>
                       </div>
-                    ) : number === 4 ? (
+                    ) : repeat === 4 ? (
                       <div>
                         <img
                           src={RepeatIconNew}
-                          alt="number four"
+                          alt="repeat four"
                           className={classes.repeatIcon}
                         />
                         <p className={classes.repeatNumber}>4</p>
                       </div>
-                    ) : number === 5 ? (
+                    ) : repeat === 5 ? (
                       <div>
                         <img
                           src={RepeatIconNew}
-                          alt="number five"
+                          alt="repeat five"
                           className={classes.repeatIcon}
                         />
                         <p className={classes.repeatNumber}>5</p>
                       </div>
-                    ) : number === 6 ? (
+                    ) : repeat === 6 ? (
                       <div>
                         <img
                           src={RepeatIconNew}
-                          alt="number six"
+                          alt="repeat six"
                           className={classes.repeatIcon}
                         />
                         <p className={classes.repeatNumber}>6</p>
                       </div>
-                    ) : number === 7 ? (
+                    ) : repeat === 7 ? (
                       <div>
                         <img
                           src={RepeatIconNew}
-                          alt="number seven"
+                          alt="repeat seven"
                           className={classes.repeatIcon}
                         />
                         <p className={classes.repeatNumber}>7</p>
                       </div>
-                    ) : number === 8 ? (
+                    ) : repeat === 8 ? (
                       <div>
                         <img
                           src={RepeatIconNew}
-                          alt="number eight"
+                          alt="repeat eight"
                           className={classes.repeatIcon}
                         />
                         <p className={classes.repeatNumber}>8</p>
                       </div>
-                    ) : number === 9 ? (
+                    ) : repeat === 9 ? (
                       <div>
                         <img
                           src={RepeatIconNew}
-                          alt="number nine"
+                          alt="repeat nine"
                           className={classes.repeatIcon}
                         />
                         <p className={classes.repeatNumber}>9</p>
@@ -310,7 +373,7 @@ const CodeBlock = ({
               >
                 {togglePalette ? (
                   <div className={classes.tool}>
-                    {item.content}
+                    <GreenBlockRightSideSvg />
                     <img
                       src={CheckCircleIcon}
                       alt="check circle"
@@ -319,7 +382,7 @@ const CodeBlock = ({
                   </div>
                 ) : (
                   <div className={classes.tool}>
-                    {item.content}
+                    <GreenBlockRightSideSvg />
                     {
                       <div className={classes.palette}>
                         <PaletteIcon
@@ -349,7 +412,7 @@ const CodeBlock = ({
               >
                 {toggleTimer ? (
                   <div className={classes.tool}>
-                    {item.content}
+                    <GreenBlockRightSideSvg />
                     <img
                       src={CheckCircleIcon}
                       alt="check circle"
@@ -358,7 +421,7 @@ const CodeBlock = ({
                   </div>
                 ) : (
                   <div className={classes.tool}>
-                    {item.content}
+                    <GreenBlockRightSideSvg />
                     {time === 1 ? (
                       <p className={classes.count}>1s</p>
                     ) : time === 2 ? (
@@ -403,7 +466,7 @@ const CodeBlock = ({
             //   >
             //     {toggleCount ? (
             //       <div className={classes.tool}>
-            //         {item.content}
+            //         <GreenBlockRightSideSvgclassName={classes.svgBlock}/>
             //         <img
             //           src={CheckCircleIcon}
             //           alt="check circle"
@@ -412,7 +475,7 @@ const CodeBlock = ({
             //       </div>
             //     ) : (
             //       <div className={classes.tool}>
-            //         {item.content}
+            //         <GreenBlockRightSideSvgclassName={classes.svgBlock}/>
             //         {number === 1 ? (
             //           <img
             //             src={NumberIcon1}
@@ -476,21 +539,21 @@ const CodeBlock = ({
             item.rsi === 6 ? (
               <Popper
                 onClick={
-                  !openPopper || toggleSwitch
+                  !openPopper || toggleOnOff
                     ? () => {
-                        togglePopper(id, blocks, "switch", checkedSwitch);
-                        setSwitch();
+                        togglePopper(id, blocks, "onOff", onOff);
+                        setOnOffSwitch();
                       }
                     : null
                 }
-                checkedSwitch={checkedSwitch}
-                setCheckedSwitch={setCheckedSwitch}
+                onOff={onOff}
+                setOnOff={setOnOff}
                 open={openPopper}
-                toggleSwitch={toggleSwitch}
+                toggleOnOff={toggleOnOff}
               >
-                {toggleSwitch ? (
+                {toggleOnOff ? (
                   <div className={classes.tool}>
-                    {item.content}
+                    <GreenBlockRightSideSvg />
                     <img
                       src={CheckCircleIcon}
                       alt="check circle"
@@ -499,8 +562,8 @@ const CodeBlock = ({
                   </div>
                 ) : (
                   <div className={classes.tool}>
-                    {item.content}
-                    {checkedSwitch ? (
+                    <GreenBlockRightSideSvg />
+                    {onOff ? (
                       <img
                         src={ToggleOnIcon}
                         alt="toggle on"

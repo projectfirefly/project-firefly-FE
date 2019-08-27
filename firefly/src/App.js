@@ -9,7 +9,7 @@ import LoadedChecker from "./utils/Loaders/LoadedChecker";
 import GameContextStore from "./context/Game/GameStore";
 import ChildProfileStore from "./context/ChildProfiles/ChildProfileStore";
 
-import {ThemeProvider} from "@material-ui/styles";
+import { ThemeProvider } from "@material-ui/styles";
 import useTheme from "./styles/theme";
 import { createMuiTheme } from "@material-ui/core";
 
@@ -21,8 +21,10 @@ ReactGA.pageview(window.location.pathname + window.location.search);
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
+  //set to false
 
   const [isLoading, setIsLoading] = useState(true);
+  //set to true
 
   // console.log("App Render");
 
@@ -50,7 +52,11 @@ function App() {
             {isLoading ? (
               <LoadedChecker logged={loggedIn} setIsLoading={setIsLoading} />
             ) : (
-              <DevMenu isLoading={isLoading} setIsLoading={setIsLoading} logged={loggedIn} />
+              <DevMenu
+                isLoading={isLoading}
+                setIsLoading={setIsLoading}
+                logged={loggedIn}
+              />
             )}
           </GameContextStore>
         </ChildProfileStore>

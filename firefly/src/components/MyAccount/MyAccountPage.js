@@ -37,7 +37,6 @@ export default function ProfileView(props) {
   useEffect(() => {
     if (
       childProfileState.loaded &&
-      childProfileState.hasProfiles &&
       !finishedLoading
     ) {
       setUpdatedInfo({
@@ -79,7 +78,6 @@ export default function ProfileView(props) {
 
   if (
     childProfileState.loaded &&
-    childProfileState.hasProfiles &&
     finishedLoading
   ) {
     return (
@@ -234,16 +232,20 @@ export default function ProfileView(props) {
                 </div>
 
                 <hr className={classes.style1} />
-                {childProfileState.user.profiles.map(profile => {
-                  return (
-                    <ProfileCard
-                      name={profile.first_name + " " + profile.last_name}
-                      history={props.history}
-                      key={profile.id}
-                      id={profile.id}
-                    />
-                  );
-                })}
+                {childProfileState.user.profiles ? (
+                  childProfileState.user.profiles.map(profile => {
+                    return (
+                      <ProfileCard
+                        name={profile.first_name + " " + profile.last_name}
+                        history={props.history}
+                        key={profile.id}
+                        id={profile.id}
+                      />
+                    );
+                  })
+                ) : (
+                  <div />
+                )}
               </div>
             </Paper>
 
@@ -255,7 +257,10 @@ export default function ProfileView(props) {
               </div>
             ) : (
               <div className={classes.editButtons}>
-                <div className={classes.button + " back"} onClick={toggleEditing}>
+                <div
+                  className={classes.button + " back"}
+                  onClick={toggleEditing}
+                >
                   <Typography variant="button">Back</Typography>
                 </div>
                 <div className={classes.button} onClick={submit}>
