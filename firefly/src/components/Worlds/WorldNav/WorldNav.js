@@ -7,7 +7,7 @@ import { addFirefly } from "../../../utils/firebaseInteractions";
 import WorldNavStyles from "./WorldNavStyles";
 import { FaTimes, FaPlus } from "react-icons/fa";
 import { Typography } from "@material-ui/core";
-import FireflyOutline from "../../../assets/icons/firefly/OutlineFrieflyIcon.svg";
+import FireflyOutline from "./ffOutline.svg";
 
 //Context
 import { gameContext, ADD_FIREFLY } from "../../../context/Game/GameStore";
@@ -44,7 +44,7 @@ export const WorldNav = props => {
         <Link className={classes.link} onClick={newFF} to="/game">
           <Typography variant="button">
             <FaPlus />
-            {/* <FireflyOutline />  */}
+            {/* <FireflyOutline width={100} /> */}
           </Typography>
         </Link>
       </div>
