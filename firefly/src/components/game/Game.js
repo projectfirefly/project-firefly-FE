@@ -271,7 +271,10 @@ const Game = () => {
         [source.droppableId]: realList
       });
       setTrashing(true);
-      // poof.play();
+      setTimeout(() => {
+        setTrashing(false);
+      }, 2000);
+      poof.play();
       return;
     }
 
@@ -340,7 +343,7 @@ const Game = () => {
           playAnimation={playAnimation}
           playing={playing}
         />
-        <DropDelete trashing={trashing} setTrashing={setTrashing} />
+        <DropDelete trashing={trashing} />
       </DragDropContext>
     </Board>
   );
