@@ -17,12 +17,12 @@ const useStyles = makeStyles({
     position: "absolute",
     top: "25%",
     left: "30%",
-    width: "40px"
+    width: "40px",
   },
 
   container: {
     display: "flex",
-    flexDirection: "column"
+    flexDirection: "column",
   },
 
   tool: {
@@ -31,20 +31,20 @@ const useStyles = makeStyles({
     width: "100px",
     "& svg": {
       width: "100%",
-      height: "100%"
+      height: "100%",
     },
     "&.blockError svg.greenBoxRightSide path": {
       stroke: "#dc143c",
-      strokeWidth: "2"
+      strokeWidth: "2",
     },
     "&.blockError svg.orangeStartBlock path": {
       stroke: "#dc143c",
-      strokeWidth: "2"
+      strokeWidth: "2",
     },
     "&.blockError svg.blueBlock path": {
       stroke: "#dc143c",
-      strokeWidth: "2"
-    }
+      strokeWidth: "2",
+    },
   },
 
   item: {
@@ -53,26 +53,26 @@ const useStyles = makeStyles({
     margin: "0 -10px 0 0",
     alignItems: "flex-start",
     alignContent: "flex-start",
-    borderRadius: "3px"
+    borderRadius: "3px",
   },
 
   toggleOn: {
     position: "absolute",
     top: "32%",
-    left: "30%"
+    left: "30%",
   },
 
   toggleOff: {
     position: "absolute",
     top: "32%",
-    left: "30%"
+    left: "30%",
   },
 
   number: {
     position: "absolute",
     left: "28%",
     top: "25%",
-    width: "40px"
+    width: "40px",
   },
 
   count: {
@@ -81,7 +81,7 @@ const useStyles = makeStyles({
     fontFamily: "Nunito",
     left: "25%",
     color: "white",
-    top: "25%"
+    top: "25%",
   },
 
   countTen: {
@@ -90,7 +90,7 @@ const useStyles = makeStyles({
     fontFamily: "Nunito",
     left: "18%",
     color: "white",
-    top: "25%"
+    top: "25%",
   },
 
   palette: {
@@ -101,15 +101,15 @@ const useStyles = makeStyles({
 
     "& svg": {
       width: "40px",
-      height: "40px"
-    }
+      height: "40px",
+    },
   },
 
   repeatIcon: {
     top: "19%",
     left: "17%",
     width: "60%",
-    position: "absolute"
+    position: "absolute",
   },
 
   repeatNumber: {
@@ -117,8 +117,8 @@ const useStyles = makeStyles({
     left: "44%",
     top: "32%",
     fontSize: "2.8rem",
-    color: "white"
-  }
+    color: "white",
+  },
 });
 
 const CodeBlock = ({
@@ -138,7 +138,7 @@ const CodeBlock = ({
   setAnchorEl,
   open,
   popperId,
-  handleClick
+  handleClick,
 }) => {
   const classes = useStyles();
 
@@ -181,6 +181,21 @@ const CodeBlock = ({
   const checkForErrors = () => {
     setError(errorChecking(index));
   };
+
+  useEffect(() => {
+    if (item.color || item.onOff || item.timer || item.repeat) {
+      setHasBeenClicked(true);
+      if (item.color) {
+        setColor(item.color);
+      } else if (item.timer) {
+        setTime(item.timer);
+      } else if (item.repeat) {
+        setRepeat(item.repeat);
+      } else if (item.onOff) {
+        setOnOff(item.onOff);
+      }
+    }
+  }, [item]);
 
   useEffect(() => {
     checkForErrors();
