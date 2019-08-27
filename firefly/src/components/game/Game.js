@@ -206,6 +206,7 @@ const Game = ({ selectedWorldId, firefly }) => {
   const [draggingBlock, isDraggingBlock] = useState(false);
   const [animationList, setAnimationList] = useState([]);
   const [playing, setPlaying] = useState(false);
+  const [trashing, setTrashing] = useState(false);
 
   const createBlocksFromBackend = blockList => {
     const newList = blockList.map(block => {
@@ -420,6 +421,10 @@ const Game = ({ selectedWorldId, firefly }) => {
       setList({
         [source.droppableId]: realList
       });
+      setTrashing(true);
+      setTimeout(() => {
+        setTrashing(false);
+      }, 630);
       poof.play();
       return;
     }
@@ -489,7 +494,7 @@ const Game = ({ selectedWorldId, firefly }) => {
           playAnimation={playAnimation}
           playing={playing}
         />
-        <DropDelete />
+        <DropDelete trashing={trashing} />
       </DragDropContext>
       <div className={classes.buttonContainer}>
         <Link to="/fireflyworld" className={classes.back}>

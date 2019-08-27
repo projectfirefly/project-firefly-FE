@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Droppable, Draggable } from "react-beautiful-dnd";
+import Cloud from "../../assets/animations/Cloud";
 import styled from "styled-components";
 
 const Trash = styled.div`
@@ -25,7 +26,18 @@ const Trash = styled.div`
   transition: 0.5s;
 `;
 
-const DropDelete = () => {
+const Destruction = styled.div`
+  height: 350px;
+  width: 350px;
+
+  border-top-left-radius: 100%;
+  position: fixed;
+  z-index: -5;
+  right: 0;
+  bottom: 0;
+`;
+
+const DropDelete = ({ trashing }) => {
   return (
     <Droppable
       droppableId="TRASH"
@@ -33,16 +45,28 @@ const DropDelete = () => {
       direction="horizontal"
     >
       {(provided, snapshot) => (
-        <Trash
-          ref={provided.innerRef}
-          innerRef={provided.innerRef}
-          isDraggingOver={snapshot.isDraggingOver}
-        >
-          <FontAwesomeIcon
-            icon="trash-alt"
-            style={{ paddingLeft: "50px", paddingTop: "50px" }}
-          />
-        </Trash>
+        <div>
+          {!trashing ? (
+            <Trash
+              ref={provided.innerRef}
+              innerRef={provided.innerRef}
+              isDraggingOver={snapshot.isDraggingOver}
+            >
+              <FontAwesomeIcon
+                icon="trash-alt"
+                style={{ paddingLeft: "50px", paddingTop: "50px" }}
+              />
+            </Trash>
+          ) : (
+            <Destruction
+              ref={provided.innerRef}
+              innerRef={provided.innerRef}
+              isDraggingOver={snapshot.isDraggingOver}
+            >
+              <Cloud />
+            </Destruction>
+          )}
+        </div>
       )}
     </Droppable>
   );
