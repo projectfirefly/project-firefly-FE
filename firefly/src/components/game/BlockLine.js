@@ -10,7 +10,7 @@ const List = styled.div`
   min-height: 90px;
   background: none;
   border-radius: 16px;
-  width: 88%;
+  width: 100%;
   overflow-x: auto;
   overflow-y: hidden;
   display: -webkit-box;
@@ -22,10 +22,10 @@ const ListContainer = styled.div`
   min-height: 90px;
   background: none;
   border-radius: 16px;
-  width: 88%;
+  width: 85%;
   overflow-x: auto;
   overflow-y: hidden;
-  margin-left: 130px;
+  margin-left: 15%;
   display: -webkit-box;
   -webkit-align-items: center;
   -webkit-box-align: center;
