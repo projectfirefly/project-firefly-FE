@@ -1,9 +1,8 @@
-import React, { useState, useContext, useCallback } from "react";
+import React, { useState, useContext } from "react";
 import { useDrop } from "react-dnd";
 import { Link } from "react-router-dom";
 import itemType from "./itemType";
 import FireflyItem from "./FireflyItem";
-import update from "immutability-helper";
 
 //importing the firebase stuff needed
 import { removeFirefly } from "../../../utils/firebaseInteractions.jsx";
@@ -14,6 +13,7 @@ import {
   SELECTED_WORLD,
   REMOVE_FIREFLY
 } from "../../../context/Game/GameStore";
+import { childContext } from "../../../context/ChildProfiles/ChildProfileStore";
 import {
   FaPen,
   FaTrashAlt,
@@ -38,27 +38,22 @@ const FireflyContainer = ({ hideSourceOnDrag }) => {
   const classes = fireflyStyles();
   const classed = WorldFireflyStyles();
 
-
+  const [context, contextDispatch] = useContext(childContext);
   const [worldContext, worldDispatch] = useContext(gameContext);
   const [menuActive, setMenuState] = useState(false);
   const [ffId, setFFId] = useState();
   const [trashOpen, setTrashOpen] = useState(false);
   const [canDrag, setCanDrag] = useState(false);
-  // const Clicked = useCallback(() => setCanDrag(true),[],console.log('clicked'))
 
   const theFireflies = worldContext.worlds[0].fireflies
     ? worldContext.worlds[0].fireflies.map(fireflies => {
         return fireflies;
       })
     : null;
-  const [fireflies, setFireflies] = useState([
-    ...theFireflies
-  ]);
-  // console.log(fireflies)
+  const [fireflies, setFireflies] = useState([...theFireflies]);
   const [, drop] = useDrop({
     accept: itemType.Firefly,
     drop(item, monitor) {
-      // console.log(item,'this is the item from drop')
       const delta = monitor.getDifferenceFromInitialOffset();
       const left = Math.round(item.left + delta.x);
       const top = Math.round(item.top + delta.y);
@@ -67,26 +62,36 @@ const FireflyContainer = ({ hideSourceOnDrag }) => {
       return undefined;
     }
   });
-  const moveFirefly = (id, left , top) => {
-    const updatedFireflies = fireflies.map((firefly) =>{
-      if(firefly.firefly_id === id){
+  const moveFirefly = (id, left, top) => {
+    const updatedFireflies = fireflies.map(firefly => {
+      if (firefly.firefly_id === id) {
         return {
           ...firefly,
           x: left,
-          y: top,
-        }
+          y: top
+        };
       } else {
-        return firefly
+        return firefly;
       }
-    })
+    });
 
-    setFireflies(
-      [
-        ...updatedFireflies
-      ]
-    );
+    setFireflies([...updatedFireflies]);
   };
-
+  const confirmRemove = () => {
+    console.log('context.selected.id', context.selected.id)
+    console.log('ffId', ffId)
+    console.log('worldContext.selected.id', worldContext.selected.id)
+    console.log('worldDispatch', worldDispatch)
+    removeFirefly(
+      context.selected.id,
+      ffId,
+      worldContext.selected.id,
+      worldDispatch
+    ).then(() => {
+      setTrashOpen(!trashOpen)
+    });
+  };
+  
   return (
     <div ref={drop} className={classes.fireflyContainer}>
       {fireflies.map(firefly => {
@@ -162,7 +167,7 @@ const FireflyContainer = ({ hideSourceOnDrag }) => {
                       </button>
 
                       <button
-                        // onClick={confirmRemove}
+                        onClick={() => confirmRemove()}
                         className={classed.dialogButtons + " remove"}
                       >
                         <FaCheck />

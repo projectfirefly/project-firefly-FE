@@ -3,13 +3,7 @@ import React, { useState } from "react";
 import FireflyContainer from "./FireflyContainer";
 
 const WorldFirefly = () => {
-  const [hideSourceOnDrag, setHideSourceOnDrag] = useState(false);
-  // const [trashActive, setTrashState] = useState(false);
-  // const confirmRemove = () => {
-  //   removeFirefly(REMOVE_FIREFLY).then(() => {
-  //     props.history.push("/choose-profile");
-  //   });
-  // };
+  const [hideSourceOnDrag, setHideSourceOnDrag] = useState(false); 
 
   return <FireflyContainer hideSourceOnDrag={hideSourceOnDrag} />;
 };

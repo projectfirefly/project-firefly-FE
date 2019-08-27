@@ -174,10 +174,11 @@ export const addFirefly = async (child, world_id, dispatch) => {
         });
     });
 };
-export const removeFirefly = async (child, requiredIds, dispatch) => {
+export const removeFirefly = async (child, firefly_id, world_id, dispatch) => {
   const db = firebase.firestore();
   const uid = firebase.auth().currentUser.uid;
-  const {firefly_id, world_id} = requiredIds;
+  // const {firefly_id, world_id} = requiredIds;
+  console.log(child, firefly_id, world_id);
   db.collection("users")
     .doc(uid)
     .collection("profiles")
@@ -186,9 +187,9 @@ export const removeFirefly = async (child, requiredIds, dispatch) => {
     .doc(world_id)
     .collection("fireflies")
     .doc(firefly_id)
-    .delete()
-  dispatch({ type: REMOVE_FIREFLY, payload: requiredIds });
-} 
+    .delete();
+  dispatch({ type: REMOVE_FIREFLY, payload: { firefly_id, world_id } });
+};
 //Add block to Firefly
 export const updateBlocks = async (child, requiredIds, payload, dispatch ) => {
   const db = firebase.firestore();
