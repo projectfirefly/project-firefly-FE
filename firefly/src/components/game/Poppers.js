@@ -4,6 +4,8 @@ import PalettePopper from "./Poppers/PalettePopper";
 import TimerPopper from "./Poppers/TimerPopper";
 import RepeatPopper from "./Poppers/RepeatPopper";
 import OnOffPopper from "./Poppers/OnOffPopper";
+import { Popper } from "@material-ui/core";
+
 import uifx from "uifx";
 
 //importing the sound
@@ -16,6 +18,10 @@ have to add the click.play() to the popper but when I do right now the game free
 const useStyles = makeStyles(theme => ({
   root: {},
 
+  typography: {
+    padding: theme.spacing(2)
+  },
+
   none: {
     visibility: "hidden",
     position: "absolute"
@@ -25,9 +31,7 @@ const useStyles = makeStyles(theme => ({
     width: "300px",
     padding: "22px;",
     background: "white",
-    position: "absolute",
     textAlign: "center",
-    transition: "300ms",
     boxShadow: "0 2px 4px rgba(0, 0, 0, 0.5)",
     borderRadius: "10px",
     marginTop: "5px"
@@ -37,9 +41,7 @@ const useStyles = makeStyles(theme => ({
     width: "175px",
     padding: "16px",
     background: "white",
-    position: "absolute",
     textAlign: "center",
-    transition: "300ms",
     boxShadow: "0 2px 4px rgba(0, 0, 0, 0.5)",
     borderRadius: "10px",
     marginTop: "5px"
@@ -49,8 +51,6 @@ const useStyles = makeStyles(theme => ({
     width: "175px",
     padding: "16px",
     background: "white",
-    position: "absolute",
-    transition: "300ms",
     boxShadow: "0 2px 4px rgba(0, 0, 0, 0.5)",
     borderRadius: "10px",
     marginTop: "5px"
@@ -60,18 +60,20 @@ const useStyles = makeStyles(theme => ({
     width: "150px",
     padding: "24px;",
     background: "white",
-    position: "absolute",
-    transition: "300ms",
     boxShadow: "0 2px 4px rgba(0, 0, 0, 0.5)",
     borderRadius: "10px",
     marginTop: "5px"
+  },
+
+  popperBlock: {
+    position: "relative"
   }
 }));
 
-export default function Popper({
+export function Poppers({
   children,
   onClick,
-  open,
+  openPopper,
   togglePalette,
   toggleTimer,
   toggleRepeat,
@@ -83,16 +85,22 @@ export default function Popper({
   time,
   setTime,
   color,
-  setColor
+  setColor,
+  anchorEl,
+  open,
+  popperId
 }) {
   const classes = useStyles();
 
   return (
-    <div>
+    <div className={classes.popperBlock}>
       <div className={classes.root} onClick={onClick}>
         {children}
       </div>
-      <div
+      <Popper
+        open={open}
+        anchorEl={anchorEl}
+        id={popperId}
         // onClick={click.play()}
         className={
           togglePalette
@@ -103,19 +111,31 @@ export default function Popper({
             ? classes.popperSwitchContainer
             : toggleTimer
             ? classes.popperTimerContainer
-            : classes.none
+            : null
         }
       >
         {togglePalette && open ? (
-          <PalettePopper color={color} setColor={setColor} />
+          <PalettePopper
+            color={color}
+            setColor={setColor}
+            openPopper={openPopper}
+          />
         ) : toggleTimer && open ? (
-          <TimerPopper time={time} setTime={setTime} />
+          <TimerPopper time={time} setTime={setTime} openPopper={openPopper} />
         ) : toggleRepeat && open ? (
-          <RepeatPopper repeat={repeat} setRepeat={setRepeat} />
+          <RepeatPopper
+            repeat={repeat}
+            setRepeat={setRepeat}
+            openPopper={openPopper}
+          />
         ) : toggleOnOff && open ? (
-          <OnOffPopper onOff={onOff} setOnOff={setOnOff} />
+          <OnOffPopper
+            onOff={onOff}
+            setOnOff={setOnOff}
+            openPopper={openPopper}
+          />
         ) : null}
-      </div>
+      </Popper>
     </div>
   );
 }

@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Droppable } from "react-beautiful-dnd";
 import StartBlockTarget from "./../../images/gameIcons/StartBlockTarget.svg";
 import EmptyBlockTarget from "./../../images/gameIcons/EmptyBlockTarget.svg";
 import CodeBlock from "./CodeBlock";
-import usePrevious from "./../../utils/usePrevious";
+
 const List = styled.div`
   height: 100%;
   min-height: 90px;
@@ -15,6 +15,7 @@ const List = styled.div`
   overflow-y: hidden;
   display: -webkit-box;
   align-items: center;
+  padding-bottom: 18%;
 `;
 
 const ListContainer = styled.div`
@@ -22,10 +23,10 @@ const ListContainer = styled.div`
   min-height: 90px;
   background: none;
   border-radius: 16px;
-  width: 85%;
+  width: 89%;
   overflow-x: auto;
   overflow-y: hidden;
-  margin-left: 15%;
+  margin-left: 11%;
   display: -webkit-box;
   -webkit-align-items: center;
   -webkit-box-align: center;
@@ -77,6 +78,10 @@ const BlockLine = ({
 }) => {
   const [playClicked, setPlayClicked] = useState(false);
   const [openPopper, setOpenPopper] = useState(false);
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const popperId = open ? "simple-popper" : undefined;
 
   const togglePopper = (id, blocks, type, value) => {
     if (openPopper) {
@@ -134,6 +139,10 @@ const BlockLine = ({
     setPlayClicked(false);
   }, [list]);
 
+  const handleClick = event => {
+    setAnchorEl(anchorEl ? null : event.currentTarget);
+  };
+
   const clickedPlay = () => {
     const [listArray] = Object.values(list);
     let lineError = false;
@@ -186,6 +195,11 @@ const BlockLine = ({
                       clickedPlay={clickedPlay}
                       playClicked={playClicked}
                       errorChecking={errorChecking}
+                      anchorEl={anchorEl}
+                      setAnchorEl={setAnchorEl}
+                      open={open}
+                      popperId={popperId}
+                      handleClick={handleClick}
                     />
                   ))
                 : !provided.placeholder && <Notice>Drop items here</Notice>}
