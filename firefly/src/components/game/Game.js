@@ -21,6 +21,7 @@ import GridIcon from "../../images/gridBackground.png";
 import {
   gameContext,
 } from "../../context/Game/GameStore";
+import { childContext } from "../../context/ChildProfiles/ChildProfileStore";
 
 //importing the sound
 import clickMP3 from "../../assets/sounds/click.mp3";
@@ -169,7 +170,10 @@ const ITEMS = [
   }
 ];
 
-const Game = () => {
+const Game = ({
+  selectedWorldId,
+  firefly
+}) => {
   //Set list to firefly out of context/firestore
   //display loader while loading
   //on cancel setList to list out of context/firestore
@@ -177,6 +181,7 @@ const Game = () => {
 
   //worldContext.selected (selected world), props.firefly (firefly), profileContext.selected (child ID)
 
+  const [childProfileState, childDispatch] = useContext(childContext);
   const [worldContext, worldDispatch] = useContext(gameContext);
 
   const listId = uuid();
@@ -248,7 +253,9 @@ const Game = () => {
     })
   }
 
+  //Load fireflies from backend
   useEffect(() => {
+    // Delete this and replace it with the current firefly from worldContext
     const fakeArray = [
       {
         type: "timer",
@@ -300,8 +307,8 @@ const Game = () => {
         ...animationList
       ]
     }
-    console.log(animationList);
-    console.log(list);
+
+    // updateBlocks(userContext.selected, firefly.id, selectedWorldId, animationList, worldDispatch)
   }
 
   useEffect(() => {
