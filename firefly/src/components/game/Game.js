@@ -18,9 +18,7 @@ import PlayCircleIcon from "../../images/gameIcons/PlayCircleIcon.svg";
 import PaletteIcon from "../../images/gameIcons/PaletteIcon.svg";
 import ToggleOffIcon from "../../images/gameIcons/ToggleOffIcon.svg";
 import GridIcon from "../../images/gridBackground.png";
-import {
-  gameContext,
-} from "../../context/Game/GameStore";
+import { gameContext } from "../../context/Game/GameStore";
 import { childContext } from "../../context/ChildProfiles/ChildProfileStore";
 
 //importing the sound
@@ -28,6 +26,8 @@ import clickMP3 from "../../assets/sounds/click.mp3";
 import clickTogetherMP3 from "../../assets/sounds/clickTogether.mp3";
 import poofMP3 from "../../assets/sounds/poof.mp3";
 import { nextTick } from "q";
+import { Typography, makeStyles } from "@material-ui/core";
+import { Link } from "react-router-dom";
 //making the sounds variable
 const click = new uifx({ asset: clickMP3 });
 const clickTogether = new uifx({ asset: clickTogetherMP3 });
@@ -116,7 +116,7 @@ const ITEMS = [
     ),
     content: <ToolboxBox src={StartBlock} alt="startblock" />,
     used: false,
-    rsi: 0
+    rsi: 0,
   },
   {
     id: uuid(),
@@ -125,7 +125,7 @@ const ITEMS = [
     ),
     content: <ToolboxBox src={BlueBlockLeftSideEndState} alt="blueblock" />,
     used: false,
-    rsi: 1
+    rsi: 1,
   },
   {
     id: uuid(),
@@ -135,7 +135,7 @@ const ITEMS = [
     content: <ToolboxBox src={GreenBlockRightSideEndState} alt="greenblock" />,
     used: false,
     rsi: 2,
-    repeat: 1
+    repeat: 1,
   },
 
   {
@@ -143,7 +143,7 @@ const ITEMS = [
     functionality: <ToolboxGreenIcon src={PaletteIcon} alt="paletteIcon" />,
     content: <ToolboxBox src={GreenBlockRightSideEndState} alt="greenblock" />,
     used: false,
-    rsi: 3
+    rsi: 3,
   },
   {
     id: uuid(),
@@ -151,7 +151,7 @@ const ITEMS = [
     content: <ToolboxBox src={GreenBlockRightSideEndState} alt="greenblock" />,
     used: false,
     rsi: 4,
-    timer: 1
+    timer: 1,
   },
   // {
   //   id: uuid(),
@@ -166,14 +166,28 @@ const ITEMS = [
     content: <ToolboxBox src={GreenBlockRightSideEndState} alt="greenblock" />,
     used: false,
     rsi: 6,
-    onOff: false
-  }
+    onOff: false,
+  },
 ];
 
-const Game = ({
-  selectedWorldId,
-  firefly
-}) => {
+const Game = ({ selectedWorldId, firefly }) => {
+  const classes = makeStyles(theme => ({
+    back: {
+      ...theme.secondaryButton,
+      padding: ".7rem 4rem"
+    },
+    save: {
+      ...theme.primaryButton,
+      padding: ".7rem 4rem"
+    },
+    buttonContainer: {
+      display: "flex",
+      width: "80%",
+      paddingLeft: "11%",
+      marginTop: "2rem",
+      justifyContent: "space-around",
+    }
+  }))()
   //Set list to firefly out of context/firestore
   //display loader while loading
   //on cancel setList to list out of context/firestore
@@ -193,45 +207,45 @@ const Game = ({
   const [animationList, setAnimationList] = useState([]);
   const [playing, setPlaying] = useState(false);
 
-  const createBlocksFromBackend = (blockList) => {
-    const newList = blockList.map((block) => {
+  const createBlocksFromBackend = blockList => {
+    const newList = blockList.map(block => {
       switch (block.type) {
         case "repeat":
           return {
             ...ITEMS[2],
             repeat: block.value,
             id: uuid(),
-          }
+          };
         case "color":
           return {
             ...ITEMS[3],
             color: block.value,
             id: uuid(),
-          }
+          };
         case "timer":
           return {
             ...ITEMS[4],
             timer: block.value,
             id: uuid(),
-          }
+          };
         case "onOff":
           return {
             ...ITEMS[5],
             onOff: block.value,
             id: uuid(),
-          }
+          };
       }
-    })
+    });
 
     setTools(
       [...tools].map((tool, index) => {
         if (index === 0 || index === 1) {
           return {
             ...tool,
-            used: true
-          }
+            used: true,
+          };
         } else {
-          return { ...tool }
+          return { ...tool };
         }
       })
     );
@@ -248,10 +262,10 @@ const Game = ({
           ...ITEMS[1],
           id: uuid(),
         },
-        ...newList
-      ]
-    })
-  }
+        ...newList,
+      ],
+    });
+  };
 
   //Load fireflies from backend
   useEffect(() => {
@@ -259,57 +273,53 @@ const Game = ({
     const fakeArray = [
       {
         type: "timer",
-        value: 1
+        value: 1,
       },
       {
         type: "color",
-        value: 270
+        value: 270,
       },
       {
         type: "timer",
-        value: 3
+        value: 3,
       },
       {
         type: "onOff",
-        value: false
+        value: false,
       },
       {
         type: "timer",
-        value: 2
+        value: 2,
       },
       {
         type: "onOff",
-        value: true
+        value: true,
       },
       {
         type: "color",
-        value: 120
+        value: 120,
       },
       {
         type: "timer",
-        value: 2
+        value: 2,
       },
       {
         type: "repeat",
-        value: 1
-      }
+        value: 1,
+      },
     ];
 
     createBlocksFromBackend(fakeArray);
-
-  }, [])
+  }, []);
 
   const updateFirefly = () => {
-
     const updatedFirefly = {
       // ...props.firefly,
-      codeBlocks: [
-        ...animationList
-      ]
-    }
+      codeBlocks: [...animationList],
+    };
 
     // updateBlocks(userContext.selected, firefly.id, selectedWorldId, animationList, worldDispatch)
-  }
+  };
 
   useEffect(() => {
     console.log(worldContext);
@@ -408,7 +418,7 @@ const Game = ({
       });
       //Filters all tools to used:false so they become usable again
       setList({
-        [source.droppableId]: realList
+        [source.droppableId]: realList,
       });
       poof.play();
       return;
@@ -423,7 +433,7 @@ const Game = ({
               list[source.droppableId],
               source.index,
               destination.index
-            )
+            ),
           });
         }
         break;
@@ -441,7 +451,7 @@ const Game = ({
             list[destination.droppableId],
             source,
             destination
-          )
+          ),
         });
         // to play default drop sound 'clickTogether' when dropping the block
         clickTogether.play();
@@ -481,7 +491,14 @@ const Game = ({
         />
         <DropDelete />
       </DragDropContext>
-      <button onClick={updateFirefly} style={{marginLeft: "300px"}}>HELLO</button>
+      <div className={classes.buttonContainer}>
+        <Link to="/fireflyworld" className={classes.back}>
+          <Typography variant="button">Back</Typography>
+        </Link>
+        <button onClick={updateFirefly} className={classes.save}>
+          SAVE
+        </button>
+      </div>
     </Board>
   );
 };
