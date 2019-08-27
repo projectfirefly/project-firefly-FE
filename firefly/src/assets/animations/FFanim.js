@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Lottie from "react-lottie";
-import awakeanimationData from "./ffAnim.json";
+import awakeanimationData from "./ffAnim2.json";
 import sleepingAnimation from "./sleeping.json";
 import styled from "styled-components";
 import { makeStyles } from "@material-ui/styles";
@@ -324,22 +324,22 @@ const FFanim = ({
   useEffect(() => {
     if (awake) {
       t1 = anime.timeline({
-        targets: `.${classes.wrapper} svg .bodyLightBottom path`,
+        targets: `.${classes.wrapper} svg .bodyLightBottomGrey path`,
         autoplay: false,
         ...animationParameters
       });
       t2 = anime.timeline({
-        targets: `.${classes.wrapper} svg .bodyLightMid path`,
+        targets: `.${classes.wrapper} svg .bodyLightMidGrey path`,
         autoplay: false,
         ...animationParameters
       });
       t3 = anime.timeline({
-        targets: `.${classes.wrapper} svg .bodyLightTop path`,
+        targets: `.${classes.wrapper} svg .bodyLightTopGrey path`,
         autoplay: false,
         ...animationParameters
       });
       t4 = anime.timeline({
-        targets: `.${classes.wrapper} svg .lightL path, .${classes.wrapper} svg .lightM path, .${classes.wrapper} svg .lightR path`,
+        targets: `.${classes.wrapper} svg .lightLGrey path, .${classes.wrapper} svg .lightMGrey path, .${classes.wrapper} svg .lightRGrey path`,
         autoplay: false,
         ...animationParameters
       });
