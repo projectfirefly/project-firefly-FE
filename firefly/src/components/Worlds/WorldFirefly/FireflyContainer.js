@@ -78,10 +78,6 @@ const FireflyContainer = ({ hideSourceOnDrag }) => {
     setFireflies([...updatedFireflies]);
   };
   const confirmRemove = () => {
-    console.log('context.selected.id', context.selected.id)
-    console.log('ffId', ffId)
-    console.log('worldContext.selected.id', worldContext.selected.id)
-    console.log('worldDispatch', worldDispatch)
     removeFirefly(
       context.selected.id,
       ffId,
