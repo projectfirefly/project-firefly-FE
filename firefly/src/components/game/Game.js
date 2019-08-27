@@ -248,49 +248,49 @@ const Game = () => {
     })
   }
 
-  // useEffect(() => {
-  //   const fakeArray = [
-  //     {
-  //       type: "timer",
-  //       value: 1
-  //     },
-  //     {
-  //       type: "color",
-  //       value: 270
-  //     },
-  //     {
-  //       type: "timer",
-  //       value: 3
-  //     },
-  //     {
-  //       type: "onOff",
-  //       value: false
-  //     },
-  //     {
-  //       type: "timer",
-  //       value: 2
-  //     },
-  //     {
-  //       type: "onOff",
-  //       value: true
-  //     },
-  //     {
-  //       type: "color",
-  //       value: 120
-  //     },
-  //     {
-  //       type: "timer",
-  //       value: 2
-  //     },
-  //     {
-  //       type: "repeat",
-  //       value: 1
-  //     }
-  //   ];
+  useEffect(() => {
+    const fakeArray = [
+      {
+        type: "timer",
+        value: 1
+      },
+      {
+        type: "color",
+        value: 270
+      },
+      {
+        type: "timer",
+        value: 3
+      },
+      {
+        type: "onOff",
+        value: false
+      },
+      {
+        type: "timer",
+        value: 2
+      },
+      {
+        type: "onOff",
+        value: true
+      },
+      {
+        type: "color",
+        value: 120
+      },
+      {
+        type: "timer",
+        value: 2
+      },
+      {
+        type: "repeat",
+        value: 1
+      }
+    ];
 
-  //   createBlocksFromBackend(fakeArray);
+    createBlocksFromBackend(fakeArray);
 
-  // }, [])
+  }, [])
 
   const updateFirefly = () => {
 
