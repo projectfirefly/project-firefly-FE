@@ -84,17 +84,17 @@ const BlockLine = ({
   const popperId = open ? "simple-popper" : undefined;
 
   const togglePopper = (id, blocks, type, value) => {
-    if (openPopper) {
-      setList({
-        ...list,
-        [blocks]: list[blocks].map(block => {
-          if (block.id === id) {
-            return { ...block, [type]: value };
-          }
-          return block;
-        })
-      });
-    }
+    // if (openPopper) {
+    setList({
+      ...list,
+      [blocks]: list[blocks].map(block => {
+        if (block.id === id) {
+          return { ...block, [type]: value };
+        }
+        return block;
+      })
+    });
+    // }
     setOpenPopper(!openPopper);
   };
 
@@ -138,10 +138,6 @@ const BlockLine = ({
   useEffect(() => {
     setPlayClicked(false);
   }, [list]);
-
-  const handleClick = event => {
-    setAnchorEl(anchorEl ? null : event.currentTarget);
-  };
 
   const clickedPlay = () => {
     const [listArray] = Object.values(list);
@@ -199,7 +195,7 @@ const BlockLine = ({
                       setAnchorEl={setAnchorEl}
                       open={open}
                       popperId={popperId}
-                      handleClick={handleClick}
+                      setOpenPopper={setOpenPopper}
                     />
                   ))
                 : !provided.placeholder && <Notice>Drop items here</Notice>}

@@ -18,9 +18,7 @@ import PlayCircleIcon from "../../images/gameIcons/PlayCircleIcon.svg";
 import PaletteIcon from "../../images/gameIcons/PaletteIcon.svg";
 import ToggleOffIcon from "../../images/gameIcons/ToggleOffIcon.svg";
 import GridIcon from "../../images/gridBackground.png";
-import {
-  gameContext,
-} from "../../context/Game/GameStore";
+import { gameContext } from "../../context/Game/GameStore";
 import { childContext } from "../../context/ChildProfiles/ChildProfileStore";
 
 //importing the sound
@@ -170,10 +168,7 @@ const ITEMS = [
   }
 ];
 
-const Game = ({
-  selectedWorldId,
-  firefly
-}) => {
+const Game = ({ selectedWorldId, firefly }) => {
   //Set list to firefly out of context/firestore
   //display loader while loading
   //on cancel setList to list out of context/firestore
@@ -193,35 +188,35 @@ const Game = ({
   const [animationList, setAnimationList] = useState([]);
   const [playing, setPlaying] = useState(false);
 
-  const createBlocksFromBackend = (blockList) => {
-    const newList = blockList.map((block) => {
+  const createBlocksFromBackend = blockList => {
+    const newList = blockList.map(block => {
       switch (block.type) {
         case "repeat":
           return {
             ...ITEMS[2],
             repeat: block.value,
-            id: uuid(),
-          }
+            id: uuid()
+          };
         case "color":
           return {
             ...ITEMS[3],
             color: block.value,
-            id: uuid(),
-          }
+            id: uuid()
+          };
         case "timer":
           return {
             ...ITEMS[4],
             timer: block.value,
-            id: uuid(),
-          }
+            id: uuid()
+          };
         case "onOff":
           return {
             ...ITEMS[5],
             onOff: block.value,
-            id: uuid(),
-          }
+            id: uuid()
+          };
       }
-    })
+    });
 
     setTools(
       [...tools].map((tool, index) => {
@@ -229,9 +224,9 @@ const Game = ({
           return {
             ...tool,
             used: true
-          }
+          };
         } else {
-          return { ...tool }
+          return { ...tool };
         }
       })
     );
@@ -242,16 +237,16 @@ const Game = ({
       [listId]: [
         {
           ...ITEMS[0],
-          id: uuid(),
+          id: uuid()
         },
         {
           ...ITEMS[1],
-          id: uuid(),
+          id: uuid()
         },
         ...newList
       ]
-    })
-  }
+    });
+  };
 
   //Load fireflies from backend
   useEffect(() => {
@@ -296,20 +291,16 @@ const Game = ({
     ];
 
     createBlocksFromBackend(fakeArray);
-
-  }, [])
+  }, []);
 
   const updateFirefly = () => {
-
     const updatedFirefly = {
       // ...props.firefly,
-      codeBlocks: [
-        ...animationList
-      ]
-    }
+      codeBlocks: [...animationList]
+    };
 
     // updateBlocks(userContext.selected, firefly.id, selectedWorldId, animationList, worldDispatch)
-  }
+  };
 
   useEffect(() => {
     console.log(worldContext);
@@ -481,7 +472,9 @@ const Game = ({
         />
         <DropDelete />
       </DragDropContext>
-      <button onClick={updateFirefly} style={{marginLeft: "300px"}}>HELLO</button>
+      <button onClick={updateFirefly} style={{ marginLeft: "300px" }}>
+        HELLO
+      </button>
     </Board>
   );
 };

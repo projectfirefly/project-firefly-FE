@@ -17,12 +17,12 @@ const useStyles = makeStyles({
     position: "absolute",
     top: "25%",
     left: "30%",
-    width: "40px",
+    width: "40px"
   },
 
   container: {
     display: "flex",
-    flexDirection: "column",
+    flexDirection: "column"
   },
 
   tool: {
@@ -31,20 +31,20 @@ const useStyles = makeStyles({
     width: "100px",
     "& svg": {
       width: "100%",
-      height: "100%",
+      height: "100%"
     },
     "&.blockError svg.greenBoxRightSide path": {
       stroke: "#dc143c",
-      strokeWidth: "2",
+      strokeWidth: "2"
     },
     "&.blockError svg.orangeStartBlock path": {
       stroke: "#dc143c",
-      strokeWidth: "2",
+      strokeWidth: "2"
     },
     "&.blockError svg.blueBlock path": {
       stroke: "#dc143c",
-      strokeWidth: "2",
-    },
+      strokeWidth: "2"
+    }
   },
 
   item: {
@@ -53,26 +53,26 @@ const useStyles = makeStyles({
     margin: "0 -10px 0 0",
     alignItems: "flex-start",
     alignContent: "flex-start",
-    borderRadius: "3px",
+    borderRadius: "3px"
   },
 
   toggleOn: {
     position: "absolute",
     top: "32%",
-    left: "30%",
+    left: "30%"
   },
 
   toggleOff: {
     position: "absolute",
     top: "32%",
-    left: "30%",
+    left: "30%"
   },
 
   number: {
     position: "absolute",
     left: "28%",
     top: "25%",
-    width: "40px",
+    width: "40px"
   },
 
   count: {
@@ -81,7 +81,7 @@ const useStyles = makeStyles({
     fontFamily: "Nunito",
     left: "25%",
     color: "white",
-    top: "25%",
+    top: "25%"
   },
 
   countTen: {
@@ -90,7 +90,7 @@ const useStyles = makeStyles({
     fontFamily: "Nunito",
     left: "18%",
     color: "white",
-    top: "25%",
+    top: "25%"
   },
 
   palette: {
@@ -101,15 +101,15 @@ const useStyles = makeStyles({
 
     "& svg": {
       width: "40px",
-      height: "40px",
-    },
+      height: "40px"
+    }
   },
 
   repeatIcon: {
     top: "19%",
     left: "17%",
     width: "60%",
-    position: "absolute",
+    position: "absolute"
   },
 
   repeatNumber: {
@@ -117,8 +117,8 @@ const useStyles = makeStyles({
     left: "44%",
     top: "32%",
     fontSize: "2.8rem",
-    color: "white",
-  },
+    color: "white"
+  }
 });
 
 const CodeBlock = ({
@@ -126,6 +126,7 @@ const CodeBlock = ({
   index,
   togglePopper,
   openPopper,
+  setOpenPopper,
   list,
   setList,
   id,
@@ -137,8 +138,7 @@ const CodeBlock = ({
   anchorEl,
   setAnchorEl,
   open,
-  popperId,
-  handleClick,
+  popperId
 }) => {
   const classes = useStyles();
 
@@ -182,6 +182,22 @@ const CodeBlock = ({
     setError(errorChecking(index));
   };
 
+  const handleClick = event => {
+    if (!openPopper) {
+      setAnchorEl(anchorEl ? null : event.currentTarget);
+    } else if (openPopper) {
+      setAnchorEl(null);
+      setOpenPopper(!openPopper);
+    }
+  };
+
+  const toggleAllPoppers = () => {
+    togglePopper(id, blocks, "color", color);
+    togglePopper(id, blocks, "repeat", repeat);
+    togglePopper(id, blocks, "timer", time);
+    togglePopper(id, blocks, "onOff", onOff);
+  };
+
   useEffect(() => {
     if (item.color || item.onOff || item.timer || item.repeat) {
       setHasBeenClicked(true);
@@ -199,7 +215,13 @@ const CodeBlock = ({
 
   useEffect(() => {
     checkForErrors();
-  }, [list]);
+    if (anchorEl === null) {
+      setToggleRepeat(false);
+      setTogglePalette(false);
+      setToggleOnOff(false);
+      setToggleTimer(false);
+    }
+  }, [list, anchorEl]);
 
   return (
     <Draggable
@@ -250,7 +272,7 @@ const CodeBlock = ({
                 onClick={event => {
                   handleClick(event);
                   if (!openPopper || toggleRepeat) {
-                    togglePopper(id, blocks, "repeat", repeat);
+                    toggleAllPoppers();
                     toggleSetRepeat();
                   } else {
                     return null;
@@ -373,7 +395,7 @@ const CodeBlock = ({
                 onClick={event => {
                   handleClick(event);
                   if (!openPopper || togglePalette) {
-                    togglePopper(id, blocks, "color", color);
+                    toggleAllPoppers(id, blocks, color);
                     setPalette();
                     setHasBeenClicked(true);
                   } else {
@@ -419,7 +441,7 @@ const CodeBlock = ({
                 onClick={event => {
                   handleClick(event);
                   if (!openPopper || toggleTimer) {
-                    togglePopper(id, blocks, "timer", time);
+                    toggleAllPoppers();
                     setTimer();
                   } else {
                     return null;
@@ -477,7 +499,7 @@ const CodeBlock = ({
             //onClick={event => {
             //      handleClick(event);
             //     if (!openPopper || toggleCount) {
-            //       togglePopper(id, blocks, "number", number);
+            //     toggleAllPoppers();
             //     setCount();
             //           } else {
             //             return null;
@@ -569,7 +591,7 @@ const CodeBlock = ({
                 onClick={event => {
                   handleClick(event);
                   if (!openPopper || toggleOnOff) {
-                    togglePopper(id, blocks, "onOff", onOff);
+                    toggleAllPoppers();
                     setOnOffSwitch();
                   } else {
                     return null;
