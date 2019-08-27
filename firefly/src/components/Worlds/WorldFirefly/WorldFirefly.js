@@ -7,7 +7,7 @@ import {
   REMOVE_FIREFLY
 } from "../../../context/Game/GameStore";
 
-// import { childContext } from "../../../context/ChildProfiles/ChildProfileStore";
+import { childContext } from "../../../context/ChildProfiles/ChildProfileStore";
 
 //importing the firebase stuff needed
 import { removeFirefly } from "../../../utils/firebaseInteractions.jsx";
@@ -35,24 +35,24 @@ const WorldFirefly = props => {
   const [ffId, setFFId] = useState();
   // const [trashActive, setTrashState] = useState(false);
   const [worldContext, worldDispatch] = useContext(gameContext);
-  // const [context, contextDispatch] = useContext(childContext);
+  const [context, contextDispatch] = useContext(childContext);
   // useEffect(() => {
   // worldDispatch({ type: SELECTED_WORLD, payload: "" });
   // }, []);
 
   const [trashOpen, setTrashOpen] = useState(false);
-  // const [context, contextDispatch] = useContext(childContext);
 
-  // const confirmRemove = () => {
-  //   removeFirefly(
-  //     context.selected.id,
-  //     worldContext.selected.id,
-  //     worldDispatch
-  //   ).then(() => {
-  //     // props.history.push("/choose-profile");
-  //     console.log("firefly removed: " + context.selected);
-  //   });
-  // };
+  const confirmRemove = () => {
+    removeFirefly(
+      context.selected.id,
+      worldContext.worlds[0].fireflies.firefly_id,
+      worldContext.selected.id,
+      worldDispatch
+    ).then(() => {
+      // props.history.push("/choose-profile");
+      console.log("firefly removed: " + context.selected);
+    });
+  };
 
   const classes = WorldFireflyStyles();
   return (
@@ -124,7 +124,7 @@ const WorldFirefly = props => {
                         </button>
 
                         <button
-                          // onClick={confirmRemove}
+                          onClick={confirmRemove}
                           className={classes.dialogButtons + " remove"}
                         >
                           <FaCheck />
