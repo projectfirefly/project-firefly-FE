@@ -331,7 +331,6 @@ const Game = ({ selectedWorldId, firefly }) => {
       Object.values(list).map(blockArray => {
         const newBlockArray = blockArray
           .map(block => {
-            console.log("block:", block);
             if (block.color) {
               return { type: "color", value: block.color };
             } else if (block.onOff !== undefined) {

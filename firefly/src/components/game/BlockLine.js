@@ -80,21 +80,19 @@ const BlockLine = ({
   const [openPopper, setOpenPopper] = useState(false);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-  const popperId = open ? "simple-popper" : undefined;
 
   const togglePopper = (id, blocks, type, value) => {
-    // if (openPopper) {
-    setList({
-      ...list,
-      [blocks]: list[blocks].map(block => {
-        if (block.id === id) {
-          return { ...block, [type]: value };
-        }
-        return block;
-      })
-    });
-    // }
+    if (openPopper) {
+      setList({
+        ...list,
+        [blocks]: list[blocks].map(block => {
+          if (block.id === id) {
+            return { ...block, [type]: value };
+          }
+          return block;
+        })
+      });
+    }
     setOpenPopper(!openPopper);
   };
 
@@ -193,8 +191,6 @@ const BlockLine = ({
                       errorChecking={errorChecking}
                       anchorEl={anchorEl}
                       setAnchorEl={setAnchorEl}
-                      open={open}
-                      popperId={popperId}
                       setOpenPopper={setOpenPopper}
                     />
                   ))
