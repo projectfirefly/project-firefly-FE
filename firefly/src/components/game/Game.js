@@ -26,6 +26,8 @@ import clickMP3 from "../../assets/sounds/click.mp3";
 import clickTogetherMP3 from "../../assets/sounds/clickTogether.mp3";
 import poofMP3 from "../../assets/sounds/poof.mp3";
 import { nextTick } from "q";
+import { Typography, makeStyles } from "@material-ui/core";
+import { Link } from "react-router-dom";
 //making the sounds variable
 const click = new uifx({ asset: clickMP3 });
 const clickTogether = new uifx({ asset: clickTogetherMP3 });
@@ -169,6 +171,23 @@ const ITEMS = [
 ];
 
 const Game = ({ selectedWorldId, firefly }) => {
+  const classes = makeStyles(theme => ({
+    back: {
+      ...theme.secondaryButton,
+      padding: ".7rem 4rem"
+    },
+    save: {
+      ...theme.primaryButton,
+      padding: ".7rem 4rem"
+    },
+    buttonContainer: {
+      display: "flex",
+      width: "80%",
+      paddingLeft: "11%",
+      marginTop: "2rem",
+      justifyContent: "space-around"
+    }
+  }))();
   //Set list to firefly out of context/firestore
   //display loader while loading
   //on cancel setList to list out of context/firestore
@@ -289,8 +308,9 @@ const Game = ({ selectedWorldId, firefly }) => {
         value: 1
       }
     ];
-
-    createBlocksFromBackend(fakeArray);
+    if (list[listId].length === 0) {
+      createBlocksFromBackend(fakeArray);
+    }
   }, []);
 
   const updateFirefly = () => {
@@ -472,9 +492,14 @@ const Game = ({ selectedWorldId, firefly }) => {
         />
         <DropDelete />
       </DragDropContext>
-      <button onClick={updateFirefly} style={{ marginLeft: "300px" }}>
-        HELLO
-      </button>
+      <div className={classes.buttonContainer}>
+        <Link to="/fireflyworld" className={classes.back}>
+          <Typography variant="button">Back</Typography>
+        </Link>
+        <button onClick={updateFirefly} className={classes.save}>
+          SAVE
+        </button>
+      </div>
     </Board>
   );
 };
