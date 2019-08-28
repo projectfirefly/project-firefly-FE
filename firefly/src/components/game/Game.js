@@ -17,6 +17,8 @@ import ClockIcon from "../../images/gameIcons/ClockIcon.svg";
 import PlayCircleIcon from "../../images/gameIcons/PlayCircleIcon.svg";
 import PaletteIcon from "../../images/gameIcons/PaletteIcon.svg";
 import ToggleOffIcon from "../../images/gameIcons/ToggleOffIcon.svg";
+import LockIcon from "../../images/gameIcons/LockIcon.svg";
+
 import GridIcon from "../../images/gridBackground.png";
 import { gameContext } from "../../context/Game/GameStore";
 import { childContext } from "../../context/ChildProfiles/ChildProfileStore";
@@ -45,7 +47,7 @@ const Board = styled.div`
 const ToolboxGreenIcon = styled.img`
   position: absolute;
   width: 40%;
-  top: 28%;
+  top: 25%;
   left: 29%;
 `;
 
@@ -59,14 +61,20 @@ const ToolboxBlueLedIcon = styled.img`
 const ToolboxBlueRepeatIcon = styled.img`
   position: absolute;
   width: 50%;
-  top: 26%;
+  top: 24%;
   left: 23%;
 `;
 
 const ToolboxToggleIcon = styled.img`
   position: absolute;
-  top: 35%;
-  left: 27%;
+  top: 30%;
+  left: 29%;
+`;
+
+const ToolboxLockIcon = styled.img`
+  position: absolute;
+  top: 26%;
+  left: 33%;
 `;
 
 const ToolboxBox = styled.img`
@@ -167,6 +175,20 @@ const ITEMS = [
     used: false,
     rsi: 6,
     onOff: false
+  },
+  {
+    id: uuid(),
+    functionality: <ToolboxLockIcon src={LockIcon} alt="lockIcon" />,
+    content: <ToolboxBox src={GreenBlockRightSideEndState} alt="greenblock" />,
+    used: true,
+    rsi: 7
+  },
+  {
+    id: uuid(),
+    functionality: <ToolboxLockIcon src={LockIcon} alt="lockIcon" />,
+    content: <ToolboxBox src={GreenBlockRightSideEndState} alt="greenblock" />,
+    used: true,
+    rsi: 8
   }
 ];
 
