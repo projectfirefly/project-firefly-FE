@@ -5,6 +5,7 @@ import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import * as Yup from "yup";
 import ApolloClient from "apollo-boost";
 import WearingNerdGlasses from "./../../images/WearingNerdGlasses.png";
+import ChillingFly from "../../assets/animations/ChillingFly";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 
@@ -140,11 +141,14 @@ const RegisterForm = ({ values, errors, touched }) => {
             uiConfig={uiConfig}
             firebaseAuth={firebase.auth()}
           />
-          <img
+          <div className="sign-up-firefly-nerd">
+            <ChillingFly />
+          </div>
+          {/* <img
             src={WearingNerdGlasses}
             alt="firefly-nerd"
             className="sign-up-firefly-nerd"
-          />
+          /> */}
         </div>
       </div>
     </div>
