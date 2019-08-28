@@ -356,7 +356,7 @@ const FFanim = ({
     t3.play();
     t4.play();
     // }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [playing]);
 
   function accessorySwitch(selector) {
@@ -377,18 +377,19 @@ const FFanim = ({
     loop: true,
     autoplay: true,
     animationData: animationData2,
-    isClickToPauseDisabled: true,
     rendererSettings: {
       preserveAspectRatio: "xMidYMid slice"
     }
   };
-  const dontClick = {
-  pointEvents: "none"
-  }
-  
+
   return (
     <div className={classes.wrapper}>
-      <Lottie options={defaultOptions} height={height} width={width} style={dontClick}/>
+      <Lottie
+        options={defaultOptions}
+        height={height}
+        width={width}
+        isClickToPauseDisabled={true}
+      />
     </div>
   );
 };
