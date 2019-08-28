@@ -13,9 +13,10 @@ const FFanim = ({
   awake,
   animationList,
   playing,
-  autoplay,
-  loop
+  autoplay = false,
+  loop = false
 }) => {
+  const [hasLoaded, setHasLoaded] = useState(false);
   const classes = makeStyles(theme => ({
     wrapper: {
       "& .lambdahat": {
@@ -311,12 +312,13 @@ const FFanim = ({
   }, [classes.wrapper, awake, animationList, playing]);
 
   useEffect(() => {
-    // if (playing) {
+    if (hasLoaded) {
     t1.play();
     t2.play();
     t3.play();
     t4.play();
-    // }
+    }
+    setHasLoaded(true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [playing]);
 
