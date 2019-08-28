@@ -18,6 +18,25 @@ import {
   SET_GAME_LOADED
 } from "../context/Game/GameStore";
 
+//Add world
+export const addWorld = async (child, payload, dispatch) => {
+  const db = firebase.firestore();
+  const uid = firebase.auth().currentUser.uid;
+  db.collection("users")
+    .doc(uid)
+    .collection("profiles")
+    .doc(child) //Haven't imported this childProfileState.selected.id
+    .collection("worlds")
+    .add(payload) //World that you want to save, this adds it to a new collection under the profile, just put some name in
+    .then(worldDoc => {
+      //This is a reference to the document you just created
+      //do your dispatch in here
+      console.log("adding world to ", child);
+      const newWorld = { id: worldDoc.id, ...payload }; //Creating an object to store locally in context
+      dispatch({ type: ADD_WORLD, payload: newWorld }); //Dispatching to reducers so it can get saved locally in context
+    });
+};
+// Get worlds
 export const getWorld = async (child, dispatch) => {
   const db = firebase.firestore();
   const uid = firebase.auth().currentUser.uid;
@@ -52,23 +71,6 @@ export const getWorld = async (child, dispatch) => {
       dispatch({ type: GET_WORLDS, payload: payload });
     });
   dispatch({ type: SET_GAME_LOADED });
-};
-//Add world
-export const addWorld = async (child, payload, dispatch) => {
-  const db = firebase.firestore();
-  const uid = firebase.auth().currentUser.uid;
-  db.collection("users")
-    .doc(uid)
-    .collection("profiles")
-    .doc(child) //Haven't imported this childProfileState.selected.id
-    .collection("worlds")
-    .add(payload) //World that you want to save, this adds it to a new collection under the profile, just put some name in
-    .then(worldDoc => {
-      //This is a reference to the document you just created
-      //do your dispatch in here
-      const newWorld = { id: worldDoc.id, ...payload }; //Creating an object to store locally in context
-      dispatch({ type: ADD_WORLD, payload: newWorld }); //Dispatching to reducers so it can get saved locally in context
-    });
 };
 //remove world
 export const removeWorld = async (child, payload, dispatch) => {
@@ -143,8 +145,8 @@ export const addFirefly = async (child, world_id, dispatch) => {
     })
     .then(async docRef => {
       const firefly = {
-        x: null,
-        y: null,
+        x: Math.floor(Math.random()*900),
+        y: Math.floor(Math.random()*500),
         codeBlocks: []
       };
       await db

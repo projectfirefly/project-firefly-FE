@@ -12,7 +12,9 @@ const FFanim = ({
   accessory,
   awake,
   animationList,
-  playing
+  playing,
+  autoplay,
+  loop
 }) => {
   const classes = makeStyles(theme => ({
     wrapper: {
@@ -34,21 +36,22 @@ const FFanim = ({
   //set these only when awake
 
   let t1 = anime.timeline({
-    autoplay: false
+    autoplay: autoplay
   });
   let t2 = anime.timeline({
-    autoplay: false
+    autoplay: autoplay
   });
   let t3 = anime.timeline({
-    autoplay: false
+    autoplay: autoplay
   });
   let t4 = anime.timeline({
-    autoplay: false
+    autoplay: autoplay
   });
 
   const animationParameters = {
     easing: "easeInOutQuad",
-    duration: 500
+    duration: 500,
+    loop: loop,
   };
 
   function parseColorCode(blocks) {
@@ -258,22 +261,22 @@ const FFanim = ({
     if (awake) {
       t1 = anime.timeline({
         targets: `.${classes.wrapper} svg .bodyLightBottomGrey path`,
-        autoplay: false,
+        autoplay: autoplay,
         ...animationParameters
       });
       t2 = anime.timeline({
         targets: `.${classes.wrapper} svg .bodyLightMidGrey path`,
-        autoplay: false,
+        autoplay: autoplay,
         ...animationParameters
       });
       t3 = anime.timeline({
         targets: `.${classes.wrapper} svg .bodyLightTopGrey path`,
-        autoplay: false,
+        autoplay: autoplay,
         ...animationParameters
       });
       t4 = anime.timeline({
         targets: `.${classes.wrapper} svg .lightLGrey path, .${classes.wrapper} svg .lightMGrey path, .${classes.wrapper} svg .lightRGrey path`,
-        autoplay: false,
+        autoplay: autoplay,
         ...animationParameters
       });
       if (animationList) {

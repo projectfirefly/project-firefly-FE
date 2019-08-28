@@ -20,15 +20,9 @@ const ChooseProfilePage = props => {
   const [childProfileState, dispatch] = useContext(childContext);
   const [worldContext, worldDispatch] = useContext(gameContext);
 
-  const gettingWorld = profile => {
-    const defaultWorld = { worldName: "Main World" };
-    getWorld(profile.id, worldDispatch);
-    if (worldContext.loaded) {
-      if (!worldContext.worlds[0]) {
-        console.log("we have added a world");
-        addWorld(profile.id, defaultWorld, worldDispatch);
-      }
-    }
+  const gettingWorld = async (profile) => {
+    console.log(profile.id);
+    getWorld(profile.id, worldDispatch)
   };
 
   console.log("Choose Profile State", childProfileState);
@@ -52,8 +46,9 @@ const ChooseProfilePage = props => {
                     type: "UPDATE_SELECTED",
                     payload: profile.id
                   });
-                  gettingWorld(profile);
-                  props.history.push("/myfirefly");
+                  gettingWorld(profile).then(() => {
+                    props.history.push("/myfirefly");
+                  })
                 }}
               >
                 <div className={classes.text}>
