@@ -356,6 +356,7 @@ const FFanim = ({
     t3.play();
     t4.play();
     // }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [playing]);
 
   function accessorySwitch(selector) {
@@ -381,10 +382,13 @@ const FFanim = ({
       preserveAspectRatio: "xMidYMid slice"
     }
   };
-
+  const dontClick = {
+  pointEvents: "none"
+  }
+  
   return (
     <div className={classes.wrapper}>
-      <Lottie options={defaultOptions} height={height} width={width} />
+      <Lottie options={defaultOptions} height={height} width={width} style={dontClick}/>
     </div>
   );
 };
