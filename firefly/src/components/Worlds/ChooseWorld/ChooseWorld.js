@@ -3,7 +3,7 @@ import firebase from "firebase";
 import {
   addWorld,
   removeWorld,
-  getWorld
+  getWorld,
 } from "../../../utils/firebaseInteractions";
 
 import chooseWorldStyles from "./ChooseWorldStyles";
@@ -36,9 +36,8 @@ const ChooseWorld = () => {
     <div className={classes.rootContainer}>
       <hl className={classes.title}> CHOOSE YOUR WORLD </hl>
       <div className={classes.worldContainer}>
-        {worldContext === undefined
-          ? null
-          : worldContext.worlds.map(world => {
+        {worldContext !== undefined && worldContext.worlds
+          ? worldContext.worlds.map(world => {
               return (
                 <Link
                   to="fireflyworld"
@@ -48,7 +47,10 @@ const ChooseWorld = () => {
                   <WorldCard title={`${world.worldName}`} img={fireflyWorld1} />
                 </Link>
               );
-            })}
+            })
+            :
+            null
+          }
         <WorldCard title={"Coming Soon"} img={lockedWorld} />
 
         <WorldCard title={"Coming Soon"} img={lockedWorld} />
