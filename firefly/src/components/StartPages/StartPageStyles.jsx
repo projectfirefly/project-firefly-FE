@@ -2,26 +2,39 @@ import { makeStyles } from "@material-ui/core";
 
 const startPageStyles = makeStyles(theme => ({
   root: {
-    // display: "flex",
-    // flexDirection: "column",
-    // justifyContent: "center",
-    // width: "100%",
-  },
-  logo: {
     display: "flex",
-    justifyContent: "center",
-    marginTop: "3%"
+    flexDirection: "column",
+    // justifyContent: "center",
+    // alignItems: "center",
+    width: "100%"
   },
-  fireflyImage: {
-    ...theme.headerMargin,
-    height: "auto",
-    maxWidth: "100%"
+  logoBox: {
+    position: "relative",
+    margin: "auto",
+    marginTop: "50px"
   },
+
+  animation: {
+    // position: "absolute",
+    // top: "0px",
+    // right: "200px",
+    // zIndex: "5"
+    marginRight: "-200px"
+  },
+
+  staticImage: {
+    positon: "absolute",
+    top: "0",
+    right: "0",
+    zIndex: "-5",
+    marginTop: "-100px"
+  },
+
   buttonContainer: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    width: "100%",
+    width: "100%"
   },
   startButton: {
     ...theme.primaryButton,
@@ -30,7 +43,7 @@ const startPageStyles = makeStyles(theme => ({
   secondaryButton: {
     ...theme.secondaryButton,
     padding: ".6rem 4.5%",
-    marginTop: "3rem",
+    marginTop: "3rem"
   },
   topBar: {
     position: "absolute",
@@ -52,11 +65,11 @@ const startPageStyles = makeStyles(theme => ({
     fontSize: "1.8rem",
     width: "3.4rem",
     height: "3.4rem",
-    textDecoration: "none",
+    textDecoration: "none"
   },
   topBarText: {
     marginLeft: "5%"
   }
-}))
+}));
 
 export default startPageStyles;

@@ -13,9 +13,10 @@ const FFanim = ({
   awake,
   animationList,
   playing,
-  autoplay,
-  loop
+  autoplay = false,
+  loop = false
 }) => {
+  const [hasLoaded, setHasLoaded] = useState(false);
   const classes = makeStyles(theme => ({
     wrapper: {
       "& .lambdahat": {
@@ -55,9 +56,14 @@ const FFanim = ({
   };
 
   function parseColorCode(blocks) {
+
     let currentColor = 52;
 
-    function addToAnime(array, repeat) {
+    function addToAnime(array, repeat, onState) {
+
+      console.log(onState);
+      let isOn = onState;
+
       var animationRepeatCount = 0;
       if (repeat) {
         animationRepeatCount = repeat;
@@ -66,6 +72,14 @@ const FFanim = ({
       for (let i = 0; i <= animationRepeatCount; i++) {
         array.map((element, index) => {
           let keyframe = {};
+
+          if (element.onOff) {
+            isOn = true;
+          }
+
+          if (element.onOff === false) {
+            isOn = false;
+          }
 
           //no color, switch true
           if (
@@ -79,7 +93,7 @@ const FFanim = ({
           }
 
           //has a color
-          if (element.color) {
+          if (element.color && isOn) {
             keyframe = {
               ...keyframe,
               fill: element.color
@@ -95,7 +109,7 @@ const FFanim = ({
             };
           }
 
-          if (element.onOff === false) {
+          if (element.onOff === false || element.color && !isOn) {
             t1.add({
               ...keyframe,
               fill: "hsl(220, 12%, 90%)"
@@ -166,7 +180,9 @@ const FFanim = ({
 
     let currentCode = {};
 
-    let currentOnOffState = true;
+    let currentOnOffState = false;
+
+    let passedOnOffState = false;
 
     //timers are breakpoints for creating currentCode object
 
@@ -179,7 +195,8 @@ const FFanim = ({
             color: block.value
           };
           codeArray.push(currentCode);
-          addToAnime(codeArray);
+          addToAnime(codeArray, undefined, passedOnOffState);
+          passedOnOffState = currentOnOffState;
         } else if (
           currentCode.onOff != undefined &&
           currentCode.onOff === false
@@ -205,13 +222,21 @@ const FFanim = ({
         }
       } else if (block.type === "onOff") {
         //Maybe done
+        if (block.value === true) {
+          console.log("turning on")
+          currentOnOffState = true;
+        } else {
+          console.log("turning off")
+          currentOnOffState = false;
+        }
         if (index === blocks.length - 1) {
           currentCode = {
             ...currentCode,
             onOff: block.value
           };
           codeArray.push(currentCode);
-          addToAnime(codeArray);
+          addToAnime(codeArray, undefined, passedOnOffState);
+          passedOnOffState = currentOnOffState;
         } else if (currentCode.color && block.value === false) {
           codeArray.push(currentCode);
           currentCode = {};
@@ -243,12 +268,13 @@ const FFanim = ({
           timer: block.value
         };
         if (index === blocks.length - 1) {
-          addToAnime(codeArray);
+          addToAnime(codeArray, undefined, passedOnOffState);
+          passedOnOffState = currentOnOffState;
         }
       } else if (block.type === "repeat") {
         codeArray.push(currentCode);
         currentCode = {};
-        addToAnime(codeArray, block.value);
+        addToAnime(codeArray, block.value, passedOnOffState);
         codeArray = [];
       }
       if (index === blocks.length - 1) {
@@ -286,12 +312,13 @@ const FFanim = ({
   }, [classes.wrapper, awake, animationList, playing]);
 
   useEffect(() => {
-    // if (playing) {
+    if (hasLoaded) {
     t1.play();
     t2.play();
     t3.play();
     t4.play();
-    // }
+    }
+    setHasLoaded(true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [playing]);
 
