@@ -69,7 +69,7 @@ const RegistrationStepThree = ({ step, updateStep, info, profiles }) => {
   };
 
   return (
-    <div className={classes.container}>
+    <div className={classes.stepThreeContainer}>
       <div className={classes.boxes}>
         <div className={classes.box}>
           <Typography variant="h2" className={classes.tutorialH}>
@@ -118,6 +118,7 @@ const RegistrationStepThree = ({ step, updateStep, info, profiles }) => {
           />
         </div>
       </div>
+
       <div className={classes.tutorialSize}>
         <div className={classes.buttonContainer}>
           <button
