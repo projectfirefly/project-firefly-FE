@@ -145,8 +145,8 @@ export const addFirefly = async (child, world_id, dispatch) => {
     })
     .then(async docRef => {
       const firefly = {
-        x: null,
-        y: null,
+        x: Math.floor(Math.random()*900),
+        y: Math.floor(Math.random()*500),
         codeBlocks: []
       };
       await db

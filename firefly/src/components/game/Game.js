@@ -293,7 +293,9 @@ const Game = (props) => {
 
   //Load fireflies from backend
   useEffect(() => {
-    // Delete this and replace it with the current firefly from worldContext
+    if (!worldContext.loaded) {
+      props.history.push("/choose-profile")
+    }
     if (props.location.firefly && props.location.firefly.codeBlocks.length !== 0) {
       if (list[listId].length === 0) {
         console.log(list[listId].length);

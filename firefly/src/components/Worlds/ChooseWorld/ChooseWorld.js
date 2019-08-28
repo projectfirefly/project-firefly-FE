@@ -17,15 +17,21 @@ import { Link } from "react-router-dom";
 import { gameContext, UPDATE_SELECTED } from "../../../context/Game/GameStore";
 import { childContext } from "../../../context/ChildProfiles/ChildProfileStore";
 
-const ChooseWorld = () => {
+const ChooseWorld = (props) => {
   //making the states from the stores
   const [worldContext, worldDispatch] = useContext(gameContext);
   const [childProfileState, childDispatch] = useContext(childContext);
 
   useEffect(() => {
+    if (!worldContext.loaded) {
+      props.history.push("/choose-profile")
+    }
+  }, [])
+
+  useEffect(() => {
     if (worldContext.loaded && childProfileState.loaded) {
       if (!worldContext.worlds[0]) {
-        const defaultWorld = { worldName: "Firefly World", fireflies: [] };
+        const defaultWorld = { worldName: "Firefly World" };
         addWorld(childProfileState.selected.id, defaultWorld, worldDispatch)
       }
     }

@@ -174,10 +174,12 @@ const FireflyContainer = ({ hideSourceOnDrag }) => {
                       accessory="none"
                       color={642}
                       awake={true}
+                      animationList={firefly.codeBlocks}
+                      loop={true}
                     />
                   </div>
                   <Dialog
-                    open={trashOpen}
+                    open={ffId === firefly.firefly_id && trashOpen}
                     onClose={() => setTrashOpen(false)}
                     are-labelledby="remove-profile-dialog"
                     classed={{
