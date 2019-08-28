@@ -100,6 +100,11 @@ const BlockLine = ({
     const [restructuredList] = Object.values(list);
 
     if (restructuredList.length > 1) {
+      console.log(restructuredList[i]);
+      if (restructuredList[i].rsi === 3 && !restructuredList[i].color) {
+        console.log("COLOR ERROR");
+        return true;
+      }
       //start block error check
       if (i !== 0 && restructuredList[i].rsi === 0) {
         return true;
