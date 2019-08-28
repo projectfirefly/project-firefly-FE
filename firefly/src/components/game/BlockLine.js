@@ -80,8 +80,6 @@ const BlockLine = ({
   const [openPopper, setOpenPopper] = useState(false);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-  const popperId = open ? "simple-popper" : undefined;
 
   const togglePopper = (id, blocks, type, value) => {
     if (openPopper) {
@@ -139,10 +137,6 @@ const BlockLine = ({
     setPlayClicked(false);
   }, [list]);
 
-  const handleClick = event => {
-    setAnchorEl(anchorEl ? null : event.currentTarget);
-  };
-
   const clickedPlay = () => {
     const [listArray] = Object.values(list);
     let lineError = false;
@@ -197,9 +191,7 @@ const BlockLine = ({
                       errorChecking={errorChecking}
                       anchorEl={anchorEl}
                       setAnchorEl={setAnchorEl}
-                      open={open}
-                      popperId={popperId}
-                      handleClick={handleClick}
+                      setOpenPopper={setOpenPopper}
                     />
                   ))
                 : !provided.placeholder && <Notice>Drop items here</Notice>}

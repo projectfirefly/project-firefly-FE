@@ -18,9 +18,7 @@ import PlayCircleIcon from "../../images/gameIcons/PlayCircleIcon.svg";
 import PaletteIcon from "../../images/gameIcons/PaletteIcon.svg";
 import ToggleOffIcon from "../../images/gameIcons/ToggleOffIcon.svg";
 import GridIcon from "../../images/gridBackground.png";
-import {
-  gameContext,
-} from "../../context/Game/GameStore";
+import { gameContext } from "../../context/Game/GameStore";
 import { childContext } from "../../context/ChildProfiles/ChildProfileStore";
 
 //importing the sound
@@ -28,6 +26,8 @@ import clickMP3 from "../../assets/sounds/click.mp3";
 import clickTogetherMP3 from "../../assets/sounds/clickTogether.mp3";
 import poofMP3 from "../../assets/sounds/poof.mp3";
 import { nextTick } from "q";
+import { Typography, makeStyles } from "@material-ui/core";
+import { Link } from "react-router-dom";
 //making the sounds variable
 const click = new uifx({ asset: clickMP3 });
 const clickTogether = new uifx({ asset: clickTogetherMP3 });
@@ -170,10 +170,24 @@ const ITEMS = [
   }
 ];
 
-const Game = ({
-  selectedWorldId,
-  firefly
-}) => {
+const Game = ({ selectedWorldId, firefly }) => {
+  const classes = makeStyles(theme => ({
+    back: {
+      ...theme.secondaryButton,
+      padding: ".7rem 4rem"
+    },
+    save: {
+      ...theme.primaryButton,
+      padding: ".7rem 4rem"
+    },
+    buttonContainer: {
+      display: "flex",
+      width: "80%",
+      paddingLeft: "11%",
+      marginTop: "2rem",
+      justifyContent: "space-around"
+    }
+  }))();
   //Set list to firefly out of context/firestore
   //display loader while loading
   //on cancel setList to list out of context/firestore
@@ -192,36 +206,37 @@ const Game = ({
   const [draggingBlock, isDraggingBlock] = useState(false);
   const [animationList, setAnimationList] = useState([]);
   const [playing, setPlaying] = useState(false);
+  const [trashing, setTrashing] = useState(false);
 
-  const createBlocksFromBackend = (blockList) => {
-    const newList = blockList.map((block) => {
+  const createBlocksFromBackend = blockList => {
+    const newList = blockList.map(block => {
       switch (block.type) {
         case "repeat":
           return {
             ...ITEMS[2],
             repeat: block.value,
-            id: uuid(),
-          }
+            id: uuid()
+          };
         case "color":
           return {
             ...ITEMS[3],
             color: block.value,
-            id: uuid(),
-          }
+            id: uuid()
+          };
         case "timer":
           return {
             ...ITEMS[4],
             timer: block.value,
-            id: uuid(),
-          }
+            id: uuid()
+          };
         case "onOff":
           return {
             ...ITEMS[5],
             onOff: block.value,
-            id: uuid(),
-          }
+            id: uuid()
+          };
       }
-    })
+    });
 
     setTools(
       [...tools].map((tool, index) => {
@@ -229,9 +244,9 @@ const Game = ({
           return {
             ...tool,
             used: true
-          }
+          };
         } else {
-          return { ...tool }
+          return { ...tool };
         }
       })
     );
@@ -242,16 +257,16 @@ const Game = ({
       [listId]: [
         {
           ...ITEMS[0],
-          id: uuid(),
+          id: uuid()
         },
         {
           ...ITEMS[1],
-          id: uuid(),
+          id: uuid()
         },
         ...newList
       ]
-    })
-  }
+    });
+  };
 
   //Load fireflies from backend
   useEffect(() => {
@@ -294,22 +309,19 @@ const Game = ({
         value: 1
       }
     ];
-
-    createBlocksFromBackend(fakeArray);
-
-  }, [])
+    if (list[listId].length === 0) {
+      createBlocksFromBackend(fakeArray);
+    }
+  }, []);
 
   const updateFirefly = () => {
-
     const updatedFirefly = {
       // ...props.firefly,
-      codeBlocks: [
-        ...animationList
-      ]
-    }
+      codeBlocks: [...animationList]
+    };
 
     // updateBlocks(userContext.selected, firefly.id, selectedWorldId, animationList, worldDispatch)
-  }
+  };
 
   useEffect(() => {
     console.log(worldContext);
@@ -320,7 +332,6 @@ const Game = ({
       Object.values(list).map(blockArray => {
         const newBlockArray = blockArray
           .map(block => {
-            console.log("block:", block);
             if (block.color) {
               return { type: "color", value: block.color };
             } else if (block.onOff !== undefined) {
@@ -410,6 +421,10 @@ const Game = ({
       setList({
         [source.droppableId]: realList
       });
+      setTrashing(true);
+      setTimeout(() => {
+        setTrashing(false);
+      }, 630);
       poof.play();
       return;
     }
@@ -479,9 +494,16 @@ const Game = ({
           playAnimation={playAnimation}
           playing={playing}
         />
-        <DropDelete />
+        <DropDelete trashing={trashing} />
       </DragDropContext>
-      <button onClick={updateFirefly} style={{marginLeft: "300px"}}>HELLO</button>
+      <div className={classes.buttonContainer}>
+        <Link to="/fireflyworld" className={classes.back}>
+          <Typography variant="button">Back</Typography>
+        </Link>
+        <button onClick={updateFirefly} className={classes.save}>
+          SAVE
+        </button>
+      </div>
     </Board>
   );
 };

@@ -50,6 +50,7 @@ const FireflyContainer = ({ hideSourceOnDrag }) => {
         return fireflies;
       })
     : null;
+
   const [fireflies, setFireflies] = useState([...theFireflies]);
   const [, drop] = useDrop({
     accept: itemType.Firefly,
@@ -78,8 +79,12 @@ const FireflyContainer = ({ hideSourceOnDrag }) => {
   };
 
   useEffect(() => {
-    console.log("render");
-  }, [fireflies]);
+    console.log("change to the fireflies state");
+    return () => {
+      setFireflies([...worldContext.worlds[0].fireflies]);
+      console.log("change was made");
+    };
+  }, [worldContext]);
 
   const confirmRemove = () => {
     removeFirefly(
@@ -94,92 +99,98 @@ const FireflyContainer = ({ hideSourceOnDrag }) => {
 
   return (
     <div ref={drop} className={classes.fireflyContainer}>
-      {fireflies.map(firefly => {
-        return (
-          <FireflyItem
-            key={firefly.firefly_id}
-            id={firefly.firefly_id}
-            left={firefly.x}
-            top={firefly.y}
-            hideSourceOnDrag={hideSourceOnDrag}
-            canDrag={canDrag}
-          >
-            <div className={classed.draggableFirefly}>
-              <div
-                className={`${
-                  menuActive && ffId === firefly.firefly_id
-                    ? classed.menu
-                    : classed.hidden
-                }`}
+      {fireflies
+        ? fireflies.map(firefly => {
+            // const left =  Math.floor((Math.random() * 100) + 1)
+            // const right =  Math.floor((Math.random() * 100) + 1)
+            return (
+              <FireflyItem
+                key={firefly.firefly_id}
+                id={firefly.firefly_id}
+                left={firefly.x}
+                top={firefly.y}
+                hideSourceOnDrag={hideSourceOnDrag}
+                canDrag={canDrag}
               >
-                <div onClick={() => (setCanDrag(true), setMenuState(false))}>
-                  <FaArrowsAlt className={classed.move} />
-                </div>
-                <Link to="/game">
-                  <FaPen className={classed.pen} />
-                </Link>
-                <div onClick={() => setTrashOpen(true)}>
-                  <FaTrashAlt className={classed.trash} />
-                </div>
-              </div>
-
-              <div
-                onClick={() => (
-                  setFFId(firefly.firefly_id), setMenuState(!menuActive)
-                )}
-              >
-                <FFanim
-                  height={129}
-                  width={132}
-                  accessory="none"
-                  color={642}
-                  awake={true}
-                />
-              </div>
-              <Dialog
-                open={trashOpen}
-                onClose={() => setTrashOpen(false)}
-                are-labelledby="remove-profile-dialog"
-                classed={{
-                  paper: classed.dialogPaper
-                }}
-              >
-                <DialogContent className={classed.dialogContainer}>
-                  <div className={classed.dialogTop}>
-                    <FFicon
-                      height={257}
-                      width={264}
-                      accessory="none"
-                      color={642}
-                    />
-                    <DialogContentText className={classed.dialogText}>
-                      BYE BYE!
-                    </DialogContentText>
+                <div className={classed.draggableFirefly}>
+                  <div
+                    className={`${
+                      menuActive && ffId === firefly.firefly_id
+                        ? classed.menu
+                        : classed.hidden
+                    }`}
+                  >
+                    <div
+                      onClick={() => (setCanDrag(true), setMenuState(false))}
+                    >
+                      <FaArrowsAlt className={classed.move} />
+                    </div>
+                    <Link to="/game">
+                      <FaPen className={classed.pen} />
+                    </Link>
+                    <div onClick={() => setTrashOpen(true)}>
+                      <FaTrashAlt className={classed.trash} />
+                    </div>
                   </div>
 
-                  <DialogActions>
-                    <div className={classed.dialogButtonContainer}>
-                      <button
-                        className={classed.dialogButtons + " cancel"}
-                        onClick={() => setTrashOpen(false)}
-                      >
-                        <FaTimes />
-                      </button>
+                  <div
+                    onClick={() => (
+                      setFFId(firefly.firefly_id), setMenuState(!menuActive)
+                    )}
+                  >
+                    <FFanim
+                      height={129}
+                      width={132}
+                      accessory="none"
+                      color={642}
+                      awake={true}
+                    />
+                  </div>
+                  <Dialog
+                    open={trashOpen}
+                    onClose={() => setTrashOpen(false)}
+                    are-labelledby="remove-profile-dialog"
+                    classed={{
+                      paper: classed.dialogPaper
+                    }}
+                  >
+                    <DialogContent className={classed.dialogContainer}>
+                      <div className={classed.dialogTop}>
+                        <FFicon
+                          height={257}
+                          width={264}
+                          accessory="none"
+                          color={642}
+                        />
+                        <DialogContentText className={classed.dialogText}>
+                          BYE BYE!
+                        </DialogContentText>
+                      </div>
 
-                      <button
-                        onClick={() => confirmRemove()}
-                        className={classed.dialogButtons + " remove"}
-                      >
-                        <FaCheck />
-                      </button>
-                    </div>
-                  </DialogActions>
-                </DialogContent>
-              </Dialog>
-            </div>
-          </FireflyItem>
-        );
-      })}
+                      <DialogActions>
+                        <div className={classed.dialogButtonContainer}>
+                          <button
+                            className={classed.dialogButtons + " cancel"}
+                            onClick={() => setTrashOpen(false)}
+                          >
+                            <FaTimes />
+                          </button>
+
+                          <button
+                            onClick={() => confirmRemove()}
+                            className={classed.dialogButtons + " remove"}
+                          >
+                            <FaCheck />
+                          </button>
+                        </div>
+                      </DialogActions>
+                    </DialogContent>
+                  </Dialog>
+                </div>
+              </FireflyItem>
+            );
+          })
+        : null}
     </div>
   );
 };
