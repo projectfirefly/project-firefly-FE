@@ -5,7 +5,7 @@ import itemType from "./itemType";
 import FireflyItem from "./FireflyItem";
 
 //importing the firebase stuff needed
-import { removeFirefly } from "../../../utils/firebaseInteractions.jsx";
+import { removeFirefly, updateBlocks } from "../../../utils/firebaseInteractions.jsx";
 import FFanim from "../../../assets/animations/FFanim";
 import FFicon from "../../../assets/icons/firefly/Firefly";
 import {
@@ -74,13 +74,20 @@ const FireflyContainer = ({ hideSourceOnDrag }) => {
       const left = Math.round(item.left + delta.x);
       const top = Math.round(item.top + delta.y);
       moveFirefly(item.id, left, top);
+      
       setCanDrag(false);
       return undefined;
     },
   });
   const moveFirefly = (id, left, top) => {
+    var updatedFirefly;
     const updatedFireflies = fireflies.map(firefly => {
       if (firefly.firefly_id === id) {
+        updatedFirefly = {
+          ...firefly,
+          x: left,
+          y: top,
+        }
         return {
           ...firefly,
           x: left,
@@ -90,17 +97,9 @@ const FireflyContainer = ({ hideSourceOnDrag }) => {
         return firefly;
       }
     });
-
+    updateBlocks(context.selected.id, id, worldContext.selected.id, updatedFirefly, worldDispatch);
     setFireflies([...updatedFireflies]);
   };
-
-  useEffect(() => {
-    console.log("change to the fireflies state");
-    return () => {
-      setFireflies([...worldContext.worlds[0].fireflies]);
-      console.log("change was made");
-    };
-  }, [worldContext]);
 
   const confirmRemove = () => {
     removeFirefly(
@@ -144,6 +143,7 @@ const FireflyContainer = ({ hideSourceOnDrag }) => {
                   >
                     <div
                       onClick={() => (setCanDrag(true), setMenuState(false))}
+                      style={{zIndex: "100"}}
                     >
                       <FaArrowsAlt className={classed.move} />
                     </div>
