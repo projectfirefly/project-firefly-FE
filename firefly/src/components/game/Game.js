@@ -28,6 +28,7 @@ import poofMP3 from "../../assets/sounds/poof.mp3";
 import { nextTick } from "q";
 import { Typography, makeStyles } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import { updateBlocks } from "../../utils/firebaseInteractions";
 //making the sounds variable
 const click = new uifx({ asset: clickMP3 });
 const clickTogether = new uifx({ asset: clickTogetherMP3 });
@@ -170,7 +171,7 @@ const ITEMS = [
   }
 ];
 
-const Game = ({ selectedWorldId, firefly }) => {
+const Game = (props) => {
   const classes = makeStyles(theme => ({
     back: {
       ...theme.secondaryButton,
@@ -271,61 +272,22 @@ const Game = ({ selectedWorldId, firefly }) => {
   //Load fireflies from backend
   useEffect(() => {
     // Delete this and replace it with the current firefly from worldContext
-    const fakeArray = [
-      {
-        type: "timer",
-        value: 1
-      },
-      {
-        type: "color",
-        value: 270
-      },
-      {
-        type: "timer",
-        value: 3
-      },
-      {
-        type: "onOff",
-        value: false
-      },
-      {
-        type: "timer",
-        value: 2
-      },
-      {
-        type: "onOff",
-        value: true
-      },
-      {
-        type: "color",
-        value: 120
-      },
-      {
-        type: "timer",
-        value: 2
-      },
-      {
-        type: "repeat",
-        value: 1
+    if (props.location.firefly && props.location.firefly.codeBlocks.length !== 0) {
+      if (list[listId].length === 0) {
+        console.log(list[listId].length);
+        createBlocksFromBackend([...props.location.firefly.codeBlocks]);
       }
-    ];
-    if (list[listId].length === 0) {
-      createBlocksFromBackend(fakeArray);
     }
   }, []);
 
   const updateFirefly = () => {
     const updatedFirefly = {
-      // ...props.firefly,
+      ...props.location.firefly,
       codeBlocks: [...animationList]
     };
 
-    // updateBlocks(userContext.selected, firefly.id, selectedWorldId, animationList, worldDispatch)
+    updateBlocks(childProfileState.selected.id, props.location.firefly.firefly_id, props.location.selectedWorldId, updatedFirefly, worldDispatch)
   };
-
-  useEffect(() => {
-    console.log(worldContext);
-  }, [worldContext]);
 
   useEffect(() => {
     if (list.length !== 0) {

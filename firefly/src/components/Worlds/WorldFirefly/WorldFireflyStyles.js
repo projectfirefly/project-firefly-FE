@@ -11,7 +11,10 @@ const WorldFireflyStyles = makeStyles({
     position: 'absolute',
     // background:'white',
     padding:'0.5rem 1rem',
-    cursor: 'move',
+    "&.move" : {
+      cursor: 'move',
+      border: "1px dashed #f9dc28"
+    }
   },
   menu: {
     display: "flex",

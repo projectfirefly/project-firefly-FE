@@ -7,18 +7,18 @@ const initialState = {
     id: "0"
   },
   worlds: [
-    {
-      id: "",
-      worldName: "",
-      fireflies: [
-        {
-          firefly_id: "",
-          x: null,
-          y: null,
-          codeBlocks: []
-        }
-      ]
-    }
+  //   {
+  //     id: "",
+  //     worldName: "",
+  //     fireflies: [
+  //       {
+  //         firefly_id: "",
+  //         x: null,
+  //         y: null,
+  //         codeBlocks: []
+  //       }
+  //     ]
+  //   }
   ],
   loaded: false
 };
@@ -99,16 +99,18 @@ function reducer(state, action) {
       return { ...state, worlds: worldArr };
 
     case UPDATE_BLOCK:
+      console.log(action.payload);
       const newWorlds = state.worlds.map(world => {
         const updatedFireflies = world.fireflies.map(firefly => {
-          if (firefly.id === action.payload.firefly_id) {
+          if (firefly.firefly_id === action.payload.firefly_id) {
             return action.payload;
           } else {
             return firefly;
           }
         });
-        return { fireflies: updatedFireflies };
+        return { ...world, fireflies: updatedFireflies };
       });
+      
       return { ...state, worlds: newWorlds };
 
     default:

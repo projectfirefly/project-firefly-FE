@@ -9,7 +9,6 @@ import anime from "animejs";
 const FFanim = ({
   height,
   width,
-  color,
   accessory,
   awake,
   animationList,
@@ -52,73 +51,7 @@ const FFanim = ({
     duration: 500
   };
 
-  const fakeArray = [
-    {
-      type: "timer",
-      value: 1
-    },
-    {
-      type: "color",
-      value: 270
-    },
-    {
-      type: "timer",
-      value: 3
-    },
-    {
-      type: "onOff",
-      value: false
-    },
-    {
-      type: "timer",
-      value: 2
-    },
-    {
-      type: "onOff",
-      value: true
-    },
-    {
-      type: "color",
-      value: 120
-    },
-    {
-      type: "timer",
-      value: 2
-    },
-    {
-      type: "repeat",
-      value: 1
-    }
-  ];
-
   function parseColorCode(blocks) {
-    //Write an add function that takes in array of objects, and/or number of times to add
-
-    //Array of objects
-    //Needs to be an array so I can add the whole array multiple times in order if there's a loop
-    //Store current color
-    //Each object contains duration and color and on/off
-    //If setting to off, turn color to -1
-    //If going from off to on, set color to previous color
-    //If storing a previously existing property, push to the array
-    //When I hit a loop, or the end of the blocks array, send to add function.
-
-    //55 40 30
-    //color timer switch repeat
-
-    // {
-    //   color: 52,
-    //   onOff: true,
-    //   timer: 3,
-    // }
-    // convert to
-    // {
-    //   fill: "hsl(color, 100%, 55%)",  //off is #e2e4e8, #c6cad1, #abafb9
-    //   duration: (timer in ms),
-    // }
-
-    //if onOff === true && !element.color, element.color = currentColor
-
     let currentColor = 52;
 
     function addToAnime(array, repeat) {
