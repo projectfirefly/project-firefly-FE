@@ -34,7 +34,7 @@ const FFbox = ({ tools, animationList, playing }) => {
       <FFanim
         height={250}
         width={250}
-        accessory="nerdglasses"
+        accessory="lambdahat"
         color={58}
         awake={tools[1].used ? true : false}
         animationList={animationList}

@@ -80,8 +80,6 @@ const BlockLine = ({
   const [openPopper, setOpenPopper] = useState(false);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-  const popperId = open ? "simple-popper" : undefined;
 
   const togglePopper = (id, blocks, type, value) => {
     if (openPopper) {
@@ -102,6 +100,11 @@ const BlockLine = ({
     const [restructuredList] = Object.values(list);
 
     if (restructuredList.length > 1) {
+      console.log(restructuredList[i]);
+      if (restructuredList[i].rsi === 3 && !restructuredList[i].color) {
+        console.log("COLOR ERROR");
+        return true;
+      }
       //start block error check
       if (i !== 0 && restructuredList[i].rsi === 0) {
         return true;
@@ -138,10 +141,6 @@ const BlockLine = ({
   useEffect(() => {
     setPlayClicked(false);
   }, [list]);
-
-  const handleClick = event => {
-    setAnchorEl(anchorEl ? null : event.currentTarget);
-  };
 
   const clickedPlay = () => {
     const [listArray] = Object.values(list);
@@ -197,9 +196,7 @@ const BlockLine = ({
                       errorChecking={errorChecking}
                       anchorEl={anchorEl}
                       setAnchorEl={setAnchorEl}
-                      open={open}
-                      popperId={popperId}
-                      handleClick={handleClick}
+                      setOpenPopper={setOpenPopper}
                     />
                   ))
                 : !provided.placeholder && <Notice>Drop items here</Notice>}

@@ -17,12 +17,12 @@ const useStyles = makeStyles({
     position: "absolute",
     top: "25%",
     left: "30%",
-    width: "40px",
+    width: "40px"
   },
 
   container: {
     display: "flex",
-    flexDirection: "column",
+    flexDirection: "column"
   },
 
   tool: {
@@ -31,20 +31,20 @@ const useStyles = makeStyles({
     width: "100px",
     "& svg": {
       width: "100%",
-      height: "100%",
+      height: "100%"
     },
     "&.blockError svg.greenBoxRightSide path": {
       stroke: "#dc143c",
-      strokeWidth: "2",
+      strokeWidth: "2"
     },
     "&.blockError svg.orangeStartBlock path": {
       stroke: "#dc143c",
-      strokeWidth: "2",
+      strokeWidth: "2"
     },
     "&.blockError svg.blueBlock path": {
       stroke: "#dc143c",
-      strokeWidth: "2",
-    },
+      strokeWidth: "2"
+    }
   },
 
   item: {
@@ -53,26 +53,26 @@ const useStyles = makeStyles({
     margin: "0 -10px 0 0",
     alignItems: "flex-start",
     alignContent: "flex-start",
-    borderRadius: "3px",
+    borderRadius: "3px"
   },
 
   toggleOn: {
     position: "absolute",
     top: "32%",
-    left: "30%",
+    left: "30%"
   },
 
   toggleOff: {
     position: "absolute",
     top: "32%",
-    left: "30%",
+    left: "30%"
   },
 
   number: {
     position: "absolute",
     left: "28%",
     top: "25%",
-    width: "40px",
+    width: "40px"
   },
 
   count: {
@@ -81,7 +81,7 @@ const useStyles = makeStyles({
     fontFamily: "Nunito",
     left: "25%",
     color: "white",
-    top: "25%",
+    top: "25%"
   },
 
   countTen: {
@@ -90,7 +90,7 @@ const useStyles = makeStyles({
     fontFamily: "Nunito",
     left: "18%",
     color: "white",
-    top: "25%",
+    top: "25%"
   },
 
   palette: {
@@ -101,15 +101,15 @@ const useStyles = makeStyles({
 
     "& svg": {
       width: "40px",
-      height: "40px",
-    },
+      height: "40px"
+    }
   },
 
   repeatIcon: {
     top: "19%",
     left: "17%",
     width: "60%",
-    position: "absolute",
+    position: "absolute"
   },
 
   repeatNumber: {
@@ -117,8 +117,8 @@ const useStyles = makeStyles({
     left: "44%",
     top: "32%",
     fontSize: "2.8rem",
-    color: "white",
-  },
+    color: "white"
+  }
 });
 
 const CodeBlock = ({
@@ -126,6 +126,7 @@ const CodeBlock = ({
   index,
   togglePopper,
   openPopper,
+  setOpenPopper,
   list,
   setList,
   id,
@@ -135,10 +136,7 @@ const CodeBlock = ({
   playClicked,
   errorChecking,
   anchorEl,
-  setAnchorEl,
-  open,
-  popperId,
-  handleClick,
+  setAnchorEl
 }) => {
   const classes = useStyles();
 
@@ -147,6 +145,11 @@ const CodeBlock = ({
   const [toggleRepeat, setToggleRepeat] = useState(false);
   const [toggleOnOff, setToggleOnOff] = useState(false);
   const [error, setError] = useState(false);
+
+  const [openId, setOpenId] = useState();
+  const open = Boolean(anchorEl);
+
+  const popperId = open ? "simple-popper" : undefined;
 
   //state that's used in lower levels. These are passed in props to different poppers
   //Switch State
@@ -182,6 +185,33 @@ const CodeBlock = ({
     setError(errorChecking(index));
   };
 
+  const handleClick = event => {
+    if (!openPopper) {
+      setOpenId(item.id);
+      setAnchorEl(anchorEl ? null : event.currentTarget);
+    } else if (openPopper) {
+      if (item.id === openId) {
+        setAnchorEl(null);
+        setOpenPopper(!openPopper);
+      }
+    }
+  };
+
+  const toggleAllPoppers = (id, blocks, type, value) => {
+    if (type === "color") {
+      togglePopper(id, blocks, "color", value);
+    } else if (type === "repeat") {
+      togglePopper(id, blocks, "repeat", value);
+    } else if (type === "timer") {
+      togglePopper(id, blocks, "timer", value);
+    } else if (type === "onOff") {
+      togglePopper(id, blocks, "onOff", value);
+    }
+
+    // this is list id: console.log(blocks);
+    // this is item id: console.log(id);
+  };
+
   useEffect(() => {
     if (item.color || item.onOff || item.timer || item.repeat) {
       setHasBeenClicked(true);
@@ -199,7 +229,13 @@ const CodeBlock = ({
 
   useEffect(() => {
     checkForErrors();
-  }, [list]);
+    if (anchorEl === null) {
+      setToggleRepeat(false);
+      setTogglePalette(false);
+      setToggleOnOff(false);
+      setToggleTimer(false);
+    }
+  }, [list, anchorEl]);
 
   return (
     <Draggable
@@ -250,7 +286,7 @@ const CodeBlock = ({
                 onClick={event => {
                   handleClick(event);
                   if (!openPopper || toggleRepeat) {
-                    togglePopper(id, blocks, "repeat", repeat);
+                    toggleAllPoppers(id, blocks, "repeat", repeat);
                     toggleSetRepeat();
                   } else {
                     return null;
@@ -373,7 +409,7 @@ const CodeBlock = ({
                 onClick={event => {
                   handleClick(event);
                   if (!openPopper || togglePalette) {
-                    togglePopper(id, blocks, "color", color);
+                    toggleAllPoppers(id, blocks, "color", color);
                     setPalette();
                     setHasBeenClicked(true);
                   } else {
@@ -400,7 +436,13 @@ const CodeBlock = ({
                     />
                   </div>
                 ) : (
-                  <div className={classes.tool}>
+                  <div
+                    className={
+                      error && playClicked
+                        ? classes.tool + " blockError"
+                        : classes.tool
+                    }
+                  >
                     <GreenBlockRightSideSvg />
                     {
                       <div className={classes.palette}>
@@ -419,7 +461,7 @@ const CodeBlock = ({
                 onClick={event => {
                   handleClick(event);
                   if (!openPopper || toggleTimer) {
-                    togglePopper(id, blocks, "timer", time);
+                    toggleAllPoppers(id, blocks, "timer", time);
                     setTimer();
                   } else {
                     return null;
@@ -477,7 +519,7 @@ const CodeBlock = ({
             //onClick={event => {
             //      handleClick(event);
             //     if (!openPopper || toggleCount) {
-            //       togglePopper(id, blocks, "number", number);
+            //       toggleAllPoppers(id, blocks, "number", number);
             //     setCount();
             //           } else {
             //             return null;
@@ -569,7 +611,7 @@ const CodeBlock = ({
                 onClick={event => {
                   handleClick(event);
                   if (!openPopper || toggleOnOff) {
-                    togglePopper(id, blocks, "onOff", onOff);
+                    toggleAllPoppers(id, blocks, "onOff", onOff);
                     setOnOffSwitch();
                   } else {
                     return null;

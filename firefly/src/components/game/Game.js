@@ -17,6 +17,8 @@ import ClockIcon from "../../images/gameIcons/ClockIcon.svg";
 import PlayCircleIcon from "../../images/gameIcons/PlayCircleIcon.svg";
 import PaletteIcon from "../../images/gameIcons/PaletteIcon.svg";
 import ToggleOffIcon from "../../images/gameIcons/ToggleOffIcon.svg";
+import LockIcon from "../../images/gameIcons/LockIcon.svg";
+
 import GridIcon from "../../images/gridBackground.png";
 import { gameContext } from "../../context/Game/GameStore";
 import { childContext } from "../../context/ChildProfiles/ChildProfileStore";
@@ -45,7 +47,7 @@ const Board = styled.div`
 const ToolboxGreenIcon = styled.img`
   position: absolute;
   width: 40%;
-  top: 28%;
+  top: 25%;
   left: 29%;
 `;
 
@@ -59,14 +61,20 @@ const ToolboxBlueLedIcon = styled.img`
 const ToolboxBlueRepeatIcon = styled.img`
   position: absolute;
   width: 50%;
-  top: 26%;
+  top: 24%;
   left: 23%;
 `;
 
 const ToolboxToggleIcon = styled.img`
   position: absolute;
-  top: 35%;
-  left: 27%;
+  top: 30%;
+  left: 29%;
+`;
+
+const ToolboxLockIcon = styled.img`
+  position: absolute;
+  top: 26%;
+  left: 33%;
 `;
 
 const ToolboxBox = styled.img`
@@ -116,7 +124,7 @@ const ITEMS = [
     ),
     content: <ToolboxBox src={StartBlock} alt="startblock" />,
     used: false,
-    rsi: 0,
+    rsi: 0
   },
   {
     id: uuid(),
@@ -125,7 +133,7 @@ const ITEMS = [
     ),
     content: <ToolboxBox src={BlueBlockLeftSideEndState} alt="blueblock" />,
     used: false,
-    rsi: 1,
+    rsi: 1
   },
   {
     id: uuid(),
@@ -135,7 +143,7 @@ const ITEMS = [
     content: <ToolboxBox src={GreenBlockRightSideEndState} alt="greenblock" />,
     used: false,
     rsi: 2,
-    repeat: 1,
+    repeat: 1
   },
 
   {
@@ -143,7 +151,7 @@ const ITEMS = [
     functionality: <ToolboxGreenIcon src={PaletteIcon} alt="paletteIcon" />,
     content: <ToolboxBox src={GreenBlockRightSideEndState} alt="greenblock" />,
     used: false,
-    rsi: 3,
+    rsi: 3
   },
   {
     id: uuid(),
@@ -151,7 +159,7 @@ const ITEMS = [
     content: <ToolboxBox src={GreenBlockRightSideEndState} alt="greenblock" />,
     used: false,
     rsi: 4,
-    timer: 1,
+    timer: 1
   },
   // {
   //   id: uuid(),
@@ -166,8 +174,22 @@ const ITEMS = [
     content: <ToolboxBox src={GreenBlockRightSideEndState} alt="greenblock" />,
     used: false,
     rsi: 6,
-    onOff: false,
+    onOff: false
   },
+  {
+    id: uuid(),
+    functionality: <ToolboxLockIcon src={LockIcon} alt="lockIcon" />,
+    content: <ToolboxBox src={GreenBlockRightSideEndState} alt="greenblock" />,
+    used: true,
+    rsi: 7
+  },
+  {
+    id: uuid(),
+    functionality: <ToolboxLockIcon src={LockIcon} alt="lockIcon" />,
+    content: <ToolboxBox src={GreenBlockRightSideEndState} alt="greenblock" />,
+    used: true,
+    rsi: 8
+  }
 ];
 
 const Game = ({ selectedWorldId, firefly }) => {
@@ -185,9 +207,9 @@ const Game = ({ selectedWorldId, firefly }) => {
       width: "80%",
       paddingLeft: "11%",
       marginTop: "2rem",
-      justifyContent: "space-around",
+      justifyContent: "space-around"
     }
-  }))()
+  }))();
   //Set list to firefly out of context/firestore
   //display loader while loading
   //on cancel setList to list out of context/firestore
@@ -215,25 +237,25 @@ const Game = ({ selectedWorldId, firefly }) => {
           return {
             ...ITEMS[2],
             repeat: block.value,
-            id: uuid(),
+            id: uuid()
           };
         case "color":
           return {
             ...ITEMS[3],
             color: block.value,
-            id: uuid(),
+            id: uuid()
           };
         case "timer":
           return {
             ...ITEMS[4],
             timer: block.value,
-            id: uuid(),
+            id: uuid()
           };
         case "onOff":
           return {
             ...ITEMS[5],
             onOff: block.value,
-            id: uuid(),
+            id: uuid()
           };
       }
     });
@@ -243,7 +265,7 @@ const Game = ({ selectedWorldId, firefly }) => {
         if (index === 0 || index === 1) {
           return {
             ...tool,
-            used: true,
+            used: true
           };
         } else {
           return { ...tool };
@@ -257,14 +279,14 @@ const Game = ({ selectedWorldId, firefly }) => {
       [listId]: [
         {
           ...ITEMS[0],
-          id: uuid(),
+          id: uuid()
         },
         {
           ...ITEMS[1],
-          id: uuid(),
+          id: uuid()
         },
-        ...newList,
-      ],
+        ...newList
+      ]
     });
   };
 
@@ -274,49 +296,50 @@ const Game = ({ selectedWorldId, firefly }) => {
     const fakeArray = [
       {
         type: "timer",
-        value: 1,
+        value: 1
       },
       {
         type: "color",
-        value: 270,
+        value: 270
       },
       {
         type: "timer",
-        value: 3,
+        value: 3
       },
       {
         type: "onOff",
-        value: false,
+        value: false
       },
       {
         type: "timer",
-        value: 2,
+        value: 2
       },
       {
         type: "onOff",
-        value: true,
+        value: true
       },
       {
         type: "color",
-        value: 120,
+        value: 120
       },
       {
         type: "timer",
-        value: 2,
+        value: 2
       },
       {
         type: "repeat",
-        value: 1,
-      },
+        value: 1
+      }
     ];
-
-    createBlocksFromBackend(fakeArray);
+    if (list[listId].length === 0) {
+      createBlocksFromBackend(fakeArray);
+    }
   }, []);
 
   const updateFirefly = () => {
     const updatedFirefly = {
       // ...props.firefly,
-      codeBlocks: [...animationList],
+      codeBlocks: [...animationList]
     };
 
     // updateBlocks(userContext.selected, firefly.id, selectedWorldId, animationList, worldDispatch)
@@ -331,7 +354,6 @@ const Game = ({ selectedWorldId, firefly }) => {
       Object.values(list).map(blockArray => {
         const newBlockArray = blockArray
           .map(block => {
-            console.log("block:", block);
             if (block.color) {
               return { type: "color", value: block.color };
             } else if (block.onOff !== undefined) {
@@ -419,12 +441,12 @@ const Game = ({ selectedWorldId, firefly }) => {
       });
       //Filters all tools to used:false so they become usable again
       setList({
-        [source.droppableId]: realList,
+        [source.droppableId]: realList
       });
       setTrashing(true);
       setTimeout(() => {
         setTrashing(false);
-      }, 2000);
+      }, 630);
       poof.play();
       return;
     }
@@ -438,7 +460,7 @@ const Game = ({ selectedWorldId, firefly }) => {
               list[source.droppableId],
               source.index,
               destination.index
-            ),
+            )
           });
         }
         break;
@@ -456,7 +478,7 @@ const Game = ({ selectedWorldId, firefly }) => {
             list[destination.droppableId],
             source,
             destination
-          ),
+          )
         });
         // to play default drop sound 'clickTogether' when dropping the block
         clickTogether.play();
