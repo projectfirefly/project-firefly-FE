@@ -7,18 +7,18 @@ const initialState = {
     id: "0"
   },
   worlds: [
-  //   {
-  //     id: "",
-  //     worldName: "",
-  //     fireflies: [
-  //       {
-  //         firefly_id: "",
-  //         x: null,
-  //         y: null,
-  //         codeBlocks: []
-  //       }
-  //     ]
-  //   }
+    //   {
+    //     id: "",
+    //     worldName: "",
+    //     fireflies: [
+    //       {
+    //         firefly_id: "",
+    //         x: null,
+    //         y: null,
+    //         codeBlocks: []
+    //       }
+    //     ]
+    //   }
   ],
   loaded: false
 };
@@ -51,10 +51,10 @@ function reducer(state, action) {
       });
       return { ...state, worlds: selectedWorld };
 
-      case ADD_WORLD:
-        const newWorld = [...state.worlds, action.payload]
-        console.log(newWorld)
-        return {...state, worlds: newWorld}
+    case ADD_WORLD:
+      const newWorld = [...state.worlds, action.payload]
+      console.log(newWorld)
+      return { ...state, worlds: newWorld }
 
     case SET_GAME_LOADED: {
       return { ...state, loaded: true };
@@ -78,10 +78,17 @@ function reducer(state, action) {
       const addedFirefly = state.worlds.map(world => {
         console.log(action.payload);
         if (world.id === action.payload.world_id) {
-          return {
-            ...world,
-            fireflies: [ ...world.fireflies, action.payload.firefly ]
-          };
+          if (world.fireflies) {
+            return {
+              ...world,
+              fireflies: [...world.fireflies, action.payload.firefly]
+            };
+          } else {
+            return {
+              ...world,
+              fireflies: [action.payload.firefly]
+            }
+          }
         } else {
           return world;
         }
@@ -111,7 +118,7 @@ function reducer(state, action) {
         });
         return { ...world, fireflies: updatedFireflies };
       });
-      
+
       return { ...state, worlds: newWorlds };
 
     default:

@@ -63,7 +63,9 @@ const FireflyContainer = ({ hideSourceOnDrag }) => {
         }
       });
       console.log(currentWorld);
-      setFireflies([...currentWorld.fireflies]);
+      if (currentWorld.fireflies) {
+        setFireflies([...currentWorld.fireflies]);
+      }
     }
   }, [worldContext]);
 
@@ -125,11 +127,11 @@ const FireflyContainer = ({ hideSourceOnDrag }) => {
                 left={firefly.x}
                 top={firefly.y}
                 hideSourceOnDrag={hideSourceOnDrag}
-                canDrag={canDrag}
+                canDrag={ffId === firefly.firefly_id && canDrag}
               >
                 <div
                   className={
-                    canDrag
+                    ffId === firefly.firefly_id && canDrag
                       ? classed.draggableFirefly + " move"
                       : classed.draggableFirefly
                   }
@@ -172,10 +174,12 @@ const FireflyContainer = ({ hideSourceOnDrag }) => {
                       accessory="none"
                       color={642}
                       awake={true}
+                      animationList={firefly.codeBlocks}
+                      loop={true}
                     />
                   </div>
                   <Dialog
-                    open={trashOpen}
+                    open={ffId === firefly.firefly_id && trashOpen}
                     onClose={() => setTrashOpen(false)}
                     are-labelledby="remove-profile-dialog"
                     classed={{
