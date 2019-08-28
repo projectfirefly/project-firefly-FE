@@ -75,7 +75,6 @@ const FireflyContainer = ({ hideSourceOnDrag }) => {
         return firefly;
       }
     });
-
     setFireflies([...updatedFireflies]);
   };
 
