@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="578px" height="246px" viewBox="0 0 578 246" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 57.1 (83088) - https://sketch.com -->
+    <title>WelcomeToFirefly</title>
+    <desc>Created with Sketch.</desc>
+    <g id="HF-Design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="TabletLandingPage" transform="translate(-309.000000, -223.000000)">
+            <g id="WelcomeToFirefly" transform="translate(260.000000, 59.000000)">
+                <path d="M87.4317026,164.482366 C193.691585,178.660789 277.047685,185.75 337.5,185.75 C398.152539,185.75 481.860831,178.613751 588.624877,164.341252 L588.624877,164.341252 C607.100132,161.871431 624.079471,174.8464 626.549291,193.321655 C627.671995,201.71993 625.594735,210.233258 620.730121,217.170622 C600.66004,245.792309 590.625,269.068768 590.625,287 C590.625,304.905663 600.631442,328.14132 620.644325,356.70697 L620.644324,356.70697 C631.339509,371.972883 627.634203,393.01851 612.368291,403.713696 C605.424931,408.578162 596.905142,410.651336 588.503025,409.520981 C483.095835,395.340327 399.42816,388.25 337.5,388.25 C275.778869,388.25 192.463333,395.293 87.5533913,409.378999 L87.5533915,409.379 C69.0795578,411.859436 52.0927658,398.894226 49.6123297,380.420392 C48.4875037,372.042894 50.5471812,363.548287 55.3840755,356.616321 C74.7113585,328.917539 84.375,305.712099 84.375,287 C84.375,268.260417 74.6829495,245.014283 55.2988486,217.261598 L55.2988476,217.261598 C44.625547,201.980376 48.3610054,180.940078 63.6422276,170.266777 C70.5685439,165.429032 79.0573932,163.364968 87.4317026,164.482366 Z" id="Rectangle" fill="#3E8C0D"></path>
+                <g id="Group-10" transform="translate(90.000000, 202.000000)" fill="#E2F5D6" font-family="ChalkboardSE-Bold, Chalkboard SE" font-size="120" font-weight="bold" letter-spacing="24.7941177">
+                    <text id="F" transform="translate(55.000000, 124.000000) rotate(-7.000000) translate(-55.000000, -124.000000) ">
+                        <tspan x="11.2438251" y="175">F</tspan>
+                    </text>
+                    <text id="i" transform="translate(121.945801, 101.417131) rotate(-3.000000) translate(-121.945801, -101.417131) ">
+                        <tspan x="93.2393494" y="152.417131">i</tspan>
+                    </text>
+                    <text id="r" transform="translate(180.293394, 93.468476) rotate(-6.000000) translate(-180.293394, -93.468476) ">
+                        <tspan x="140.316225" y="144.468476">r</tspan>
+                    </text>
+                    <text id="e" transform="translate(264.500000, 94.000000) rotate(14.000000) translate(-264.500000, -94.000000) ">
+                        <tspan x="219.218963" y="145">e</tspan>
+                    </text>
+                    <text id="f">
+                        <tspan x="288.354322" y="144">f</tspan>
+                    </text>
+                    <text id="l" transform="translate(400.000000, 103.000000) rotate(5.000000) translate(-400.000000, -103.000000) ">
+                        <tspan x="368.243825" y="154">l</tspan>
+                    </text>
+                    <text id="y" transform="translate(470.000000, 110.000000) rotate(8.000000) translate(-470.000000, -110.000000) ">
+                        <tspan x="424.122278" y="161">y</tspan>
+                    </text>
+                </g>
+                <text id="Welcome-to" transform="translate(210.418114, 235.978088) rotate(-6.000000) translate(-210.418114, -235.978088) " font-family="Nunito-Bold, Nunito" font-size="25" font-weight="bold" letter-spacing="5.0625" fill="#E2F5D6">
+                    <tspan x="116.118114" y="243.978088">Welcome to</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>
