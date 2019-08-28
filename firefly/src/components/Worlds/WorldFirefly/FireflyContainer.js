@@ -5,13 +5,13 @@ import itemType from "./itemType";
 import FireflyItem from "./FireflyItem";
 
 //importing the firebase stuff needed
-import { removeFirefly } from "../../../utils/firebaseInteractions.jsx";
+import { removeFirefly, updateBlocks } from "../../../utils/firebaseInteractions.jsx";
 import FFanim from "../../../assets/animations/FFanim";
 import FFicon from "../../../assets/icons/firefly/Firefly";
 import {
   gameContext,
   SELECTED_WORLD,
-  REMOVE_FIREFLY
+  REMOVE_FIREFLY,
 } from "../../../context/Game/GameStore";
 import { childContext } from "../../../context/ChildProfiles/ChildProfileStore";
 import {
@@ -19,14 +19,14 @@ import {
   FaTrashAlt,
   FaArrowsAlt,
   FaTimes,
-  FaCheck
+  FaCheck,
 } from "react-icons/fa";
 import {
   Dialog,
   // DialogTitle,
   DialogContent,
   DialogContentText,
-  DialogActions
+  DialogActions,
   // Typography
 } from "@material-ui/core";
 
@@ -45,13 +45,28 @@ const FireflyContainer = ({ hideSourceOnDrag }) => {
   const [trashOpen, setTrashOpen] = useState(false);
   const [canDrag, setCanDrag] = useState(false);
 
-  const theFireflies = worldContext.worlds[0].fireflies
-    ? worldContext.worlds[0].fireflies.map(fireflies => {
-        return fireflies;
-      })
-    : null;
+  useEffect(() => {
+    console.log(worldContext.selected.id);
+    console.log(context.selected.id);
+  }, []);
 
-  const [fireflies, setFireflies] = useState([...theFireflies]);
+  const [fireflies, setFireflies] = useState([]);
+
+  useEffect(() => {
+    if (worldContext.worlds.length != 0) {
+      console.log(worldContext);
+      const [currentWorld] = worldContext.worlds.filter(world => {
+        if (world.id === worldContext.selected.id) {
+          return true;
+        } else {
+          return false;
+        }
+      });
+      console.log(currentWorld);
+      setFireflies([...currentWorld.fireflies]);
+    }
+  }, [worldContext]);
+
   const [, drop] = useDrop({
     accept: itemType.Firefly,
     drop(item, monitor) {
@@ -59,32 +74,32 @@ const FireflyContainer = ({ hideSourceOnDrag }) => {
       const left = Math.round(item.left + delta.x);
       const top = Math.round(item.top + delta.y);
       moveFirefly(item.id, left, top);
+      
       setCanDrag(false);
       return undefined;
-    }
+    },
   });
   const moveFirefly = (id, left, top) => {
+    var updatedFirefly;
     const updatedFireflies = fireflies.map(firefly => {
       if (firefly.firefly_id === id) {
+        updatedFirefly = {
+          ...firefly,
+          x: left,
+          y: top,
+        }
         return {
           ...firefly,
           x: left,
-          y: top
+          y: top,
         };
       } else {
         return firefly;
       }
     });
+    updateBlocks(context.selected.id, id, worldContext.selected.id, updatedFirefly, worldDispatch);
     setFireflies([...updatedFireflies]);
   };
-
-  useEffect(() => {
-    console.log("change to the fireflies state");
-    return () => {
-      setFireflies([...worldContext.worlds[0].fireflies]);
-      console.log("change was made");
-    };
-  }, [worldContext]);
 
   const confirmRemove = () => {
     removeFirefly(
@@ -112,7 +127,13 @@ const FireflyContainer = ({ hideSourceOnDrag }) => {
                 hideSourceOnDrag={hideSourceOnDrag}
                 canDrag={canDrag}
               >
-                <div className={classed.draggableFirefly}>
+                <div
+                  className={
+                    canDrag
+                      ? classed.draggableFirefly + " move"
+                      : classed.draggableFirefly
+                  }
+                >
                   <div
                     className={`${
                       menuActive && ffId === firefly.firefly_id
@@ -122,10 +143,17 @@ const FireflyContainer = ({ hideSourceOnDrag }) => {
                   >
                     <div
                       onClick={() => (setCanDrag(true), setMenuState(false))}
+                      style={{zIndex: "100"}}
                     >
                       <FaArrowsAlt className={classed.move} />
                     </div>
-                    <Link to="/game">
+                    <Link
+                      to={{
+                        pathname: "/game",
+                        firefly: firefly,
+                        selectedWorldId: worldContext.selected.id,
+                      }}
+                    >
                       <FaPen className={classed.pen} />
                     </Link>
                     <div onClick={() => setTrashOpen(true)}>
@@ -151,7 +179,7 @@ const FireflyContainer = ({ hideSourceOnDrag }) => {
                     onClose={() => setTrashOpen(false)}
                     are-labelledby="remove-profile-dialog"
                     classed={{
-                      paper: classed.dialogPaper
+                      paper: classed.dialogPaper,
                     }}
                   >
                     <DialogContent className={classed.dialogContainer}>

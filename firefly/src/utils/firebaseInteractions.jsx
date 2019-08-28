@@ -205,6 +205,10 @@ export const updateBlocks = async (
     ...payload
   };
   delete updatedFirefly["id"];
+  console.log(child)
+  console.log(firefly_id)
+  console.log(world_id)
+  console.log(payload)
   db.collection("users")
     .doc(uid)
     .collection("profiles")

@@ -11,7 +11,11 @@ const WorldFireflyStyles = makeStyles({
     position: 'absolute',
     // background:'white',
     padding:'0.5rem 1rem',
-    cursor: 'move',
+    cursor: "default",
+    "&.move" : {
+      cursor: 'move',
+      border: "1px dashed #f9dc28"
+    }
   },
   menu: {
     display: "flex",
@@ -27,7 +31,7 @@ const WorldFireflyStyles = makeStyles({
   move: {
     fontSize: "26px",
     color: "#f9dc28",
-    marginTop: "19px"
+    marginTop: "19px",
   },
   pen: {
     fontSize: "26px",
