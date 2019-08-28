@@ -7,14 +7,13 @@ import CodeBlock from "./CodeBlock";
 
 const List = styled.div`
   height: 100%;
-  min-height: 90px;
+  min-height: 50px;
   background: none;
   border-radius: 16px;
   width: 100%;
   overflow-x: auto;
   overflow-y: hidden;
   display: -webkit-box;
-  align-items: center;
   padding-bottom: 18%;
 `;
 
@@ -60,6 +59,7 @@ const GrayedOutBlock = styled.div`
   opacity: 0.7;
   position: relative;
   width: 97px;
+  flex-direction: column;
 `;
 
 const ButtonBox = styled.img`
@@ -100,9 +100,7 @@ const BlockLine = ({
     const [restructuredList] = Object.values(list);
 
     if (restructuredList.length > 1) {
-      console.log(restructuredList[i]);
       if (restructuredList[i].rsi === 3 && !restructuredList[i].color) {
-        console.log("COLOR ERROR");
         return true;
       }
       //start block error check
