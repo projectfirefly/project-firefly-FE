@@ -1,11 +1,13 @@
 import React, { useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import WelcomeToFirefly from "./../../images/WelcomeToFirefly.png";
+import WelcomeToFirefly from "./../../assets/images/WelcomeToFireflyWithoutFirefly.svg";
+import ChillingFly from "./../../assets/animations/ChillingFly";
+
 import { Link } from "react-router-dom";
 import firebase from "firebase";
 import {
   childContext,
-  SIGN_OUT,
+  SIGN_OUT
 } from "../../context/ChildProfiles/ChildProfileStore";
 import startPageStyles from "./StartPageStyles";
 import { Typography } from "@material-ui/core";
