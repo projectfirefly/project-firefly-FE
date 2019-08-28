@@ -3,14 +3,14 @@ import styled from "styled-components";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 
 const List = styled.div`
-  min-height: 100vh;
+  height: 100vh;
   padding: 0 0.5rem;
 `;
 
 const Kiosk = styled(List)`
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  overflow-y: scroll;
   border-radius: 0px 20px 20px 0px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
   position: absolute;
@@ -43,22 +43,18 @@ const BlockUsed = styled.span`
 
 const Tool = styled.div`
   display: flex;
+  margin: 1rem 0 3.3rem 0;
 `;
 
 const ToolUsed = styled.div`
   display: flex;
   opacity: 0.6;
+  margin: 1rem 0 3.3rem 0;
 `;
 
 const Item = styled.div`
   display: flex;
-  height: 80px;
   user-select: none;
-  margin: 0 0 0.5rem 0;
-  align-items: flex-start;
-  align-content: flex-start;
-  line-height: 1.5;
-  border-radius: 3px;
   position: relative;
 `;
 

@@ -436,7 +436,13 @@ const CodeBlock = ({
                     />
                   </div>
                 ) : (
-                  <div className={classes.tool}>
+                  <div
+                    className={
+                      error && playClicked
+                        ? classes.tool + " blockError"
+                        : classes.tool
+                    }
+                  >
                     <GreenBlockRightSideSvg />
                     {
                       <div className={classes.palette}>
