@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useDrop } from "react-dnd";
 import { Link } from "react-router-dom";
 import itemType from "./itemType";
@@ -74,9 +74,13 @@ const FireflyContainer = ({ hideSourceOnDrag }) => {
         return firefly;
       }
     });
-
     setFireflies([...updatedFireflies]);
   };
+
+  useEffect(() => {
+    console.log("render");
+  }, [fireflies]);
+
   const confirmRemove = () => {
     removeFirefly(
       context.selected.id,
@@ -84,10 +88,10 @@ const FireflyContainer = ({ hideSourceOnDrag }) => {
       worldContext.selected.id,
       worldDispatch
     ).then(() => {
-      setTrashOpen(!trashOpen)
+      setTrashOpen(!trashOpen);
     });
   };
-  
+
   return (
     <div ref={drop} className={classes.fireflyContainer}>
       {fireflies.map(firefly => {
