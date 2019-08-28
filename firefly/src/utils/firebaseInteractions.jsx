@@ -69,8 +69,9 @@ export const getWorld = async (child, dispatch) => {
       const payload = await Promise.all(childWorlds);
       console.log(payload);
       dispatch({ type: GET_WORLDS, payload: payload });
+    }).then(() => {
+      dispatch({ type: SET_GAME_LOADED });
     });
-  dispatch({ type: SET_GAME_LOADED });
 };
 //remove world
 export const removeWorld = async (child, payload, dispatch) => {
