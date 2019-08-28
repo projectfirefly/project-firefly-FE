@@ -76,10 +76,11 @@ function reducer(state, action) {
 
     case ADD_FIREFLY:
       const addedFirefly = state.worlds.map(world => {
+        console.log(action.payload);
         if (world.id === action.payload.world_id) {
           return {
             ...world,
-            fireflies: { ...world.fireflies, ...action.payload.firefly }
+            fireflies: [ ...world.fireflies, action.payload.firefly ]
           };
         } else {
           return world;

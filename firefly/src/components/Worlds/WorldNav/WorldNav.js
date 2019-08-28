@@ -20,33 +20,22 @@ export const WorldNav = props => {
   const [context, contextDispatch] = useContext(childContext);
 
   const newFF = props => {
-    addFirefly(
-      context.selected.id,
-      worldContext.selected.id,
-      worldDispatch
-    ).then(() => {
-      // console.log("console log from nav" + props);
-      // props.history.push("/game");
-    });
+    addFirefly(context.selected.id, worldContext.selected.id, worldDispatch);
   };
 
   return (
     <div className={classes.navContainer}>
-      <div className={classes.iconButton} onClick={""}>
-        <Link to="/chooseworld" className={classes.link}>
-          <Typography variant="button">
-            <FaTimes />
-          </Typography>
-        </Link>
-      </div>
+      <Link className={classes.iconButton} to="/chooseworld">
+        <Typography variant="button" className={classes.x}>
+          <FaTimes />
+        </Typography>
+      </Link>
 
-      <div className={classes.addButton} onClick={""}>
-        <Link className={classes.link} onClick={newFF} to="/game">
-          <Typography variant="button">
-            <FaPlus />
-            {/* <FireflyOutline width={100} /> */}
-          </Typography>
-        </Link>
+      <div className={classes.addButton} onClick={newFF}>
+        <Typography variant="button" className={classes.plus}>
+          <FaPlus />
+        </Typography>
+        <img src={FireflyOutline} className={classes.ffOutline}/>
       </div>
     </div>
   );
