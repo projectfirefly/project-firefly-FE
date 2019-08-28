@@ -7,14 +7,14 @@ import CodeBlock from "./CodeBlock";
 
 const List = styled.div`
   height: 100%;
-  min-height: 300px;
+  min-height: 50px;
   background: none;
   border-radius: 16px;
   width: 100%;
   overflow-x: auto;
   overflow-y: hidden;
   display: -webkit-box;
-  padding-bottom: 5%;
+  padding-bottom: 18%;
 `;
 
 const ListContainer = styled.div`
@@ -59,6 +59,7 @@ const GrayedOutBlock = styled.div`
   opacity: 0.7;
   position: relative;
   width: 97px;
+  flex-direction: column;
 `;
 
 const ButtonBox = styled.img`
