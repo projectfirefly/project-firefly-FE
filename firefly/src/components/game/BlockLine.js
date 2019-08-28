@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Droppable } from "react-beautiful-dnd";
 import StartBlockTarget from "./../../images/gameIcons/StartBlockTarget.svg";
@@ -10,11 +10,12 @@ const List = styled.div`
   min-height: 90px;
   background: none;
   border-radius: 16px;
-  width: 88%;
+  width: 100%;
   overflow-x: auto;
   overflow-y: hidden;
   display: -webkit-box;
   align-items: center;
+  padding-bottom: 18%;
 `;
 
 const ListContainer = styled.div`
@@ -22,10 +23,10 @@ const ListContainer = styled.div`
   min-height: 90px;
   background: none;
   border-radius: 16px;
-  width: 88%;
+  width: 89%;
   overflow-x: auto;
   overflow-y: hidden;
-  margin-left: 130px;
+  margin-left: 11%;
   display: -webkit-box;
   -webkit-align-items: center;
   -webkit-box-align: center;
@@ -71,9 +72,16 @@ const BlockLine = ({
   hasStart,
   draggingBlock,
   animationList,
-  setAnimationList
+  setAnimationList,
+  playAnimation,
+  playing
 }) => {
+  const [playClicked, setPlayClicked] = useState(false);
   const [openPopper, setOpenPopper] = useState(false);
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const popperId = open ? "simple-popper" : undefined;
 
   const togglePopper = (id, blocks, type, value) => {
     if (openPopper) {
@@ -88,6 +96,68 @@ const BlockLine = ({
       });
     }
     setOpenPopper(!openPopper);
+  };
+
+  const errorChecking = i => {
+    const [restructuredList] = Object.values(list);
+
+    if (restructuredList.length > 1) {
+      //start block error check
+      if (i !== 0 && restructuredList[i].rsi === 0) {
+        return true;
+      }
+      //blue block error check
+      if (i !== 1 && restructuredList[i].rsi === 1) {
+        return true;
+      }
+      if (restructuredList.length > i + 1 && i !== 0) {
+        if (
+          restructuredList[i].repeat &&
+          (restructuredList[i + 1].repeat || restructuredList[i - 1].repeat)
+        ) {
+          return true;
+        } else {
+          return false;
+        }
+      } else if (i === 0) {
+        if (restructuredList[i].repeat && restructuredList[i + 1].repeat) {
+          return true;
+        } else {
+          return false;
+        }
+      } else {
+        if (restructuredList[i].repeat && restructuredList[i - 1].repeat) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    }
+  };
+
+  useEffect(() => {
+    setPlayClicked(false);
+  }, [list]);
+
+  const handleClick = event => {
+    setAnchorEl(anchorEl ? null : event.currentTarget);
+  };
+
+  const clickedPlay = () => {
+    const [listArray] = Object.values(list);
+    let lineError = false;
+    setPlayClicked(true);
+
+    for (let i = 0; i < listArray.length; i++) {
+      if (lineError) {
+        break;
+      }
+      lineError = errorChecking(i);
+    }
+
+    if (!lineError) {
+      playAnimation();
+    }
   };
 
   return (
@@ -121,6 +191,15 @@ const BlockLine = ({
                       blocks={blocks}
                       animationList={animationList}
                       setAnimationList={setAnimationList}
+                      playAnimation={playAnimation}
+                      clickedPlay={clickedPlay}
+                      playClicked={playClicked}
+                      errorChecking={errorChecking}
+                      anchorEl={anchorEl}
+                      setAnchorEl={setAnchorEl}
+                      open={open}
+                      popperId={popperId}
+                      handleClick={handleClick}
                     />
                   ))
                 : !provided.placeholder && <Notice>Drop items here</Notice>}

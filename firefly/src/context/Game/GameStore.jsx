@@ -51,17 +51,10 @@ function reducer(state, action) {
       });
       return { ...state, worlds: selectedWorld };
 
-    case ADD_WORLD:
-      let newWorld = [];
-      if (state.worlds[0] === state.worlds) {
-        newWorld = [action.payload];
-        console.log(newWorld, "this is the if statement in GameStore");
-        return { ...state, worlds: newWorld };
-      } else {
-        newWorld = [...state.worlds, action.payload];
-        console.log(newWorld, "this is the else statement in GameStore");
-        return { ...state, worlds: newWorld };
-      }
+      case ADD_WORLD:
+        const newWorld = [...state.worlds, action.payload]
+        console.log(newWorld)
+        return {...state, worlds: newWorld}
 
     case SET_GAME_LOADED: {
       return { ...state, loaded: true };

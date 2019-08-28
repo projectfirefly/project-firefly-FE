@@ -1,7 +1,10 @@
 import React, { useContext } from "react";
-import { childContext } from "../../context/ChildProfiles/ChildProfileStore";
 import { Link } from "react-router-dom";
-import chooseProfileStyles from './chooseProfileStyles';
+
+import { childContext } from "../../context/ChildProfiles/ChildProfileStore";
+import { gameContext } from '../../context/Game/GameStore.jsx';
+import { addWorld, getWorld } from "../../utils/firebaseInteractions";
+import chooseProfileStyles from "./chooseProfileStyles";
 
 //Material-UI
 import { makeStyles } from "@material-ui/core/styles";
@@ -15,47 +18,71 @@ import ProfileFly from "../../assets/icons/ProfileFly";
 
 const ChooseProfilePage = props => {
   const [childProfileState, dispatch] = useContext(childContext);
+  const [worldContext, worldDispatch] = useContext(gameContext);
+
+  const gettingWorld = profile => {
+    const defaultWorld = { worldName: "Main World" };
+    getWorld(profile.id, worldDispatch);
+    if (worldContext.loaded) {
+      if (!worldContext.worlds[0]) {
+        console.log("we have added a world");
+        addWorld(profile.id, defaultWorld, worldDispatch);
+      }
+    }
+  };
 
   console.log("Choose Profile State", childProfileState);
 
   const classes = chooseProfileStyles();
 
-  return (
-    <div className={classes.root}>
-      <Typography variant="h1" className={classes.header}> CHOOSE YOUR FIREFLY </Typography>
-      <div className={classes.sizingContainer}>
-        <div className={classes.cardContainer}>
-          {childProfileState.user.profiles.map(profile => (
-            <div className={classes.card} onClick={() => {
-              dispatch({
-                type: "UPDATE_SELECTED",
-                payload: profile.id
-              });
-              props.history.push("/myfirefly");
-            }}
-            >
-              <div className={classes.text}>
-                <Typography variant="h4" className={classes.name}>{profile.first_name}</Typography>
+  if (childProfileState.user.profiles) {
+    return (
+      <div className={classes.root}>
+        <Typography variant="h1" className={classes.header}>
+          {" "}
+          CHOOSE YOUR FIREFLY{" "}
+        </Typography>
+        <div className={classes.sizingContainer}>
+          <div className={classes.cardContainer}>
+            {childProfileState.user.profiles.map(profile => (
+              <div
+                className={classes.card}
+                onClick={() => {
+                  dispatch({
+                    type: "UPDATE_SELECTED",
+                    payload: profile.id
+                  });
+                  gettingWorld(profile);
+                  props.history.push("/myfirefly");
+                }}
+              >
+                <div className={classes.text}>
+                  <Typography variant="h4" className={classes.name}>
+                    {profile.first_name}
+                  </Typography>
+                </div>
+                <div className={classes.flysize}>
+                  <ProfileFly
+                    color={profile.avatar.color}
+                    accessory={profile.avatar.accessory}
+                  />
+                </div>
               </div>
-              <div className={classes.flysize}>
-                <ProfileFly
-                  color={profile.avatar.color}
-                  accessory={profile.avatar.accessory}
-                />
-              </div>
-            </div>
-          ))}
-        </div>
-        <div className={classes.backButtonContainer}>
-          <Link to="/startgame" className={classes.backButtonStyle}>
-            <Typography variant="button">
-              Back
-            </Typography>
-          </Link>
+            ))}
+          </div>
+          <div className={classes.backButtonContainer}>
+            <Link to="/startgame" className={classes.backButtonStyle}>
+              <Typography variant="button">Back</Typography>
+            </Link>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    return (
+      <div></div>
+    )
+  }
 };
 
 export default ChooseProfilePage;

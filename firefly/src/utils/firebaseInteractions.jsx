@@ -51,8 +51,8 @@ export const getWorld = async (child, dispatch) => {
       console.log(payload);
       dispatch({ type: GET_WORLDS, payload: payload });
     });
-    dispatch({ type: SET_GAME_LOADED })
-  };
+  dispatch({ type: SET_GAME_LOADED });
+};
 //Add world
 export const addWorld = async (child, payload, dispatch) => {
   const db = firebase.firestore();
@@ -84,27 +84,26 @@ export const removeWorld = async (child, payload, dispatch) => {
     .get()
     .then(docRef => {
       const firefly = docRef.docs.map(doc => {
-        db
-        .collection("users")
-        .doc(uid)
-        .collection("profiles")
-        .doc(child)
-        .collection("worlds")
-        .doc(payload.id)
-        .collection("fireflies")
-        .doc(doc.id)
-        .delete();
+        db.collection("users")
+          .doc(uid)
+          .collection("profiles")
+          .doc(child)
+          .collection("worlds")
+          .doc(payload.id)
+          .collection("fireflies")
+          .doc(doc.id)
+          .delete();
       });
     });
-    db.collection("users")
+  db.collection("users")
     .doc(uid)
     .collection("profiles")
     .doc(child)
     .collection("worlds")
     .doc(payload.id)
-    .delete()
-    dispatch({ type: REMOVE_WORLD, payload: payload})
-}
+    .delete();
+  dispatch({ type: REMOVE_WORLD, payload: payload });
+};
 // export const removeProfile = async (type, payload, dispatch) => {
 //   const db = firebase.firestore();
 //   const uid = firebase.auth().currentUser.uid;
@@ -144,7 +143,9 @@ export const addFirefly = async (child, world_id, dispatch) => {
     })
     .then(async docRef => {
       const firefly = {
-         x: null, y: null, codeBlocks: []
+        x: null,
+        y: null,
+        codeBlocks: []
       };
       await db
         .collection("users")
@@ -164,20 +165,21 @@ export const addFirefly = async (child, world_id, dispatch) => {
         )
         .then(newDoc => {
           const finalPayload = {
-            world_id: world_id, 
+            world_id: world_id,
             firefly: {
               ...firefly,
               firefly_id: docRef.id
             }
-          }
+          };
           dispatch({ type: ADD_FIREFLY, payload: finalPayload });
         });
     });
 };
-export const removeFirefly = async (child, requiredIds, dispatch) => {
+export const removeFirefly = async (child, firefly_id, world_id, dispatch) => {
   const db = firebase.firestore();
   const uid = firebase.auth().currentUser.uid;
-  const {firefly_id, world_id} = requiredIds;
+  // const {firefly_id, world_id} = requiredIds;
+  console.log(child, firefly_id, world_id);
   db.collection("users")
     .doc(uid)
     .collection("profiles")
@@ -186,14 +188,13 @@ export const removeFirefly = async (child, requiredIds, dispatch) => {
     .doc(world_id)
     .collection("fireflies")
     .doc(firefly_id)
-    .delete()
-  dispatch({ type: REMOVE_FIREFLY, payload: requiredIds });
-} 
+    .delete();
+  dispatch({ type: REMOVE_FIREFLY, payload: { firefly_id, world_id } });
+};
 //Add block to Firefly
-export const updateBlocks = async (child, requiredIds, payload, dispatch ) => {
+export const updateBlocks = async (child, firefly_id, world_id, payload, dispatch ) => {
   const db = firebase.firestore();
   const uid = firebase.auth().currentUser.uid;
-  const {firefly_id, world_id} = requiredIds;
   let updatedFirefly = {
     ...payload
   };
@@ -432,5 +433,8 @@ export const getUser = async dispatch => {
               dispatch({ type: GET_AND_LOAD, payload: dispatchUser });
             });
         });
+      } else {
+        dispatch({ type: GET_AND_LOAD, payload: dispatchUser });
       }
-    })};
+    });
+};

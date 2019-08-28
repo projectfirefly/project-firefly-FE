@@ -18,12 +18,6 @@ import screen5 from "../../assets/images/screen5.png";
 import leftarrow from "../../assets/images/BlueLeftArrow.svg";
 import rightarrow from "../../assets/images/BlueRightArrow.svg";
 
-//import components for each step.
-import CustomStepper from "../Steppers/CustomStepper";
-import { Typography } from "@material-ui/core";
-
-//import game
-import Game from "../game/Game";
 
 const MultiStepTutorial = () => {
   const classes = makeStyles(theme => ({
