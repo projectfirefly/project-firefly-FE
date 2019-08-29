@@ -226,6 +226,7 @@ const Game = props => {
   const [animationList, setAnimationList] = useState([]);
   const [playing, setPlaying] = useState(false);
   const [trashing, setTrashing] = useState(false);
+  const [error, setError] = useState(false);
 
   const createBlocksFromBackend = blockList => {
     const newList = blockList.map(block => {
@@ -297,27 +298,30 @@ const Game = props => {
       props.location.firefly.codeBlocks.length !== 0
     ) {
       if (list[listId].length === 0) {
-        console.log(list[listId].length);
         createBlocksFromBackend([...props.location.firefly.codeBlocks]);
       }
     }
   }, []);
 
   const updateFirefly = () => {
-    const updatedFirefly = {
-      ...props.location.firefly,
-      codeBlocks: [...animationList]
-    };
+    if (error) {
+      console.log("there was an error. cant save.");
+    } else {
+      const updatedFirefly = {
+        ...props.location.firefly,
+        codeBlocks: [...animationList]
+      };
 
-    updateBlocks(
-      childProfileState.selected.id,
-      props.location.firefly.firefly_id,
-      props.location.selectedWorldId,
-      updatedFirefly,
-      worldDispatch
-    ).then(() => {
-      props.history.push("/fireflyworld");
-    });
+      updateBlocks(
+        childProfileState.selected.id,
+        props.location.firefly.firefly_id,
+        props.location.selectedWorldId,
+        updatedFirefly,
+        worldDispatch
+      ).then(() => {
+        props.history.push("/fireflyworld");
+      });
+    }
   };
 
   useEffect(() => {
@@ -486,6 +490,8 @@ const Game = props => {
           setAnimationList={setAnimationList}
           playAnimation={playAnimation}
           playing={playing}
+          error={error}
+          setError={setError}
         />
         <DropDelete trashing={trashing} />
       </DragDropContext>

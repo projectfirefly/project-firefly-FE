@@ -1,8 +1,8 @@
 import React from "react";
 import Lottie from "react-lottie";
-import animationData from "./chillingFly.json";
+import animationData from "./chillingFlyNoAcc.json";
 
-const ChillingFly = ({ height = 160, width = 160 }) => {
+const ChillingFlyNoAcc = ({ height = 160, width = 160 }) => {
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -16,4 +16,4 @@ const ChillingFly = ({ height = 160, width = 160 }) => {
   return <Lottie options={defaultOptions} height={height} width={width} />;
 };
 
-export default ChillingFly;
+export default ChillingFlyNoAcc;

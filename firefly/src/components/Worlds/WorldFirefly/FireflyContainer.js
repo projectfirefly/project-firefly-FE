@@ -52,6 +52,8 @@ const FireflyContainer = ({ hideSourceOnDrag }) => {
 
   const [fireflies, setFireflies] = useState([]);
 
+  console.log("RERENDER")
+
   useEffect(() => {
     if (worldContext.worlds.length != 0) {
       console.log(worldContext);
@@ -64,6 +66,8 @@ const FireflyContainer = ({ hideSourceOnDrag }) => {
       });
       console.log(currentWorld);
       if (currentWorld.fireflies) {
+        console.log("Setting fireflies");
+        console.log(currentWorld.fireflies);
         setFireflies([...currentWorld.fireflies]);
       }
     }
@@ -114,8 +118,15 @@ const FireflyContainer = ({ hideSourceOnDrag }) => {
     });
   };
 
+  const [playing, setPlaying] = useState(false);
+
+  const play = () => {
+    setPlaying(!playing)
+  }
+
   return (
     <div ref={drop} className={classes.fireflyContainer}>
+      <button onClick={play}>PLAY</button>
       {fireflies
         ? fireflies.map(firefly => {
             // const left =  Math.floor((Math.random() * 100) + 1)
@@ -175,7 +186,7 @@ const FireflyContainer = ({ hideSourceOnDrag }) => {
                       color={642}
                       awake={true}
                       animationList={firefly.codeBlocks}
-                      loop={true}
+                      playing={playing}
                     />
                   </div>
                   <Dialog

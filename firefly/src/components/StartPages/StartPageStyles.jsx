@@ -4,24 +4,34 @@ const startPageStyles = makeStyles(theme => ({
   root: {
     // display: "flex",
     // flexDirection: "column",
-    // justifyContent: "center",
-    // width: "100%",
+    // width: "100%"
   },
-  logo: {
+  logoBox: {
+    width: "100%",
     display: "flex",
-    justifyContent: "center",
-    marginTop: "3%"
+    flexDirection: "column",
+    position: "relative",
+    margin: "0px auto",
+    marginTop: "50px",
+    "& div[role=button]": {
+      paddingLeft: "230px",
+      paddingBottom: "5px"
+    }
   },
-  fireflyImage: {
-    ...theme.headerMargin,
-    height: "auto",
-    maxWidth: "100%"
+
+  staticImage: {
+    // positon: "absolute",
+    // top: "0",
+    // right: "0",
+    zIndex: "-5",
+    marginTop: "-100px"
   },
+
   buttonContainer: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    width: "100%",
+    width: "100%"
   },
   startButton: {
     ...theme.primaryButton,
@@ -30,7 +40,7 @@ const startPageStyles = makeStyles(theme => ({
   secondaryButton: {
     ...theme.secondaryButton,
     padding: ".6rem 4.5%",
-    marginTop: "3rem",
+    marginTop: "3rem"
   },
   topBar: {
     position: "absolute",
@@ -52,11 +62,11 @@ const startPageStyles = makeStyles(theme => ({
     fontSize: "1.8rem",
     width: "3.4rem",
     height: "3.4rem",
-    textDecoration: "none",
+    textDecoration: "none"
   },
   topBarText: {
     marginLeft: "5%"
   }
-}))
+}));
 
 export default startPageStyles;

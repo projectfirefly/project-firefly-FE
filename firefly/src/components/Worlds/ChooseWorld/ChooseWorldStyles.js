@@ -11,6 +11,9 @@ const chooseWorldStyles = makeStyles(theme => ({
     fontFamily: "'Nunito', sans-serif"
     // marginBottom: "50px"
   },
+  worldName: {
+    fontSize: "3rem"
+  },
   title: {
     fontSize: "34px",
     fontWeight: "900",

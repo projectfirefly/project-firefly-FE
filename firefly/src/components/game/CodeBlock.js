@@ -136,7 +136,9 @@ const CodeBlock = ({
   playClicked,
   errorChecking,
   anchorEl,
-  setAnchorEl
+  setAnchorEl,
+  error,
+  setError
 }) => {
   const classes = useStyles();
 
@@ -144,7 +146,6 @@ const CodeBlock = ({
   const [toggleTimer, setToggleTimer] = useState(false);
   const [toggleRepeat, setToggleRepeat] = useState(false);
   const [toggleOnOff, setToggleOnOff] = useState(false);
-  const [error, setError] = useState(false);
 
   const [openId, setOpenId] = useState();
   const open = Boolean(anchorEl);
