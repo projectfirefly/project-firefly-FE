@@ -38,10 +38,16 @@ const clickTogether = new uifx({ asset: clickTogetherMP3 });
 const poof = new uifx({ asset: poofMP3 });
 
 //styling
+const All = styled.html`
+  height: 100vh;
+  width: 100vw;
+  background-image: url(${GridIcon});
+  background-repeat: round;
+`;
 const Board = styled.div`
   /* min-height: 100vh; */
   width: 100%;
-  /* background-image: url(${GridIcon}); */
+
   /* margin: -10% 0; */
   /* padding-bottom: 30%; */
 `;
@@ -301,7 +307,14 @@ const Game = props => {
         createBlocksFromBackend([...props.location.firefly.codeBlocks]);
       }
     }
-  }, []);
+  }, [
+    createBlocksFromBackend,
+    list,
+    listId,
+    props.history,
+    props.location.firefly,
+    worldContext.loaded
+  ]);
 
   const updateFirefly = () => {
     if (error) {
@@ -477,30 +490,36 @@ const Game = props => {
   };
 
   return (
-    <Board>
-      <DragDropContext onDragEnd={onDragEnd} onDragStart={onDragStart}>
-        <Toolbox tools={tools} />
-        <FFbox tools={tools} animationList={animationList} playing={playing} />
-        <BlockLine
-          list={list}
-          hasStart={hasStart}
-          draggingBlock={draggingBlock}
-          setList={setList}
-          animationList={animationList}
-          setAnimationList={setAnimationList}
-          playAnimation={playAnimation}
-          playing={playing}
-          error={error}
-          setError={setError}
-        />
-        <DropDelete trashing={trashing} />
-      </DragDropContext>
-      <div className={classes.buttonContainer}>
-        <button onClick={updateFirefly} className={classes.save}>
-          <img src={CheckCircleIcon} alt="save check" />
-        </button>
-      </div>
-    </Board>
+    <All>
+      <Board>
+        <DragDropContext onDragEnd={onDragEnd} onDragStart={onDragStart}>
+          <Toolbox tools={tools} />
+          <FFbox
+            tools={tools}
+            animationList={animationList}
+            playing={playing}
+          />
+          <BlockLine
+            list={list}
+            hasStart={hasStart}
+            draggingBlock={draggingBlock}
+            setList={setList}
+            animationList={animationList}
+            setAnimationList={setAnimationList}
+            playAnimation={playAnimation}
+            playing={playing}
+            error={error}
+            setError={setError}
+          />
+          <DropDelete trashing={trashing} />
+        </DragDropContext>
+        <div className={classes.buttonContainer}>
+          <button onClick={updateFirefly} className={classes.save}>
+            <img src={CheckCircleIcon} alt="save check" />
+          </button>
+        </div>
+      </Board>
+    </All>
   );
 };
 
