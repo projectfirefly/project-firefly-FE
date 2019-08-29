@@ -61,6 +61,10 @@ const useTheme = {
     marginTop: "5rem",
     marginBottom: "4rem"
   },
+  headerPadding: {
+    paddingTop: "5rem",
+    paddingBottom: "4rem"
+  },
   primaryButton: {
     backgroundColor: "#4AA810",
     color: "#E2F5D6",
@@ -68,7 +72,7 @@ const useTheme = {
     fontSize: "1.6rem",
     textDecoration: "none",
     border: "none",
-    borderRadius: "1rem",
+    borderRadius: "10px",
     boxShadow: "0px 3px #3E8C0D",
     cursor: "pointer",
     transition: "all 25ms ease-in-out",
@@ -85,11 +89,11 @@ const useTheme = {
   },
   secondaryButton: {
     backgroundColor: "#FFF",
-    border: "2px solid #ABB0BA",
+    border: "2px solid #E3E5E8",
     color: "#4AA810",
     textTransform: "uppercase",
-    borderRadius: "1rem",
-    boxShadow: "0px 3px #8F96A3",
+    borderRadius: "10px",
+    boxShadow: "0px 3px ##E3E5E8",
     cursor: "pointer",
     transition: "all 25ms ease-in-out",
     textDecoration: "none",
