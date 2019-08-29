@@ -10,7 +10,7 @@ const chooseWorldStyles = makeStyles(theme => ({
     height: "100vh",
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
-    overflow: "hidden",
+    overflow: "hidden"
   },
   body: {},
   rootContainer: {

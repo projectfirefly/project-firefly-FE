@@ -1,4 +1,4 @@
-import {makeStyles} from '@material-ui/core';
+import { makeStyles } from "@material-ui/core";
 
 const myFireflyStyles = makeStyles(theme => ({
   root: {
@@ -7,7 +7,7 @@ const myFireflyStyles = makeStyles(theme => ({
     width: "100%",
     alignItems: "center",
     justifyContent: "center",
-    padding: "0",
+    padding: "0"
   },
   header: {
     ...theme.headerMargin,
@@ -16,23 +16,23 @@ const myFireflyStyles = makeStyles(theme => ({
     letterSpacing: "7px",
     fontWeight: "900",
     textTransform: "uppercase",
-    fontFamily: "'Nunito', sans-serif",
+    fontFamily: "'Nunito', sans-serif"
   },
   mainBody: {
     display: "flex",
     width: "100%",
-    height: "70vh",
+    height: "70vh"
   },
   leftParent: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    width: "50%",
+    width: "50%"
   },
   leftContainer: {
     ...theme.paper,
     width: "60%",
-    height: "80%",
+    height: "80%"
   },
   fireflyContainer: {
     width: "264px",
@@ -40,10 +40,10 @@ const myFireflyStyles = makeStyles(theme => ({
     display: "flex",
     textAlign: "center",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "center"
   },
   firefly: {
-    width: "62%",
+    width: "62%"
   },
   rightContainer: {
     display: "flex",
@@ -51,7 +51,7 @@ const myFireflyStyles = makeStyles(theme => ({
     alignItems: "center",
     alignContent: "space-between",
     width: "47%",
-    height: "80%",
+    height: "80%"
   },
   rightCards: {
     ...theme.secondaryButton,
@@ -62,35 +62,35 @@ const myFireflyStyles = makeStyles(theme => ({
     justifyContent: "center",
     alignItems: "center",
     "&.bottom": {
-      marginTop: "10%",
+      marginTop: "10%"
     }
   },
   rightCardContent: {
     display: "flex",
     justifyContent: "space-between",
-    alignItems: "center",
+    alignItems: "center"
   },
   rightCardsText: {
     color: "#5B4EFF",
     fontSize: "24px",
-    fontWeight: "700",
+    fontWeight: "700"
   },
   rightCardsImg: {
-    width: "15%",
+    width: "15%"
   },
   buttonContainer: {
     width: "60%",
-    marginTop: "10%",
+    marginTop: "10%"
   },
   chooseFirefly: {
     ...theme.secondaryButton,
     width: "100%",
-    padding: ".7rem 0",
+    padding: ".7rem 0"
   },
   pushRight: {
     width: "100%",
     display: "flex",
-    justifyContent: "flex-end",
+    justifyContent: "flex-end"
   },
   edit: {
     display: "flex",
@@ -99,24 +99,22 @@ const myFireflyStyles = makeStyles(theme => ({
     color: "#4AA810",
     marginLeft: "3px",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "center"
   },
   editContainer: {
+    ...theme.smallIconButton,
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
     width: "44px",
     height: "44px",
-    border: "solid #ABB0BA 2px",
-    borderRadius: "10px",
-    boxShadow: "0px 3px #8F96A3",
     margin: "25px 25px 0 0",
     "&:active": {
       boxShadow: "none",
       marginTop: "28px",
-      marginBottom: "-3px",
-    },
+      marginBottom: "-3px"
+    }
   },
   username: {
     textAlign: "center",
@@ -124,8 +122,8 @@ const myFireflyStyles = makeStyles(theme => ({
     fontWeight: "bold",
     fontSize: "21px",
     letterSpacing: "-0.28px",
-    lineHeight: "28px",
-  },
+    lineHeight: "28px"
+  }
 }));
 
 export default myFireflyStyles;

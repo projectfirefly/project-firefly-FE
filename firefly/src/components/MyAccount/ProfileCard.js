@@ -18,26 +18,26 @@ const ProfileCard = props => {
       width: "100%",
       borderBottom: "1px solid #b6e699",
       marginBottom: "1rem",
-      paddingBottom: "1rem",
+      paddingBottom: "1rem"
     },
     nameAndEdit: {
       display: "flex",
       width: "100%",
       justifyContent: "space-between",
-      alignItems:"center",
+      alignItems: "center",
       "&::before": {
         content: "''",
         padding: "1rem 2rem",
         fontSize: "1.4rem",
-        visibility: "hidden",
-      },
+        visibility: "hidden"
+      }
     },
     editButton: {
-      ...theme.secondaryButton,
+      ...theme.smallIconButton,
       padding: "1rem",
-      fontSize: "1.4rem",
+      fontSize: "1.4rem"
     },
-    firefly: {},
+    firefly: {}
   }))();
 
   const [, dispatch] = useContext(childContext);
@@ -61,7 +61,7 @@ const ProfileCard = props => {
         <Icon
           name="Firefly"
           style={{
-            width: "40%",
+            width: "40%"
           }}
         />
       </div>
