@@ -14,11 +14,11 @@ const List = styled.div`
   overflow-x: auto;
   overflow-y: hidden;
   display: -webkit-box;
-  padding-bottom: 18%;
+  padding-bottom: 20px;
 `;
 
 const ListContainer = styled.div`
-  height: 100%;
+  height: 132.41px;
   padding-top: 6%;
   min-height: 90px;
   background: none;
