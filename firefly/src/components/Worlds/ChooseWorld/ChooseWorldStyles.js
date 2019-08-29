@@ -2,7 +2,6 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const chooseWorldStyles = makeStyles(theme => ({
   rootContainer: {
-    marginTop: "10%",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
@@ -15,12 +14,12 @@ const chooseWorldStyles = makeStyles(theme => ({
     fontSize: "3rem"
   },
   title: {
+    ...theme.headerMargin,
     fontSize: "34px",
     fontWeight: "900",
     letterSpacing: "7px",
     lineHeight: "46px",
     color: "#5b4eff",
-    marginBottom: "30px"
   },
   worldContainer: {
     display: "flex",
@@ -46,6 +45,10 @@ const chooseWorldStyles = makeStyles(theme => ({
     border: " 2px solid #abb0ba",
     backgroundColor: " #ffff",
     boxShadow: "0px 3px #8f96a3",
+    "&:active": {
+      boxShadow: "none",
+      margin: "3px 0px 47px 0px"
+    },
     // For iPad Pro and larger
     ["@media (min-width:1100px)"]: {
       width: "440px",
@@ -67,7 +70,8 @@ const chooseWorldStyles = makeStyles(theme => ({
   },
   backButton: {
     ...theme.secondaryButton,
-    width: "25%"
+    width: "25%",
+    padding: "1rem 0.7rem",
   },
   links: {
     textDecoration: "none",
