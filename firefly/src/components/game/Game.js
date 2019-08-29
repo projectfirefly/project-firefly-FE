@@ -39,6 +39,17 @@ const clickTogether = new uifx({ asset: clickTogetherMP3 });
 const poof = new uifx({ asset: poofMP3 });
 
 //styling
+const Background = styled.div`
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-image: url(${GridIcon});
+  background-repeat: repeat;
+  z-index: -100;
+  top: 0;
+  left: 0;
+`
+
 const Board = styled.div`
   /* min-height: 100vh; */
   width: 100%;
@@ -482,6 +493,7 @@ const Game = props => {
 
   return (
     <Board>
+      <Background />
       <DragDropContext onDragEnd={onDragEnd} onDragStart={onDragStart}>
         <Toolbox tools={tools} />
         <FFbox tools={tools} animationList={animationList} playing={playing} />
