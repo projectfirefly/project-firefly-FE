@@ -1,16 +1,16 @@
 import { makeStyles } from "@material-ui/core";
 
 const startPageStyles = makeStyles(theme => ({
-  root: {
-    // display: "flex",
-    // flexDirection: "column",
-    // justifyContent: "center",
-    // width: "100%",
-  },
+  root: {},
   logo: {
     display: "flex",
     justifyContent: "center",
-    marginTop: "3%"
+    marginTop: "3%",
+    ["@media (max-width: 400px)"]: {
+      marginTop: "100px",
+      width: "80%",
+      margin: "0 auto"
+    }
   },
   fireflyImage: {
     ...theme.headerMargin,
@@ -21,16 +21,20 @@ const startPageStyles = makeStyles(theme => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    width: "100%",
+    width: "100%"
   },
   startButton: {
     ...theme.primaryButton,
-    padding: ".6rem 12%"
+    padding: ".6rem 12%",
+    ["@media (max-width: 400px)"]: {
+      width: "60%",
+      marginTop: "40px"
+    }
   },
   secondaryButton: {
     ...theme.secondaryButton,
     padding: ".6rem 4.5%",
-    marginTop: "3rem",
+    marginTop: "3rem"
   },
   topBar: {
     position: "absolute",
@@ -52,11 +56,11 @@ const startPageStyles = makeStyles(theme => ({
     fontSize: "1.8rem",
     width: "3.4rem",
     height: "3.4rem",
-    textDecoration: "none",
+    textDecoration: "none"
   },
   topBarText: {
     marginLeft: "5%"
   }
-}))
+}));
 
 export default startPageStyles;
