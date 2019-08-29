@@ -18,6 +18,7 @@ import PlayCircleIcon from "../../images/gameIcons/PlayCircleIcon.svg";
 import PaletteIcon from "../../images/gameIcons/PaletteIcon.svg";
 import ToggleOffIcon from "../../images/gameIcons/ToggleOffIcon.svg";
 import LockIcon from "../../images/gameIcons/LockIcon.svg";
+import CheckCircleIcon from "./../../images/gameIcons/CheckCircleIcon.svg";
 
 import GridIcon from "../../images/gridBackground.png";
 import { gameContext } from "../../context/Game/GameStore";
@@ -193,22 +194,17 @@ const ITEMS = [
   }
 ];
 
-const Game = (props) => {
+const Game = props => {
   const classes = makeStyles(theme => ({
-    back: {
-      ...theme.secondaryButton,
-      padding: ".7rem 4rem"
-    },
     save: {
       ...theme.primaryButton,
-      padding: ".7rem 4rem"
+      padding: "10px",
+      borderRadius: "50%"
     },
     buttonContainer: {
-      display: "flex",
-      width: "80%",
-      paddingLeft: "11%",
-      marginTop: "2rem",
-      justifyContent: "space-around"
+      position: "absolute",
+      right: "5%",
+      top: "4.2%"
     }
   }))();
   //Set list to firefly out of context/firestore
@@ -230,6 +226,7 @@ const Game = (props) => {
   const [animationList, setAnimationList] = useState([]);
   const [playing, setPlaying] = useState(false);
   const [trashing, setTrashing] = useState(false);
+  const [error, setError] = useState(false);
 
   const createBlocksFromBackend = blockList => {
     const newList = blockList.map(block => {
@@ -293,22 +290,38 @@ const Game = (props) => {
 
   //Load fireflies from backend
   useEffect(() => {
-    // Delete this and replace it with the current firefly from worldContext
-    if (props.location.firefly && props.location.firefly.codeBlocks.length !== 0) {
+    if (!worldContext.loaded) {
+      props.history.push("/choose-profile");
+    }
+    if (
+      props.location.firefly &&
+      props.location.firefly.codeBlocks.length !== 0
+    ) {
       if (list[listId].length === 0) {
-        console.log(list[listId].length);
         createBlocksFromBackend([...props.location.firefly.codeBlocks]);
       }
     }
   }, []);
 
   const updateFirefly = () => {
-    const updatedFirefly = {
-      ...props.location.firefly,
-      codeBlocks: [...animationList]
-    };
+    if (error) {
+      console.log("there was an error. cant save.");
+    } else {
+      const updatedFirefly = {
+        ...props.location.firefly,
+        codeBlocks: [...animationList]
+      };
 
-    updateBlocks(childProfileState.selected.id, props.location.firefly.firefly_id, props.location.selectedWorldId, updatedFirefly, worldDispatch)
+      updateBlocks(
+        childProfileState.selected.id,
+        props.location.firefly.firefly_id,
+        props.location.selectedWorldId,
+        updatedFirefly,
+        worldDispatch
+      ).then(() => {
+        props.history.push("/fireflyworld");
+      });
+    }
   };
 
   useEffect(() => {
@@ -477,15 +490,14 @@ const Game = (props) => {
           setAnimationList={setAnimationList}
           playAnimation={playAnimation}
           playing={playing}
+          error={error}
+          setError={setError}
         />
         <DropDelete trashing={trashing} />
       </DragDropContext>
       <div className={classes.buttonContainer}>
-        <Link to="/fireflyworld" className={classes.back}>
-          <Typography variant="button">Back</Typography>
-        </Link>
         <button onClick={updateFirefly} className={classes.save}>
-          SAVE
+          <img src={CheckCircleIcon} alt="save check" />
         </button>
       </div>
     </Board>
