@@ -28,6 +28,7 @@ const chooseProfileStyles = makeStyles(theme => ({
     alignItems: "center",
     overflowY: "auto",
     width: "100%",
+    height: "450px",
     margin: "2%",
     maxHeight: "70vh",
     "&::-webkit-scrollbar": {
