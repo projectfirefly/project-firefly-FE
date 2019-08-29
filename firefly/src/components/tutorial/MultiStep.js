@@ -52,13 +52,13 @@ const MultiStepTutorial = props => {
     },
     topBar: {
       position: "absolute",
-      left: "5%",
-      top: "0",
+      right: "9.8%",
+      top: "4.7%",
       display: "flex",
-      justifyContent: "space-between",
+      justifyContent: "flex-end",
       margin: "0px 1%",
       marginTop: "2%",
-      width: "50%"
+      width: "100%"
     },
     topBarButton: {
       ...theme.smallIconButton,
@@ -71,7 +71,7 @@ const MultiStepTutorial = props => {
       width: "40px",
       height: "40px",
       textDecoration: "none",
-      marginTop: "50px"
+      border: "none",
     }
   }))();
 
