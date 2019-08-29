@@ -34,7 +34,7 @@ import {
 import WorldFireflyStyles from "./WorldFireflyStyles";
 import fireflyStyles from "../FireflyWorld/FireflyWorldStyles";
 
-const FireflyContainer = ({ hideSourceOnDrag }) => {
+const FireflyContainer = (props, { hideSourceOnDrag }) => {
   const classes = fireflyStyles();
   const classed = WorldFireflyStyles();
 
@@ -52,6 +52,8 @@ const FireflyContainer = ({ hideSourceOnDrag }) => {
 
   const [fireflies, setFireflies] = useState([]);
 
+  console.log("RERENDER")
+
   useEffect(() => {
     if (worldContext.worlds.length != 0) {
       console.log(worldContext);
@@ -63,7 +65,11 @@ const FireflyContainer = ({ hideSourceOnDrag }) => {
         }
       });
       console.log(currentWorld);
-      setFireflies([...currentWorld.fireflies]);
+      if (currentWorld.fireflies) {
+        console.log("Setting fireflies");
+        console.log(currentWorld.fireflies);
+        setFireflies([...currentWorld.fireflies]);
+      }
     }
   }, [worldContext]);
 
@@ -112,6 +118,8 @@ const FireflyContainer = ({ hideSourceOnDrag }) => {
     });
   };
 
+  
+
   return (
     <div ref={drop} className={classes.fireflyContainer}>
       {fireflies
@@ -125,11 +133,11 @@ const FireflyContainer = ({ hideSourceOnDrag }) => {
                 left={firefly.x}
                 top={firefly.y}
                 hideSourceOnDrag={hideSourceOnDrag}
-                canDrag={canDrag}
+                canDrag={ffId === firefly.firefly_id && canDrag}
               >
                 <div
                   className={
-                    canDrag
+                    ffId === firefly.firefly_id && canDrag
                       ? classed.draggableFirefly + " move"
                       : classed.draggableFirefly
                   }
@@ -172,10 +180,12 @@ const FireflyContainer = ({ hideSourceOnDrag }) => {
                       accessory="none"
                       color={642}
                       awake={true}
+                      animationList={firefly.codeBlocks}
+                      playing={props.playing}
                     />
                   </div>
                   <Dialog
-                    open={trashOpen}
+                    open={ffId === firefly.firefly_id && trashOpen}
                     onClose={() => setTrashOpen(false)}
                     are-labelledby="remove-profile-dialog"
                     classed={{
