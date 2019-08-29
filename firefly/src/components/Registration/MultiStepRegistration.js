@@ -10,7 +10,9 @@ import { Typography } from "@material-ui/core";
 
 const MultiStepRegistration = () => {
   const classes = makeStyles(theme => ({
-    app: {},
+    app: {
+      
+    },
     header: {
       ...theme.headerMargin,
       marginBottom: "2rem"
@@ -21,7 +23,7 @@ const MultiStepRegistration = () => {
       alignItems: "center",
       justifyContent: "center",
       backgroundColor: "#f6f5ff",
-      height: "100vh"
+      height: "100vh",
     },
     second: {
       display: "flex",

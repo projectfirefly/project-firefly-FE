@@ -1,6 +1,11 @@
 import { makeStyles } from "@material-ui/core/styles";
 
 const stepOneStyles = makeStyles(theme => ({
+  mainContainer: {
+    width:"98%",
+
+
+  },
   container: {
     display: "flex",
     flexDirection: "column",
@@ -34,7 +39,7 @@ const stepOneStyles = makeStyles(theme => ({
     marginTop: "1rem",
     borderRadius: "20px",
     backgroundColor: "white",
-    boxShadow: " 0px 20px 30px -20px rgba(0, 0, 0, 0.3)"
+    boxShadow: " 0px 20px 30px -20px rgba(0, 0, 0, 0.3)",
   },
   smallInputContainer: {
     display: "flex",
