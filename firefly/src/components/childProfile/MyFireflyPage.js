@@ -83,7 +83,7 @@ export default function MyFireflyPage() {
               <Link
                 className={classes.rightCards}
                 style={{ textDecoration: "none" }}
-                to="/tutorialtest"
+                to="/tutorial"
               >
                 <div className={classes.rightCardContent}>
                   <img
