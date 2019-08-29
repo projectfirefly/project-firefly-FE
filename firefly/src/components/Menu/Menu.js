@@ -46,8 +46,8 @@ const items = [
     text: "MyAccountPage"
   },
   {
-    path: "/tutorialtest",
-    text: "TutorialTest"
+    path: "/tutorial",
+    text: "Tutorial"
   },
   {
     path: "/addprofile",
