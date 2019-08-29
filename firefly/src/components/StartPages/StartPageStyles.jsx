@@ -31,7 +31,11 @@ const startPageStyles = makeStyles(theme => ({
   startButton: {
     ...theme.primaryButton,
     marginTop: "6%",
-    padding: ".6rem 12%"
+    padding: ".6rem 12%", 
+    "&:active": {
+      margin: "6.1% 0% 0.1%",
+      boxShadow: "none",
+    }
   },
   secondaryButton: {
     ...theme.secondaryButton,
