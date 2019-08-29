@@ -6,14 +6,20 @@ const ChillingFly = ({ height = 160, width = 160 }) => {
   const defaultOptions = {
     loop: true,
     autoplay: true,
-    isClickToPauseDisabled: true,
     animationData: animationData,
     rendererSettings: {
       preserveAspectRatio: "xMidYMid slice"
     }
   };
 
-  return <Lottie options={defaultOptions} height={height} width={width} />;
+  return (
+    <Lottie
+      options={defaultOptions}
+      height={height}
+      width={width}
+      isClickToPauseDisabled={true}
+    />
+  );
 };
 
 export default ChillingFly;
