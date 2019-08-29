@@ -19,7 +19,7 @@ import PaletteIcon from "../../images/gameIcons/PaletteIcon.svg";
 import ToggleOffIcon from "../../images/gameIcons/ToggleOffIcon.svg";
 import LockIcon from "../../images/gameIcons/LockIcon.svg";
 import CheckCircleIcon from "./../../images/gameIcons/CheckCircleIcon.svg";
-import QuestionMarkBook from "./../../images/gameIcons/QuestionMarkBook.svg";
+import QuestionMarkBookDark from "./../../images/gameIcons/QuestionMarkBookDark.svg";
 
 import GridIcon from "../../images/gridBackground.png";
 import { gameContext } from "../../context/Game/GameStore";
@@ -138,7 +138,7 @@ const ITEMS = [
     ),
     content: <ToolboxBox src={StartBlock} alt="startblock" />,
     used: false,
-    rsi: 0,
+    rsi: 0
   },
   {
     id: uuid(),
@@ -147,7 +147,7 @@ const ITEMS = [
     ),
     content: <ToolboxBox src={BlueBlockLeftSideEndState} alt="blueblock" />,
     used: false,
-    rsi: 1,
+    rsi: 1
   },
   {
     id: uuid(),
@@ -157,7 +157,7 @@ const ITEMS = [
     content: <ToolboxBox src={GreenBlockRightSideEndState} alt="greenblock" />,
     used: false,
     rsi: 2,
-    repeat: 1,
+    repeat: 1
   },
 
   {
@@ -165,7 +165,7 @@ const ITEMS = [
     functionality: <ToolboxGreenIcon src={PaletteIcon} alt="paletteIcon" />,
     content: <ToolboxBox src={GreenBlockRightSideEndState} alt="greenblock" />,
     used: false,
-    rsi: 3,
+    rsi: 3
   },
   {
     id: uuid(),
@@ -173,7 +173,7 @@ const ITEMS = [
     content: <ToolboxBox src={GreenBlockRightSideEndState} alt="greenblock" />,
     used: false,
     rsi: 4,
-    timer: 1,
+    timer: 1
   },
   // {
   //   id: uuid(),
@@ -188,22 +188,22 @@ const ITEMS = [
     content: <ToolboxBox src={GreenBlockRightSideEndState} alt="greenblock" />,
     used: false,
     rsi: 6,
-    onOff: false,
+    onOff: false
   },
   {
     id: uuid(),
     functionality: <ToolboxLockIcon src={LockIcon} alt="lockIcon" />,
     content: <ToolboxBox src={GreenBlockRightSideEndState} alt="greenblock" />,
     used: true,
-    rsi: 7,
+    rsi: 7
   },
   {
     id: uuid(),
     functionality: <ToolboxLockIcon src={LockIcon} alt="lockIcon" />,
     content: <ToolboxBox src={GreenBlockRightSideEndState} alt="greenblock" />,
     used: true,
-    rsi: 8,
-  },
+    rsi: 8
+  }
 ];
 
 const Game = props => {
@@ -211,7 +211,7 @@ const Game = props => {
     save: {
       ...theme.smallIconButton,
       width: "45px",
-      backgroundColor: "#4AA810",
+      backgroundColor: "#4AA810"
     },
     buttonContainer: {
       position: "absolute",
@@ -220,11 +220,11 @@ const Game = props => {
       display: "flex",
       width: "12%",
       justifyContent: "space-between",
-      alignItems: "center",
+      alignItems: "center"
     },
     tutorial: {
-      width: "37px",
-    },
+      width: "37px"
+    }
   }))();
   //Set list to firefly out of context/firestore
   //display loader while loading
@@ -253,25 +253,25 @@ const Game = props => {
           return {
             ...ITEMS[2],
             repeat: block.value,
-            id: uuid(),
+            id: uuid()
           };
         case "color":
           return {
             ...ITEMS[3],
             color: block.value,
-            id: uuid(),
+            id: uuid()
           };
         case "timer":
           return {
             ...ITEMS[4],
             timer: block.value,
-            id: uuid(),
+            id: uuid()
           };
         case "onOff":
           return {
             ...ITEMS[5],
             onOff: block.value,
-            id: uuid(),
+            id: uuid()
           };
       }
     });
@@ -281,7 +281,7 @@ const Game = props => {
         if (index === 0 || index === 1) {
           return {
             ...tool,
-            used: true,
+            used: true
           };
         } else {
           return { ...tool };
@@ -295,14 +295,14 @@ const Game = props => {
       [listId]: [
         {
           ...ITEMS[0],
-          id: uuid(),
+          id: uuid()
         },
         {
           ...ITEMS[1],
-          id: uuid(),
+          id: uuid()
         },
-        ...newList,
-      ],
+        ...newList
+      ]
     });
   };
 
@@ -325,7 +325,7 @@ const Game = props => {
   const updateFirefly = () => {
     const updatedFirefly = {
       ...props.location.firefly,
-      codeBlocks: [...animationList],
+      codeBlocks: [...animationList]
     };
 
     updateBlocks(
@@ -431,7 +431,7 @@ const Game = props => {
       });
       //Filters all tools to used:false so they become usable again
       setList({
-        [source.droppableId]: realList,
+        [source.droppableId]: realList
       });
       setTrashing(true);
       setTimeout(() => {
@@ -450,7 +450,7 @@ const Game = props => {
               list[source.droppableId],
               source.index,
               destination.index
-            ),
+            )
           });
         }
         break;
@@ -468,7 +468,7 @@ const Game = props => {
             list[destination.droppableId],
             source,
             destination
-          ),
+          )
         });
         // to play default drop sound 'clickTogether' when dropping the block
         clickTogether.play();
@@ -514,11 +514,11 @@ const Game = props => {
           to={{
             pathname: "/tutorial",
             firefly: props.location.firefly,
-            selectedWorldId: props.location.selectedWorldId,
+            selectedWorldId: props.location.selectedWorldId
           }}
         >
           <img
-            src={QuestionMarkBook}
+            src={QuestionMarkBookDark}
             alt="tutorial"
             className={classes.tutorial}
           />
