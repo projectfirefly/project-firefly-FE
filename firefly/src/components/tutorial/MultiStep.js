@@ -78,6 +78,20 @@ const MultiStepTutorial = props => {
   const [step, setStep] = useState(0);
   const [back, setBack] = useState(0);
 
+  const [location, setLocation] = useState({
+    pathname: "/myfirefly",
+  })
+
+  useEffect(() => {
+    if (props.location.firefly) {
+      setLocation({
+          pathname: "/game",
+          firefly: props.location.firefly,
+          selectedWorldId: props.location.selectedWorldId,
+      })
+    }
+  }, [])
+
   useEffect(() => {
     if (back === 1) {
       props.history.goBack();
@@ -90,11 +104,7 @@ const MultiStepTutorial = props => {
         <div className={classes.root}>
           <div className={classes.topBar}>
             <Link
-              to={{
-                pathname: "/game",
-                firefly: props.location.firefly,
-                selectedWorldId: props.location.selectedWorldId,
-              }}
+              to={location}
               className={classes.topBarButton}
             >
               <i className="fas fa-times" />
@@ -115,11 +125,7 @@ const MultiStepTutorial = props => {
         <div className={classes.root}>
           <div className={classes.topBar}>
             <Link
-              to={{
-                pathname: "/game",
-                firefly: props.location.firefly,
-                selectedWorldId: props.location.selectedWorldId,
-              }}
+              to={location}
               className={classes.topBarButton}
             >
               <i className="fas fa-times" />
@@ -140,11 +146,7 @@ const MultiStepTutorial = props => {
         <div className={classes.root}>
           <div className={classes.topBar}>
             <Link
-              to={{
-                pathname: "/game",
-                firefly: props.location.firefly,
-                selectedWorldId: props.location.selectedWorldId,
-              }}
+              to={location}
               className={classes.topBarButton}
             >
               <i className="fas fa-times" />
@@ -165,11 +167,7 @@ const MultiStepTutorial = props => {
         <div className={classes.root}>
           <div className={classes.topBar}>
             <Link
-              to={{
-                pathname: "/game",
-                firefly: props.location.firefly,
-                selectedWorldId: props.location.selectedWorldId,
-              }}
+              to={location}
               className={classes.topBarButton}
             >
               <i className="fas fa-times" />
@@ -190,11 +188,7 @@ const MultiStepTutorial = props => {
         <div className={classes.root}>
           <div className={classes.topBar}>
             <Link
-              to={{
-                pathname: "/game",
-                firefly: props.location.firefly,
-                selectedWorldId: props.location.selectedWorldId,
-              }}
+              to={location}
               className={classes.topBarButton}
             >
               <i className="fas fa-times" />
@@ -215,11 +209,7 @@ const MultiStepTutorial = props => {
         <div className={classes.root}>
           <div className={classes.topBar}>
             <Link
-              to={{
-                pathname: "/game",
-                firefly: props.location.firefly,
-                selectedWorldId: props.location.selectedWorldId,
-              }}
+              to={location}
               className={classes.topBarButton}
             >
               <i className="fas fa-times" />
@@ -240,11 +230,7 @@ const MultiStepTutorial = props => {
         <div className={classes.root}>
           <div className={classes.topBar}>
             <Link
-              to={{
-                pathname: "/game",
-                firefly: props.location.firefly,
-                selectedWorldId: props.location.selectedWorldId,
-              }}
+              to={location}
               className={classes.topBarButton}
             >
               <i className="fas fa-times" />
