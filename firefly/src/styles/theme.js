@@ -119,6 +119,25 @@ const useTheme = {
       outline: "none"
     }
   },
+  smallIconButton: {
+    backgroundColor: "#FFF",
+    border: "1px solid #ABB0BA",
+    color: "#4AA810",
+    textTransform: "uppercase",
+    borderRadius: "50%",
+    cursor: "pointer",
+    transition: "all 25ms ease-in-out",
+    textDecoration: "none",
+    display: "flex",
+    justifyContent: "center",
+    "&:active": {
+      boxShadow: "none",
+      margin: "3px 0px -3px 0px"
+    },
+    "&:focus": {
+      outline: "none"
+    }
+  },
   clickable: {
     cursor: "pointer",
     transition: "all 25ms ease-in-out",

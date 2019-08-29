@@ -6,7 +6,6 @@ import * as serviceWorker from "./serviceWorker";
 import ChildProfileStore from "./context/ChildProfiles/ChildProfileStore";
 
 import "./styles/reset.scss";
-import "./styles/AnimatedBackground.scss";
 
 //This import is important, the const is to keep it from getting accidentally cleaned up.
 import firebaseConfig from "./firebase";
