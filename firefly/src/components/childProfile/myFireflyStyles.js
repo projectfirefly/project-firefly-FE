@@ -7,7 +7,9 @@ const myFireflyStyles = makeStyles(theme => ({
     width: "100%",
     alignItems: "center",
     justifyContent: "center",
-    padding: "0"
+    padding: "0 4.7%",
+    backgroundColor: "#f6f5ff",
+    height: "100vh"
   },
   header: {
     ...theme.headerMargin,

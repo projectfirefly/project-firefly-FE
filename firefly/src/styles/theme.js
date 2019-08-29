@@ -43,7 +43,7 @@ const useTheme = {
     backgroundColor: "#FFF",
     border: "0",
     borderRadius: "20px",
-    boxShadow: "0px 2px 4px rgba(0,0,0,0.5)"
+    boxShadow: " 0px 20px 30px -20px rgba(0, 0, 0, 0.3)"
   },
   input: {
     fontFamily: "'Nunito', sans-serif",
