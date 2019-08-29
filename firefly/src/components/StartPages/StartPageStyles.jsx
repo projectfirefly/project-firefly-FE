@@ -3,7 +3,7 @@ import background from "../../images/backgroundTiling.png";
 
 const startPageStyles = makeStyles(theme => ({
   logoBox: {
-    width: "100%",
+    width: "60%",
     display: "flex",
     flexDirection: "column",
     position: "relative",
