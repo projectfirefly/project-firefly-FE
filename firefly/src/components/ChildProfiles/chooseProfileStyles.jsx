@@ -9,9 +9,12 @@ const chooseProfileStyles = makeStyles(theme => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    padding: "0 4.7%"
+    padding: "0 4.7%",
+    backgroundColor: "#f6f5ff",
+    height: "100vh"
   },
   sizingContainer: {
+    ...theme.paper,
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -25,6 +28,7 @@ const chooseProfileStyles = makeStyles(theme => ({
     alignItems: "center",
     overflowY: "auto",
     width: "100%",
+    margin: "2%",
     maxHeight: "70vh",
     "&::-webkit-scrollbar": {
       width: "1%",
@@ -65,19 +69,20 @@ const chooseProfileStyles = makeStyles(theme => ({
     borderRadius: "10px",
     boxShadow: "0px 3px #8F96A3",
     width: "25%",
-    margin: "1% 1%",
+    margin: "2% 2.9%",
     padding: "2% 1%",
   },
   backButtonContainer: {
     display: "flex",
     marginTop: "5%",
-    width: "100%",
     marginLeft: "2%",
   },
   backButtonStyle: {
     ...theme.secondaryButton,
-    padding: "0.8rem",
-    width: "20%",
+    padding: "0.4rem 8rem",
+    width: "100%",
+    marginBottom: "15%",
+    lineHeight: "0",
   },
   text: {
     display: "flex",

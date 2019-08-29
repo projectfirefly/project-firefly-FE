@@ -19,7 +19,6 @@ import ChooseProfilePage from "../components/ChildProfiles/ChooseProfilePage";
 import SignUpPage from "../components/SignInAndSignUp/SignUpPage";
 import SignInPage from "../components/SignInAndSignUp/SignInPage";
 import MultiStepRegistration from "../components/Registration/MultiStepRegistration";
-import MultiStepTutorial from "../components/tutorial/MultiStepTutorial";
 
 import MyAccountPage from "../components/MyAccount/MyAccountPage";
 import EditProfilePage from "../components/CreateAndEditProfiles/EditProfilePage";
@@ -28,6 +27,7 @@ import StartGame from "../components/StartPages/LoggedInStartPage";
 import CodeView from "../components/part2/CodeView";
 import ChooseWorld from "../components/Worlds/ChooseWorld/ChooseWorld";
 import FireflyWorld from "../components/Worlds/FireflyWorld/FireflyWorld";
+import Tutorial from "../components/tutorial/MultiStep";
 
 import BackendTester from "../components/backendTester/BackendTester";
 
@@ -108,12 +108,6 @@ export default function DevMenu(props) {
         <PrivateRoute
           logged={props.logged}
           exact
-          path="/tutorial"
-          component={MultiStepTutorial}
-        />
-        <PrivateRoute
-          logged={props.logged}
-          exact
           path="/addprofile"
           component={AddANewProfilePage}
         />
@@ -144,6 +138,11 @@ export default function DevMenu(props) {
           logged={props.logged}
           path="/fireflyworld"
           component={FireflyWorld}
+        />
+        <PrivateRoute
+          logged={props.logged}
+          path="/tutorial"
+          component={Tutorial}
         />
       </Switch>
     </div>
