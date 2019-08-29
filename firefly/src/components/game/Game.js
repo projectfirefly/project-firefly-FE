@@ -197,9 +197,9 @@ const ITEMS = [
 const Game = props => {
   const classes = makeStyles(theme => ({
     save: {
-      ...theme.primaryButton,
-      padding: "10px",
-      borderRadius: "50%"
+      ...theme.smallIconButton,
+      width: "45px",
+      backgroundColor: "#4AA810"
     },
     buttonContainer: {
       position: "absolute",
@@ -490,9 +490,13 @@ const Game = props => {
         <DropDelete trashing={trashing} />
       </DragDropContext>
       <div className={classes.buttonContainer}>
-        <button onClick={updateFirefly} className={classes.save}>
-          <img src={CheckCircleIcon} alt="save check" />
-        </button>
+        <div onClick={updateFirefly}>
+          <img
+            src={CheckCircleIcon}
+            alt="save check"
+            className={classes.save}
+          />
+        </div>
       </div>
     </Board>
   );
