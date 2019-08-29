@@ -11,6 +11,7 @@ import {
 } from "../../context/ChildProfiles/ChildProfileStore";
 import startPageStyles from "./StartPageStyles";
 import { Typography } from "@material-ui/core";
+import "../../styles/AnimatedBackground.scss";
 
 const LoggedInStartPage = () => {
   const [childProfileState, dispatch] = useContext(childContext);
