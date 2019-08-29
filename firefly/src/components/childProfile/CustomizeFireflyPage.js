@@ -121,19 +121,19 @@ export default function CustomizeFireflyPage(props) {
                   />
                 </div>
               </div>
-            </div>
+            </div> 
           </div>
           <div className={classes.buttonContainer}>
-            <Link to="/choose-profile" className={classes.a}>
-              <SecondaryButton
-                text={"BACK"}
-                onClick={"window.history.back(-1)"}
-              />
-            </Link>
-            <div className={classes.a} onClick={saveProfile}>
-              <PrimaryButton text={"SAVE"} />
+              <Link to="/choose-profile" className={classes.a}>
+                <SecondaryButton
+                  text={"BACK"}
+                  onClick={"window.history.back(-1)"}
+                />
+              </Link>
+              <div className={classes.a} onClick={saveProfile}>
+                <PrimaryButton text={"SAVE"} />
+              </div>
             </div>
-          </div>
         </div>
       </div>
     );
