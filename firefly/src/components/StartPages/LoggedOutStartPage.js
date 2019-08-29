@@ -1,6 +1,6 @@
 import React from "react";
 import WelcomeToFirefly from "./../../assets/images/WelcomeToFireflyWithoutFirefly.svg";
-import ChillingFly from "./../../assets/animations/ChillingFly";
+import ChillingFlyNoAcc from "./../../assets/animations/ChillingFlyNoAcc";
 import startPageStyles from "./StartPageStyles";
 
 import { Link } from "react-router-dom";
@@ -12,8 +12,11 @@ const LoggedOutStartPage = () => {
   return (
     <div className={classes.root}>
       <div className={classes.logoBox}>
-        {" "}
-        <ChillingFly height={200} width={200} className={classes.animation} />
+        <ChillingFlyNoAcc
+          height={200}
+          width={200}
+          className={classes.animation}
+        />
         <img
           src={WelcomeToFirefly}
           alt="WelcomeToFirefly"

@@ -2,30 +2,27 @@ import { makeStyles } from "@material-ui/core";
 
 const startPageStyles = makeStyles(theme => ({
   root: {
-    display: "flex",
-    flexDirection: "column",
-    // justifyContent: "center",
-    // alignItems: "center",
-    width: "100%"
+    // display: "flex",
+    // flexDirection: "column",
+    // width: "100%"
   },
   logoBox: {
+    width: "100%",
+    display: "flex",
+    flexDirection: "column",
     position: "relative",
-    margin: "auto",
-    marginTop: "50px"
-  },
-
-  animation: {
-    // position: "absolute",
-    // top: "0px",
-    // right: "200px",
-    // zIndex: "5"
-    marginRight: "-200px"
+    margin: "0px auto",
+    marginTop: "50px",
+    "& div[role=button]": {
+      paddingLeft: "230px",
+      paddingBottom: "5px"
+    }
   },
 
   staticImage: {
-    positon: "absolute",
-    top: "0",
-    right: "0",
+    // positon: "absolute",
+    // top: "0",
+    // right: "0",
     zIndex: "-5",
     marginTop: "-100px"
   },
