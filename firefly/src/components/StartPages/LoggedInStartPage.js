@@ -12,6 +12,8 @@ import {
 import startPageStyles from "./StartPageStyles";
 import { Typography } from "@material-ui/core";
 
+import "../../styles/AnimatedBackground.scss";
+
 const LoggedInStartPage = () => {
   const [childProfileState, dispatch] = useContext(childContext);
 
@@ -23,7 +25,7 @@ const LoggedInStartPage = () => {
   };
 
   return (
-    <div className={classes.root}>
+    <div className="root">
       <div className={classes.topBar}>
         <Link to="/signin" className={classes.topBarButton} onClick={signout}>
           <i className="fas fa-sign-out-alt" />
