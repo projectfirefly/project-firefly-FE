@@ -2,19 +2,6 @@ import { makeStyles } from "@material-ui/core";
 import background from "../../images/backgroundTiling.png";
 
 const startPageStyles = makeStyles(theme => ({
-  root: {
-    fontFamily: "'Nunito', sans-serif",
-    backgroundImage: "url('./../images/backgroundTiling.png')",
-    margin: "0",
-    "@keyframesAnimatedBackground": {
-      from: "backgroundPosition: '0 0'",
-      to: "backgroundPosition: '-512px 0'"
-    },
-    backgroundPosition: "0px 0px",
-    backgroundRepeat: "repeat",
-    //animations
-    animation: "animatedBackground 6s linear infinite"
-  },
   logoBox: {
     width: "100%",
     display: "flex",
@@ -55,7 +42,7 @@ const startPageStyles = makeStyles(theme => ({
     justifyContent: "space-between",
     margin: "0px auto",
     paddingTop: "2%",
-    width: "90%",
+    width: "90%"
   },
   topBarButton: {
     ...theme.smallIconButton,
