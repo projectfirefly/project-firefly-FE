@@ -136,11 +136,10 @@ const CodeBlock = ({
   playClicked,
   errorChecking,
   anchorEl,
-  setAnchorEl,
-  error,
-  setError
+  setAnchorEl
 }) => {
   const classes = useStyles();
+  const [error, setError] = useState(false);
 
   const [togglePalette, setTogglePalette] = useState(false);
   const [toggleTimer, setToggleTimer] = useState(false);
