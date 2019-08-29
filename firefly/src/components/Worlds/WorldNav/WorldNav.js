@@ -5,7 +5,7 @@ import { addFirefly } from "../../../utils/firebaseInteractions";
 
 //Styling
 import WorldNavStyles from "./WorldNavStyles";
-import { FaTimes, FaPlus } from "react-icons/fa";
+import { FaTimes, FaPlus, FaRegPlayCircle } from "react-icons/fa";
 import { Typography } from "@material-ui/core";
 import FireflyOutline from "./ffOutline.svg";
 
@@ -31,11 +31,20 @@ export const WorldNav = props => {
         </Typography>
       </Link>
 
-      <div className={classes.addButton} onClick={newFF}>
-        <Typography variant="button" className={classes.plus}>
-          <FaPlus />
-        </Typography>
-        <img src={FireflyOutline} className={classes.ffOutline}/>
+      <div className={classes.bigButtonContainer}>
+        <div className={classes.addButton} onClick={newFF}>
+          <Typography variant="button" className={classes.plus}>
+            <FaPlus />
+          </Typography>
+          <img src={FireflyOutline} className={classes.ffOutline} />
+        </div>
+
+        <div className={classes.addButton} onClick={props.play}>
+          <Typography variant="button" className={classes.plus}>
+            <FaRegPlayCircle />
+          </Typography>
+          <img src={FireflyOutline} className={classes.ffOutline} />
+        </div>
       </div>
     </div>
   );

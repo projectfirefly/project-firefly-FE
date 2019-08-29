@@ -34,7 +34,7 @@ import {
 import WorldFireflyStyles from "./WorldFireflyStyles";
 import fireflyStyles from "../FireflyWorld/FireflyWorldStyles";
 
-const FireflyContainer = ({ hideSourceOnDrag }) => {
+const FireflyContainer = (props, { hideSourceOnDrag }) => {
   const classes = fireflyStyles();
   const classed = WorldFireflyStyles();
 
@@ -117,15 +117,10 @@ const FireflyContainer = ({ hideSourceOnDrag }) => {
     });
   };
 
-  const [playing, setPlaying] = useState(false);
-
-  const play = () => {
-    setPlaying(!playing)
-  }
+  
 
   return (
     <div ref={drop} className={classes.fireflyContainer}>
-      <button onClick={play}>PLAY</button>
       {fireflies
         ? fireflies.map(firefly => {
             // const left =  Math.floor((Math.random() * 100) + 1)
@@ -185,7 +180,7 @@ const FireflyContainer = ({ hideSourceOnDrag }) => {
                       color={642}
                       awake={true}
                       animationList={firefly.codeBlocks}
-                      playing={playing}
+                      playing={props.playing}
                     />
                   </div>
                   <Dialog
