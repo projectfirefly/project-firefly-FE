@@ -1,5 +1,4 @@
-body {
-  font-family: "Nunito", sans-serif;
+.root {
   background-image: url("./../images/backgroundTiling.png");
   margin: 0;
   @keyframes animatedBackground {
@@ -15,4 +14,6 @@ body {
   background-repeat: repeat;
   //animations
   animation: animatedBackground 6s linear infinite;
+  z-index: -1;
+  height: 100vh;
 }
