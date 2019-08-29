@@ -77,9 +77,10 @@ const stepOneStyles = makeStyles(theme => ({
   },
   buttonContainer: {
     display: "flex",
-    justifyContent: "space-between",
+    justifyContent: "center",
     width: "100%",
-    marginTop: "3rem"
+    marginBottom: "3rem",
+    height: "50px"
   },
   buttonContainer2: {
     display: "flex",
@@ -88,20 +89,34 @@ const stepOneStyles = makeStyles(theme => ({
     marginTop: "3rem",
     marginBottom: "4rem"
   },
-  buttonSpace: {
-    margin: "0 5%"
-  },
   nextButtonDisabled: {
     ...theme.disabledButton,
-    padding: ".7rem 5rem"
+    padding: ".7rem 5rem",
+    width: "30%"
   },
   nextButton: {
     ...theme.primaryButton,
-    padding: ".7rem 5rem"
+    padding: ".7rem 5rem",
+    width: "30%"
+  },
+  nextButton3: {
+    ...theme.primaryButton,
+    padding: ".7rem 5rem",
+    width: "40%"
   },
   backButton: {
     ...theme.secondaryButton,
-    padding: ".7rem 5rem"
+    padding: ".7rem 5rem",
+    width: "30%",
+    marginRight: "40px"
+  },
+  link: { color: "#4BA810", textDecoration: "none" },
+  link3: { color: "white", textDecoration: "none" },
+  backButton3: {
+    ...theme.secondaryButton,
+    padding: ".7rem 5rem",
+    width: "40%",
+    marginRight: "40px"
   },
   addChild: {
     width: "100%",
@@ -125,21 +140,23 @@ const stepOneStyles = makeStyles(theme => ({
     }
   },
   tutorialSize: {
+    margin: "0 auto",
     display: "flex",
     flexDirection: "column",
     width: "70%"
   },
   stepThreeContainer: {
+    margin: "0 auto",
     borderRadius: "20px",
     backgroundColor: "white",
     boxShadow: " 0px 20px 30px -20px rgba(0, 0, 0, 0.3)",
     width: "85%"
   },
   boxes: {
+    margin: "0 auto",
     display: "flex",
     width: "85%",
-    justifyContent: "space-between",
-    marginBottom: "1rem"
+    justifyContent: "space-between"
   },
   box: {
     // ...theme.paper,
