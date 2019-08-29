@@ -88,7 +88,10 @@ const chooseProfileStyles = makeStyles(theme => ({
     padding: "0.4rem 8rem",
     width: "100%",
     marginBottom: "15%",
-    lineHeight: "0"
+    lineHeight: "0",
+    "&:active": {
+      marginBottom: '15%'
+      }
   },
   text: {
     display: "flex",
