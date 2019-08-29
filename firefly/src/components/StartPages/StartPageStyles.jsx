@@ -1,11 +1,7 @@
 import { makeStyles } from "@material-ui/core";
+import background from "../../images/backgroundTiling.png";
 
 const startPageStyles = makeStyles(theme => ({
-  root: {
-    // display: "flex",
-    // flexDirection: "column",
-    // width: "100%"
-  },
   logoBox: {
     width: "100%",
     display: "flex",
@@ -46,7 +42,7 @@ const startPageStyles = makeStyles(theme => ({
     justifyContent: "space-between",
     margin: "0px auto",
     paddingTop: "2%",
-    width: "90%",
+    width: "90%"
   },
   topBarButton: {
     ...theme.smallIconButton,

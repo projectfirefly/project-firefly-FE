@@ -1,6 +1,14 @@
 import { makeStyles } from "@material-ui/core";
 
 const accountStyles = makeStyles(theme => ({
+  container: {
+    ...theme.paper,
+    display: "flex",
+    padding: " 2% 3%"
+    // flexDirection: "column",
+    // alignItems: "center",
+    // justifyContent: "center",
+  },
   paper: {
     padding: "20px 20px",
     textAlign: "left",
@@ -9,7 +17,7 @@ const accountStyles = makeStyles(theme => ({
     // marginBottom: "32px",
   },
   mainHeader: {
-    ...theme.headerMargin,
+    ...theme.headerPadding,
     textAlign: "center"
   },
   headerContainer: {
@@ -23,26 +31,26 @@ const accountStyles = makeStyles(theme => ({
   },
   root: {
     flexGrow: "1",
-    fontFamily: "'Nunito', sans-serif"
+    fontFamily: "'Nunito', sans-serif",
+    backgroundColor: "#f6f5ff",
+    height: "100vh",
+    width: "100vw"
   },
-  container: {
-    display: "flex",
-    padding: " 0 3%"
-  },
+
   left: {
     width: "100%"
   },
   leftContainerOne: {
-    marginRight: "10%",
-    marginBottom: "54px"
+    marginRight: "5%",
+    marginBottom: "10px"
   },
   leftContainerTwo: {
-    marginRight: "10%",
+    marginRight: "5%",
     marginBottom: "54px"
   },
   leftContainer: {
     height: "131px",
-    marginRight: "10%"
+    marginRight: "5%"
   },
   header: {
     textAlign: "center",
@@ -56,26 +64,33 @@ const accountStyles = makeStyles(theme => ({
   sectionHeader: {
     fontWeight: "bold",
     fontSize: "21px",
-    paddingBottom: "21px"
+    paddingBottom: "21px",
+    color: "black"
   },
   sectionHeaderRight: {
     fontWeight: "bold",
     fontSize: "21px",
-    paddingBottom: "18px"
+    paddingBottom: "18px",
+    color: "black"
   },
   infoContainer: {
     display: "flex",
     marginBottom: "20px"
   },
   infoLabel: {
-    fontSize: "16px",
-    padding: "0"
+    fontSize: "14px",
+    paddingTop: "5px",
+    width: "140%"
   },
   userInfo: {
-    padding: "0"
+    padding: "0",
+    fontSize: "18px",
+    fontWeight: "600"
   },
   rightCards: {
-    width: "60%"
+    width: "60%",
+    borderLeft: "1px solid #b6e699",
+    paddingLeft: "2%"
   },
   fireflyContainer: {
     display: "flex",
@@ -93,6 +108,14 @@ const accountStyles = makeStyles(theme => ({
     flexDirection: "column",
     textAlign: "center",
     width: "100%"
+  },
+  tempCCInfo: {
+    background: "#E3E5E8"
+  },
+  tempInfo: {
+    marginLeft: "25px",
+    fontSize: "18px",
+    fontWeight: "600"
   },
   fireflyIcon: {
     width: "100%",
@@ -130,7 +153,8 @@ const accountStyles = makeStyles(theme => ({
   },
   button: {
     ...theme.primaryButton,
-    width: "40%",
+    margin: "0 auto",
+    width: "80%",
     padding: ".7rem 1rem",
     "&.back": {
       ...theme.secondaryButton
@@ -139,6 +163,7 @@ const accountStyles = makeStyles(theme => ({
   researchSection: {
     display: "flex"
   },
+  research: { textDecoration: "underline", color: "#4aa810" },
   checkboxContainer: {
     marginRight: "7%"
   },

@@ -16,7 +16,7 @@ const ProfileCard = props => {
       flexDirection: "column",
       alignItems: "center",
       width: "100%",
-      borderBottom: "1px solid #b6e699",
+      // borderBottom: "1px solid #b6e699",
       marginBottom: "1rem",
       paddingBottom: "1rem"
     },
