@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import fireflyStyles from "./FireflyWorldStyles";
 import { WorldNav } from "../WorldNav/WorldNav";
 import WorldFirefly from "../WorldFirefly/WorldFirefly";
@@ -30,15 +30,20 @@ const FireflyWorld = (props) => {
     }
   }, [])
 
-  // DetectDevice();
+  const [playing, setPlaying] = useState(false);
+
+  const play = () => {
+    setPlaying(!playing)
+  }
+
   return (
     <DndProvider backend={DetectDevice()}>
       <div className={classes.page}>
         <div className={classes.body}>
           <div className={classes.rootContainer}>
-            <WorldNav />
+            <WorldNav play={play}/>
             <div>
-              <WorldFirefly />
+              <WorldFirefly playing={playing}/>
             </div>
           </div>
         </div>
