@@ -36,6 +36,11 @@ const WorldNavStyles = makeStyles(theme => ({
     fontSize: "3rem",
     lineHeight: "0",
   },
+  bigButtonContainer: {
+    display: "flex",
+    width: "30%",
+    justifyContent: "space-between",
+  }
 }));
 
 export default WorldNavStyles;

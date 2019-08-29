@@ -11,6 +11,7 @@ const startPageStyles = makeStyles(theme => ({
     display: "flex",
     flexDirection: "column",
     position: "relative",
+    zIndex: "-1",
     margin: "0px auto",
     marginTop: "50px",
     "& div[role=button]": {
@@ -53,15 +54,16 @@ const startPageStyles = makeStyles(theme => ({
     width: "90%"
   },
   topBarButton: {
-    ...theme.secondaryButton,
+    ...theme.smallIconButton,
+
     display: "flex",
     color: "#4aa810",
     cursor: "pointer",
     alignItems: "center",
     justifyContent: "center",
     fontSize: "1.8rem",
-    width: "3.4rem",
-    height: "3.4rem",
+    width: "5rem",
+    height: "5rem",
     textDecoration: "none"
   },
   topBarText: {

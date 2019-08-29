@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Typography } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 import stepOneStyles from "./StepOneStyles";
 
@@ -165,38 +166,40 @@ const RegistrationStepOne = ({
               </Typography>
             </div>
           </div>
-        </div>
-        <div className={classes.buttonContainer}>
-          <button className={step === 0 ? classes.hidden : classes.backButton}>
-            <Typography variant="button">Back</Typography>
-          </button>
+          <div className={classes.buttonContainer}>
+            <button className={classes.backButton}>
+              <Link to="/signup" className={classes.link}>
+                <Typography variant="button">Back</Typography>
+              </Link>
+            </button>
 
-          <button
-            className={
-              info.first_name !== "" &&
-              info.last_name !== "" &&
-              info.address !== "" &&
-              info.city !== "" &&
-              info.state !== "" &&
-              info.zipCode !== ""
-                ? classes.nextButton
-                : classes.nextButtonDisabled
-            }
-            onClick={
-              info.first_name !== "" &&
-              info.last_name !== "" &&
-              info.address !== "" &&
-              info.city !== "" &&
-              info.state !== "" &&
-              info.zipCode !== ""
-                ? () => {
-                    updateStep("add");
-                  }
-                : null
-            }
-          >
-            <Typography variant="button">Next</Typography>
-          </button>
+            <button
+              className={
+                info.first_name !== "" &&
+                info.last_name !== "" &&
+                info.address !== "" &&
+                info.city !== "" &&
+                info.state !== "" &&
+                info.zipCode !== ""
+                  ? classes.nextButton
+                  : classes.nextButtonDisabled
+              }
+              onClick={
+                info.first_name !== "" &&
+                info.last_name !== "" &&
+                info.address !== "" &&
+                info.city !== "" &&
+                info.state !== "" &&
+                info.zipCode !== ""
+                  ? () => {
+                      updateStep("add");
+                    }
+                  : null
+              }
+            >
+              <Typography variant="button">Next</Typography>
+            </button>
+          </div>
         </div>
       </div>
     </div>

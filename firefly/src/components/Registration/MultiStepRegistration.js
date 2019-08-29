@@ -13,25 +13,31 @@ const MultiStepRegistration = () => {
     app: {},
     header: {
       ...theme.headerMargin,
-      marginBottom: "2rem",
+      marginBottom: "2rem"
     },
     root: {
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
       justifyContent: "center",
+      backgroundColor: "#f6f5ff",
+      height: "100vh"
     },
     second: {
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      justifyContent: "center"
+      justifyContent: "center",
+      backgroundColor: "#f6f5ff",
+      height: "100vh"
     },
     third: {
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      justifyContent: "center"
+      justifyContent: "center",
+      backgroundColor: "#f6f5ff",
+      height: "100vh"
     },
     wrapper: {
       width: "100%"
@@ -91,7 +97,9 @@ const MultiStepRegistration = () => {
     </div>
   ) : step === 1 ? (
     <div className={classes.second}>
-      <Typography variant="h1" className={classes.header}>Step 2: Add a Child Profile</Typography>
+      <Typography variant="h1" className={classes.header}>
+        Step 2: Add a Child Profile
+      </Typography>
       <CustomStepper activeStep={step} />
       <div className={classes.wrapper}>
         <RegistrationStepTwo
@@ -105,7 +113,9 @@ const MultiStepRegistration = () => {
     </div>
   ) : (
     <div className={classes.third}>
-      <Typography variant="h1" className={classes.header}>Step 3: How it Works</Typography>
+      <Typography variant="h1" className={classes.header}>
+        Step 3: How it Works
+      </Typography>
       <CustomStepper activeStep={step} />
       <div className={classes.wrapper}>
         <RegistrationStepThree
