@@ -12,9 +12,16 @@ const WorldFireflyStyles = makeStyles({
     // background:'white',
     padding:'0.5rem 1rem',
     cursor: "default",
+    "&.open": {
+      zIndex: "1000",
+    }
+  },
+  fireflyWrapper: {
     "&.move" : {
       cursor: 'move',
-      border: "1px dashed #f9dc28"
+      border: "2px dashed #f9dc28",
+      borderRadius: "20px",
+      padding: "3%",
     }
   },
   menu: {

@@ -143,8 +143,8 @@ const FireflyContainer = (props, { hideSourceOnDrag }) => {
               >
                 <div
                   className={
-                    ffId === firefly.firefly_id && canDrag
-                      ? classed.draggableFirefly + " move"
+                    ffId === firefly.firefly_id && menuActive
+                      ? classed.draggableFirefly + " open"
                       : classed.draggableFirefly
                   }
                 >
@@ -179,6 +179,11 @@ const FireflyContainer = (props, { hideSourceOnDrag }) => {
                     onClick={() => (
                       setFFId(firefly.firefly_id), setMenuState(!menuActive)
                     )}
+                    className={
+                      ffId === firefly.firefly_id && canDrag ?
+                      classed.fireflyWrapper + " move" :
+                      classed.fireflyWrapper
+                    }
                   >
                     <FFanim
                       height={129}
