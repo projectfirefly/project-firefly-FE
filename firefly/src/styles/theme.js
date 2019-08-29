@@ -85,11 +85,11 @@ const useTheme = {
   },
   secondaryButton: {
     backgroundColor: "#FFF",
-    border: "2px solid ##E3E5E8",
+    border: "2px solid #ABB0BA",
     color: "#4AA810",
     textTransform: "uppercase",
     borderRadius: "1rem",
-    boxShadow: "0px 3px ##E3E5E8",
+    boxShadow: "0px 3px #8F96A3",
     cursor: "pointer",
     transition: "all 25ms ease-in-out",
     textDecoration: "none",
