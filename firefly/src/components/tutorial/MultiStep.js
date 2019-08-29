@@ -23,17 +23,17 @@ const MultiStepTutorial = props => {
       flexDirection: "column",
       alignItems: "center",
       justifyContent: "center",
-      backgroundColor: "#D0CCFF"
+      backgroundColor: "#D0CCFF",
     },
     image: {
       height: "100vh",
-      marginLeft: "-55px"
+      marginLeft: "-55px",
     },
     wrapper: {
       height: "100%",
       display: "flex",
       alignItems: "center",
-      justifyContent: "center"
+      justifyContent: "center",
     },
     arrowcontainer: {
       position: "fixed",
@@ -41,14 +41,14 @@ const MultiStepTutorial = props => {
       display: "flex",
       justifyContent: "space-between",
       width: "100px",
-      marginLeft: "3px"
+      marginLeft: "3px",
     },
     arrowNumber: {
-        fontSize: "4.3rem",
-        fontWeight: 600,
+      fontSize: "4.3rem",
+      fontWeight: 600,
     },
     disabled: {
-      opacity: "0.5"
+      opacity: "0.5",
     },
     topBar: {
       position: "absolute",
@@ -58,7 +58,7 @@ const MultiStepTutorial = props => {
       justifyContent: "flex-end",
       margin: "0px 1%",
       marginTop: "2%",
-      width: "100%"
+      width: "100%",
     },
     topBarButton: {
       ...theme.smallIconButton,
@@ -72,7 +72,7 @@ const MultiStepTutorial = props => {
       height: "40px",
       textDecoration: "none",
       border: "none",
-    }
+    },
   }))();
 
   const [step, setStep] = useState(0);
@@ -89,9 +89,16 @@ const MultiStepTutorial = props => {
       return (
         <div className={classes.root}>
           <div className={classes.topBar}>
-            <div className={classes.topBarButton}>
-              <i className="fas fa-times" onClick={() => setBack(back + 1)} />
-            </div>
+            <Link
+              to={{
+                pathname: "/game",
+                firefly: props.location.firefly,
+                selectedWorldId: props.location.selectedWorldId,
+              }}
+              className={classes.topBarButton}
+            >
+              <i className="fas fa-times" />
+            </Link>
           </div>
           <div className={classes.wrapper}>
             <div className={classes.arrowcontainer}>
@@ -107,9 +114,16 @@ const MultiStepTutorial = props => {
       return (
         <div className={classes.root}>
           <div className={classes.topBar}>
-            <div className={classes.topBarButton}>
-              <i className="fas fa-times" onClick={() => setBack(back + 1)} />
-            </div>
+            <Link
+              to={{
+                pathname: "/game",
+                firefly: props.location.firefly,
+                selectedWorldId: props.location.selectedWorldId,
+              }}
+              className={classes.topBarButton}
+            >
+              <i className="fas fa-times" />
+            </Link>
           </div>
           <div className={classes.wrapper}>
             <div className={classes.arrowcontainer}>
@@ -125,9 +139,16 @@ const MultiStepTutorial = props => {
       return (
         <div className={classes.root}>
           <div className={classes.topBar}>
-            <div className={classes.topBarButton}>
-              <i className="fas fa-times" onClick={() => setBack(back + 1)} />
-            </div>
+            <Link
+              to={{
+                pathname: "/game",
+                firefly: props.location.firefly,
+                selectedWorldId: props.location.selectedWorldId,
+              }}
+              className={classes.topBarButton}
+            >
+              <i className="fas fa-times" />
+            </Link>
           </div>
           <div className={classes.wrapper}>
             <div className={classes.arrowcontainer}>
@@ -143,9 +164,16 @@ const MultiStepTutorial = props => {
       return (
         <div className={classes.root}>
           <div className={classes.topBar}>
-            <div className={classes.topBarButton}>
-              <i className="fas fa-times" onClick={() => setBack(back + 1)} />
-            </div>
+            <Link
+              to={{
+                pathname: "/game",
+                firefly: props.location.firefly,
+                selectedWorldId: props.location.selectedWorldId,
+              }}
+              className={classes.topBarButton}
+            >
+              <i className="fas fa-times" />
+            </Link>
           </div>
           <div className={classes.wrapper}>
             <div className={classes.arrowcontainer}>
@@ -161,9 +189,16 @@ const MultiStepTutorial = props => {
       return (
         <div className={classes.root}>
           <div className={classes.topBar}>
-            <div className={classes.topBarButton}>
-              <i className="fas fa-times" onClick={() => setBack(back + 1)} />
-            </div>
+            <Link
+              to={{
+                pathname: "/game",
+                firefly: props.location.firefly,
+                selectedWorldId: props.location.selectedWorldId,
+              }}
+              className={classes.topBarButton}
+            >
+              <i className="fas fa-times" />
+            </Link>
           </div>
           <div className={classes.wrapper}>
             <div className={classes.arrowcontainer}>
@@ -179,9 +214,16 @@ const MultiStepTutorial = props => {
       return (
         <div className={classes.root}>
           <div className={classes.topBar}>
-            <div className={classes.topBarButton}>
-              <i className="fas fa-times" onClick={() => setBack(back + 1)} />
-            </div>
+            <Link
+              to={{
+                pathname: "/game",
+                firefly: props.location.firefly,
+                selectedWorldId: props.location.selectedWorldId,
+              }}
+              className={classes.topBarButton}
+            >
+              <i className="fas fa-times" />
+            </Link>
           </div>
           <div className={classes.wrapper}>
             <div className={classes.arrowcontainer}>
@@ -197,9 +239,16 @@ const MultiStepTutorial = props => {
       return (
         <div className={classes.root}>
           <div className={classes.topBar}>
-            <div className={classes.topBarButton}>
-              <i className="fas fa-times" onClick={() => setBack(back + 1)} />
-            </div>
+            <Link
+              to={{
+                pathname: "/game",
+                firefly: props.location.firefly,
+                selectedWorldId: props.location.selectedWorldId,
+              }}
+              className={classes.topBarButton}
+            >
+              <i className="fas fa-times" />
+            </Link>
           </div>
           <div className={classes.wrapper}>
             <div className={classes.arrowcontainer}>
