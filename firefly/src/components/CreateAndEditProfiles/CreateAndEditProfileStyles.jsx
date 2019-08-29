@@ -16,7 +16,7 @@ const createProfileStyles = makeStyles(theme => ({
     width: "60%"
   },
   header: {
-    ...theme.headerMargin,
+    ...theme.headerMargin
   },
   cardContainer: {
     width: "100%",
@@ -59,7 +59,7 @@ const createProfileStyles = makeStyles(theme => ({
   },
   field: {
     ...theme.input,
-    paddingRight: "20%",
+    paddingRight: "20%"
   },
   buttonContainer: {
     display: "flex",
@@ -73,15 +73,16 @@ const createProfileStyles = makeStyles(theme => ({
   cancel: {
     ...theme.secondaryButton,
     width: "25%",
-    padding: ".5rem 0",
+    padding: ".5rem 0"
   },
   save: {
     ...theme.primaryButton,
     width: "25%",
-    padding: ".5rem 0",
+    padding: ".5rem 0"
   },
   delete: {
-    ...theme.secondaryButton,
+    ...theme.smallIconButton,
+
     position: "absolute",
     color: "#c7cbd1",
     padding: ".8rem 1rem",
@@ -158,7 +159,7 @@ const createProfileStyles = makeStyles(theme => ({
     display: "flex",
     width: "100%",
     justifyContent: "flex-start"
-  },
+  }
 }));
 
 export default createProfileStyles;

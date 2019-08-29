@@ -74,9 +74,7 @@ const BlockLine = ({
   animationList,
   setAnimationList,
   playAnimation,
-  playing,
-  error,
-  setError
+  playing
 }) => {
   const [playClicked, setPlayClicked] = useState(false);
   const [openPopper, setOpenPopper] = useState(false);
@@ -197,8 +195,6 @@ const BlockLine = ({
                       anchorEl={anchorEl}
                       setAnchorEl={setAnchorEl}
                       setOpenPopper={setOpenPopper}
-                      error={error}
-                      setError={setError}
                     />
                   ))
                 : !provided.placeholder && <Notice>Drop items here</Notice>}
