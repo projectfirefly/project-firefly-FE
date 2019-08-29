@@ -57,6 +57,7 @@ const myFireflyStyles = makeStyles(theme => ({
   },
   rightCards: {
     ...theme.secondaryButton,
+    ...theme.paper,
     width: "100%",
     height: "45%",
     display: "flex",
