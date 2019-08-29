@@ -86,7 +86,7 @@ const MultiStepTutorial = props => {
           <div className={classes.topBar}>
             <div className={classes.topBarButton}>
               <i
-                className="fas fa-sign-out-alt"
+                className="fas fa-times"
                 onClick={() => setBack(back + 1)}
               />
             </div>
