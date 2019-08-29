@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 
 import { childContext } from "../../context/ChildProfiles/ChildProfileStore";
-import { gameContext } from '../../context/Game/GameStore.jsx';
+import { gameContext } from "../../context/Game/GameStore.jsx";
 import { addWorld, getWorld } from "../../utils/firebaseInteractions";
 import chooseProfileStyles from "./chooseProfileStyles";
 
@@ -20,12 +20,9 @@ const ChooseProfilePage = props => {
   const [childProfileState, dispatch] = useContext(childContext);
   const [worldContext, worldDispatch] = useContext(gameContext);
 
-  const gettingWorld = async (profile) => {
-    console.log(profile.id);
-    getWorld(profile.id, worldDispatch)
+  const gettingWorld = async profile => {
+    getWorld(profile.id, worldDispatch);
   };
-
-  console.log("Choose Profile State", childProfileState);
 
   const classes = chooseProfileStyles();
 
@@ -48,7 +45,7 @@ const ChooseProfilePage = props => {
                   });
                   gettingWorld(profile).then(() => {
                     props.history.push("/myfirefly");
-                  })
+                  });
                 }}
               >
                 <div className={classes.text}>
@@ -74,9 +71,7 @@ const ChooseProfilePage = props => {
       </div>
     );
   } else {
-    return (
-      <div></div>
-    )
+    return <div></div>;
   }
 };
 

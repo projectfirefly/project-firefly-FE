@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 const chooseProfileStyles = makeStyles(theme => ({
   header: {
     ...theme.headerMargin,
-    marginBottom: "2%",
+    marginBottom: "2%"
   },
   root: {
     display: "flex",
@@ -19,7 +19,7 @@ const chooseProfileStyles = makeStyles(theme => ({
     flexDirection: "column",
     alignItems: "center",
     width: "85%",
-    margin: "0 10%",
+    margin: "0 10%"
   },
   cardContainer: {
     display: "flex",
@@ -31,7 +31,7 @@ const chooseProfileStyles = makeStyles(theme => ({
     margin: "2%",
     maxHeight: "70vh",
     "&::-webkit-scrollbar": {
-      width: "1%",
+      width: "1%"
     },
     // "&::-webkit-scrollbar-track": {
     //   boxShadow: "inset 0 0 5px grey",
@@ -39,7 +39,7 @@ const chooseProfileStyles = makeStyles(theme => ({
     // },
     "&::-webkit-scrollbar-thumb": {
       background: "#b6e699",
-      borderRadius: "10px",
+      borderRadius: "10px"
     },
     //This after stuff is for flex spacing when there's only two in the line
     "&::after": {
@@ -49,8 +49,8 @@ const chooseProfileStyles = makeStyles(theme => ({
       marginTop: "-10%",
       padding: "2% 1%",
       visibility: "hidden",
-      zIndex: "-1000",
-    },
+      zIndex: "-1000"
+    }
     // boxSizing: "border-box",
     // background: "#e3e5e8",
     // backgroundRepeat: "repeat",
@@ -71,18 +71,22 @@ const chooseProfileStyles = makeStyles(theme => ({
     width: "25%",
     margin: "2% 2.9%",
     padding: "2% 1%",
+    "&:active": {
+      margin: "2.1% 2.9% 1.9%",
+      boxShadow: "none"
+    }
   },
   backButtonContainer: {
     display: "flex",
     marginTop: "5%",
-    marginLeft: "2%",
+    marginLeft: "2%"
   },
   backButtonStyle: {
     ...theme.secondaryButton,
     padding: "0.4rem 8rem",
     width: "100%",
     marginBottom: "15%",
-    lineHeight: "0",
+    lineHeight: "0"
   },
   text: {
     display: "flex",
@@ -90,18 +94,18 @@ const chooseProfileStyles = makeStyles(theme => ({
     alignItems: "center",
     marginBottom: "5%",
     paddingTop: "2%",
-    maxWidth: "100%",
+    maxWidth: "100%"
   },
   name: {
     whiteSpace: "nowrap",
     overflow: "hidden",
     textOverflow: "ellipsis",
-    maxWidth: "100%",
+    maxWidth: "100%"
   },
   flysize: {
     width: "80%",
-    paddingBottom: "5%",
+    paddingBottom: "5%"
   }
 }));
 
-export default chooseProfileStyles
+export default chooseProfileStyles;
