@@ -24,6 +24,7 @@ const Trash = styled.div`
   justify-content: center;
   align-items: center;
   transition: 0.5s;
+  z-index: 5;
 `;
 
 const Destruction = styled.div`
