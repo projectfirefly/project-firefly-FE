@@ -19,6 +19,7 @@ const List = styled.div`
 
 const ListContainer = styled.div`
   height: 100%;
+  padding-top: 6%;
   min-height: 90px;
   background: none;
   border-radius: 16px;
