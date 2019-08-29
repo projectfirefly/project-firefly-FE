@@ -18,8 +18,8 @@ const startPageStyles = makeStyles(theme => ({
     // position: "absolute",
     // top: "0px",
     // right: "200px",
-    // zIndex: "5"
-    marginRight: "-200px"
+    // zIndex: "5",
+    // marginRight: "-200px"
   },
 
   staticImage: {
