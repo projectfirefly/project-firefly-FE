@@ -5,8 +5,8 @@ import Cloud from "../../assets/animations/Cloud";
 import styled from "styled-components";
 
 const Trash = styled.div`
-  height: 150px;
-  width: 150px;
+  height: 250px;
+  width: 250px;
   &:hover {
     /* background: #dc143c; */
     font-size: 68px;
