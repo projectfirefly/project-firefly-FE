@@ -5,8 +5,9 @@ import Cloud from "../../assets/animations/Cloud";
 import styled from "styled-components";
 
 const Trash = styled.div`
-  height: 250px;
-  width: 250px;
+  height: 150px;
+  width: 150px;
+  font-size: 60px;
   &:hover {
     /* background: #dc143c; */
     font-size: 68px;
@@ -18,7 +19,6 @@ const Trash = styled.div`
   position: fixed;
   right: 0;
   bottom: 0;
-  font-size: 55px;
   color: #abb0ba;
   display: flex;
   justify-content: center;
@@ -53,10 +53,7 @@ const DropDelete = ({ trashing }) => {
               innerRef={provided.innerRef}
               isDraggingOver={snapshot.isDraggingOver}
             >
-              <FontAwesomeIcon
-                icon="trash-alt"
-                style={{ paddingLeft: "50px", paddingTop: "50px" }}
-              />
+              <FontAwesomeIcon icon="trash-alt" />
             </Trash>
           ) : (
             <Destruction
