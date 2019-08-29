@@ -275,6 +275,7 @@ const FFanim = ({
         codeArray.push(currentCode);
         currentCode = {};
         addToAnime(codeArray, block.value, passedOnOffState);
+        passedOnOffState = currentOnOffState;
         codeArray = [];
       }
       if (index === blocks.length - 1) {
