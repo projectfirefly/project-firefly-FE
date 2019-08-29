@@ -1,6 +1,14 @@
 import { makeStyles } from "@material-ui/core";
 
 const createProfileStyles = makeStyles(theme => ({
+  root:{
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    padding: "0 4.7%",
+    backgroundColor: "#f6f5ff",
+    height: "100vh"
+  },
   container: {
     display: "flex",
     flexDirection: "column",

@@ -1,6 +1,13 @@
 import { makeStyles } from "@material-ui/core";
 
 const accountStyles = makeStyles(theme => ({
+  container: {
+    display: "flex",
+    padding: " 0 3%"
+    // flexDirection: "column",
+    // alignItems: "center",
+    // justifyContent: "center",
+  },
   paper: {
     padding: "20px 20px",
     textAlign: "left",
@@ -23,12 +30,11 @@ const accountStyles = makeStyles(theme => ({
   },
   root: {
     flexGrow: "1",
-    fontFamily: "'Nunito', sans-serif"
+    fontFamily: "'Nunito', sans-serif",
+    backgroundColor: "#f6f5ff",
+    height: "100vh"
   },
-  container: {
-    display: "flex",
-    padding: " 0 3%"
-  },
+
   left: {
     width: "100%"
   },
