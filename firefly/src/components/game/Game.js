@@ -19,6 +19,7 @@ import PaletteIcon from "../../images/gameIcons/PaletteIcon.svg";
 import ToggleOffIcon from "../../images/gameIcons/ToggleOffIcon.svg";
 import LockIcon from "../../images/gameIcons/LockIcon.svg";
 import CheckCircleIcon from "./../../images/gameIcons/CheckCircleIcon.svg";
+import QuestionMarkBook from "./../../images/gameIcons/QuestionMarkBook.svg";
 
 import GridIcon from "../../images/gridBackground.png";
 import { gameContext } from "../../context/Game/GameStore";
@@ -204,7 +205,14 @@ const Game = props => {
     buttonContainer: {
       position: "absolute",
       right: "5%",
-      top: "4.2%"
+      top: "4.2%",
+      display: "flex",
+      width: "12%",
+      justifyContent: "space-between",
+      alignItems: "center"
+    },
+    tutorial: {
+      width: "37px"
     }
   }))();
   //Set list to firefly out of context/firestore
@@ -490,6 +498,13 @@ const Game = props => {
         <DropDelete trashing={trashing} />
       </DragDropContext>
       <div className={classes.buttonContainer}>
+        <Link to="/tutorial">
+          <img
+            src={QuestionMarkBook}
+            alt="tutorial"
+            className={classes.tutorial}
+          />
+        </Link>
         <div onClick={updateFirefly}>
           <img
             src={CheckCircleIcon}
