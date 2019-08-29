@@ -110,7 +110,7 @@ const accountStyles = makeStyles(theme => ({
     width: "100%"
   },
   tempCCInfo: {
-    background: "grey"
+    background: "#E3E5E8"
   },
   tempInfo: {
     marginLeft: "25px",
