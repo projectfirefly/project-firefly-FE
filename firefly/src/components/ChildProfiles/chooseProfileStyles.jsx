@@ -25,8 +25,8 @@ const chooseProfileStyles = makeStyles(theme => ({
     display: "flex",
     flexWrap: "wrap",
     justifyContent: "space-between",
-    alignItems: "center",
-    overflowY: "auto",
+    // alignItems: "center",
+    overflowY: "scroll",
     width: "100%",
     height: "450px",
     margin: "2%",
@@ -70,6 +70,7 @@ const chooseProfileStyles = makeStyles(theme => ({
     borderRadius: "10px",
     boxShadow: "0px 3px #8F96A3",
     width: "25%",
+    height: "200px",
     margin: "2% 2.9%",
     padding: "2% 1%",
     "&:active": {
@@ -87,7 +88,10 @@ const chooseProfileStyles = makeStyles(theme => ({
     padding: "0.4rem 8rem",
     width: "100%",
     marginBottom: "15%",
-    lineHeight: "0"
+    lineHeight: "0",
+    "&:active": {
+      marginBottom: '15%'
+      }
   },
   text: {
     display: "flex",
