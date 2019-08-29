@@ -39,7 +39,7 @@ const AddANewProfilePage = props => {
 
   const saveProfile = () => {
     addProfile(ADD_PROFILE, updatedProfile, dispatch).then(() => {
-      props.history.push("/choose-profile");
+      props.history.push("/account");
     });
   };
 

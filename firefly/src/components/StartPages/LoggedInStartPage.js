@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import WelcomeToFirefly from "./../../assets/images/WelcomeToFireflyWithoutFirefly.svg";
 import ChillingFlyNoAcc from "./../../assets/animations/ChillingFlyNoAcc";
@@ -15,7 +15,7 @@ import "../../styles/AnimatedBackground.scss";
 
 import "../../styles/AnimatedBackground.scss";
 
-const LoggedInStartPage = () => {
+const LoggedInStartPage = (props) => {
   const [childProfileState, dispatch] = useContext(childContext);
 
   const classes = startPageStyles();
@@ -24,6 +24,12 @@ const LoggedInStartPage = () => {
     firebase.auth().signOut();
     dispatch({ type: SIGN_OUT });
   };
+
+  useEffect(() => {
+    if (childProfileState.loaded && !childProfileState.user.information.city) {
+      props.history.push("/registration");
+    }
+  }, []);
 
   return (
     <div className="root">

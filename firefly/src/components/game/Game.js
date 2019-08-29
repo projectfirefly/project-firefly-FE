@@ -491,6 +491,27 @@ const Game = props => {
     setPlaying(!playing);
   };
 
+  const tutorialRedirect = () => {
+    const updatedFirefly = {
+      ...props.location.firefly,
+      codeBlocks: [...animationList]
+    };
+
+    updateBlocks(
+      childProfileState.selected.id,
+      props.location.firefly.firefly_id,
+      props.location.selectedWorldId,
+      updatedFirefly,
+      worldDispatch
+    ).then(() => {
+      props.history.push({
+        pathname: "/tutorial",
+        firefly: updatedFirefly,
+        selectedWorldId: props.location.selectedWorldId
+      });
+    });
+  };
+
   return (
     <Board>
       <Background />
@@ -510,19 +531,13 @@ const Game = props => {
         <DropDelete trashing={trashing} />
       </DragDropContext>
       <div className={classes.buttonContainer}>
-        <Link
-          to={{
-            pathname: "/tutorial",
-            firefly: props.location.firefly,
-            selectedWorldId: props.location.selectedWorldId
-          }}
-        >
+        <div onClick={tutorialRedirect}>
           <img
             src={QuestionMarkBookDark}
             alt="tutorial"
             className={classes.tutorial}
           />
-        </Link>
+        </div>
         <div onClick={updateFirefly}>
           <img
             src={CheckCircleIcon}
