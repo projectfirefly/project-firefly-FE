@@ -109,7 +109,7 @@ const FFanim = ({
             };
           }
 
-          if (element.onOff === false || element.color && !isOn) {
+          if (element.onOff === false || !isOn) {
             t1.add({
               ...keyframe,
               fill: "hsl(220, 12%, 90%)"
