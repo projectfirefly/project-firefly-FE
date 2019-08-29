@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import WelcomeToFirefly from "./../../assets/images/WelcomeToFireflyWithoutFirefly.svg";
-import ChillingFly from "./../../assets/animations/ChillingFly";
+import ChillingFlyNoAcc from "./../../assets/animations/ChillingFlyNoAcc";
 
 import { Link } from "react-router-dom";
 import firebase from "firebase";
@@ -33,13 +33,18 @@ const LoggedInStartPage = () => {
           <i className="fas fa-user-alt" />
         </Link>
       </div>
-      <span className={classes.logo}>
+      <div className={classes.logoBox}>
+        <ChillingFlyNoAcc
+          height={200}
+          width={200}
+          className={classes.animation}
+        />
         <img
           src={WelcomeToFirefly}
           alt="WelcomeToFirefly"
-          className={classes.fireflyImage}
+          className={classes.staticImage}
         />
-      </span>
+      </div>
       <div className={classes.buttonContainer}>
         {childProfileState.loaded ? (
           <Link
