@@ -41,7 +41,11 @@ const MultiStepTutorial = props => {
       display: "flex",
       justifyContent: "space-between",
       width: "100px",
-      marginLeft: "1px"
+      marginLeft: "3px"
+    },
+    arrowNumber: {
+        fontSize: "4.3rem",
+        fontWeight: 600,
     },
     disabled: {
       opacity: "0.5"
@@ -54,19 +58,20 @@ const MultiStepTutorial = props => {
       justifyContent: "space-between",
       margin: "0px 1%",
       marginTop: "2%",
-      width: "90%"
+      width: "50%"
     },
     topBarButton: {
-      ...theme.secondaryButton,
+      ...theme.smallIconButton,
       display: "flex",
       color: "#4aa810",
       cursor: "pointer",
       alignItems: "center",
       justifyContent: "center",
       fontSize: "1.8rem",
-      width: "3.4rem",
-      height: "3.4rem",
-      textDecoration: "none"
+      width: "40px",
+      height: "40px",
+      textDecoration: "none",
+      marginTop: "50px"
     }
   }))();
 
@@ -85,15 +90,13 @@ const MultiStepTutorial = props => {
         <div className={classes.root}>
           <div className={classes.topBar}>
             <div className={classes.topBarButton}>
-              <i
-                className="fas fa-times"
-                onClick={() => setBack(back + 1)}
-              />
+              <i className="fas fa-times" onClick={() => setBack(back + 1)} />
             </div>
           </div>
           <div className={classes.wrapper}>
             <div className={classes.arrowcontainer}>
               <img src={leftarrow} className={classes.disabled} />
+              <span className={classes.arrowNumber}>1</span>
               <img src={rightarrow} onClick={() => setStep(step + 1)} />
             </div>
             <img className={classes.image} src={screen1} />
@@ -103,9 +106,15 @@ const MultiStepTutorial = props => {
     case 1:
       return (
         <div className={classes.root}>
+          <div className={classes.topBar}>
+            <div className={classes.topBarButton}>
+              <i className="fas fa-times" onClick={() => setBack(back + 1)} />
+            </div>
+          </div>
           <div className={classes.wrapper}>
             <div className={classes.arrowcontainer}>
               <img src={leftarrow} onClick={() => setStep(step - 1)} />
+              <span className={classes.arrowNumber}>2</span>
               <img src={rightarrow} onClick={() => setStep(step + 1)} />
             </div>
             <img className={classes.image} src={screen2} />
@@ -115,9 +124,15 @@ const MultiStepTutorial = props => {
     case 2:
       return (
         <div className={classes.root}>
+          <div className={classes.topBar}>
+            <div className={classes.topBarButton}>
+              <i className="fas fa-times" onClick={() => setBack(back + 1)} />
+            </div>
+          </div>
           <div className={classes.wrapper}>
             <div className={classes.arrowcontainer}>
               <img src={leftarrow} onClick={() => setStep(step - 1)} />
+              <span className={classes.arrowNumber}>3</span>
               <img src={rightarrow} onClick={() => setStep(step + 1)} />
             </div>
             <img className={classes.image} src={screen3} />
@@ -127,9 +142,15 @@ const MultiStepTutorial = props => {
     case 3:
       return (
         <div className={classes.root}>
+          <div className={classes.topBar}>
+            <div className={classes.topBarButton}>
+              <i className="fas fa-times" onClick={() => setBack(back + 1)} />
+            </div>
+          </div>
           <div className={classes.wrapper}>
             <div className={classes.arrowcontainer}>
               <img src={leftarrow} onClick={() => setStep(step - 1)} />
+              <span className={classes.arrowNumber}>4</span>
               <img src={rightarrow} onClick={() => setStep(step + 1)} />
             </div>
             <img className={classes.image} src={screen4} />
@@ -139,9 +160,15 @@ const MultiStepTutorial = props => {
     case 4:
       return (
         <div className={classes.root}>
+          <div className={classes.topBar}>
+            <div className={classes.topBarButton}>
+              <i className="fas fa-times" onClick={() => setBack(back + 1)} />
+            </div>
+          </div>
           <div className={classes.wrapper}>
             <div className={classes.arrowcontainer}>
               <img src={leftarrow} onClick={() => setStep(step - 1)} />
+              <span className={classes.arrowNumber}>5</span>
               <img src={rightarrow} onClick={() => setStep(step + 1)} />
             </div>
             <img className={classes.image} src={screen5} />
@@ -151,9 +178,15 @@ const MultiStepTutorial = props => {
     case 5:
       return (
         <div className={classes.root}>
+          <div className={classes.topBar}>
+            <div className={classes.topBarButton}>
+              <i className="fas fa-times" onClick={() => setBack(back + 1)} />
+            </div>
+          </div>
           <div className={classes.wrapper}>
             <div className={classes.arrowcontainer}>
               <img src={leftarrow} onClick={() => setStep(step - 1)} />
+              <span className={classes.arrowNumber}>6</span>
               <img src={rightarrow} onClick={() => setStep(step + 1)} />
             </div>
             <img className={classes.image} src={screen6} />
@@ -163,9 +196,15 @@ const MultiStepTutorial = props => {
     case 6:
       return (
         <div className={classes.root}>
+          <div className={classes.topBar}>
+            <div className={classes.topBarButton}>
+              <i className="fas fa-times" onClick={() => setBack(back + 1)} />
+            </div>
+          </div>
           <div className={classes.wrapper}>
             <div className={classes.arrowcontainer}>
               <img src={leftarrow} onClick={() => setStep(step - 1)} />
+              <span className={classes.arrowNumber}>7</span>
               <img src={rightarrow} className={classes.disabled} />
             </div>
             <img className={classes.image} src={screen7} />
