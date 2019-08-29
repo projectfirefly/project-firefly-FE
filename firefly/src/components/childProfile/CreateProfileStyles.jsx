@@ -7,7 +7,10 @@ const createProfileClasses = makeStyles(theme => ({
     justifyContent: "center",
     alignItems: "center",
     width: "100%",
-    fontFamily: "'Nunito', sans-serif"
+    fontFamily: "'Nunito', sans-serif",
+    padding: "0",
+    backgroundColor: "#f6f5ff",
+    height: "100vh"
   },
   sizingContainer: {
     width: "85%",

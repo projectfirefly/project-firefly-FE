@@ -43,7 +43,7 @@ const useTheme = {
     backgroundColor: "#FFF",
     border: "0",
     borderRadius: "20px",
-    boxShadow: "0px 2px 4px rgba(0,0,0,0.5)"
+    boxShadow: " 0px 20px 30px -20px rgba(0, 0, 0, 0.3)"
   },
   input: {
     fontFamily: "'Nunito', sans-serif",
@@ -115,6 +115,25 @@ const useTheme = {
     opacity: "0.92",
     letterSpacing: "1px",
     justifyContent: "center",
+    "&:focus": {
+      outline: "none"
+    }
+  },
+  smallIconButton: {
+    backgroundColor: "#FFF",
+    border: "1px solid #ABB0BA",
+    color: "#4AA810",
+    textTransform: "uppercase",
+    borderRadius: "50%",
+    cursor: "pointer",
+    transition: "all 25ms ease-in-out",
+    textDecoration: "none",
+    display: "flex",
+    justifyContent: "center",
+    "&:active": {
+      boxShadow: "none",
+      margin: "3px 0px -3px 0px"
+    },
     "&:focus": {
       outline: "none"
     }

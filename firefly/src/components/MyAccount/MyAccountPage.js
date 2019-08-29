@@ -28,19 +28,14 @@ export default function ProfileView(props) {
     first_name: "",
     last_name: "",
     information: {
-      address: "",
-    },
+      address: ""
+    }
   });
 
-  console.log("myaccountpage state", childProfileState);
-
   useEffect(() => {
-    if (
-      childProfileState.loaded &&
-      !finishedLoading
-    ) {
+    if (childProfileState.loaded && !finishedLoading) {
       setUpdatedInfo({
-        ...childProfileState.user,
+        ...childProfileState.user
       });
       setFinishedLoading(true);
     }
@@ -49,15 +44,14 @@ export default function ProfileView(props) {
   const toggleEditing = () => {
     setEditing(!editing);
     setUpdatedInfo({
-      ...childProfileState.user,
+      ...childProfileState.user
     });
-    console.log(process.env.REACT_APP_SOMETHING);
   };
 
   const handleChanges = e => {
     setUpdatedInfo({
       ...updatedInfo,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     });
   };
 
@@ -66,8 +60,8 @@ export default function ProfileView(props) {
       ...updatedInfo,
       information: {
         ...updatedInfo.information,
-        [e.target.name]: e.target.value,
-      },
+        [e.target.name]: e.target.value
+      }
     });
   };
 
@@ -76,10 +70,7 @@ export default function ProfileView(props) {
     updateUser(UPDATE_USER, updatedInfo, dispatch);
   };
 
-  if (
-    childProfileState.loaded &&
-    finishedLoading
-  ) {
+  if (childProfileState.loaded && finishedLoading) {
     return (
       <Container className={classes.root} maxWidth="lg">
         <div className={classes.mainHeader}>
@@ -226,7 +217,7 @@ export default function ProfileView(props) {
                   <Icon
                     name="Firefly"
                     style={{
-                      width: "40%",
+                      width: "40%"
                     }}
                   />
                 </div>
