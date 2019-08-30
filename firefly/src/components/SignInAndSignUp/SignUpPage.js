@@ -5,6 +5,7 @@ import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import * as Yup from "yup";
 import ApolloClient from "apollo-boost";
 import WearingNerdGlasses from "./../../images/WearingNerdGlasses.png";
+import ChillingFly from "../../assets/animations/ChillingFly";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 
@@ -45,10 +46,10 @@ const uiConfig = {
           variables: { input: newUser }
         })
         .then(res => {
-          console.log(res.data);
+          // console.log(res.data);
         })
         .catch(err => {
-          console.log(err);
+          // console.log(err);
         });
     }
   }
@@ -135,16 +136,21 @@ const RegisterForm = ({ values, errors, touched }) => {
         <div>
           <h2 className="sign-up-or">OR</h2>
         </div>
-        <div className="sign-up-forms-box">
-          <StyledFirebaseAuth
-            uiConfig={uiConfig}
-            firebaseAuth={firebase.auth()}
-          />
-          <img
+        <div className="sign-up-forms-box ">
+          <div className="fbSize">
+            <StyledFirebaseAuth
+              uiConfig={uiConfig}
+              firebaseAuth={firebase.auth()}
+            />
+          </div>
+          <div className="sign-up-firefly-nerd">
+            <ChillingFly />
+          </div>
+          {/* <img
             src={WearingNerdGlasses}
             alt="firefly-nerd"
             className="sign-up-firefly-nerd"
-          />
+          /> */}
         </div>
       </div>
     </div>
@@ -194,15 +200,15 @@ const SignUpPage = withFormik({
               variables: { input: newUser }
             })
             .then(res => {
-              console.log(res.data);
+              // console.log(res.data);
               setSubmitting(false);
             })
             .catch(err => {
-              console.log(err);
+              // console.log(err);
             });
         })
         .catch(err => {
-          console.log(err);
+          // console.log(err);
         });
     }
   }

@@ -11,10 +11,22 @@ import LensIcon from '@material-ui/icons/Lens'
 const CustomStepper = (props) => {
 
     const classes = makeStyles(theme => ({
+        stepContainer:{
+            // For mobiles and smaller
+            ["@media (max-width:500px)"]: {
+                width:'300px',
+                alignItems: 'center',
+                margin:'0 auto',
+            },
+        },
         stepper: {
             background: 'rgba(0,0,0,0)',
             width: '500px',
             padding: '2px',
+            // For mobiles and smaller
+            ["@media (max-width:500px)"]: {
+                width:'298px',
+            },
         },
         icon: {
             zIndex: 2,
@@ -31,27 +43,43 @@ const CustomStepper = (props) => {
                 borderTop: '8px solid #5b4eff',
                 borderRadius: '2px',
                 marginTop: '-3.5px',
+                // For mobiles and smaller
+                ["@media (max-width:500px)"]: {
+                    width:'100px',
+                },
             },
         },
         connectorCompleted: {
             '& $connectorLine': {
                 borderTop: '8px solid #5b4eff',
                 borderRadius: '2px',
-                marginTop: '-3.5px'
+                marginTop: '-3.5px',
+                // For mobiles and smaller
+                ["@media (max-width:500px)"]: {
+                    width:'100px',
+                },
             },
         },
         connectorDisabled: {
             '& $connectorLine': {
                 borderTop: '8px solid #d0ccff',
                 borderRadius: '2px',
-                marginTop: '-3.5px'
+                marginTop: '-3.5px',
+                // For mobiles and smaller
+                ["@media (max-width:500px)"]: {
+                    width:'100px',
+                },
             },
         },
         connectorLine: {
             '& $connectorLine': {
                 borderTop: '8px solid #d0ccff',
                 borderRadius: '2px',
-                marginTop: '-3.5px'
+                marginTop: '-3.5px',
+                // For mobiles and smaller
+                ["@media (max-width:500px)"]: {
+                    width:'100px',
+                },
             },
             transition: theme.transitions.create('border-color'),
         },
@@ -92,7 +120,7 @@ const CustomStepper = (props) => {
     }
 
     return (
-        <div>
+        <div className={classes.stepContainer}>
             <Stepper className={classes.stepper} activeStep={props.activeStep} connector={connector} alternativeLabel>
                 <Step className={classes.step}>
                     <StepLabel StepIconProps={{

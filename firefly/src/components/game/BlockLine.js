@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Droppable } from "react-beautiful-dnd";
 import StartBlockTarget from "./../../images/gameIcons/StartBlockTarget.svg";
@@ -7,25 +7,26 @@ import CodeBlock from "./CodeBlock";
 
 const List = styled.div`
   height: 100%;
-  min-height: 90px;
+  min-height: 135px;
   background: none;
   border-radius: 16px;
-  width: 88%;
+  width: 100%;
   overflow-x: auto;
   overflow-y: hidden;
-  display: -webkit-box;
-  align-items: center;
+  display: flex;
+  padding-bottom: 20px;
 `;
 
 const ListContainer = styled.div`
-  height: 100%;
+  height: 30%;
+  padding-top: 6%;
   min-height: 90px;
   background: none;
   border-radius: 16px;
-  width: 88%;
+  width: 89%;
   overflow-x: auto;
   overflow-y: hidden;
-  margin-left: 130px;
+  margin-left: 11%;
   display: -webkit-box;
   -webkit-align-items: center;
   -webkit-box-align: center;
@@ -59,14 +60,27 @@ const GrayedOutBlock = styled.div`
   opacity: 0.7;
   position: relative;
   width: 97px;
+  flex-direction: column;
 `;
 
 const ButtonBox = styled.img`
   width: 100%;
 `;
 
-const BlockLine = ({ list, setList, hasStart, draggingBlock }) => {
+const BlockLine = ({
+  list,
+  setList,
+  hasStart,
+  draggingBlock,
+  animationList,
+  setAnimationList,
+  playAnimation,
+  playing
+}) => {
+  const [playClicked, setPlayClicked] = useState(false);
   const [openPopper, setOpenPopper] = useState(false);
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
 
   const togglePopper = (id, blocks, type, value) => {
     if (openPopper) {
@@ -81,6 +95,67 @@ const BlockLine = ({ list, setList, hasStart, draggingBlock }) => {
       });
     }
     setOpenPopper(!openPopper);
+  };
+
+  const errorChecking = i => {
+    const [restructuredList] = Object.values(list);
+
+    if (restructuredList.length > 1) {
+      if (restructuredList[i].rsi === 3 && !restructuredList[i].color) {
+        return true;
+      }
+      //start block error check
+      if (i !== 0 && restructuredList[i].rsi === 0) {
+        return true;
+      }
+      //blue block error check
+      if (i !== 1 && restructuredList[i].rsi === 1) {
+        return true;
+      }
+      if (restructuredList.length > i + 1 && i !== 0) {
+        if (
+          restructuredList[i].repeat &&
+          (restructuredList[i + 1].repeat || restructuredList[i - 1].repeat)
+        ) {
+          return true;
+        } else {
+          return false;
+        }
+      } else if (i === 0) {
+        if (restructuredList[i].repeat && restructuredList[i + 1].repeat) {
+          return true;
+        } else {
+          return false;
+        }
+      } else {
+        if (restructuredList[i].repeat && restructuredList[i - 1].repeat) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    }
+  };
+
+  useEffect(() => {
+    setPlayClicked(false);
+  }, [list]);
+
+  const clickedPlay = () => {
+    const [listArray] = Object.values(list);
+    let lineError = false;
+    setPlayClicked(true);
+
+    for (let i = 0; i < listArray.length; i++) {
+      if (lineError) {
+        break;
+      }
+      lineError = errorChecking(i);
+    }
+
+    if (!lineError) {
+      playAnimation();
+    }
   };
 
   return (
@@ -112,6 +187,15 @@ const BlockLine = ({ list, setList, hasStart, draggingBlock }) => {
                       list={list}
                       setList={setList}
                       blocks={blocks}
+                      animationList={animationList}
+                      setAnimationList={setAnimationList}
+                      playAnimation={playAnimation}
+                      clickedPlay={clickedPlay}
+                      playClicked={playClicked}
+                      errorChecking={errorChecking}
+                      anchorEl={anchorEl}
+                      setAnchorEl={setAnchorEl}
+                      setOpenPopper={setOpenPopper}
                     />
                   ))
                 : !provided.placeholder && <Notice>Drop items here</Notice>}

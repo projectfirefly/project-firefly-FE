@@ -7,7 +7,7 @@ const useStyles = makeStyles({
   fireFlyBox: {
     width: "40%",
     padding: "20px 0",
-    margin: "5% auto",
+    margin: "3% auto",
     borderRadius: "20px",
     boxShadow: "0px 2px 4px #000000",
     backgroundImage: "linear-gradient(#382eb8, #7068ff)"
@@ -16,14 +16,14 @@ const useStyles = makeStyles({
   fireFlyBoxSleep: {
     width: "40%",
     padding: "20px 0",
-    margin: "5% auto",
+    margin: "3% auto",
     borderRadius: "20px",
     boxShadow: "0px 1px 4px #000000",
     backgroundImage: "linear-gradient(#555, #fff)"
   }
 });
 
-const FFbox = ({ tools }) => {
+const FFbox = ({ tools, animationList, playing }) => {
   const classes = useStyles();
   return (
     <div
@@ -34,9 +34,10 @@ const FFbox = ({ tools }) => {
       <FFanim
         height={250}
         width={250}
-        accessory="nerdglasses"
         color={58}
         awake={tools[1].used ? true : false}
+        animationList={animationList}
+        playing={playing}
       />
     </div>
   );

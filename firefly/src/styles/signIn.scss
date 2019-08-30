@@ -1,9 +1,16 @@
+// @media (max-width: 430px) {
+
+// }
+
 .sign-in-container {
+  padding-top: 4%;
   padding: 0% 5%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-color: #f6f5ff;
+  height: 103vh;
 }
 
 .sign-in-header {
@@ -41,8 +48,8 @@
   justify-content: center;
   align-items: center;
   border-radius: 20px;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
   background-color: white;
+  box-shadow: 0px 20px 30px -20px rgba(0, 0, 0, 0.3);
 
   &__formik {
     width: 100%;
@@ -192,8 +199,10 @@
 }
 
 .eye-icon {
-  margin-left: -30px;
+  margin-left: -35px;
   cursor: pointer;
+  color: #c7cbd0;
+  font-size: 22px;
 }
 
 .link {
@@ -213,9 +222,10 @@
 }
 
 .firefly-nerd {
-  padding-left: 270px;
-  width: 128px;
+  padding-left: 170px;
+  width: 100%;
   padding-top: 0px;
+  padding-bottom: 10px;
   transform: rotate(-11deg);
 }
 
@@ -285,4 +295,85 @@
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
+}
+
+/////MEDIA
+
+//Recent devices
+@media (max-width: 400px) {
+  .sign-in-container {
+    margin: 0 auto;
+    height: 145vh;
+    width: 118vw;
+  }
+  .firefly-nerd {
+    // display: none;
+    z-index: 9;
+    width: 30%;
+    position: absolute;
+    top: 480px;
+    left: 120px;
+    transform: rotate(-11deg);
+  }
+}
+
+//iPhone 5/SE
+@media (max-width: 335px) {
+  .sign-in-container {
+    margin: 0 auto;
+    height: 160vh;
+    width: 135vw;
+    padding-bottom: 100px;
+  }
+  .firefly-nerd {
+    // display: none;
+    z-index: 9;
+    width: 30%;
+    position: absolute;
+    top: 300px;
+    left: 120px;
+    transform: rotate(-11deg);
+  }
+}
+//Pixel2/ iPhone 6/7/8/plus
+@media (max-width: 430px) and (min-width: 401px) {
+  .sign-in-container {
+    margin: 0 auto;
+    height: 145vh;
+    width: 103vw;
+  }
+  .firefly-nerd {
+    // display: none;
+    z-index: 9;
+    width: 30%;
+    position: absolute;
+    top: 495px;
+    left: 120px;
+    transform: rotate(-11deg);
+  }
+}
+
+@media (max-width: 430px) {
+  .sign-in-header {
+    margin: 0;
+    padding-top: 10%;
+    margin-bottom: 10%;
+    font-weight: bold;
+    letter-spacing: normal;
+  }
+  .sign-in-or {
+    // display: none;
+    font-size: 24px;
+    letter-spacing: 1px;
+    margin: 15% 0;
+    padding: 0px;
+  }
+  .forms-container {
+    flex-direction: column-reverse;
+    margin: 0 auto;
+  }
+
+  .fbSize {
+    width: 90%;
+  }
 }

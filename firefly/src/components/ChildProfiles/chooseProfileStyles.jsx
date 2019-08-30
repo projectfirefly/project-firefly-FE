@@ -3,31 +3,36 @@ import { makeStyles } from "@material-ui/core/styles";
 const chooseProfileStyles = makeStyles(theme => ({
   header: {
     ...theme.headerMargin,
-    marginBottom: "2%",
+    marginBottom: "2%"
   },
   root: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    padding: "0 4.7%"
+    padding: "0 4.7%",
+    backgroundColor: "#f6f5ff",
+    height: "100vh"
   },
   sizingContainer: {
+    ...theme.paper,
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     width: "85%",
-    margin: "0 10%",
+    margin: "0 10%"
   },
   cardContainer: {
     display: "flex",
     flexWrap: "wrap",
     justifyContent: "space-between",
-    alignItems: "center",
-    overflowY: "auto",
+    // alignItems: "center",
+    overflowY: "scroll",
     width: "100%",
+    height: "450px",
+    margin: "2%",
     maxHeight: "70vh",
     "&::-webkit-scrollbar": {
-      width: "1%",
+      width: "1%"
     },
     // "&::-webkit-scrollbar-track": {
     //   boxShadow: "inset 0 0 5px grey",
@@ -35,7 +40,7 @@ const chooseProfileStyles = makeStyles(theme => ({
     // },
     "&::-webkit-scrollbar-thumb": {
       background: "#b6e699",
-      borderRadius: "10px",
+      borderRadius: "10px"
     },
     //This after stuff is for flex spacing when there's only two in the line
     "&::after": {
@@ -45,8 +50,8 @@ const chooseProfileStyles = makeStyles(theme => ({
       marginTop: "-10%",
       padding: "2% 1%",
       visibility: "hidden",
-      zIndex: "-1000",
-    },
+      zIndex: "-1000"
+    }
     // boxSizing: "border-box",
     // background: "#e3e5e8",
     // backgroundRepeat: "repeat",
@@ -65,38 +70,46 @@ const chooseProfileStyles = makeStyles(theme => ({
     borderRadius: "10px",
     boxShadow: "0px 3px #8F96A3",
     width: "25%",
-    margin: "1% 1%",
+    height: "50%",
+    margin: "2% 2.9%",
     padding: "2% 1%",
+    "&:active": {
+      margin: "2.1% 2.9% 1.9%",
+      boxShadow: "none"
+    }
   },
   backButtonContainer: {
     display: "flex",
     marginTop: "5%",
-    width: "100%",
-    marginLeft: "2%",
+    marginLeft: "2%"
   },
   backButtonStyle: {
     ...theme.secondaryButton,
-    padding: "0.8rem",
-    width: "20%",
+    padding: "0.4rem 8rem",
+    width: "100%",
+    marginBottom: "15%",
+    lineHeight: "0",
+    "&:active": {
+      marginBottom: "15%"
+    }
   },
   text: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    marginBottom: "5%",
+    marginBottom: "2%",
     paddingTop: "2%",
-    maxWidth: "100%",
+    maxWidth: "100%"
   },
   name: {
     whiteSpace: "nowrap",
     overflow: "hidden",
     textOverflow: "ellipsis",
-    maxWidth: "100%",
+    maxWidth: "100%"
   },
   flysize: {
-    width: "80%",
-    paddingBottom: "5%",
+    width: "80%"
   }
 }));
 
-export default chooseProfileStyles
+export default chooseProfileStyles;

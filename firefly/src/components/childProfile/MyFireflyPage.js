@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-//context 
+//context
 import { childContext } from "../../context/ChildProfiles/ChildProfileStore";
 
 //material ui, styling
@@ -11,7 +11,7 @@ import Book from "../../images/BookTemp.png";
 import Stars from "../../images/StarsTemp.png";
 import ProfileFly from "../../assets/icons/ProfileFly";
 
-import myFireflyStyles from './myFireflyStyles';
+import myFireflyStyles from "./myFireflyStyles";
 import { Typography } from "@material-ui/core";
 
 export default function MyFireflyPage() {
@@ -24,13 +24,15 @@ export default function MyFireflyPage() {
   useEffect(() => {
     // console.log(childProfileState);
     if (childProfileState.loaded && childProfileState.hasProfiles) {
-      const [destructuredProfile] = childProfileState.user.profiles.filter(profile => {
-        if (childProfileState.selected.id === profile.id) {
-          return true;
-        } else {
-          return false;
+      const [destructuredProfile] = childProfileState.user.profiles.filter(
+        profile => {
+          if (childProfileState.selected.id === profile.id) {
+            return true;
+          } else {
+            return false;
+          }
         }
-      })
+      );
       // console.log(destructuredProfile);
       setCurrentProfile(destructuredProfile);
     }
@@ -50,7 +52,13 @@ export default function MyFireflyPage() {
                   <Link className={classes.editContainer} to="/customize">
                     <div>
                       <div className={classes.edit}>
-                        <FaPen style={{ marginRight: "5px" }} />
+                        <FaPen
+                          style={{
+                            marginRight: "5px",
+                            height: "14px",
+                            width: "14px"
+                          }}
+                        />
                       </div>
                     </div>
                   </Link>
@@ -77,14 +85,11 @@ export default function MyFireflyPage() {
               </div>
             </div>
 
-
             <div className={classes.rightContainer}>
-
-
               <Link
                 className={classes.rightCards}
                 style={{ textDecoration: "none" }}
-                to="/tutorialtest"
+                to="/tutorial"
               >
                 <div className={classes.rightCardContent}>
                   <img
@@ -99,7 +104,7 @@ export default function MyFireflyPage() {
               <Link
                 className={classes.rightCards + " bottom"}
                 style={{ textDecoration: "none" }}
-                to="/startgame"
+                to="/chooseworld"
               >
                 <div>
                   <div className={classes.rightCardContent}>

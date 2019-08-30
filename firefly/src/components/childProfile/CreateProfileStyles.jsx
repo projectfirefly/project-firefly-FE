@@ -4,14 +4,19 @@ const createProfileClasses = makeStyles(theme => ({
   rootContainer: {
     display: "flex",
     flexDirection: "column",
-    justifyContent: "center",
+    // justifyContent: "center",
     alignItems: "center",
     width: "100%",
-    fontFamily: "'Nunito', sans-serif"
+    fontFamily: "'Nunito', sans-serif",
+    padding: "0",
+    backgroundColor: "#f6f5ff",
+    height: "100vh"
   },
   sizingContainer: {
+    ...theme.paper,
     width: "85%",
-    height: "100%",
+    // height: "100%",
+    
   },
   header: {
     ...theme.headerMargin,
@@ -20,15 +25,13 @@ const createProfileClasses = makeStyles(theme => ({
     height: "445px",
     display: "flex",
     width: "100%",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   card: {
-    ...theme.paper,
     "&.left": {
       display: "flex",
       justifyContent: "center",
       alignContent: "center",
-      marginRight: "5%",
       padding: "0 5%",
     },
     "&.right": {
@@ -72,15 +75,15 @@ const createProfileClasses = makeStyles(theme => ({
   },
   buttonContainer: {
     display: "flex",
-    width: "100%",
-    marginTop: "5%",
-    justifyContent: "space-between",
+    margin: "5% 0",
+    justifyContent: "center",
     alignItems: "center"
   },
 
   a: {
     width: "200px",
-    "text-decoration": "none"
+    "text-decoration": "none",
+    marginRight: "60px",
   },
 
   button: {
@@ -97,16 +100,19 @@ const createProfileClasses = makeStyles(theme => ({
     letterSpacing: "1px",
 
     "&.back": {
+      ...theme.secondButton,
       width: "100%",
       background: "#fff",
       color: "#4aa810",
+      
       "&:active": {
         boxShadow: "none",
         marginTop: "3px",
-        marginBottom: "-3px"
+        marginBottom: "-3px",
       }
     },
     "&.save": {
+      ...theme.primaryButton,
       width: "100%",
       background: "#4aa810",
       color: "#e2f5d6",

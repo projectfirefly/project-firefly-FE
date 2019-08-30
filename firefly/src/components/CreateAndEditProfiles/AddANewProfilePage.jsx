@@ -3,22 +3,20 @@ import { Link } from "react-router-dom";
 
 import { addProfile } from "../../utils/firebaseInteractions";
 
-import { childContext } from "../../context/ChildProfiles/ChildProfileStore";
-import { ADD_PROFILE } from "../../context/ChildProfiles/ChildProfileStore";
+import { childContext, ADD_PROFILE } from "../../context/ChildProfiles/ChildProfileStore";
+
 
 //Styling
 import Icon from "../../assets/icons";
 import createProfileStyles from "./CreateAndEditProfileStyles";
 
 //Button Components
-import { SecondaryButton } from "../../utils/buttons/SecondaryButton";
-import { PrimaryButton } from "../../utils/buttons/PrimaryButton";
 import { Typography } from "@material-ui/core";
 
 const AddANewProfilePage = props => {
   const classes = createProfileStyles();
 
-  const [, dispatch] = useContext(childContext);
+  const [context, dispatch] = useContext(childContext);
 
   const [updatedProfile, setUpdatedProfile] = useState({
     first_name: "",
@@ -41,16 +39,16 @@ const AddANewProfilePage = props => {
 
   const saveProfile = () => {
     addProfile(ADD_PROFILE, updatedProfile, dispatch).then(() => {
-      props.history.push("/choose-profile");
+      props.history.push("/account");
     });
   };
 
   return (
     <div className={classes.container}>
-      <div className={classes.sizingContainer}>
         <div className={classes.header}>
           <Typography variant="h1">ADD A NEW PROFILE</Typography>
         </div>
+      <div className={classes.sizingContainer}>
         <div className={classes.card}>
           <div className={classes.firefly}>
             <Icon name="Firefly" />
@@ -84,7 +82,7 @@ const AddANewProfilePage = props => {
         </div>
         <div className={classes.buttonContainer}>
           <Link to="/account" className={classes.cancel}>
-            <Typography variant="button">Cancel</Typography>
+            <Typography variant="button">back</Typography>
           </Link>
           <Link onClick={saveProfile} className={classes.save}>
             <Typography variant="button">Save</Typography>

@@ -6,11 +6,11 @@ const chooseWorldStyles = makeStyles(theme => ({
     // ...theme.headerMargin,
     backgroundImage: `url(${background})`,
     backgroundPosition: "0px 0px",
-    minWidth: "100vw",
-    height: "102vh",
+    width: "100vw",
+    height: "100vh",
     backgroundSize: "cover",
-    backgroundPosition: " 0px 0px",
-    backgroundRepeat: "no-repeat"
+    backgroundRepeat: "no-repeat",
+    overflow: "hidden"
   },
   body: {},
   rootContainer: {
@@ -23,9 +23,14 @@ const chooseWorldStyles = makeStyles(theme => ({
   },
   fireflyContainer: {
     // border: "dashed yellow 2px",
-    marginTop: "10%",
-    width: "100%",
-    height: "600px"
+    marginTop: "2%",
+    width: 1000,
+    height: 600,
+    position: "relative"
+  },
+  fireflyItem: {
+    width: "100px",
+    height: "100px"
   },
   tempFirefly: {
     paddingRight: "700px"

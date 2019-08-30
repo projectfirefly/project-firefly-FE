@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import FFbox from "./FFbox";
-import GameBoard from "./BlockLine";
+// import GameBoard from "./BlockLine";
+import BlockLine from "./BlockLine";
 import Toolbox from "./Toolbox";
 import DropDelete from "./DropDelete";
 import uuid from "uuid/v4";
@@ -16,24 +17,42 @@ import ClockIcon from "../../images/gameIcons/ClockIcon.svg";
 import PlayCircleIcon from "../../images/gameIcons/PlayCircleIcon.svg";
 import PaletteIcon from "../../images/gameIcons/PaletteIcon.svg";
 import ToggleOffIcon from "../../images/gameIcons/ToggleOffIcon.svg";
-import NumberIcon1 from "../../images/gameIcons/NumberIcon1.svg";
+import LockIcon from "../../images/gameIcons/LockIcon.svg";
+import CheckCircleIcon from "./../../images/gameIcons/CheckCircleIcon.svg";
+import QuestionMarkBookDark from "./../../images/gameIcons/QuestionMarkBookDark.svg";
+
 import GridIcon from "../../images/gridBackground.png";
+import { gameContext } from "../../context/Game/GameStore";
+import { childContext } from "../../context/ChildProfiles/ChildProfileStore";
 
 //importing the sound
 import clickMP3 from "../../assets/sounds/click.mp3";
 import clickTogetherMP3 from "../../assets/sounds/clickTogether.mp3";
-import paperMP3 from "../../assets/sounds/crumblingPaper.mp3";
 import poofMP3 from "../../assets/sounds/poof.mp3";
+import { nextTick } from "q";
+import { Typography, makeStyles } from "@material-ui/core";
+import { Link } from "react-router-dom";
+import { updateBlocks } from "../../utils/firebaseInteractions";
 //making the sounds variable
 const click = new uifx({ asset: clickMP3 });
 const clickTogether = new uifx({ asset: clickTogetherMP3 });
-const paper = new uifx({ asset: paperMP3 });
 const poof = new uifx({ asset: poofMP3 });
 
 //styling
+const Background = styled.div`
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-image: url(${GridIcon});
+  background-repeat: repeat;
+  z-index: -100;
+  top: 0;
+  left: 0;
+`;
+
 const Board = styled.div`
   /* min-height: 100vh; */
-  min-width: 100vw;
+  width: 100%;
   /* background-image: url(${GridIcon}); */
   /* margin: -10% 0; */
   /* padding-bottom: 30%; */
@@ -42,28 +61,34 @@ const Board = styled.div`
 const ToolboxGreenIcon = styled.img`
   position: absolute;
   width: 40%;
-  top: 28%;
+  top: 25%;
   left: 29%;
 `;
 
 const ToolboxBlueLedIcon = styled.img`
   position: absolute;
-  width: 40%;
-  top: 27%;
-  left: 34%;
+  width: 45%;
+  top: 18%;
+  left: 26%;
 `;
 
 const ToolboxBlueRepeatIcon = styled.img`
   position: absolute;
   width: 50%;
-  top: 26%;
+  top: 24%;
   left: 23%;
 `;
 
 const ToolboxToggleIcon = styled.img`
   position: absolute;
-  top: 35%;
-  left: 27%;
+  top: 30%;
+  left: 29%;
+`;
+
+const ToolboxLockIcon = styled.img`
+  position: absolute;
+  top: 26%;
+  left: 33%;
 `;
 
 const ToolboxBox = styled.img`
@@ -131,7 +156,8 @@ const ITEMS = [
     ),
     content: <ToolboxBox src={GreenBlockRightSideEndState} alt="greenblock" />,
     used: false,
-    rsi: 2
+    rsi: 2,
+    repeat: 1
   },
 
   {
@@ -146,7 +172,8 @@ const ITEMS = [
     functionality: <ToolboxGreenIcon src={ClockIcon} alt="clockIcon" />,
     content: <ToolboxBox src={GreenBlockRightSideEndState} alt="greenblock" />,
     used: false,
-    rsi: 4
+    rsi: 4,
+    timer: 1
   },
   // {
   //   id: uuid(),
@@ -160,15 +187,184 @@ const ITEMS = [
     functionality: <ToolboxToggleIcon src={ToggleOffIcon} alt="toggleIcon" />,
     content: <ToolboxBox src={GreenBlockRightSideEndState} alt="greenblock" />,
     used: false,
-    rsi: 6
+    rsi: 6,
+    onOff: false
+  },
+  {
+    id: uuid(),
+    functionality: <ToolboxLockIcon src={LockIcon} alt="lockIcon" />,
+    content: <ToolboxBox src={GreenBlockRightSideEndState} alt="greenblock" />,
+    used: true,
+    rsi: 7
+  },
+  {
+    id: uuid(),
+    functionality: <ToolboxLockIcon src={LockIcon} alt="lockIcon" />,
+    content: <ToolboxBox src={GreenBlockRightSideEndState} alt="greenblock" />,
+    used: true,
+    rsi: 8
   }
 ];
 
-const Game = () => {
-  const [list, setList] = useState({ [uuid()]: [] });
+const Game = props => {
+  const classes = makeStyles(theme => ({
+    save: {
+      ...theme.smallIconButton,
+      width: "45px",
+      backgroundColor: "#4AA810"
+    },
+    buttonContainer: {
+      position: "absolute",
+      right: "5%",
+      top: "4.2%",
+      display: "flex",
+      width: "12%",
+      justifyContent: "space-between",
+      alignItems: "center"
+    },
+    tutorial: {
+      width: "37px"
+    }
+  }))();
+  //Set list to firefly out of context/firestore
+  //display loader while loading
+  //on cancel setList to list out of context/firestore
+  //on save, send list to context/firestore
+
+  //worldContext.selected (selected world), props.firefly (firefly), profileContext.selected (child ID)
+
+  const [childProfileState, childDispatch] = useContext(childContext);
+  const [worldContext, worldDispatch] = useContext(gameContext);
+
+  const listId = uuid();
+  const [list, setList] = useState({ [listId]: [] });
+
   const [tools, setTools] = useState(ITEMS);
   const [hasStart, setHasStart] = useState(false);
   const [draggingBlock, isDraggingBlock] = useState(false);
+  const [animationList, setAnimationList] = useState([]);
+  const [playing, setPlaying] = useState(false);
+  const [trashing, setTrashing] = useState(false);
+
+  const createBlocksFromBackend = blockList => {
+    const newList = blockList.map(block => {
+      switch (block.type) {
+        case "repeat":
+          return {
+            ...ITEMS[2],
+            repeat: block.value,
+            id: uuid()
+          };
+        case "color":
+          return {
+            ...ITEMS[3],
+            color: block.value,
+            id: uuid()
+          };
+        case "timer":
+          return {
+            ...ITEMS[4],
+            timer: block.value,
+            id: uuid()
+          };
+        case "onOff":
+          return {
+            ...ITEMS[5],
+            onOff: block.value,
+            id: uuid()
+          };
+      }
+    });
+
+    setTools(
+      [...tools].map((tool, index) => {
+        if (index === 0 || index === 1) {
+          return {
+            ...tool,
+            used: true
+          };
+        } else {
+          return { ...tool };
+        }
+      })
+    );
+
+    setHasStart(true);
+
+    setList({
+      [listId]: [
+        {
+          ...ITEMS[0],
+          id: uuid()
+        },
+        {
+          ...ITEMS[1],
+          id: uuid()
+        },
+        ...newList
+      ]
+    });
+  };
+
+  //Load fireflies from backend
+  useEffect(() => {
+    if (!worldContext.loaded) {
+      props.history.push("/choose-profile");
+    }
+    if (
+      props.location.firefly &&
+      props.location.firefly.codeBlocks.length !== 0
+    ) {
+      if (list[listId].length === 0) {
+        console.log(list[listId].length);
+        createBlocksFromBackend([...props.location.firefly.codeBlocks]);
+      }
+    }
+  }, []);
+
+  const updateFirefly = () => {
+    const updatedFirefly = {
+      ...props.location.firefly,
+      codeBlocks: [...animationList]
+    };
+
+    updateBlocks(
+      childProfileState.selected.id,
+      props.location.firefly.firefly_id,
+      props.location.selectedWorldId,
+      updatedFirefly,
+      worldDispatch
+    ).then(() => {
+      props.history.push("/fireflyworld");
+    });
+  };
+
+  useEffect(() => {
+    if (list.length !== 0) {
+      Object.values(list).map(blockArray => {
+        const newBlockArray = blockArray
+          .map(block => {
+            if (block.color) {
+              return { type: "color", value: block.color };
+            } else if (block.onOff !== undefined) {
+              return { type: "onOff", value: block.onOff };
+            } else if (block.timer) {
+              return { type: "timer", value: block.timer };
+            } else if (block.repeat) {
+              return { type: "repeat", value: block.repeat };
+            }
+          })
+          .filter(block => {
+            if (block === undefined) {
+              return false;
+            } else {
+              return true;
+            }
+          });
+        setAnimationList([...newBlockArray]);
+      });
+    }
+  }, [list]);
 
   const onDragStart = () => {
     isDraggingBlock(true);
@@ -192,7 +388,6 @@ const Game = () => {
     if (destination.droppableId === "TRASH") {
       //check to see if we are trying to throw away a tool from the toolbox (we don't want to do that)
       if (source.droppableId === "ITEMS") {
-        console.log("dropping from toolbox");
         poof.play();
         return;
       }
@@ -223,6 +418,7 @@ const Game = () => {
           if (item.id === result.draggableId && item.rsi === 0) {
             setHasStart(false);
           }
+
           setTools(
             [...tools].map(tool => {
               return tool.rsi === item.rsi
@@ -233,9 +429,14 @@ const Game = () => {
         }
         return item.id !== result.draggableId;
       });
-
       //Filters all tools to used:false so they become usable again
-      setList({ realList });
+      setList({
+        [source.droppableId]: realList
+      });
+      setTrashing(true);
+      setTimeout(() => {
+        setTrashing(false);
+      }, 630);
       poof.play();
       return;
     }
@@ -252,10 +453,14 @@ const Game = () => {
             )
           });
         }
-        console.log("yo");
         break;
 
       case "ITEMS":
+        //On Drop of the code list, this renders
+        // console.log("source:", source);
+        // console.log("tools:", tools);
+        // console.log("list:", list);
+
         setList({
           ...list,
           [destination.droppableId]: copy(
@@ -282,21 +487,65 @@ const Game = () => {
     }
   };
 
-  console.log("list:", list);
+  const playAnimation = () => {
+    setPlaying(!playing);
+  };
+
+  const tutorialRedirect = () => {
+    const updatedFirefly = {
+      ...props.location.firefly,
+      codeBlocks: [...animationList]
+    };
+
+    updateBlocks(
+      childProfileState.selected.id,
+      props.location.firefly.firefly_id,
+      props.location.selectedWorldId,
+      updatedFirefly,
+      worldDispatch
+    ).then(() => {
+      props.history.push({
+        pathname: "/tutorial",
+        firefly: updatedFirefly,
+        selectedWorldId: props.location.selectedWorldId
+      });
+    });
+  };
 
   return (
     <Board>
+      <Background />
       <DragDropContext onDragEnd={onDragEnd} onDragStart={onDragStart}>
         <Toolbox tools={tools} />
-        <FFbox tools={tools} />
-        <GameBoard
+        <FFbox tools={tools} animationList={animationList} playing={playing} />
+        <BlockLine
           list={list}
           hasStart={hasStart}
           draggingBlock={draggingBlock}
           setList={setList}
+          animationList={animationList}
+          setAnimationList={setAnimationList}
+          playAnimation={playAnimation}
+          playing={playing}
         />
-        <DropDelete />
+        <DropDelete trashing={trashing} />
       </DragDropContext>
+      <div className={classes.buttonContainer}>
+        <div onClick={tutorialRedirect}>
+          <img
+            src={QuestionMarkBookDark}
+            alt="tutorial"
+            className={classes.tutorial}
+          />
+        </div>
+        <div onClick={updateFirefly}>
+          <img
+            src={CheckCircleIcon}
+            alt="save check"
+            className={classes.save}
+          />
+        </div>
+      </div>
     </Board>
   );
 };

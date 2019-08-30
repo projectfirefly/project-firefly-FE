@@ -43,7 +43,7 @@ const BackendTester = () => {
     addFirefly(context.selected.id, requiredId.world_id, worldDispatch)
   }
   const updateBlock = () => {
-    updateBlocks(context.selected.id, requiredIds, newBlock, worldDispatch)
+    updateBlocks(context.selected.id, requiredId.firefly_id, requiredId.world_id, newBlock, worldDispatch)
   }
 
   const removeFireflys = () => {
@@ -70,7 +70,7 @@ const BackendTester = () => {
         return { ...document, id: doc.id }
       });
       setProfiles(docList);
-      console.log(profiles);
+      // console.log(profiles);
       return snapshot.docs.map(doc => doc.data());
     })
   }
@@ -80,7 +80,7 @@ const BackendTester = () => {
   }
 
   const logContext = () => {
-    console.log(context);
+    // console.log(context);
   }
 
   const update = () => {
@@ -94,7 +94,6 @@ const BackendTester = () => {
   }
 
   return (
-    console.log("test"),
     <div>
       <button onClick={get}>GET HERE</button>
       <button onClick={create}>Create Child</button>
