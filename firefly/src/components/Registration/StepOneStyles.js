@@ -108,7 +108,10 @@ const stepOneStyles = makeStyles(theme => ({
     ...theme.secondaryButton,
     padding: ".7rem 5rem",
     width: "30%",
-    marginRight: "40px"
+    marginRight: "40px",
+    "&:active": {
+      margin: "3px 40px -3px 0px"
+    }
   },
   link: { color: "#4BA810", textDecoration: "none" },
   link3: { color: "white", textDecoration: "none" },
@@ -116,7 +119,10 @@ const stepOneStyles = makeStyles(theme => ({
     ...theme.secondaryButton,
     padding: ".7rem 5rem",
     width: "40%",
-    marginRight: "40px"
+    marginRight: "40px",
+    "&:active": {
+      margin: "3px 40px -3px 0px"
+    }
   },
   addChild: {
     width: "100%",
@@ -156,7 +162,8 @@ const stepOneStyles = makeStyles(theme => ({
     margin: "0 auto",
     display: "flex",
     width: "85%",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
+    marginBottom: "40px"
   },
   box: {
     // ...theme.paper,
