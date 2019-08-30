@@ -4,10 +4,12 @@ const accountStyles = makeStyles(theme => ({
   container: {
     ...theme.paper,
     display: "flex",
-    padding: " 2% 3%"
-    // flexDirection: "column",
-    // alignItems: "center",
-    // justifyContent: "center",
+    padding: " 2% 3%",
+     // For mobiles and smaller
+     ["@media (max-width:500px)"]: {
+      flexDirection:'column',
+      marginBottom:'15%',
+  },
   },
   paper: {
     padding: "20px 20px",
@@ -34,7 +36,11 @@ const accountStyles = makeStyles(theme => ({
     fontFamily: "'Nunito', sans-serif",
     backgroundColor: "#f6f5ff",
     height: "100vh",
-    width: "100vw"
+    width: "100vw",
+     // For mobiles and smaller
+     ["@media (max-width:500px)"]: {
+      height: '100%',
+  },
   },
 
   left: {
@@ -90,7 +96,13 @@ const accountStyles = makeStyles(theme => ({
   rightCards: {
     width: "60%",
     borderLeft: "1px solid #b6e699",
-    paddingLeft: "2%"
+    paddingLeft: "2%",
+     // For mobiles and smaller
+     ["@media (max-width:500px)"]: {
+     display:'flex',
+     flexDirection:'column-reverse',
+     width:'100%',
+  },
   },
   fireflyContainer: {
     display: "flex",
