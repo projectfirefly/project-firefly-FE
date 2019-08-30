@@ -4,7 +4,7 @@ const createProfileClasses = makeStyles(theme => ({
   rootContainer: {
     display: "flex",
     flexDirection: "column",
-    justifyContent: "center",
+    // justifyContent: "center",
     alignItems: "center",
     width: "100%",
     fontFamily: "'Nunito', sans-serif",

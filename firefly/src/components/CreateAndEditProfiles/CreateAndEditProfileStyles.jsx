@@ -5,7 +5,7 @@ const createProfileStyles = makeStyles(theme => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    justifyContent: "center",
+    // justifyContent: "center",
     width: "100%",
     fontFamily: "'Nunito', sans-serif",
     backgroundColor: "#f6f5ff",

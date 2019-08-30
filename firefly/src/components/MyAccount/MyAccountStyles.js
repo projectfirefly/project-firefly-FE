@@ -157,7 +157,8 @@ const accountStyles = makeStyles(theme => ({
     width: "80%",
     padding: ".7rem 1rem",
     "&.back": {
-      ...theme.secondaryButton
+      ...theme.secondaryButton,
+      boxShadow: "none",
     }
   },
   researchSection: {
