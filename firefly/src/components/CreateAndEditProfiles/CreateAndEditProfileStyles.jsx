@@ -16,7 +16,7 @@ const createProfileStyles = makeStyles(theme => ({
     flexDirection: "column",
     alignItems: "center",
     width: "60%",
-    ...theme.paper,
+    ...theme.paper
   },
   header: {
     ...theme.headerMargin
@@ -71,13 +71,16 @@ const createProfileStyles = makeStyles(theme => ({
     height: "5%",
     width: "100%",
     justifyContent: "center",
-    alignItems: "center",
+    alignItems: "center"
   },
   cancel: {
     ...theme.secondaryButton,
     width: "25%",
     padding: ".5rem 0",
     marginRight: "40px",
+    "&:active": {
+      margin: "3px 40px -3px 0px"
+    }
   },
   save: {
     ...theme.primaryButton,
@@ -92,7 +95,7 @@ const createProfileStyles = makeStyles(theme => ({
     margin: "2% 0 -2% 2%",
     "&:active": {
       boxShadow: "none",
-      margin: "2.2% 0 -2.2%"
+      margin: "2.2% 0 -2.2% 2%"
     },
     "&:hover": {
       cursor: "pointer"
@@ -162,7 +165,7 @@ const createProfileStyles = makeStyles(theme => ({
     width: "100%",
     justifyContent: "flex-start",
     marginTop: "2%",
-    marginLeft: "3%",
+    marginLeft: "3%"
   }
 }));
 

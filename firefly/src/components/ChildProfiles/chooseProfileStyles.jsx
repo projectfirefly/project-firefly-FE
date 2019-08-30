@@ -70,7 +70,7 @@ const chooseProfileStyles = makeStyles(theme => ({
     borderRadius: "10px",
     boxShadow: "0px 3px #8F96A3",
     width: "25%",
-    height: "200px",
+    height: "50%",
     margin: "2% 2.9%",
     padding: "2% 1%",
     "&:active": {
@@ -97,7 +97,7 @@ const chooseProfileStyles = makeStyles(theme => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    marginBottom: "5%",
+    marginBottom: "2%",
     paddingTop: "2%",
     maxWidth: "100%"
   },
@@ -108,8 +108,7 @@ const chooseProfileStyles = makeStyles(theme => ({
     maxWidth: "100%"
   },
   flysize: {
-    width: "80%",
-    paddingBottom: "5%"
+    width: "80%"
   }
 }));
 

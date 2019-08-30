@@ -7,18 +7,19 @@ import CodeBlock from "./CodeBlock";
 
 const List = styled.div`
   height: 100%;
-  min-height: 50px;
+  min-height: 135px;
   background: none;
   border-radius: 16px;
   width: 100%;
   overflow-x: auto;
   overflow-y: hidden;
-  display: -webkit-box;
-  padding-bottom: 18%;
+  display: flex;
+  padding-bottom: 20px;
 `;
 
 const ListContainer = styled.div`
-  height: 100%;
+  height: 30%;
+  padding-top: 6%;
   min-height: 90px;
   background: none;
   border-radius: 16px;

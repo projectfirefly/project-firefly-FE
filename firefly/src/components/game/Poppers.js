@@ -34,7 +34,8 @@ const useStyles = makeStyles(theme => ({
     textAlign: "center",
     boxShadow: "0 2px 4px rgba(0, 0, 0, 0.5)",
     borderRadius: "10px",
-    marginTop: "5px"
+    marginTop: "5px",
+    zIndex: 10
   },
 
   popperCountContainer: {
@@ -44,7 +45,8 @@ const useStyles = makeStyles(theme => ({
     textAlign: "center",
     boxShadow: "0 2px 4px rgba(0, 0, 0, 0.5)",
     borderRadius: "10px",
-    marginTop: "5px"
+    marginTop: "5px",
+    zIndex: 10
   },
 
   popperSwitchContainer: {
@@ -53,7 +55,8 @@ const useStyles = makeStyles(theme => ({
     background: "white",
     boxShadow: "0 2px 4px rgba(0, 0, 0, 0.5)",
     borderRadius: "10px",
-    marginTop: "5px"
+    marginTop: "5px",
+    zIndex: 10
   },
 
   popperTimerContainer: {
@@ -62,7 +65,8 @@ const useStyles = makeStyles(theme => ({
     background: "white",
     boxShadow: "0 2px 4px rgba(0, 0, 0, 0.5)",
     borderRadius: "10px",
-    marginTop: "5px"
+    marginTop: "5px",
+    zIndex: 10
   },
 
   popperBlock: {

@@ -9,7 +9,7 @@ const startPageStyles = makeStyles(theme => ({
     marginTop: "3%"
   },
   logoBox: {
-    width: "100%",
+    width: "60%",
     display: "flex",
     flexDirection: "column",
     position: "relative",
@@ -45,16 +45,21 @@ const startPageStyles = makeStyles(theme => ({
       marginTop: "40px"
     },
     marginTop: "6%",
-    padding: ".6rem 12%",
+    width: "40%",
+    padding: ".6rem 0",
     "&:active": {
-      margin: "6.1% 0% 0.1%",
+      margin: "6.1% 0% -0.1%",
       boxShadow: "none"
     }
   },
   secondaryButton: {
     ...theme.secondaryButton,
-    padding: ".6rem 4.5%",
-    marginTop: "3rem"
+    padding: ".6rem 0",
+    width: "40%",
+    marginTop: "3rem",
+    "&:active": {
+      marginTop: "3rem"
+    }
   },
   topBar: {
     display: "flex",

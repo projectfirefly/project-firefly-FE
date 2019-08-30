@@ -23,17 +23,18 @@ const MultiStepTutorial = props => {
       flexDirection: "column",
       alignItems: "center",
       justifyContent: "center",
-      backgroundColor: "#D0CCFF",
+      backgroundColor: "#D0CCFF"
     },
     image: {
       height: "100vh",
-      marginLeft: "-55px",
+      marginLeft: "-55px"
     },
     wrapper: {
       height: "100%",
+      position: "relative",
       display: "flex",
       alignItems: "center",
-      justifyContent: "center",
+      justifyContent: "center"
     },
     arrowcontainer: {
       position: "fixed",
@@ -41,24 +42,21 @@ const MultiStepTutorial = props => {
       display: "flex",
       justifyContent: "space-between",
       width: "100px",
-      marginLeft: "3px",
+      marginLeft: "3px"
     },
     arrowNumber: {
       fontSize: "4.3rem",
-      fontWeight: 600,
+      fontWeight: 600
     },
     disabled: {
-      opacity: "0.5",
+      opacity: "0.5"
     },
     topBar: {
       position: "absolute",
-      right: "9.8%",
+      right: "10.7%",
       top: "4.7%",
-      display: "flex",
-      justifyContent: "flex-end",
       margin: "0px 1%",
-      marginTop: "2%",
-      width: "100%",
+      marginTop: "2%"
     },
     topBarButton: {
       ...theme.smallIconButton,
@@ -71,26 +69,26 @@ const MultiStepTutorial = props => {
       width: "40px",
       height: "40px",
       textDecoration: "none",
-      border: "none",
-    },
+      border: "none"
+    }
   }))();
 
   const [step, setStep] = useState(0);
   const [back, setBack] = useState(0);
 
   const [location, setLocation] = useState({
-    pathname: "/myfirefly",
-  })
+    pathname: "/myfirefly"
+  });
 
   useEffect(() => {
     if (props.location.firefly) {
       setLocation({
-          pathname: "/game",
-          firefly: props.location.firefly,
-          selectedWorldId: props.location.selectedWorldId,
-      })
+        pathname: "/game",
+        firefly: props.location.firefly,
+        selectedWorldId: props.location.selectedWorldId
+      });
     }
-  }, [])
+  }, []);
 
   useEffect(() => {
     if (back === 1) {
@@ -102,15 +100,12 @@ const MultiStepTutorial = props => {
     default:
       return (
         <div className={classes.root}>
-          <div className={classes.topBar}>
-            <Link
-              to={location}
-              className={classes.topBarButton}
-            >
-              <i className="fas fa-times" />
-            </Link>
-          </div>
           <div className={classes.wrapper}>
+            <div className={classes.topBar}>
+              <Link to={location} className={classes.topBarButton}>
+                <i className="fas fa-times" />
+              </Link>
+            </div>
             <div className={classes.arrowcontainer}>
               <img src={leftarrow} className={classes.disabled} />
               <span className={classes.arrowNumber}>1</span>
@@ -123,15 +118,12 @@ const MultiStepTutorial = props => {
     case 1:
       return (
         <div className={classes.root}>
-          <div className={classes.topBar}>
-            <Link
-              to={location}
-              className={classes.topBarButton}
-            >
-              <i className="fas fa-times" />
-            </Link>
-          </div>
           <div className={classes.wrapper}>
+            <div className={classes.topBar}>
+              <Link to={location} className={classes.topBarButton}>
+                <i className="fas fa-times" />
+              </Link>
+            </div>
             <div className={classes.arrowcontainer}>
               <img src={leftarrow} onClick={() => setStep(step - 1)} />
               <span className={classes.arrowNumber}>2</span>
@@ -144,15 +136,12 @@ const MultiStepTutorial = props => {
     case 2:
       return (
         <div className={classes.root}>
-          <div className={classes.topBar}>
-            <Link
-              to={location}
-              className={classes.topBarButton}
-            >
-              <i className="fas fa-times" />
-            </Link>
-          </div>
           <div className={classes.wrapper}>
+            <div className={classes.topBar}>
+              <Link to={location} className={classes.topBarButton}>
+                <i className="fas fa-times" />
+              </Link>
+            </div>
             <div className={classes.arrowcontainer}>
               <img src={leftarrow} onClick={() => setStep(step - 1)} />
               <span className={classes.arrowNumber}>3</span>
@@ -165,15 +154,12 @@ const MultiStepTutorial = props => {
     case 3:
       return (
         <div className={classes.root}>
-          <div className={classes.topBar}>
-            <Link
-              to={location}
-              className={classes.topBarButton}
-            >
-              <i className="fas fa-times" />
-            </Link>
-          </div>
           <div className={classes.wrapper}>
+            <div className={classes.topBar}>
+              <Link to={location} className={classes.topBarButton}>
+                <i className="fas fa-times" />
+              </Link>
+            </div>
             <div className={classes.arrowcontainer}>
               <img src={leftarrow} onClick={() => setStep(step - 1)} />
               <span className={classes.arrowNumber}>4</span>
@@ -186,15 +172,12 @@ const MultiStepTutorial = props => {
     case 4:
       return (
         <div className={classes.root}>
-          <div className={classes.topBar}>
-            <Link
-              to={location}
-              className={classes.topBarButton}
-            >
-              <i className="fas fa-times" />
-            </Link>
-          </div>
           <div className={classes.wrapper}>
+            <div className={classes.topBar}>
+              <Link to={location} className={classes.topBarButton}>
+                <i className="fas fa-times" />
+              </Link>
+            </div>
             <div className={classes.arrowcontainer}>
               <img src={leftarrow} onClick={() => setStep(step - 1)} />
               <span className={classes.arrowNumber}>5</span>
@@ -207,15 +190,12 @@ const MultiStepTutorial = props => {
     case 5:
       return (
         <div className={classes.root}>
-          <div className={classes.topBar}>
-            <Link
-              to={location}
-              className={classes.topBarButton}
-            >
-              <i className="fas fa-times" />
-            </Link>
-          </div>
           <div className={classes.wrapper}>
+            <div className={classes.topBar}>
+              <Link to={location} className={classes.topBarButton}>
+                <i className="fas fa-times" />
+              </Link>
+            </div>
             <div className={classes.arrowcontainer}>
               <img src={leftarrow} onClick={() => setStep(step - 1)} />
               <span className={classes.arrowNumber}>6</span>
@@ -228,15 +208,12 @@ const MultiStepTutorial = props => {
     case 6:
       return (
         <div className={classes.root}>
-          <div className={classes.topBar}>
-            <Link
-              to={location}
-              className={classes.topBarButton}
-            >
-              <i className="fas fa-times" />
-            </Link>
-          </div>
           <div className={classes.wrapper}>
+            <div className={classes.topBar}>
+              <Link to={location} className={classes.topBarButton}>
+                <i className="fas fa-times" />
+              </Link>
+            </div>
             <div className={classes.arrowcontainer}>
               <img src={leftarrow} onClick={() => setStep(step - 1)} />
               <span className={classes.arrowNumber}>7</span>
