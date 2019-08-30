@@ -6,7 +6,7 @@ const myFireflyStyles = makeStyles(theme => ({
     flexDirection: "column",
     width: "100%",
     alignItems: "center",
-    justifyContent: "center",
+    // justifyContent: "center",
     padding: "0 4.7%",
     backgroundColor: "#f6f5ff",
     height: "100vh"

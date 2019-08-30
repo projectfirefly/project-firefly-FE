@@ -164,7 +164,8 @@ const accountStyles = makeStyles(theme => ({
       boxShadow: "none"
     },
     "&.back": {
-      ...theme.secondaryButton
+      ...theme.secondaryButton,
+      boxShadow: "none",
     }
   },
   researchSection: {
