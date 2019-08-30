@@ -105,7 +105,7 @@ function reducer(state, action) {
           }
         }
       } else {
-        console.log(action.payload)
+        // console.log(action.payload)
         return {
           ...state,
           user: {

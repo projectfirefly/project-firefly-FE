@@ -7,6 +7,7 @@ import ApolloClient from "apollo-boost";
 import WearingNerdGlasses from "./../../images/WearingNerdGlasses.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
+import ChillingFly from "../../assets/animations/ChillingFly";
 
 import "./../../styles/signIn.scss";
 
@@ -15,13 +16,13 @@ const uiConfig = {
   signInFlow: "popup",
   signInOptions: [
     firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-    firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+    firebase.auth.FacebookAuthProvider.PROVIDER_ID
   ],
   callbacks: {
     signInSuccess: currentUser => {
       localStorage.setItem("token", currentUser.idToken);
-    },
-  },
+    }
+  }
 };
 
 const SignInForm = ({ values, errors, touched }) => {
@@ -77,16 +78,21 @@ const SignInForm = ({ values, errors, touched }) => {
         <div>
           <h2 className="sign-in-or">OR</h2>
         </div>
-        <div className="forms-box">
-          <StyledFirebaseAuth
-            uiConfig={uiConfig}
-            firebaseAuth={firebase.auth()}
-          />
-          <img
+        <div className="forms-box FB">
+          <div className="fbSize">
+            <StyledFirebaseAuth
+              uiConfig={uiConfig}
+              firebaseAuth={firebase.auth()}
+            />
+          </div>
+          <div className="firefly-nerd">
+            <ChillingFly />
+          </div>
+          {/* <img
             src={WearingNerdGlasses}
             alt="firefly-nerd"
             className="firefly-nerd"
-          />
+          /> */}
         </div>
       </div>
     </div>
@@ -97,7 +103,7 @@ const SignInPage = withFormik({
   mapPropsToValues({ email, password, persistence }) {
     return {
       email: email || "",
-      password: password || "",
+      password: password || ""
     };
   },
 
@@ -107,7 +113,7 @@ const SignInPage = withFormik({
       .required(),
     password: Yup.string()
       .min(8)
-      .required(),
+      .required()
   }),
 
   handleSubmit(values, { setSubmitting }) {
@@ -121,13 +127,13 @@ const SignInPage = withFormik({
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then(res => {
-        console.log(res);
-        console.log(values.persistence);
+        // console.log(res);
+        // console.log(values.persistence);
       })
       .catch(error => {
-        console.log(error);
+        // console.log(error);
       });
-  },
+  }
 })(SignInForm);
 
 export default SignInPage;

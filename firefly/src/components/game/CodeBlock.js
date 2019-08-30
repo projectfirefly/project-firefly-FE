@@ -1,20 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Draggable } from "react-beautiful-dnd";
-import Popper from "./Popper.js";
+import { Poppers } from "./Poppers.js";
 import PaletteIcon from "./Poppers/PaletteIcon.js";
 import CheckCircleIcon from "./../../images/gameIcons/CheckCircleIcon.svg";
 import ToggleOnIcon from "./../../images/gameIcons/ToggleOnIcon.svg";
 import ToggleOffIcon from "./../../images/gameIcons/ToggleOffIcon.svg";
-// import NumberIcon1 from "./../../images/gameIcons/NumberIcon1.svg";
-// import NumberIcon2 from "./../../images/gameIcons/NumberIcon2.svg";
-// import NumberIcon3 from "./../../images/gameIcons/NumberIcon3.svg";
-// import NumberIcon4 from "./../../images/gameIcons/NumberIcon4.svg";
-// import NumberIcon5 from "./../../images/gameIcons/NumberIcon5.svg";
-// import NumberIcon6 from "./../../images/gameIcons/NumberIcon6.svg";
-// import NumberIcon7 from "./../../images/gameIcons/NumberIcon7.svg";
-// import NumberIcon8 from "./../../images/gameIcons/NumberIcon8.svg";
-// import NumberIcon9 from "./../../images/gameIcons/NumberIcon9.svg";
 import RepeatIconNew from "./../../images/gameIcons/RepeatIconNew.svg";
+import GreenBlockRightSideSvg from "./reactSvg/GreenBlockRightSideSvg.js";
+import OrangeStartBlock from "./reactSvg/OrangeStartBlock.js";
+import BlueBlock from "./reactSvg/BlueBlock.js";
 
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -34,7 +28,23 @@ const useStyles = makeStyles({
   tool: {
     display: "flex",
     position: "relative",
-    width: "100px"
+    width: "100px",
+    "& svg": {
+      width: "100%",
+      height: "100%"
+    },
+    "&.blockError svg.greenBoxRightSide path": {
+      stroke: "#dc143c",
+      strokeWidth: "2"
+    },
+    "&.blockError svg.orangeStartBlock path": {
+      stroke: "#dc143c",
+      strokeWidth: "2"
+    },
+    "&.blockError svg.blueBlock path": {
+      stroke: "#dc143c",
+      strokeWidth: "2"
+    }
   },
 
   item: {
@@ -116,27 +126,40 @@ const CodeBlock = ({
   index,
   togglePopper,
   openPopper,
+  setOpenPopper,
   list,
   setList,
   id,
-  blocks
+  blocks,
+  playAnimation,
+  clickedPlay,
+  playClicked,
+  errorChecking,
+  anchorEl,
+  setAnchorEl
 }) => {
   const classes = useStyles();
+  const [error, setError] = useState(false);
 
   const [togglePalette, setTogglePalette] = useState(false);
   const [toggleTimer, setToggleTimer] = useState(false);
-  const [toggleCount, setToggleCount] = useState(false);
-  const [toggleSwitch, setToggleSwitch] = useState(false);
+  const [toggleRepeat, setToggleRepeat] = useState(false);
+  const [toggleOnOff, setToggleOnOff] = useState(false);
+
+  const [openId, setOpenId] = useState();
+  const open = Boolean(anchorEl);
+
+  const popperId = open ? "simple-popper" : undefined;
 
   //state that's used in lower levels. These are passed in props to different poppers
   //Switch State
-  const [checkedSwitch, setCheckedSwitch] = useState(false);
+  const [onOff, setOnOff] = useState(false);
 
-  //Count State
-  const [number, setNumber] = useState(1);
+  //Repeat State
+  const [repeat, setRepeat] = useState(1);
 
   //Timer State
-  const [time, setTime] = useState(0);
+  const [time, setTime] = useState(1);
 
   //Palette State
   const [color, setColor] = useState(1, 0, 100);
@@ -150,13 +173,69 @@ const CodeBlock = ({
     setToggleTimer(!toggleTimer);
   };
 
-  const setCount = () => {
-    setToggleCount(!toggleCount);
+  const toggleSetRepeat = () => {
+    setToggleRepeat(!toggleRepeat);
   };
 
-  const setSwitch = () => {
-    setToggleSwitch(!toggleSwitch);
+  const setOnOffSwitch = () => {
+    setToggleOnOff(!toggleOnOff);
   };
+
+  const checkForErrors = () => {
+    setError(errorChecking(index));
+  };
+
+  const handleClick = event => {
+    if (!openPopper) {
+      setOpenId(item.id);
+      setAnchorEl(anchorEl ? null : event.currentTarget);
+    } else if (openPopper) {
+      if (item.id === openId) {
+        setAnchorEl(null);
+        setOpenPopper(!openPopper);
+      }
+    }
+  };
+
+  const toggleAllPoppers = (id, blocks, type, value) => {
+    if (type === "color") {
+      togglePopper(id, blocks, "color", value);
+    } else if (type === "repeat") {
+      togglePopper(id, blocks, "repeat", value);
+    } else if (type === "timer") {
+      togglePopper(id, blocks, "timer", value);
+    } else if (type === "onOff") {
+      togglePopper(id, blocks, "onOff", value);
+    }
+
+    // this is list id: console.log(blocks);
+    // this is item id: console.log(id);
+  };
+
+  useEffect(() => {
+    if (item.color || item.onOff || item.timer || item.repeat) {
+      setHasBeenClicked(true);
+      if (item.color) {
+        setColor(item.color);
+      } else if (item.timer) {
+        setTime(item.timer);
+      } else if (item.repeat) {
+        setRepeat(item.repeat);
+      } else if (item.onOff) {
+        setOnOff(item.onOff);
+      }
+    }
+  }, [item]);
+
+  useEffect(() => {
+    checkForErrors();
+    if (anchorEl === null) {
+      setToggleRepeat(false);
+      setTogglePalette(false);
+      setToggleOnOff(false);
+      setToggleTimer(false);
+    }
+  }, [list, anchorEl]);
 
   return (
     <Draggable
@@ -176,25 +255,54 @@ const CodeBlock = ({
             isDragging={snapshot.isDragging}
             style={provided.draggableProps.style}
           >
-            {//Repeat
-            item.rsi === 2 ? (
-              <Popper
-                onClick={
-                  !openPopper || toggleCount
-                    ? () => {
-                        togglePopper(id, blocks, "number", number);
-                        setCount();
-                      }
-                    : null
+            {//Play/Start Orange Block
+            item.rsi === 0 ? (
+              <div
+                className={
+                  error && playClicked
+                    ? classes.tool + " blockError"
+                    : classes.tool
                 }
-                open={openPopper}
-                toggleCount={toggleCount}
-                number={number}
-                setNumber={setNumber}
+                onClick={clickedPlay}
               >
-                {toggleCount ? (
+                <OrangeStartBlock />
+                {item.functionality}
+              </div>
+            ) : //BlueBlock
+            item.rsi === 1 ? (
+              <div
+                className={
+                  error && playClicked
+                    ? classes.tool + " blockError"
+                    : classes.tool
+                }
+              >
+                <BlueBlock />
+                {item.functionality}
+              </div>
+            ) : //Repeat
+            item.rsi === 2 ? (
+              <Poppers
+                onClick={event => {
+                  handleClick(event);
+                  if (!openPopper || toggleRepeat) {
+                    toggleAllPoppers(id, blocks, "repeat", repeat);
+                    toggleSetRepeat();
+                  } else {
+                    return null;
+                  }
+                }}
+                openPopper={openPopper}
+                anchorEl={anchorEl}
+                popperId={popperId}
+                open={open}
+                toggleRepeat={toggleRepeat}
+                repeat={repeat}
+                setRepeat={setRepeat}
+              >
+                {toggleRepeat ? (
                   <div className={classes.tool}>
-                    {item.content}
+                    <GreenBlockRightSideSvg />
                     <img
                       src={CheckCircleIcon}
                       alt="check circle"
@@ -202,85 +310,91 @@ const CodeBlock = ({
                     />
                   </div>
                 ) : (
-                  <div className={classes.tool}>
-                    {item.content}
-                    {number === 1 ? (
+                  <div
+                    className={
+                      error && playClicked
+                        ? classes.tool + " blockError"
+                        : classes.tool
+                    }
+                  >
+                    <GreenBlockRightSideSvg />
+                    {repeat === 1 ? (
                       <div>
                         <img
                           src={RepeatIconNew}
-                          alt="number one"
+                          alt="repeat one"
                           className={classes.repeatIcon}
                         />
                         <p className={classes.repeatNumber}>1</p>
                       </div>
-                    ) : number === 2 ? (
+                    ) : repeat === 2 ? (
                       <div>
                         <img
                           src={RepeatIconNew}
-                          alt="number two"
+                          alt="repeat two"
                           className={classes.repeatIcon}
                         />
                         <p className={classes.repeatNumber}>2</p>
                       </div>
-                    ) : number === 3 ? (
+                    ) : repeat === 3 ? (
                       <div>
                         <img
                           src={RepeatIconNew}
-                          alt="number three"
+                          alt="repeat three"
                           className={classes.repeatIcon}
                         />
                         <p className={classes.repeatNumber}>3</p>
                       </div>
-                    ) : number === 4 ? (
+                    ) : repeat === 4 ? (
                       <div>
                         <img
                           src={RepeatIconNew}
-                          alt="number four"
+                          alt="repeat four"
                           className={classes.repeatIcon}
                         />
                         <p className={classes.repeatNumber}>4</p>
                       </div>
-                    ) : number === 5 ? (
+                    ) : repeat === 5 ? (
                       <div>
                         <img
                           src={RepeatIconNew}
-                          alt="number five"
+                          alt="repeat five"
                           className={classes.repeatIcon}
                         />
                         <p className={classes.repeatNumber}>5</p>
                       </div>
-                    ) : number === 6 ? (
+                    ) : repeat === 6 ? (
                       <div>
                         <img
                           src={RepeatIconNew}
-                          alt="number six"
+                          alt="repeat six"
                           className={classes.repeatIcon}
                         />
                         <p className={classes.repeatNumber}>6</p>
                       </div>
-                    ) : number === 7 ? (
+                    ) : repeat === 7 ? (
                       <div>
                         <img
                           src={RepeatIconNew}
-                          alt="number seven"
+                          alt="repeat seven"
                           className={classes.repeatIcon}
                         />
                         <p className={classes.repeatNumber}>7</p>
                       </div>
-                    ) : number === 8 ? (
+                    ) : repeat === 8 ? (
                       <div>
                         <img
                           src={RepeatIconNew}
-                          alt="number eight"
+                          alt="repeat eight"
                           className={classes.repeatIcon}
                         />
                         <p className={classes.repeatNumber}>8</p>
                       </div>
-                    ) : number === 9 ? (
+                    ) : repeat === 9 ? (
                       <div>
                         <img
                           src={RepeatIconNew}
-                          alt="number nine"
+                          alt="repeat nine"
                           className={classes.repeatIcon}
                         />
                         <p className={classes.repeatNumber}>9</p>
@@ -288,20 +402,24 @@ const CodeBlock = ({
                     ) : null}
                   </div>
                 )}
-              </Popper>
+              </Poppers>
             ) : //Palette
             item.rsi === 3 ? (
-              <Popper
-                onClick={
-                  !openPopper || togglePalette
-                    ? () => {
-                        togglePopper(id, blocks, "color", color);
-                        setPalette();
-                        setHasBeenClicked(true);
-                      }
-                    : null
-                }
-                open={openPopper}
+              <Poppers
+                onClick={event => {
+                  handleClick(event);
+                  if (!openPopper || togglePalette) {
+                    toggleAllPoppers(id, blocks, "color", color);
+                    setPalette();
+                    setHasBeenClicked(true);
+                  } else {
+                    return null;
+                  }
+                }}
+                openPopper={openPopper}
+                anchorEl={anchorEl}
+                popperId={popperId}
+                open={open}
                 togglePalette={togglePalette}
                 color={color}
                 setColor={setColor}
@@ -310,7 +428,7 @@ const CodeBlock = ({
               >
                 {togglePalette ? (
                   <div className={classes.tool}>
-                    {item.content}
+                    <GreenBlockRightSideSvg />
                     <img
                       src={CheckCircleIcon}
                       alt="check circle"
@@ -318,8 +436,14 @@ const CodeBlock = ({
                     />
                   </div>
                 ) : (
-                  <div className={classes.tool}>
-                    {item.content}
+                  <div
+                    className={
+                      error && playClicked
+                        ? classes.tool + " blockError"
+                        : classes.tool
+                    }
+                  >
+                    <GreenBlockRightSideSvg />
                     {
                       <div className={classes.palette}>
                         <PaletteIcon
@@ -330,26 +454,30 @@ const CodeBlock = ({
                     }
                   </div>
                 )}
-              </Popper>
+              </Poppers>
             ) : //Timer
             item.rsi === 4 ? (
-              <Popper
-                onClick={
-                  !openPopper || toggleTimer
-                    ? () => {
-                        togglePopper(id, blocks, "timer", time);
-                        setTimer();
-                      }
-                    : null
-                }
-                open={openPopper}
+              <Poppers
+                onClick={event => {
+                  handleClick(event);
+                  if (!openPopper || toggleTimer) {
+                    toggleAllPoppers(id, blocks, "timer", time);
+                    setTimer();
+                  } else {
+                    return null;
+                  }
+                }}
+                openPopper={openPopper}
+                anchorEl={anchorEl}
+                popperId={popperId}
+                open={open}
                 toggleTimer={toggleTimer}
                 time={time}
                 setTime={setTime}
               >
                 {toggleTimer ? (
                   <div className={classes.tool}>
-                    {item.content}
+                    <GreenBlockRightSideSvg />
                     <img
                       src={CheckCircleIcon}
                       alt="check circle"
@@ -358,7 +486,7 @@ const CodeBlock = ({
                   </div>
                 ) : (
                   <div className={classes.tool}>
-                    {item.content}
+                    <GreenBlockRightSideSvg />
                     {time === 1 ? (
                       <p className={classes.count}>1s</p>
                     ) : time === 2 ? (
@@ -384,26 +512,31 @@ const CodeBlock = ({
                     )}
                   </div>
                 )}
-              </Popper>
+              </Poppers>
             ) : // ) : //Count
             // item.rsi === 5 ? (
-            //   <Popper
-            //     onClick={
-            //       !openPopper || toggleCount
-            //         ? () => {
-            //             togglePopper(id, blocks, "number", number);
-            //             setCount();
-            //           }
-            //         : null
-            //     }
-            //     open={openPopper}
+            //   <Poppers
+            //onClick={event => {
+            //      handleClick(event);
+            //     if (!openPopper || toggleCount) {
+            //       toggleAllPoppers(id, blocks, "number", number);
+            //     setCount();
+            //           } else {
+            //             return null;
+            //   }
+            // }}
+
+            //     openPopper={openPopper}
+            //     anchorEl={anchorEl}
+            //                popperId={popperId}
+            // open={open}
             //     toggleCount={toggleCount}
             //     number={number}
             //     setNumber={setNumber}
             //   >
             //     {toggleCount ? (
             //       <div className={classes.tool}>
-            //         {item.content}
+            //         <GreenBlockRightSideSvgclassName={classes.svgBlock}/>
             //         <img
             //           src={CheckCircleIcon}
             //           alt="check circle"
@@ -412,7 +545,7 @@ const CodeBlock = ({
             //       </div>
             //     ) : (
             //       <div className={classes.tool}>
-            //         {item.content}
+            //         <GreenBlockRightSideSvgclassName={classes.svgBlock}/>
             //         {number === 1 ? (
             //           <img
             //             src={NumberIcon1}
@@ -470,27 +603,31 @@ const CodeBlock = ({
             //         ) : null}
             //       </div>
             //     )}
-            //   </Popper>
+            //   </Poppers>
 
             //Switch
             item.rsi === 6 ? (
-              <Popper
-                onClick={
-                  !openPopper || toggleSwitch
-                    ? () => {
-                        togglePopper(id, blocks, "switch", checkedSwitch);
-                        setSwitch();
-                      }
-                    : null
-                }
-                checkedSwitch={checkedSwitch}
-                setCheckedSwitch={setCheckedSwitch}
-                open={openPopper}
-                toggleSwitch={toggleSwitch}
+              <Poppers
+                onClick={event => {
+                  handleClick(event);
+                  if (!openPopper || toggleOnOff) {
+                    toggleAllPoppers(id, blocks, "onOff", onOff);
+                    setOnOffSwitch();
+                  } else {
+                    return null;
+                  }
+                }}
+                onOff={onOff}
+                setOnOff={setOnOff}
+                openPopper={openPopper}
+                anchorEl={anchorEl}
+                popperId={popperId}
+                open={open}
+                toggleOnOff={toggleOnOff}
               >
-                {toggleSwitch ? (
+                {toggleOnOff ? (
                   <div className={classes.tool}>
-                    {item.content}
+                    <GreenBlockRightSideSvg />
                     <img
                       src={CheckCircleIcon}
                       alt="check circle"
@@ -499,8 +636,8 @@ const CodeBlock = ({
                   </div>
                 ) : (
                   <div className={classes.tool}>
-                    {item.content}
-                    {checkedSwitch ? (
+                    <GreenBlockRightSideSvg />
+                    {onOff ? (
                       <img
                         src={ToggleOnIcon}
                         alt="toggle on"
@@ -515,9 +652,9 @@ const CodeBlock = ({
                     )}
                   </div>
                 )}
-              </Popper>
+              </Poppers>
             ) : (
-              //These are for the start, led, and repeat buttons because they dont have poppers
+              //These are for the start, led, because they dont have poppers
               <div className={classes.tool}>
                 {item.content}
                 {item.functionality}
