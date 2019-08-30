@@ -38,22 +38,22 @@ export const SET_GAME_LOADED = "SET_LOADED";
 function reducer(state, action) {
   switch (action.type) {
     case UPDATE_SELECTED:
-      console.log({ ...state, selected: { id: action.payload } });
+      // console.log({ ...state, selected: { id: action.payload } });
       return { ...state, selected: { id: action.payload } };
 
     case SELECTED_WORLD:
       const selectedWorld = state.worlds.filter(world => {
         return world.id === state.selected.id;
       });
-      console.log("this is the selected world", {
-        ...state,
-        worlds: selectedWorld
-      });
+      // console.log("this is the selected world", {
+      //   ...state,
+      //   worlds: selectedWorld
+      // });
       return { ...state, worlds: selectedWorld };
 
     case ADD_WORLD:
       const newWorld = [...state.worlds, action.payload]
-      console.log(newWorld)
+      // console.log(newWorld)
       return { ...state, worlds: newWorld }
 
     case SET_GAME_LOADED: {
@@ -61,14 +61,14 @@ function reducer(state, action) {
     }
 
     case GET_WORLDS:
-      console.log({ ...state, worlds: [...action.payload] });
+      // console.log({ ...state, worlds: [...action.payload] });
       return { ...state, worlds: [...action.payload] };
 
     case REMOVE_WORLD:
       const newArr = state.worlds.filter(world => {
         return world.id !== action.payload.id;
       });
-      console.log(newArr, "this is the remove world");
+      // console.log(newArr, "this is the remove world");
       return {
         ...state,
         worlds: newArr
@@ -76,7 +76,7 @@ function reducer(state, action) {
 
     case ADD_FIREFLY:
       const addedFirefly = state.worlds.map(world => {
-        console.log(action.payload);
+        // console.log(action.payload);
         if (world.id === action.payload.world_id) {
           if (world.fireflies) {
             return {
@@ -93,7 +93,7 @@ function reducer(state, action) {
           return world;
         }
       });
-      console.log({ ...state, worlds: addedFirefly });
+      // console.log({ ...state, worlds: addedFirefly });
       return { ...state, worlds: addedFirefly };
 
     case REMOVE_FIREFLY:
@@ -103,11 +103,11 @@ function reducer(state, action) {
         });
         return { ...world, fireflies: fireflyArr };
       });
-      console.log({ ...state, worlds: worldArr });
+      // console.log({ ...state, worlds: worldArr });
       return { ...state, worlds: worldArr };
 
     case UPDATE_BLOCK:
-      console.log(action.payload);
+      // console.log(action.payload);
       const newWorlds = state.worlds.map(world => {
         const updatedFireflies = world.fireflies.map(firefly => {
           if (firefly.firefly_id === action.payload.firefly_id) {

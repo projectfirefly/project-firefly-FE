@@ -46,10 +46,10 @@ const uiConfig = {
           variables: { input: newUser }
         })
         .then(res => {
-          console.log(res.data);
+          // console.log(res.data);
         })
         .catch(err => {
-          console.log(err);
+          // console.log(err);
         });
     }
   }
@@ -200,15 +200,15 @@ const SignUpPage = withFormik({
               variables: { input: newUser }
             })
             .then(res => {
-              console.log(res.data);
+              // console.log(res.data);
               setSubmitting(false);
             })
             .catch(err => {
-              console.log(err);
+              // console.log(err);
             });
         })
         .catch(err => {
-          console.log(err);
+          // console.log(err);
         });
     }
   }

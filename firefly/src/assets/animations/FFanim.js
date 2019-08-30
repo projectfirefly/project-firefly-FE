@@ -61,7 +61,7 @@ const FFanim = ({
 
     function addToAnime(array, repeat, onState) {
 
-      console.log(onState);
+      // console.log(onState);
       let isOn = onState;
 
       var animationRepeatCount = 0;
@@ -223,10 +223,10 @@ const FFanim = ({
       } else if (block.type === "onOff") {
         //Maybe done
         if (block.value === true) {
-          console.log("turning on")
+          // console.log("turning on")
           currentOnOffState = true;
         } else {
-          console.log("turning off")
+          // console.log("turning off")
           currentOnOffState = false;
         }
         if (index === blocks.length - 1) {
