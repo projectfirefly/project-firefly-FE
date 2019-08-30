@@ -22,7 +22,7 @@ const startPageStyles = makeStyles(theme => ({
       paddingBottom: "5px"
     },
     ["@media (max-width: 430px)"]: {
-      paddingTop: "150px",
+      paddingTop: "200px",
       width: "80%"
     }
   },
@@ -35,13 +35,16 @@ const startPageStyles = makeStyles(theme => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    width: "100%"
+    width: "100%",
+    ["@media (max-width: 430px)"]: {
+      paddingTop: "60px"
+    }
   },
   startButton: {
     ...theme.primaryButton,
     padding: ".6rem 12%",
-    ["@media (max-width: 400px)"]: {
-      width: "60%",
+    ["@media (max-width: 430px)"]: {
+      width: "80%",
       marginTop: "40px"
     },
     marginTop: "6%",
@@ -59,6 +62,9 @@ const startPageStyles = makeStyles(theme => ({
     marginTop: "3rem",
     "&:active": {
       marginTop: "3rem"
+    },
+    ["@media (max-width: 430px)"]: {
+      width: "80%"
     }
   },
   topBar: {
