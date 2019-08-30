@@ -167,12 +167,6 @@ const RegistrationStepOne = ({
             </div>
           </div>
           <div className={classes.buttonContainer}>
-            <button className={classes.backButton}>
-              <Link to="/signup" className={classes.link}>
-                <Typography variant="button">Back</Typography>
-              </Link>
-            </button>
-
             <button
               className={
                 info.first_name !== "" &&
