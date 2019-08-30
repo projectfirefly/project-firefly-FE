@@ -47,7 +47,10 @@ const MultiStepRegistration = () => {
       backgroundColor: "#f6f5ff",
       height: "100vh",
       // width:"98%",
-      margin: "0 auto"
+      margin: "0 auto",
+      ["@media (max-width:500px)"]: {
+        height: "100%"
+      }
     },
     second: {
       display: "flex",
