@@ -156,6 +156,10 @@ const accountStyles = makeStyles(theme => ({
     margin: "0 auto",
     width: "80%",
     padding: ".7rem 1rem",
+    "&:active": {
+      margin: "3px auto 0px",
+      boxShadow: "none"
+    },
     "&.back": {
       ...theme.secondaryButton
     }
