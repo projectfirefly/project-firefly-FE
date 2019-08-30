@@ -26,7 +26,9 @@ const LoggedInStartPage = props => {
   };
 
   useEffect(() => {
-    if (childProfileState.loaded && !childProfileState.user.information.city) {
+    if (childProfileState && childProfileState.user && !childProfileState.user.information) {
+      props.history.push("/");
+    } else if (childProfileState.loaded && childProfileState.user && !childProfileState.user.information.city) {
       props.history.push("/registration");
     }
   }, []);
