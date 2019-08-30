@@ -48,12 +48,12 @@ const ChooseProfilePage = props => {
                   });
                 }}
               >
-                <div className={classes.text}>
-                  <Typography variant="h4" className={classes.name}>
-                    {profile.first_name}
-                  </Typography>
-                </div>
                 <div className={classes.flysize}>
+                  <div className={classes.text}>
+                    <Typography variant="h4" className={classes.name}>
+                      {profile.first_name}
+                    </Typography>
+                  </div>
                   <ProfileFly
                     color={profile.avatar.color}
                     accessory={profile.avatar.accessory}
