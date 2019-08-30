@@ -95,7 +95,7 @@ const createProfileStyles = makeStyles(theme => ({
     margin: "2% 0 -2% 2%",
     "&:active": {
       boxShadow: "none",
-      margin: "2.2% 0 -2.2%"
+      margin: "2.2% 0 -2.2% 2%"
     },
     "&:hover": {
       cursor: "pointer"
