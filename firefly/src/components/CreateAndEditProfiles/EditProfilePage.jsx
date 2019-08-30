@@ -86,14 +86,14 @@ const EditProfilePage = props => {
 
   const saveProfile = () => {
     updateProfile(UPDATE_PROFILE, updatedProfile, dispatch);
-    props.history.push("/choose-profile");
+    props.history.push("/account");
   };
 
   const [open, setOpen] = useState(false);
 
   const confirmRemove = () => {
     removeProfile(REMOVE_PROFILE, updatedProfile, dispatch).then(() => {
-      props.history.push("/choose-profile");
+      props.history.push("/account");
     });
   };
 
@@ -104,10 +104,10 @@ const EditProfilePage = props => {
   ) {
     return (
       <div className={classes.container}>
-        <div className={classes.sizingContainer}>
           <div className={classes.header}>
             <Typography variant="h1">EDIT PROFILE</Typography>
           </div>
+        <div className={classes.sizingContainer}>
           <div className={classes.cardContainer}>
             <div className={classes.deleteButtonContainer}>
               <button className={classes.delete} onClick={() => setOpen(true)}>
@@ -156,7 +156,7 @@ const EditProfilePage = props => {
             </div>
             <div className={classes.buttonContainer}>
               <Link to="/account" className={classes.cancel}>
-                <Typography variant="button">Cancel</Typography>
+                <Typography variant="button">Back</Typography>
               </Link>
               <Link onClick={saveProfile} className={classes.save}>
                 <Typography variant="button">Save</Typography>

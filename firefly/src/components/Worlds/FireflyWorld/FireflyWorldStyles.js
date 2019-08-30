@@ -6,10 +6,11 @@ const chooseWorldStyles = makeStyles(theme => ({
     // ...theme.headerMargin,
     backgroundImage: `url(${background})`,
     backgroundPosition: "0px 0px",
-    minWidth: "100vw",
+    width: "100vw",
     height: "100vh",
     backgroundSize: "cover",
-    backgroundRepeat: "no-repeat"
+    backgroundRepeat: "no-repeat",
+    overflow: "hidden"
   },
   body: {},
   rootContainer: {

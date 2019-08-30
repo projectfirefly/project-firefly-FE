@@ -5,7 +5,7 @@ import { addFirefly } from "../../../utils/firebaseInteractions";
 
 //Styling
 import WorldNavStyles from "./WorldNavStyles";
-import { FaTimes, FaPlus } from "react-icons/fa";
+import { FaTimes, FaPlus, FaRegPlayCircle } from "react-icons/fa";
 import { Typography } from "@material-ui/core";
 import FireflyOutline from "./ffOutline.svg";
 
@@ -20,33 +20,31 @@ export const WorldNav = props => {
   const [context, contextDispatch] = useContext(childContext);
 
   const newFF = props => {
-    addFirefly(
-      context.selected.id,
-      worldContext.selected.id,
-      worldDispatch
-    ).then(() => {
-      // console.log("console log from nav" + props);
-      // props.history.push("/game");
-    });
+    addFirefly(context.selected.id, worldContext.selected.id, worldDispatch);
   };
 
   return (
     <div className={classes.navContainer}>
-      <div className={classes.iconButton} onClick={""}>
-        <Link to="/chooseworld" className={classes.link}>
-          <Typography variant="button">
-            <FaTimes />
-          </Typography>
-        </Link>
-      </div>
+      <Link className={classes.iconButton} to="/chooseworld">
+        <Typography variant="button" className={classes.x}>
+          <FaTimes />
+        </Typography>
+      </Link>
 
-      <div className={classes.addButton} onClick={""}>
-        <Link className={classes.link} onClick={newFF} to="/game">
-          <Typography variant="button">
+      <div className={classes.bigButtonContainer}>
+        <div className={classes.addButton} onClick={newFF}>
+          <Typography variant="button" className={classes.plus}>
             <FaPlus />
-            {/* <FireflyOutline width={100} /> */}
           </Typography>
-        </Link>
+          <img src={FireflyOutline} className={classes.ffOutline} />
+        </div>
+
+        <div className={classes.addButton} onClick={props.play}>
+          <Typography variant="button" className={classes.plus}>
+            <FaRegPlayCircle />
+          </Typography>
+          <img src={FireflyOutline} className={classes.ffOutline} />
+        </div>
       </div>
     </div>
   );

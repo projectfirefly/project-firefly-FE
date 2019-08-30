@@ -18,6 +18,8 @@ import PlayCircleIcon from "../../images/gameIcons/PlayCircleIcon.svg";
 import PaletteIcon from "../../images/gameIcons/PaletteIcon.svg";
 import ToggleOffIcon from "../../images/gameIcons/ToggleOffIcon.svg";
 import LockIcon from "../../images/gameIcons/LockIcon.svg";
+import CheckCircleIcon from "./../../images/gameIcons/CheckCircleIcon.svg";
+import QuestionMarkBookDark from "./../../images/gameIcons/QuestionMarkBookDark.svg";
 
 import GridIcon from "../../images/gridBackground.png";
 import { gameContext } from "../../context/Game/GameStore";
@@ -37,6 +39,17 @@ const clickTogether = new uifx({ asset: clickTogetherMP3 });
 const poof = new uifx({ asset: poofMP3 });
 
 //styling
+const Background = styled.div`
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-image: url(${GridIcon});
+  background-repeat: repeat;
+  z-index: -100;
+  top: 0;
+  left: 0;
+`;
+
 const Board = styled.div`
   /* min-height: 100vh; */
   width: 100%;
@@ -193,22 +206,24 @@ const ITEMS = [
   }
 ];
 
-const Game = (props) => {
+const Game = props => {
   const classes = makeStyles(theme => ({
-    back: {
-      ...theme.secondaryButton,
-      padding: ".7rem 4rem"
-    },
     save: {
-      ...theme.primaryButton,
-      padding: ".7rem 4rem"
+      ...theme.smallIconButton,
+      width: "45px",
+      backgroundColor: "#4AA810"
     },
     buttonContainer: {
+      position: "absolute",
+      right: "5%",
+      top: "4.2%",
       display: "flex",
-      width: "80%",
-      paddingLeft: "11%",
-      marginTop: "2rem",
-      justifyContent: "space-around"
+      width: "12%",
+      justifyContent: "space-between",
+      alignItems: "center"
+    },
+    tutorial: {
+      width: "37px"
     }
   }))();
   //Set list to firefly out of context/firestore
@@ -293,8 +308,13 @@ const Game = (props) => {
 
   //Load fireflies from backend
   useEffect(() => {
-    // Delete this and replace it with the current firefly from worldContext
-    if (props.location.firefly && props.location.firefly.codeBlocks.length !== 0) {
+    if (!worldContext.loaded) {
+      props.history.push("/choose-profile");
+    }
+    if (
+      props.location.firefly &&
+      props.location.firefly.codeBlocks.length !== 0
+    ) {
       if (list[listId].length === 0) {
         console.log(list[listId].length);
         createBlocksFromBackend([...props.location.firefly.codeBlocks]);
@@ -308,7 +328,15 @@ const Game = (props) => {
       codeBlocks: [...animationList]
     };
 
-    updateBlocks(childProfileState.selected.id, props.location.firefly.firefly_id, props.location.selectedWorldId, updatedFirefly, worldDispatch)
+    updateBlocks(
+      childProfileState.selected.id,
+      props.location.firefly.firefly_id,
+      props.location.selectedWorldId,
+      updatedFirefly,
+      worldDispatch
+    ).then(() => {
+      props.history.push("/fireflyworld");
+    });
   };
 
   useEffect(() => {
@@ -463,8 +491,30 @@ const Game = (props) => {
     setPlaying(!playing);
   };
 
+  const tutorialRedirect = () => {
+    const updatedFirefly = {
+      ...props.location.firefly,
+      codeBlocks: [...animationList]
+    };
+
+    updateBlocks(
+      childProfileState.selected.id,
+      props.location.firefly.firefly_id,
+      props.location.selectedWorldId,
+      updatedFirefly,
+      worldDispatch
+    ).then(() => {
+      props.history.push({
+        pathname: "/tutorial",
+        firefly: updatedFirefly,
+        selectedWorldId: props.location.selectedWorldId
+      });
+    });
+  };
+
   return (
     <Board>
+      <Background />
       <DragDropContext onDragEnd={onDragEnd} onDragStart={onDragStart}>
         <Toolbox tools={tools} />
         <FFbox tools={tools} animationList={animationList} playing={playing} />
@@ -481,12 +531,20 @@ const Game = (props) => {
         <DropDelete trashing={trashing} />
       </DragDropContext>
       <div className={classes.buttonContainer}>
-        <Link to="/fireflyworld" className={classes.back}>
-          <Typography variant="button">Back</Typography>
-        </Link>
-        <button onClick={updateFirefly} className={classes.save}>
-          SAVE
-        </button>
+        <div onClick={tutorialRedirect}>
+          <img
+            src={QuestionMarkBookDark}
+            alt="tutorial"
+            className={classes.tutorial}
+          />
+        </div>
+        <div onClick={updateFirefly}>
+          <img
+            src={CheckCircleIcon}
+            alt="save check"
+            className={classes.save}
+          />
+        </div>
       </div>
     </Board>
   );

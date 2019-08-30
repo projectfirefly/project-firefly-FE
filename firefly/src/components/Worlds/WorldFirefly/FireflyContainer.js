@@ -5,13 +5,16 @@ import itemType from "./itemType";
 import FireflyItem from "./FireflyItem";
 
 //importing the firebase stuff needed
-import { removeFirefly, updateBlocks } from "../../../utils/firebaseInteractions.jsx";
+import {
+  removeFirefly,
+  updateBlocks
+} from "../../../utils/firebaseInteractions.jsx";
 import FFanim from "../../../assets/animations/FFanim";
 import FFicon from "../../../assets/icons/firefly/Firefly";
 import {
   gameContext,
   SELECTED_WORLD,
-  REMOVE_FIREFLY,
+  REMOVE_FIREFLY
 } from "../../../context/Game/GameStore";
 import { childContext } from "../../../context/ChildProfiles/ChildProfileStore";
 import {
@@ -19,14 +22,14 @@ import {
   FaTrashAlt,
   FaArrowsAlt,
   FaTimes,
-  FaCheck,
+  FaCheck
 } from "react-icons/fa";
 import {
   Dialog,
   // DialogTitle,
   DialogContent,
   DialogContentText,
-  DialogActions,
+  DialogActions
   // Typography
 } from "@material-ui/core";
 
@@ -34,7 +37,7 @@ import {
 import WorldFireflyStyles from "./WorldFireflyStyles";
 import fireflyStyles from "../FireflyWorld/FireflyWorldStyles";
 
-const FireflyContainer = ({ hideSourceOnDrag }) => {
+const FireflyContainer = (props, { hideSourceOnDrag }) => {
   const classes = fireflyStyles();
   const classed = WorldFireflyStyles();
 
@@ -45,16 +48,18 @@ const FireflyContainer = ({ hideSourceOnDrag }) => {
   const [trashOpen, setTrashOpen] = useState(false);
   const [canDrag, setCanDrag] = useState(false);
 
-  useEffect(() => {
-    console.log(worldContext.selected.id);
-    console.log(context.selected.id);
-  }, []);
+  // useEffect(() => {
+  //   console.log(worldContext.selected.id);
+  //   console.log(context.selected.id);
+  // }, []);
 
   const [fireflies, setFireflies] = useState([]);
 
+  // console.log("RERENDER")
+
   useEffect(() => {
     if (worldContext.worlds.length != 0) {
-      console.log(worldContext);
+      // console.log(worldContext);
       const [currentWorld] = worldContext.worlds.filter(world => {
         if (world.id === worldContext.selected.id) {
           return true;
@@ -62,8 +67,12 @@ const FireflyContainer = ({ hideSourceOnDrag }) => {
           return false;
         }
       });
-      console.log(currentWorld);
-      setFireflies([...currentWorld.fireflies]);
+      // console.log(currentWorld);
+      if (currentWorld.fireflies) {
+        // console.log("Setting fireflies");
+        // console.log(currentWorld.fireflies);
+        setFireflies([...currentWorld.fireflies]);
+      }
     }
   }, [worldContext]);
 
@@ -74,10 +83,9 @@ const FireflyContainer = ({ hideSourceOnDrag }) => {
       const left = Math.round(item.left + delta.x);
       const top = Math.round(item.top + delta.y);
       moveFirefly(item.id, left, top);
-      
       setCanDrag(false);
       return undefined;
-    },
+    }
   });
   const moveFirefly = (id, left, top) => {
     var updatedFirefly;
@@ -86,18 +94,24 @@ const FireflyContainer = ({ hideSourceOnDrag }) => {
         updatedFirefly = {
           ...firefly,
           x: left,
-          y: top,
-        }
+          y: top
+        };
         return {
           ...firefly,
           x: left,
-          y: top,
+          y: top
         };
       } else {
         return firefly;
       }
     });
-    updateBlocks(context.selected.id, id, worldContext.selected.id, updatedFirefly, worldDispatch);
+    updateBlocks(
+      context.selected.id,
+      id,
+      worldContext.selected.id,
+      updatedFirefly,
+      worldDispatch
+    );
     setFireflies([...updatedFireflies]);
   };
 
@@ -125,12 +139,12 @@ const FireflyContainer = ({ hideSourceOnDrag }) => {
                 left={firefly.x}
                 top={firefly.y}
                 hideSourceOnDrag={hideSourceOnDrag}
-                canDrag={canDrag}
+                canDrag={ffId === firefly.firefly_id && canDrag}
               >
                 <div
                   className={
-                    canDrag
-                      ? classed.draggableFirefly + " move"
+                    ffId === firefly.firefly_id && menuActive
+                      ? classed.draggableFirefly + " open"
                       : classed.draggableFirefly
                   }
                 >
@@ -143,7 +157,7 @@ const FireflyContainer = ({ hideSourceOnDrag }) => {
                   >
                     <div
                       onClick={() => (setCanDrag(true), setMenuState(false))}
-                      style={{zIndex: "100"}}
+                      style={{ zIndex: "100" }}
                     >
                       <FaArrowsAlt className={classed.move} />
                     </div>
@@ -151,7 +165,7 @@ const FireflyContainer = ({ hideSourceOnDrag }) => {
                       to={{
                         pathname: "/game",
                         firefly: firefly,
-                        selectedWorldId: worldContext.selected.id,
+                        selectedWorldId: worldContext.selected.id
                       }}
                     >
                       <FaPen className={classed.pen} />
@@ -165,6 +179,11 @@ const FireflyContainer = ({ hideSourceOnDrag }) => {
                     onClick={() => (
                       setFFId(firefly.firefly_id), setMenuState(!menuActive)
                     )}
+                    className={
+                      ffId === firefly.firefly_id && canDrag ?
+                      classed.fireflyWrapper + " move" :
+                      classed.fireflyWrapper
+                    }
                   >
                     <FFanim
                       height={129}
@@ -172,14 +191,16 @@ const FireflyContainer = ({ hideSourceOnDrag }) => {
                       accessory="none"
                       color={642}
                       awake={true}
+                      animationList={firefly.codeBlocks}
+                      playing={props.playing}
                     />
                   </div>
                   <Dialog
-                    open={trashOpen}
+                    open={ffId === firefly.firefly_id && trashOpen}
                     onClose={() => setTrashOpen(false)}
                     are-labelledby="remove-profile-dialog"
                     classed={{
-                      paper: classed.dialogPaper,
+                      paper: classed.dialogPaper
                     }}
                   >
                     <DialogContent className={classed.dialogContainer}>

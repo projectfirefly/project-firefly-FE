@@ -6,8 +6,8 @@ const WorldCard = props => {
   // console.log("IMG" + props.img);
   return (
     <div className={classes.worldCard}>
-      <h4>{props.title}</h4>
-      <img src={props.img} alt={''} className={classes.worldCardImg} />
+      <h4 className={classes.worldName}>{props.title}</h4>
+      <img src={props.img} alt={""} className={classes.worldCardImg} />
     </div>
   );
 };

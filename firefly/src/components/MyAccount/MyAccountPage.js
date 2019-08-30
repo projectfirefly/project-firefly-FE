@@ -1,6 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
 import Container from "@material-ui/core/Container";
-import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import { Link } from "react-router-dom";
 import ProfileCard from "./ProfileCard";
@@ -28,19 +27,14 @@ export default function ProfileView(props) {
     first_name: "",
     last_name: "",
     information: {
-      address: "",
-    },
+      address: ""
+    }
   });
 
-  console.log("myaccountpage state", childProfileState);
-
   useEffect(() => {
-    if (
-      childProfileState.loaded &&
-      !finishedLoading
-    ) {
+    if (childProfileState.loaded && !finishedLoading) {
       setUpdatedInfo({
-        ...childProfileState.user,
+        ...childProfileState.user
       });
       setFinishedLoading(true);
     }
@@ -49,15 +43,14 @@ export default function ProfileView(props) {
   const toggleEditing = () => {
     setEditing(!editing);
     setUpdatedInfo({
-      ...childProfileState.user,
+      ...childProfileState.user
     });
-    console.log(process.env.REACT_APP_SOMETHING);
   };
 
   const handleChanges = e => {
     setUpdatedInfo({
       ...updatedInfo,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     });
   };
 
@@ -66,8 +59,8 @@ export default function ProfileView(props) {
       ...updatedInfo,
       information: {
         ...updatedInfo.information,
-        [e.target.name]: e.target.value,
-      },
+        [e.target.name]: e.target.value
+      }
     });
   };
 
@@ -76,10 +69,7 @@ export default function ProfileView(props) {
     updateUser(UPDATE_USER, updatedInfo, dispatch);
   };
 
-  if (
-    childProfileState.loaded &&
-    finishedLoading
-  ) {
+  if (childProfileState.loaded && finishedLoading) {
     return (
       <Container className={classes.root} maxWidth="lg">
         <div className={classes.mainHeader}>
@@ -90,7 +80,7 @@ export default function ProfileView(props) {
           <div className={classes.left}>
             {/* Account Info */}
             <div className={classes.leftContainerOne}>
-              <Paper className={classes.paper}>
+              <div className={classes.paper}>
                 <div className={classes.headerContainer}>
                   <h2 className={classes.sectionHeader}>Account Information</h2>
                   <div className={classes.iconButton} onClick={toggleEditing}>
@@ -105,8 +95,10 @@ export default function ProfileView(props) {
                   </Grid>
                   <Grid item xs={6}>
                     {!editing ? (
-                      <div className={classes.userInfo}>
-                        <Typography> {childProfileState.user.email}</Typography>
+                      <div>
+                        <Typography className={classes.userInfo}>
+                          {childProfileState.user.email}
+                        </Typography>
                       </div>
                     ) : (
                       <input
@@ -128,7 +120,7 @@ export default function ProfileView(props) {
                   <Grid item xs={6}>
                     {!editing ? (
                       <div className={classes.userInfo}>
-                        <Typography>
+                        <Typography className={classes.userInfo}>
                           {childProfileState.user.first_name}{" "}
                           {childProfileState.user.last_name}
                         </Typography>
@@ -162,7 +154,7 @@ export default function ProfileView(props) {
                   <Grid item xs={6}>
                     {!editing ? (
                       <div className={classes.userInfo}>
-                        <Typography>
+                        <Typography className={classes.userInfo}>
                           {childProfileState.user.information.address}
                         </Typography>
                       </div>
@@ -178,20 +170,42 @@ export default function ProfileView(props) {
                   </Grid>
                 </Grid>
                 <br />
-              </Paper>
+              </div>
             </div>
             {/* Payment Info */}
             <div className={classes.leftContainerTwo}>
-              <Paper className={classes.paper}>
+              <div className={classes.paper}>
                 <h2 className={classes.sectionHeader}> Payment Information</h2>
+                <Grid container spacing={3}>
+                  <Grid item xs={2}>
+                    <Typography variant="h5" className={classes.infoLabel}>
+                      Subscription:
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Typography className={classes.tempInfo}>
+                      Firefly World
+                    </Typography>
+                  </Grid>
+                </Grid>
+                <Grid container spacing={3}>
+                  <Grid item xs={2}>
+                    <Typography variant="h5" className={classes.infoLabel}>
+                      Credit Card:
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Typography className={classes.tempCCInfo}>
+                      {"."}
+                    </Typography>
+                  </Grid>
+                </Grid>
                 <br />
-                <br />
-                <br />
-              </Paper>
+              </div>
             </div>
             {/* Educational Research */}
             <div className={classes.leftContainer}>
-              <Paper className={classes.paper}>
+              <div className={classes.paper}>
                 <h2 className={classes.sectionHeader}>
                   Educational Research Participation
                 </h2>
@@ -203,16 +217,19 @@ export default function ProfileView(props) {
                     </label>
                   </div>
                   <Typography>
-                    I would like to participate in the Educational Research
+                    I would like to participate in{" "}
+                    <span className={classes.research}>
+                      the Educational Research
+                    </span>
                   </Typography>
                 </div>
                 <br />
-              </Paper>
+              </div>
             </div>
           </div>
 
           <div className={classes.rightCards}>
-            <Paper className={classes.paper}>
+            <div className={classes.paper}>
               <h2 className={classes.sectionHeaderRight}>Manage Profile</h2>
               <div className={classes.fireflyContainer}>
                 <div className={classes.edit}>
@@ -226,7 +243,7 @@ export default function ProfileView(props) {
                   <Icon
                     name="Firefly"
                     style={{
-                      width: "40%",
+                      width: "40%"
                     }}
                   />
                 </div>
@@ -247,7 +264,7 @@ export default function ProfileView(props) {
                   <div />
                 )}
               </div>
-            </Paper>
+            </div>
 
             {!editing ? (
               <div className={classes.editButtons}>

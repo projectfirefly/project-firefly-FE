@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 
 import { childContext } from "../../context/ChildProfiles/ChildProfileStore";
-import { gameContext } from '../../context/Game/GameStore.jsx';
+import { gameContext } from "../../context/Game/GameStore.jsx";
 import { addWorld, getWorld } from "../../utils/firebaseInteractions";
 import chooseProfileStyles from "./chooseProfileStyles";
 
@@ -20,18 +20,9 @@ const ChooseProfilePage = props => {
   const [childProfileState, dispatch] = useContext(childContext);
   const [worldContext, worldDispatch] = useContext(gameContext);
 
-  const gettingWorld = profile => {
-    const defaultWorld = { worldName: "Main World" };
+  const gettingWorld = async profile => {
     getWorld(profile.id, worldDispatch);
-    if (worldContext.loaded) {
-      if (!worldContext.worlds[0]) {
-        console.log("we have added a world");
-        addWorld(profile.id, defaultWorld, worldDispatch);
-      }
-    }
   };
-
-  console.log("Choose Profile State", childProfileState);
 
   const classes = chooseProfileStyles();
 
@@ -39,7 +30,6 @@ const ChooseProfilePage = props => {
     return (
       <div className={classes.root}>
         <Typography variant="h1" className={classes.header}>
-          {" "}
           CHOOSE YOUR FIREFLY{" "}
         </Typography>
         <div className={classes.sizingContainer}>
@@ -52,8 +42,9 @@ const ChooseProfilePage = props => {
                     type: "UPDATE_SELECTED",
                     payload: profile.id
                   });
-                  gettingWorld(profile);
-                  props.history.push("/myfirefly");
+                  gettingWorld(profile).then(() => {
+                    props.history.push("/myfirefly");
+                  });
                 }}
               >
                 <div className={classes.text}>
@@ -79,9 +70,7 @@ const ChooseProfilePage = props => {
       </div>
     );
   } else {
-    return (
-      <div></div>
-    )
+    return <div />;
   }
 };
 

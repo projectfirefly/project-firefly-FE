@@ -7,43 +7,43 @@ const useTheme = {
       fontSize: 34,
       letterSpacing: "7px",
       color: "#5B4Eff",
-      textTransform: "uppercase",
+      textTransform: "uppercase"
     },
     h2: {
       fontSize: "2rem",
       fontWeight: "700",
       color: "#52AB1A",
-      letterSpacing: ".2rem",
+      letterSpacing: ".2rem"
     },
     h3: {
       fontSize: "1.6rem",
       fontWeight: "700",
-      color: "#52AB1A",
+      color: "#52AB1A"
     },
     h4: {
       fontSize: "1.8rem",
-      fontWeight: "600",
+      fontWeight: "600"
     },
     h6: {
-      fontSize: "1.4rem",
+      fontSize: "1.4rem"
     },
     button: {
       fontSize: "1.6rem",
       letterSpacing: ".1rem",
       fontWeight: "600",
-      textDecoration: "none",
+      textDecoration: "none"
     },
     //subtitle2 is for errors
     subtitle2: {
       color: "#f44336",
-      fontSize: "1.4rem",
+      fontSize: "1.4rem"
     }
   },
   paper: {
     backgroundColor: "#FFF",
     border: "0",
     borderRadius: "20px",
-    boxShadow: "0px 2px 4px rgba(0,0,0,0.5)"
+    boxShadow: " 0px 20px 30px -20px rgba(0, 0, 0, 0.3)"
   },
   input: {
     fontFamily: "'Nunito', sans-serif",
@@ -54,12 +54,16 @@ const useTheme = {
     padding: "2%",
     borderRadius: ".5rem",
     "&:focus": {
-      outline: "none",
+      outline: "none"
     }
   },
   headerMargin: {
     marginTop: "5rem",
-    marginBottom: "4rem",
+    marginBottom: "4rem"
+  },
+  headerPadding: {
+    paddingTop: "5rem",
+    paddingBottom: "4rem"
   },
   primaryButton: {
     backgroundColor: "#4AA810",
@@ -68,7 +72,7 @@ const useTheme = {
     fontSize: "1.6rem",
     textDecoration: "none",
     border: "none",
-    borderRadius: "1rem",
+    borderRadius: "10px",
     boxShadow: "0px 3px #3E8C0D",
     cursor: "pointer",
     transition: "all 25ms ease-in-out",
@@ -77,19 +81,19 @@ const useTheme = {
     justifyContent: "center",
     "&:active": {
       boxShadow: "none",
-      margin: "3px 0px -3px 0px",
+      margin: "3px 0px -3px 0px"
     },
     "&:focus": {
-      outline: "none",
+      outline: "none"
     }
   },
   secondaryButton: {
     backgroundColor: "#FFF",
-    border: "2px solid #ABB0BA",
+    border: "2px solid #E3E5E8",
     color: "#4AA810",
     textTransform: "uppercase",
-    borderRadius: "1rem",
-    boxShadow: "0px 3px #8F96A3",
+    borderRadius: "10px",
+    boxShadow: "0px 3px ##E3E5E8",
     cursor: "pointer",
     transition: "all 25ms ease-in-out",
     textDecoration: "none",
@@ -100,7 +104,7 @@ const useTheme = {
       margin: "3px 0px -3px 0px"
     },
     "&:focus": {
-      outline: "none",
+      outline: "none"
     }
   },
   disabledButton: {
@@ -116,7 +120,26 @@ const useTheme = {
     letterSpacing: "1px",
     justifyContent: "center",
     "&:focus": {
-      outline: "none",
+      outline: "none"
+    }
+  },
+  smallIconButton: {
+    backgroundColor: "#FFF",
+    border: "1px solid #ABB0BA",
+    color: "#4AA810",
+    textTransform: "uppercase",
+    borderRadius: "50%",
+    cursor: "pointer",
+    transition: "all 25ms ease-in-out",
+    textDecoration: "none",
+    display: "flex",
+    justifyContent: "center",
+    "&:active": {
+      boxShadow: "none",
+      margin: "3px 0px -3px 0px"
+    },
+    "&:focus": {
+      outline: "none"
     }
   },
   clickable: {
@@ -125,9 +148,9 @@ const useTheme = {
     "&:active": {
       boxShadow: "none",
       marginTop: "3px",
-      marginBottom: "-3px",
-    },
-  },
-}
+      marginBottom: "-3px"
+    }
+  }
+};
 
 export default useTheme;

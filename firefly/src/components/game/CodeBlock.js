@@ -139,12 +139,12 @@ const CodeBlock = ({
   setAnchorEl
 }) => {
   const classes = useStyles();
+  const [error, setError] = useState(false);
 
   const [togglePalette, setTogglePalette] = useState(false);
   const [toggleTimer, setToggleTimer] = useState(false);
   const [toggleRepeat, setToggleRepeat] = useState(false);
   const [toggleOnOff, setToggleOnOff] = useState(false);
-  const [error, setError] = useState(false);
 
   const [openId, setOpenId] = useState();
   const open = Boolean(anchorEl);

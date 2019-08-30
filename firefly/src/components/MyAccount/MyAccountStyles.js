@@ -1,48 +1,56 @@
 import { makeStyles } from "@material-ui/core";
 
 const accountStyles = makeStyles(theme => ({
+  container: {
+    ...theme.paper,
+    display: "flex",
+    padding: " 2% 3%"
+    // flexDirection: "column",
+    // alignItems: "center",
+    // justifyContent: "center",
+  },
   paper: {
     padding: "20px 20px",
     textAlign: "left",
     color: theme.palette.text.secondary,
-    borderRadius: " 20px",
+    borderRadius: " 20px"
     // marginBottom: "32px",
   },
   mainHeader: {
-    ...theme.headerMargin,
-    textAlign: "center",
+    ...theme.headerPadding,
+    textAlign: "center"
   },
   headerContainer: {
     display: "flex",
-    justifyContent: "space-between",
+    justifyContent: "space-between"
   },
   editButtons: {
     display: "flex",
     marginTop: "4rem",
-    justifyContent: "space-between",
+    justifyContent: "space-between"
   },
   root: {
     flexGrow: "1",
     fontFamily: "'Nunito', sans-serif",
+    backgroundColor: "#f6f5ff",
+    height: "100vh",
+    width: "100vw"
   },
-  container: {
-    display: "flex",
-    padding: " 0 3%",
-  },
+
   left: {
-    width: "100%",
+    width: "100%"
   },
   leftContainerOne: {
-    marginRight: "10%",
-    marginBottom: "54px",
+    marginRight: "5%",
+    marginBottom: "10px"
   },
   leftContainerTwo: {
-    marginRight: "10%",
-    marginBottom: "54px",
+    marginRight: "5%",
+    marginBottom: "54px"
   },
   leftContainer: {
     height: "131px",
-    marginRight: "10%",
+    marginRight: "5%"
   },
   header: {
     textAlign: "center",
@@ -51,31 +59,38 @@ const accountStyles = makeStyles(theme => ({
     letterSpacing: "7px",
     fontWeight: "900",
     textTransform: "uppercase",
-    marginBottom: "5%",
+    marginBottom: "5%"
   },
   sectionHeader: {
     fontWeight: "bold",
     fontSize: "21px",
     paddingBottom: "21px",
+    color: "black"
   },
   sectionHeaderRight: {
     fontWeight: "bold",
     fontSize: "21px",
     paddingBottom: "18px",
+    color: "black"
   },
   infoContainer: {
     display: "flex",
-    marginBottom: "20px",
+    marginBottom: "20px"
   },
   infoLabel: {
-    fontSize: "16px",
-    padding: "0",
+    fontSize: "14px",
+    paddingTop: "5px",
+    width: "140%"
   },
   userInfo: {
     padding: "0",
+    fontSize: "18px",
+    fontWeight: "600"
   },
   rightCards: {
     width: "60%",
+    borderLeft: "1px solid #b6e699",
+    paddingLeft: "2%"
   },
   fireflyContainer: {
     display: "flex",
@@ -85,26 +100,34 @@ const accountStyles = makeStyles(theme => ({
     overflowX: "hidden",
     overflowY: "scroll",
     height: "366px",
-    width: "100%",
+    width: "100%"
   },
   profileCardContainer: {
     display: "flex",
     alignItems: "center",
     flexDirection: "column",
     textAlign: "center",
-    width: "100%",
+    width: "100%"
+  },
+  tempCCInfo: {
+    background: "#E3E5E8"
+  },
+  tempInfo: {
+    marginLeft: "25px",
+    fontSize: "18px",
+    fontWeight: "600"
   },
   fireflyIcon: {
     width: "100%",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "center"
   },
   img: {
-    width: "45%",
+    width: "45%"
   },
   style1: {
     borderTop: "1px solid #b6e699",
-    width: "100%",
+    width: "100%"
   },
   edit: {
     width: "100%",
@@ -115,31 +138,34 @@ const accountStyles = makeStyles(theme => ({
       content: "''",
       padding: "1rem 2rem",
       fontSize: "1.4rem",
-      visibility: "hidden",
-    },
+      visibility: "hidden"
+    }
   },
   iconButton: {
-    ...theme.secondaryButton,
+    ...theme.smallIconButton,
+    marginBottom: "3px",
     padding: "1rem 1.2rem",
-    fontSize: "1.4rem",
+    fontSize: "1.4rem"
   },
   textInput: {
     ...theme.input,
-    width: "100%",
+    width: "100%"
   },
   button: {
     ...theme.primaryButton,
-    width: "40%",
+    margin: "0 auto",
+    width: "80%",
     padding: ".7rem 1rem",
     "&.back": {
-      ...theme.secondaryButton,
+      ...theme.secondaryButton
     }
   },
   researchSection: {
-    display: "flex",
+    display: "flex"
   },
+  research: { textDecoration: "underline", color: "#4aa810" },
   checkboxContainer: {
-    marginRight: "7%",
+    marginRight: "7%"
   },
   checkboxLabel: {
     position: "relative",
@@ -161,7 +187,7 @@ const accountStyles = makeStyles(theme => ({
         " -ms-transform": "rotate(0deg) scale(1)",
         transform: "rotate(0deg) scale(1)",
         opacity: "1",
-        border: "2px solid #4aa810",
+        border: "2px solid #4aa810"
       },
       "&:checked ~ $checkboxCustom::after": {
         " -webkit-transform": "rotate(45deg) scale(1)",
@@ -175,9 +201,9 @@ const accountStyles = makeStyles(theme => ({
         border: "solid white",
         borderWidth: "0 2px 2px 0",
         backgroundColor: "transparent",
-        borderRadius: "0",
-      },
-    },
+        borderRadius: "0"
+      }
+    }
   },
   checkboxCustom: {
     position: "absolute",
@@ -211,9 +237,9 @@ const accountStyles = makeStyles(theme => ({
       " -webkit-transition": "all 0.3s ease-out",
       " -moz-transition": "all 0.3s ease-out",
       " -ms-transition": "all 0.3s ease-out",
-      " -o-transition": "all 0.3s ease-out",
-    },
-  },
+      " -o-transition": "all 0.3s ease-out"
+    }
+  }
 }));
 
 export default accountStyles;

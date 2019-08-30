@@ -3,6 +3,7 @@ import React from "react";
 import { makeStyles, Typography } from "@material-ui/core";
 
 import Icon from "../../assets/icons";
+import "../../styles/AnimatedBackground.scss";
 
 export const Loader = props => {
   const classes = makeStyles({

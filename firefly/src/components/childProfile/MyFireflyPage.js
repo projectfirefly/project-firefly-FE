@@ -52,7 +52,13 @@ export default function MyFireflyPage() {
                   <Link className={classes.editContainer} to="/customize">
                     <div>
                       <div className={classes.edit}>
-                        <FaPen style={{ marginRight: "5px" }} />
+                        <FaPen
+                          style={{
+                            marginRight: "5px",
+                            height: "14px",
+                            width: "14px"
+                          }}
+                        />
                       </div>
                     </div>
                   </Link>
@@ -83,7 +89,7 @@ export default function MyFireflyPage() {
               <Link
                 className={classes.rightCards}
                 style={{ textDecoration: "none" }}
-                to="/tutorialtest"
+                to="/tutorial"
               >
                 <div className={classes.rightCardContent}>
                   <img

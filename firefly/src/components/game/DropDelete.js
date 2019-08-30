@@ -5,8 +5,8 @@ import Cloud from "../../assets/animations/Cloud";
 import styled from "styled-components";
 
 const Trash = styled.div`
-  height: 150px;
-  width: 150px;
+  height: 250px;
+  width: 250px;
   &:hover {
     /* background: #dc143c; */
     font-size: 68px;
@@ -24,6 +24,7 @@ const Trash = styled.div`
   justify-content: center;
   align-items: center;
   transition: 0.5s;
+  z-index: 5;
 `;
 
 const Destruction = styled.div`

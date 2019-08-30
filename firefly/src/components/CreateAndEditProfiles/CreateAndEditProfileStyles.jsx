@@ -7,16 +7,19 @@ const createProfileStyles = makeStyles(theme => ({
     alignItems: "center",
     justifyContent: "center",
     width: "100%",
-    fontFamily: "'Nunito', sans-serif"
+    fontFamily: "'Nunito', sans-serif",
+    backgroundColor: "#f6f5ff",
+    height: "100vh"
   },
   sizingContainer: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    width: "60%"
+    width: "60%",
+    ...theme.paper,
   },
   header: {
-    ...theme.headerMargin,
+    ...theme.headerMargin
   },
   cardContainer: {
     width: "100%",
@@ -25,26 +28,25 @@ const createProfileStyles = makeStyles(theme => ({
     alignItems: "center"
   },
   card: {
-    ...theme.paper,
     display: "flex",
     width: "100%",
     alignItems: "center",
-    padding: "7% 4%"
+    padding: "4% 4% 7%"
   },
   firefly: {
-    width: "50%",
-    margin: "2%"
+    width: "40%",
+    margin: "2% 5% 2% 4%"
   },
   inputContainer: {
     display: "flex",
     flexDirection: "column",
     height: "100%",
-    width: "50%",
+    width: "70%",
     alignItems: "center",
     justifyContent: "center"
   },
   firstName: {
-    marginBottom: "15%",
+    marginBottom: "10%",
     width: "100%"
   },
   lastName: {
@@ -59,34 +61,35 @@ const createProfileStyles = makeStyles(theme => ({
   },
   field: {
     ...theme.input,
-    paddingRight: "20%",
+    width: "70%",
+    paddingRight: "20%"
   },
   buttonContainer: {
     display: "flex",
-    marginTop: "40px",
+    marginTop: "10px",
+    marginBottom: "25px",
     height: "5%",
-    width: "108%",
-    justifyContent: "space-between",
+    width: "100%",
+    justifyContent: "center",
     alignItems: "center",
-    paddingBottom: "3px"
   },
   cancel: {
     ...theme.secondaryButton,
     width: "25%",
     padding: ".5rem 0",
+    marginRight: "40px",
   },
   save: {
     ...theme.primaryButton,
     width: "25%",
-    padding: ".5rem 0",
+    padding: ".5rem 0"
   },
   delete: {
-    ...theme.secondaryButton,
-    position: "absolute",
+    ...theme.smallIconButton,
     color: "#c7cbd1",
     padding: ".8rem 1rem",
     fontSize: "2rem",
-    margin: "2% 0 -2%",
+    margin: "2% 0 -2% 2%",
     "&:active": {
       boxShadow: "none",
       margin: "2.2% 0 -2.2%"
@@ -157,8 +160,10 @@ const createProfileStyles = makeStyles(theme => ({
   deleteButtonContainer: {
     display: "flex",
     width: "100%",
-    justifyContent: "flex-start"
-  },
+    justifyContent: "flex-start",
+    marginTop: "2%",
+    marginLeft: "3%",
+  }
 }));
 
 export default createProfileStyles;
