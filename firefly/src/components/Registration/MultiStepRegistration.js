@@ -11,33 +11,33 @@ import { Typography } from "@material-ui/core";
 const MultiStepRegistration = () => {
   const classes = makeStyles(theme => ({
     app: {
-      width:"100%"
+      width: "100%"
     },
     header: {
       ...theme.headerMargin,
       marginBottom: "2rem",
       // For mobiles and smaller
       ["@media (max-width:500px)"]: {
-        fontSize: '19px',
-        marginTop:'5%',
-    },
+        fontSize: "19px",
+        marginTop: "5%"
+      }
     },
     h1: {
       // For mobiles and smaller
       ["@media (max-width:500px)"]: {
-        fontSize: '19px',
-        alignContent:'center',
-        alignItems:'center',
-        justifyContent:'center',
-        margin: '0 auto',
-        width: "375px",
-    },
+        fontSize: "19px",
+        alignContent: "center",
+        alignItems: "center",
+        justifyContent: "center",
+        margin: "0 auto",
+        width: "375px"
+      }
     },
     span: {
       // For mobiles and smaller
       ["@media (max-width:500px)"]: {
-        display: 'none',
-    },
+        display: "none"
+      }
     },
     root: {
       display: "flex",
@@ -45,9 +45,9 @@ const MultiStepRegistration = () => {
       alignItems: "center",
       justifyContent: "center",
       backgroundColor: "#f6f5ff",
-      // height: "100vh",
-      width:"98%",
-      margin: '0 auto',
+      height: "100vh",
+      // width:"98%",
+      margin: "0 auto"
     },
     second: {
       display: "flex",
@@ -64,9 +64,9 @@ const MultiStepRegistration = () => {
       backgroundColor: "#f6f5ff",
       height: "100vh",
       // For mobiles and smaller
-    ["@media (max-width:500px)"]: {
-      height:'100%',
-  },
+      ["@media (max-width:500px)"]: {
+        height: "100%"
+      }
     },
     wrapper: {
       width: "98%"
@@ -112,7 +112,10 @@ const MultiStepRegistration = () => {
   return step === 0 ? (
     <div className={classes.root}>
       <div className={classes.header}>
-        <Typography variant="h1" className={classes.h1}> <span className={classes.span}>Step 1:</span> Account Information</Typography>
+        <Typography variant="h1" className={classes.h1}>
+          {" "}
+          <span className={classes.span}>Step 1:</span> Account Information
+        </Typography>
       </div>
       <CustomStepper activeStep={step} />
       <div className={classes.wrapper}>
@@ -127,7 +130,8 @@ const MultiStepRegistration = () => {
   ) : step === 1 ? (
     <div className={classes.second}>
       <Typography variant="h1" className={classes.header}>
-      <span className={classes.span}>Step 2:</span> Add a <span className={classes.span}>Child</span> Profile
+        <span className={classes.span}>Step 2:</span> Add a{" "}
+        <span className={classes.span}>Child</span> Profile
       </Typography>
       <CustomStepper activeStep={step} />
       <div className={classes.wrapper}>
@@ -143,7 +147,7 @@ const MultiStepRegistration = () => {
   ) : (
     <div className={classes.third}>
       <Typography variant="h1" className={classes.header}>
-      <span className={classes.span}>Step 3:</span> How it Works
+        <span className={classes.span}>Step 3:</span> How it Works
       </Typography>
       <CustomStepper activeStep={step} />
       <div className={classes.wrapper}>
