@@ -70,7 +70,7 @@ const BackendTester = () => {
         return { ...document, id: doc.id }
       });
       setProfiles(docList);
-      console.log(profiles);
+      // console.log(profiles);
       return snapshot.docs.map(doc => doc.data());
     })
   }
@@ -80,7 +80,7 @@ const BackendTester = () => {
   }
 
   const logContext = () => {
-    console.log(context);
+    // console.log(context);
   }
 
   const update = () => {

@@ -127,11 +127,11 @@ const SignInPage = withFormik({
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then(res => {
-        console.log(res);
-        console.log(values.persistence);
+        // console.log(res);
+        // console.log(values.persistence);
       })
       .catch(error => {
-        console.log(error);
+        // console.log(error);
       });
   }
 })(SignInForm);
