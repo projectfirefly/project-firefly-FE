@@ -4,7 +4,7 @@ import React, { useContext, useEffect } from "react";
 
 import ChildProfileStore, {
   childContext,
-  SET_LOADED
+  SET_LOADED,
 } from "../context/ChildProfiles/ChildProfileStore";
 
 //material
@@ -41,7 +41,10 @@ export default function DevMenu(props) {
   const [context, dispatch] = useContext(childContext);
 
   useEffect(() => {
-    if (context.loaded && props.logged && !context.user) {
+    if (
+      (context.loaded && props.logged && !context.user) ||
+      (context.loaded && props.logged && !context.user.information)
+    ) {
       dispatch({ type: SET_LOADED, payload: false });
       props.setIsLoading(true);
     }
