@@ -30,7 +30,6 @@ const ChooseProfilePage = props => {
     return (
       <div className={classes.root}>
         <Typography variant="h1" className={classes.header}>
-          {" "}
           CHOOSE YOUR FIREFLY{" "}
         </Typography>
         <div className={classes.sizingContainer}>
@@ -71,7 +70,7 @@ const ChooseProfilePage = props => {
       </div>
     );
   } else {
-    return <div></div>;
+    return <div />;
   }
 };
 
