@@ -61,7 +61,6 @@ const MultiStepRegistration = () => {
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      justifyContent: "center",
       backgroundColor: "#f6f5ff",
       height: "100vh",
       // For mobiles and smaller

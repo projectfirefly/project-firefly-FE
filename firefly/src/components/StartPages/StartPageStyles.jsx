@@ -2,8 +2,14 @@ import { makeStyles } from "@material-ui/core";
 import background from "../../images/backgroundTiling.png";
 
 const startPageStyles = makeStyles(theme => ({
+  root: {},
+  logo: {
+    display: "flex",
+    justifyContent: "center",
+    marginTop: "3%"
+  },
   logoBox: {
-    width: "100%",
+    width: "60%",
     display: "flex",
     flexDirection: "column",
     position: "relative",
@@ -14,9 +20,12 @@ const startPageStyles = makeStyles(theme => ({
     "& div[role=button]": {
       paddingLeft: "230px",
       paddingBottom: "5px"
+    },
+    ["@media (max-width: 430px)"]: {
+      paddingTop: "150px",
+      width: "80%"
     }
   },
-
   staticImage: {
     zIndex: "-5",
     marginTop: "-100px"
@@ -30,6 +39,11 @@ const startPageStyles = makeStyles(theme => ({
   },
   startButton: {
     ...theme.primaryButton,
+    padding: ".6rem 12%",
+    ["@media (max-width: 400px)"]: {
+      width: "60%",
+      marginTop: "40px"
+    },
     marginTop: "6%",
     width: "40%",
     padding: ".6rem 0",

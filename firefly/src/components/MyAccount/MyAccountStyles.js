@@ -157,7 +157,10 @@ const accountStyles = makeStyles(theme => ({
     ...theme.smallIconButton,
     marginBottom: "3px",
     padding: "1rem 1.2rem",
-    fontSize: "1.4rem"
+    fontSize: "1.4rem",
+    "&:active": {
+      margin: "6px 0px -3px 0px"
+    }
   },
   textInput: {
     ...theme.input,
@@ -168,8 +171,13 @@ const accountStyles = makeStyles(theme => ({
     margin: "0 auto",
     width: "80%",
     padding: ".7rem 1rem",
+    "&:active": {
+      margin: "3px auto 0px",
+      boxShadow: "none"
+    },
     "&.back": {
-      ...theme.secondaryButton
+      ...theme.secondaryButton,
+      boxShadow: "none",
     }
   },
   researchSection: {

@@ -176,6 +176,9 @@ const stepOneStyles = makeStyles(theme => ({
       width:'100%',
 
     },
+    "&:active": {
+      margin: "3px 40px -3px 0px"
+    }
   },
   link: { color: "#4BA810", textDecoration: "none" },
   link3: { color: "white", textDecoration: "none" },
@@ -190,6 +193,9 @@ const stepOneStyles = makeStyles(theme => ({
       marginBottom: '5%',
       marginRight:'0',
   },
+    "&:active": {
+      margin: "3px 40px -3px 0px"
+    }
   },
   addChild: {
     width: "100%",
@@ -238,6 +244,7 @@ const stepOneStyles = makeStyles(theme => ({
     display: "flex",
     width: "85%",
     justifyContent: "space-between",
+    marginBottom: "40px",
     // For mobiles and smaller
     ["@media (max-width:500px)"]: {
       display: "flex",

@@ -15,7 +15,7 @@ import "../../styles/AnimatedBackground.scss";
 
 import "../../styles/AnimatedBackground.scss";
 
-const LoggedInStartPage = (props) => {
+const LoggedInStartPage = props => {
   const [childProfileState, dispatch] = useContext(childContext);
 
   const classes = startPageStyles();
@@ -42,6 +42,7 @@ const LoggedInStartPage = (props) => {
           <i className="fas fa-user-alt" />
         </Link>
       </div>
+
       <div className={classes.logoBox}>
         <ChillingFlyNoAcc
           height={200}
@@ -54,6 +55,7 @@ const LoggedInStartPage = (props) => {
           className={classes.staticImage}
         />
       </div>
+
       <div className={classes.buttonContainer}>
         {childProfileState.loaded ? (
           <Link
