@@ -145,7 +145,10 @@ const accountStyles = makeStyles(theme => ({
     ...theme.smallIconButton,
     marginBottom: "3px",
     padding: "1rem 1.2rem",
-    fontSize: "1.4rem"
+    fontSize: "1.4rem",
+    "&:active": {
+      margin: "6px 0px -3px 0px"
+    }
   },
   textInput: {
     ...theme.input,
