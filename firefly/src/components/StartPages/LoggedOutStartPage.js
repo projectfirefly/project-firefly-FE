@@ -6,11 +6,10 @@ import startPageStyles from "./StartPageStyles";
 import { Link } from "react-router-dom";
 import { Typography } from "@material-ui/core";
 
-import  "../../styles/AnimatedBackground.scss";
+import "../../styles/AnimatedBackground.scss";
 
 const LoggedOutStartPage = () => {
   const classes = startPageStyles();
-
 
   return (
     <div className="root">

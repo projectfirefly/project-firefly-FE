@@ -78,11 +78,13 @@ const SignInForm = ({ values, errors, touched }) => {
         <div>
           <h2 className="sign-in-or">OR</h2>
         </div>
-        <div className="forms-box">
-          <StyledFirebaseAuth
-            uiConfig={uiConfig}
-            firebaseAuth={firebase.auth()}
-          />
+        <div className="forms-box FB">
+          <div className="fbSize">
+            <StyledFirebaseAuth
+              uiConfig={uiConfig}
+              firebaseAuth={firebase.auth()}
+            />
+          </div>
           <div className="firefly-nerd">
             <ChillingFly />
           </div>
