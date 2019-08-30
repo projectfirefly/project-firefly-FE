@@ -136,11 +136,13 @@ const RegisterForm = ({ values, errors, touched }) => {
         <div>
           <h2 className="sign-up-or">OR</h2>
         </div>
-        <div className="sign-up-forms-box">
-          <StyledFirebaseAuth
-            uiConfig={uiConfig}
-            firebaseAuth={firebase.auth()}
-          />
+        <div className="sign-up-forms-box ">
+          <div className="fbSize">
+            <StyledFirebaseAuth
+              uiConfig={uiConfig}
+              firebaseAuth={firebase.auth()}
+            />
+          </div>
           <div className="sign-up-firefly-nerd">
             <ChillingFly />
           </div>
