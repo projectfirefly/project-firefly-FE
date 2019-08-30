@@ -194,10 +194,18 @@ export default function ProfileView(props) {
                       Credit Card:
                     </Typography>
                   </Grid>
-                  <Grid item xs={6}>
-                    <Typography className={classes.tempCCInfo}>
-                      {"."}
-                    </Typography>
+                  <Grid
+                    item
+                    xs={6}
+                    style={{ display: "flex", alignItems: "center" }}
+                  >
+                    <div
+                      style={{
+                        width: "150px",
+                        height: "1.6rem",
+                        backgroundColor: "lightgray"
+                      }}
+                    />
                   </Grid>
                 </Grid>
                 <br />
