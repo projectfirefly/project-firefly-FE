@@ -120,12 +120,7 @@ const myFireflyStyles = makeStyles(theme => ({
     justifyContent: "center",
     alignItems: "center",
     width: "44px",
-    height: "44px",
-    "&:active": {
-      boxShadow: "none",
-      marginTop: "28px",
-      marginBottom: "-3px"
-    }
+    height: "44px"
   },
   usernameContainer: {
     display: "flex",

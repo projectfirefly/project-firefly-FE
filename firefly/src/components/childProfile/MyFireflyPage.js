@@ -7,8 +7,6 @@ import { childContext } from "../../context/ChildProfiles/ChildProfileStore";
 //material ui, styling
 import Container from "@material-ui/core/Container";
 import { FaPen } from "react-icons/fa";
-import Book from "../../images/BookTemp.png";
-import Stars from "../../images/StarsTemp.png";
 import ProfileFly from "../../assets/icons/ProfileFly";
 
 import myFireflyStyles from "./myFireflyStyles";
