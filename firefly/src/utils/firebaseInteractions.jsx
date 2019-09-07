@@ -31,7 +31,7 @@ export const addWorld = async (child, payload, dispatch) => {
     .then(worldDoc => {
       //This is a reference to the document you just created
       //do your dispatch in here
-      console.log("adding world to ", child);
+      // console.log("adding world to ", child);
       const newWorld = { id: worldDoc.id, ...payload }; //Creating an object to store locally in context
       dispatch({ type: ADD_WORLD, payload: newWorld }); //Dispatching to reducers so it can get saved locally in context
     });
@@ -67,7 +67,7 @@ export const getWorld = async (child, dispatch) => {
         return await fireflies;
       });
       const payload = await Promise.all(childWorlds);
-      console.log(payload);
+      // console.log(payload);
       dispatch({ type: GET_WORLDS, payload: payload });
     }).then(() => {
       dispatch({ type: SET_GAME_LOADED });
@@ -182,7 +182,7 @@ export const removeFirefly = async (child, firefly_id, world_id, dispatch) => {
   const db = firebase.firestore();
   const uid = firebase.auth().currentUser.uid;
   // const {firefly_id, world_id} = requiredIds;
-  console.log(child, firefly_id, world_id);
+  // console.log(child, firefly_id, world_id);
   db.collection("users")
     .doc(uid)
     .collection("profiles")
@@ -208,10 +208,10 @@ export const updateBlocks = async (
     ...payload
   };
   delete updatedFirefly["id"];
-  console.log(child)
-  console.log(firefly_id)
-  console.log(world_id)
-  console.log(payload)
+  // console.log(child)
+  // console.log(firefly_id)
+  // console.log(world_id)
+  // console.log(payload)
   db.collection("users")
     .doc(uid)
     .collection("profiles")
