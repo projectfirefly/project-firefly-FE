@@ -23,18 +23,24 @@ const myFireflyStyles = makeStyles(theme => ({
   mainBody: {
     display: "flex",
     width: "100%",
-    height: "70vh"
+    height: "75vh",
+    border: "0",
+    boxShadow: "0px 20px 30px - 20px rgba(0, 0, 0, 0.3)",
+    borderRadius: "20px",
+    backgroundColor: "#FFF"
   },
   leftParent: {
+    ...theme.paper,
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    width: "50%"
+    width: "100%"
   },
   leftContainer: {
     ...theme.paper,
     width: "60%",
-    height: "80%"
+    height: "78%",
+    boxShadow: "none"
   },
   fireflyContainer: {
     width: "264px",
@@ -57,16 +63,15 @@ const myFireflyStyles = makeStyles(theme => ({
   },
   rightCards: {
     ...theme.secondaryButton,
-    ...theme.paper,
     width: "100%",
     height: "45%",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    "&.bottom": {
-      marginTop: "10%"
-    }
+    border: "2px solid #382EB8",
+    borderRadius: "10px",
+    boxShadow: "0px 3px #382EB8"
   },
   rightCardContent: {
     display: "flex",
@@ -74,16 +79,18 @@ const myFireflyStyles = makeStyles(theme => ({
     alignItems: "center"
   },
   rightCardsText: {
-    color: "#5B4EFF",
-    fontSize: "24px",
-    fontWeight: "700"
+    color: "#FFF",
+    fontSize: "18px",
+    fontWeight: "800",
+    letterSpacing: "1.5px"
   },
   rightCardsImg: {
     width: "15%"
   },
   buttonContainer: {
-    width: "60%",
-    marginTop: "10%"
+    width: "65%",
+    display: "flex",
+    justifyContent: "space-between"
   },
   chooseFirefly: {
     ...theme.secondaryButton,
@@ -91,9 +98,11 @@ const myFireflyStyles = makeStyles(theme => ({
     padding: ".7rem 0"
   },
   pushRight: {
-    width: "100%",
+    width: "60%",
+    margin: "5% auto",
     display: "flex",
-    justifyContent: "flex-end"
+    justifyContent: "flex-end",
+    alignItems: "center"
   },
   edit: {
     display: "flex",
@@ -112,12 +121,17 @@ const myFireflyStyles = makeStyles(theme => ({
     alignItems: "center",
     width: "44px",
     height: "44px",
-    margin: "25px 25px 0 0",
     "&:active": {
       boxShadow: "none",
       marginTop: "28px",
       marginBottom: "-3px"
     }
+  },
+  usernameContainer: {
+    display: "flex",
+    width: "100%",
+    justifyContent: "center",
+    marginRight: "-44px"
   },
   username: {
     textAlign: "center",
