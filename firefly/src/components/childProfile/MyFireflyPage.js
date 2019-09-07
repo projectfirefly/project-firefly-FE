@@ -7,8 +7,6 @@ import { childContext } from "../../context/ChildProfiles/ChildProfileStore";
 //material ui, styling
 import Container from "@material-ui/core/Container";
 import { FaPen } from "react-icons/fa";
-import Book from "../../images/BookTemp.png";
-import Stars from "../../images/StarsTemp.png";
 import ProfileFly from "../../assets/icons/ProfileFly";
 
 import myFireflyStyles from "./myFireflyStyles";
@@ -41,86 +39,83 @@ export default function MyFireflyPage() {
   //Return nothing for a microsecond while currentProfile populates
   if (currentProfile) {
     return (
-      <React.Fragment>
-        <Container className={classes.root} component="div">
-          <h1 className={classes.header}>My Firefly</h1>
+      <Container className={classes.root} component="div">
+        <h1 className={classes.header}>My Firefly</h1>
 
-          <div className={classes.mainBody}>
-            <div className={classes.leftParent}>
-              <div className={classes.leftContainer}>
-                <div className={classes.pushRight}>
-                  <Link className={classes.editContainer} to="/customize">
-                    <div>
-                      <div className={classes.edit}>
-                        <FaPen
-                          style={{
-                            marginRight: "5px",
-                            height: "14px",
-                            width: "14px"
-                          }}
-                        />
-                      </div>
+        <div className={classes.mainBody}>
+          <div className={classes.leftParent}>
+            <div className={classes.leftContainer}>
+              <div className={classes.pushRight}>
+                <div className={classes.usernameContainer}>
+                  <h3 className={classes.username}>
+                    {currentProfile.avatar.nickname}
+                  </h3>
+                </div>
+                <Link className={classes.editContainer} to="/customize">
+                  <div>
+                    <div className={classes.edit}>
+                      <FaPen
+                        style={{
+                          marginRight: "5px",
+                          height: "14px",
+                          width: "14px"
+                        }}
+                      />
                     </div>
-                  </Link>
-                </div>
-                <h3 className={classes.username}>
-                  {currentProfile.avatar.nickname}
-                </h3>
-                <div className={classes.fireflyContainer}>
-                  <ProfileFly
-                    color={currentProfile.avatar.color}
-                    accessory={currentProfile.avatar.accessory}
-                  />
-                </div>
+                  </div>
+                </Link>
               </div>
 
-              <div className={classes.buttonContainer}>
-                <Link
-                  className={classes.chooseFirefly}
-                  style={{ color: "#4AA810", textDecoration: "none" }}
-                  to="/choose-profile"
-                >
-                  <Typography variant="button">Choose Firefly</Typography>
-                </Link>
+              <div className={classes.fireflyContainer}>
+                <ProfileFly
+                  color={currentProfile.avatar.color}
+                  accessory={currentProfile.avatar.accessory}
+                />
               </div>
             </div>
 
-            <div className={classes.rightContainer}>
+            <div className={classes.buttonContainer}>
               <Link
-                className={classes.rightCards}
-                style={{ textDecoration: "none" }}
-                to="/tutorial"
+                className={classes.chooseFirefly}
+                style={{
+                  color: "#4AA810",
+                  textDecoration: "none",
+                  width: "47%"
+                }}
+                to="/choose-profile"
               >
-                <div className={classes.rightCardContent}>
-                  <img
-                    className={classes.rightCardsImg}
-                    src={Book}
-                    alt={"A book"}
-                  />
-                  <h4 className={classes.rightCardsText}>Learn How to Play</h4>
-                </div>
+                <Typography
+                  variant="button"
+                  style={{
+                    fontSize: "18px",
+                    fontWeight: "800",
+                    letterSpacing: "1.5px"
+                  }}
+                >
+                  BACK
+                </Typography>
               </Link>
 
               <Link
-                className={classes.rightCards + " bottom"}
-                style={{ textDecoration: "none" }}
+                className={classes.rightCards}
+                style={{
+                  textDecoration: "none",
+                  width: "47%",
+                  backgroundColor: "#5B4EFF",
+                  padding: "1rem 0rem"
+                }}
                 to="/chooseworld"
               >
                 <div>
                   <div className={classes.rightCardContent}>
-                    <img
-                      className={classes.rightCardsImg}
-                      src={Stars}
-                      alt={"three stars"}
-                    />
                     <h4 className={classes.rightCardsText}>Start Playing</h4>{" "}
                   </div>
                 </div>
               </Link>
             </div>
           </div>
-        </Container>
-      </React.Fragment>
+        </div>
+      </Container>
     );
   } else {
     return <></>;

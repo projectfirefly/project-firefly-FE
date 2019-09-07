@@ -82,9 +82,7 @@ export default function CustomizeFireflyPage(props) {
                   accessory={updatedProfile.avatar.accessory}
                   lighttopFill={`hsl(${updatedProfile.avatar.color},100%,35%)`}
                   lightmidFill={`hsl(${updatedProfile.avatar.color},100%,45%)`}
-                  lightbottomFill={`hsl(${
-                    updatedProfile.avatar.color
-                  },100%,55%)`}
+                  lightbottomFill={`hsl(${updatedProfile.avatar.color},100%,55%)`}
                   shineStroke={`hsl(${updatedProfile.avatar.color},100%,55%)`}
                 />
               </div>
@@ -121,19 +119,16 @@ export default function CustomizeFireflyPage(props) {
                   />
                 </div>
               </div>
-            </div> 
+            </div>
           </div>
           <div className={classes.buttonContainer}>
-              <Link to="/choose-profile" className={classes.a}>
-                <SecondaryButton
-                  text={"BACK"}
-                  onClick={"window.history.back(-1)"}
-                />
-              </Link>
-              <div className={classes.a} onClick={saveProfile}>
-                <PrimaryButton text={"SAVE"} />
-              </div>
+            <Link to="/myfirefly" className={classes.a}>
+              <SecondaryButton text={"BACK"} />
+            </Link>
+            <div className={classes.a} onClick={saveProfile}>
+              <PrimaryButton text={"SAVE"} />
             </div>
+          </div>
         </div>
       </div>
     );
