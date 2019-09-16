@@ -41,7 +41,7 @@ const poof = new uifx({ asset: poofMP3 });
 //styling
 const Background = styled.div`
   position: absolute;
-  width: 100vw;
+  /* width: 100vw; */
   height: 100vh;
   background-image: url(${GridIcon});
   background-repeat: repeat;

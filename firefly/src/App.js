@@ -20,49 +20,56 @@ ReactGA.pageview(window.location.pathname + window.location.search);
 //google analytics code end//
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
-  //set to false
+    const [loggedIn, setLoggedIn] = useState(false);
+    //set to false
 
-  const [isLoading, setIsLoading] = useState(true);
-  //set to true
+    const [isLoading, setIsLoading] = useState(true);
+    //set to true
 
-  // console.log("App Render");
+    // console.log("App Render");
 
-  firebase.auth().onAuthStateChanged(user => {
-    if (user) {
-      if (loggedIn === false) {
-        setLoggedIn(true);
-      }
-    } else {
-      if (loggedIn) {
-        setLoggedIn(false);
-        setIsLoading(true);
-      }
-    }
-  });
+    firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+            if (loggedIn === false) {
+                setLoggedIn(true);
+            }
+        } else {
+            if (loggedIn) {
+                setLoggedIn(false);
+                setIsLoading(true);
+            }
+        }
+    });
 
-  const theme = createMuiTheme(useTheme);
+    const theme = createMuiTheme(useTheme);
 
-  return (
-    <BrowserRouter>
-      <ThemeProvider theme={theme}>
-        {isLoading ? <Loader /> : <div />}
-        <ChildProfileStore>
-          <GameContextStore>
-            {isLoading ? (
-              <LoadedChecker logged={loggedIn} setIsLoading={setIsLoading} />
-            ) : (
-              <DevMenu
-                isLoading={isLoading}
-                setIsLoading={setIsLoading}
-                logged={loggedIn}
-              />
-            )}
-          </GameContextStore>
-        </ChildProfileStore>
-      </ThemeProvider>
-    </BrowserRouter>
-  );
+    return (
+        <div style={{ backgroundColor: "#f6f5ff" , display: "flex", minHeight: "100vh"}}>
+            <div style={{ width: "1024px", margin: "0 auto", display: "flex", flexDirection: "column" }}>
+                <BrowserRouter>
+                    <ThemeProvider theme={theme}>
+                        {isLoading ? <Loader /> : <div />}
+                        <ChildProfileStore>
+                            <GameContextStore>
+                                {isLoading ? (
+                                    <LoadedChecker
+                                        logged={loggedIn}
+                                        setIsLoading={setIsLoading}
+                                    />
+                                ) : (
+                                    <DevMenu
+                                        isLoading={isLoading}
+                                        setIsLoading={setIsLoading}
+                                        logged={loggedIn}
+                                    />
+                                )}
+                            </GameContextStore>
+                        </ChildProfileStore>
+                    </ThemeProvider>
+                </BrowserRouter>
+            </div>
+        </div>
+    );
 }
 
 export default App;

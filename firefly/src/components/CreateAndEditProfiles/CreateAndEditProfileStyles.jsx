@@ -9,7 +9,7 @@ const createProfileStyles = makeStyles(theme => ({
     width: "100%",
     fontFamily: "'Nunito', sans-serif",
     backgroundColor: "#f6f5ff",
-    height: "100vh"
+    // height: "100vh"
   },
   sizingContainer: {
     display: "flex",

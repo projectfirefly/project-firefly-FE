@@ -35,8 +35,8 @@ const accountStyles = makeStyles(theme => ({
     flexGrow: "1",
     fontFamily: "'Nunito', sans-serif",
     backgroundColor: "#f6f5ff",
-    height: "100vh",
-    width: "100vw",
+    // height: "100vh",
+    // width: "100vw",
      // For mobiles and smaller
      ["@media (max-width:500px)"]: {
       height: '100%',
