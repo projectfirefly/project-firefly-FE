@@ -243,7 +243,7 @@ const Game = props => {
             width: "37px",
         },
         game: {
-            width: "100%",
+            width: "100vw",
             position: "relative",
             height: "100vh",
             overflow: "hidden",
@@ -256,7 +256,8 @@ const Game = props => {
         },
         background: {
             position: "absolute",
-            width: "100%",
+            width: "100vw",
+            overflow: "hidden",
             height: "100vh",
             backgroundImage: `url(${GridIcon})`,
             backgroundRepeat: "repeat",
