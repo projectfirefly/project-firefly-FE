@@ -16,15 +16,19 @@ export const Loader = props => {
             width: "100%",
             [theme.breakpoints.up("lg")]: {
                 width: "1024px",
-                margin: "0 auto",
+                margin: "100px auto",
             }
         },
         sizer: {
             display: "flex",
-            flexDirection: "column"
+            flexDirection: "column",
+            alignItems: "center",
+            width: "100%",
         },
         image: {
-            width: "100%"
+            [theme.breakpoints.up("lg")]: {
+                width: "40%"
+            }
         },
         loaderContainer: {
             display: "flex",
@@ -39,7 +43,9 @@ export const Loader = props => {
         <div className={classes.container}>
             <div className={classes.sizer}>
                 {/* <img src={Welcome} className={classes.image}/> */}
-                <Icon name="Firefly" width={"100%"} viewBox={"0 0 1024 1024"} />
+                <div className={classes.image}>
+                    <Icon name="Firefly" width={"100%"} viewBox={"0 0 1024 1024"} />
+                </div>
                 <div className={classes.loaderContainer}>
                     <Typography variant="h1">Loading</Typography>
                     <CircleLoader />
