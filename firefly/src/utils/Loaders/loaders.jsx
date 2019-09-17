@@ -6,15 +6,18 @@ import Icon from "../../assets/icons";
 import "../../styles/AnimatedBackground.scss";
 
 export const Loader = props => {
-    const classes = makeStyles({
+    const classes = makeStyles(theme => ({
         container: {
-            position: "absolute",
             marginTop: "13%",
             display: "flex",
             flexDirection: "column",
-            justifyContent: "center",
+            // justifyContent: "center",
             alignItems: "center",
-            width: "100%"
+            width: "100%",
+            [theme.breakpoints.up("lg")]: {
+                width: "1024px",
+                margin: "0 auto",
+            }
         },
         sizer: {
             display: "flex",
@@ -30,7 +33,7 @@ export const Loader = props => {
             alignItems: "center",
             marginTop: "2rem"
         }
-    })();
+    }))();
 
     return (
         <div className={classes.container}>
