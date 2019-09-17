@@ -4,7 +4,7 @@ import { Droppable, Draggable } from "react-beautiful-dnd";
 
 const List = styled.div`
   height: 100vh;
-  padding: 0 0.5rem;
+  padding: 0 5px;
 `;
 
 const Kiosk = styled(List)`
@@ -17,6 +17,7 @@ const Kiosk = styled(List)`
   top: 0;
   left: 0;
   width: 100px;
+  max-height: 100%;
   background: #fff;
 `;
 
@@ -43,13 +44,13 @@ const BlockUsed = styled.span`
 
 const Tool = styled.div`
   display: flex;
-  margin: 1rem 0 3.3rem 0;
+  margin: 10px 0 33px 0;
 `;
 
 const ToolUsed = styled.div`
   display: flex;
   opacity: 0.6;
-  margin: 1rem 0 3.3rem 0;
+  margin: 10px 0 33px 0;
 `;
 
 const Item = styled.div`

@@ -45,7 +45,7 @@ const MultiStepRegistration = () => {
       alignItems: "center",
       justifyContent: "center",
       backgroundColor: "#f6f5ff",
-      height: "100vh",
+    //   height: "100vh",
       // width:"98%",
       margin: "0 auto",
       ["@media (max-width:500px)"]: {
@@ -58,14 +58,14 @@ const MultiStepRegistration = () => {
       alignItems: "center",
       justifyContent: "center",
       backgroundColor: "#f6f5ff",
-      height: "100vh"
+    //   height: "100vh"
     },
     third: {
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
       backgroundColor: "#f6f5ff",
-      height: "100vh",
+    //   height: "100vh",
       // For mobiles and smaller
       ["@media (max-width:500px)"]: {
         height: "100%"

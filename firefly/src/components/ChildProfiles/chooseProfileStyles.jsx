@@ -11,7 +11,7 @@ const chooseProfileStyles = makeStyles(theme => ({
     alignItems: "center",
     padding: "0 4.7%",
     backgroundColor: "#f6f5ff",
-    height: "100vh"
+    // height: "100vh"
   },
   sizingContainer: {
     ...theme.paper,
