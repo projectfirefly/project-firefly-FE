@@ -16,7 +16,7 @@ const Trash = styled.div`
     color: #e3e5e8;
   }
   /* border-top-left-radius: 100%; */
-  position: fixed;
+  position: absolute;
   right: 0;
   bottom: 0;
   color: #abb0ba;
@@ -32,10 +32,10 @@ const Destruction = styled.div`
   width: 350px;
 
   /* border-top-left-radius: 100%; */
-  position: fixed;
+  position: absolute;
   z-index: -5;
-  right: 50px;
-  bottom: 50px;
+  right: 0px;
+  bottom: 0px;
 `;
 
 const DropDelete = ({ trashing }) => {
@@ -46,7 +46,7 @@ const DropDelete = ({ trashing }) => {
       direction="horizontal"
     >
       {(provided, snapshot) => (
-        <div>
+        <div style={{position: "absolute", right: 0, bottom: 0}}>
           {!trashing ? (
             <Trash
               ref={provided.innerRef}

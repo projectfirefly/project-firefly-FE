@@ -18,7 +18,7 @@ const MultiStepTutorial = props => {
   const classes = makeStyles(theme => ({
     app: {},
     root: {
-      height: "100vh",
+    //   height: "100vh",
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
@@ -26,7 +26,7 @@ const MultiStepTutorial = props => {
       backgroundColor: "#D0CCFF"
     },
     image: {
-      height: "100vh",
+    //   height: "100vh",
       marginLeft: "-55px"
     },
     wrapper: {
