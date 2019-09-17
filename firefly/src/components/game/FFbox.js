@@ -7,7 +7,7 @@ const useStyles = makeStyles({
   fireFlyBox: {
     width: "40%",
     padding: "20px 0",
-    margin: "3% auto",
+    margin: "20px auto",
     borderRadius: "20px",
     boxShadow: "0px 2px 4px #000000",
     backgroundImage: "linear-gradient(#382eb8, #7068ff)"
@@ -16,7 +16,7 @@ const useStyles = makeStyles({
   fireFlyBoxSleep: {
     width: "40%",
     padding: "20px 0",
-    margin: "3% auto",
+    margin: "0 auto",
     borderRadius: "20px",
     boxShadow: "0px 1px 4px #000000",
     backgroundImage: "linear-gradient(#555, #fff)"

@@ -7,7 +7,7 @@ const chooseWorldStyles = makeStyles(theme => ({
     backgroundImage: `url(${background})`,
     backgroundPosition: "0px 0px",
     // width: "100vw",
-    // height: "100vh",
+    minHeight: "768px",
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
     overflow: "hidden"

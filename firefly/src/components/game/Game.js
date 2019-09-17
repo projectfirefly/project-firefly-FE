@@ -41,18 +41,21 @@ const poof = new uifx({ asset: poofMP3 });
 //styling
 const Background = styled.div`
   position: absolute;
-  /* width: 100vw; */
-  height: 100vh;
+  width: 1024px;
+  height: 768px;
   background-image: url(${GridIcon});
   background-repeat: repeat;
-  z-index: -100;
+  z-index: -10;
   top: 0;
-  left: 0;
+  left: auto;
 `;
 
 const Board = styled.div`
   /* min-height: 100vh; */
   width: 100%;
+  position: relative;
+  height: 768px;
+  overflow: hidden;
   /* background-image: url(${GridIcon}); */
   /* margin: -10% 0; */
   /* padding-bottom: 30%; */
@@ -515,8 +518,10 @@ const Game = props => {
   return (
     <Board>
       <Background />
-      <DragDropContext onDragEnd={onDragEnd} onDragStart={onDragStart}>
-        <Toolbox tools={tools} />
+      <DragDropContext onDragEnd={onDragEnd} onDragStart={onDragStart} style={{maxHeight: "100%"}}>
+        <div style={{height: "768px", position: "absolute"}}>
+            <Toolbox tools={tools} />
+        </div>
         <FFbox tools={tools} animationList={animationList} playing={playing} />
         <BlockLine
           list={list}

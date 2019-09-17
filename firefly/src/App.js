@@ -44,7 +44,7 @@ function App() {
     const theme = createMuiTheme(useTheme);
 
     return (
-        <div style={{ backgroundColor: "#f6f5ff" , display: "flex", minHeight: "100vh"}}>
+        <div style={{ position: "absolute", backgroundColor: "#f6f5ff" , display: "flex", minHeight: "100vh", minWidth: "100vw", zIndex: "-100"}}>
             <div style={{ width: "1024px", margin: "0 auto", display: "flex", flexDirection: "column" }}>
                 <BrowserRouter>
                     <ThemeProvider theme={theme}>

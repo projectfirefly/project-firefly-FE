@@ -17,6 +17,7 @@ const Kiosk = styled(List)`
   top: 0;
   left: 0;
   width: 100px;
+  max-height: 100%;
   background: #fff;
 `;
 
