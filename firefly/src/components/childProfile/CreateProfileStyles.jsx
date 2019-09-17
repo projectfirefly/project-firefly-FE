@@ -10,7 +10,7 @@ const createProfileClasses = makeStyles(theme => ({
     fontFamily: "'Nunito', sans-serif",
     padding: "0",
     backgroundColor: "#f6f5ff",
-    height: "100vh"
+    // height: "100vh"
   },
   sizingContainer: {
     ...theme.paper,
